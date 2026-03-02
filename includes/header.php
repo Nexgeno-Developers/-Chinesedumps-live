@@ -135,6 +135,7 @@ if (function_exists('start_root_url_rewrite')) {
 		<html xmlns="http://www.w3.org/1999/xhtml">
 
 		<head>
+			<meta NAME="robots" CONTENT="noindex,nofollow">
 			<base href="
 
 			<?php echo $websiteURL?>" />
