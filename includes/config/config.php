@@ -1,7 +1,7 @@
 <?php
 
 // Central base URL for the whole website (must end with a trailing slash)
-$defaultBaseUrl = $websiteURL ?? '/';
+$defaultBaseUrl = !empty($websiteURL) ? $websiteURL : '/';
 if (!defined('BASE_URL')) {
 	define('BASE_URL', $defaultBaseUrl);
 }
