@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/includes/config/config.php';
+require_once __DIR__ . '/includes/config/load_secrets.php';
 
 $siteKey = secret('RECAPTCHA_SITE_KEY_SHIELDSQUARE', ''); // Enter your sitekey obtained from reCaptcha Website
 $secret  = secret('RECAPTCHA_SECRET_SHIELDSQUARE', ''); // Enter your secret key obtained from reCaptcha Website

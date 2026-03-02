@@ -4,7 +4,7 @@
 // Place at: /home2/chinesedumps/public_html/zoho_ajax.php
 
 header('Content-Type: application/json; charset=utf-8');
-require_once __DIR__ . '/includes/config/config.php';
+require_once __DIR__ . '/includes/config/load_secrets.php';
 
 // ---------- CONFIG - EDIT ----------
 $CLIENT_ID = secret('ZOHO_CLIENT_ID', '');

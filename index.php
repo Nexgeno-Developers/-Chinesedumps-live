@@ -1,11 +1,10 @@
-<?php //echo "yesssssssss"; die;
+<?php
+require_once __DIR__ . '/includes/config/load_secrets.php';
 //Report all errors
 error_reporting(E_ALL);
 ob_start();
 session_start();
 include("includes/config/classDbConnection.php");
-
-include("includes/config/config.php");
 
 include("includes/common/classes/classmain.php");
 include("includes/common/classes/classcart.php");

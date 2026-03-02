@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/includes/config/load_secrets.php'; ?>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
    <!-- Wrapper for slides -->

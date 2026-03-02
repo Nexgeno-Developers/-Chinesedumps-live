@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/config/load_secrets.php';
 include_once __DIR__ . '/config/classDbConnection.php';
 if (function_exists('start_root_url_rewrite')) {
 	start_root_url_rewrite();

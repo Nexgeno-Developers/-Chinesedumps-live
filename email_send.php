@@ -1,4 +1,5 @@
   <?php
+            require_once __DIR__ . '/includes/config/load_secrets.php';
             if (!defined('BASE_URL')) {
                include_once __DIR__ . '/includes/config/config.php';
             }

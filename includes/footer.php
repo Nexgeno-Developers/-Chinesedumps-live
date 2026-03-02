@@ -1,7 +1,5 @@
 <?php
-if (!function_exists('secret')) {
-	require_once __DIR__ . '/config/config.php';
-}
+require_once __DIR__ . '/config/load_secrets.php';
 ?>
 <style>
     .footer_chacpha .g-recaptcha {

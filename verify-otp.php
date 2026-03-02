@@ -1,7 +1,7 @@
 <?php
+require_once __DIR__ . '/includes/config/load_secrets.php';
 session_start();
 header('Content-Type: application/json');
-require_once __DIR__ . '/includes/config/config.php';
 
 // For development (disable in production)
 error_reporting(E_ALL);

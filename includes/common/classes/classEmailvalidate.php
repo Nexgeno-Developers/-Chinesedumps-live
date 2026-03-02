@@ -1,7 +1,6 @@
-<?PHP
-
+<?php
 	error_reporting(0);
-	require_once __DIR__ . '/../../config/config.php';
+	require_once __DIR__ . '/../../config/load_secrets.php';
 
 	class classEmailvalidate
 	{

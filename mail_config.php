@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/includes/config/config.php';
+require_once __DIR__ . '/includes/config/load_secrets.php';
 
 // Gmail / Google Workspace SMTP settings.
 return [

@@ -1,5 +1,5 @@
-<? 
-require_once __DIR__ . '/includes/config/config.php';
+<?php
+require_once __DIR__ . '/includes/config/load_secrets.php';
 
 /* Source File Name and Path */
 $remote_file = '/public_html/backupafter-infected-now-migration-to-new-server.zip';

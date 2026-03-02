@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/includes/config/load_secrets.php';
 session_start();
 header('Content-Type: application/json');
 include("functions.php");

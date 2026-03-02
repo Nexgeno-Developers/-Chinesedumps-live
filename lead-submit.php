@@ -3,7 +3,7 @@
 declare(strict_types=1);
 error_reporting(0);
 
-require_once __DIR__ . '/includes/config/config.php';
+require_once __DIR__ . '/includes/config/load_secrets.php';
 
 function cfg() { static $c; return $c ?? $c = require __DIR__ . '/zoho/secrets.php'; }
 function tokenCachePath(): string { return __DIR__ . '/zoho/token-cache.json'; }
