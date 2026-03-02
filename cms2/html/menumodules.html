@@ -1,0 +1,65 @@
+<? include("header.php");?>
+<script language="JavaScript" src="js/categorymodule.js"></script>
+<table cellpadding="0" cellspacing="0" width="102%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+<td width="810" class="rightside"><h2>Menu Modules Setting !</h2>
+Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.<br /><br />
+<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+<table cellpadding='0' cellspacing='0' width='600'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'> Menu Modules Setting</td>
+    </tr>
+    <tr>
+      <td class='setting1'>
+       
+            <table width="100%" border="0" cellspacing="8" cellpadding="8">
+              
+                        
+              <tr>
+                <td width="49%" height="33" align="right" valign="middle" >Follow Us Module&nbsp;</td>
+                <td width="51%" align="left" valign="middle" ><div id='txtHint1'><a href='javascript:showHintmodule(1)' style="text-decoration:none";><?=$show1?></a></div></td>
+              </tr>
+               <tr>
+                <td height="33" align="right" valign="middle" >Most Popular Vendor Module&nbsp;</td>
+                <td align="left" valign="middle" ><div id='txtHint2'><a href='javascript:showHintmodule(2)' style="text-decoration:none";><?=$show2?></a></div></td>
+              </tr>
+               <tr>
+                <td height="33" align="right" valign="middle" >TestBells Guarantee Module&nbsp;</td>
+                <td align="left" valign="middle" ><div id='txtHint3'><a href='javascript:showHintmodule(3)' style="text-decoration:none";><?=$show3?></a></div></td>
+              </tr>
+              <tr>
+                <td height="33" align="right" valign="middle" >Demo Download Module&nbsp;</td>
+                <td align="left" valign="middle" ><div id='txtHint4'><a href='javascript:showHintmodule(4)' style="text-decoration:none";><?=$show4?></a></div></td>
+              </tr>
+                            
+              <tr>
+                <td height="23" align="right" valign="middle" ></td>
+                <td align="left" valign="middle" ></td>
+              </tr>
+             
+              
+            </table>
+               
+      </td>
+    </tr>
+    <tr>
+      <td class='setting2'>&nbsp;</td>
+    </tr>
+  </table>
+</form>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<? include("footer.php")?>
+
+</body>
+</html>

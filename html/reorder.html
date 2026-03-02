@@ -1,0 +1,86 @@
+<? include("includes/header.php");?>
+  <tr>
+    <td colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+      <td valign="top">
+              <?php
+              	 	if($exec['menucolum']=='Left'){  
+                    	include("includes/leftmenu.php");
+                     } 
+               ?>
+	<td valign="top" width="74%">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="25" align="center" bgcolor="#C4E2FC" class="bluebold"><?php echo $getPage[1]; ?></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="10">&nbsp;</td>
+        <td class="text"><br>
+		<?php echo $getPage[2]; ?><br />
+
+          <div><form name="form2" id="form2" method="post" action=""  enctype="multipart/form-data">
+            <table width="520" border="1" align="center" cellpadding="0" cellspacing="1">
+           
+
+			    <tr>
+                <td colspan="5" class="rghtmenuhd">Re-Order Products:</td>
+                </tr>
+				 <tr>
+			      <td height="25" colspan="5" align="left" class='indexmaindata'>We offer 25% discount when you re-order any expired product. Select the product with appropriate subscription, and add it to the cart, your cart will show a 25% discount for that re-ordered product.</td>
+			      </tr>
+			    <tr>
+                <td width="72" height="25" align="center" class='headerbgcolor'>Exam Code</td>
+                <td class='headerbgcolor' align="center" width="203">Description</td>
+                <td class='headerbgcolor' align="center" width="76"> Exp. Date </td>
+                <td class='headerbgcolor' align="center" width="131">Re-Order</td>
+                <td class='headerbgcolor' align="center" width="20">&nbsp;</td>
+                </tr>
+			    <?=$show_orders?>
+                <tr>
+			      <td height="25" align="center" class=''>&nbsp;</td>
+			      <td class='' align="center">&nbsp;</td>
+			      <td class='' align="center">&nbsp;</td>
+			      <td class='' align="center">&nbsp;</td>
+			      <td class='' align="center">&nbsp;</td>
+			      </tr>
+            </table>
+          </form></div></td>
+        <td width="10">&nbsp;</td>
+      </tr>
+    
+    <tr>
+
+        <td>&nbsp;</td>
+
+        <td>&nbsp;</td>
+
+        <td>&nbsp;
+
+        </td>
+
+      </tr>
+
+    </table></td>
+
+  </tr>
+
+  
+</table>
+<br>
+
+</td>
+                <?php
+              	 	if($exec['menucolum']=='Right'){  
+                    	include("includes/leftmenu.php");
+                     } 
+               	?>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  
+              <? include("includes/footer.php");?>

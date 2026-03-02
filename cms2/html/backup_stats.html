@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><?=$websitetitle?></title>
+<link href="new.css" rel="stylesheet" type="text/css" />
+<link href="style1.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+<script language="JavaScript" src="../includes/js/calendar.js"></script>
+<script type="text/javascript" src="Editor3/scripts/innovaeditor.js"></script>
+<script language="javascript" type="text/javascript">
+function Cofirm()
+{
+var mes=window.confirm ("Are You Sure To Delete the Selected Item");
+if (mes==true)
+{
+return true;
+}
+else
+{
+return false;
+}
+}
+</script>
+<script language="JavaScript" src="../includes/js/functions.js"></script></head>
+</head>
+<body>
+
+<div class="topbar">
+<table cellpadding="0" cellspacing="0" width="90%">
+<tr>
+<td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
+<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+</tr>
+</table></div>
+
+<table cellpadding="0" cellspacing="0" width="92%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+
+<td width="610" valign="top" class="rightside"><h2>Stats !</h2>
+
+Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
+
+<br />
+
+<form id="frm1" name="frm1" method="post" action="" enctype="multipart/form-data">
+
+
+
+<br /><table cellpadding='0' cellspacing='0' class='list' width='87%'>
+
+	 <tr>
+    <td height="19" align="right" colspan="5">&nbsp;</td>
+	</tr>
+    
+    <tr>
+    <td colspan="4"  align="center">Stats :
+	    &nbsp; FROM &nbsp; <input name="txt_StartDate" type="text" class="clsTxtBox"  id="txt_StartDate" readonly="readonly" value="<?=$_POST['txt_StartDate']?>"  style="width:100px; height:16px" />
+           <img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" 
+				  style="cursor:hand" onclick="displayCalendarSe(document.frm1.txt_StartDate,'yyyy-mm-dd',this)" /> &nbsp; TO &nbsp; <input name="txt_StartDate2" type="text" class="clsTxtBox"  id="txt_StartDate2" readonly="readonly" value="<?=$_POST['txt_StartDate2']?>"  style="width:100px; height:16px" />
+                  <img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" 
+				  style="cursor:hand" onclick="displayCalendarSe(document.frm1.txt_StartDate2,'yyyy-mm-dd',this)" />&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;<input type="submit" name="Search" value="Show" />	  </td>
+	  </tr>
+  <tr>
+    <td height="19" align="center" colspan="5" style="color:#FF0000; font-weight:bold;"><? echo $str22; ?></td>
+	</tr>
+    <tr>
+    <td width="136" align="center"  class='header' colspan="4">Users Report</td>
+    </tr>
+    <tr>
+    <td width="136" align="center"  class='header'>Period</td>
+    <td class='header' width='150' align="center">User Registered</td>
+    <td width="127" class='header' align="center">Got Sales</td>
+    <td width="144" class='header' align="center">Not Got Sales</td>
+    </tr>
+    <tr>
+    <td width="136" align="center" >Today</td>
+    <td width='80' align="center"><?=$reg_today?></td>
+    <td width="127" align="center"><?=$sold_today?></td>
+    <td width="144" align="center"><?php echo $reg_today - $sold_today?></td>
+    </tr>
+    <tr>
+      <td align="center" >Yesterday</td>
+      <td align="center"><?=$reg_yesterday?></td>
+      <td align="center"><?=$sold_yesterday?></td>
+      <td align="center"><?php echo $reg_yesterday - $sold_yesterday?></td>
+    </tr>
+    <tr>
+    <td width="136" align="center" >Last 7 days</td>
+    <td width='80' align="center"><?=$reg_last_week?></td>
+    <td width="127" align="center"><?=$sold_last_week?></td>
+    <td width="144" align="center"><?php echo $reg_last_week - $sold_last_week?></td>
+    </tr>
+    <tr>
+    <td width="136" align="center" >Last 30 Days</td>
+    <td width='80' align="center"><?=$reg_last_month?></td>
+    <td width="127" align="center"><?=$sold_last_month?></td>
+    <td width="144" align="center"><?php echo $reg_last_month- $sold_last_month?></td>
+    </tr>
+    <tr>
+    <td width="136" align="center" >Last 1 Year</td>
+    <td width='80' align="center"><?=$reg_last_year?></td>
+    <td width="127" align="center"><?=$sold_last_year?></td>
+    <td width="144" align="center"><?php echo $reg_last_year - $sold_last_year?></td>
+    </tr>
+    <tr>
+    <td width="136" align="center" class="error" >In Selected Period</td>
+    <td width='80' align="center" class="error"><?=$reg_sel?></td>
+    <td width="127" align="center" class="error"><?=$sold_sel?></td>
+    <td width="144" align="center" class="error"><?php echo $reg_sel - $sold_sel?></td>
+    </tr>
+    <tr>
+    <td width="136" align="center" >&nbsp;</td>
+    <td width='80' align="center">&nbsp;</td>
+    <td width="127" align="center">&nbsp;</td>
+    <td width="144" align="center">&nbsp;</td>
+    </tr>
+    </table>
+    <table cellpadding='0' cellspacing='0' class='list' width='87%'>
+    <tr>
+    <td width="136" align="center"  class='header' colspan="6">Sales Report</td>
+    </tr>
+    <tr>
+    <td width="136" align="center"  class='header'>Today</td>
+    <td width="136" align="center"  class='header'>Yesterday</td>
+    <td width="136" align="center"  class='header'>Last 7 Days</td>
+    <td class='header' width='150' align="center">Last 30 Days</td>
+    <td width="127" class='header' align="center">Last 1 Year</td>
+    <td width="127" class='header' align="center">In Selected Period</td>
+    </tr>
+    <tr>
+    <td width="136" align="center" >$<?=$sale_today?></td>
+    <td width="136" align="center" >$
+      <?=$sale_yesterday?></td>
+    <td width="136" align="center" >$<?=$sale_week?></td>
+    <td width='80' align="center">$<?=$sale_month?></td>
+    <td width="127" align="center">$<?=$sale_year?></td>
+    <td width="144" align="center" class="error">$<?=$sale_per?></td>
+    </tr>
+    <tr>
+    <td width="136" align="center" >&nbsp;</td>
+    <td width="136" align="center" >&nbsp;</td>
+    <td width="136" align="center" >&nbsp;</td>
+    <td width='80' align="center">&nbsp;</td>
+    <td width="127" align="center">&nbsp;</td>
+    <td width="144" align="center">&nbsp;</td>
+    </tr>
+    <tr>
+    <td width="136" align="center"  class='header' colspan="6">Manual Assigned</td>
+    </tr>
+    <tr>
+    <td width="136" align="center"  class='header'>Today</td>
+    <td width="136" align="center"  class='header'>Yesterday</td>
+    <td width="136" align="center"  class='header'>Last 7 Days</td>
+    <td class='header' width='150' align="center">Last 30 Days</td>
+    <td width="127" class='header' align="center">Last 1 Year</td>
+    <td width="127" class='header' align="center">In Selected Period</td>
+    </tr>
+    <tr>
+    <td width="136" align="center" >$<?=$manual_today?></td>
+    <td width="136" align="center" >$
+      <?=$sale_yesterday?></td>
+    <td width="136" align="center" >$<?=$manual_last_week?></td>
+    <td width='80' align="center">$<?=$manual_last_month?></td>
+    <td width="127" align="center">$<?=$manual_last_year?></td>
+    <td width="144" align="center" class="error">$<?=$manual_sel?></td>
+    </tr>
+</table>
+
+<table>
+
+<tr>  
+
+<td valign="top" class="rightside"> 
+
+	 </td>
+
+
+</table></form></td>
+
+
+
+</table>
+<? include("footer.php")?>
+</body>
+
+</html>
+

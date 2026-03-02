@@ -1,0 +1,34 @@
+<? include("includes/header.php");?>
+  <tr>
+    <td colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+      <td valign="top">
+
+                <td width="74%" valign="top">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><table width="700" border="0" style="padding-top:20px" align="center" cellpadding="0" cellspacing="0">
+                     
+	                  <tr>
+                            <td class="text_detail" style="text-align:center;">
+							<br /><br /><h1 style=" font-family:'Square721 BT'; font-size:50px; ">Thank You</h1><br />
+				<h2>We Will Upload This Exam As Soon As Possible <br /><br />				</h2>
+        <br /><br /><a href="<?php echo $websiteURL ?>"><img src="images/home_page.png" /></a><br /><br />
+
+		<?php header('Refresh: 3;url=' . BASE_URL); ?></td>
+                      </tr>
+                    </table></td>
+                  </tr>
+                </table></td>
+                <?php
+              	 	if($exec['menucolum']=='Right'){  
+                    	include("includes/leftmenu.php");
+                     } 
+               	?>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+              <? include("includes/footer.php");?>

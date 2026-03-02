@@ -1,0 +1,215 @@
+BODY {
+	MARGIN: 0px;
+}
+BODY {
+	COLOR: #666666
+}
+TD {
+	COLOR: #666666
+}
+DIV {
+	COLOR: #666666
+}
+DIV.topbar {
+	FONT-WEIGHT: bold; FONT-SIZE: 30pt; BACKGROUND-IMAGE: url(images/admin_topbarbg.gif); COLOR: #ffffff; BACKGROUND-REPEAT: repeat-x; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif
+}
+TD.topbar_right {
+	BORDER-BOTTOM: #c8ccd1 1px solid
+}
+TD.topbar_menu {
+	PADDING-LEFT: 7px; BACKGROUND-IMAGE: url(images/admin_topbar_menu.gif); PADDING-BOTTOM: 3px; COLOR: #eeeeee; PADDING-TOP: 3px; BACKGROUND-REPEAT: repeat-x; BACKGROUND-COLOR: #436088
+}
+DIV.shadow {
+	BACKGROUND-IMAGE: url(images/admin_shadow.gif); BACKGROUND-REPEAT: repeat-x; HEIGHT: 8px
+}
+TD {
+	FONT-SIZE: 8pt
+}
+TD.leftside {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; VERTICAL-ALIGN: top; PADDING-TOP: 0px
+}
+TD.rightside {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 0px; FONT-SIZE: 9pt; PADDING-BOTTOM: 10px; VERTICAL-ALIGN: top; WIDTH: 800px; COLOR: #555555; PADDING-TOP: 0px; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif
+}
+TD.menu a {
+	PADDING-RIGHT: 3px; BACKGROUND-POSITION: right top; DISPLAY: block; PADDING-LEFT: 5px; FONT-SIZE: 8pt; BACKGROUND-IMAGE: url(images/admin_menu_bg1.gif); PADDING-BOTTOM: 3px; PADDING-TOP: 3px; BORDER-BOTTOM: #dddddd 1px solid; BACKGROUND-REPEAT: repeat-y; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif; BACKGROUND-COLOR: #ffffff
+}
+TD.menu A:hover {
+	BACKGROUND-IMAGE: url(images/admin_menu_bg2.gif); BACKGROUND-COLOR: #f5f5f5
+}
+TD.menu_header {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 8px; FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND-IMAGE: url(images/admin_header.gif); PADDING-BOTTOM: 5px; COLOR: #ffffff; PADDING-TOP: 5px; BACKGROUND-REPEAT: repeat-x; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif; BACKGROUND-COLOR: #436088
+}
+TD.header {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 8px; FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND-IMAGE: url(images/admin_header.gif); PADDING-BOTTOM: 5px; COLOR: #ffffff; PADDING-TOP: 5px; BACKGROUND-REPEAT: repeat-x; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif; BACKGROUND-COLOR: #436088
+}
+TD.item {
+	PADDING-RIGHT: 5px; BORDER-TOP: #dddddd 1px solid; PADDING-LEFT: 8px; FONT-SIZE: 8pt; PADDING-BOTTOM: 5px; COLOR: #666666; PADDING-TOP: 5px
+}
+TD.setting1 {
+	BORDER-RIGHT: #dddddd 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: medium none; PADDING-LEFT: 10px; BACKGROUND: #ffffff; PADDING-BOTTOM: 10px; BORDER-LEFT: #dddddd 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #dddddd 1px solid
+}
+TD.setting2 {
+	BORDER-RIGHT: #dddddd 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: medium none; PADDING-LEFT: 10px; BACKGROUND: url(images/admin_setting.gif) #ffffff repeat-y; PADDING-BOTTOM: 10px; BORDER-LEFT: #dddddd 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #dddddd 1px solid
+}
+TR.background1 {
+	BACKGROUND: #f4f9ff
+}
+TR.background2 {
+	BACKGROUND: #ffffff
+}
+TD.stat0 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 8px; FONT-SIZE: 8pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 5px; COLOR: #666666; PADDING-TOP: 5px
+}
+TD.stat1 {
+	BORDER-RIGHT: #dddddd 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #dddddd 1px solid; PADDING-LEFT: 8px; FONT-SIZE: 8pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 5px; BORDER-LEFT: medium none; COLOR: #666666; PADDING-TOP: 5px; BORDER-BOTTOM: medium none
+}
+TD.stat2 {
+	PADDING-RIGHT: 5px; BORDER-TOP: #dddddd 1px solid; PADDING-LEFT: 8px; FONT-SIZE: 8pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 5px; COLOR: #666666; PADDING-TOP: 5px
+}
+TD.pagecell {
+	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #ffffff; PADDING-BOTTOM: 10px; BORDER-LEFT: medium none; PADDING-TOP: 7px; BORDER-BOTTOM: #cccccc 1px solid
+}
+TD.vert_tab0 {
+	BORDER-RIGHT: #cccccc 1px solid
+}
+TD.vert_tab {
+	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #ffffff; PADDING-BOTTOM: 5px; BORDER-LEFT: #cccccc 1px solid; PADDING-TOP: 5px; BORDER-BOTTOM: #cccccc 1px solid; HEIGHT: 35px
+}
+TD.form1 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 9pt; PADDING-BOTTOM: 5px; VERTICAL-ALIGN: top; PADDING-TOP: 7px; TEXT-ALIGN: right
+}
+TD.form2 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+TABLE.list {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; WIDTH: 100%; BORDER-BOTTOM: #cccccc 1px solid
+}
+TABLE.stats {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid
+}
+TABLE.menu {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; WIDTH: 170px; BORDER-BOTTOM: medium none
+}
+TABLE.menu2 {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; WIDTH: 170px; BORDER-BOTTOM: medium none
+}
+TABLE.menu2 {
+	MARGIN-TOP: 10px
+}
+DIV.error {
+	FONT-WEIGHT: bold; MARGIN-BOTTOM: 12px; COLOR: #ff0000
+}
+TD.error {
+	PADDING-RIGHT: 7px; PADDING-LEFT: 7px; BACKGROUND: #fff3f3; PADDING-BOTTOM: 5px; COLOR: #ff0000; PADDING-TOP: 5px
+}
+DIV.success {
+	FONT-WEIGHT: bold; MARGIN-BOTTOM: 12px; COLOR: #00cc33
+}
+TD.bannerborder {
+	BORDER-RIGHT: #aaaaaa 1px dashed; PADDING-RIGHT: 10px; BORDER-TOP: #aaaaaa 1px dashed; MARGIN-TOP: 2px; PADDING-LEFT: 10px; BACKGROUND: #ffffff; MARGIN-BOTTOM: 5px; PADDING-BOTTOM: 8px; VERTICAL-ALIGN: middle; BORDER-LEFT: #aaaaaa 1px dashed; PADDING-TOP: 8px; BORDER-BOTTOM: #aaaaaa 1px dashed; HEIGHT: 150px; TEXT-ALIGN: center
+}
+TD.bannerborder2 {
+	
+}
+TD.step {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 32pt; PADDING-BOTTOM: 7px; VERTICAL-ALIGN: top; COLOR: #cccccc; PADDING-TOP: 7px; TEXT-ALIGN: center
+}
+TD.plugin {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 8pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 10px; COLOR: #666666; PADDING-TOP: 7px
+}
+TD.plugin_name {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt
+}
+DIV.box {
+	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #f1f8ff; PADDING-BOTTOM: 10px; BORDER-LEFT: #cccccc 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #cccccc 1px solid
+}
+DIV.center {
+	TEXT-ALIGN: center
+}
+DIV.floatleft {
+	FLOAT: left
+}
+DIV.pages {
+	PADDING-BOTTOM: 5px
+}
+DIV.pages2 {
+	PADDING-TOP: 0px
+}
+H2 {
+	MARGIN-TOP: 0px; FONT-WEIGHT: normal; FONT-SIZE: 16pt; MARGIN-BOTTOM: 2px
+}
+H3 {
+	MARGIN-TOP: 0px; FONT-WEIGHT: normal; FONT-SIZE: 12pt; MARGIN-BOTTOM: 2px
+}
+.text {
+	FONT-SIZE: 9pt; FONT-FAMILY: arial, verdana, serif
+}
+TEXTAREA.template {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; WIDTH: 100%; PADDING-TOP: 8px; FONT-FAMILY: courier, verdana, arial, serif
+}
+TEXTAREA.text {
+	FONT-FAMILY: arial, verdana, serif
+}
+FORM {
+	MARGIN: 0px
+}
+IMG.icon {
+	VERTICAL-ALIGN: middle
+}
+INPUT.checkbox {
+	VERTICAL-ALIGN: middle
+}
+IMG.icon2 {
+	VERTICAL-ALIGN: middle; MARGIN-RIGHT: 5px
+}
+FONT.large {
+	FONT-SIZE: 25pt
+}
+FONT.large_gray {
+	FONT-SIZE: 25pt; COLOR: #555555
+}
+A:link {
+	COLOR: #336699
+}
+A:visited {
+	COLOR: #336699
+}
+A:hover {
+	COLOR: #336699
+}
+A.header:link {
+	COLOR: #ffffff
+}
+A.header:visited {
+	COLOR: #ffffff
+}
+A.header:hover {
+	COLOR: #ffffff
+}
+A.menu:link {
+	COLOR: #336699; TEXT-DECORATION: none
+}
+A.menu:visited {
+	COLOR: #336699; TEXT-DECORATION: none
+}
+A.menu:hover {
+	COLOR: #336699; TEXT-DECORATION: none
+}
+
+input.button {
+	background: #EEEEEE;
+	padding: 3px;
+	font-size: 9pt;
+	font-family: "Trebuchet MS", verdana, arial, serif;
+	font-weight: bold;
+}
+
+input.button_small {
+	background: #EEEEEE;
+	font-size: 9pt;
+	font-family: "Trebuchet MS", verdana, arial, serif;
+	font-weight: bold;
+}
+
+#txtHint{width:300px;}

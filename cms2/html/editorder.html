@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><?=$websitetitle?></title>
+<link href="new.css" rel="stylesheet" type="text/css" />
+<link href="style1.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+<script language="JavaScript" src="../includes/js/calendar.js"></script>
+<script type="text/javascript" src="Editor3/scripts/innovaeditor.js"></script>
+</head>
+<body>
+
+<div class="topbar">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
+<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+</tr>
+</table></div>
+
+<table cellpadding="0" cellspacing="0" width="90%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+
+<td width="810" class="rightside"><h2>Edit/View Order!</h2>
+
+Welcome to your<?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.<br />
+
+<form name="Form" id="Form" method="post" action="" enctype="multipart/form-data"><br />
+
+  <table cellpadding='0' cellspacing='0' width='100%'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'>Edit/View Order</td>
+    </tr>
+    <tr>
+      <td class='setting1'><table width="100%" border="0" align="left" cellpadding="4" cellspacing="4">
+        <tr>
+          <td width="29%" align="left">&nbsp;</td>
+          <td colspan="2" style="color: #FF0000;"><? if(isset($strError)){ echo $strError; } ?></td>
+        </tr>
+       <tr>
+          <td colspan="3">
+          <table width="100%" border="0" cellpadding="0" cellspacing="10" style="border:5px solid #80d2f7;">
+		
+		<tr>
+			<td valign="top" style="font-family:Arial, Helvetica, sans-serif;">
+             <form name="upd" id="upd" method="post" >
+				<table width="100%" border="0" cellpadding="0" cellspacing="4" bgcolor="#FFFFFF" align="center">
+					<tr>
+						<td height="30" valign="top"><span style="font-weight:bold; font-size:24px; font-family:"Times New Roman", Times, serif; color:#7d83ba;">Hair Planet Order information Order Number <?=$getorder['order_id']?></span></td>
+					</tr>
+                   
+					<tr>
+						<td width="77%" valign="top" style="font-size:12px; color:#000;">Order Status:	&nbsp;&nbsp;<select name="ordstatus" id="ordstatus" >
+                        <option value="paid" <? if($spram[1]=='paid'){ echo "selected='selected'"; } ?>>Paid</option>
+                        <option value="completed" <? if($spram[1]=='completed'){ echo "selected='selected'"; } ?>>Completed</option>
+                        <option value="cancle" <? if($spram[1]=='cancle'){ echo "selected='selected'"; } ?>>Cancled</option></select><br/>
+<br/><br/>
+<span style="color:#000;"><input type="submit" name="submit" id="submit" value="Submit" /></span></td>
+					    </tr>
+					<tr>
+						<td valign="top" style="border-bottom:1px solid #cccccc;">&nbsp;</td>
+					</tr>
+                   
+					<tr>
+						<td valign="top" style="padding:5px 0 5px 0;">
+							<table width="100%" border="0" cellpadding="2" cellspacing="2">
+								<tr>
+									
+								    <td width="11%" valign="top" style="font-size:14px; font-weight:normal; color:#333;">Username</td>
+								</tr>
+								<tr>
+									
+								    <td width="11%" valign="top" style="font-size:12px; font-weight:normal; color:#000;"><strong><?=$getuser['user_user']?></strong></td>
+								</tr>
+								
+					    </table>						</td>
+					</tr>
+					<tr>
+					  <td valign="top">
+						<table width="100%" border="0" cellspacing="4" cellpadding="0">
+                   <tr>
+                   <td width="50%" align="left" valign="top" style="font-size:16px; font-weight:bold; color:#7d83ba;">User information</td>
+                   <td width="50%" align="left" valign="top" style="font-size:16px; font-weight:bold; color:#7d83ba;">Shipping Address</td>
+                   </tr>
+                   <tr>
+                     <td width="50%" align="left" valign="top" style="font-size:12px; font-weight:normal;">Billing Information</td>
+                      <td width="50%" align="left" valign="top" style="font-size:12px; font-weight:normal;">Shipping Information</td>
+                   </tr>
+                   <tr>
+                     <td valign="top"><table width="100%" border="0" cellspacing="2" cellpadding="2">
+                       <tr>
+                         <td width="22%" align="left" valign="middle" style="font-size:12px; color:#000;">First Name:</td>
+
+                         <td width="78%" align="left" valign="middle" style="font-size:12px; color:#000;"><?=$getuser['user_fname']?></td>
+                       </tr>
+                       <tr>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;">Last Name:</td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><?=$getuser['user_lname']?></td>
+                       </tr>
+                       <tr>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;">Address:</td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><?=$getuser['user_address']?></td>
+                       </tr>
+                       
+                       <tr>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;">Country:</td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><?=$getuser['user_country']?></td>
+                       </tr>
+                      
+                       <tr>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;">Postal Code:</td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><?=$getuser['user_postcode']?></td>
+                       </tr>
+					    <tr>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;">Phone:</td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><?=$getuser['user_phone']?></td>
+                       </tr>
+					    <tr>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;" nowrap="nowrap">Email Address:</td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><?=$getuser['user_email']?></td>
+                       </tr>
+                     </table></td>
+                     <td valign="top"><table width="100%" border="0" cellspacing="2" cellpadding="2">
+                       <tr>
+                         <td width="30%" align="left" valign="middle" style="font-size:12px; color:#000;">Complete Name:</td>
+                         <td width="70%" align="left" valign="middle" style="font-size:12px; color:#000;"><?=$getorder['ship_name']?></td>
+                       </tr>
+                       <tr>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;">Address: </td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><?=$getorder['ship_address']?></td>
+                       </tr>
+                        <tr>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;">Postal Code:</td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><?=$getorder['ship_zipcode']?></td>
+                       </tr>
+                        <tr>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;">City:</td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><?=$getorder['ship_city']?></td>
+                       </tr>
+                        <tr>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;">State:</td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><?=$getorder['ship_state']?></td>
+                       </tr>
+                       <tr>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;">Country:  </td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><?=$getorder['ship_country']?></td>
+                       </tr>
+                      
+                      
+                     </table></td>
+                   </tr>
+				   <tr>
+					  
+					   <td align="left" valign="top"><table width="65%" border="0" cellspacing="0" cellpadding="0" style="border-top:1px solid #cccccc;">
+                         <tr>
+                           <td></td>
+                         </tr>
+                       </table></td>
+					 </tr>
+					 </table></td>
+					</tr>
+					<tr>
+						<td valign="top" style="font-size:12px;">
+						 <table width="100%" border="0" cellspacing="4" cellpadding="0">
+                   <tr>
+                   <td  align="left" valign="top" style="font-size:16px; font-weight:bold; color:#7d83ba;">User order </td>
+                   </tr>
+                   <tr>
+                     <td>
+                     
+                     <table width="100%" border="0" align="left" cellpadding="0" cellspacing="3">
+                       <tr>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><strong>Product Name</strong></td>
+                         <td width="31%" align="left" valign="middle" style="font-size:12px; color:#000;"><strong>Quantity</strong></td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><strong>Product Price</strong></td>
+                       </tr>
+                       <? while($row	=	mysql_fetch_array($getpro)){
+                       	$productname	=	mysql_fetch_array($objDBcon->Sql_Query_Exec("*","tbl_pro","pro_id ='".$row['tmp_proid']."'"));
+						$propricesingle	=	$row['tmp_price']*$row['tmp_quant'];
+                        if($row['spe_price']!=''){
+                        $shipyes	=	'yes';
+                        }
+						$totalpricetotal	=	$propricesingle+$totalpricetotal;
+						
+                        
+                       
+                       ?>
+                       <tr>
+                         <td align="left" valign="middle" nowrap style="font-size:12px; color:#000;"><?=$productname['pro_name']?>&nbsp;&nbsp;<?=$colourget['col_name']?>&nbsp;&nbsp;<?=$lengthget['length_name']?></td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;"><?=$row['tmp_quant']?></td>
+                         <td align="left" valign="middle" style="font-size:12px; color:#000;">&pound; <?=number_format($row['tmp_price'],2)?></td>
+                       </tr>
+                       <? } ?>
+                       
+                       <tr>
+                         <td colspan="3">
+						 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-top:1px solid #cccccc;"><tr><td></td></tr></table>
+                         </td>
+                       </tr>
+                       <tr>
+                         <td height="30"  valign="bottom"></td><td><strong>Sub Total:</strong></td><td width="20%" align="left" valign="middle" style="font-size:12px; color:#000;">&pound; <?=number_format($totalpricetotal,2)?></td>
+                       </tr>
+                       <? if($shipyes !=''){?>
+                       <tr>
+                         <td height="30"  valign="bottom"></td><td><strong>Shipping &amp; handling: (s)</strong></td><td width="20%" align="left" valign="middle" style="font-size:12px; color:#000;">&pound; 3.99</td>
+                       </tr>
+                       <? $totalprice	=	$totalpricetotal+3.99; }else{ $totalprice	=	$totalpricetotal; } ?>
+                        <tr>
+                         <td height="30"  valign="bottom"></td><td><strong>Total Price:</strong></td><td width="20%" align="left" valign="middle" style="font-size:12px; color:#000;">&pound; <?=number_format($totalprice,2)?></td>
+                       </tr>           
+                       <tr>
+                         <td colspan="3">
+						 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-top:1px solid #cccccc;"><tr><td></td></tr></table>						 </td>
+                       </tr>
+                      
+					   
+                        <tr>
+                         <td width="49%" height="40" align="left" valign="middle" nowrap style="font-size:12px; color:#000;">&nbsp;</td>
+                         <td align="left" colspan="2" valign="middle" style="font-size:12px; color:#000;">&nbsp;</td>
+                       </tr>
+                     </table></td>
+               
+                   </tr></table>						</td>
+					</tr>
+					
+					
+			  </table>
+              </form>
+			</td>
+		</tr>
+</table>
+          
+          </td>
+        </tr>
+       
+       
+      </table>      
+      <p>&nbsp;</p>
+      </td>
+    </tr>
+  </table>
+	  </form>
+<br /></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<? include("footer.php")?>
+</body>
+</html>

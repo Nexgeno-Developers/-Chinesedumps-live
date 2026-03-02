@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><?=$websitetitle?></title>
+<link href="new.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="../includes/js/password.js"></script>
+
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+</head>
+<body>
+
+<div class="topbar">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
+<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+</tr>
+</table></div>
+
+<table cellpadding="0" cellspacing="0" width="102%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+<td width="810" class="rightside"><h2>Website Configuration!</h2>
+Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.<br /><form name="catForm" id="catForm" method="post" action="" enctype="multipart/form-data"><br />
+
+  <label></label>
+  <table cellpadding='0' cellspacing='0' width='600'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'>Website Configuration: </td>
+    </tr>
+    <tr>
+      <td class='setting1'><table width="70%" border="0" align="center" cellpadding="1" cellspacing="7">
+        <tr>
+          <td height="25" align="right" valign="middle" class="p">&nbsp;</td>
+          <td width="57%" align="left" valign="middle"><span class="style1">
+            <?=$strError?>
+          </span></td>
+        </tr>
+        <tr>
+          <td height="25" align="right" valign="middle" class="p"><b>Website Name:</b></td>
+          <td align="left" valign="middle" class="form"><input name="title" type="text" id="title" value="<?=$spram['title'];?>" /></td>
+        </tr>
+        <tr>
+          <td height="25" align="right" valign="middle" class="p"><b>Website URL:</b></td>
+          <td align="left" valign="middle" class="form"><input name="website_url" type="text" id="website_url" value="<?=$spram['website_url'];?>" /></td>
+        </tr>
+        <tr>
+          <td height="25" align="right" valign="middle" class="p"><b>Admin Title:</b></td>
+          <td align="left" valign="middle" class="form"><input name="admin_title" type="text" id="admin_title" value="<?=$spram['admin_title'];?>" /></td>
+        </tr>
+        <tr>
+          <td height="25" align="right" valign="middle" class="p"><b>From Email Address:</b></td>
+          <td align="left" valign="middle" class="form"><span class="tablerowgreen">
+            <input name="from_email" type="text" class="bodytext_form_field" id="from_email" value="<?=$spram['from_email']?>"/>
+          </span></td>
+        </tr>
+		        
+        <tr>
+          <td height="25" align="right" valign="middle" class="p"><b>Contact Us Email Address:</b></td>
+          <td align="left" valign="middle" class="form"><span class="tablerowgreen">
+            <input name="contactus_email" type="text" class="bodytext_form_field" id="contactus_email" value="<?=$spram['contactus_email']?>"/>
+          </span></td>
+        </tr>
+         
+         <tr>
+          <td height="25" align="right" valign="middle" class="p"><b>Paypal Email Address:</b></td>
+          <td align="left" valign="middle" class="form"><input name="paypalid" type="text"  id="paypalid" value="<?=$spram['paypalid'];?>"/></td>
+        </tr>
+         
+          
+        <tr>
+          <td height="25" align="right" valign="middle" class="p"><b>Copyright Text:</b></td>
+          <td align="left" valign="middle" class="form"><textarea name="copyright" id="copyright"><?=$spram['copyright'];?></textarea></td>
+        </tr>
+        <tr>
+          <td height="25" align="right" valign="middle" class="p"><b>Course Update Date:</b></td>
+          <td align="left" valign="middle" class="form"><input type="date" name="course_update" id="course_update" value="<?= $spram['course_update'];?>"></td>
+        </tr>
+          
+        <tr>
+          <td width="43%" height="12" align="right" valign="middle" class="p">&nbsp;</td>
+          <td align="left" valign="middle" class="form"><div style="width: 100px;"> 
+				<div id="mypassword_text" style="font-size: 10px;"></div>
+				<div id="mypassword_bar" style="font-size: 1px; height: 2px; width: 0px; border: 1px solid white;"></div> 
+			</div> </td>
+        </tr>
+        <tr>
+          <td height="25" align="right" valign="middle" class="p">&nbsp;</td>
+          <td class="form"><span class="tablerowwhite">
+            <input name="changepassword" type="submit" class="button" id="changepassword" value="Change Settings" />
+          </span></td>
+        </tr>
+      </table></td>
+    </tr>
+   
+  </table>
+  		  </form>
+
+<br /></td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<? include("footer.php")?>
+
+</body>
+</html>

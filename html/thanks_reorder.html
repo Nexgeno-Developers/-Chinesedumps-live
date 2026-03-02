@@ -1,0 +1,60 @@
+<? include("includes/header.php");?>
+  <tr>
+    <td colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+      <td valign="top">
+              <?php
+              	 	if($exec['menucolum']=='Left'){  
+                    	include("includes/leftmenu.php");
+                     } 
+               ?>
+	<td valign="top" width="74%">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="25" align="center" bgcolor="#C4E2FC" class="bluebold"><?php echo $getPage[1]; ?></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="10">&nbsp;</td>
+        <td  class="text"><br>
+		<?php echo $getPage[2]; ?><br />
+
+          <div> </div></td>
+        <td width="10">&nbsp;</td>
+      </tr>
+    
+    <tr>
+
+        <td>&nbsp;</td>
+
+        <td>&nbsp;</td>
+
+        <td>&nbsp;
+
+        </td>
+
+      </tr>
+
+    </table></td>
+
+  </tr>
+
+  
+</table>
+<br>
+
+</td>
+                <?php
+              	 	if($exec['menucolum']=='Right'){  
+                    	include("includes/leftmenu.php");
+                     } 
+               	?>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  
+              <? include("includes/footer.php");?>

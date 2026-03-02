@@ -1,0 +1,90 @@
+<? include("includes/header.php");?>
+
+<style>
+    ul.list-box02.order_tables {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+ul.list-box.list-title.mobile_tables_check {
+    margin-top: 20px;
+}
+@media(min-width:768px) and (max-width:991px)
+{
+ul.list-box.list-title.mobile_tables_check {
+    margin-top: 110px !important;
+}
+    
+}
+@media(max-width:767px){
+    .about-chinesedumps
+    {
+        padding-bottom:30px;
+    }
+}
+</style>
+
+<div class="content-box">
+
+        <div class="certification-box certification-box03">
+
+            <div class="max-width">
+
+                <a href="<?php echo $websiteURL; ?>" class="blutext">Home</a> > <?php echo $getPage[1]; ?>
+
+                <?php include("includes/unlimitedpackage.php"); ?>
+
+            </div>
+
+        </div>
+
+        <div class="about-chinesedumps">
+
+            <div class="max-width">
+
+                <h1 class="main_heading text-center"><span><?php echo $getPage[1]; ?></span></h1>
+
+                <div class="black-heading">Here Is Your Member Area </div>
+
+                <ul class="popular-vendor-list popular-group1-list">
+
+                    <li class="justify_center">
+
+                    <?php include("html/account.html"); ?>
+
+                    </li>
+
+                </ul>
+
+                <br>
+
+                <ul class="list-box list-title mobile_tables_check">
+
+                	<li>Exam Detail</li>
+
+                	<li></li>
+
+                	<li>Status</li>
+
+                </ul>
+
+                <ul class="list-box02 order_tables">
+
+                    <?=$show_orders?>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        
+
+        
+
+
+
+	</div>
+
+
+
+<? include("includes/footer.php");?>

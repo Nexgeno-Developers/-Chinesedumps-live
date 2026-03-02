@@ -1,0 +1,66 @@
+<? include("header.php");?>
+<table cellpadding="0" cellspacing="0" width="102%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+<td width="810" class="rightside"><h2>Menu Setting !</h2>
+Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.<br /><br />
+
+<table cellpadding='0' cellspacing='0' width='600'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'> Menu Setting</td>
+    </tr>
+    <tr>
+      <td class='setting1'><form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+        <table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td align="left" valign="middle" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr></tr>
+              <tr>
+                <td height="29" colspan="2" align="center" valign="middle" style="color:#FF0000"><?=$str?></td>
+              </tr>
+             
+              <tr>
+                <td height="33" align="right" valign="middle" >Menu Postion:&nbsp;</td>
+                <td align="left" valign="middle" ><select name="page_title" id="page_title"><option value="Left" <? if($spram[1]=='Left'){ echo "selected='selected'"; } ?> >Left</option><option value="Right" <? if($spram[1]=='Right'){ echo "selected='selected'"; } ?> >Right</option></select></td>
+              </tr>
+                            
+              <tr>
+                <td height="23" align="right" valign="middle" ></td>
+                <td align="left" valign="middle" ></td>
+              </tr>
+              <tr>
+              <td></td>
+                <td height="29"  align="left" valign="middle"><input type="submit" name="Submit" class="cssMenu_txt" value="Update.." />                </td>
+              </tr>
+              <tr></tr>
+            </table></td>
+                </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </form>
+      </td>
+    </tr>
+    <tr>
+      <td class='setting2'>&nbsp;</td>
+    </tr>
+  </table>
+</form>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<? include("footer.php")?>
+
+</body>
+</html>

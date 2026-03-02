@@ -1,0 +1,1792 @@
+<?php 
+ob_start();
+session_start();
+
+include("includes/config/classDbConnection.php");
+include("includes/common/classes/classmain.php");
+include("includes/common/classes/classProductMain.php");
+include("includes/common/classes/classcart.php");
+include("includes/common/classes/classUser.php");
+
+//-------------------------------------------------//
+$objDBcon   =   new classDbConnection;
+$objMain	=	new classMain($objDBcon);
+$objPro		=	new classProduct($objDBcon);
+$objCart	=	new classCart($objDBcon);
+$objUser	=	new classUser($objDBcon);
+$objPricess = new classPrices();
+
+//------------------------------------------------//
+
+	$getPage	=	$objMain->getContent(1);
+
+
+
+	$guest = session_id();
+
+	$_SESSION['guestId'] = $guest;
+
+    $examURL	= 	$_GET['pcode'];
+
+	
+
+	$exam 		= 	$objPro->getProductId($examURL);
+
+	$examID 		= 	$exam['exam_id'];	
+
+
+
+	$price = $objPricess->getProductPrice($examID,'p','0');
+	$eprice = $objPricess->getProductPrice($examID,'sp','0');
+	$bprice = $objPricess->getProductPrice($examID,'both','0');
+
+
+	$examName 			=	$exam['exam_fullname'];
+
+	
+
+	if($examName==''){header("location:index.html");}	
+
+		$examCode			=	$exam["exam_name"];	// Exam Code
+
+		$pCode = $examCode;
+
+		
+
+		$venID = $exam["ven_id"];
+
+		$vendor_result = $objPro->get_vendorName($venID);
+
+		
+
+		$certID = $exam["cert_id"];
+
+		$cert_result = $objPro->get_certName($certID);
+
+		
+
+		$venName 			= 	$vendor_result['ven_name'];
+
+		$certName				=	$cert_result[0];	
+
+		$spam[0]				= 	$examID;	
+
+		$spam[1]				=	$examCode;
+
+		$spam[4]				=	$venName;
+
+		$demoAvailable			=	$exam['exam_demo'];	
+
+		$url					=	$base_path."braindumps-".str_replace(' ','-',$vendor_result['ven_url']).".htm";
+
+		
+
+	
+
+		$getPage[0]	=	$exam['exam_title'];
+
+		$getPage[1]	=	$exam['exam_fullname'];
+
+		$getPage[2]	=	$exam['exam_descr'];
+
+		$getPage[9]	=	$exam['exam_tests'];
+
+		$getPage[10] = $exam['exam_status'];
+
+
+
+		//$getPage[2]	=	$objMain->htmlwrap($exam['exam_descr']);
+
+		$getPage[4]	=	$exam['exam_keywords'];
+
+		$getPage[5]	=	$exam['exam_desc_seo'];
+
+		
+
+		$getglobart	=	mysql_fetch_array(mysql_query("SELECT * from tbl_globlecontents where page_id='3'"));
+
+		
+
+			if($getPage[0]=='')
+
+			{
+
+			$getPage000	=	str_replace("[ExamCode]",$pCode,$getglobart['page_title']);
+
+			$getPage00	= 	str_replace("[ExamName]",$getPage[1],$getPage000);
+
+			$getPage0	= 	str_replace("[CertName]",$certName,$getPage00);
+
+			$getPage[0]	= 	str_replace("[VendorName]",$venName,$getPage0);
+
+			}
+
+			if($getPage[1]=='')
+
+			{
+
+			$getPage111	=	str_replace("[ExamCode]",$pCode,$getglobart['content_title']);
+
+			$getPage11	= 	str_replace("[ExamName]",$getPage[1],$getPage111);
+
+			$getPage1	= 	str_replace("[CertName]",$certName,$getPage11);
+
+			$getPage[1]	=	str_replace("[VendorName]",$venName,$getPage1);
+
+			}
+
+			if($getPage[5]=='')
+
+			{
+
+			$getPage222	=	str_replace("[ExamCode]",$pCode,$getglobart['meta_descx']);
+
+			$getPage22	= 	str_replace("[ExamName]",$getPage[1],$getPage222);
+
+			$getPage2	= 	str_replace("[CertName]",$certName,$getPage22);
+
+			$getPage[5]	=	str_replace("[VendorName]",$venName,$getPage2);
+
+			}
+
+			if($getPage[4]=='')
+
+			{
+
+			$getPage333	=	str_replace("[ExamCode]",$pCode,$getglobart['meta_keywords']);
+
+			$getPage33	= 	str_replace("[ExamName]",$getPage[1],$getPage333);
+
+			$getPage3	= 	str_replace("[CertName]",$certName,$getPage33);
+
+			$getPage[4]	=	str_replace("[VendorName]",$venName,$getPage3);
+
+			}
+
+			
+
+			if($getPage[2]=='' || strlen($getPage[2])<='15')
+
+			{
+
+			$getPage222	=	str_replace("[ExamCode]",$pCode,$getglobart['page_contents']);
+
+			$getPage22	= 	str_replace("[ExamName]",$getPage[1],$getPage222);
+
+			$getPage2	= 	str_replace("[CertName]",$certName,$getPage22);
+
+			$getPage[2]	=	str_replace("[VendorName]",$venName,$getPage2);	
+
+			
+
+			$getPage777	=	str_replace("[ExamCode]",$pCode,$getglobart['page_contents1']);
+
+			$getPage77	= 	str_replace("[ExamName]",$getPage[1],$getPage777);
+
+			$getPage7	= 	str_replace("[CertName]",$certName,$getPage77);
+
+			$getPage[7]	=	str_replace("[VendorName]",$venName,$getPage7);
+
+			
+
+			$getPage888	=	str_replace("[ExamCode]",$pCode,$getglobart['page_contents2']);
+
+			$getPage88	= 	str_replace("[ExamName]",$getPage[1],$getPage888);
+
+			$getPage8	= 	str_replace("[CertName]",$certName,$getPage88);
+
+			$getPage[8]	=	str_replace("[VendorName]",$venName,$getPage8);
+
+			
+
+			}
+
+			else
+
+			{
+
+		//		$getPage[2]	.=	"<br />".str_replace("[TOKEN]",$pCode,$getglobart['page_contents']);
+
+			}
+
+
+
+	
+
+		
+
+		$firstlink	=	" <a href='".$url."' class='producttitletext' title='".$venName."'><strong>".$venName." ></strong></a>";
+
+//		$secondlink	=	" <a href='".$url2."' class='producttitletext' title='".$examsultvendor['productName']."'><strong>".$examsultvendor['productName']." ></strong></a>";
+
+		$thirdlink	=	" ".$examCode."";
+
+		
+
+		$_SESSION['globlearticle']	=	$examCode;
+
+		if($exam['exam_upddate']=='0000-00-00'){
+
+		$latestdate	=	$exam['exam_date'];
+
+		}else{
+
+		$latestdate	=	$exam['exam_upddate'];
+
+		}
+
+		$new_date = date("M j, Y",strtotime($latestdate));
+
+		
+
+		
+
+	    $getrelexam	=	"SELECT * from tbl_exam where cert_id='".$exam['cert_id']."' and exam_name!='".$examCode."' and exam_status='1'";
+
+		$exerel	=	mysql_query($getrelexam);
+
+		$my_exerel	=	mysql_num_rows($exerel);
+
+		
+
+	    $getrelcert	=	"SELECT * from tbl_cert where ven_id='".$exam['ven_id']."' and cert_id !='".$exam['cert_id']."' and cert_status='1'";
+
+		$certrel	=	mysql_query($getrelcert);
+
+		$my_certrel	=	mysql_num_rows($certrel);
+
+		//------------------------Demo Download--------------------------//
+
+		if(isset($_POST['email']))
+
+		{
+
+		$usrdm[1] = $_POST['ecode']; 
+
+		$usrdm[2] = $_POST['email'];
+
+		$usrdm[3] = $demoAvailable;
+
+		$usrdm[4] = $_POST['epcd'];
+
+		$objUser->add_demo_email($usrdm);
+
+		}
+
+		//------------------------Demo Download--------------------------//
+
+		if(isset($_POST['request_email']))
+
+		{
+
+		$exmreq[1] = $_POST['request_ecode']; 
+
+		$exmreq[2] = $_POST['request_email'];
+
+		$objUser->examRequest_email($exmreq);
+
+		}
+
+				///////////////////////////////////Check Engine Entry///////////////////////////////////
+
+	$r = mysql_query("select * from tbl_package_engine where package_id='".$examID."'");
+
+	if(mysql_num_rows($r) != "0"){
+
+		
+
+	}
+
+	else{
+
+	$pth = $venName."/".$pCode."Sim.zip";
+
+	mysql_query("insert into tbl_package_engine (package_id, version, type, path, os, price) values ('".$examID."','6.0','Simulator','".$pth."','Win','74.99')"."");
+
+	}
+
+
+
+$examURL = $exam['exam_url'];
+
+
+
+$examports = mysql_query("select * from report_card where r_exam='".$examURL."'");
+
+if (mysql_num_rows($examports) != 0){
+
+	$examportimg = 1; 
+
+}else{
+
+ 	$examportimg = 0;
+
+}
+
+
+
+
+
+
+
+?>
+
+
+
+<? include("includes/header.php"); ?>
+
+
+
+<script language="JavaScript" type="text/javascript" src="js/addcart3.js"></script>
+
+
+
+<style>
+
+
+
+
+
+
+
+.heading2{margin:0px;padding:20px 0px 10px 0px;font-size:14px;font-weight:bold; font-family:Arial, Helvetica, sans-serif}
+
+.lightdemogray2{height:310px;float:left;border:none;font-size:14px;background:#FFF;padding:10px;}
+
+.lightdemogray2 ul{padding:0px; font-size:14px; list-style:none;}
+
+.lightdemogray2 ul li{padding: 8px 10px 8px 30px; background:url(../images/bult.png) left center no-repeat; font-size: 12px;}
+
+
+
+.lightdemogray2 .download{padding:15px; border-top:#D9D9D9 solid 1px;}
+
+
+
+.error-message{padding:2px 0px; color:#FF0000;}
+
+
+
+.AutoDiv{float:left;width:auto;height:auto;}
+
+
+
+.MarginTop10{margin-top:10px;}
+
+
+
+.white_content2{display:none;position:fixed;top:15%;left:55%;margin-left:-340px;width:620px;padding:0px;border:1px solid #ccc;background-color: white;z-index:1002;overflow:auto;font-size:14px;-moz-border-radius:5px;-webkit-border-radius:5px;-khtml-border-radius:5px;border-radius:5px;}
+
+
+
+.white_content2 .heading2{padding:20px;color:#000;font-size:26px;margin:0px; background:#EEEEEE;}
+
+
+
+.white_content2 span{color:#606060;font-size:12px;}
+
+
+
+.lightdemogray2{height:310px;float:left;border:none;font-size:14px;background:#FFF;padding:10px;}
+
+
+
+.lightdemogray2 ul{padding:0px; font-size:14px; list-style:none;}
+
+
+
+.lightdemogray2 ul li{padding: 7px 10px 5px 31px; background:url(images/bullet.png) left center no-repeat;}
+
+
+
+.lightdemogray2 .download{padding:15px; border-top:#D9D9D9 solid 1px;}
+
+
+
+.SideBar .download{float:left;width:226px;height:135px;padding:10px;color:#FFFFFF;background:url(../images/pattern_03.jpg) repeat;}
+
+
+
+.download .heading{padding:10px 0px;font-size:18px;}
+
+
+
+.download p{padding:0px 0px;color:#FFFFFF;}
+
+
+
+.black_overlay{display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background-color:black; z-index:1001; -moz-opacity:0.4; opacity:.40; filter:alpha(opacity=80);}
+
+
+
+.textbox{margin:3px 0px;padding:5px;width:230px;color:#666666;border:#D6D6D6 solid 1px;height:29px;background:url(images/txtfld_bg.jpg) repeat-x;}
+
+h2.exam-heading {
+    font-weight: bold;
+    font-size: 32px;
+    text-align: left !important;
+    color: #333;
+}
+div#labSlider {
+    margin-bottom: 45px;
+}
+
+.sideimage .exam-pkg-image01 {
+    float: left;
+    width: 40% !important;
+		margin-top:30px;
+}
+.exam-pkg-list {
+    width: 55%;
+    float: left;
+    margin-top: 30px;
+}
+#writtenSlider {
+        position: relative;
+    margin: 40px 0px;
+    /* box-shadow: 0px 0px 1px 0px; */
+    padding: 10px;
+    border: 1px dashed rgba(204, 204, 204, 0.6);
+}
+.prd_ctn ul li {
+    font-size: 18px;
+    line-height: 27px;
+}
+.prd_ctn ul li i {
+    padding-right: 10px;
+    font-size: 14px;
+}
+.prd_ctn h4 {
+    font-size: 24px;
+		padding-bottom:10px;
+}
+.popular-list-heading {
+    width: 270px;
+    background: #f3f2ed;
+    font: 20px/ 17px 'vagroundedstd-light' !important;
+    color: #45A4F2;
+    padding: 20px 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 5px 5px 0px #cdccc4;
+    -moz-box-shadow: 5px 5px 0px #cdccc4;
+    box-shadow: 5px 5px 0px #cdccc4;
+}
+.popular-list-box.sidetext {
+    float: none;
+    margin-bottom: 15px important;
+}
+.popular-heading {
+    font: 17px/ 22px 'vagroundedstd-light' !important;
+    color: #151515;
+    margin-bottom: 15px !important;
+}
+.pro_rht_img {
+    margin-top: 9%;
+}
+.pro_rht_img img {
+ margin-left: auto;
+    /* margin-right: auto; */
+    display: block;
+    /* border-bottom: 1px solid #ccc; */
+    width: 83%;
+    margin-bottom: 20px;
+}
+.col-md-12.img_alp {
+    margin-top: 4%;
+}
+.pkg-name {
+    font: 18px/20px 'vagroundedstd-light';
+    color: #151515;
+    margin-bottom: 10px;
+}
+
+@media(max-width:768px)
+{
+	h2.exam-heading {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: left !important;
+    color: #333;
+}
+.exam-pkg-list {
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+}
+.exam-pkg-list {
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+}
+.pkg-name strong {
+    font-size: 18px;
+    line-height: 27px;
+    margin-top: 0px;
+}
+.package-box {
+    width: 100%;
+    float: none;
+    text-align: left;
+}
+.pkg-name-box {
+    display: block;
+}
+.pdf-image {
+    background: url(../images/pdf-pkg-ico.png) center no-repeat;
+    background-size: 40%;
+    width: 35px;
+    height: 35px;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+.pkg-name-box {
+    width: 35px;
+    height: 35px;
+    float: left;
+    background: #505050;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    margin: 0 10px 20px 0;
+}
+.vendor-image {
+    background: url(../images/vender-pkg-ico.png) center no-repeat;
+    background-size: 40%;
+    width: 35px;
+    height: 35px;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+.unlimite-image {
+    background-size: 40% !important;
+    width: 35px;
+    height: 35px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background: url(../images/unlimte-pkg-ico.png) center no-repeat;
+}
+li.main_cert .package-box {
+    width: 280px !important;
+    font-size: 14px !important;
+}
+.pkg-name.pro_cet {
+    padding-top: 12px;
+    font-size: 14px;
+}
+.pro_cet_1 .black-button {
+    height: 25px !important;
+    margin-top: 4px;
+    font-size: 11px !important;
+}
+.buy-package .black-button {
+    width: 65px;
+    min-width: 65px;
+}
+li.main_cert .package-box {
+    width: 137px !important;
+    font-size: 14px !important;
+    float: left;
+}
+li.main_cert .package-price {
+    font-size: 24px;
+    float: left;
+    font-size: 18px;
+}
+.max-width {
+    max-width: 1210px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+.pro_cet_1 {
+    float: right !important;
+    padding-top: 6px;
+}
+.buy-package {
+    float: none;
+    width: 66px;
+    margin: 0 auto;
+}
+.package-box {
+    width: 100% !important;
+}
+.prd_ctn ul li {
+    font-size: 16px;
+    line-height: 27px;
+}
+.prd_ctn ul li i {
+    padding-right: 10px;
+    font-size: 12px;
+}
+.col-md-12.img_alp {
+    margin-top: 10%;
+}
+.pro_rht_img img {
+    margin-left: auto;
+    /* margin-right: auto; */
+    display: block;
+    /* border-bottom: 1px solid #ccc; */
+    width: 100%;
+    margin-bottom: 0px;
+}
+.exam-group-box {
+    width: 100%;
+    background: #FFF;
+    padding: 10px 0px 0px 0px;
+    -webkit-box-shadow: inset 0px -5px 5px -5px rgba(0, 0, 0, 0,);
+    -moz-box-shadow: inset 0px -5px 5px -5px rgba(0, 0, 0, 0,);
+    box-shadow: inset 0px -5px 5px -5px rgba(0, 0, 0, 0,);
+}
+.center-heading span {
+    padding: 8px 0px;
+    background: #f3f2ed;
+    color: #45A4F2;
+    line-height: 25px;
+    font-size: 20px;
+}
+.list-box li:first-child {
+    width: 60%;
+}
+.list-elements > li {
+    height: 79px;
+    overflow: hidden;
+}
+}
+</style>
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+<div id="main_body">
+
+
+
+<?php if($getPage[10] == "1"){ ?>
+
+
+
+
+
+
+
+	<!--Content Start -->
+
+
+
+    <div class="content-box">
+
+
+
+    <div class="certification-box  certification-box03">
+
+
+
+            <div class="max-width">
+
+
+
+                <div id="destination" class="blutext" style="padding-left:5px;">
+
+
+
+		<a href="<?php echo $websiteURL; ?>" class="blutext">Home</a> > 
+
+
+
+		<a href="braindumps-<?php echo str_replace(" ","-",$venName);?>.htm" class="blutext"><?php echo $venName; ?></a> > 
+
+
+
+		<?php  
+
+
+
+$len= count($cert_result);
+
+
+
+
+
+
+
+$i=0;
+
+
+
+foreach($cert_result as $k=>$v)
+
+
+
+{
+
+
+
+	$page	= strtolower($v); 
+
+
+
+	$page1 = str_replace(' ','-',$v);
+
+
+
+	$page2 = str_replace(':','',$page1);
+
+
+
+	
+
+
+
+	
+
+
+
+ $url=$websiteURL."" .$page2 ."-cert.htm";
+
+
+
+		if($i==($len-1)){
+
+
+
+							echo "<a href=\"$url\" class=\"blutext\">$v</a> ";
+
+
+
+                            $certName = $v;
+
+
+
+						}else{
+
+
+
+								echo "<a href=\"$url\" class=\"blutext\">$v</a>  | ";
+
+
+
+                                $certName = $v;
+
+
+
+							}
+
+
+
+		$i++;					
+
+
+
+				
+
+
+
+
+
+
+
+			}
+
+
+
+	?>
+
+
+
+
+
+
+
+		
+
+
+
+		> <?php echo $pCode; ?>
+
+
+
+		</div>
+
+
+
+                <?php include("includes/unlimitedpackage.php"); ?>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+        <div class="exam-group-box">
+
+
+
+            <div class="max-width">
+
+        <div class="group">
+
+
+<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 sideimage">
+   <h1 class="exam-heading"><?php echo $exam["exam_name"]; ?>  <?php echo $exam["exam_fullname"]; ?> Dumps</h1>
+	<ul id="scroller" >
+		<?php $banners = mysql_query("select * from sliders where type='lab' AND status = 1");						for($sr = 0; $sr < mysql_num_rows($banners); $sr++){						$banner = mysql_fetch_object($banners);						 ?>	
+		<li><img src="<?php echo BASE_URL; ?>images/slider/<?= $banner->s_image; ?>" alt="<?= $banner->s_alt; ?>" /></li>
+		<?php } ?> 
+	</ul> <!-- #labSlider -->
+	<div class="exam-pkg-image01">&nbsp;</div>
+		<div class="exam-pkg-list group">
+			<?php $strSql11 	=	"SELECT id FROM tbl_package_engine WHERE package_id='".$examID."'";
+
+
+
+                                $examsult11		=	mysql_query($strSql11) or die(mysql_error());
+
+
+
+                                if(mysql_num_rows($examsult11)>0)
+
+
+
+                                {
+
+
+
+                                
+
+
+
+								?>
+
+
+
+                                <ul class="group">
+
+
+
+                                <?php if($exam["QA"] == "0"){ ?>
+
+
+
+                                    <li>
+
+
+
+                                    
+
+
+
+			  <div style="width:95%">
+
+
+
+<h2 style="padding-bottom:12px;">Exam Request</h2>
+
+
+
+ <form action="" name="demoForm2" method="post" onsubmit="return demoVerify3();">
+
+
+
+			  Exam Code:<br />
+
+
+
+				<input type="text" class="textbox" name="request_ecode" id="request_ecode" value="<?php echo $pCode; ?>" /><br />
+
+
+
+			Email:<br />
+
+
+
+				<input type="text" class="textbox" name="request_email" id="request_email" /><br /><br />
+
+
+
+
+
+				<input type="submit" value="Send Request" class="black-button"  />
+
+
+
+				</form>
+
+
+
+				</div>
+
+
+
+				<script language="javascript">
+
+
+
+				function demoVerify3(){
+
+
+
+				regExp=/^[A-Za-z_0-9\.\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}$/;
+
+
+
+				email=document.forms['demoForm2'].elements['request_email'].value;
+
+
+
+				if(email==''||!regExp.test(email))
+
+
+
+				{
+
+
+
+				alert('Enter Email'); 
+
+
+
+				document.getElementById('emailErr2').style.display='block';document.forms['demoForm2'].elements['request_email'].focus();return false; }
+
+
+
+				
+
+
+
+				document.getElementById('emailErr2').style.display='none';
+
+
+
+				}
+
+
+
+				</script>
+
+
+
+<?php }else{ ?>
+
+
+
+                                        
+
+
+
+                               		
+
+
+
+                                       
+
+
+
+                                    </li>
+
+
+
+                                   
+
+
+
+
+
+                                    <li>
+
+
+
+                                    <div class="pkg-name" style="font-size:24px; font-weight:bold; color: #45A4F2; margin-bottom:15px;"><strong><?php echo $exam["exam_fullname"]; ?> 
+
+
+
+                                <?php 
+												$uri = explode('-',$_SERVER['REQUEST_URI']);
+												 
+												if($uri[1] == 'Bootcamp.htm' ||  $uri[2] == 'Lab.htm'){}else{
+											?>Written Dumps Study Guide	<?php } ?></strong> </div>
+
+ 
+                                    <div class="popular-heading">Last Updated <span style="color:red;"> <?php echo /*date('M d Y',strtotime($exam["exam_upddate"]))*/ $new_date  ?> </span></div>
+
+									<div class="popular-list-box sidetext">  
+
+										<div class="popular-list-heading"> 
+											<?php 
+												$uri = explode('-',$_SERVER['REQUEST_URI']);
+												if($uri[1] == 'Bootcamp.htm' ||  $uri[2] == 'Lab.htm'){}else{?>
+											<strong>Exam questions: </strong> 150-200<br><br>
+												<?php } ?>
+												
+											<?php
+												$get_course = mysql_fetch_assoc(mysql_query("SELECT * from tbl_course where name='".$exam["exam_name"]."'"));
+												if(!empty($get_course)){
+													if($get_course['status'] == 1){
+														$status = '<span style="color:green">Stable</span>';
+													}else{
+														$status = '<span style="color:red">Unstable</span>';
+													}
+												}
+											?>
+											
+											<strong>Status: </strong><?= (!empty($status) ? $status : '<span style="color:green">Stable</span>'); ?>
+
+										</div>
+									</div>	
+
+									<div class="package-box" style="width: 400px;">
+
+										
+
+                                            <div class="package-box" style="width: 400px;">
+                                            <div class="course-description">
+												<strong><?= $exam["exam_descr"]; ?></strong>
+											</div> 
+                                          
+                                            <div class="list-discription" style="line-height:22px; margin-top:-35px;">
+<br />                                        
+											<?php 
+												$uri = explode('-',$_SERVER['REQUEST_URI']);
+												if($uri[1] == 'Bootcamp.htm' ||  $uri[2] == 'Lab.htm'){}else{
+											?>
+											Interactive Testing Engine Tool that enables customize <?php echo $Vendorname; ?> <?php echo $exam["exam_name"]; ?> <?php echo $certName; ?> questions into Topics and Objectives. Real <?php echo $exam["exam_name"]; ?> Exam Questions with 100% Money back Guarantee.
+                                           <!--  <div class="pkg-name">
+                                            	
+												<label for="type_both">Include Testing Engine Pack Just add  <span class="package-price">$50</span></label>	<br />
+                                             </div> -->
+											<?php } ?>
+
+                                        	
+                                           
+
+                                             
+                                             </div>
+                                        </div>
+
+
+
+                                    </li>
+																		
+								<?php $uri = explode('-',$_SERVER['REQUEST_URI']);
+									if($uri[1] == 'Bootcamp.htm' ||  $uri[2] == 'Lab.htm'){ ?>										
+									<li class="main_cert">
+										<div class="pkg-name-box pro_cet">
+											<div class="pdf-image">&nbsp; </div>
+											<div class="pkg-name-box02">&nbsp;</div>
+										</div>
+
+                                        <div class="package-box">
+                                            <div class="pkg-name pro_cet"><?php  echo $exam["exam_fullname"]; ?> Secure PDF Package</div>
+                                        </div>
+
+										<div class="package-price">$<?=$price?></div>
+                                        <div class="buy-package pro_cet_1">
+											<button class="black-button" value="p"  name="ptype" id="type_p" onclick='submitProexam(<?=$examID?>,"p");'>Buy Now</button>
+                                        </div>
+									</li>
+
+									<?php }else{ ?>
+												
+												<li class="main_cert"> <div class="pkg-name-box pro_cet">
+
+                                            <div class="pdf-image">&nbsp; </div>
+
+                                            <div class="pkg-name-box02">&nbsp;</div>
+
+                                        </div>
+
+                                        <div class="package-box">
+
+                                            <div class="pkg-name pro_cet"><?php echo $exam["exam_fullname"]; ?> Secure PDF Package</div>
+
+
+                                        </div>
+	                                   <div class="package-price">$<?=$price?></div>
+                                        <div class="buy-package pro_cet_1">
+                                        
+                                            <button class="black-button" value="p"  name="ptype" id="type_p" onclick='submitProexam(<?=$examID?>,"p");'>Buy Now</button>
+                                        </div>
+									</li>
+
+									<li class="main_cert"> <div class="pkg-name-box pro_cet">
+
+                                            <div class="vendor-image">&nbsp; </div>
+
+                                            <div class="pkg-name-box02">&nbsp;</div>
+
+                                        </div>
+
+                                        <div class="package-box">
+
+                                            <div class="pkg-name pro_cet"><?php echo $exam["exam_fullname"]; ?> Engine Package</div>
+
+
+                                        </div>
+	                              <div class="package-price">$<?=$eprice?></div>
+                                        <div class="buy-package pro_cet_1">
+                                        
+                                            <button class="black-button" value="sp"  name="ptype" id="type_sp" onclick='submitProexam(<?=$examID?>,"sp");'>Buy Now</button>
+                                        </div>
+									</li>
+
+									<li class="main_cert"> <div class="pkg-name-box">
+
+                                            <div class="unlimite-image">&nbsp; </div>
+
+                                            <div class="pkg-name-box02">&nbsp;</div>
+
+                                        </div>
+
+                                        <div class="package-box">
+
+                                            <div class="pkg-name pro_cet"><?php echo $exam["exam_fullname"]; ?> Secure PDF + Engine Package</div>
+
+
+                                        </div>
+	                              <div class="package-price">$<?=$bprice?></div>
+                                        <div class="buy-package pro_cet_1">
+                                        
+                                            <button class="black-button" value="both"  name="ptype" id="type_both" onclick='submitProexam(<?=$examID?>,"both");'>Buy Now</button>
+                                        </div>
+									</li>
+									<?php } ?>
+
+ <? } ?>
+
+                                
+
+
+
+                                </ul>
+
+
+
+                                <?php
+
+
+
+                                }
+
+
+
+                                else
+
+
+
+                                {
+
+
+
+                                
+
+
+
+            					?>
+
+
+
+                                
+
+
+
+                                <li>
+
+
+
+                                        <?php if($exam["QA"] == "0"){ ?>
+
+
+
+			  <div style="width:95%">
+
+
+
+<h2 class="popular-heading">This Exam <?php echo $exam["exam_name"]; ?> is Under Development, Please Enter Your Email Address Below. We Will Notify You Once This Exam Ready To Download.</h2>
+
+
+
+			 <form action="" name="demoForm2" method="post" onsubmit="return demoVerify3();">
+
+
+
+			 Exam Code:<br />
+
+
+
+				<input type="text" class="textbox" name="request_ecode" id="request_ecode" value="<?php echo $pCode; ?>" /><br />
+
+
+
+			Email:<br />
+
+
+
+				<input type="text" class="textbox" name="request_email" id="request_email" /><br />
+
+
+
+				<input type="submit" class="orange-button" width="100" vspace="" hspace="90" />
+
+
+
+				</form>
+
+
+
+				</div>
+
+
+
+				<script language="javascript">
+
+
+
+				function demoVerify3(){
+
+
+
+				regExp=/^[A-Za-z_0-9\.\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}$/;
+
+
+
+				email=document.forms['demoForm2'].elements['request_email'].value;
+
+
+
+				if(email==''||!regExp.test(email))
+
+
+
+				{
+
+
+
+				alert('Enter Email'); 
+
+
+
+				document.getElementById('emailErr2').style.display='block';document.forms['demoForm2'].elements['request_email'].focus();return false; }
+
+
+
+				
+
+
+
+				document.getElementById('emailErr2').style.display='none';
+
+
+
+				}
+
+
+
+				</script>
+
+
+
+<?php }else{ ?>
+
+
+
+                                        <div class="pkg-name-box">
+
+
+
+                                            <div class="unlimite-image">&nbsp;</div>
+
+
+
+                                            <div class="pkg-name-box02">&nbsp;</div>
+
+
+
+                                        </div>
+
+
+
+                                        
+
+
+
+                                        <div class="package-box">
+
+
+
+                                            <div class="pkg-name"> Single <?php echo $exam["exam_name"]; ?> PDF Exams Package</div>
+
+
+
+                                            <div class="list-discription">
+
+
+
+                                                <ul class="popular-feature-list">
+
+
+
+                                                    <li><?php echo $venName; ?> <?php echo $exam["exam_name"]; ?> Exam based on Real Questions</li>
+
+
+
+                                                    <li>Include Multiple Choice, Drag Drop and Lab Scenario</li>
+
+
+
+                                                    <li>Easy to use and downloadable PDF for <?php echo $exam["exam_name"]; ?> Exam</li>
+
+
+
+                                                    <li>Free Demo Available for Exam <?php echo $exam["exam_name"]; ?></li>
+
+
+
+                                                    <li><?php echo $venName; ?> Experts Verified Answers for <?php echo $exam["exam_name"]; ?> Dumps</li>
+
+
+
+                                                    <li>Cover all Latest and Updated Objectives from <?php echo $venName; ?></li>
+
+
+
+                                                    <li>100% Money Back Guarantee</li>
+
+
+
+                                                    <li>Free Lifetime Updates</li>
+
+
+
+                                                    
+
+
+
+                                                </ul>
+
+
+
+                                            </div>
+
+
+
+                                        </div>
+
+
+
+                                        <div class="buy-package">
+                                        	<div class="package-price">$<?php echo $exam["exam_pri0"] ?></div>
+                                            <button class="black-button">Buy Now  </button>
+
+                                        </div>
+
+
+
+                                        <?php 
+
+
+
+                                        
+
+
+
+                                        } ?>
+
+
+
+                                          <?php } ?>
+	
+
+                                    </li>
+
+
+
+                              
+
+
+
+                            </div>
+
+
+														<div class=" col-md-6">	
+															 <h3 style="margin-bottom: 22px;">Click on icon to Join Study Group </h3>
+														</div>
+														<div class="col-md-6">	
+													  <div class="row">
+
+<img style="width:200px;height:100px" src="https://chinesedumps.com/images/source.gif"/>
+<div class="col-md-12">	
+
+																																<?php if(!empty($exam["skype_url"]) or !empty($exam["whatsapp_url"])){ ?>	
+																					
+
+
+<?php } ?>
+<?php if(!empty($exam["skype_url"])){ ?>														
+													<a href="<?php echo $exam["skype_url"]; ?>"><img style="width:100px;height:100px" src="https://chinesedumps.com/images/skype.png"/></a>
+												
+<?php } ?>
+<?php if(!empty($exam["whatsapp_url"])){ ?>
+													<a style="padding-left: 20px;" href="<?php echo $exam["whatsapp_url"] ;?>"><img style="width:100px;height:100px" src="https://chinesedumps.com/images/whatsapp.png"/></a>
+													
+	<?php } ?>
+                            </div>
+                            </div>
+                            </div>
+													<div class="col-md-12">	
+													<div class="row">	
+													<div class="prd_ctn">	
+														<h4>Product Advantages</h4>
+					             <div class="col-md-6">
+														<ul>
+															<li><i class="fa fa-check"></i>100% Accurate Questions</li>
+															<li><i class="fa fa-check"></i>Real Exam Environment</li>
+															<li><i class="fa fa-check"></i>VIP service team Support</li>
+															<li><i class="fa fa-check"></i>Average 7 Days to Practice & Pass</li>
+															<li><i class="fa fa-check"></i>Update Timely</li>
+														</ul>
+												</div>
+												
+												   <div class="col-md-6">
+														<ul>
+															<li><i class="fa fa-check"></i>100% Accurate Questions</li>
+															<li><i class="fa fa-check"></i>Real Exam Environment</li>
+															<li><i class="fa fa-check"></i>VIP service team Support</li>
+															<li><i class="fa fa-check"></i>Average 7 Days to Practice & Pass</li>
+															<li><i class="fa fa-check"></i>Update Timely</li>
+														</ul>
+												</div>
+												</div>
+												</div>
+												</div>
+
+	<div class="col-md-12 img_alp">
+															<div class="text-center"><img src="images/tutor_img.png" style="width:100%;"></div>
+												</div>
+											
+					<!--------labs open------------>
+											
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:40px;">
+            <div style="text-align: center; ">
+               <div class="ti_heading_wraper">
+                  <span><img style="    width: 75px; position: relative;top: -11px;" src="<?php echo BASE_URL; ?>images/heading_icon.png" alt=""></span>
+                  <strong style="font-size:30px; text-align:center;   margin-top:0px;">CCIE Lab Exam Pass Report </strong>
+               </div>
+			   
+ 
+            <ul id="scroller2">
+          	 <?php 						$banners = mysql_query("select * from sliders where type='written' AND status = 1");						for($sr = 0; $sr < mysql_num_rows($banners); $sr++){						$banner = mysql_fetch_object($banners);						 ?>	
+
+            <li><img src="<?php echo BASE_URL; ?>images/slider/<?= $banner->s_image; ?>" alt="<?= $banner->s_alt; ?>" /></li>
+             <?php } ?> 
+          </ul> <!-- #labSlider -->
+			       <script> 
+						$('#labSlider').multislider({
+							continuous: true,
+							duration: 10000, 
+						});
+					</script> 
+            </div> 
+           
+         </div>
+										
+<!-----------labs close---------->										
+
+                        </div>
+												
+											
+				
+			       <script> 
+						$('#writtenSlider').multislider({
+							continuous: true,
+							duration: 10000, 
+						});
+					</script> 
+
+
+
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+<div class="pro_rht_img">
+	<div class="col-md-12">
+			<img src="images/chinesedumps-logo.png">
+		
+		</div>
+		<div class="col-md-12 col-sm-6 col-xs-6">
+			<img src="images/ccnp-security.png">
+		
+		</div>
+		<div class="col-md-12 col-sm-6 col-xs-6">
+			<img src="images/ccnp-service-provider.png">
+		
+		</div>
+		<div class="col-md-12 col-sm-6 col-xs-6">
+			<img src="images/ccnp-data-center.png">
+		
+		</div>
+		<div class="col-md-12 col-sm-6 col-xs-6">
+			<img src="images/ccie-wireless.png">
+		
+		</div>
+		<div class="col-md-12 col-sm-6 col-xs-6">
+			<img src="images/ccie-collaboration.png">
+		
+		</div>
+		<div class="col-md-12 col-sm-6 col-xs-6">
+			<img src="images/ccnp-security.png">
+		
+		</div>
+		<div class="col-md-12 col-sm-6 col-xs-6">
+			<img src="images/ccnp-security.png">
+		
+		</div>
+						
+	</div>				
+</div>
+                    
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+     
+
+
+
+        </div>
+
+	
+		
+		
+        <div class="about-chinesedumps related-cert">
+
+
+
+            <div class="max-width">
+
+
+
+                <strong class="center-heading"><span><?php echo $venName; ?> Related Certification</span></strong>
+
+
+
+                <div class="black-heading"><?php echo $venName; ?> Practice Exams Dumps Question Answers</div>
+
+
+
+                <p>The followings list <?php echo $venName; ?> Certifications in Chinesedumps, If you have other <?php echo $venName; ?> certifications you want added please contact us.</p>
+
+
+
+                <ul class="list-box list-title">
+
+
+
+                	<li>Exams</li>
+
+
+
+                	<li>Buy Now</li>
+
+
+
+                	<li></li>
+
+
+
+                </ul>
+
+
+
+                <ul class="list-box02">
+
+
+
+                    
+
+
+
+                        <?
+
+
+
+                         
+
+
+
+                        $examl	=	'1';
+
+
+
+                        while($rowallitems	=	mysql_fetch_array($exerel))
+
+
+
+                        {
+
+
+
+                    $eurl		=	$base_path.$rowallitems['exam_name'].".htm";
+
+
+
+                    $exam_link	=	" <a href='".$eurl."' title='".$rowallitems['exam_fullname']."'>".$rowallitems['exam_name'].'</a> - '.$rowallitems['exam_fullname']." ";
+
+
+
+                ?>
+
+
+
+                <li>
+
+
+
+                 <ul class='list-box list-elements'>
+
+
+
+          <li><a title="<?php echo $rowallitems['exam_name']?>" href="<?php echo $eurl?>"><?php echo $rowallitems['exam_name']?></a>
+
+
+
+          <?php echo $rowallitems['exam_fullname']?></li>
+
+
+
+                            
+
+
+
+                            <li>
+
+
+
+							<form action="<?php echo $eurl?>">
+
+
+
+							<button type='submit' class='black-button'>View Details</button>
+
+
+
+							</form>
+
+
+
+							</li>
+
+
+
+                            
+
+
+
+                            <li></li>
+
+
+
+                            </ul>
+
+
+
+               			</li>
+
+
+
+                            <?
+
+
+
+                }
+
+
+
+                ?>
+
+
+
+                        
+
+
+
+                </ul>         
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+	</div>
+
+
+
+    <!------------------------------ -->
+
+
+
+
+
+
+
+              <? include("includes/footer.php");?>
+
+
+
+<?php } else{
+
+
+
+echo"<script language=javascript>self.location.href='http://www.chinesedumps.com/'</script>";
+
+
+
+} ?>
+
+
+
+<script type="text/javascript">
+(function($) {
+	$(function() {
+		$("#scroller").simplyScroll();
+	});
+})(jQuery);
+
+
+(function($) {
+	$(function() {
+		$("#scroller2").simplyScroll();
+	});
+})(jQuery);
+</script>  

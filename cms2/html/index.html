@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML><HEAD><TITLE><?php echo $websitetitle; ?> Administrator Section</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<STYLE type=text/css>BODY {
+	BACKGROUND-POSITION: center center; BACKGROUND-IMAGE: url(admin_login.gif); BACKGROUND-REPEAT: no-repeat; BACKGROUND-COLOR: #eeeeee; TEXT-ALIGN: center
+}
+TD.box {
+	BORDER-RIGHT: #aaaaaa 1px dashed; PADDING-RIGHT: 15px; BORDER-TOP: #aaaaaa 1px dashed; PADDING-LEFT: 15px; FONT-SIZE: 9pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 15px; BORDER-LEFT: #aaaaaa 1px dashed; PADDING-TOP: 15px; BORDER-BOTTOM: #aaaaaa 1px dashed; FONT-FAMILY: "Trebuchet MS", tahoma, verdana, serif
+}
+TD.login {
+	FONT-SIZE: 9pt; FONT-FAMILY: "Trebuchet MS", tahoma, verdana, serif
+}
+INPUT.text {
+	FONT-SIZE: 9pt; FONT-FAMILY: arial, tahoma, verdana, serif
+}
+DIV.error {
+	FONT-WEIGHT: bold; PADDING-TOP: 3px; TEXT-ALIGN: center
+}
+
+INPUT.button {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: bold; FONT-SIZE: 9pt; BACKGROUND: #dddddd; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; FONT-FAMILY: arial, tahoma, verdana, serif
+}
+A:link {
+	COLOR: #336699
+}
+A:visited {
+	COLOR: #336699
+}
+A:hover {
+	COLOR: #336699
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY onLoad="document.form1.textUser.focus();">
+<TABLE height="100%" cellSpacing=0 cellPadding=0 width="100%" style="padding-top:70px;">
+  <TBODY>
+  <TR>
+    <TD>
+
+      <TABLE cellSpacing=0 cellPadding=0 align=center>
+        <TBODY>
+        <TR>
+          <TD class=box>
+            <TABLE cellSpacing=0 cellPadding=0>
+          <form action="chklogin.php" method="post" enctype="multipart/form-data" name="form1">
+              <TBODY>
+			  </TR>
+			  <span style="color:#FF0000; padding-left:50px;"><?=$strError?></span>
+                <TD class=login>Username: &nbsp;</TD>
+
+                <TD class=login>
+				<input name="textUser" type="text" id="textUser" class="text"  />
+				&nbsp;</TD>
+                <TD class=login>Password: &nbsp;</TD>
+                <TD class=login><input  type="password" class="text" name="textfield3" />&nbsp;</TD>
+                <TD class=login>
+				<input name="btnLogin" id="btnLogin" type="submit" class="cssMenu_txt" class="button" value="Login" />
+				</TD></FORM></TR></TBODY></TABLE>
+            <DIV class=error></DIV></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<? include("footer.php")?>
+</BODY></HTML>

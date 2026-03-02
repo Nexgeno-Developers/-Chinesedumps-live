@@ -1,0 +1,83 @@
+<? include("includes/header.php");?>
+<style type="text/css">
+<!--
+.style2 {	font-family: Arial, Helvetica, sans-serif;
+	color: #004A6F;
+}
+.style3 {color: #CC0000}
+.style4 {color: #000000}
+.text {
+font-size: 12px !important;
+font-family: Arial, Helvetica, sans-serif;
+color: #000000;
+}
+-->
+
+.conform_orders input#Final2
+{
+        background: #1F733D !important;
+}
+
+.conform_orders input#Final2:hover {
+    background: #0f5b2a !important;
+}
+</style>
+<div class="content-box">
+        <div class="certification-box">
+            <div class="max-width">
+                <a href="<?php echo $websiteURL; ?>" class="blutext">Home</a> > <?php echo $getPage[1]; ?>
+                <?php include("includes/unlimitedpackage.php"); ?>
+            </div>
+        </div>
+        <div class="about-chinesedumps">
+            <div class="max-width">
+                <h1 class="center-heading"><span>Confirm Order and Pay </span></h1>
+                <div class="black-heading">You are going to pay through <?php echo $getPage[1]; ?> method</div>
+                <p><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td align="left"><div>
+                                <div>
+                                  <h2 class="headingb"></h2>
+                                </div>
+                            </div></td>
+                          </tr>
+                          <tr>
+                            <td class="text" style="color:#F00;"><?php // echo $errstr;?>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td class="text"><form name="frm_cart" id="frm_cart" class="couponStyle" action="" method="post" enctype="multipart/form-data">
+                            Add discount code below and apply (if you have any) 
+                            <input type="text" name="coupon" value="" class="input-field" style="width:100px; height:30px;" />&nbsp;<input type="submit" value=" Apply " class="orange-button" name="apply_coupon" /></form>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td style="text-align:center; font-size:20px;">OR</td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td class="text" style="text-align:center; font-size:20px !important; padding-bottom:20px;"><?php echo $getPage[2]; ?></td>
+                          </tr>
+                          <tr>
+                            <td class="text" style="text-align:center; font-size:20px !important;">
+          <div align="center">
+			<form name="frm_cart" id="frm_cart" action="" method="post" enctype="multipart/form-data" class="conform_orders">
+				<?=$show_cart?>
+			</form> 
+            </div></td>
+                          </tr>
+                        </table></p>
+                
+            </div>
+        </div>
+        
+        
+        
+        
+
+	</div>
+                <? include("includes/footer.php");?>

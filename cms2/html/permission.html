@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><?=$websitetitle?></title>
+<link href="new.css" rel="stylesheet" type="text/css" />
+<link href="style1.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+<script language="JavaScript" src="../includes/js/calendar.js"></script>
+<script type="text/javascript" src="Editor3/scripts/innovaeditor.js"></script>
+<script language="javascript" type="text/javascript">
+function Cofirm()
+{
+var mes=window.confirm ("Are You Sure To Delete the Selected Item");
+if (mes==true)
+{
+return true;
+}
+else
+{
+return false;
+}
+}
+</script>
+<script language="JavaScript" src="../includes/js/functions.js"></script></head>
+</head>
+<body>
+
+<div class="topbar">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
+<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+</tr>
+</table></div>
+
+<table cellpadding="0" cellspacing="0" width="102%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+
+<td width="810" valign="top" class="center"><h2>Set Permissions!</h2>
+
+Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
+
+<br />
+
+<form id="frm1" name="frm1" method="post" action="" enctype="multipart/form-data">
+<table align="left" cellpadding='0' cellspacing='0'  width="600" border="0">
+<tr height="20">
+       <td colspan="5"  align="center" ><span style="color:#FF0000"><?=$message?></span></td>
+    </tr>
+<tr height="20">
+    <td class='header'  align="center">Module Name </td>
+    <td  class='header' align="center">Read </td>
+    <td  class='header' align="center">Write </td>
+    <td  class='header' align="center">Edit </td>
+    <td  align="center"  class='header'>Delete</td>
+    </tr>
+	<?=$display?>
+    <tr height="20">
+
+    <td colspan="5"  align="center" >&nbsp;</td>
+    </tr>
+	<tr height="20">
+       <td colspan="5"  align="center" ><input type="submit" value="Update Now" id="permission" name="permission" /><input type="hidden" value="<?=$_REQUEST['nid']?>" id="nid" name="nid" /></td>
+    </tr>
+</table>
+
+</form></td>
+</table>
+<? include("footer.php")?>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><?=$websitetitle?></title>
+<link href="new.css" rel="stylesheet" type="text/css" />
+<link href="style1.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+<script language="JavaScript" src="../includes/js/calendar.js"></script>
+<script type="text/javascript" src="Editor3/scripts/innovaeditor.js"></script>
+</head>
+<body>
+
+<div class="topbar">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
+<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+</tr>
+</table></div>
+
+<table cellpadding="0" cellspacing="0" width="102%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+
+<td width="810" class="rightside"><h2>Edit Coupon!</h2>
+
+Welcome to your<?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.<br />
+
+<form name="Form" id="Form" method="post" action="" enctype="multipart/form-data"><br />
+
+  <table cellpadding='0' cellspacing='0' width='100%'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'>Edit Coupon </td>
+    </tr>
+    <tr>
+      <td class='setting1'><table width="80%" border="0" align="center" cellpadding="2" cellspacing="2">
+        <tr>
+          <td align="left">&nbsp;</td>
+          <td colspan="2" style="color: #FF0000;"><?=$strError?></td>
+        </tr>
+        <tr>
+          <td width="24%" align="left" nowrap="nowrap"><div align="right"></div></td>
+          <td colspan="2">* Required information</td>
+        </tr>
+        <tr>
+          <td align="right">* Coupon Title:</td>
+          <td colspan="2"><input type="text" name="c_title" value="<?php echo $row1['coupon_title'];?>" id="c_title" class="required" /></td>
+        </tr>
+        <tr>
+          <td align="right">* Coupon Code:</td>
+          <td colspan="2"><input type="text"  name="c_code" value="<?php echo $row1['coupon_code'];?>"  id="c_code" class="required" /></td>
+        </tr>
+		
+            <tr>
+          <td align="right" nowrap="nowrap">* Start Date:</td>
+          <td width="72%" ><input type="text" name="Start_Date" value="<?php echo $row1['start_date'];?>" id="Start_Date" class="required" readonly="readonly" />&nbsp;<img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.Start_Date,'yyyy-mm-dd',this)" /></td>
+          <td width="4%" ></td>
+        </tr>
+		
+		<tr>
+          <td align="right">* End Date:</td>
+          <td colspan="2"><input  type="text" name="End_Date" value="<?php echo $row1['end_date'];?>" id="End_Date" readonly="readonly" />&nbsp;<img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.End_Date,'yyyy-mm-dd',this)" /></td>
+        </tr>
+		<tr>
+          <td align="right">* Coupon Value:</td>
+          <td colspan="2"><input  type="text" name="Coupon_Value" value="<?php echo $row1['coupon_value'];?>" id="Coupon_Value" class="required" /></td>
+        </tr>
+		
+		<tr>
+          <td align="right"> Coupon Type:</td>
+          <td><select name="coupon_type" id="coupon_type">
+            <option value="1" <?php if($row1['coupon_type']=='1') echo 'selected="selected"';?> >Total</option>
+            <option value="2" <?php if($row1['coupon_type']=='2') echo 'selected="selected"';?> >Percent</option>
+          </select></td>
+        </tr>
+		<tr>
+          <td align="right">* Number of uses:</td>
+          <td colspan="2"><input  type="text" name="Number_of_Uses" value="<?php echo $row1['number_of_uses'];?>" id="Number_of_Uses" class="required" /></td>
+        </tr>
+		<tr>
+          <td align="right">* Status:</td>
+          <td colspan="2"><input type="checkbox" name="status" id="status" <?php if($row1['status']=='1') echo 'checked="checked"';?> value="1" /></td>
+        </tr>
+        <tr align="right">
+          <td align="left">&nbsp;</td>
+          <td colspan="2" align="left"><input type="hidden" name="id" value="<?php echo $row1['id'];?>" /><input type="submit" name="Submit" value="Submit" /></td>
+        </tr>
+      </table>      
+      <p>&nbsp;</p>
+      </td>
+    </tr>
+  </table>
+	  </form>
+<br /></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<? include("footer.php")?>
+</body>
+</html>

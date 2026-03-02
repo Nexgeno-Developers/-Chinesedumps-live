@@ -1,0 +1,62 @@
+<? include ("header.php"); ?>
+
+<script language="JavaScript" src="js/categorystatusnew.js"></script>
+
+<table cellpadding="0" cellspacing="0" width="90%">
+
+<tr>
+
+<td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
+
+<td width="810" valign="top" class="rightside"><h2>Assign Exam to User!</h2>
+
+Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
+
+<br />
+<form id="form1" name="form1" method="post" action="assign_user.php">
+<br />
+<table>
+		<tr>
+		<td valign="top" class="rightside"><div align="center"><?php if(isset($str)){ echo $str;}?></div></td>
+		</tr>
+</table>
+
+<table>
+		<tr>
+		<td valign="top" class="rightside"><div align="center"><? echo $msg; $msg='';?></div></td>
+		</tr>
+</table>
+<table cellpadding='0' cellspacing='0' class='list' width='90%'>
+
+    <tr>
+
+    <td height="19" align="right" colspan="4">&nbsp;</td>
+
+	</tr>
+  <tr>
+
+    <td width='33' class='header' align="center">&nbsp;</td>
+      <td class='header' width='133'>User Name</td>
+    <td class='header' width='133'>Exam Name</td>
+	<td width="271" align="center" class='header'>&nbsp;</td>
+
+    </tr>
+
+  <!-- LOOP THROUGH USERS -->
+
+  <?php echo $str1 ;?>
+
+</table>
+
+</form></td>
+
+
+
+</table>
+
+<? include("footer.php")?>
+
+</body>
+
+</html>
+

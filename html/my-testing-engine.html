@@ -1,0 +1,158 @@
+<? include("includes/header.php");?>
+<script language="JavaScript" type="text/javascript" src="js/searchcategory2.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/searchcategoryexams.js"></script>
+<style>
+    ul.list-box02.order_tables {
+    padding: 10px;
+}
+ul.list-box.list-title.mobile_tables_check {
+    margin-top: 20px;
+}
+
+@media(min-width:768px) and (max-width:991px)
+{
+ul.list-box.list-title.mobile_tables_check {
+    margin-top: 110px !important;
+}
+    
+}
+</style>
+
+<div class="content-box">
+        <div class="certification-box certification-box03">
+            <div class="max-width">
+                <a href="<?php echo $websiteURL; ?>" class="blutext">Home</a> > <?php echo $getPage[1]; ?>
+                <?php include("includes/unlimitedpackage.php"); ?>
+            </div>
+        </div>
+        <div class="about-abraindumps">
+            <div class="max-width  paddtop60 paddbottom60">
+                <h1 class="main_heading text-center"><span><?php echo $getPage[1]; ?></span></h1>
+                <div class="black-heading">Here Is Your Member Area </div>
+                <ul class="popular-vendor-list popular-group1-list">
+                    <li class="justify_center">
+                    <?php	include("html/account.html");	?>
+                    </li>
+                </ul>
+                <br>
+                <ul class="list-box list-title mobile_tables_check">
+                	<li>Exam Detail</li>
+                	<li></li>
+                	<li>Status</li>
+                </ul>
+                <ul class="list-box02 order_tables">
+                   <?php
+								$sql_order = "SELECT order_detail.*, tbl_package_instance.engine_id, tbl_package_instance.serial_number, tbl_package_instance.instance_expiry FROM  order_detail, tbl_package_instance where order_detail.UserID='".$_SESSION['uid']."' and order_detail.status='1' and (order_detail.PTypeID='sp' or order_detail.PTypeID='both') and order_detail.ID =  tbl_package_instance.order_number order by tbl_package_instance.order_number desc;";
+								$results = mysql_query($sql_order) or die(mysql_error());
+								if(mysql_num_rows($results)>0)
+								{
+									$old_order_id='';
+									$instance=0;
+									while($ordered_package = mysql_fetch_array($results))
+									{
+										if($old_order_id == $ordered_package['ID'])
+										{
+											$instance++;
+										}
+										else
+										{
+											if($instance && $instance<=1)
+											{
+											$instance++;
+											?>
+           <ul class="list-box list-elements">
+              <li style="text-align:left">
+              <strong>Serial #:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><?=$instance?><br />
+              <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> 
+               </li>
+               <li><b><a href="new_instance.php?ord=<?=$old_order_id?>" class="btn_download">Generate another Key</a></b></li>
+               <li><b>Status</b></li>
+            </ul>
+											<?php
+											}
+											$instance=1;
+										}
+										$old_order_id = $ordered_package['ID'];
+										
+										$strSql 	=	"SELECT concat(exam_name,' - ',exam_fullname) as full_name FROM tbl_exam WHERE exam_id='".$ordered_package['ProductID']."'";
+										$result		=	mysql_query($strSql) or die(mysql_error());
+										$re 		=	mysql_fetch_array($result);
+											if($instance && $instance<=1)
+											{
+
+											$SentNo=$_SESSION['uid']."-".$ordered_package['engine_id']."-".$ordered_package['ID'];
+													$SentNo=base64_encode($SentNo);
+											?>
+                                            
+                                             <li>
+                    <ul class="list-box list-elements" style="height:30px;">
+                            <li style="text-align:left">
+                               <strong>Order No: <?=$ordered_package['ID']?>
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               <strong> Exam: &nbsp;<?=$re['full_name']?></strong></span></strong>
+                            </li>
+                        </ul>
+                        <ul class="list-box list-elements" style="height:30px;">
+                            <li style="text-align:left">
+<strong>Serial #:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><?=$instance?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" value="<?=$ordered_package['serial_number']?>" style="width: 278px;padding: 6px;border: 1px solid #ccc;background-color: #fff;" />
+                            </li>
+
+                            <li><form action="upload_sim.php" method="get">
+                                	<input type="hidden" name="id" value="<?=$SentNo?>" />
+									<input type="hidden" name="ddtype" value="<?=$mydtype?>" />
+                                	<input type="submit" class="button7 " value="Download">
+                                </form></li>
+                            <li><b>Status</b></li>
+                        </ul>
+                  
+                                            
+											<?php
+											}
+											else
+											{
+	
+										?>
+<ul class="list-box list-elements" style="height:35px;">
+     <li><strong>Serial #:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><?=$instance?>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> <input type="text"  readonly="readonly" value="<?=$ordered_package['serial_number']?>" style="width: 278px;padding: 6px;border: 1px solid #ccc;background-color: #fff;" />
+    </li>
+    <li><b>&nbsp;</b></li>
+    <li><b>&nbsp;</b></li>
+</ul>
+                    
+<?php }	?>
+							<?php 
+									}
+									if($instance && $instance<=1)
+									{
+									$instance++;
+									?>
+									 
+			<ul class="list-box list-elements">
+              <li style="text-align:left">
+              <strong>Serial #:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><?=$instance?><br />
+              <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+               </li>
+               <li><b><a href="new_instance.php?ord=<?=$old_order_id?>" class="btn_download">Generate another Key</a></b></li>
+               <li><b>Status</b></li>
+            </ul>
+                                     
+                                     
+									<?php
+									}
+								}
+								else
+								{
+									echo "You have not any Active order for Test Engine.";
+								}
+							?>
+<div style="clear:both"></div>    
+                </ul>  
+			<div style="clear:both"></div>              
+            </div>
+        </div>
+	</div>
+
+
+  
+              <? include("includes/footer.php");?>

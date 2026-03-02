@@ -1,0 +1,119 @@
+<? include("includes/header.php");?>
+<script language="JavaScript" type="text/javascript" src="js/user.js"></script>
+
+
+<style>
+    .about-chinesedumps input
+    {
+            background: #3C85BA0D;
+    border: 1px solid rgb(60 133 186 / 55%) !important;
+    box-shadow: none !important;
+    border-radius: 15px;
+    padding: 10px 15px !important;
+    height: 46px;
+    color: #363636 !important;
+    }
+    input.orange-button.subscribe-button {
+    margin-left: 0;
+    width: 251px !important;
+    color:#fff !important;
+    margin-top: 10px;
+    background: #3C85BA;
+    height: auto;
+}
+@media(max-width:767px)
+{
+    .about-chinesedumps {
+        padding: 10px 0 40px;
+        background: #fff;
+    }
+}
+</style>
+<div class="content-box">
+        <div class="certification-box certification-box03">
+            <div class="max-width">
+                <a href="<?php echo $websiteURL; ?>" class="blutext">Home</a> > <?php echo $getPage[1]; ?>
+                <?php include("includes/unlimitedpackage.php"); ?>
+            </div>
+        </div>
+        <div class="about-chinesedumps">
+            <div class="max-width">
+                <h1 class="center-heading"><span><?php echo $getPage[1]; ?></span></h1>
+                <div class="black-heading">Here Is Your Member Area </div>
+                <ul class="popular-vendor-list popular-group1-list">
+                    <li>
+                    <?php
+              	 	if($exec['menucolum']=='Left'){  
+                    	include("html/account.html");
+                     } 
+               		?>
+                    </li>
+                </ul>
+                <br>
+                <div align="">
+                <form id="form1wwww" name="form1wwww" method="post" action="" onsubmit="return updatosb();">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8">
+
+        <!-- Message -->
+        <div class="text-center mb-3 redbold">
+          <div id="txtHintemail"><? if(isset($msg)){ echo $msg; } ?></div>
+        </div>
+
+        <!-- Full Name -->
+        <div class="form-group row">
+          <label for="fName" class="col-md-4 col-form-label">Full Name*:</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control input-field" name="fName" id="fName"
+              value="<? if(isset($sparm[1])){ echo $sparm[1]; } ?>" />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group row">
+          <label class="col-md-4 col-form-label">Email*:</label>
+          <div class="col-md-8 pt-2">
+            <strong><?=$sparm[5]?></strong>
+            <input type="hidden" name="emails" id="emails" value="<?=$sparm[5]?>" />
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group row">
+          <label for="passwords" class="col-md-4 col-form-label">Password*:</label>
+          <div class="col-md-8">
+            <input type="password" class="form-control input-field" name="passwords" id="passwords" />
+          </div>
+        </div>
+
+        <!-- Retype Password -->
+        <div class="form-group row">
+          <label for="repassword" class="col-md-4 col-form-label">Retype Password*:</label>
+          <div class="col-md-8">
+            <input type="password" class="form-control input-field" name="repassword" id="repassword" />
+            <input type="hidden" name="hiddenpassword" id="hiddenpassword" value="<?=$sparm[9]?>" />
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="text-center mt-3">
+          <input type="submit" class="btn btn-warning orange-button subscribe-button" value="Update" />
+          <input type="hidden" name="SignUp" id="SignUp" value="Sign Up" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+                
+                
+            </div>
+        </div>
+        
+        
+
+	</div>
+ 
+              <? include("includes/footer.php");?>

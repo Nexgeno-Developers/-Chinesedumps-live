@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><?=$websitetitle?></title>
+<link href="new.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="Editor3/scripts/innovaeditor.js"></script>
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+</head>
+<body>
+
+<div class="topbar">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
+<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+</tr>
+</table></div>
+
+<table cellpadding="0" cellspacing="0" width="102%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+<td width="810" class="rightside"><h2>Update <?=$pagetitle?> Globle Text  !</h2>
+Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.<br /><br />
+
+<table cellpadding='0' cellspacing='0' width='600'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'>Update <?=$pagetitle?> Globle Text</td>
+    </tr>
+    <tr>
+      <td class='setting1'><form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+        <table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td align="left" valign="middle" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr></tr>
+              <tr>
+                <td height="29" colspan="2" align="center" valign="middle" style="color:#FF0000"><?=$str?></td>
+              </tr>
+              <tr>
+                <td height="29" colspan="2" align="center" valign="middle" style="color:#FF0000">Note: use these Token where you want<br />
+				<?php if(isset($_GET['pid']) and $_GET['pid'] == "1")
+				{ echo "[VendorName] = Vendor Name";  } ?>
+				<?php if(isset($_GET['pid']) and $_GET['pid'] == "2")
+				{ echo "[VendorName] = Vendor Name <br>[CertName] = Certification Name <br>[CertFullName] = Certification Full Name";  } ?>
+				<?php if(isset($_GET['pid']) and $_GET['pid'] == "3")
+				{ echo "[VendorName] = Vendor Name <br>[CertName] = Certification Name <br>[ExamCode] = Exam Code <br>[ExamName] = Exam Name <br>";  } ?>
+				</td>
+              </tr>
+              <tr>
+                <td height="33" align="right" valign="middle" >Meta Title:&nbsp;</td>
+                <td align="left" valign="middle" ><input  name="page_title" id="page_title" style="width:230px;" value="<?=$spram[1]?>" /></td>
+              </tr>
+              <tr>
+                <td height="33" align="right" valign="middle" >Meta Keywords:&nbsp;</td>
+                <td align="left" valign="middle" ><input  name="meta_key" id="meta_key" style="width:230px;" value="<?=$spram[4]?>" /></td>
+              </tr>
+			  <tr>
+                <td height="33" align="right" valign="middle" >Meta Description:&nbsp;</td>
+                <td align="left" valign="middle" ><textarea  name="meta_descx" id="meta_descx" style="width:230px; height:100px;"><?=$spram[5]?></textarea></td>
+              </tr>
+              <tr>
+                <td height="33" align="right" valign="middle" >Page Content Title:&nbsp;</td>
+                <td align="left" valign="middle" ><input  name="content_title" id="content_title" style="width:230px;" value="<?=$spram[2]?>" /></td>
+              </tr>
+              <tr>
+                <td height="23" align="right" valign="middle" ></td>
+                <td align="left" valign="middle" ></td>
+              </tr>
+              <tr>
+                <td height="29" colspan="2" align="center" valign="middle"><textarea id="FCKeditor" name="FCKeditor" rows=4 cols=30><?=stripslashes($spram[3])?></textarea>
+                    <script>
+    var oEdit1 = new InnovaEditor("oEdit1");
+
+    /***************************************************
+      SETTING EDITOR DIMENSION (WIDTH x HEIGHT)
+    ***************************************************/
+
+    oEdit1.width=600;//You can also use %, for example: oEdit1.width="100%"
+    oEdit1.height=350;
+
+
+    /***************************************************
+      SHOWING DISABLED BUTTONS
+    ***************************************************/
+
+    oEdit1.btnPrint=true;
+    oEdit1.btnPasteText=true;
+    oEdit1.btnFlash=true;
+    oEdit1.btnMedia=true;
+    oEdit1.btnLTR=true;
+    oEdit1.btnRTL=true;
+    oEdit1.btnSpellCheck=true;
+    oEdit1.btnStrikethrough=true;
+    oEdit1.btnSuperscript=true;
+    oEdit1.btnSubscript=true;
+    oEdit1.btnClearAll=true;
+    oEdit1.btnSave=true;
+    oEdit1.btnStyles=true; //Show "Styles/Style Selection" button
+
+    /***************************************************
+      APPLYING STYLESHEET
+      (Using external css file)
+    ***************************************************/
+
+    oEdit1.css="style/test.css"; //Specify external css file here
+
+    /***************************************************
+      APPLYING STYLESHEET
+      (Using predefined style rules)
+    ***************************************************/
+    /*
+    oEdit1.arrStyle = [["BODY",false,"","font-family:Verdana,Arial,Helvetica;font-size:x-small;"],
+          [".ScreenText",true,"Screen Text","font-family:Tahoma;"],
+          [".ImportantWords",true,"Important Words","font-weight:bold;"],
+          [".Highlight",true,"Highlight","font-family:Arial;color:red;"]];
+
+    If you'd like to set the default writing to "Right to Left", you can use:
+
+    oEdit1.arrStyle = [["BODY",false,"","direction:rtl;unicode-bidi:bidi-override;"]];
+    */
+
+
+    /***************************************************
+      ENABLE ASSET MANAGER ADD-ON
+    ***************************************************/
+
+    oEdit1.cmdAssetManager = "modalDialogShow('<?=$websiteURL?>/badmin/Editor3/assetmanager/assetmanager.php',640,465)"; //Command to open the Asset Manager add-on.
+    //Use relative to root path (starts with "/")
+
+    /***************************************************
+      ADDING YOUR CUSTOM LINK LOOKUP
+    ***************************************************/
+
+    oEdit1.cmdInternalLink = "modelessDialogShow('links.htm',365,270)"; //Command to open your custom link lookup page.
+
+    /***************************************************
+      ADDING YOUR CUSTOM CONTENT LOOKUP
+    ***************************************************/
+
+    oEdit1.cmdCustomObject = "modelessDialogShow('objects.htm',365,270)"; //Command to open your custom content lookup page.
+
+    /***************************************************
+      USING CUSTOM TAG INSERTION FEATURE
+    ***************************************************/
+
+    oEdit1.arrCustomTag=[["First Name","{%first_name%}"],
+        ["Last Name","{%last_name%}"],
+        ["Email","{%email%}"]];//Define custom tag selection
+
+    /***************************************************
+      SETTING COLOR PICKER's CUSTOM COLOR SELECTION
+    ***************************************************/
+
+    oEdit1.customColors=["#ff4500","#ffa500","#808000","#4682b4","#1e90ff","#9400d3","#ff1493","#a9a9a9"];//predefined custom colors
+
+    /***************************************************
+      SETTING EDITING MODE
+
+      Possible values:
+        - "HTMLBody" (default)
+        - "XHTMLBody"
+        - "HTML"
+        - "XHTML"
+    ***************************************************/
+
+    oEdit1.mode="XHTMLBody";
+
+
+    oEdit1.REPLACE("FCKeditor");
+              </script>
+              </tr>
+              <?php
+              if($_GET['pid']=='3'){
+              ?>
+              <tr>
+                <td height="29" colspan="2" align="center" valign="middle"><textarea id="FCKeditor1" name="FCKeditor1" rows=4 cols=30><?=stripslashes($spram[7])?></textarea>
+                    <script>
+    var oEdit2 = new InnovaEditor("oEdit2");
+
+    /***************************************************
+      SETTING EDITOR DIMENSION (WIDTH x HEIGHT)
+    ***************************************************/
+
+    oEdit2.width=600;//You can also use %, for example: oEdit2.width="100%"
+    oEdit2.height=350;
+
+
+    /***************************************************
+      SHOWING DISABLED BUTTONS
+    ***************************************************/
+
+    oEdit2.btnPrint=true;
+    oEdit2.btnPasteText=true;
+    oEdit2.btnFlash=true;
+    oEdit2.btnMedia=true;
+    oEdit2.btnLTR=true;
+    oEdit2.btnRTL=true;
+    oEdit2.btnSpellCheck=true;
+    oEdit2.btnStrikethrough=true;
+    oEdit2.btnSuperscript=true;
+    oEdit2.btnSubscript=true;
+    oEdit2.btnClearAll=true;
+    oEdit2.btnSave=true;
+    oEdit2.btnStyles=true; //Show "Styles/Style Selection" button
+
+    /***************************************************
+      APPLYING STYLESHEET
+      (Using external css file)
+    ***************************************************/
+
+    oEdit2.css="style/test.css"; //Specify external css file here
+
+    /***************************************************
+      APPLYING STYLESHEET
+      (Using predefined style rules)
+    ***************************************************/
+    /*
+    oEdit2.arrStyle = [["BODY",false,"","font-family:Verdana,Arial,Helvetica;font-size:x-small;"],
+          [".ScreenText",true,"Screen Text","font-family:Tahoma;"],
+          [".ImportantWords",true,"Important Words","font-weight:bold;"],
+          [".Highlight",true,"Highlight","font-family:Arial;color:red;"]];
+
+    If you'd like to set the default writing to "Right to Left", you can use:
+
+    oEdit2.arrStyle = [["BODY",false,"","direction:rtl;unicode-bidi:bidi-override;"]];
+    */
+
+
+    /***************************************************
+      ENABLE ASSET MANAGER ADD-ON
+    ***************************************************/
+
+    oEdit2.cmdAssetManager = "modalDialogShow('<?=$websiteURL?>/badmin/Editor3/assetmanager/assetmanager.php',640,465)"; //Command to open the Asset Manager add-on.
+    //Use relative to root path (starts with "/")
+
+    /***************************************************
+      ADDING YOUR CUSTOM LINK LOOKUP
+    ***************************************************/
+
+    oEdit2.cmdInternalLink = "modelessDialogShow('links.htm',365,270)"; //Command to open your custom link lookup page.
+
+    /***************************************************
+      ADDING YOUR CUSTOM CONTENT LOOKUP
+    ***************************************************/
+
+    oEdit2.cmdCustomObject = "modelessDialogShow('objects.htm',365,270)"; //Command to open your custom content lookup page.
+
+    /***************************************************
+      USING CUSTOM TAG INSERTION FEATURE
+    ***************************************************/
+
+    oEdit2.arrCustomTag=[["First Name","{%first_name%}"],
+        ["Last Name","{%last_name%}"],
+        ["Email","{%email%}"]];//Define custom tag selection
+
+    /***************************************************
+      SETTING COLOR PICKER's CUSTOM COLOR SELECTION
+    ***************************************************/
+
+    oEdit2.customColors=["#ff4500","#ffa500","#808000","#4682b4","#1e90ff","#9400d3","#ff1493","#a9a9a9"];//predefined custom colors
+
+    /***************************************************
+      SETTING EDITING MODE
+
+      Possible values:
+        - "HTMLBody" (default)
+        - "XHTMLBody"
+        - "HTML"
+        - "XHTML"
+    ***************************************************/
+
+    oEdit2.mode="XHTMLBody";
+
+
+    oEdit2.REPLACE("FCKeditor1");
+              </script>
+              </tr>
+              <tr>
+                <td height="29" colspan="2" align="center" valign="middle"><textarea id="FCKeditor2" name="FCKeditor2" rows=4 cols=30><?=stripslashes($spram[8])?></textarea>
+                    <script>
+    var oEdit3 = new InnovaEditor("oEdit3");
+
+    /***************************************************
+      SETTING EDITOR DIMENSION (WIDTH x HEIGHT)
+    ***************************************************/
+
+    oEdit3.width=600;//You can also use %, for example: oEdit3.width="100%"
+    oEdit3.height=350;
+
+
+    /***************************************************
+      SHOWING DISABLED BUTTONS
+    ***************************************************/
+
+    oEdit3.btnPrint=true;
+    oEdit3.btnPasteText=true;
+    oEdit3.btnFlash=true;
+    oEdit3.btnMedia=true;
+    oEdit3.btnLTR=true;
+    oEdit3.btnRTL=true;
+    oEdit3.btnSpellCheck=true;
+    oEdit3.btnStrikethrough=true;
+    oEdit3.btnSuperscript=true;
+    oEdit3.btnSubscript=true;
+    oEdit3.btnClearAll=true;
+    oEdit3.btnSave=true;
+    oEdit3.btnStyles=true; //Show "Styles/Style Selection" button
+
+    /***************************************************
+      APPLYING STYLESHEET
+      (Using external css file)
+    ***************************************************/
+
+    oEdit3.css="style/test.css"; //Specify external css file here
+
+    /***************************************************
+      APPLYING STYLESHEET
+      (Using predefined style rules)
+    ***************************************************/
+    /*
+    oEdit3.arrStyle = [["BODY",false,"","font-family:Verdana,Arial,Helvetica;font-size:x-small;"],
+          [".ScreenText",true,"Screen Text","font-family:Tahoma;"],
+          [".ImportantWords",true,"Important Words","font-weight:bold;"],
+          [".Highlight",true,"Highlight","font-family:Arial;color:red;"]];
+
+    If you'd like to set the default writing to "Right to Left", you can use:
+
+    oEdit3.arrStyle = [["BODY",false,"","direction:rtl;unicode-bidi:bidi-override;"]];
+    */
+
+
+    /***************************************************
+      ENABLE ASSET MANAGER ADD-ON
+    ***************************************************/
+
+    oEdit3.cmdAssetManager = "modalDialogShow('<?=$websiteURL?>/badmin/Editor3/assetmanager/assetmanager.php',640,465)"; //Command to open the Asset Manager add-on.
+    //Use relative to root path (starts with "/")
+
+    /***************************************************
+      ADDING YOUR CUSTOM LINK LOOKUP
+    ***************************************************/
+
+    oEdit3.cmdInternalLink = "modelessDialogShow('links.htm',365,270)"; //Command to open your custom link lookup page.
+
+    /***************************************************
+      ADDING YOUR CUSTOM CONTENT LOOKUP
+    ***************************************************/
+
+    oEdit3.cmdCustomObject = "modelessDialogShow('objects.htm',365,270)"; //Command to open your custom content lookup page.
+
+    /***************************************************
+      USING CUSTOM TAG INSERTION FEATURE
+    ***************************************************/
+
+    oEdit3.arrCustomTag=[["First Name","{%first_name%}"],
+        ["Last Name","{%last_name%}"],
+        ["Email","{%email%}"]];//Define custom tag selection
+
+    /***************************************************
+      SETTING COLOR PICKER's CUSTOM COLOR SELECTION
+    ***************************************************/
+
+    oEdit3.customColors=["#ff4500","#ffa500","#808000","#4682b4","#1e90ff","#9400d3","#ff1493","#a9a9a9"];//predefined custom colors
+
+    /***************************************************
+      SETTING EDITING MODE
+
+      Possible values:
+        - "HTMLBody" (default)
+        - "XHTMLBody"
+        - "HTML"
+        - "XHTML"
+    ***************************************************/
+
+    oEdit3.mode="XHTMLBody";
+
+
+    oEdit3.REPLACE("FCKeditor2");
+              </script>
+              </tr>
+              <?php
+              }
+              ?>
+              <tr>
+                <td height="23" align="center" valign="middle" colspan="2" >
+                    <input type="submit" name="Submit" class="cssMenu_txt" value="Update.." /></td>
+              </tr>
+              <tr></tr>
+            </table></td>
+                </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </form>
+      </td>
+    </tr>
+    <tr>
+      <td class='setting2'>&nbsp;</td>
+    </tr>
+  </table>
+</form>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<? include("footer.php")?>
+
+</body>
+</html>

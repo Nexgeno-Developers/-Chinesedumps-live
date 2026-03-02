@@ -1,0 +1,220 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    <!--? include("includes/header.php");?-->
+    <style type="text/css">
+    element.style {
+        text-align: Center;
+    }
+
+    .col-md-12.ent-demo {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .groupbox a {
+        padding: 10px 50px;
+    }
+    </style>
+    <div class="content-box paddtop60 paddbottom60">
+        <div class="exam-group-box">
+            <div class="max-width">
+                <!--<div class="main_heading paddbtm10 text-center"> CCIE Enterprise Infrastructure v1.1 Real Lab <span>Demo</span></div>-->
+                <div class="main_heading paddbtm10 text-center">
+                    <?php echo $demoName; ?> <span>Demo</span>
+                </div>
+                <div class="row">
+                    <!--<div class="col-sm-12 text-center"><img src="images/CCIE_ei_topology.jpg" width="50%" /></div>-->
+                    <!--    <div class="col-sm-6">-->
+                    <!--<iframe width="580px" height="362" style="margin-bottom:20px; margin-left:0px;" src="https://www.youtube.com/embed/JrAkLL-Fyyw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>-->
+                    <!--    </div>-->
+                </div>
+
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="800">
+                    <tbody>
+                        <tr>
+                            <td valign="top" width="185">
+                                <div w3-include-html="inc_mzone.html"></div>
+
+                                <div w3-include-html="inc_certifications.html"></div>
+
+                                <div w3-include-html="inc_rupdates.html"></div>
+
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td height="10"></td>
+                                        </tr>
+                                        <tr>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <div class="session_btn">
+
+                    <div class="col-md-12 ent-demo">
+                        <?= $demoFileHtml ?: '<p>No demo files available for this certification.</p>'; ?>
+                    </div>
+
+                    <!--<div class="col-md-12 ent-demo">-->
+                    <!--<div class="groupbox"><a class="submit__btn" download="CCIE-EI-v1.1-Deploy-Lab-1-Topology-Demo-blevmr.pdf" href="image/CCIE-EI-v1.1-Deploy-Lab-1-Topology-Demo-blevmr.pdf">Download Topology </a></div>-->
+                    <!--<div class="groupbox"><a class="submit__btn" download="CCIE-EI-v1.1-Deploy-Lab-1-Demo-v1.1-hrln06.wmv" href="image/CCIE-EI-v1.1-Deploy-Lab-1-Demo-v1.1-hrln06.wmv">Download Demo Video </a></div>-->
+
+                    <!--<div class="groupbox"><a class="submit__btn" download="CCIE_ei_topology.jpg" href="image/Cd -deploy-lab2-demo.pdf">Download Topology </a></div>-->
+
+                    <!--<div class="groupbox"><a class="submit_btn" download="CCIE-EI-v1.1-Deploy-Lab-1-Demo.pdf" href="images/CCIE-EI-v1.1-Deploy-Lab-1-Demo.pdf">Download Deploy 1 </a></div>-->
+                    <!--<div class="groupbox"><a class="submit_btn" download="CCIE-EI-v1.1-Deploy-Lab-2-Demo-v1.1-sg4owm.pdf" href="images/CCIE-EI-v1.1-Deploy-Lab-2-Demo-v1.1-sg4owm.pdf">Download Deploy 2 </a></div>-->
+
+                    <!--<div class="groupbox"><a class="submit_btn" download="CCIE-EI-v1.1-Design-D-1-Demo.pdf" href="images/CCIE-EI-v1.1-Design-D-1-Demo.pdf">Download Design 1 </a></div>-->
+                    <!--<div class="groupbox"><a class="submit_btn" download="CCIE-EI-v1.1-Design-D-2-Demo-v1.1-3i1ass.pdf" href="images/CCIE-EI-v1.1-Design-D-2-Demo-v1.1-3i1ass.pdf">Download Design 2 </a></div>-->
+                    <!--<div class="groupbox"><a class="submit_btn" download="CCIE-EI-v1.1-Design-D-3-Demo-v1.1-i2rh2r.pdf" href="images/CCIE-EI-v1.1-Design-D-3-Demo-v1.1-i2rh2r.pdf">Download Design 3 </a></div>-->
+                    <!--<div class="groupbox"><a class="submit_btn" download="CCIE-EI-v1.1-Design-D-4-Demo-v1.1-1sblik.pdf" href="images/CCIE-EI-v1.1-Design-D-4-Demo-v1.1-1sblik.pdf">Download Design 4 </a></div>-->
+                    <!--</div>-->
+
+                </div>
+                <!--?php //echo $getPage[2]; ?-->
+            </div>
+        </div>
+    </div>
+
+    <div class="newsletter-box">
+        <div class="max-width">
+            <div class="newsletter-heading">Demo Request</div>
+
+            <p>Signup now to our newsletter to get the latest updates of our products, news and many more. We do not
+                spam.</p>
+
+            <div class="group">
+                <form action="ptype.php" method="post" name="demoForm2" onsubmit="return demoVerify3();"><input
+                        class="input-field" id="request_ecode" name="request_ecode" placeholder="Exam Code" required=""
+                        type="text" /> <input class="input-field" id="request_email" name="request_email"
+                        placeholder="Your Email Address" required="" type="email" /><button
+                        class="orange-button subscribe-button" type="submit">Send Request</button>
+                    <script language="javascript">
+                    function demoVerify3() {
+                        regExp = /^[A-Za-z_0-9\.\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}$/;
+                        email = document.forms['demoForm2'].elements['request_email'].value;
+                        if (email == '' || !regExp.test(email)) {
+                            alert('Enter Email');
+                            document.getElementById('emailErr2').style.display = 'block';
+                            document.forms['demoForm2'].elements['request_email'].focus();
+                            return false;
+                        }
+
+                        document.getElementById('emailErr2').style.display = 'none';
+                    }
+                    </script>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var isLoggedIn = <?php echo isset($_SESSION['uid']) ? 'true' : 'false'; ?>;
+        var baseUrl = "<?php echo BASE_URL; ?>";
+        var basePath = "<?php echo rtrim(parse_url(BASE_URL, PHP_URL_PATH) ?: '/', '/'); ?>/";
+    
+        $(document).ready(function () {
+            $('.download-demo-btn').click(function (e) {
+                e.preventDefault();
+                
+                /*if (!isLoggedIn) {
+                    alert('You need to log in to download this file.');
+                    window.location.href = 'login.php';
+                    return;
+                }*/
+                
+                // Set cookie before redirecting to login
+                if (!isLoggedIn) {
+                    alert('You need to log in to download this file.');
+                    document.cookie = "redirect_after_login=" + encodeURIComponent(window.location.href) + "; path=" + basePath;
+                    window.location.href = baseUrl + 'login.php';
+                    return;
+                }
+                
+                var $btn = $(this);
+                var originalHtml = $btn.html();
+                var file = $btn.data('file');
+                var certId = $btn.data('cert-id');
+                var displayName = $btn.data('name'); // Use button name as download name
+        
+                $btn.text('Downloading...');
+        
+                $.ajax({
+                    url: 'download_demo.php',
+                    method: 'POST',
+                    data: {
+                        ajax: true,
+                        file: file,
+                        cert_id: certId,
+                        displayName: displayName
+                    },
+                    xhrFields: { withCredentials: true },
+                    success: function () {
+                        // Get original file extension
+                        var ext = file.split('.').pop(); // Extracts extension from original filename
+                    
+                        // Ensure displayName includes the extension
+                        var finalName = displayName;
+                        if (!finalName.toLowerCase().endsWith('.' + ext.toLowerCase())) {
+                            finalName += '.' + ext;
+                        }
+                    
+                        // Force download with correct name and extension
+                        var link = document.createElement('a');
+                        link.href = 'uploads/demo_pdfs/' + file;
+                        link.download = finalName;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    
+                        $btn.html(originalHtml);
+                        alert('Downloaded successfully');
+                    },
+                    // success: function (res) {
+                    //     // Set href and download attributes to let browser handle it natively
+                    //     $btn.attr('href', 'uploads/demo_pdfs/' + file);
+                    //     $btn.attr('download', file);
+                    //     $btn.off('click'); // remove this handler for future clicks
+                    //     $btn[0].click(); // simulate click to start download
+                    //     // $btn.html('Download Again <i class="fa fa-download"></i>'); // Custom success label
+                    //     $btn.html(originalHtml);
+                    //     alert('Downloaded successfully');
+                    // },
+                    error: function (xhr, status, error) {
+                        console.error('AJAX Error:', {
+                            status: xhr.status,
+                            statusText: xhr.statusText,
+                            responseText: xhr.responseText,
+                            errorThrown: error
+                        });
+                    
+                        $btn.html(originalHtml);
+                    
+                        if (xhr.status === 401) {
+                            alert('Please login to download the file.');
+                        } else {
+                            console.log('Failed to log download. Server returned: ' + xhr.status + ' - ' + xhr.responseText);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    <!--? include("includes/footer.php");?-->
+</body>
+
+</html>

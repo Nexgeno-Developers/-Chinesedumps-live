@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><?=$websitetitle?></title>
+<link href="new.css" rel="stylesheet" type="text/css" />
+<link href="style1.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+<script language="JavaScript" src="../includes/js/calendar.js"></script>
+</head>
+<body>
+
+<div class="topbar">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
+<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+</tr>
+</table></div>
+
+<table cellpadding="0" cellspacing="0" width="90%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+
+<td width="810" class="rightside"><h2>Update Main Tabs!</h2>
+
+Welcome to your<?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.<br />
+
+<form name="Form" id="Form" method="post" action="" enctype="multipart/form-data"><br />
+
+  <table cellpadding='0' cellspacing='0' width='90%'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'>Update Main Tabs</td>
+    </tr>
+    <tr>
+      <td class='setting1'><table width="80%" border="0" align="center" cellpadding="2" cellspacing="2">
+        <tr>
+          <td align="left">&nbsp;</td>
+          <td colspan="2" style="color: #FF0000;"><?=$strError?></td>
+        </tr>
+        <tr>
+          <td width="29%" align="left" nowrap="nowrap"><div align="right"></div></td>
+          <td colspan="2">* Required information</td>
+        </tr>
+       
+        <tr>
+          <td align="right" valign="top">Services:</td>
+          <td ><textarea name="front1"  id="front1" cols="25" rows="5"><?php echo stripslashes($spram[1]);?></textarea></td>
+		  <td>&nbsp;</td>
+        </tr>
+		
+		<tr>
+          <td align="right" valign="top">Clients:</td>
+          <td ><textarea  name="front2"  id="front2" cols="25" rows="5"><?php echo stripslashes($spram[2]);?></textarea></td>
+		  <td></td>
+        </tr>
+		
+		<tr>
+          <td align="right" valign="top">Testimonials:</td>
+          <td><textarea  name="front3"  id="front3" cols="25" rows="5"><?php echo stripslashes($spram[3]);?></textarea></td>
+		  <td></td>
+        </tr>
+      
+        <tr align="right">
+          <td align="left">&nbsp;</td>
+          <td colspan="2" align="left">&nbsp;</td>
+        </tr>
+        <tr align="right">
+          <td align="left">&nbsp;</td>
+          <td colspan="2" align="left"><input type="submit" name="Submit" value="Update" /></td>
+        </tr>
+      </table>      
+      <p>&nbsp;</p>
+      </td>
+    </tr>
+  </table>
+	  </form>
+<br /></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<? include("footer.php")?>
+</body>
+</html>

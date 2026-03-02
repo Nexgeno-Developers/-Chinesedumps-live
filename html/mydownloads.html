@@ -1,0 +1,117 @@
+<? include("includes/header.php");?>
+
+<script language="JavaScript" type="text/javascript" src="js/searchcategory2.js"></script>
+
+<script language="JavaScript" type="text/javascript" src="js/searchcategoryexams.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+function emailvalideok(){
+
+				 if(document.form44ok.cmb_category.selectedIndex ==0)
+
+						{
+
+							alert("Please select the Vendor.");
+
+							return false;
+
+						}
+
+				 if(document.form44ok.cmb_subcategory.selectedIndex ==0)
+
+						{
+
+							alert("Please select the Certification.");
+
+							return false;
+
+						}
+
+				 if(document.form44ok.cmb_subcategoryexam.selectedIndex ==0)
+
+						{
+
+							alert("Please select the Exam.");
+
+							return false;
+
+						}
+
+				return true;
+
+						
+
+						
+
+	}
+
+</script>
+
+<div class="content-box">
+
+        <div class="certification-box">
+
+            <div class="max-width">
+
+                <a href="<?php echo $websiteURL; ?>" class="blutext">Home</a> > <?php echo $getPage[1]; ?>
+
+            </div>
+
+        </div>
+
+        <div class="about-chinesedumps">
+
+            <div class="max-width">
+
+                <h1 class="center-heading"><span><?php echo $getPage[1]; ?></span></h1>
+
+                <div class="black-heading">Here Is Your Member Area </div>
+
+                <ul class="popular-vendor-list popular-group1-list">
+
+                    <li class="justify_center">
+
+                    <?php include("html/account.html");	?>asdf
+
+                    </li>
+
+                </ul>
+
+                <br>
+
+               
+
+                <ul class="list-box list-title mobile_tables_check">
+
+                	<li>Exam Detaila</li>
+
+                	<li>Download</li>
+
+                	<li>Status</li>
+
+                </ul>
+
+                <ul class="list-box02 order_tables">
+
+                    <?=$show_orders?>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        
+
+        
+
+
+
+	</div>
+
+
+
+  
+
+              <? include("includes/footer.php");?>

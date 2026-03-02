@@ -1,0 +1,260 @@
+<? include ("header.php"); ?>
+<script language="Javascript" src="js/category.js"></script>
+<script language="JavaScript" src="../includes/js/calendar.js"></script>
+
+<table cellpadding="0" cellspacing="0" width="102%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+
+<td width="810" class="rightside"><h2>Bulk update tools!</h2>
+
+Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.<br />
+	<?php 
+    if ($_GET["action"]== "all_date")
+	{
+    ?>
+<form name="Form" id="Form" method="post" action="bulk_update_date.php"><br />
+<input type="hidden" name="action" value="all_date" />
+  <table cellpadding='0' cellspacing='0' width='100%'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'>Update Date of All Exams</td>
+    </tr>
+    <tr>
+      <td class='setting1'><table width="80%" border="0" align="center" cellpadding="2" cellspacing="2">
+        <tr>
+          <td align="left">&nbsp;</td>
+          <td colspan="2" style="color: #FF0000;"><?=$strError?></td>
+        </tr>
+        <tr>
+          <td height="19"><font class=SmallGreenTextLarge>Add Date:</font></td>
+          <td height="26" class="bodyText"><input name="new_date" type="text" id="new_date" size="20"><img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.new_date,'yyyy-mm-dd',this)" /></td>
+        </tr>
+        <tr align="right">
+          <td align="right">&nbsp;</td>
+          <td colspan="2" align="left"><input type="submit" name="Submit" value="Submit" /></td>
+        </tr>
+      </table>      
+      <p>&nbsp;</p>
+      </td>
+    </tr>
+  </table>
+</form>
+	<?php
+	}
+	?>
+	<?php 
+    if ($_GET["action"]== "bundle_date")
+	{
+    ?>
+<form name="Form" id="Form" method="post" action="bulk_update_date.php"><br />
+<input type="hidden" name="action" value="bundle_date" />
+  <table cellpadding='0' cellspacing='0' width='100%'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'>Update Date of Selected Vendor</td>
+    </tr>
+    <tr>
+      <td class='setting1'><table width="80%" border="0" align="center" cellpadding="2" cellspacing="2">
+        <tr>
+          <td align="left">&nbsp;</td>
+          <td colspan="2" style="color: #FF0000;"><?=$strError?></td>
+        </tr>
+         <tr>
+          <td align="right">Vendor Name:</td>
+          <td colspan="2"><?=$category?></td>
+        </tr>
+        <tr>
+          <td align="right" height="19"><font class=SmallGreenTextLarge>Add Date:</font></td>
+          <td height="26" class="bodyText"><input name="new_date" type="text" id="new_date" size="20"><img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.new_date,'yyyy-mm-dd',this)" /></td>
+        </tr>
+        <tr align="right">
+          <td align="left">&nbsp;</td>
+          <td colspan="2" align="left"><input type="submit" name="Submit" value="Submit" /></td>
+        </tr>
+      </table>      
+      <p>&nbsp;</p>
+      </td>
+    </tr>
+  </table>
+</form>
+	<?php
+	}
+	?>
+	<?php 
+    if ($_GET["action"]== "cert_date")
+	{
+    ?>
+<form name="Form" id="Form" method="post" action="bulk_update_date.php"><br />
+<input type="hidden" name="action" value="cert_date" />
+  <table cellpadding='0' cellspacing='0' width='100%'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'>Update Exams of Selected Certificates</td>
+    </tr>
+    <tr>
+      <td class='setting1'><table width="80%" border="0" align="center" cellpadding="2" cellspacing="2">
+        <tr>
+          <td align="left">&nbsp;</td>
+          <td colspan="2" style="color: #FF0000;"><?=$strError?></td>
+        </tr>
+         <tr>
+          <td align="right">Vendor Name:</td>
+          <td colspan="2"><?=$category?></td>
+        </tr>
+        <tr>
+          <td align="right">Certification Name:</td>
+          <td colspan="2"><div id="txtHint"><?=$subcat?></div></td>
+        </tr>
+        <tr>
+          <td align="right" height="19"><font class=SmallGreenTextLarge>Add Date:</font></td>
+          <td height="26" class="bodyText"><input name="new_date" type="text" id="new_date" size="20"><img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.new_date,'yyyy-mm-dd',this)" /></td>
+        </tr>
+        <tr align="right">
+          <td align="left">&nbsp;</td>
+          <td colspan="2" align="left"><input type="submit" name="Submit" value="Submit" /></td>
+        </tr>
+      </table>      
+      <p>&nbsp;</p>
+      </td>
+    </tr>
+  </table>
+</form>
+	<?php
+	}
+	?>
+	<?php 
+    if ($_GET["action"]== "all_price")
+	{
+    ?>
+<form name="Form" id="Form" method="post" action="bulk_update_date.php"><br />
+<input type="hidden" name="action" value="all_price" />
+  <table cellpadding='0' cellspacing='0' width='100%'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'>Update Price of All Exams</td>
+    </tr>
+    <tr>
+      <td class='setting1'><table width="80%" border="0" align="center" cellpadding="2" cellspacing="2">
+        <tr>
+          <td align="left">&nbsp;</td>
+          <td colspan="2" style="color: #FF0000;"><?=$strError?></td>
+        </tr>
+        <tr>
+          <td align="right" height="19"><font class=SmallGreenTextLarge>New Price:</font></td>
+          <td height="26" class="bodyText"><input name="new_price" type="text" id="new_price" size="20"></td>
+        </tr>
+        <tr align="right">
+          <td align="right">&nbsp;</td>
+          <td colspan="2" align="left"><input type="submit" name="Submit" value="Submit" /></td>
+        </tr>
+      </table>      
+      <p>&nbsp;</p>
+      </td>
+    </tr>
+  </table>
+</form>
+	<?php
+	}
+	?>
+	<?php 
+    if ($_GET["action"]== "bundle_price")
+	{
+    ?>
+<form name="Form" id="Form" method="post" action="bulk_update_date.php"><br />
+<input type="hidden" name="action" value="bundle_price" />
+  <table cellpadding='0' cellspacing='0' width='100%'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'>Update Price of Selected Vendor</td>
+    </tr>
+    <tr>
+      <td class='setting1'><table width="80%" border="0" align="center" cellpadding="2" cellspacing="2">
+        <tr>
+          <td align="left">&nbsp;</td>
+          <td colspan="2" style="color: #FF0000;"><?=$strError?></td>
+        </tr>
+         <tr>
+          <td align="right">Vendor Name:</td>
+          <td colspan="2"><?=$category?></td>
+        </tr>
+        <tr>
+          <td align="right" height="19"><font class=SmallGreenTextLarge>New Price:</font></td>
+          <td height="26" class="bodyText"><input name="new_price" type="text" id="new_price" size="20"></td>
+        </tr>
+        <tr align="right">
+          <td align="left">&nbsp;</td>
+          <td colspan="2" align="left"><input type="submit" name="Submit" value="Submit" /></td>
+        </tr>
+      </table>      
+      <p>&nbsp;</p>
+      </td>
+    </tr>
+  </table>
+</form>
+	<?php
+	}
+	?>
+	<?php 
+    if ($_GET["action"]== "cert_price")
+	{
+    ?>
+<form name="Form" id="Form" method="post" action="bulk_update_date.php"><br />
+<input type="hidden" name="action" value="cert_price" />
+  <table cellpadding='0' cellspacing='0' width='100%'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'>Update Exams Price of Selected Certificates</td>
+    </tr>
+    <tr>
+      <td class='setting1'><table width="80%" border="0" align="center" cellpadding="2" cellspacing="2">
+        <tr>
+          <td align="left">&nbsp;</td>
+          <td colspan="2" style="color: #FF0000;"><?=$strError?></td>
+        </tr>
+         <tr>
+          <td align="right">Vendor Name:</td>
+          <td colspan="2"><?=$category?></td>
+        </tr>
+        <tr>
+          <td align="right">Certification Name:</td>
+          <td colspan="2"><div id="txtHint"><?=$subcat?></div></td>
+        </tr>
+        <tr>
+          <td align="right" height="19"><font class=SmallGreenTextLarge>New Price:</font></td>
+          <td height="26" class="bodyText"><input name="new_price" type="text" id="new_price" size="20"></td>
+        </tr>
+        <tr align="right">
+          <td align="left">&nbsp;</td>
+          <td colspan="2" align="left"><input type="submit" name="Submit" value="Submit" /></td>
+        </tr>
+      </table>      
+      <p>&nbsp;</p>
+      </td>
+    </tr>
+  </table>
+</form>
+	<?php
+	}
+	?>
+<br /></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<? include("footer.php")?>
+</body>
+</html>

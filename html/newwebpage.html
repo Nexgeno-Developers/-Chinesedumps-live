@@ -1,0 +1,3497 @@
+<?php $this_page = "home" ?>
+
+<?php include("includes/header.php");?>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;600;700&display=swap" rel="stylesheet">
+
+<script type="text/javascript">
+
+   (function($) {
+
+   	$(function() {
+
+   		$("#scroller").simplyScroll();
+
+   	});
+
+   })(jQuery);
+
+   
+
+   
+
+   (function($) {
+
+   	$(function() {
+
+   		$("#scroller2").simplyScroll();
+
+   	});
+
+   })(jQuery);
+
+</script>  
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;600;700&display=swap');
+</style>
+
+<style>
+
+/*--courses css open--*/
+body
+{
+    font-family: 'Josefin Sans', sans-serif;
+}
+.main-course-category {
+    padding-top: 70px;
+    padding-bottom: 90px;
+}
+
+.h2-title {
+    font-size: 65px;
+    color: #050d36;
+    line-height: 80px;
+    font-weight: 800;
+    padding-bottom: 25px;
+    padding-top: 12px;
+}
+
+.h2-subtitle {
+    position: relative;
+    font-size: 22px;
+    color: #0060ff;
+    line-height: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    display: inline-block;
+}
+.course-category-content a {
+    text-decoration: none;
+}
+.course-category-icon img {
+    width: 50px;
+}
+.course-category-box {
+    border: solid 1px #acacac;
+    border-radius: 8px;
+    background-color: #ffffff;
+    padding: 20px;
+    display: flex;
+    margin-bottom: 30px;
+    align-items: center;
+    transition: all 0.2s cubic-bezier(0.98, 0.57, 1, 1) 0s;
+}
+
+.course-category-content {
+    text-align: left;
+    width: calc(100%);
+}
+
+.course-category-content p {
+    margin-bottom: 0;
+    transition: all 0.2s cubic-bezier(0.98, 0.57, 1, 1) 0s;
+}
+
+.course-category-content .h3-title {
+    line-height: 25px;
+    transition: all 0.2s cubic-bezier(0.98, 0.57, 1, 1) 0s;
+}
+
+.dis-yes {
+    display: block;
+    transition: all 0.2s cubic-bezier(0.98, 0.57, 1, 1) 0s;
+}
+.dis-no {
+    display: none;
+    transition: all 0.2s cubic-bezier(0.98, 0.57, 1, 1) 0s;
+}
+.course-category-content {
+    text-align: left;
+    width: calc(100%);
+}
+
+.h3-title {
+    font-size: 25px;
+    color: #050d36;
+    line-height: 35px;
+    font-weight: 700;
+}
+
+.course-category-icon {
+    margin-right: 20px;
+}
+.course-category-box:hover .dis-yes {
+    display: none;
+    transition: all 0.2s cubic-bezier(0.98, 0.57, 1, 1) 0s;
+}
+.course-category-box:hover .course-category-content p {
+    color: #ffffff;
+    transition: all 0.2s cubic-bezier(0.98, 0.57, 1, 1) 0s;
+}
+.course-category-box:hover .dis-no {
+    display: block;
+    transition: all 0.2s cubic-bezier(0.98, 0.57, 1, 1) 0s;
+}
+.course-category-title {
+    text-align: center;
+}
+.course-category-box:hover {
+    background-color: #ff5219;
+    border: solid 1px #ff5219;
+    box-shadow: 0px 20px 30px 0px rgb(255 82 25 / 30%);
+    transition: all 0.2s cubic-bezier(0.98, 0.57, 1, 1) 0s;
+}
+
+.course-category-box:hover .course-category-content .h3-title {
+    color: #ffffff;
+    transition: all 0.2s cubic-bezier(0.98, 0.57, 1, 1) 0s;
+}
+
+.course-category-content p {
+    font-size: 16px;
+}
+
+/*--courses css close--*/
+
+
+.about-area {
+    padding-top: 110px;
+}
+
+
+.about-content .about-title {
+    font-weight: 700;
+    font-size: 46px;
+    line-height: 54px;
+    color: #07294d;
+}
+.about-content .about-title span {
+    color: #0c8b51;
+}
+.about-content .line {
+    width: 150px;
+    background: 0 0;
+    border: 1px solid #07294d;
+    margin-top: 25px;
+}
+.about-content p {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 30px;
+    color: #07294d;
+    margin-top: 25px;
+}
+.about-image {
+    position: relative;
+    max-width: 665px;
+    height: 635px;
+    margin-left: auto;
+}
+.about-image .single-image.image-1 {
+    top: 72px;
+    right: 63px;
+}
+.about-image .single-image.image-1::before {
+    right: -14px;
+    top: -14px;
+    background-color: #07294d;
+}
+.about-image .single-image::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    z-index: -1;
+}
+.about-image .single-image img {
+    border-radius: 30px;
+}
+.about-image .single-image.image-2 {
+    top: 56%;
+    left: 29%;
+}
+.about-image .single-image.image-2::before {
+    right: -12px;
+    bottom: -12px;
+    background-color: #27b8a7;
+}
+.about-image .single-image::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    z-index: -1;
+}
+.about-image .single-image {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    z-index: 1;
+}
+.about-image .single-image.image-3 {
+    top: 31%;
+    left: 49px;
+}
+.about-image .single-image.image-3::before {
+    bottom: -10px;
+    left: -10px;
+    background-color: #0c8b51;
+}
+.about-image .single-image::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    z-index: -1;
+}
+.about-image .single-image.image-4 {
+    top: 38px;
+    left: 24%;
+}
+.about-image .single-image.image-4::before {
+    top: -10px;
+    left: -10px;
+    background-color: #2f7ad5;
+}
+.about-image .single-image::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    z-index: -1;
+}
+.about-image .about-icon.icon-1 {
+    left: 75px;
+    top: 105px;
+}
+.about-image .about-icon {
+    position: absolute;
+}
+.about-image .about-icon.icon-2 {
+    top: 18px;
+    left: 53%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.about-image .about-icon.icon-3 {
+    left: 50px;
+    bottom: 28%;
+}
+.about-image .about-icon.icon-4 {
+    right: 140px;
+    bottom: 25%;
+}
+
+/*--about us close--*/
+
+.why-choose-us.style3 {
+    background: url(https://keenitsolutions.com/products/html/educavo/assets/images/bg/home12/why-learn-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 200px 0;
+}
+.sec-title3 .title.new-title {
+    color: #101010;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.sec-title3 .new-desc {
+    font-size: 18px;
+    line-height: 31px;
+    color: #333333;
+}
+
+.why-choose-us.style3 .services-part {
+    display: flex;
+    box-shadow: 0 0 30px #eee;
+    background: #ffffff;
+    padding: 15px 30px 20px 30px;
+}
+
+.why-choose-us.style3 .services-part .services-icon {
+    margin-right: 29px;
+}
+
+.why-choose-us.style3 .services-part .services-icon img {
+       width: 60px !important;
+    position: relative;
+    top: 10px;
+}
+.why-choose-us.style3 .services-part .services-text .title {
+    font-size: 20px;
+    line-height: 36px;
+    font-weight: 700;
+    padding-bottom: 5px;
+    margin: 0;
+    color: #171f32;
+}
+
+.why-choose-us.style3 .services-part .services-text .services-txt {
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 400;
+    margin: 0;
+    color: #333333;
+}
+.mb-30 {
+    margin-bottom: 30px;
+}
+.img-part img {
+    width: 100%;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+
+/*---------course content close--*/
+
+.bg8 {
+    background: url(https://keenitsolutions.com/products/html/educavo/assets/images/bg/home12/dotted.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 50px 0 50px;
+}
+.count-title {
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+    display: inline-block;
+    color: #0c8b51;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 51px;
+}
+
+.counter span {
+    padding-left: 4px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+    display: inline-block;
+    color: #0c8b51;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 51px;
+}
+
+.counter {
+    text-align: center;
+}
+.count-text {
+   font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.fa-2x {
+    margin: 0 auto;
+    float: none;
+    display: table;
+    color: #4ad1e5;
+}
+
+.pt-80
+{
+    padding:100px 0px;
+}
+.features-area-2 {
+    padding-top: 60px;
+}
+.features-image-2 {
+    position: relative;
+    z-index: 5;
+    max-width: 342px;
+    width: 100%;
+}
+
+.features-image-2::before {
+    position: absolute;
+    content: '';
+    background-color: #07294d;
+    width: 80%;
+    height: 70%;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+.features-image-2 img {
+    width: 100%;
+}
+
+.features-image-2::after {
+    position: absolute;
+    content: '';
+    background-color: #f1f1f1;
+    width: 80%;
+    height: 70%;
+    bottom: 60px;
+    right: 0;
+    z-index: -1;
+}
+.features-items .features-items-wrapper .single-features-item {
+    max-width: 245px;
+    padding: 25px 0;
+    width: 100%;
+}
+
+.features-items-wrapper {
+    padding-top: 90px;
+}
+.features-items .features-items-wrapper .single-features-item .item-content {
+    padding-left: 15px;
+}
+.features-items .features-items-wrapper .single-features-item .item-content p {
+    color: #07294d;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+}
+</style>
+
+<!--Include the above in your HEAD tag-->
+
+<style>
+
+   .ite_wid {
+
+   width: 100%; 
+
+   }
+
+   .ite_wid img {
+
+   float: left;
+
+   padding: 0 6px;
+
+   }
+
+   .test-engin img {
+
+   width: 100%;
+
+   }
+
+   .ti_flex_wrapper a {
+
+   text-decoration: none;
+
+   }
+
+   @media(max-width:767px)
+
+   {
+
+   .carousel {
+
+   margin: 0 auto;
+
+   padding: 0 0px !important;
+
+   }
+
+   section.stable-unstable img {
+
+   width: 339px !important;
+
+   margin-left: -4px !important;
+
+   margin-right: 0 !important;
+
+   display: block !important;
+
+   margin-bottom: 10px !important;
+
+   }
+
+   .popular-certification {
+
+   padding-top: 30px;
+
+   margin-bottom: 30px;
+
+   }
+
+   }
+
+   
+
+   .simply-scroll .simply-scroll-list li {
+
+    float: left;
+
+    width: 420px;
+
+    height: 267px;
+
+}
+
+.margin_top112
+{
+     margin-top:112px;
+}
+.simply-scroll .simply-scroll-clip {
+
+    width: 100%;
+
+    height: 700px !important;
+
+}
+
+
+</style>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+   <!-- Wrapper for slides -->
+
+   <div class="carousel-inner">
+
+      <?php 
+
+         $sliderq = mysql_query("select * from sliders where status = 1 AND type='slider'");
+
+         for($sr = 0; $sr < mysql_num_rows($sliderq); $sr++){ 
+
+         $slider = mysql_fetch_object($sliderq);
+
+         ?>
+
+      <div class="item <?php if($sr==0){ echo "active";} ?>">
+
+         <img src="images/slider/<?=$slider->s_image?>" alt="<?=$slider->s_alt?>" style="width:100%;">
+
+      </div>
+
+      <?php } ?>  
+
+   </div>
+
+   <!-- Left and right controls -->
+
+   <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+
+   <span class="glyphicon glyphicon-chevron-left"></span>
+
+   <span class="sr-only">Previous</span>
+
+   </a>
+
+   <a class="right carousel-control" href="#myCarousel" data-slide="next">
+
+   <span class="glyphicon glyphicon-chevron-right"></span>
+
+   <span class="sr-only">Next</span>
+
+   </a>
+
+</div>
+
+
+
+<section class="about-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="about-content mt-40">
+                        <h2 class="about-title">Cisco CCIE  <span>Dumps</span></h2>
+                        <p>Chinese Dumps Provides Real Exam Question, Get Latest CCIE Dumps for all Exam @ affordable price. 
+                        Stable and Valid Exam Question for all Certification and Lab. </p> <p>Buy Authentic Dumps for CCNA, CCNP, CCIE,
+                        Cisco, CISSP, AWS, PMP, CISSP, CompTIA, Microsoft, Juniper and other IT Certification Exam.</p>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="about-image mt-50">
+                        <div class="single-image image-1">
+                            <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/about/about-1.webp" width="290" height="290" alt="about">
+                        </div>
+                        <div class="single-image image-2">
+                            <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/about/about-2.webp" width="225" height="225" alt="about">
+                        </div>
+                        <div class="single-image image-3">
+                            <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/about/about-3.webp" width="190" height="190" alt="about">
+                        </div>
+                        <div class="single-image image-4">
+                            <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/about/about-4.webp" width="140" height="140" alt="about">
+                        </div>
+
+                        <div class="about-icon icon-1">
+                            <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/about/icon/icon-1.webp" width="46" height="46" alt="icon">
+                        </div>
+                        <div class="about-icon icon-2">
+                            <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/about/icon/icon-2.webp" width="46" height="46" alt="icon">
+                        </div>
+                        <div class="about-icon icon-3">
+                            <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/about/icon/icon-3.webp" width="46" height="46" alt="icon">
+                        </div>
+                        <div class="about-icon icon-4">
+                            <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/about/icon/icon-4.webp" width="46" height="46" alt="icon">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+<section class="main-course-category">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="course-category-title">
+                        <h2 class="h2-title">Explore Popular Courses</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="course-category-box">
+                        <div class="course-category-icon">
+                            <img class="dis-yes" src="https://shivaaythemes.in/educater-html/assets/images/course-category-icon-1.png" alt="icon">
+                            <img class="dis-no" src="https://shivaaythemes.in/educater-html/assets/images/course-category-icon-1-w.png" alt="icon">
+                        </div>
+                        <div class="course-category-content">
+                            <a href="#"><h3 class="h3-title">Enterprise Infra v1.0</h3></a>
+                            <p>Written / Lab Exam Workbook</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="course-category-box">
+                        <div class="course-category-icon">
+                            <img class="dis-yes" src="https://shivaaythemes.in/educater-html/assets/images/course-category-icon-2.png" alt="icon">
+                            <img class="dis-no" src="https://shivaaythemes.in/educater-html/assets/images/course-category-icon-2-w.png" alt="icon">
+                        </div>
+                        <div class="course-category-content">
+                            <a href="#"><h3 class="h3-title">Service Provider v5.0</h3></a>
+                            <p>Written / Lab Exam Workbook</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="course-category-box">
+                        <div class="course-category-icon">
+                            <img class="dis-yes" src="https://shivaaythemes.in/educater-html/assets/images/course-category-icon-3.png" alt="icon">
+                            <img class="dis-no" src="https://shivaaythemes.in/educater-html/assets/images/course-category-icon-3-w.png" alt="icon">
+                        </div>
+                        <div class="course-category-content">
+                            <a href="#"><h3 class="h3-title">Security v6.0 </h3></a>
+                            <p>Written / Lab Exam Workbook</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="course-category-box">
+                        <div class="course-category-icon">
+                            <img class="dis-yes" src="https://shivaaythemes.in/educater-html/assets/images/course-category-icon-4.png" alt="icon">
+                            <img class="dis-no" src="https://shivaaythemes.in/educater-html/assets/images/course-category-icon-4-w.png" alt="icon">
+                        </div>
+                        <div class="course-category-content">
+                            <a href="#"><h3 class="h3-title">Data Center v3.0 </h3></a>
+                            <p>Written / Lab Exam Workbook</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="course-category-box">
+                        <div class="course-category-icon">
+                            <img class="dis-yes" src="https://shivaaythemes.in/educater-html/assets/images/course-category-icon-5.png" alt="icon">
+                            <img class="dis-no" src="https://shivaaythemes.in/educater-html/assets/images/course-category-icon-5-w.png" alt="icon">
+                        </div>
+                        <div class="course-category-content">
+                            <a href="#"><h3 class="h3-title">Collaboration v3.0 </h3></a>
+                            <p>Written / Lab Exam Workbook</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="course-category-box">
+                        <div class="course-category-icon">
+                            <img class="dis-yes" src="https://shivaaythemes.in/educater-html/assets/images/course-category-icon-6.png" alt="icon">
+                            <img class="dis-no" src="https://shivaaythemes.in/educater-html/assets/images/course-category-icon-6-w.png" alt="icon">
+                        </div>
+                        <div class="course-category-content">
+                            <a href="#"><h3 class="h3-title">Ent Wireless v1.0 </h3></a>
+                            <p>Written / Lab Exam Workbook</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <div class="why-choose-us style3">
+                <div class="container">
+                   <div class="row align-items-center">
+                       <div class="col-lg-6 js-tilt md-mb-40">
+                           <div class="img-part">
+                                <img src="https://keenitsolutions.com/products/html/educavo/assets/images/choose/home12/1.png" alt="">
+                            
+                           </div>
+                       </div>
+                       <div class="col-lg-6 pl-60 md-pl-15">
+                            <div class="sec-title3 mb-30">
+                                <h2 class=" title new-title margin-0 pb-15">Why Learn Here</h2>
+                                <div class="new-desc">Lorem ipsum dolor sit amet, ing elit, sed eius to mod tempors incididunt ut labore et dolore magna this aliqua.</div>
+                            </div>
+                            <div class="services-part mb-20">
+                                <div class="services-icon">
+                                    <img src="https://keenitsolutions.com/products/html/educavo/assets/images/choose/home12/icon/1.png" alt="">
+                                </div>
+                                <div class="services-text">
+                                    <h2 class="title"> Lower Learning Cost</h2>
+                                    <p class="services-txt">  At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
+                                </div>
+                            </div> 
+                            <div class="services-part mb-20">
+                                <div class="services-icon">
+                                    <img src="https://keenitsolutions.com/products/html/educavo/assets/images/choose/home12/icon/2.png" alt="">
+                                </div>
+                                <div class="services-text">
+                                    <h2 class="title"> Learn With Experts</h2>
+                                    <p class="services-txt">  At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
+                                </div>
+                            </div> 
+                            <div class="services-part">
+                                <div class="services-icon">
+                                    <img src="https://keenitsolutions.com/products/html/educavo/assets/images/choose/home12/icon/3.png" alt="">
+                                </div>
+                                <div class="services-text">
+                                    <h2 class="title">Different Course Variation</h2>
+                                    <p class="services-txt">  At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
+                                </div>
+                            </div>
+                       </div> 
+                   </div> 
+                </div>
+            </div>
+            
+<div class="rs-counter home12-style pt-80">
+                <div class="container">
+                    <div class="row couter-area bg8">
+                        
+                        <div class="col-lg-3 col-md-6 md-mb-30">
+                         <div class="col">
+                        	        <div class="counter">
+                              <h2 class="timer count-title count-number" data-to="100" data-speed="1500"> </h2><span>k</span>
+                               <p class="count-text ">Enrolled Learners </p>
+                            </div>
+	                    </div>
+	                    </div>
+	                    
+	                    
+	                    <div class="col-lg-3 col-md-6 md-mb-30">
+                    <div class="col">
+                        <div class="counter">
+                        <h2 class="timer count-title count-number" data-to="1700" data-speed="1500"></h2><span>k</span>
+                        <p class="count-text ">Online Instructors</p>
+                         </div>
+                    </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 md-mb-30">
+                          <div class="col">
+                              <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="11900" data-speed="1500"></h2><span>+</span>
+                  <p class="count-text ">Enrolled Learners </p>
+                </div></div>
+                </div>
+             
+             <div class="col-lg-3 col-md-6 md-mb-30">
+              <div class="col">
+              <div class="counter">
+      <h2 class="timer count-title count-number" data-to="157" data-speed="1500"></h2><span>%</span>
+     <p class="count-text ">Satisfaction Rate </p>
+    </div>
+    </div>
+              </div>
+              
+              
+                    </div>
+                </div>
+            </div>
+
+
+           <div class="rs-download-app pt-100 pb-100 md-pt-70 md-pb-70">
+                <div class="container">
+                   <div class="row align-items-center">
+                       <div class="col-lg-6 md-mb-40">
+                           <div class="img-part">
+                                <img src="https://keenitsolutions.com/products/html/educavo/assets/images/download/m-app.png" alt="">
+                            
+                           </div>
+                       </div>
+                       <div class="col-lg-6 pl-60 md-pl-15">
+                            <div class="sec-title3 mb-30">
+                                <h2 class=" title new-title">CCIE Core Exam Dumps</h2>
+                                <div class="new-desc">Chinese Dumps has always been ahead for providing Authentic, Real and Stable Core Exam Dumps for all Certification and lab. 
+                                Cisco Certification has always been a primary concern for networking students, on how to prepare and pass Cisco exam. Chinese dumps play a vital
+                                role in providing such students with latest exam question which can help them in passing any Cisco Certification Exam. Get latest exam question
+                                for CCNA 200-301 Dumps, 350-601 DCCOR Dumps, 350-801 CLCOR Dumps, 350-401 ENCOR Dumps, 350-701 SCOR Dumps, 350-501 SPCOR Dumps, 400-007 CCDE
+                                Dumps, 210-250 SECFND Dumps, 210-255 SECOPS Dumps and other Networking Certification Exam Question too.</div>
+                              
+                            </div>
+                           
+                       </div> 
+                   </div> 
+                </div>
+            </div>
+            
+            
+            
+            <div class="features-area-2 ">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4">
+                    <div class="features-image-2">
+                        <img class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s" src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/features-2.webp" width="342" height="524" alt="Features" style="visibility: visible; animation-duration: 1s; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="features-items">
+                        <div class="features-items-wrapper">
+                            <div class="col-md-4">
+                            <div class="single-features-item d-flex align-items-center wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeInUpBig;">
+                                <div class="item-icon">
+                                    <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/icon/icon-2-1.webp" width="70" height="70" alt="Icon">
+                                </div>
+                                <div class="item-content media-body">
+                                    <p>250+ <br> Courses</p>
+                                </div>
+                            </div>
+                            </div>
+                            
+                             <div class="col-md-4">
+                            <div class="single-features-item d-flex align-items-center wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s; animation-name: fadeInUpBig;">
+                                <div class="item-icon">
+                                    <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/icon/icon-2-2.webp" width="70" height="70" alt="Icon">
+                                </div>
+                                <div class="item-content media-body">
+                                    <p>Skill Based  <br> Scholarships</p>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            
+                             <div class="col-md-4">
+                            <div class="single-features-item d-flex align-items-center wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.6s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.6s; animation-name: fadeInUpBig;">
+                                <div class="item-icon">
+                                    <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/icon/icon-2-3.webp" width="70" height="70" alt="Icon">
+                                </div>
+                                <div class="item-content media-body">
+                                    <p>Online <br> Education</p>
+                                </div>
+                            </div>
+                            </div>
+                        
+                         <div class="col-md-4">
+                            <div class="single-features-item d-flex align-items-center wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeInUpBig;">
+                                <div class="item-icon">
+                                    <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/icon/icon-2-4.webp" width="70" height="70" alt="Icon">
+                                </div>
+                                <div class="item-content media-body">
+                                    <p>Expert <br> Teachers</p>
+                                </div>
+                            </div>
+                            </div>
+                            
+                             <div class="col-md-4">
+                            <div class="single-features-item d-flex align-items-center wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s; animation-name: fadeInUpBig;">
+                                <div class="item-icon">
+                                    <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/icon/icon-2-5.webp" width="70" height="70" alt="Icon">
+                                </div>
+                                <div class="item-content media-body">
+                                    <p>After Course <br> Certification</p>
+                                </div>
+                            </div>
+                            </div>
+                            
+                             <div class="col-md-4">
+                            <div class="single-features-item d-flex align-items-center wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.6s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.6s; animation-name: fadeInUpBig;">
+                                <div class="item-icon">
+                                    <img src="https://template.hasthemes.com/edumate-v1/edumate/assets/images/icon/icon-2-6.webp" width="70" height="70" alt="Icon">
+                                </div>
+                                <div class="item-content media-body">
+                                    <p>Download <br> Prospectus</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+            
+            
+<section class="about-us">
+
+   <div class="container">
+
+      <div class="row">
+
+         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+             <div class="col-md-12" style="text-align: center; ">
+
+               <div class="ti_heading_wraper">
+
+                  <span><img style="    width: 75px; position: relative;top: -11px;" src="<?php echo BASE_URL; ?>images/heading_icon.png" alt=""></span>
+
+                  <span class="lab_heading">CCIE EI Lab Exam Pass Report </span>
+
+               </div>
+
+               <ul id="scroller">
+
+                  <li><img src="<?php echo BASE_URL; ?>images/CCIE-Pass-result-1st-1.jpeg" alt="CCIE-Pass-result-1st-1"  style="width:100%"/></li>
+
+                  <li><img src="<?php echo BASE_URL; ?>images/CCIE-Pass-result-1st-2.jpeg" alt="CCIE-Pass-result-1st-1"  style="width:100%"/></li>
+
+                  <li><img src="<?php echo BASE_URL; ?>images/CCIE-Pass-result-1st-3.jpeg" alt="CCIE-Pass-result-1st-1"  style="width:100%"/></li>
+
+              
+
+               </ul>
+
+            </div>
+            
+            
+            
+             <div class="col-md-12 margin_top112" style="text-align: center; ">
+
+               <div class="ti_heading_wraper">
+
+                  <span><img style="    width: 75px; position: relative;top: -11px;" src="<?php echo BASE_URL; ?>images/heading_icon.png" alt=""></span>
+
+                  <span class="lab_heading">CCIE EI Written Exam Pass Report </span>
+
+               </div>
+
+               <ul id="scroller2">
+
+
+                  <li><img src="<?php echo BASE_URL; ?>images/pass_report_images1.jpg" alt="CCIE-Pass-result-1st-1"  style="width:100%"/></li>
+
+                  <li><img src="<?php echo BASE_URL; ?>images/CCIE-Pass-result-1st-4.jpeg" alt="CCIE-Pass-result-1st-1"  style="width:100%"/></li>
+
+                  <li><img src="<?php echo BASE_URL; ?>images/CCIE-Pass-result-1st-5.jpeg" alt="CCIE-Pass-result-1st-1"  style="width:100%"/></li>
+
+              
+
+               </ul>
+
+            </div>
+            
+            
+
+         </div>
+
+        
+
+            
+
+         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+
+            <div class="ed_morden_search_form">
+
+               <div class="ti_eroll_heading">
+
+                  <span>Enroll Now</span>
+
+               </div>
+
+               <div role="form" class="wpcf7" id="wpcf7-f611-p6-o1" lang="en-US" dir="ltr">
+
+                  <div class="screen-reader-response"></div>
+
+                  <form name="myForm" action="<?php echo BASE_URL; ?>thanks-you.htm" method="post" onsubmit="return validateForm()" class="wpcf7-form">
+
+                     <p><span class="wpcf7-form-control-wrap text-128">
+
+                        <input type="text" required name="name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Your Name"></span>
+
+                     </p>
+
+                     <p><span class="wpcf7-form-control-wrap email-415">
+
+                        <input type="email" required name="email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email form-control" aria-required="true" aria-invalid="false" placeholder="Your Email"></span>
+
+                     </p>
+
+                     <p><span class="wpcf7-form-control-wrap tel-128">
+
+                        <input type="mobile" required name="tel" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel form-control" aria-required="true" aria-invalid="false" placeholder="Mobile Number"></span>
+
+                     </p>
+
+                    
+
+     <div class="g-recaptcha" data-sitekey="<?php echo htmlspecialchars((string)secret('RECAPTCHA_SITE_KEY_DEFAULT', ''), ENT_QUOTES); ?>"></div>
+
+        <input type="hidden" name="recaptcha" data-rule-recaptcha="true">
+
+    
+
+                     <input type="hidden" name="home_form">
+
+                     <input type="hidden" name="type" value="home">
+
+                     <input type="submit" value="Submit" class="wpcf7-form-control wpcf7-submit ti_btn"><span class="ajax-loader"></span>
+
+                  </form>
+
+               </div>
+
+            </div>
+
+            <div class="widget text-widget text-center contactdetails">
+
+               <span class="widget-title" style="font-size:18px;">Connect Us on</span>
+
+               <p><a href="mailto:support@chinesedumps.com"><i class="fa fa-envelope-o"></i> support@chinesedumps.com</a> </p>
+
+               <p><a href="skype:chinesexams@gmail.com?chat"><i class="fa fa-skype" aria-hidden="true"></i> chinesexams@gmail.com</a> </p>
+
+               <p><a href="https://api.whatsapp.com/send?phone=+917777079803&amp;text=Hi, I am contacting you through your website <?php echo BASE_URL; ?>."  data-toggle="tooltip" data-placement="bottom" title="Whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i> WhatsApp</a></p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+</section>
+
+
+
+<section class="stable-unstable">
+
+   <div class="container">
+
+      <div class="row">
+
+         <div class="col-md-4 col-md-offset-4">
+
+            <img src="<?php echo BASE_URL; ?>images/breaking-news.jpg" style="width: 100%;">  
+
+            <p style="text-align:center">
+
+               <span style="color: #1fff28;               font-size: 20px;               font-weight: 600;">Stable</span> / <span style="color: #ff0000;               font-size: 20px;               font-weight: 600;">Unstable</span>  / <span style="color: #fff;               font-size: 20px;               font-weight: 600;">2021</span>  
+
+            </p>
+
+         </div>
+
+       
+
+      </div>
+
+   </div>
+
+   <div class="container">
+
+      <div class="row">
+
+         <div class="table100 ver1 m-b-110 home_stble">
+
+          
+           <figure class="stable-unstable table100-body js-pscroll">
+	<table width="100%" border="0">
+		<tbody>
+			<tr>
+				<th class="spec">Products</th>
+				<th>Categories</th>
+				<th>Latest Passed Date</th>
+				<th>Dumps</th>
+			</tr>
+			<tr class="gray_bg">
+				<td rowspan="3" class="spec">CCNA</td>
+				<td> <a href="<?php echo BASE_URL; ?>200-301-ccna-dumps.htm">200-301</a> </td>
+					<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>200-301-ccna-dumps.htm" target="_blank">Get Now</a></td>
+			</tr>
+			<tr class="gray_bg">
+				<td> <a href="<?php echo BASE_URL; ?>200-901-DEVASC-dumps.htm">200-901</a> </td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>200-901-DEVASC-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr class="gray_bg">
+				<td> <a href="<?php echo BASE_URL; ?>200-201.htm">200-201</a> </td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>200-201.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td rowspan="34" class="spec">CCNP</td>
+				<td><a href="<?php echo BASE_URL; ?>300-415-ccnp-ent-ensdwi-dumps.htm">300-415</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-415-ccnp-ent-ensdwi-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-425-ccnp-ent-enwlsd-dumps.htm">300-425</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-425-ccnp-ent-enwlsd-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-430-ccnp-ent-enwlsi-dumps.htm">300-430</a></td>
+					<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-430-ccnp-ent-enwlsi-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>300-435-ccnp-ent-enauto-dumps.htm">300-435</a></td>
+					<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-435-ccnp-ent-enauto-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>300-610-ccnp-dcid-dumps.htm">300-610</a></td>
+					<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-610-ccnp-dcid-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>300-710-ccnp-security-sncf-dumps.htm">300-710</a></td>
+					<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-710-ccnp-security-sncf-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-810-ccnp-collaboration-clica-dumps.htm">300-810</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-810-ccnp-collaboration-clica-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>encor-350-401-dumps.htm">350-401</a></td>
+					<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>encor-350-401-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-410-ccnp-ent-enarsi-dumps.htm">300-410</a></td>
+					<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-410-ccnp-ent-enarsi-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>300-420-ccnp-ent-ensld-dumps.htm">300-420</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-420-ccnp-ent-ensld-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>300-435-ccnp-ent-enauto-dumps.htm">300-435</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-435-ccnp-ent-enauto-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>spcor-350-501-ccnp-dumps.htm">350-501</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>spcor-350-501-ccnp-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-510-ccnp-spri-dumps.htm">300-510</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-510-ccnp-spri-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-515-ccnp-spvi-dumps.htm">300-515</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-515-ccnp-spvi-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-535-ccnp-spauto-dumps.htm">300-535</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-535-ccnp-spauto-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>350-601-ccnp-dccor-dumps.htm">350-601</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>350-601-ccnp-dccor-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>300-615-ccnp-dcit-dumps.htm">300-615</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-615-ccnp-dcit-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>300-620-ccnp-dcaci-dumps.htm">300-620</a></td>
+			<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-620-ccnp-dcaci-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-625-ccnp-dcsan-dumps.htm">300-625</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-625-ccnp-dcsan-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-635-ccnp-dcauto-dumps.htm">300-635</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-635-ccnp-dcauto-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>350-701-ccnp-scor-dumps.htm">350-701</a></td>
+			<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>350-701-ccnp-scor-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>300-715-ccnp-security-sise-dumps.htm">300-715</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-715-ccnp-security-sise-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>300-720-ccnp-security-sesa-dumps.htm">300-720</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-720-ccnp-security-sesa-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>300-725-ccnp-security-swsa-dumps.htm">300-725</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-725-ccnp-security-swsa-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-730-ccnp-security-svpn-dumps.htm">300-730</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-730-ccnp-security-svpn-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-735-ccnp-security-sauto-dumps.htm">300-735</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-735-ccnp-security-sauto-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>clcor-350-801-ccnp-dumps.htm">350-801</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>clcor-350-801-ccnp-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>300-815-ccnp-collaboration-claccm-dumps.htm">300-815</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-815-ccnp-collaboration-claccm-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>300-820-ccnp-collaboration-clcei-dumps.htm">300-820</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-820-ccnp-collaboration-clcei-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr  class="gray_bg">
+				<td><a href="<?php echo BASE_URL; ?>300-835-ccnp-clauto-dumps.htm">300-835</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-835-ccnp-clauto-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>350-901-ccnp-devnet-devcor-dumps.htm">350-901</a></td>
+			<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>350-901-ccnp-devnet-devcor-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-910-DEVOPS-dumps.htm">300-910</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-910-DEVOPS-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-915-deviot-dumps.htm">300-915</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-915-deviot-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo BASE_URL; ?>300-920-devwbx-dumps.htm">300-920</a></td>
+			<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-920-devwbx-dumps.htm" target="_blank" >Get Now</a></td>
+			</tr>
+		
+		<tr>
+				<td class="spec">PMP</td>
+				<td><a href="<?php echo BASE_URL; ?>pmp.htm">PMP Exams</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>pmp.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr class="gray_bg">
+				<td class="spec">ISACA</td>
+				<td><a href="<?php echo BASE_URL; ?>cisa.htm">CISA/CISM/CRISC Exam</a></td>
+					<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>cisa.htm" target="_blank" >Get Now</a></td>
+			</tr>
+			<tr>
+				<td class="spec">AWS</td>
+				<td><a href="<?php echo BASE_URL; ?>exam-Amazon-Web-Services.htm">	AWS Exam</a></td>
+				<td><?php echo date('d-m-y', strtotime("-2 days")); ?></td>
+				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>exam-Amazon-Web-Services.htm" target="_blank" >Get Now</a></td>
+			</tr>
+		</tbody>
+	</table>
+</figure>
+
+
+
+
+
+
+         </div>
+
+      </div>
+
+   </div>
+
+</section>
+
+
+
+
+<section class="stable-unstable home_tbl">
+
+   <div class="container">
+
+      <div class="row">
+
+         <div class="col-md-4 col-md-offset-4">
+
+            <img src="<?php echo BASE_URL; ?>images/breaking-news.jpg" style="width: 100%;">  
+
+            <p style="text-align:center">
+
+               <span style="color: #1fff28;               font-size: 20px;               font-weight: 600;">Stable</span> / <span style="color: #ff0000;               font-size: 20px;               font-weight: 600;">Unstable</span>  
+
+            </p>
+
+         </div>
+
+         <div class="col-md-4">
+
+            <div class="img_arr">
+
+               <img src="<?php echo BASE_URL; ?>images/sub_form.jpg" style="width: 85%;">
+
+            </div>
+
+         </div>
+
+         <div class="col-md-4">
+
+            <div class="img_arrfrm">
+
+               <img src="<?php echo BASE_URL; ?>images/images_arrow-2.png" style="width: 85%;">
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="container">
+
+      <div class="row">
+
+         <div class="table100 ver1 m-b-110">
+
+            <!-- wp:table -->      <!--wasique-->   
+
+          <figure class="stable-unstable table100-body js-pscroll">
+
+               <table class="">
+
+                  <thead>
+
+                     <tr class="row100 head">
+
+                        <th class="cell100 column2">Certification Tracks</th>
+
+                        <th class="cell100 column8"></th>
+
+                        <th class="cell100 column8"></th>
+
+                        <th class="cell100 column5">Associate</th>
+
+                        <th class="cell100 column5">Exam Code</th>
+
+                        <th class="cell100 column6">Professional</th>
+
+                        <th class="cell100 column7"></th>
+
+                        <th class="cell100 column7">Exam Code</th>
+
+                        <th class="cell100 column8">Experts</th>
+
+                        <th class="cell100 column9">Exam Code</th>
+
+                                    <th></th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+
+                     <tr>
+
+                        <td>Cloud</td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td>CCNA Cloud</td>
+
+                                        <td><span onclick="CourseSubrModal('200-301 CCNA')" style="color:<?= (checkCourseStatus('200-301 CCNA') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('200-301 CCNA') == 'unstable') ? '#ff0000' : ''; ?>">200-301 CCNA</span></td>
+
+
+
+                        <td>CCNP Cloud</td>
+
+                        <td>CORE</td>
+
+                                    <td><span onclick="CourseSubrModal('350-601 DCCOR')" style="color:<?= (checkCourseStatus('350-601 DCCOR') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('350-601 DCCOR') == 'unstable') ? '#ff0000' : ''; ?>">350-601 DCCOR</span></td>
+
+                      
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-610 DCID')" style="color:<?= (checkCourseStatus('300-610 DCID') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-610 DCID') == 'unstable') ? '#ff0000' : ''; ?>">300-610 DCID</span></td>
+
+                    
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-615 DCIT')" style="color:<?= (checkCourseStatus('300-615 DCIT') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-615 DCIT') == 'unstable') ? '#ff0000' : ''; ?>">300-615 DCIT</span></td>
+
+
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-620 DCACI')" style="color:<?= (checkCourseStatus('300-620 DCACI') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-620 DCACI') == 'unstable') ? '#ff0000' : ''; ?>">300-620 DCACI</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                 <td><span onclick="CourseSubrModal('300-625 DCSAN')" style="color:<?= (checkCourseStatus('300-625 DCSAN') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-625 DCSAN') == 'unstable') ? '#ff0000' : ''; ?>">300-625 DCSAN</span></td>
+
+                        
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-635 DCAUTO')" style="color:<?= (checkCourseStatus('300-635 DCAUTO') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-635 DCAUTO') == 'unstable') ? '#ff0000' : ''; ?>">300-635 DCAUTO</span></td>
+
+                   
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td>Collaboration</td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td>CCNA Collaboration</td>
+
+                                 <td><span onclick="CourseSubrModal('200-301 CCNA')" style="color:<?= (checkCourseStatus('200-301 CCNA') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('200-301 CCNA') == 'unstable') ? '#ff0000' : ''; ?>">200-301 CCNA</span></td>
+
+                     
+
+                        <td>CCNP Collaboration</td>
+
+                        <td>CORE</td>
+
+                                    <td><span onclick="CourseSubrModal('CLCOR 350-801')" style="color:<?= (checkCourseStatus('CLCOR 350-801') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('CLCOR 350-801') == 'unstable') ? '#ff0000' : ''; ?>">CLCOR 350-801</span></td>
+
+                      
+
+                        <td>CCIE Collaboration</td>
+
+                                    <td><span onclick="CourseSubrModal('CLCOR 350-801')" style="color:<?= (checkCourseStatus('CLCOR 350-801') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('CLCOR 350-801') == 'unstable') ? '#ff0000' : ''; ?>">CLCOR 350-801</span></td>
+
+                       
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-810 CLICA')" style="color:<?= (checkCourseStatus('300-810 CLICA') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-810 CLICA') == 'unstable') ? '#ff0000' : ''; ?>">300-810 CLICA</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td><span onclick="CourseSubrModal('CCIE Collab Lab')" style="color:<?= (checkCourseStatus('CCIE Collab Lab') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('CCIE Collab Lab') == 'unstable') ? '#ff0000' : ''; ?>">CCIE Collab Lab</span></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-815 CLACCM')" style="color:<?= (checkCourseStatus('300-815 CLACCM') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-815 CLACCM') == 'unstable') ? '#ff0000' : ''; ?>">300-815 CLACCM</span></td>
+
+
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-820 CLCEI')" style="color:<?= (checkCourseStatus('300-820 CLCEI') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-820 CLCEI') == 'unstable') ? '#ff0000' : ''; ?>">300-820 CLCEI</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-835 CLAUTO')" style="color:<?= (checkCourseStatus('300-835 CLAUTO') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-835 CLAUTO') == 'unstable') ? '#ff0000' : ''; ?>">300-835 CLAUTO</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td>Cybersecurity Operations</td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td>CCNA Cyber Ops</td>
+
+                                    <td><span onclick="CourseSubrModal('210-250 SECFND')" style="color:<?= (checkCourseStatus('210-250 SECFND') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('210-250 SECFND') == 'unstable') ? '#ff0000' : ''; ?>">210-250 SECFND</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('210-255 SECOPS')" style="color:<?= (checkCourseStatus('210-255 SECOPS') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('210-255 SECOPS') == 'unstable') ? '#ff0000' : ''; ?>">210-255 SECOPS</span></td>
+
+                    
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td>Data Center</td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td>CCNA Data Center</td>
+
+                                    <td><span onclick="CourseSubrModal('200-301 CCNA')" style="color:<?= (checkCourseStatus('200-301 CCNA') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('200-301 CCNA') == 'unstable') ? '#ff0000' : ''; ?>">200-301 CCNA</span></td>
+
+                       
+
+                        <td>CCNP Data Center</td>
+
+                        <td>CORE</td>
+
+                                    <td><span onclick="CourseSubrModal('350-601 DCCOR')" style="color:<?= (checkCourseStatus('350-601 DCCOR') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('350-601 DCCOR') == 'unstable') ? '#ff0000' : ''; ?>">350-601 DCCOR</span></td>
+
+                       
+
+                        <td>CCIE Data Center</td>
+
+                                    <td><span onclick="CourseSubrModal('350-601 DCCOR')" style="color:<?= (checkCourseStatus('350-601 DCCOR') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('350-601 DCCOR') == 'unstable') ? '#ff0000' : ''; ?>">350-601 DCCOR</span></td>
+
+                       
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-610 DCID')" style="color:<?= (checkCourseStatus('300-610 DCID') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-610 DCID') == 'unstable') ? '#ff0000' : ''; ?>">300-610 DCID</span></td>
+
+                      
+
+                        <td></td>
+
+                        <td><span onclick="CourseSubrModal('CCIE DC Lab')" style="color:<?= (checkCourseStatus('CCIE DC Lab') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('CCIE DC Lab') == 'unstable') ? '#ff0000' : ''; ?>">CCIE DC Lab</span></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-615 DCIT')" style="color:<?= (checkCourseStatus('300-615 DCIT') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-615 DCIT') == 'unstable') ? '#ff0000' : ''; ?>">300-615 DCIT</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-625 DCSAN')" style="color:<?= (checkCourseStatus('300-625 DCSAN') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-625 DCSAN') == 'unstable') ? '#ff0000' : ''; ?>">300-625 DCSAN</span></td>
+
+
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-635 DCAUTO')" style="color:<?= (checkCourseStatus('300-635 DCAUTO') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-635 DCAUTO') == 'unstable') ? '#ff0000' : ''; ?>">300-635 DCAUTO</span></td>
+
+
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td>Design</td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td>CCDA</td>
+
+                                    <td><span onclick="CourseSubrModal('200-301 CCNA')" style="color:<?= (checkCourseStatus('200-301 CCNA') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('200-301 CCNA') == 'unstable') ? '#ff0000' : ''; ?>">200-301 CCNA</span></td>
+
+                        
+
+                        <td>CCDP</td>
+
+                        <td>CORE</td>
+
+                                    <td><span onclick="CourseSubrModal('350-401 ENCOR')" style="color:<?= (checkCourseStatus('350-401 ENCOR') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('350-401 ENCOR') == 'unstable') ? '#ff0000' : ''; ?>">350-401 ENCOR</span></td>
+
+                        
+
+                        <td>CCDE</td>
+
+                                    <td><span onclick="CourseSubrModal('400-007 CCDE')" style="color:<?= (checkCourseStatus('400-007 CCDE') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('400-007 CCDE') == 'unstable') ? '#ff0000' : ''; ?>">400-007 CCDE</span></td>
+
+                        
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-410 ENARSI')" style="color:<?= (checkCourseStatus('300-410 ENARSI') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-410 ENARSI') == 'unstable') ? '#ff0000' : ''; ?>">300-410 ENARSI</span></td>
+
+                        
+
+                        <td></td>
+
+                        <td><span onclick="CourseSubrModal('CCDE Lab')" style="color:<?= (checkCourseStatus('CCDE Lab') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('CCDE Lab') == 'unstable') ? '#ff0000' : ''; ?>">CCDE Lab</span></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-415 ENSDWI')" style="color:<?= (checkCourseStatus('300-415 ENSDWI') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-415 ENSDWI') == 'unstable') ? '#ff0000' : ''; ?>">300-415 ENSDWI</span></td>
+
+                      
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-420 ENSLD')" style="color:<?= (checkCourseStatus('300-420 ENSLD') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-420 ENSLD') == 'unstable') ? '#ff0000' : ''; ?>">300-420 ENSLD</span></td>
+
+                      
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-425 ENWLSD')" style="color:<?= (checkCourseStatus('300-425 ENWLSD') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-425 ENWLSD') == 'unstable') ? '#ff0000' : ''; ?>">300-425 ENWLSD</span></td>
+
+
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-430 ENWLSI')" style="color:<?= (checkCourseStatus('300-430 ENWLSI') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-430 ENWLSI') == 'unstable') ? '#ff0000' : ''; ?>">300-430 ENWLSI</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-435 ENAUTO')" style="color:<?= (checkCourseStatus('300-435 ENAUTO') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-435 ENAUTO') == 'unstable') ? '#ff0000' : ''; ?>">300-435 ENAUTO</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td>DevNet</td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td>CCNA DevNet</td>
+
+                                    <td><span onclick="CourseSubrModal('200-901 DEVASC')" style="color:<?= (checkCourseStatus('200-901 DEVASC') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('200-901 DEVASC') == 'unstable') ? '#ff0000' : ''; ?>">200-901 DEVASC</span></td>
+
+                      
+
+                        <td>CCNP</td>
+
+                        <td>CORE</td>
+
+                                    <td><span onclick="CourseSubrModal('350-901 DEVCOR')" style="color:<?= (checkCourseStatus('350-901 DEVCOR') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('350-901 DEVCOR') == 'unstable') ? '#ff0000' : ''; ?>">350-901 DEVCOR</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                                <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                       <td><span onclick="CourseSubrModal('300-435 ENAUTO')" style="color:<?= (checkCourseStatus('300-435 ENAUTO') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-435 ENAUTO') == 'unstable') ? '#ff0000' : ''; ?>">300-435 ENAUTO</span></td>
+
+                        
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                       <td><span onclick="CourseSubrModal('300-835 CLAUTO')" style="color:<?= (checkCourseStatus('300-835 CLAUTO') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-835 CLAUTO') == 'unstable') ? '#ff0000' : ''; ?>">300-835 CLAUTO</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                               <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                          <td><span onclick="CourseSubrModal('300-635 DCAUTO')" style="color:<?= (checkCourseStatus('300-635 DCAUTO') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-635 DCAUTO') == 'unstable') ? '#ff0000' : ''; ?>">300-635 DCAUTO</span></td>
+
+                        
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                               <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                       <td><span onclick="CourseSubrModal('300-535 SPAUTO')" style="color:<?= (checkCourseStatus('300-535 SPAUTO') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-535 SPAUTO') == 'unstable') ? '#ff0000' : ''; ?>">300-535 SPAUTO</span></td>
+
+                        
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                                <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-735 SAUTO')" style="color:<?= (checkCourseStatus('300-735 SAUTO') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-735 SAUTO') == 'unstable') ? '#ff0000' : ''; ?>">300-735 SAUTO</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                                <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                       <td><span onclick="CourseSubrModal('300-910 DEVOPS')" style="color:<?= (checkCourseStatus('300-910 DEVOPS') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-910 DEVOPS') == 'unstable') ? '#ff0000' : ''; ?>">300-910 DEVOPS</span></td>
+
+                        
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                                   <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                       <td><span onclick="CourseSubrModal('300-915 DEVIOT')" style="color:<?= (checkCourseStatus('300-915 DEVIOT') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-915 DEVIOT') == 'unstable') ? '#ff0000' : ''; ?>">300-915 DEVIOT</span></td>
+
+                        
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                                   <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                          <td><span onclick="CourseSubrModal('300-920 DEVWBX')" style="color:<?= (checkCourseStatus('300-920 DEVWBX') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-920 DEVWBX') == 'unstable') ? '#ff0000' : ''; ?>">300-920 DEVWBX</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                                
+
+                     <tr>
+
+                        <td>Enterprise Infrastructure</td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td>CCNA </td>
+
+                                    <td><span onclick="CourseSubrModal('200-301 CCNA')" style="color:<?= (checkCourseStatus('200-301 CCNA') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('200-301 CCNA') == 'unstable') ? '#ff0000' : ''; ?>">200-301 CCNA</span></td>
+
+
+
+                        <td>CCNP </td>
+
+                        <td>CORE</td>
+
+                                    <td><span onclick="CourseSubrModal('350-401 ENCOR')" style="color:<?= (checkCourseStatus('350-401 ENCOR') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('350-401 ENCOR') == 'unstable') ? '#ff0000' : ''; ?>">350-401 ENCOR</span></td>
+
+                        
+
+                        <td>CCIE Enterprise</td>
+
+                                    <td><span onclick="CourseSubrModal('350-401 ENCOR')" style="color:<?= (checkCourseStatus('350-401 ENCOR') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('350-401 ENCOR') == 'unstable') ? '#ff0000' : ''; ?>">350-401 ENCOR</span></td>
+
+                     
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-410 ENARSI')" style="color:<?= (checkCourseStatus('300-410 ENARSI') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-410 ENARSI') == 'unstable') ? '#ff0000' : ''; ?>">300-410 ENARSI</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td><span onclick="CourseSubrModal('CCIE EI Lab')" style="color:<?= (checkCourseStatus('CCIE EI Lab') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('CCIE EI Lab') == 'unstable') ? '#ff0000' : ''; ?>">CCIE EI Lab</span></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-415 ENSDWI')" style="color:<?= (checkCourseStatus('300-415 ENSDWI') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-415 ENSDWI') == 'unstable') ? '#ff0000' : ''; ?>">300-415 ENSDWI</span></td>
+
+                        
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-420 ENSLD')" style="color:<?= (checkCourseStatus('300-420 ENSLD') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-420 ENSLD') == 'unstable') ? '#ff0000' : ''; ?>">300-420 ENSLD</span></td>
+
+                      
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-425 ENWLSD')" style="color:<?= (checkCourseStatus('300-425 ENWLSD') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-425 ENWLSD') == 'unstable') ? '#ff0000' : ''; ?>">300-425 ENWLSD</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-430 ENWLSI')" style="color:<?= (checkCourseStatus('300-430 ENWLSI') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-430 ENWLSI') == 'unstable') ? '#ff0000' : ''; ?>">300-430 ENWLSI</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-435 ENAUTO')" style="color:<?= (checkCourseStatus('300-435 ENAUTO') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-435 ENAUTO') == 'unstable') ? '#ff0000' : ''; ?>">300-435 ENAUTO</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td>Security</td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td>CCNA Security</td>
+
+                                    <td><span onclick="CourseSubrModal('A200-301 CCNA')" style="color:<?= (checkCourseStatus('200-301 CCNA') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('200-301 CCNA') == 'unstable') ? '#ff0000' : ''; ?>">200-301 CCNA</span></td>
+
+                       
+
+                        <td>CCNP Security</td>
+
+                        <td>CORE</td>
+
+                                    
+
+                                    <td><span onclick="CourseSubrModal('350-701 SCOR')" style="color:<?= (checkCourseStatus('350-701 SCOR') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('350-701 SCOR') == 'unstable') ? '#ff0000' : ''; ?>">350-701 SCOR</span></td>
+
+                        
+
+                        <td>CCIE Security</td>
+
+                                    <td><span onclick="CourseSubrModal('350-701 SCOR')" style="color:<?= (checkCourseStatus('350-701 SCOR') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('350-701 SCOR') == 'unstable') ? '#ff0000' : ''; ?>">350-701 SCOR</span></td>
+
+                        
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('A300-710 SNCF')" style="color:<?= (checkCourseStatus('300-710 SNCF') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-710 SNCF') == 'unstable') ? '#ff0000' : ''; ?>">300-710 SNCF</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td><span onclick="CourseSubrModal('CCIE Security Lab')" style="color:<?= (checkCourseStatus('CCIE Security Lab') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('CCIE Security Lab') == 'unstable') ? '#ff0000' : ''; ?>">CCIE Security Lab</span></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-715 SISE')" style="color:<?= (checkCourseStatus('300-715 SISE') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-715 SISE') == 'unstable') ? '#ff0000' : ''; ?>">300-715 SISE</span></td>
+
+                        
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-720 SESA')" style="color:<?= (checkCourseStatus('300-720 SESA') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-720 SESA') == 'unstable') ? '#ff0000' : ''; ?>">300-720 SESA</span></td>
+
+                      
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-725 SWSA')" style="color:<?= (checkCourseStatus('300-725 SWSA') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-725 SWSA') == 'unstable') ? '#ff0000' : ''; ?>">300-725 SWSA</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-730 SVPN')" style="color:<?= (checkCourseStatus('300-730 SVPN') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-730 SVPN') == 'unstable') ? '#ff0000' : ''; ?>">300-730 SVPN</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-735 SAUTO')" style="color:<?= (checkCourseStatus('300-735 SAUTO') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-735 SAUTO') == 'unstable') ? '#ff0000' : ''; ?>">300-735 SAUTO</span></td>
+
+                        
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td>Service Provider</td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td>CCNA Service Provider</td>
+
+                                    <td><span onclick="CourseSubrModal('200-301 CCNA')" style="color:<?= (checkCourseStatus('200-301 CCNA') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('200-301 CCNA') == 'unstable') ? '#ff0000' : ''; ?>">200-301 CCNA</span></td>
+
+                       
+
+                        <td>CCNP Service Provider</td>
+
+                        <td>CORE</td>
+
+                                    <td><span onclick="CourseSubrModal('350-501 SPCOR')" style="color:<?= (checkCourseStatus('350-501 SPCOR') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('350-501 SPCOR') == 'unstable') ? '#ff0000' : ''; ?>">350-501 SPCOR</span></td>
+
+                        
+
+                        <td>CCIE Service Provider</td>
+
+                                    <td><span onclick="CourseSubrModal('350-501 SPCOR')" style="color:<?= (checkCourseStatus('350-501 SPCOR') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('350-501 SPCOR') == 'unstable') ? '#ff0000' : ''; ?>">350-501 SPCOR</span></td>
+
+                       
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-510 SPRI')" style="color:<?= (checkCourseStatus('300-510 SPRI') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-510 SPRI') == 'unstable') ? '#ff0000' : ''; ?>">300-510 SPRI</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td><span onclick="CourseSubrModal('CCIE SP Lab')" style="color:<?= (checkCourseStatus('CCIE SP Lab') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('CCIE SP Lab') == 'unstable') ? '#ff0000' : ''; ?>">CCIE SP Lab</span></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-515 SPVI')" style="color:<?= (checkCourseStatus('300-515 SPVI') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-515 SPVI') == 'unstable') ? '#ff0000' : ''; ?>">300-515 SPVI</span></td>
+
+                  
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-535 SPAUTO')" style="color:<?= (checkCourseStatus('300-535 SPAUTO') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-535 SPAUTO') == 'unstable') ? '#ff0000' : ''; ?>">300-535 SPAUTO</span></td>
+
+                     
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td>Wireless</td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td>CCNA Wireless</td>
+
+                                    <td><span onclick="CourseSubrModal('200-301 CCNA')" style="color:<?= (checkCourseStatus('200-301 CCNA') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('200-301 CCNA') == 'unstable') ? '#ff0000' : ''; ?>">200-301 CCNA</span></td>
+
+                       
+
+                        <td>CCNP Wireless</td>
+
+                        <td>CORE</td>
+
+                                    <td><span onclick="CourseSubrModal('350-401 ENCOR ')" style="color:<?= (checkCourseStatus('350-401 ENCOR ') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('350-401 ENCOR ') == 'unstable') ? '#ff0000' : ''; ?>">350-401 ENCOR </span></td>
+
+                        
+
+                        <td>CCIE Wireless</td>
+
+                                    <td><span onclick="CourseSubrModal('350-401 ENCOR ')" style="color:<?= (checkCourseStatus('350-401 ENCOR ') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('350-401 ENCOR ') == 'unstable') ? '#ff0000' : ''; ?>">350-401 ENCOR </span></td>
+
+                        
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-410 ENARSI')" style="color:<?= (checkCourseStatus('300-410 ENARSI') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-410 ENARSI') == 'unstable') ? '#ff0000' : ''; ?>">300-410 ENARSI</span></td>
+
+                       
+
+                        <td></td>
+
+                          <td><span onclick="CourseSubrModal('CCIE Wireless Lab')" style="color:<?= (checkCourseStatus('CCIE Wireless Lab') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('CCIE Wireless Lab') == 'unstable') ? '#ff0000' : ''; ?>">CCIE Wireless Lab</span></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                       <td><span onclick="CourseSubrModal('300-415 ENSDWI')" style="color:<?= (checkCourseStatus('300-415 ENSDWI') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-415 ENSDWI') == 'unstable') ? '#ff0000' : ''; ?>">300-415 ENSDWI</span></td>
+
+                                    
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-420 ENSLD')" style="color:<?= (checkCourseStatus('300-420 ENSLD') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-420 ENSLD') == 'unstable') ? '#ff0000' : ''; ?>">300-420 ENSLD</span></td>
+
+                      
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-425 ENWLSD')" style="color:<?= (checkCourseStatus('300-425 ENWLSD') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-425 ENWLSD') == 'unstable') ? '#ff0000' : ''; ?>">300-425 ENWLSD</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-430 ENWLSI')" style="color:<?= (checkCourseStatus('300-430 ENWLSI') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-430 ENWLSI') == 'unstable') ? '#ff0000' : ''; ?>">300-430 ENWLSI</span></td>
+
+                        
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                                    <td><span onclick="CourseSubrModal('300-435 ENAUTO')" style="color:<?= (checkCourseStatus('300-435 ENAUTO') == 'stable') ? '#00d308' : ''; ?><?= (checkCourseStatus('300-435 ENAUTO') == 'unstable') ? '#ff0000' : ''; ?>">300-435 ENAUTO</span></td>
+
+                       
+
+                        <td></td>
+
+                        <td></td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+
+            </figure>						
+
+            
+
+						<!--wasique-->
+
+         </div>
+
+      </div>
+
+   </div>
+
+</section>
+
+<div class="clearfix"></div>
+
+
+<section class="fw-main-row">
+
+   <div class="fw-container-fluid">
+
+      <div class="fw-row">
+
+         <div class="fw-col-xs-12">
+
+            <div class="ed_graysection ti_section ti_enrollform_wrapper ed_form_box">
+
+               <div class="container">
+
+                  <div class="row">
+
+                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+                        <div style="text-align: left;" class="col-md-12">
+
+                           <div class="ti_heading_wraper">
+
+                              <span><img style="    width: 75px; position: relative;top: -11px;" src="<?php echo BASE_URL; ?>images/heading_icon.png" alt=""></span>
+
+                              <h2 style="font-size:30px; text-align:left; margin-bottom:45px">CCIE Core Exam Dumps</h2>
+
+                           </div>
+
+                        </div>
+
+                        <div class="">
+
+                                     <p style="font-size: 16px;line-height: 1.8;margin-top:0px;">Chinese Dumps has always been ahead for providing Authentic, Real and Stable Core Exam Dumps for all Certification and lab. Cisco Certification has always been a primary concern for networking students, on how to prepare and pass Cisco exam. Chinese dumps play a vital role in providing such students with latest exam question which can help them in passing any Cisco Certification Exam. Get latest exam question for CCNA 200-301 Dumps, 350-601 DCCOR Dumps, 350-801 CLCOR Dumps, 350-401 ENCOR Dumps, 350-701 SCOR Dumps, 350-501 SPCOR Dumps, 400-007 CCDE Dumps, 210-250 SECFND Dumps, 210-255 SECOPS Dumps and other Networking Certification Exam Question too.</p>
+
+                           <br>
+
+                           <p style="font-size: 16px;line-height: 1.8;margin-top:0px;">Our Cisco 技术专家 have collected and certified questions and answers of CCIE Written/Lab Exams
+
+which are designed to cover the knowledge points and enhance candidates abilities. With our CCIE
+
+Written/Lab preparation Workbooks you can pass the CCIE Written/Lab Exams very easily. We assure
+
+you that the workbooks we provide would surely act as a mentor to your 感知到的成功. The above
+
+displayed workbooks are designed in such a way that they will prepare you completely for the scheduled Written/Lab Exam. Chinesedumps was already verified , known as famous site that supply CCIE Real Labs for CCIE 候选人 as well as we made a lot of CCIEs as the oldest company (over 10 years) in this market around the world.</p>
+
+                          
+                        </div>
+
+                     </div>
+
+                     
+
+                     
+
+                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+
+                         
+
+                         <iframe width="100%" height="350px" style="margin-top:107px;" src="https://www.youtube.com/embed/kRbP2QzBddw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                         
+
+                     </div>
+
+                     
+
+                  </div>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+</section>
+
+<div class="clearfix"></div>
+
+<section class="fw-main-row" style="background: #fff;">
+
+   <div class="fw-container-fluid">
+
+      <div class="fw-row">
+
+         <div class="fw-col-xs-12">
+
+            <div class="ed_graysection ti_section ti_enrollform_wrapper ed_form_box">
+
+               <div class="container">
+
+                  <div class="row">
+
+                     <div class="col-md-12">
+
+                        <div class="col-md-2">
+
+                           <img src="images/guarantee-image1.png" alt="Money Back Guarantee">
+
+                        </div>
+
+                        <div class="col-md-9">
+
+                           <div class="ti_heading_wraper">
+
+                              <span><img style="margin-top: 0;width: 75px;" src="<?php echo BASE_URL; ?>images/heading_icon.png" alt=""></span>
+
+                              <h3 style="margin-top: 23px;margin-bottom:20px;font-size:30px;">Money Back Guarantee</h3>
+
+                           </div>
+
+                           <p style="font-size: 16px;line-height: 1.8;margin-top:0px;">
+
+                              100% Money back is available in case of failure. We will return the Full amount or You will get the Free Replacement/Update of your purchase. We ensure our success with 10 days Money back Guarantee.
+
+                           </p>
+
+                        </div>
+
+                     </div>
+
+                  </div>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+</section>
+
+<div class="clearfix"></div>        
+
+
+<!--counter jquery-->
+
+<script>
+(function ($) {
+	$.fn.countTo = function (options) {
+		options = options || {};
+		
+		return $(this).each(function () {
+			// set options for current element
+			var settings = $.extend({}, $.fn.countTo.defaults, {
+				from:            $(this).data('from'),
+				to:              $(this).data('to'),
+				speed:           $(this).data('speed'),
+				refreshInterval: $(this).data('refresh-interval'),
+				decimals:        $(this).data('decimals')
+			}, options);
+			
+			// how many times to update the value, and how much to increment the value on each update
+			var loops = Math.ceil(settings.speed / settings.refreshInterval),
+				increment = (settings.to - settings.from) / loops;
+			
+			// references & variables that will change with each update
+			var self = this,
+				$self = $(this),
+				loopCount = 0,
+				value = settings.from,
+				data = $self.data('countTo') || {};
+			
+			$self.data('countTo', data);
+			
+			// if an existing interval can be found, clear it first
+			if (data.interval) {
+				clearInterval(data.interval);
+			}
+			data.interval = setInterval(updateTimer, settings.refreshInterval);
+			
+			// initialize the element with the starting value
+			render(value);
+			
+			function updateTimer() {
+				value += increment;
+				loopCount++;
+				
+				render(value);
+				
+				if (typeof(settings.onUpdate) == 'function') {
+					settings.onUpdate.call(self, value);
+				}
+				
+				if (loopCount >= loops) {
+					// remove the interval
+					$self.removeData('countTo');
+					clearInterval(data.interval);
+					value = settings.to;
+					
+					if (typeof(settings.onComplete) == 'function') {
+						settings.onComplete.call(self, value);
+					}
+				}
+			}
+			
+			function render(value) {
+				var formattedValue = settings.formatter.call(self, value, settings);
+				$self.html(formattedValue);
+			}
+		});
+	};
+	
+	$.fn.countTo.defaults = {
+		from: 0,               // the number the element should start at
+		to: 0,                 // the number the element should end at
+		speed: 1000,           // how long it should take to count between the target numbers
+		refreshInterval: 100,  // how often the element should be updated
+		decimals: 0,           // the number of decimal places to show
+		formatter: formatter,  // handler for formatting the value before rendering
+		onUpdate: null,        // callback method for every time the element is updated
+		onComplete: null       // callback method for when the element finishes updating
+	};
+	
+	function formatter(value, settings) {
+		return value.toFixed(settings.decimals);
+	}
+}(jQuery));
+
+jQuery(function ($) {
+  // custom formatting example
+  $('.count-number').data('countToOptions', {
+	formatter: function (value, options) {
+	  return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+	}
+  });
+  
+  // start all the timers
+  $('.timer').each(count);  
+  
+  function count(options) {
+	var $this = $(this);
+	options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+	$this.countTo(options);
+  }
+});
+</script>
+
+<?php include("includes/footer.php");?>

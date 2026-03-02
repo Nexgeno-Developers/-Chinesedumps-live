@@ -1,0 +1,54 @@
+<? include("includes/header.php");?>
+<div class="content-box">
+        <div class="exam-group-box">
+            <div class="max-width">
+                <table width="700" border="0" style="padding-top:20px" align="center" cellpadding="0" cellspacing="0">
+                     
+	                  <tr>
+                            <td class="text_detail" align="center" style="text-align:center;">
+
+		<?php 
+		header('Refresh: 3; url:$filedir');
+		$filedir = base_path('devil/demo/'.$_GET['vname'].'/'.$_GET['ecode'].'.zip');
+
+		if(file_exists($filedir))
+		{
+
+				echo "<br /><br /><h1 style=\" font-family:'Square721 BT'; font-size:50px; \">Thank You</h1><br />
+				<h2>Your Download Will Start in Few Second Automatically <br /><br />				
+				Try Again Later...</h2>";
+				//header('Refresh: 3;url=' . BASE_URL . 'devil/demo/'.$_GET['vname'].'/'.$_GET['ecode'].'.zip'); 
+		
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename='.basename($filedir));
+		header('Content-Transfer-Encoding: binary');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+		
+		header('Content-Length: ' . filesize($filedir));
+
+		ob_clean();
+		flush();
+		//sleep(2);
+		readfile($filedir);
+		header('Refresh: 2;url=' . BASE_URL); 
+		}
+		else{ 
+	
+				echo "<br /><br /><h1 style=\" font-family:'Square721 BT' font-size:50px \">Sorry</h1><br />
+				<h2>Your Download Demo Is Not Available This Time<br /><br />
+				Try Again Later...</h2><br />";
+				
+				header('Refresh: 1;url=' . BASE_URL); 
+		 
+		 }?>
+				        <br /><br /><a href="<?php echo $websiteURL ?>"><img src="images/home_page.png" /></a><br /><br />
+	</td>
+                      </tr>
+                    </table>
+            </div>
+        </div>
+	</div>
+<? include("includes/footer.php");?>

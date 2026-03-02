@@ -1,0 +1,750 @@
+<?php include("includes/header.php");?>
+
+<style>
+.d-flex{
+    display: flex;
+}
+.align-items-center{
+    align-items: center;
+}
+#response-msg .success {
+    color: green;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+#response-msg .error {
+    color: red;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+
+    input, select {
+    background: #3C85BA0D;
+    border: 1px solid rgb(60 133 186 / 55%) !important;
+    box-shadow: none !important;
+    border-radius: 15px;
+    padding: 10px 15px !important;
+    height: 46px;
+    color: #363636 !important;
+}
+.cart-list-titles {
+    width: 100%;
+    background: #3C85BA;
+    padding: 7px 6px;
+    margin-bottom: 0;
+}
+.cart-list-titles li {
+    float: left;
+    font-size: 20px !important;
+    padding-left: 15px;
+    border-left: 1px solid #45A4F2;
+    overflow: hidden;
+    color: #fff;
+}
+.mb-2 {
+    margin-bottom: 7px !important;
+}
+.iti.iti--allow-dropdown.iti--separate-dial-code {
+    width: 100%;
+}
+.iti.iti--allow-dropdown.iti--separate-dial-code input#mobile_code {
+    padding-left: 88px !important;
+}
+.iti__selected-flag {
+    background: transparent !important;
+}
+.position_rl {
+    position: relative;
+    top: -13px;
+}
+
+
+.google-btn,
+.google-btn:visited,
+.google-btn:hover,
+.google-btn:active {
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    color: #555;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+
+.google-btn:hover {
+    background-color: #f7f7f7;
+}
+
+.google-icon {
+    height: 18px;
+    margin-right: 10px;
+}
+
+.google-text {
+    vertical-align: middle;
+}
+
+.certnav2
+{
+    padding-left:190px;
+}
+@media(max-width:767px)
+{
+    ul.list-box.list-elements span {
+    font-size: 12px;
+}
+.certnav2
+{
+    padding-left:120px;
+}
+.about-chinesedumps p {
+    font-size: 12px !important;
+}
+.cart-list-titles li {
+    font-size: 16px !important;
+}
+}
+button#btnSendOtp{
+  padding: 2px 7px;
+    font-size: 12px;
+    border-radius: 8px;
+    background-color: #3C85BA;
+    color: #fff;
+    position: absolute;
+    right: 6px;
+    margin-top: 9px;
+    margin-bottom: 8px;
+}
+
+#otp_code {
+  padding-right: 100px !important;
+  width: 100% !important;
+  box-sizing: border-box;
+  height: 43px;
+  background: #3C85BA0D;
+  border: 1px solid rgb(60 133 186 / 55%) !important;
+  border-radius: 6px;
+  padding: 10px 17px !important;
+  color: #363636 !important;
+  margin-bottom: 14px;
+  margin-top: 0px;
+}
+
+#btnVerifyOtp {
+   padding: 2px 7px;
+    font-size: 12px;
+    border-radius: 8px;
+    background-color: #3C85BA;
+    color: #fff;
+    position: absolute;
+    right: 6px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+@media (max-width: 768px) {
+    button#btnSendOtp {
+    position: relative;
+    float: right;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    }
+     button#btnVerifyOtp {
+          position: relative;
+        float: right;
+        margin-top: -7px;
+        margin-bottom: 9px;
+    }
+   
+}
+ @media (max-width: 1024px) {  
+    .shopping-cart {
+      width: 100% !important;
+      float: none !important;
+    }
+  
+}
+
+.otp-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+    border-radius: 8px;
+    background-color: #3C85BA;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.otp-btn.verify {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+}
+
+#email-otp-msg .success {
+    color: green;
+    font-weight: bold;
+    padding: 4px 0;
+}
+
+#email-otp-msg .error {
+    color: red;
+    font-weight: bold;
+    padding: 4px 0;
+}
+</style>
+
+
+<div class="content-box">
+
+        <div class="about-chinesedumps">
+
+            <div class="max-width">
+                 
+<div class="main_heading text-center pbbtm20">Login <span>or</span> Registeration</div>
+
+                <div class="shopping-cart-main">
+
+                    <div class="shopping-cart" style="width:50%; float:left; ">
+
+                        <ul class="cart-list cart-list-titles group">
+
+                         <li>Already a Member? Login here</li>
+
+                        </ul>
+
+                        <ul class="list-box002" style="background-color:#ffffff; padding:10px;">
+
+                            <li>
+
+                            <ul class="list-box list-elements">
+
+                                <form name="form2" id="form2" method="post" action="" onSubmit="return validation()" enctype="multipart/form-data">
+
+                     <table width="60%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+
+                     <!--<tr>-->
+
+                     <!--   <td style="color:#FF0000;" align="center" class="text"><div id="txtHintemail2"></div><? if(isset($msg2)){ echo $msg2; } ?></td>-->
+
+                     <!--  </tr>-->
+
+                      
+
+                       
+
+                        <tr>
+
+                          <td height="90" align="left" valign="middle" class="wheading"><span class="reg_bd_ul_p2">
+                            <p class="mb-2">Your e-mail address:</p>
+                            <input name="Email" type="email" class="input-field" value="<? if(isset($_POST['Email'])){ echo $_POST['Email']; } ?>" id="Email" required />
+
+<br><br>
+<p class="mb-2">Your password:</p>
+                            <input class="required email input-field" name="Password" id="Password" type="password" value="" required />
+
+                          </span> </td>
+
+                        </tr>
+
+                         <tr>
+                          <td height="40" align="center" valign="middle" class="text">
+                            <input type="hidden" name="Signin" id="Signin" value="Sign In" />
+                        
+                            <!-- Login button -->
+                            <button name="Login" type="submit" id="Login" value="Login" class="orange-button" style="margin-top:20px;">Login</button>
+                        
+                            &nbsp;
+                            <!-- Forgot Password -->
+                            <a href="forgotpass.html" title="Forgot Password" style="text-decoration:none; color:#000000; font-size: 14px;">Forgot your password?</a>
+                            
+                            <!-- Spacer -->
+                            <!--<div style="margin: 10px 0;">or</div>-->
+                        
+                            <!-- Google Sign-in Button -->
+                            <!--<a href="https://accounts.google.com/o/oauth2/v2/auth?scope=email%20profile&redirect_uri=https://chinesedumps.com/google-login/callback.php&response_type=code&client_id=138494749211-7nb1l78c4ggve1qdsfkhbhd9nhq4e850.apps.googleusercontent.com&access_type=online" class="google-btn" style="display: inline-flex; align-items: center; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; text-decoration: none; background-color: #fff; color: #444; font-size: 14px; font-family: Arial, sans-serif;">-->
+                            <!--  <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google icon" style="height: 18px; margin-right: 10px;">-->
+                            <!--  <span>Sign in with Google</span>-->
+                            <!--</a>-->
+                          </td>
+                        </tr>
+
+                      </table>
+
+                      </form>
+
+                      		</ul>
+
+                            
+
+                            </li>
+
+                        </ul>                            
+
+                    </div>
+
+                    <div class="shopping-cart" style="width:49%; float:right">
+
+                        <ul class="cart-list cart-list-titles group">
+
+                         <li>New to <?php echo $websitename?>? Register for free </li>
+
+                        </ul>
+
+                        <ul class="list-box002" style="background-color:#ffffff; padding:10px;">
+
+                           <li>
+
+                            <ul class="list-box list-elements">
+
+                               <form id="form1wwww" name="form1wwww" method="post" action="" onSubmit="return chekemailsignup();">
+
+                    <table width="97%" border="0" align="center" cellpadding="0" cellspacing="0"style="
+    position: relative;
+" >
+
+                      <tr>
+
+                        <td colspan="2" align="left" valign="middle" class="vandornav"><img src="images/spacer.gif" width="1" height="1" /></td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td colspan="2" align="center" class="redbold" style="color:#FF0000;"><div id="txtHintemail"><? if(isset($msg)){ echo $msg; } ?></div></td>
+
+                       </tr>
+
+                      <tr>
+
+                        <td height="55" align="left" valign="middle" class="text"><span class="ornold">Full Name:</span></td>
+
+                        <td height="55" align="left" valign="middle" class="wheading"><span class="reg_bd_ul_p2">
+
+                          <input class="required email input-field" type="text" name="fName" id="fName" value="<? if(isset($_POST['fName'])){ echo $_POST['fName']; } ?>" required />
+
+                        </span> </td>
+
+                      </tr>
+
+                      <!-- <tr>
+
+                        <td height="35" align="left" valign="middle" class="text"><span class="ornold">Last Name:</span></td>
+
+                        <td height="35" align="left" valign="middle" class="wheading"><span class="reg_bd_ul_p2">
+
+                          <input class="required email text-input" type="text" name="lastname" id="lastname" value="<? if(isset($_POST['lastname'])){ echo $_POST['lastname']; } ?>" />
+
+                        </span> </td>
+
+                      </tr> -->
+					<tr>
+                        <td width="37%" height="55" align="left" valign="middle" class="text"><span class="ornold position_rl">Phone/Whatsapp No:</span></td>
+                        <!--<td width="63%" height="55" align="left" valign="middle" class="wheading">-->
+                        <td width="100%" height="55" align="left" valign="middle" class="align-items-center wheading">
+                            <span class="reg_bd_ul_p2">
+                                <input style="width: 100%; float:right" placeholder="123-456-7891" class="required email input-field" name="pnumber" type="number" id="mobile_code" value="<? if(isset($_POST['user_phone'])){ echo $_POST['user_phone']; } ?>" required />
+                            </span> 
+                        <!--<button type="button" id="btnSendOtp">Send OTP</button>-->
+                        </td>
+                        <div id="response-msg"></div>
+                    </tr>
+                    <select style="display:none;" id="otp_mode">
+                        <option selected value="whatsapp">WhatsApp</option>
+                        <optio value="sms">SMS</option>
+                    </select>
+                    
+                    <tr id="otp_row" style="display:none;">
+                       <td><span class="ornold">Enter OTP:</span></td>
+
+                        
+                        <td>
+                            <input id="otp_code" type="text" maxlength="6" />
+                            <button type="button" id="btnVerifyOtp">Verify OTP</button>
+                        </td>
+                    </tr>
+                    
+                    
+                      <tr>
+                        <td width="37%" height="55" align="left" valign="middle" class="text"><span class="ornold">Your e-mail address:</span></td>
+                        <td width="63%" height="55" align="left" valign="middle" class="wheading">
+                            <span class="reg_bd_ul_p2 d-flex align-items-center" style="gap:8px; position: relative;">
+                                <input class="required email input-field" style="flex:1;" name="emails" type="email" id="emails" value="<? if(isset($_POST['emails'])){ echo $_POST['emails']; } ?>" required />
+                                <button type="button" id="btnSendEmailOtp" class="otp-btn">Send OTP</button>
+                            </span>
+                            <div id="email-otp-msg"></div>
+                        </td>
+                      </tr>
+
+                      <tr id="email_otp_row" style="display:none;">
+                        <td><span class="ornold">Email OTP:</span></td>
+                        <td class="wheading" style="position: relative;">
+                            <input id="email_otp_code" type="text" maxlength="6" class="input-field" style="padding-right:90px; width:100%; margin-bottom: 10px;" />
+                            <button type="button" id="btnVerifyEmailOtp" class="otp-btn verify">Verify</button>
+                        </td>
+                        
+                        <!--<td width="63%" height="55" align="left" valign="middle" class="wheading"><span class="reg_bd_ul_p2">-->
+                        <!--  <input class="required email input-field" name="emails" type="email" id="emails" value="<? if(isset($_POST['emails'])){ echo $_POST['emails']; } ?>" required />-->
+                        <!--</span> </td>-->
+                      </tr>
+
+                      <tr class="text">
+
+                        <td colspan="2" align="left" valign="middle" class="vandornav"><img src="images/spacer.gif" width="1" height="1" /></td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td height="55" align="left" valign="middle" class="text"><span class="ornold">Password:</span></td>
+
+                        <td height="55" align="left" valign="middle" class="wheading"><span class="reg_bd_ul_p2">
+
+                          <input class="required email input-field" name="passwords" type="password" value="" id="passwords" required />
+
+                        </span> </td>
+
+                      </tr>
+
+                      <tr class="text">
+
+                        <td height="25" colspan="2" align="left" valign="middle" class="certnav2">* 6 characters minimum </td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td height="55" align="left" valign="middle" class="text"><span class="ornold">Confirm Password:</span></td>
+
+                        <td height="55" align="left" valign="middle" class="wheading"><span class="reg_bd_ul_p2">
+
+                          <input class="required email input-field" name="repassword" type="password" value="" id="repassword" required />
+
+                        </span> </td>
+
+                      </tr>
+
+                      <tr class="text">
+
+                        <td height="25" colspan="2" align="left" valign="middle" class="certnav2"><img id="captcha" style="width: 40%; margin: 5px 0 5px 0;" src="securimage/securimage_show.php" alt="CAPTCHA Image" />&nbsp;&nbsp;<a href="#" onclick="document.getElementById('captcha').src = 'securimage/securimage_show.php?' + Math.random(); return false" style="text-decoration:none" class="bodtg">Reload Image</a></td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td height="55" align="left" valign="middle" class="text"><span class="ornold">Security Code:</span></td>
+
+                        <td height="55" align="left" valign="middle" class="wheading"><span class="reg_bd_ul_p2">
+
+                          <input type="text" name="captcha_code" size="10" maxlength="6" id="captcha_code" class="required email input-field" required  />
+
+                        </span> </td>
+
+                      </tr>
+
+                      
+
+                      <tr>
+
+                        <td height="8" colspan="2"><img src="images/spacer.gif" width="1" height="1" /></td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td height="25" colspan="2" align="center" valign="middle" class="text hide"><label for="recive_privacy" class="vandorpopnav">
+
+                          <input name="send_mail" value="1" checked="checked" type="checkbox" />
+
+                          I'd like to receive newsletters from <?php echo $websitename?> to get more training information </label>                        </td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td height="25" colspan="2" align="center" valign="middle" class="text"><p class="maincontent mb-2">By clicking on 'Register' below you are agreeing to the <?php echo $websitename?> Privacy Policy. </p></td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td height="35" colspan="2" align="center" valign="middle" class="wheading"><span class="text">
+
+                        	<input type="hidden" name="SignUp" id="SignUp" value="Sign Up" />
+                        	<input type="hidden" name="email_otp_verified" id="email_otp_verified" value="0" />
+
+        
+                            <!--<button  type="submit" class="orange-button" name="Login2" id="Login2">Register</button>-->
+                            <button  type="submit" class="orange-button" name="Login2" id="btnRegister">Register</button>
+                            <!-- Spacer -->
+                            <div style="margin: 10px 0;"></div>
+                            
+                            <!--<a href="https://accounts.google.com/o/oauth2/v2/auth?scope=email%20profile&redirect_uri=https://chinesedumps.com/google-login/callback.php&response_type=code&client_id=138494749211-7nb1l78c4ggve1qdsfkhbhd9nhq4e850.apps.googleusercontent.com&access_type=online" class="google-btn">-->
+                            <!--    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google icon" class="google-icon">-->
+                            <!--    <span class="google-text">Sign up with Google</span>-->
+                            <!--</a>-->
+                        </span>
+                            
+                        </td>
+
+                      </tr>
+
+                    </table>
+
+                    </form>
+
+                   			 </ul>
+
+                            </li>
+
+                        </ul>                         
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+
+	</div>
+
+<script>
+$(function () {
+    var emailOtpVerified = false;
+    var timerInterval = null;
+    var countdown = 60;
+
+    function setSendButtonState(disabled, label) {
+        $('#btnSendEmailOtp').prop('disabled', disabled).text(label);
+    }
+
+    function showEmailMessage(message, type) {
+        var cssClass = type === 'error' ? 'error' : 'success';
+        $('#email-otp-msg').html('<div class="' + cssClass + '">' + message + '</div>').show();
+        setTimeout(function () {
+            $('#email-otp-msg').fadeOut();
+        }, 5000);
+    }
+
+    function startEmailOtpTimer() {
+        setSendButtonState(true, 'Resend in 60s');
+        countdown = 60;
+        timerInterval = setInterval(function () {
+            countdown--;
+            setSendButtonState(true, 'Resend in ' + countdown + 's');
+            if (countdown <= 0) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                setSendButtonState(false, 'Resend OTP');
+            }
+        }, 1000);
+    }
+
+    function resetEmailOtpState() {
+        emailOtpVerified = false;
+        $('#email_otp_verified').val('0');
+        $('#email_otp_row').hide();
+        $('#email_otp_code').val('');
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+        setSendButtonState(false, 'Send OTP');
+    }
+
+    $('#emails').on('input', function () {
+        resetEmailOtpState();
+    });
+
+    $('#btnSendEmailOtp').on('click', function () {
+        var email = $('#emails').val().trim();
+        if (!email) {
+            showEmailMessage('Please enter your email first.', 'error');
+            return;
+        }
+
+        setSendButtonState(true, 'Sending...');
+
+        $.ajax({
+            url: 'send-email-otp.php',
+            type: 'POST',
+            data: { email: email },
+            dataType: 'json'
+        }).done(function (resp) {
+            if (resp && resp.success) {
+                $('#email_otp_row').show();
+                startEmailOtpTimer();
+                showEmailMessage('OTP sent to your email. Please check your inbox (and spam).', 'success');
+            } else {
+                var errorMsg = (resp && resp.error) ? resp.error : 'Could not send OTP. Please try again.';
+                setSendButtonState(false, 'Send OTP');
+                showEmailMessage(errorMsg, 'error');
+            }
+        }).fail(function () {
+            setSendButtonState(false, 'Send OTP');
+            showEmailMessage('Network error while sending OTP.', 'error');
+        });
+    });
+
+    $('#btnVerifyEmailOtp').on('click', function () {
+        var code = $('#email_otp_code').val().trim();
+        var email = $('#emails').val().trim();
+
+        if (code.length !== 6 || !/^[0-9]{6}$/.test(code)) {
+            showEmailMessage('Enter the 6-digit OTP.', 'error');
+            return;
+        }
+        if (!email) {
+            showEmailMessage('Email is required.', 'error');
+            return;
+        }
+
+        $.ajax({
+            url: 'verify-email-otp.php',
+            type: 'POST',
+            data: { code: code, email: email },
+            dataType: 'json'
+        }).done(function (resp) {
+            if (resp && resp.success) {
+                emailOtpVerified = true;
+                $('#email_otp_verified').val('1');
+                $('#email_otp_row').hide();
+                setSendButtonState(true, 'Verified');
+                if (timerInterval) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                }
+                showEmailMessage('Email verified successfully.', 'success');
+            } else {
+                emailOtpVerified = false;
+                $('#email_otp_verified').val('0');
+                var errorMsg = (resp && resp.error) ? resp.error : 'Invalid or expired OTP.';
+                showEmailMessage(errorMsg, 'error');
+            }
+        }).fail(function () {
+            showEmailMessage('Network error while verifying OTP.', 'error');
+        });
+    });
+
+    $('#form1wwww').on('submit', function (e) {
+        if (!emailOtpVerified) {
+            e.preventDefault();
+            showEmailMessage('Please verify your email with the OTP before registering.', 'error');
+        }
+    });
+});
+
+/*
+$(function(){
+    var isOtpVerified = false;
+    var timerInterval;
+    var countdown = 60;
+
+    function showMessage(message, type = 'success') {
+        $('#response-msg').html('<div class="' + type + '">' + message + '</div>');
+        // Automatically hide the message after 5 seconds
+        setTimeout(() => {
+            $('#response-msg').fadeOut();
+        }, 5000);
+    }
+
+    function startOtpTimer() {
+        $('#btnSendOtp').prop('disabled', true);
+        countdown = 60;
+        timerInterval = setInterval(function() {
+            $('#btnSendOtp').text('Resend OTP in ' + countdown + 's');
+            countdown--;
+
+            if (countdown < 0) {
+                clearInterval(timerInterval);
+                $('#btnSendOtp').prop('disabled', false).text('Send OTP');
+            }
+        }, 1000);
+    }
+    
+    // Send OTP
+    $('#btnSendOtp').click(function(){
+        var phone = $('#mobile_code').val().trim();
+        var mode  = $('#otp_mode').val();
+        
+        if (!phone) {
+            showMessage('Enter your phone number', 'error');
+            return;
+        }
+        
+        $.ajax({
+          url: 'send-otp.php',
+          type: 'POST',
+          data: { mobile: phone, mode: mode },
+          dataType: 'json'
+        }).done(function(resp){
+          if (resp.success) {
+            $('#otp_row').show();
+            showMessage('OTP sent via ' + mode.toUpperCase() + '!');
+            startOtpTimer();
+          } else {
+            showMessage('Error sending OTP: ' + resp.error, 'error');
+          }
+        });
+    });
+    
+    // Verify OTP
+    $('#btnVerifyOtp').click(function(){
+        var code = $('#otp_code').val().trim();
+        if (!code) {
+            showMessage('Enter the OTP', 'error');
+            return;
+        }
+
+        
+        $.ajax({
+          url: 'verify-otp.php',
+          type: 'POST',
+          data: { code: code },
+          dataType: 'json'
+        }).done(function(resp){
+          if (resp.success) {
+            isOtpVerified = true;
+            showMessage('Phone verified successfully!');
+            $('#btnSendOtp, #otp_row').hide();
+            $('#btnRegister').prop('disabled', false); // enable register
+          } else {
+            isOtpVerified = false;
+            showMessage('Invalid OTP, try again.', 'error');
+          }
+        });
+    });
+    
+    // Register button clicked
+    $('#btnRegister').click(function(e){
+        if (!isOtpVerified) {
+            e.preventDefault();
+            showMessage('Please verify your phone number with the OTP before registering.', 'error');
+        }
+    });
+  
+    // Register form validation (no disabling button)
+    $('#form2').submit(function(e){
+        if (!isOtpVerified) {
+            e.preventDefault();
+            showMessage('Please verify your phone number with the OTP before registering.', 'error');
+        }
+    });
+
+});
+*/
+</script>
+
+         <? include("includes/footer.php");?>     

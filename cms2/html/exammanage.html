@@ -1,0 +1,129 @@
+<? include ("header.php"); ?>
+
+
+<script language="JavaScript" src="js/categorystatusnew.js"></script>
+<table cellpadding="0" cellspacing="0" width="90%">
+<tr>
+<td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
+<td width="810" valign="top" class="rightside"><h2>Exams Management!</h2>
+Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
+<br />
+<form id="form1" name="form1" method="post" action="">
+<br />
+<table cellpadding='0' cellspacing='0' class='list' width='90%'>
+    <tr>
+    <td height="19" align="right" colspan="8">&nbsp;</td>
+	</tr>
+    <tr>
+    <td colspan="8" >&nbsp;&nbsp;&nbsp;&nbsp;Search Keyword:
+        <input type="text" name="textSearch" value="<? if(isset($_POST['textSearch'])){ echo $_POST['textSearch'];}  ?>" style="width:100px" />&nbsp;&nbsp;Hot:
+        <select name="hothot">
+            <option value="" >Select</option>
+            <option value="1" <? if(isset($_POST['hothot']) && $_POST['hothot']=='1'){ echo "selected='selected'"; }?>>Yes</option>
+            <option value="0" <? if(isset($_POST['hothot']) && $_POST['hothot']=='0'){ echo "selected='selected'"; }?>>No</option>
+	    </select>
+        &nbsp;&nbsp;Home:
+        <select name="homehome">
+            <option value="" >Select</option>
+            <option value="1" <? if(isset($_POST['homehome']) && $_POST['homehome']=='1'){ echo "selected='selected'"; }?>>Yes</option>
+            <option value="0" <? if(isset($_POST['homehome']) && $_POST['homehome']=='0'){ echo "selected='selected'"; }?>>No</option>
+	    </select>
+	    &nbsp;&nbsp;&nbsp;Status:
+        <select name="criteriacriteria">
+            <option value="">Select</option>
+            <option value="1" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='1'){ echo "selected='selected'"; }?>>Enable</option>
+            <option value="0" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='0'){ echo "selected='selected'"; }?>>Disable</option>
+        </select>
+	    &nbsp;&nbsp;Vendor:
+        <select name="vendor_id" id="vendor_id">
+            <option value="">Select Vendor</option>
+            <?php
+            $vendorRes = mysql_query("SELECT ven_id, ven_name FROM tbl_vendors ORDER BY ven_name ASC");
+            while($vendor = mysql_fetch_assoc($vendorRes)){
+                $selected = (isset($_POST['vendor_id']) && $_POST['vendor_id'] == $vendor['ven_id']) ? "selected" : "";
+                echo "<option value='{$vendor['ven_id']}' {$selected}>{$vendor['ven_name']}</option>";
+            }
+            ?>
+        </select>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="submit" name="Search" value="Search" />&nbsp;&nbsp;&nbsp;<input type="reset" name="reset" value="Reset" /></td>
+    <td align="right"><a class="menu" href="addexam.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add Exam </span>&nbsp;&nbsp;</a></td>
+	  </tr>
+  <tr>
+    <td height="19" align="center" colspan="8">&nbsp;</td>
+	</tr>
+  <tr>
+    <td width='33' class='header' align="center"><input name="CheckBoxControl" type="checkbox" id="chkbox_select_all" onclick="checkAllOneOne(this);" value=""  /></td>
+    <? if(isset($_GET['tyexam']))
+     { 
+     	if($_GET['tyexam']=='DESC'){
+     ?>
+      <td class='header' width='133' align="center"><a href="exammanage.php?ord=exam&tyexam=ASC" style=" color:#FFFFFF;">Exam Name</a> </td>
+      <? }else{ ?>
+    <td class='header' width='133' align="center"><a href="exammanage.php?ord=exam&tyexam=DESC" style=" color:#FFFFFF;">Exam Name</a> </td>
+    <? }}else{?>
+     <td class='header' width='133' align="center"><a href="exammanage.php?ord=exam&tyexam=ASC" style=" color:#FFFFFF;">Exam Name</a></td>
+    <? } ?>
+     <? if(isset($_GET['ty']))
+     {
+     	if($_GET['ty']=='DESC'){?>
+    <td class='header' width='133' align="center"><a href="exammanage.php?ord=vendor&ty=ASC" style=" color:#FFFFFF;">Vendor Name</a></td>
+    <? }else{?>
+    <td class='header' width='133' align="center"><a href="exammanage.php?ord=vendor&ty=DESC" style=" color:#FFFFFF;">Vendor Name</a></td>
+    <? }}else{ ?>
+    <td class='header' width='133' align="center"><a href="exammanage.php?ord=vendor&ty=ASC" style=" color:#FFFFFF;">Vendor Name</a></td>
+    <? } ?>
+    <td class='header' width='133' align="center">Certification Name</td>
+	<td class='header' width='206' align="center">Is Hot </td>
+  <td class='header' width='171' align="center">Is Home </td>
+  <td class='header' width='171' align="center">Status </td>
+	<td width="271" align="center" class='header'>Assign</td>
+	<td width="271" align="center" class='header'>Option</td>
+    </tr>
+  <!-- LOOP THROUGH USERS -->
+  <?php echo $show ;?>
+</table>
+<table>
+<tr> 
+<td valign="top" class="rightside"><div align="center"><strong>&nbsp;&nbsp; 
+	  <?=$BackNaviLinks;?>
+	  &nbsp;&nbsp; 
+	  <?=$NaviLinks;?>
+	  &nbsp;&nbsp; 
+	  <?=$ForwardNaviLinks;?> </strong><br />
+                  Total Records Found &nbsp;
+		<?=$TotalRecs;?><br />
+                  Total Pages Found &nbsp;
+		<?=$TotalPages;?><br /><br />
+		</div></td><br />
+		<tr>
+		<td valign="top" class="rightside"><div align="center"><?=$emptyError?></div></td>
+		</tr>
+</table>
+</form></td>
+</table>
+<!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- jQuery (required) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#vendor_id').select2({
+        placeholder: "Select Vendor",
+        allowClear: true,
+        width: '220px',        // same as your old dropdown
+        minimumResultsForSearch: 5, // hide search if few options
+        dropdownAutoWidth: true,
+        theme: 'default',       // or 'classic' for older look
+    });
+});
+</script>
+
+
+<? include("footer.php")?>
+</body>
+</html>

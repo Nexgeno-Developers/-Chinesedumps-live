@@ -1,0 +1,206 @@
+<? include("includes/header.php"); ?>
+<div class="content-box">
+    <div class="paddtop60 paddbottom60">
+        <div class="max-width">
+
+            <div class="main_heading text-center">
+                Attention <span>Test Centers</span>
+            </div>
+
+            <div class="intro-text">
+                <p>
+                    Every candidate who walks into your test center can bring you extra income with zero additional effort.
+                    Students want one thing: <b>to pass their exam</b>.
+                    They are actively searching for verified study solutions.  
+                    Now imagine this — you provide exactly what they need at the right time.
+                    That means instant upsell, additional revenue, and effortless earning.
+                </p>
+
+                <p><b>You have the candidates. We have 100% verified exam solutions.</b></p>
+            </div>
+
+            <br>
+
+           <!-- FLOWCHART -->
+<div class="flowchart">
+
+    <div class="flow-item">
+        <div class="flow-box">
+            <h3>Step 1</h3>
+            <p>Students arrive at your Test Center. They want to pass their certification exams.</p>
+        </div>
+        <div class="flow-arrow">↓</div>
+    </div>
+
+    <div class="flow-item">
+        <div class="flow-box">
+            <h3>Step 2</h3>
+            <p>They look for verified, reliable study solutions.</p>
+        </div>
+        <div class="flow-arrow">↓</div>
+    </div>
+
+    <div class="flow-item">
+        <div class="flow-box">
+            <h3>Step 3</h3>
+            <p><b>You bridge that gap.</b><br>You guide them to the right material.</p>
+        </div>
+        <div class="flow-arrow">↓</div>
+    </div>
+
+    <div class="flow-item">
+        <div class="flow-box">
+            <h3>Step 4</h3>
+            <p>You share your exam questions with us.</p>
+        </div>
+        <div class="flow-arrow">↓</div>
+    </div>
+
+    <div class="flow-item">
+        <div class="flow-box">
+            <h3>Step 5</h3>
+            <p>Our experts solve everything and deliver 100% verified answers for 1000+ certification exams.</p>
+        </div>
+        <div class="flow-arrow">↓</div>
+    </div>
+
+    <div class="flow-item">
+        <div class="flow-box">
+            <h3>Step 6</h3>
+            <p>You receive fully solved, ready-to-use study material.</p>
+        </div>
+        <div class="flow-arrow">↓</div>
+    </div>
+
+    <div class="flow-item">
+        <div class="flow-box">
+            <h3>Step 7</h3>
+            <p>You upsell these solutions to your walk-in candidates.</p>
+        </div>
+        <div class="flow-arrow">↓</div>
+    </div>
+
+    <div class="flow-item">
+        <div class="flow-box final-step">
+            <h3>Final Step</h3>
+            <p>Students pass easily with accurate and updated answers.<br><b>You earn more with zero effort.</b></p>
+        </div>
+    </div>
+
+</div>
+
+
+            <br><br>
+
+            <div class="text-center">
+                <p class="cta-highlight">
+                    <b>Start Earning More From Every Candidate</b>
+                </p>
+
+                <p style="margin-top:20px;">
+                    <b>Partner with us today</b><br>
+                    Reach out at: WhatsApp <a href="https://wa.me/447591437400" target="_blank" style="color:#007bff; text-decoration:none;">+44 7591 437400</a></strong>
+                </p>
+            </div>
+            <style>
+.intro-text {
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.intro-text p {
+    margin-bottom: 15px;
+}
+.flowchart {
+    width: 100%;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.flow-item {
+    text-align: center;
+}
+
+.flow-box {
+    background: #f7f7f7;         /* light gray background */
+    border: 2px solid #28a745;   /* green border */
+    padding: 22px;
+    border-radius: 12px;
+    width: 100%;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.07);
+    margin-bottom: 15px;
+}
+
+.flow-box h3 {
+    color: #28a745; /* green heading */
+    margin-bottom: 10px;
+}
+
+.flow-arrow {
+    font-size: 38px;
+    color: #28a745; /* green arrow */
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+/* Final Step Highlight */
+.final-step {
+    background: #e9ffe9;  /* light green tint */
+    border-color: #28a745;
+}
+
+
+</style>
+
+
+            <!-- Exam Shots Section (Properly inside max-width) -->
+            <div style="text-align: center;" class="col-md-12">
+                <div class="main_heading paddbtm10 paddingtop10">
+                    Proof Our Partners Trust Us: <span>Their Exam Shots, Our Verified Solutions</span>
+                </div>
+            </div>
+
+            <?php 
+                $banners = mysql_query("select * from sliders where type='test centers' AND status = 1");
+                for($sr = 0; $sr < mysql_num_rows($banners); $sr++){
+                $banner = mysql_fetch_object($banners);
+            ?>
+            <div class="col-md-4 marginbtm-25">
+                <img style="width: 100%; box-shadow: 0px 0px 23px 4px #ddd; border-radius: 10px;"
+                    src="<?php echo BASE_URL; ?>images/slider/<?= $banner->s_image; ?>"
+                    alt="<?= $banner->s_alt; ?>" class="img-responsive">
+            </div>
+            <?php } ?>
+
+            <div id="labSlider">
+                <div class="MS-content">
+                    <?php 
+                        $banners = mysql_query("select * from sliders where type='lab' AND status = 1");
+                        for($sr = 0; $sr < mysql_num_rows($banners); $sr++){
+                        $banner = mysql_fetch_object($banners);
+                    ?>
+                    <div class="item">
+                        <a href="https://www.google.com" target="_blank">
+                            <img src="<?php echo BASE_URL; ?>images/slider/<?= $banner->s_image; ?>"
+                                alt="<?= $banner->s_alt; ?>" />
+                        </a>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+
+            <script>
+                $('#labSlider').multislider({
+                    continuous: true,
+                    duration: 10000,
+                });
+            </script>
+
+        </div><!-- max-width -->
+    </div><!-- padding -->
+</div><!-- content-box -->
+
+<? include("includes/footer.php"); ?>

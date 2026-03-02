@@ -1,0 +1,72 @@
+<? include("includes/header.php");?>
+
+<div class="content-box">
+        <div class="exam-group-box">
+            <div class="max-width">
+                 <p align="justify" class="hdr2" style="text-align:center;"><font color="#000066"><strong>CCIE Security v6.0 Real Lab Logical Topology</strong></font></p>
+                <img src="images/new_passimg.jpg" width="100%">
+                <table width="800" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="185" valign="top">
+			<div w3-include-html="inc_mzone.html"></div>
+			<div w3-include-html="inc_certifications.html"></div>
+			<div w3-include-html="inc_rupdates.html"></div>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="10" ></td>
+  </tr>
+  <tr>
+    
+  </tr>
+</table>
+
+			
+		  	</td>
+            <td width="15" valign="top">&nbsp;</td>
+          	<td width="100%" valign="top" class="txt1LH">  <br />  <br />
+              <p align="justify" class="hdr2"><font color="#000066">Demo Questions &amp; Answers </font></p>
+              <b><font color="#000066">Deploy Demo Questions with Verified Answers</font><font color="#006699"><br />
+              </font></b>
+              <br />
+              <object width="100%" height="500" data="images/CD-CCIESecurityv6.0-Deploy-Demo.pdf" border="0px"></object>   
+              <br /> <br /> <br />
+              
+               <b><font color="#000066">Design Demo Questions with Verified Answers</font><font color="#006699"><br />
+              <hr width="100%" size="1" noshade="noshade" />
+              <object width="100%" height="500" data="images/CD-CCIESecurityv6.0-Design-Demo.pdf" border="0px"></object>
+              <br />
+              
+            <br /></td>
+          </tr>
+      </table>
+                <?php //echo $getPage[2]; ?>
+            </div>
+        </div>
+	</div>
+<div class="newsletter-box">
+            <div class="max-width">
+                <div class="newsletter-heading">Demo Request</div>
+                <p>Signup now to our newsletter to get the latest updates of our products, news and many more. We do not spam.</p>
+                <div class="group">
+					 <form action="ptype.php" name="demoForm2" method="post" onsubmit="return demoVerify3();">
+                    <input type="text" class="input-field" name="request_ecode" id="request_ecode" placeholder="Exam Code" required />
+                    <input type="email" class="input-field" name="request_email" id="request_email"  placeholder="Your Email Address" required />
+                    <button type="submit" class="orange-button subscribe-button">Send Request</button>
+				<script language="javascript">
+				function demoVerify3(){
+				regExp=/^[A-Za-z_0-9\.\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}$/;
+				email=document.forms['demoForm2'].elements['request_email'].value;
+				if(email==''||!regExp.test(email))
+				{
+				alert('Enter Email'); 
+				document.getElementById('emailErr2').style.display='block';document.forms['demoForm2'].elements['request_email'].focus();return false; }
+				
+				document.getElementById('emailErr2').style.display='none';
+				}
+				</script>
+					</form>
+                </div>
+            </div>
+        </div>
+        
+<? include("includes/footer.php");?>

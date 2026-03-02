@@ -1,0 +1,82 @@
+<? include ("header.php"); ?>
+<script language="JavaScript" src="js/categorystatusnew.js"></script>
+<table cellpadding="0" cellspacing="0" width="90%">
+<tr>
+<td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
+<td width="810" valign="top" class="rightside"><h2>Vendors Management!</h2>
+Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
+<br />
+<form id="form1" name="form1" method="post" action="">
+
+<br />
+<table cellpadding='0' cellspacing='0' class='list' width='90%'>
+   <tr>
+    <td height="19" align="center" colspan="6">&nbsp;</td>
+   </tr>
+  <tr>
+     <td colspan="5"  align="center">Search :
+      <input type="text" name="textSearch" style="width:200px" value="<? if(isset($_POST['textSearch'])){ echo $_POST['textSearch'];}  ?>" />
+      &nbsp;&nbsp;Hot:<select name="hothot">
+	  <option value="" >Select</option>
+	  <option value="1" <? if(isset($_POST['hothot']) && $_POST['hothot']=='1'){ echo "selected='selected'"; }?>>Yes</option>
+	  <option value="0" <? if(isset($_POST['hothot']) && $_POST['hothot']=='0'){ echo "selected='selected'"; }?>>No</option>
+	  </select>&nbsp;&nbsp;Home:<select name="homehome">
+	  <option value="" >Select</option>
+	  <option value="1" <? if(isset($_POST['homehome']) && $_POST['homehome']=='1'){ echo "selected='selected'"; }?>>Yes</option>
+	  <option value="0" <? if(isset($_POST['homehome']) && $_POST['homehome']=='0'){ echo "selected='selected'"; }?>>No</option>
+	  </select>&nbsp;&nbsp;&nbsp;Status:
+	  <select name="criteriacriteria">
+	  <option value="">Select</option>
+	  <option value="1" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='1'){ echo "selected='selected'"; }?>>Enable</option>
+	  <option value="0" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='0'){ echo "selected='selected'"; }?>>Disable</option>
+	  </select>&nbsp;&nbsp;
+      <input type="submit" name="Search" value="Search" />
+	  </td>
+	  <td align="right"><a class="menu" href="addvendors.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Vendor </span></a>&nbsp;&nbsp;</td>
+    </tr>
+  <tr>
+    <td height="19" align="center" colspan="6">&nbsp;</td>
+   </tr>
+  <tr>
+    <td width='33' class='header' align="center"><input name="CheckBoxControl" type="checkbox" id="chkbox_select_all" onclick="checkAllOneOne(this);" value=""  /></td>
+   <? if(isset($_GET['ty']))
+     {
+     	if($_GET['ty']=='DESC'){?>
+    <td class='header' width='133' align="center"><a href="vendormanage.php?ord=vendor&ty=ASC" style=" color:#FFFFFF;">Vendor Name</a></td>
+    <? }else{?>
+    <td class='header' width='133' align="center"><a href="vendormanage.php?ord=vendor&ty=DESC" style=" color:#FFFFFF;">Vendor Name</a></td>
+    <? }}else{ ?>
+    <td class='header' width='133' align="center"><a href="vendormanage.php?ord=vendor&ty=ASC" style=" color:#FFFFFF;">Vendor Name</a></td>
+    <? } ?>
+	<td class='header' width='206' align="center">Is Hot </td>
+  <td class='header' width='171' align="center">Is Home </td>
+ <!-- <td class='header' width='171' align="center">Sell All Vendor</td>-->
+  <td class='header' width='171' align="center">Status </td>
+	<td width="271" align="center" class='header'>Option</td>
+    </tr>
+  <!-- LOOP THROUGH USERS -->
+  <?php echo $show ;?>
+</table>
+<table>
+<tr> 
+<td valign="top" align="center" class="rightside" ><div align="center"><strong>&nbsp;&nbsp; 
+	  <?=$BackNaviLinks;?>
+	  &nbsp;&nbsp; 
+	  <?=$NaviLinks;?>
+	  &nbsp;&nbsp; 
+	  <?=$ForwardNaviLinks;?> </strong><br />
+                  Total Records Found &nbsp;
+		<?=$TotalRecs;?><br />
+                  Total Pages Found &nbsp;
+		<?=$TotalPages;?><br /><br />
+		</div></td><br />
+		<tr>
+		<td valign="top" class="rightside"  align="center"><div align="center"><?=$emptyError?></div></td>
+		</tr>
+</table>
+</form></td>
+
+</table>
+<? include("footer.php")?>
+</body>
+</html>

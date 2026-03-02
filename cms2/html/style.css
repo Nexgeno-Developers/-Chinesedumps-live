@@ -1,0 +1,369 @@
+body {
+	padding:0px;
+	margin:0px;
+	font-family:Tahoma, Arial, Verdana;
+	font-size:11px;
+	color:#4d4d4d;
+	
+}
+.hdng1 {
+	font-family:Tahoma, Georgia;
+	font-size:14px;
+	color:#4d4d4d;
+	font-weight:bold;
+	text-decoration:none;
+}
+.hdng1 a{
+	font-family:Tahoma, Georgia;
+	font-size:14px;
+	color:#4d4d4d;
+	font-weight:bold;
+	text-decoration:none;
+}
+.hdng1 a:hover{
+	font-family:Tahoma, Georgia;
+	font-size:14px;
+	color:#4d4d4d;
+	font-weight:bold;
+	text-decoration:underline;
+}
+p {
+	padding:0px;
+	margin:0px;
+	font-size:11px;
+	color:#4d4d4d;
+	text-decoration:none;
+	font-family:Tahoma;
+}
+p a{
+	padding:0px;
+	margin:0px;
+	font-size:11px;
+	color:#7788c6;
+	text-decoration:none;
+	font-family:Tahoma;
+}
+p a:hover{
+	padding:0px;
+	margin:0px;
+	font-size:11px;
+	color:#7788c6;
+	text-decoration:underline;
+	font-family:Tahoma;
+}
+.border {
+	border:1px solid;
+	border-color:#d4d4d4;
+	background-color:#f9f9f9;
+}
+.hdng2 {
+	font-family:Tahoma;
+	font-size:12px;
+	color:#7788c6;
+	text-decoration:none;
+}
+.hdng2 a{
+	font-family:Tahoma;
+	font-size:12px;
+	color:#7788c6;
+	text-decoration:none;
+}
+.hdng2 a:hover{
+	font-family:Tahoma;
+	font-size:12px;
+	color:#7788c6;
+	text-decoration:underline;
+}
+.space {
+	padding-left:10px;
+	padding-top:6px;
+}
+.bordertop {
+	border-top:2px solid;
+	border-top-color:#7788c6;
+}
+.hdng3 {
+	font-family:Tahoma;
+	font-size:12px;
+	color:#fff;
+	font-weight:bold;
+	text-decoration:none;
+}
+.forinput {
+	border:1px solid;
+	border-color:#a6b3e3;
+	width:150px;
+	font-size:11px;
+	color:#4d4d4d;
+}
+.forinput1 {
+	border:1px solid;
+	border-color:#a6b3e3;
+	width:147px;
+	font-size:11px;
+	color:#4d4d4d;
+}
+form {
+	padding:0px;
+	margin:0px;
+}
+.line {
+	border-right:1px solid;
+	border-right-color:#FFFFFF;
+	font-family:Tahoma;
+	font-size:11px;
+	color:#fff;
+	font-weight:bold;
+	text-decoration:none;
+	background-color:#a6b3e3;
+	height:20px;
+}
+.line2 {
+	border-right:1px solid;
+	border-right-color:#a6b3e3;
+	font-family:Tahoma;
+	font-size:11px;
+	color:#fff;
+	font-weight:bold;
+	text-decoration:none;
+	background-color:#a6b3e3;
+	height:20px;
+}
+.withbg {
+	border-right:1px solid;
+	border-right-color:#FFFFFF;
+	font-family:Tahoma;
+	font-size:10px;
+	text-decoration:none;
+	background-color:#ebeff9;
+	height:34px;
+	padding:4px 0px 0px 0px;
+}
+.withOutbg {
+	border-right:1px solid;
+	border-right-color:#FFFFFF;
+	font-family:Tahoma;
+	font-size:10px;
+	text-decoration:none;
+	height:34px;
+	padding:4px 0px 0px 0px;
+}
+.eventhdng {
+	font-family:Tahoma;
+	font-size:10px;
+	font-weight:bold;
+	text-decoration:none;
+	color:#91a8ff;
+	background-color:#ebeff9;
+	height:34px;
+	padding:4px 0px 0px 0px;
+}
+.eventhdng a{
+	font-family:Tahoma;
+	font-size:10px;
+	font-weight:bold;
+	text-decoration:none;
+	color:#91a8ff;
+	background-color:#ebeff9;
+	height:34px;
+	padding:4px 0px 0px 0px;
+}
+.eventhdng a:hover{
+	font-family:Tahoma;
+	font-size:10px;
+	font-weight:bold;
+	text-decoration:underline;
+	color:#91a8ff;
+	background-color:#ebeff9;
+	height:34px;
+	padding:4px 0px 0px 0px;
+}
+.eventhdng2 {
+	font-family:Tahoma;
+	font-size:10px;
+	font-weight:bold;
+	text-decoration:none;
+	color:#91a8ff;
+	height:34px;
+	padding:4px 0px 0px 0px;
+}
+.eventhdng2 a{
+	font-family:Tahoma;
+	font-size:10px;
+	font-weight:bold;
+	text-decoration:none;
+	color:#91a8ff;
+	height:34px;
+	padding:4px 0px 0px 0px;
+}
+.eventhdng2 a:hover{
+	font-family:Tahoma;
+	font-size:10px;
+	font-weight:bold;
+	text-decoration:underline;
+	color:#91a8ff;
+	height:34px;
+	padding:4px 0px 0px 0px;
+}
+.profilerightbg {
+	background-image:url('images/profile_leftpnl_bg.jpg');
+	background-repeat:repeat-y
+}
+.profileleftpnl {
+	border:2px solid;
+	border-color:#d4d4d4;
+	background-color:#f9f9f9;
+	padding:14px 14px 14px 14px;
+}
+.profilehdng {
+	font-family:Tahoma;
+	font-size:12px;
+	color:#4d4d4d;
+	font-weight:bold;
+	text-decoration:none;
+}
+.lightcolor {
+	font-family:Tahoma;
+	font-size:11px;
+	color:#999999;
+}
+.postborder {
+	border:1px solid;
+	border-color:#cdd8fe;
+}
+.posttitle {
+	font-family:Tahoma;
+	font-size:11px;
+	color:#1AB521;
+	text-decoration:none;
+}
+.posttitle a{
+	font-family:Tahoma;
+	font-size:11px;
+	color:#1AB521;
+	text-decoration:none;
+}
+.posttitle a:hover{
+	font-family:Tahoma;
+	font-size:11px;
+	color:#1AB521;
+	text-decoration:underline;
+}
+.postborder {
+	border:1px solid;
+	border-color:#a6b3e3;
+}
+.postborder2 {
+	border-bottom:1px solid;
+	border-left:1px solid;
+	border-color:#a6b3e3;
+}
+.postborder3 {
+	border-bottom:1px solid;
+	border-color:#a6b3e3;
+}
+.textarea {
+	width:500px;
+	height:100px;
+	border:1px solid;
+	border-color:#a6b3e3;
+	font-size:11px;
+	color:#4d4d4d;
+}
+/*login area*/
+
+.loginbg {
+	background-image:url('images/login_bg.gif');
+	background-repeat:repeat-x
+}
+.loginhdng {
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:14px;
+	color:#48547e;
+}
+.logintxt a{
+	font-family:Tahoma;
+	font-size:11px;
+	color:#46527a;
+	text-decoration:none;
+}
+.loginput {
+	width:160px;
+	height:14px;
+	border:1px solid;
+	border-color:#a0adde;
+	background-color:#ebeff9;
+}
+.loginpad {
+	padding-right:8px;
+	font-family:Tahoma;
+	font-size:11px;
+	color:#46527a;
+}
+
+/*post area*/
+
+.postxt {
+	font-family:Tahoma;
+	font-size:11px;
+	color:#FF0000
+	padding-right:14px;
+}
+.postopt {
+	width:164px;
+	height:20px;
+	border:1px solid;
+	border-color:#a0adde;
+}
+.mngprofile {
+	width:194px;
+	height:20px;
+	border:1px solid;
+	border-color:#a0adde;
+	
+}
+.mngprofile2 {
+	width:190px;
+	height:14px;
+	border:1px solid;
+	border-color:#a0adde;
+	
+}
+.postbtn {
+	border:1px solid;
+	border-color:#a0adde;
+	background-color:#47537d;
+	width:50px;
+	height:18px;
+	font-family:Tahoma;
+	font-size:11px;
+	color:#FFFFFF;
+	text-align:center;
+}
+.postxtarea {
+	width:323px;
+	height:77px;
+	border:1px solid;
+	border-color:#a0adde;
+	
+}
+.postbdr {
+	border:1px solid;
+	border-color:#a6b3e3;
+}
+.hdngpost {
+	font-family:Tahoma;
+	font-size:11px;
+	color:#fff;
+	font-weight:bold;
+	padding-left:10px;
+}
+.tdbgcolor_admin{
+	background-color:#a8bfd7;
+}
+
+.tdbgcolor2_admin{
+	background-color:#436088;
+}
+
+

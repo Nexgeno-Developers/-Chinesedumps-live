@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><?=$websitetitle?></title>
+<link href="new.css" rel="stylesheet" type="text/css" />
+<link href="style1.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+<script language="JavaScript" src="../includes/js/calendar.js"></script>
+<script type="text/javascript" src="Editor3/scripts/innovaeditor.js"></script>
+</head>
+<body>
+
+<div class="topbar">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
+<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+</tr>
+</table></div>
+
+<table cellpadding="0" cellspacing="0" width="90%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+
+<td width="810" class="rightside"><h2>Edit Product!</h2>
+
+Welcome to your<?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.<br />
+
+<form name="Form" id="Form" method="post" action="" enctype="multipart/form-data"><br />
+
+  <table cellpadding='0' cellspacing='0' width='100%'>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='header'>Edit Product</td>
+    </tr>
+    <tr>
+      <td class='setting1'><table width="100%" border="0" align="left" cellpadding="4" cellspacing="4">
+        <tr>
+          <td align="left">&nbsp;</td>
+          <td colspan="2" style="color: #FF0000;"><?=$strError?></td>
+        </tr>
+        <tr>
+          <td width="29%" align="left" nowrap="nowrap"><div align="right"></div></td>
+          <td colspan="2">* Required information</td>
+        </tr>
+     
+		<tr align="right">
+          <td align="right">*Product Name:</td>
+          <td colspan="2" align="left"><input  name="title"  id="title" style="width:200px;" type="text" value="<? if(isset($spram[1])){ echo $spram[1]; } ?>" /></td>
+        </tr>
+		<tr align="right">
+          <td align="right">*Product Code:</td>
+          <td colspan="2" align="left"><input  name="pcode"  id="pcode" style="width:200px;" type="text" value="<? if(isset($spram[2])){ echo $spram[2]; } ?>" /></td>
+        </tr>
+		<tr align="right">
+          <td align="right">*Product Category:</td>
+          <td colspan="2" align="left"><?=$categories?></td>
+        </tr>
+		<!--<tr align="right">
+          <td align="right">*Product Manufacturer:</td>
+          <td colspan="2" align="left"><?=$manufacturer?></td>
+        </tr>
+		<tr align="right">
+          <td align="right">*Product Default Price:</td>
+          <td colspan="2" align="left">&pound;&nbsp;<input  name="dprice" style="width:40px;"  id="dprice" type="text" value="<? if(isset($spram[5])){ echo $spram[5];}?>" /></td>
+        </tr>-->
+        <tr>
+          <td align="right">*Product Image:</td>
+          <td colspan="2"><input  name="proimg"  id="proimg" type="file" value="" /><input name="hiidenimg" id="hiidenimg" type="hidden" value="<?=$spram[6]?>"</td>
+        </tr>
+		<tr align="right">
+          <td align="right">*Product Stock Status:</td>
+          <td colspan="2" align="left"><input  name="sstock" checked="checked"  id="sstock" type="checkbox"<? if(isset($spram[7]) && $spram[7]=='yes'){ echo "checked='checked'";}?> value="yes" /></td>
+        </tr>
+		<tr align="right">
+          <td align="right">*Product Total Quantity:</td>
+          <td colspan="2" align="left"><input  name="pq"  id="pq" type="text" style="width:40px;"  value="<? if(isset($spram[15])){ echo $spram[15];}?>" /></td>
+        </tr>
+		<tr align="right">
+          <td align="right">*Product Material:</td>
+          <td colspan="2" align="left"><textarea  name="pro_mate" style="width:200px;"  id="pro_mate" type="text"><? if(isset($spram[8])){ echo $spram[8];}?></textarea></td>
+        </tr>
+         <tr align="right">
+          <td align="right"> Add Related Products:</td>
+          <td colspan="2" align="left"><?=$categoriesrel?></td>
+        </tr>
+       <tr align="right">
+          <td align="right">*Summary Description:</td>
+          <td colspan="2" align="left"><textarea  name="pro_info" style="width:200px;"  id="pro_info" type="text"><? if(isset($spram[9])){ echo $spram[9];}?></textarea></td>
+        </tr>
+		
+		<tr align="right">
+          <td align="right"> Product Special Price:</td>
+          <td colspan="2" align="left">&pound;&nbsp;<input  name="sprice" style="width:40px;"  id="sprice" type="text" value="<? if(isset($spram[10])){ echo $spram[10];}?>" /></td>
+        </tr>
+		<tr align="right">
+          <td align="right"> Special Price Start date:</td>
+          <td colspan="2" align="left"><input name="txt_StartDate" type="text" class="clsTxtBox"  id="txt_StartDate" readonly="readonly" value="<? if($spram[11]!=''){ echo $spram[11] ;} ?>"  style="width:156px; height:16px" />&nbsp;&nbsp;<img src="images/calendar_date.jpg" alt="select" width="22" height="18" align="absmiddle" class="calImg" style="cursor:hand" onclick="displayCalendarSe(document.Form.txt_StartDate,'dd-mm-yyyy',this)" /> </td>
+        </tr>
+		<tr align="right">
+          <td align="right"> Special Price Expiry date:</td>
+          <td colspan="2" align="left"><input name="txt_EndDate" type="text" class="clsTxtBox"  id="txt_EndDate" readonly="readonly" value="<? if($spram[12]!=''){ echo $spram[12]; } ?>"  style="width:156px; height:16px" />&nbsp;&nbsp;<img src="images/calendar_date.jpg" alt="select" width="22" height="18" align="absmiddle" class="calImg" style="cursor:hand" onclick="displayCalendarSe(document.Form.txt_EndDate,'dd-mm-yyyy',this)" /> </td>
+        </tr>
+        <tr align="right">
+          <td align="right">Product Status:</td>
+          <td colspan="2" align="left"><select name="status" id="status">
+                <option value="Active"<? if(isset($spram[13]) && $spram[13]=="Active"){ echo "selected='selected'";}?>>Active</option>
+                <option value="In Active"<? if(isset($spram[13]) && $spram[13]=="In Active"){ echo "selected='selected'";}?>>In Active</option>
+                </select></td>
+        </tr>
+		<tr align="right">
+          <td align="right" nowrap="nowrap">want to add this Product as Featured Prodcut:</td>
+          <td colspan="2" align="left"><input  name="feature"  id="feature" type="checkbox"<? if(isset($spram[16]) && $spram[16]=='1'){ echo "checked='checked'";}?> value="1" /></td>
+        </tr>
+		<tr>
+                 <td align="right" valign="top"><strong>Product Description:</strong></td>
+				<td  colspan="2"  align="center" valign="middle"><textarea id="FCKeditor" name="FCKeditor" rows=4 cols=30><?=stripslashes($spram[14])?></textarea>
+                    <script>
+    var oEdit1 = new InnovaEditor("oEdit1");
+
+    /***************************************************
+      SETTING EDITOR DIMENSION (WIDTH x HEIGHT)
+    ***************************************************/
+
+    oEdit1.width=600;//You can also use %, for example: oEdit1.width="100%"
+    oEdit1.height=350;
+
+
+    /***************************************************
+      SHOWING DISABLED BUTTONS
+    ***************************************************/
+
+    oEdit1.btnPrint=true;
+    oEdit1.btnPasteText=true;
+    oEdit1.btnFlash=true;
+    oEdit1.btnMedia=true;
+    oEdit1.btnLTR=true;
+    oEdit1.btnRTL=true;
+    oEdit1.btnSpellCheck=true;
+    oEdit1.btnStrikethrough=true;
+    oEdit1.btnSuperscript=true;
+    oEdit1.btnSubscript=true;
+    oEdit1.btnClearAll=true;
+    oEdit1.btnSave=true;
+    oEdit1.btnStyles=true; //Show "Styles/Style Selection" button
+
+    /***************************************************
+      APPLYING STYLESHEET
+      (Using external css file)
+    ***************************************************/
+
+    oEdit1.css="style/test.css"; //Specify external css file here
+
+    /***************************************************
+      APPLYING STYLESHEET
+      (Using predefined style rules)
+    ***************************************************/
+    /*
+    oEdit1.arrStyle = [["BODY",false,"","font-family:Verdana,Arial,Helvetica;font-size:x-small;"],
+          [".ScreenText",true,"Screen Text","font-family:Tahoma;"],
+          [".ImportantWords",true,"Important Words","font-weight:bold;"],
+          [".Highlight",true,"Highlight","font-family:Arial;color:red;"]];
+
+    If you'd like to set the default writing to "Right to Left", you can use:
+
+    oEdit1.arrStyle = [["BODY",false,"","direction:rtl;unicode-bidi:bidi-override;"]];
+    */
+
+
+    /***************************************************
+      ENABLE ASSET MANAGER ADD-ON
+    ***************************************************/
+
+    oEdit1.cmdAssetManager = "modalDialogShow('<?=$websiteURL?>/badmin/Editor3/assetmanager/assetmanager.php',640,465)"; //Command to open the Asset Manager add-on.
+    //Use relative to root path (starts with "/")
+
+    /***************************************************
+      ADDING YOUR CUSTOM LINK LOOKUP
+    ***************************************************/
+
+    oEdit1.cmdInternalLink = "modelessDialogShow('links.htm',365,270)"; //Command to open your custom link lookup page.
+
+    /***************************************************
+      ADDING YOUR CUSTOM CONTENT LOOKUP
+    ***************************************************/
+
+    oEdit1.cmdCustomObject = "modelessDialogShow('objects.htm',365,270)"; //Command to open your custom content lookup page.
+
+    /***************************************************
+      USING CUSTOM TAG INSERTION FEATURE
+    ***************************************************/
+
+    oEdit1.arrCustomTag=[["First Name","{%first_name%}"],
+        ["Last Name","{%last_name%}"],
+        ["Email","{%email%}"]];//Define custom tag selection
+
+    /***************************************************
+      SETTING COLOR PICKER's CUSTOM COLOR SELECTION
+    ***************************************************/
+
+    oEdit1.customColors=["#ff4500","#ffa500","#808000","#4682b4","#1e90ff","#9400d3","#ff1493","#a9a9a9"];//predefined custom colors
+
+    /***************************************************
+      SETTING EDITING MODE
+
+      Possible values:
+        - "HTMLBody" (default)
+        - "XHTMLBody"
+        - "HTML"
+        - "XHTML"
+    ***************************************************/
+
+    oEdit1.mode="XHTMLBody";
+
+
+    oEdit1.REPLACE("FCKeditor");
+              </script>
+                </td>
+              </tr>
+		
+        <tr align="right">
+          <td align="left">&nbsp;</td>
+          <td colspan="2" align="left">&nbsp;</td>
+        </tr>
+        <tr align="right">
+          <td align="left">&nbsp;</td>
+          <td colspan="2" align="left"><input type="submit" name="Submit" value="Submit" /></td>
+        </tr>
+      </table>      
+      <p>&nbsp;</p>
+      </td>
+    </tr>
+  </table>
+	  </form>
+<br /></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<? include("footer.php")?>
+</body>
+</html>

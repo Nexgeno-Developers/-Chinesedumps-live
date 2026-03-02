@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><?=$websitetitle?></title>
+<link href="new.css" rel="stylesheet" type="text/css" />
+<link href="style1.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+<script language="JavaScript" src="../includes/js/calendar.js"></script>
+<script type="text/javascript" src="Editor3/scripts/innovaeditor.js"></script>
+<script language="javascript" type="text/javascript">
+function Cofirm()
+{
+var mes=window.confirm ("Are You Sure To Delete the Selected Item");
+if (mes==true)
+{
+return true;
+}
+else
+{
+return false;
+}
+}
+</script>
+<script language="JavaScript" src="../includes/js/functions.js"></script>
+<script language="JavaScript" src="js/categorystatusall.js"></script>
+</head>
+<body>
+
+<div class="topbar">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
+<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+</tr>
+</table></div>
+
+<table cellpadding="0" cellspacing="0" width="102%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+
+<td width="810" valign="top" class="rightside"><h2>Order Details !</h2>
+
+Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
+
+<br />
+
+<form id="frm1" name="frm1" method="post" action="" enctype="multipart/form-data">
+
+
+
+<br /><table cellpadding='0' cellspacing='0' class='list' width='97%'>
+
+    <td colspan="9" align="center"><div id="successmsg" style="color:#FF0000;"></div></td>
+    </tr>
+<!--<tr height="50">
+
+    <td width='80'  align="center"></td>
+
+    <td  width='150' align="right">Search By Field&nbsp;</td>
+
+    <td width="127"  align="left"><select name="user_field">
+	      <option <?php if($_POST['user_field']=="adm_FName"){?> selected="selected" <? }?> value="adm_FName">First Name</option>
+	   <option <?php if($_POST['user_field']=="adm_LName"){?> selected="selected" <? }?> value="adm_LName">Last Name</option>
+      <option <?php if($_POST['user_field']=="adm_Email"){?> selected="selected" <? }?> value="adm_Email">Email</option>
+	  <option <?php if($_POST['user_field']=="adm_status"){?> selected="selected" <? }?> value="adm_status">Status</option>
+    </select></td>
+
+    <td width="108"  align="right">Provide Value &nbsp; </td>
+    <td width="144"  align="left"><input name="fieldValue" size="30" type="text" value="<?=$_POST['fieldValue']?>" /></td>
+
+    <td width="136" align="left"  ><input type="submit" name="Go" value="Go" /></td>
+
+	
+
+    <td width="69" colspan="2"  >&nbsp;</td>
+    </tr>-->
+	<tr>
+		<td class='header' width='82'>User ID</td>
+		<td class='header' width='52' align="center">OrderID</td>
+		<td width="113" class='header'>Product Desc.</td>
+		<td width="87" class='header'>Date</td>
+		<td width="127" align="left"  class='header'>Option</td>
+	</tr>
+
+  <!-- LOOP THROUGH USERS -->
+<?php
+		$ordID = $_GET['ord'];
+		$qy_cart		=	"select * from order_detail where masterid='".$ordID."'";
+		$r_cart 		=	mysql_query($qy_cart);			
+		$tttttt	=	'1';
+		while($rows=mysql_fetch_array($r_cart))
+		{
+			$keys_link = '';
+			$BGcolor = "white";
+			if($rows["PTypeID"]=="sp")
+			{
+				$BGcolor = "#99FFCC";
+				$keys_link = '<br>[<a  href="manage_keys.php?id='.$rows["ID"].'">Manage Keys</a>]';
+			}
+			if($rows["PTypeID"]=="both")
+			{
+				$BGcolor = "#FFFF99";
+				$keys_link = '<br>[<a  href="manage_keys.php?id='.$rows["ID"].'">Manage Keys</a>]';
+			}
+			$strSql 	=	"SELECT concat(exam_name,' - ',exam_fullname) as full_name FROM tbl_exam WHERE exam_id='".$rows['ProductID']."'";
+			$result		=	mysql_query($strSql) or die(mysql_error());
+			$re 		=	mysql_fetch_array($result);
+		echo '	<tr bgcolor='.$BGcolor.'>
+			<td class=item style=padding-left: 0px;>'.$rows['UserID'].'</td>
+			<td width=5 class=item style=padding-right: 0px;>'.$rows['ID'].'</td>
+			<td class=item style=padding-left: 0px;>'.$re['full_name'].'</td>
+			<td class=item style=padding-left: 0px;>'.$rows['strdate'].'</td>
+			<td class=item nowrap=nowrap>'.$keys_link.'</td>
+			
+		  </tr>';	
+		}
+?>
+</table>
+<br />
+<?=$emptyError?>
+<table>
+<tr>  
+<td valign="top" class="rightside">&nbsp;&nbsp; 
+	 </td>
+		<tr>
+		<td valign="top" class="rightside"><div align="center"><strong>&nbsp;&nbsp; 
+	  <?=$BackNaviLinks;?>
+	  &nbsp;&nbsp; 
+	  <?=$NaviLinks;?>
+	  &nbsp;&nbsp; 
+	  <?=$ForwardNaviLinks;?> </strong><br />
+                  Total Records Found &nbsp;
+		<?=$TotalRecs;?><br />
+                  Total Pages Found &nbsp;
+		<?=$TotalPages;?><br /><br />
+		</div></td>
+
+		</tr>
+
+
+
+</table></form></td>
+
+
+
+</table>
+<? include("footer.php")?>
+</body>
+
+</html>
+
