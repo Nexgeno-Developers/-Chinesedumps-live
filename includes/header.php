@@ -3927,7 +3927,7 @@ gtag('config', 'G-WB8EKYFKN6');
                 Brevo.push([
                     "init",
                     {
-                    client_key: <?php echo json_encode((string)secret('BREVO_CLIENT_KEY', '')); ?>,
+                    client_key: <?php echo secret_js('BREVO_CLIENT_KEY', ''); ?>,
                     // Optional: Add other initialization options, see documentation
                     }
                 ]);

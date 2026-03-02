@@ -58,6 +58,16 @@ if (!function_exists('secret')) {
 	}
 }
 
+// Helper for safely embedding secrets into JavaScript literals.
+// Usage: client_key: <?php echo secret_js('BREVO_CLIENT_KEY', ''); ?>,
+if (!function_exists('secret_js')) {
+	function secret_js($key, $default = null)
+	{
+		$value = (string)secret($key, $default);
+		return json_encode($value, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+	}
+}
+
 // Central base path for filesystem operations (project root with trailing separator)
 if (!defined('BASE_PATH')) {
 	$root = realpath(__DIR__ . '/../../');
