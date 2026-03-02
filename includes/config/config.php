@@ -1,7 +1,9 @@
 <?php
 
-// Central base URL for the whole website (must end with a trailing slash)
-$defaultBaseUrl = !empty($websiteURL) ? $websiteURL : '/';
+// Central base URL for the whole website (must end with a trailing slash).
+// Use $websiteURL if it has already been initialised later in the bootstrap;
+// otherwise fall back to the local default without triggering notices.
+$defaultBaseUrl = (isset($websiteURL) && $websiteURL !== '') ? $websiteURL : 'http://localhost/chinese/';
 if (!defined('BASE_URL')) {
 	define('BASE_URL', $defaultBaseUrl);
 }

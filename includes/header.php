@@ -3921,14 +3921,13 @@ gtag('config', 'G-WB8EKYFKN6');
 			}
 			</script>
 			<script src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
-            <script src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
             <script>
                 // Version: 2.0
                 window.Brevo = window.Brevo || [];
                 Brevo.push([
                     "init",
                     {
-                    client_key: "<?php echo htmlspecialchars((string)secret('BREVO_CLIENT_KEY', ''), ENT_QUOTES); ?>",
+                    client_key: <?php echo json_encode((string)secret('BREVO_CLIENT_KEY', '')); ?>,
                     // Optional: Add other initialization options, see documentation
                     }
                 ]);
