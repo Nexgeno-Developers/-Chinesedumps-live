@@ -59,7 +59,6 @@ if (!function_exists('secret')) {
 }
 
 // Helper for safely embedding secrets into JavaScript literals.
-// Usage: client_key: <?php echo secret_js('BREVO_CLIENT_KEY', ''); ?>,
 if (!function_exists('secret_js')) {
 	function secret_js($key, $default = null)
 	{
