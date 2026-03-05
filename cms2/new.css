@@ -1,215 +1,439 @@
+/* ==========================================================================
+   Global Layout & Typography
+   Modernized admin UI – structure (tables, PHP) kept intact.
+   ========================================================================== */
+
 BODY {
-	MARGIN: 0px;
-}
-BODY {
-	COLOR: #666666
-}
-TD {
-	COLOR: #666666
-}
-DIV {
-	COLOR: #666666
-}
-DIV.topbar {
-	FONT-WEIGHT: bold; FONT-SIZE: 30pt; BACKGROUND-IMAGE: url(images/admin_topbarbg.gif); COLOR: #ffffff; BACKGROUND-REPEAT: repeat-x; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif
-}
-TD.topbar_right {
-	BORDER-BOTTOM: #c8ccd1 1px solid
-}
-TD.topbar_menu {
-	PADDING-LEFT: 7px; BACKGROUND-IMAGE: url(images/admin_topbar_menu.gif); PADDING-BOTTOM: 3px; COLOR: #eeeeee; PADDING-TOP: 3px; BACKGROUND-REPEAT: repeat-x; BACKGROUND-COLOR: #436088
-}
-DIV.shadow {
-	BACKGROUND-IMAGE: url(images/admin_shadow.gif); BACKGROUND-REPEAT: repeat-x; HEIGHT: 8px
-}
-TD {
-	FONT-SIZE: 8pt
-}
-TD.leftside {
-	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; VERTICAL-ALIGN: top; PADDING-TOP: 0px
-}
-TD.rightside {
-	PADDING-RIGHT: 10px; PADDING-LEFT: 0px; FONT-SIZE: 9pt; PADDING-BOTTOM: 10px; VERTICAL-ALIGN: top; WIDTH: 800px; COLOR: #555555; PADDING-TOP: 0px; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif
-}
-TD.menu a {
-	PADDING-RIGHT: 3px; BACKGROUND-POSITION: right top; DISPLAY: block; PADDING-LEFT: 5px; FONT-SIZE: 8pt; BACKGROUND-IMAGE: url(images/admin_menu_bg1.gif); PADDING-BOTTOM: 3px; PADDING-TOP: 3px; BORDER-BOTTOM: #dddddd 1px solid; BACKGROUND-REPEAT: repeat-y; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif; BACKGROUND-COLOR: #ffffff
-}
-TD.menu A:hover {
-	BACKGROUND-IMAGE: url(images/admin_menu_bg2.gif); BACKGROUND-COLOR: #f5f5f5
-}
-TD.menu_header {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 8px; FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND-IMAGE: url(images/admin_header.gif); PADDING-BOTTOM: 5px; COLOR: #ffffff; PADDING-TOP: 5px; BACKGROUND-REPEAT: repeat-x; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif; BACKGROUND-COLOR: #436088
-}
-TD.header {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 8px; FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND-IMAGE: url(images/admin_header.gif); PADDING-BOTTOM: 5px; COLOR: #ffffff; PADDING-TOP: 5px; BACKGROUND-REPEAT: repeat-x; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif; BACKGROUND-COLOR: #436088
-}
-TD.item {
-	PADDING-RIGHT: 5px; BORDER-TOP: #dddddd 1px solid; PADDING-LEFT: 8px; FONT-SIZE: 8pt; PADDING-BOTTOM: 5px; COLOR: #666666; PADDING-TOP: 5px
-}
-TD.setting1 {
-	BORDER-RIGHT: #dddddd 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: medium none; PADDING-LEFT: 10px; BACKGROUND: #ffffff; PADDING-BOTTOM: 10px; BORDER-LEFT: #dddddd 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #dddddd 1px solid
-}
-TD.setting2 {
-	BORDER-RIGHT: #dddddd 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: medium none; PADDING-LEFT: 10px; BACKGROUND: url(images/admin_setting.gif) #ffffff repeat-y; PADDING-BOTTOM: 10px; BORDER-LEFT: #dddddd 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #dddddd 1px solid
-}
-TR.background1 {
-	BACKGROUND: #f4f9ff
-}
-TR.background2 {
-	BACKGROUND: #ffffff
-}
-TD.stat0 {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 8px; FONT-SIZE: 8pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 5px; COLOR: #666666; PADDING-TOP: 5px
-}
-TD.stat1 {
-	BORDER-RIGHT: #dddddd 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #dddddd 1px solid; PADDING-LEFT: 8px; FONT-SIZE: 8pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 5px; BORDER-LEFT: medium none; COLOR: #666666; PADDING-TOP: 5px; BORDER-BOTTOM: medium none
-}
-TD.stat2 {
-	PADDING-RIGHT: 5px; BORDER-TOP: #dddddd 1px solid; PADDING-LEFT: 8px; FONT-SIZE: 8pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 5px; COLOR: #666666; PADDING-TOP: 5px
-}
-TD.pagecell {
-	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #ffffff; PADDING-BOTTOM: 10px; BORDER-LEFT: medium none; PADDING-TOP: 7px; BORDER-BOTTOM: #cccccc 1px solid
-}
-TD.vert_tab0 {
-	BORDER-RIGHT: #cccccc 1px solid
-}
-TD.vert_tab {
-	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #ffffff; PADDING-BOTTOM: 5px; BORDER-LEFT: #cccccc 1px solid; PADDING-TOP: 5px; BORDER-BOTTOM: #cccccc 1px solid; HEIGHT: 35px
-}
-TD.form1 {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 9pt; PADDING-BOTTOM: 5px; VERTICAL-ALIGN: top; PADDING-TOP: 7px; TEXT-ALIGN: right
-}
-TD.form2 {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
-}
-TABLE.list {
-	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; WIDTH: 100%; BORDER-BOTTOM: #cccccc 1px solid
-}
-TABLE.stats {
-	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid
-}
-TABLE.menu {
-	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; WIDTH: 170px; BORDER-BOTTOM: medium none
-}
-TABLE.menu2 {
-	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; WIDTH: 170px; BORDER-BOTTOM: medium none
-}
-TABLE.menu2 {
-	MARGIN-TOP: 10px
-}
-DIV.error {
-	FONT-WEIGHT: bold; MARGIN-BOTTOM: 12px; COLOR: #ff0000
-}
-TD.error {
-	PADDING-RIGHT: 7px; PADDING-LEFT: 7px; BACKGROUND: #fff3f3; PADDING-BOTTOM: 5px; COLOR: #ff0000; PADDING-TOP: 5px
-}
-DIV.success {
-	FONT-WEIGHT: bold; MARGIN-BOTTOM: 12px; COLOR: #00cc33
-}
-TD.bannerborder {
-	BORDER-RIGHT: #aaaaaa 1px dashed; PADDING-RIGHT: 10px; BORDER-TOP: #aaaaaa 1px dashed; MARGIN-TOP: 2px; PADDING-LEFT: 10px; BACKGROUND: #ffffff; MARGIN-BOTTOM: 5px; PADDING-BOTTOM: 8px; VERTICAL-ALIGN: middle; BORDER-LEFT: #aaaaaa 1px dashed; PADDING-TOP: 8px; BORDER-BOTTOM: #aaaaaa 1px dashed; HEIGHT: 150px; TEXT-ALIGN: center
-}
-TD.bannerborder2 {
-	
-}
-TD.step {
-	PADDING-RIGHT: 10px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 32pt; PADDING-BOTTOM: 7px; VERTICAL-ALIGN: top; COLOR: #cccccc; PADDING-TOP: 7px; TEXT-ALIGN: center
-}
-TD.plugin {
-	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 8pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 10px; COLOR: #666666; PADDING-TOP: 7px
-}
-TD.plugin_name {
-	FONT-WEIGHT: bold; FONT-SIZE: 12pt
-}
-DIV.box {
-	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #f1f8ff; PADDING-BOTTOM: 10px; BORDER-LEFT: #cccccc 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #cccccc 1px solid
-}
-DIV.center {
-	TEXT-ALIGN: center
-}
-DIV.floatleft {
-	FLOAT: left
-}
-DIV.pages {
-	PADDING-BOTTOM: 5px
-}
-DIV.pages2 {
-	PADDING-TOP: 0px
-}
-H2 {
-	MARGIN-TOP: 0px; FONT-WEIGHT: normal; FONT-SIZE: 16pt; MARGIN-BOTTOM: 2px
-}
-H3 {
-	MARGIN-TOP: 0px; FONT-WEIGHT: normal; FONT-SIZE: 12pt; MARGIN-BOTTOM: 2px
-}
-.text {
-	FONT-SIZE: 9pt; FONT-FAMILY: arial, verdana, serif
-}
-TEXTAREA.template {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; WIDTH: 100%; PADDING-TOP: 8px; FONT-FAMILY: courier, verdana, arial, serif
-}
-TEXTAREA.text {
-	FONT-FAMILY: arial, verdana, serif
-}
-FORM {
-	MARGIN: 0px
-}
-IMG.icon {
-	VERTICAL-ALIGN: middle
-}
-INPUT.checkbox {
-	VERTICAL-ALIGN: middle
-}
-IMG.icon2 {
-	VERTICAL-ALIGN: middle; MARGIN-RIGHT: 5px
-}
-FONT.large {
-	FONT-SIZE: 25pt
-}
-FONT.large_gray {
-	FONT-SIZE: 25pt; COLOR: #555555
-}
-A:link {
-	COLOR: #336699
-}
-A:visited {
-	COLOR: #336699
-}
-A:hover {
-	COLOR: #336699
-}
-A.header:link {
-	COLOR: #ffffff
-}
-A.header:visited {
-	COLOR: #ffffff
-}
-A.header:hover {
-	COLOR: #ffffff
-}
-A.menu:link {
-	COLOR: #336699; TEXT-DECORATION: none
-}
-A.menu:visited {
-	COLOR: #336699; TEXT-DECORATION: none
-}
-A.menu:hover {
-	COLOR: #336699; TEXT-DECORATION: none
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+		Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #111827;
+	background-color: #f3f4f6;
 }
 
-input.button {
-	background: #EEEEEE;
-	padding: 3px;
-	font-size: 9pt;
-	font-family: "Trebuchet MS", verdana, arial, serif;
-	font-weight: bold;
+TD,
+DIV {
+	color: inherit;
+	font-size: 14px;
+}
+
+H2 {
+	margin: 0 0 8px;
+	font-weight: 600;
+	font-size: 20px;
+	color: #111827;
+}
+
+H3 {
+	margin: 0 0 6px;
+	font-weight: 500;
+	font-size: 16px;
+	color: #111827;
+}
+
+.text {
+	font-size: 14px;
+	font-family: inherit;
+}
+
+FORM {
+	margin: 0;
+}
+
+/* ==========================================================================
+   Top Bar / Header
+   ========================================================================== */
+
+DIV.topbar {
+	background-color: #3c85ba;
+	background-image: none;
+	color: #f9fafb;
+	font-family: inherit;
+	padding: 12px 24px;
+	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.4);
+}
+
+.admin-title {
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: #f9fafb;
+	vertical-align: middle;
+}
+
+TD.topbar_right {
+	border-bottom: 0;
+}
+
+TD.topbar_menu {
+	padding: 6px 12px;
+	background: transparent;
+	color: #e5e7eb;
+}
+
+DIV.shadow {
+	height: 1px;
+	background: linear-gradient(to right, rgba(15, 23, 42, 0.2), transparent);
+}
+
+/* ==========================================================================
+   Main Layout (sidebar + content)
+   ========================================================================== */
+
+TD.leftside {
+	padding: 16px 16px 24px;
+	vertical-align: top;
+	background-color: #245a80;
+	width: 260px;
+}
+
+TD.rightside {
+	padding: 24px;
+	vertical-align: top;
+	width: auto;
+	max-width: 1100px;
+	color: #111827;
+	font-family: inherit;
+}
+
+/* Card-style wrapper for content areas where used */
+TD.pagecell,
+TD.setting1,
+TD.setting2,
+TD.stat0,
+TD.stat1,
+TD.stat2 {
+	background-color: #ffffff;
+	border-radius: 8px;
+	border: 1px solid #e5e7eb;
+	padding: 16px 18px;
+}
+
+TD.setting2 {
+	background-image: none;
+}
+
+/* ==========================================================================
+   Sidebar Menu
+   ========================================================================== */
+
+TABLE.menu,
+TABLE.menu2 {
+	width: 220px;
+	border-radius: 10px;
+	border: 1px solid rgba(7, 25, 41, 0.6);
+	background-color: #16354b;
+	overflow: hidden;
+	margin-bottom: 14px;
+}
+
+TD.menu_header {
+	padding: 10px 14px;
+	font-weight: 600;
+	font-size: 12px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	background: linear-gradient(90deg, #16354b, #3c85ba);
+	color: #e5e7eb;
+}
+
+TD.menu A {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 9px 12px;
+	font-size: 13px;
+	color: #e5e7eb;
+	text-decoration: none;
+	border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+	background: transparent;
+	transition: background 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
+}
+
+TD.menu A:hover {
+	background: linear-gradient(90deg, #3c85ba, #5ba1cf);
+	color: #ffffff;
+	padding-left: 16px;
+}
+
+IMG.icon2 {
+	vertical-align: middle;
+	margin-right: 4px;
+	opacity: 0.9;
+}
+
+/* Font Awesome icons in menu */
+TD.menu a.menu i,
+TD.menu A i {
+	margin-right: 8px;
+	font-size: 14px;
+	width: 16px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+/* Font Awesome menu icon in place of legacy image icons */
+TD.menu img.icon2 {
+	display: none;
+}
+
+TD.menu a.menu:hover::before {
+	color: #ffffff;
+}
+
+/* ==========================================================================
+   Tables (lists, stats, generic)
+   ========================================================================== */
+
+TABLE.list,
+TABLE.stats {
+	width: 100%;
+	border-collapse: collapse;
+	border-radius: 10px;
+	overflow: hidden;
+	border: 1px solid #e5e7eb;
+	background-color: #ffffff;
+}
+
+TD.header {
+	padding: 10px 12px;
+	font-weight: 600;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	background-color: #245a80;
+	color: #e5e7eb;
+}
+
+TD.item {
+	padding: 9px 12px;
+	font-size: 13px;
+	color: #111827;
+	border-top: 1px solid #e5e7eb;
+}
+
+TR.background1 {
+	background-color: #f9fafb;
+}
+
+TR.background2 {
+	background-color: #ffffff;
+}
+
+TR.background1:hover,
+TR.background2:hover {
+	background-color: #eff6ff;
+}
+
+TD.stat0,
+TD.stat1,
+TD.stat2 {
+	font-size: 13px;
+	background-color: transparent;
+	border: none;
+}
+
+/* ==========================================================================
+   Forms & Inputs
+   ========================================================================== */
+
+TD.form1 {
+	padding: 8px 6px;
+	font-size: 14px;
+	vertical-align: middle;
+	text-align: right;
+	color: #374151;
+}
+
+TD.form2 {
+	padding: 8px 6px;
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+	font-family: inherit;
+	font-size: 14px;
+	padding: 6px 10px;
+	border-radius: 6px;
+	border: 1px solid #d1d5db;
+	background-color: #ffffff;
+	color: #111827;
+	outline: none;
+	box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+	border-color: #2563eb;
+	box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.2);
+}
+
+input.button,
+input.button_small {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 7px 14px;
+	font-size: 13px;
+	font-family: inherit;
+	font-weight: 600;
+	color: #ffffff;
+	background: linear-gradient(135deg, #3c85ba, #245a80);
+	border-radius: 999px;
+	border: none;
+	cursor: pointer;
+	transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
 }
 
 input.button_small {
-	background: #EEEEEE;
-	font-size: 9pt;
-	font-family: "Trebuchet MS", verdana, arial, serif;
-	font-weight: bold;
+	padding: 5px 12px;
+	font-size: 12px;
 }
 
-#txtHint{width:300px;}
+input.button:hover,
+input.button_small:hover {
+	background: linear-gradient(135deg, #5ba1cf, #3c85ba);
+	box-shadow: 0 8px 16px rgba(60, 133, 186, 0.4);
+}
+
+input.button:active,
+input.button_small:active {
+	transform: translateY(1px);
+	box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+INPUT.checkbox {
+	vertical-align: middle;
+}
+
+TEXTAREA.template,
+TEXTAREA.text {
+	width: 100%;
+	padding: 8px 10px;
+	border-radius: 6px;
+	border: 1px solid #d1d5db;
+}
+
+/* ==========================================================================
+   Utility & Status Styles
+   ========================================================================== */
+
+DIV.error {
+	font-weight: 600;
+	margin-bottom: 12px;
+	color: #b91c1c;
+}
+
+TD.error {
+	padding: 6px 8px;
+	background: #fef2f2;
+	color: #b91c1c;
+	border-radius: 6px;
+}
+
+DIV.success {
+	font-weight: 600;
+	margin-bottom: 12px;
+	color: #15803d;
+}
+
+TD.bannerborder {
+	border-radius: 10px;
+	border: 1px dashed #d1d5db;
+	padding: 12px 14px;
+	background-color: #ffffff;
+	vertical-align: middle;
+	text-align: center;
+	height: auto;
+}
+
+DIV.box {
+	border-radius: 8px;
+	border: 1px solid #e5e7eb;
+	padding: 14px 16px;
+	background-color: #ffffff;
+}
+
+DIV.center {
+	text-align: center;
+}
+
+DIV.floatleft {
+	float: left;
+}
+
+DIV.pages,
+DIV.pages2 {
+	padding: 4px 0;
+	font-size: 13px;
+	color: #6b7280;
+}
+
+TD.step {
+	padding: 6px 10px;
+	font-weight: 700;
+	font-size: 24px;
+	vertical-align: top;
+	color: #9ca3af;
+	text-align: center;
+}
+
+TD.plugin {
+	padding: 10px;
+	font-size: 13px;
+	background: #ffffff;
+	color: #4b5563;
+}
+
+TD.plugin_name {
+	font-weight: 600;
+	font-size: 14px;
+}
+
+FONT.large {
+	font-size: 24px;
+}
+
+FONT.large_gray {
+	font-size: 24px;
+	color: #4b5563;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+A:link,
+A:visited {
+	color: #2563eb;
+}
+
+A:hover {
+	color: #1d4ed8;
+}
+
+A.header:link,
+A.header:visited,
+A.header:hover {
+	color: #e5e7eb;
+}
+
+A.menu:link,
+A.menu:visited,
+A.menu:hover {
+	text-decoration: none;
+}
+
+/* Misc */
+
+#txtHint {
+	width: 300px;
+}
