@@ -49,8 +49,6 @@ $stmt->bind_param("is", $max_notify_attempts, $cutoff);
 $stmt->execute();
 $result = $stmt->get_result();
 
-var_dump($result->fetch_all(MYSQLI_ASSOC));
-exit();
 
 // $adminEmail = "webdeveloper@nexgeno.in";  // Admin notification email
 // $adminEmail = "webdeveloper@nexgeno.in";  // Admin notification email
