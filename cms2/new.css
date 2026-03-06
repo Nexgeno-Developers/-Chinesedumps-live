@@ -1,17 +1,16 @@
 /* ==========================================================================
+   Modern Admin Panel UI - Inspired by Modernize Tailwind Admin
    Global Layout & Typography
-   Modernized admin UI – structure (tables, PHP) kept intact.
    ========================================================================== */
 
 BODY {
 	margin: 0;
 	padding: 0;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-		Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 	font-size: 14px;
-	line-height: 1.5;
-	color: #111827;
-	background-color: #f3f4f6;
+	line-height: 1.6;
+	color: #1e293b;
+	background-color: #f1f5f9;
 }
 
 TD,
@@ -21,17 +20,18 @@ DIV {
 }
 
 H2 {
-	margin: 0 0 8px;
+	margin: 0 0 12px;
 	font-weight: 600;
-	font-size: 20px;
-	color: #111827;
+	font-size: 24px;
+	color: #0f172a;
+	letter-spacing: -0.02em;
 }
 
 H3 {
-	margin: 0 0 6px;
-	font-weight: 500;
-	font-size: 16px;
-	color: #111827;
+	margin: 0 0 8px;
+	font-weight: 600;
+	font-size: 18px;
+	color: #1e293b;
 }
 
 .text {
@@ -44,24 +44,26 @@ FORM {
 }
 
 /* ==========================================================================
-   Top Bar / Header
+   Top Bar / Header - Modern Design
    ========================================================================== */
 
 DIV.topbar {
-	background-color: #3c85ba;
+	background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
 	background-image: none;
-	color: #f9fafb;
+	color: #ffffff;
 	font-family: inherit;
-	padding: 12px 24px;
-	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.4);
+	padding: 16px 32px;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
 }
 
 .admin-title {
-	font-size: 18px;
-	font-weight: 600;
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
-	color: #f9fafb;
+	font-size: 20px;
+	font-weight: 700;
+	letter-spacing: -0.01em;
+	color: #ffffff;
 	vertical-align: middle;
 }
 
@@ -81,26 +83,34 @@ DIV.shadow {
 }
 
 /* ==========================================================================
-   Main Layout (sidebar + content)
+   Main Layout - Modern Sidebar + Content
    ========================================================================== */
 
 TD.leftside {
-	padding: 16px 16px 24px;
+	padding: 0;
 	vertical-align: top;
-	background-color: #245a80;
-	width: 260px;
+	background-color: #1e293b;
+	width: 280px;
+	min-height: calc(100vh - 60px);
+	position: sticky;
+	top: 60px;
+	height: calc(100vh - 60px);
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 TD.rightside {
-	padding: 24px;
+	padding: 32px;
 	vertical-align: top;
 	width: auto;
-	max-width: 1100px;
-	color: #111827;
+	max-width: 1400px;
+	color: #1e293b;
 	font-family: inherit;
+	background-color: #f1f5f9;
+	min-height: calc(100vh - 60px);
 }
 
-/* Card-style wrapper for content areas where used */
+/* Card-style wrapper for content areas */
 TD.pagecell,
 TD.setting1,
 TD.setting2,
@@ -108,9 +118,10 @@ TD.stat0,
 TD.stat1,
 TD.stat2 {
 	background-color: #ffffff;
-	border-radius: 8px;
-	border: 1px solid #e5e7eb;
-	padding: 16px 18px;
+	border-radius: 12px;
+	border: 1px solid #e2e8f0;
+	padding: 24px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 TD.setting2 {
@@ -118,162 +129,202 @@ TD.setting2 {
 }
 
 /* ==========================================================================
-   Sidebar Menu
+   Modern Sidebar Menu Design
    ========================================================================== */
 
-TABLE.menu,
-TABLE.menu2 {
-	width: 220px;
-	border-radius: 10px;
-	border: 1px solid rgba(7, 25, 41, 0.6);
-	background-color: #16354b;
-	overflow: hidden;
-	margin-bottom: 14px;
+TD.leftside TABLE.menu,
+TD.leftside TABLE.menu2 {
+	width: 100%;
+	border-radius: 0;
+	border: none;
+	background-color: transparent;
+	overflow: visible;
+	margin-bottom: 0;
 }
 
 TD.menu_header {
-	padding: 10px 14px;
+	padding: 16px 20px 12px;
 	font-weight: 600;
-	font-size: 12px;
-	letter-spacing: 0.08em;
+	font-size: 11px;
+	letter-spacing: 0.1em;
 	text-transform: uppercase;
-	background: linear-gradient(90deg, #16354b, #3c85ba);
-	color: #e5e7eb;
+	background: transparent;
+	color: #94a3b8;
+	border-bottom: none;
+}
+
+TD.menu_header:first-child {
+	padding-top: 24px;
+}
+
+TD.menu {
+	padding: 0;
+	border-bottom: none;
 }
 
 TD.menu A {
 	display: flex;
 	align-items: center;
-	gap: 8px;
-	padding: 9px 12px;
-	font-size: 13px;
-	color: #e5e7eb;
+	gap: 12px;
+	padding: 12px 20px;
+	font-size: 14px;
+	color: #cbd5e1;
 	text-decoration: none;
-	border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+	border-bottom: none;
 	background: transparent;
-	transition: background 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
+	transition: all 0.2s ease;
+	border-left: 3px solid transparent;
+	position: relative;
 }
 
 TD.menu A:hover {
-	background: linear-gradient(90deg, #3c85ba, #5ba1cf);
+	background-color: rgba(60, 133, 186, 0.1);
 	color: #ffffff;
-	padding-left: 16px;
+	padding-left: 24px;
+	border-left-color: #3c85ba;
 }
 
-IMG.icon2 {
-	vertical-align: middle;
-	margin-right: 4px;
-	opacity: 0.9;
+/* Active menu item styling */
+TD.menu A.active,
+TD.menu A.menu.active {
+	background: linear-gradient(90deg, rgba(60, 133, 186, 0.15) 0%, rgba(60, 133, 186, 0.05) 100%);
+	color: #ffffff;
+	border-left-color: #3c85ba;
+	font-weight: 600;
+	padding-left: 24px;
+}
+
+TD.menu A.active i,
+TD.menu A.menu.active i {
+	color: #60a5fa;
 }
 
 /* Font Awesome icons in menu */
 TD.menu a.menu i,
 TD.menu A i {
-	margin-right: 8px;
-	font-size: 14px;
-	width: 16px;
+	margin-right: 0;
+	font-size: 16px;
+	width: 20px;
 	text-align: center;
 	vertical-align: middle;
+	color: #94a3b8;
+	transition: color 0.2s ease;
 }
 
-/* Font Awesome menu icon in place of legacy image icons */
-TD.menu img.icon2 {
+TD.menu A:hover i,
+TD.menu A.active i {
+	color: #60a5fa;
+}
+
+IMG.icon2 {
 	display: none;
 }
 
-TD.menu a.menu:hover::before {
-	color: #ffffff;
+/* Hide separator images */
+TD.leftside IMG[src*="admin_menu_bar"] {
+	display: none;
 }
 
 /* ==========================================================================
-   Tables (lists, stats, generic)
+   Tables - Modern Design
    ========================================================================== */
 
 TABLE.list,
 TABLE.stats {
 	width: 100%;
-	border-collapse: collapse;
-	border-radius: 10px;
+	border-collapse: separate;
+	border-spacing: 0;
+	border-radius: 12px;
 	overflow: hidden;
-	border: 1px solid #e5e7eb;
+	border: 1px solid #e2e8f0;
 	background-color: #ffffff;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 TD.header {
-	padding: 10px 12px;
+	padding: 16px 20px;
 	font-weight: 600;
 	font-size: 12px;
 	text-transform: uppercase;
-	letter-spacing: 0.06em;
-	background-color: #245a80;
-	color: #e5e7eb;
+	letter-spacing: 0.05em;
+	background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
+	color: #ffffff;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 TD.item {
-	padding: 9px 12px;
-	font-size: 13px;
-	color: #111827;
-	border-top: 1px solid #e5e7eb;
+	padding: 16px 20px;
+	font-size: 14px;
+	color: #475569;
+	border-top: 1px solid #f1f5f9;
 }
 
 TR.background1 {
-	background-color: #f9fafb;
+	background-color: #ffffff;
 }
 
 TR.background2 {
-	background-color: #ffffff;
+	background-color: #f8fafc;
 }
 
 TR.background1:hover,
 TR.background2:hover {
-	background-color: #eff6ff;
+	background-color: #f1f5f9;
 }
 
 TD.stat0,
 TD.stat1,
 TD.stat2 {
-	font-size: 13px;
+	font-size: 14px;
 	background-color: transparent;
 	border: none;
+	padding: 12px;
 }
 
 /* ==========================================================================
-   Forms & Inputs
+   Forms & Inputs - Modern Design
    ========================================================================== */
 
 TD.form1 {
-	padding: 8px 6px;
+	padding: 12px;
 	font-size: 14px;
 	vertical-align: middle;
 	text-align: right;
-	color: #374151;
+	color: #475569;
+	font-weight: 500;
 }
 
 TD.form2 {
-	padding: 8px 6px;
+	padding: 12px;
 }
 
 input[type="text"],
 input[type="password"],
+input[type="email"],
+input[type="number"],
 select,
 textarea {
 	font-family: inherit;
 	font-size: 14px;
-	padding: 6px 10px;
-	border-radius: 6px;
-	border: 1px solid #d1d5db;
+	padding: 10px 14px;
+	border-radius: 8px;
+	border: 1px solid #cbd5e1;
 	background-color: #ffffff;
-	color: #111827;
+	color: #1e293b;
 	outline: none;
 	box-sizing: border-box;
+	transition: all 0.2s ease;
+	width: 100%;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
 select:focus,
 textarea:focus {
-	border-color: #2563eb;
-	box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.2);
+	border-color: #3c85ba;
+	box-shadow: 0 0 0 3px rgba(60, 133, 186, 0.1);
 }
 
 input.button,
@@ -281,45 +332,52 @@ input.button_small {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	padding: 7px 14px;
-	font-size: 13px;
+	padding: 10px 20px;
+	font-size: 14px;
 	font-family: inherit;
 	font-weight: 600;
 	color: #ffffff;
-	background: linear-gradient(135deg, #3c85ba, #245a80);
-	border-radius: 999px;
+	background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
+	border-radius: 8px;
 	border: none;
 	cursor: pointer;
-	transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 4px rgba(60, 133, 186, 0.2);
 }
 
 input.button_small {
-	padding: 5px 12px;
-	font-size: 12px;
+	padding: 8px 16px;
+	font-size: 13px;
 }
 
 input.button:hover,
 input.button_small:hover {
-	background: linear-gradient(135deg, #5ba1cf, #3c85ba);
-	box-shadow: 0 8px 16px rgba(60, 133, 186, 0.4);
+	background: linear-gradient(135deg, #2d6a9a 0%, #1e4a6e 100%);
+	box-shadow: 0 4px 8px rgba(60, 133, 186, 0.3);
+	transform: translateY(-1px);
 }
 
 input.button:active,
 input.button_small:active {
-	transform: translateY(1px);
-	box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+	transform: translateY(0);
+	box-shadow: 0 2px 4px rgba(60, 133, 186, 0.2);
 }
 
 INPUT.checkbox {
 	vertical-align: middle;
+	width: 18px;
+	height: 18px;
+	cursor: pointer;
 }
 
 TEXTAREA.template,
 TEXTAREA.text {
 	width: 100%;
-	padding: 8px 10px;
-	border-radius: 6px;
-	border: 1px solid #d1d5db;
+	padding: 12px 14px;
+	border-radius: 8px;
+	border: 1px solid #cbd5e1;
+	font-family: inherit;
+	resize: vertical;
 }
 
 /* ==========================================================================
@@ -328,27 +386,36 @@ TEXTAREA.text {
 
 DIV.error {
 	font-weight: 600;
-	margin-bottom: 12px;
-	color: #b91c1c;
+	margin-bottom: 16px;
+	color: #dc2626;
+	padding: 12px 16px;
+	background-color: #fef2f2;
+	border-radius: 8px;
+	border-left: 4px solid #dc2626;
 }
 
 TD.error {
-	padding: 6px 8px;
+	padding: 12px 16px;
 	background: #fef2f2;
-	color: #b91c1c;
-	border-radius: 6px;
+	color: #dc2626;
+	border-radius: 8px;
+	border-left: 4px solid #dc2626;
 }
 
 DIV.success {
 	font-weight: 600;
-	margin-bottom: 12px;
-	color: #15803d;
+	margin-bottom: 16px;
+	color: #16a34a;
+	padding: 12px 16px;
+	background-color: #f0fdf4;
+	border-radius: 8px;
+	border-left: 4px solid #16a34a;
 }
 
 TD.bannerborder {
-	border-radius: 10px;
-	border: 1px dashed #d1d5db;
-	padding: 12px 14px;
+	border-radius: 12px;
+	border: 2px dashed #cbd5e1;
+	padding: 24px;
 	background-color: #ffffff;
 	vertical-align: middle;
 	text-align: center;
@@ -356,10 +423,11 @@ TD.bannerborder {
 }
 
 DIV.box {
-	border-radius: 8px;
-	border: 1px solid #e5e7eb;
-	padding: 14px 16px;
+	border-radius: 12px;
+	border: 1px solid #e2e8f0;
+	padding: 24px;
 	background-color: #ffffff;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 DIV.center {
@@ -372,39 +440,42 @@ DIV.floatleft {
 
 DIV.pages,
 DIV.pages2 {
-	padding: 4px 0;
+	padding: 8px 0;
 	font-size: 13px;
-	color: #6b7280;
+	color: #64748b;
 }
 
 TD.step {
-	padding: 6px 10px;
+	padding: 8px 12px;
 	font-weight: 700;
-	font-size: 24px;
+	font-size: 28px;
 	vertical-align: top;
-	color: #9ca3af;
+	color: #cbd5e1;
 	text-align: center;
 }
 
 TD.plugin {
-	padding: 10px;
-	font-size: 13px;
+	padding: 16px;
+	font-size: 14px;
 	background: #ffffff;
-	color: #4b5563;
+	color: #475569;
 }
 
 TD.plugin_name {
 	font-weight: 600;
-	font-size: 14px;
+	font-size: 16px;
+	color: #0f172a;
 }
 
 FONT.large {
-	font-size: 24px;
+	font-size: 28px;
+	font-weight: 700;
 }
 
 FONT.large_gray {
-	font-size: 24px;
-	color: #4b5563;
+	font-size: 28px;
+	color: #64748b;
+	font-weight: 700;
 }
 
 /* ==========================================================================
@@ -413,23 +484,62 @@ FONT.large_gray {
 
 A:link,
 A:visited {
-	color: #2563eb;
+	color: #3c85ba;
+	text-decoration: none;
+	transition: color 0.2s ease;
 }
 
 A:hover {
-	color: #1d4ed8;
+	color: #2d6a9a;
+	text-decoration: underline;
 }
 
 A.header:link,
 A.header:visited,
 A.header:hover {
-	color: #e5e7eb;
+	color: #ffffff;
+	text-decoration: none;
 }
 
 A.menu:link,
 A.menu:visited,
 A.menu:hover {
 	text-decoration: none;
+}
+
+/* ==========================================================================
+   Scrollbar Styling for Sidebar
+   ========================================================================== */
+
+TD.leftside::-webkit-scrollbar {
+	width: 6px;
+}
+
+TD.leftside::-webkit-scrollbar-track {
+	background: #1e293b;
+}
+
+TD.leftside::-webkit-scrollbar-thumb {
+	background: #475569;
+	border-radius: 3px;
+}
+
+TD.leftside::-webkit-scrollbar-thumb:hover {
+	background: #64748b;
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+	TD.leftside {
+		width: 240px;
+	}
+
+	TD.rightside {
+		padding: 24px;
+	}
 }
 
 /* Misc */

@@ -70,5 +70,27 @@ function get_session_data() {
 			return $ccAdminData[0];
 		}
 
+// Function to check if current page matches menu link
+function is_active_page($page_url) {
+	$current_page = basename($_SERVER['PHP_SELF']);
+	$menu_page = basename($page_url);
+	
+	// Handle query strings
+	if (strpos($page_url, '?') !== false) {
+		$menu_page = basename(parse_url($page_url, PHP_URL_PATH));
+		$query_string = parse_url($page_url, PHP_URL_QUERY);
+		if ($query_string) {
+			parse_str($query_string, $query_params);
+			foreach ($query_params as $key => $value) {
+				if (isset($_GET[$key]) && $_GET[$key] == $value) {
+					return ($current_page == $menu_page);
+				}
+			}
+		}
+	}
+	
+	return ($current_page == $menu_page);
+}
+
 ///cheeta
 ?>

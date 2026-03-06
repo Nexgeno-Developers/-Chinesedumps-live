@@ -1,5 +1,27 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 
+<?php
+// Get current page for active state
+$current_page = basename($_SERVER['PHP_SELF']);
+function is_active($page_url) {
+	global $current_page;
+	$menu_page = basename($page_url);
+	if (strpos($page_url, '?') !== false) {
+		$menu_page = basename(parse_url($page_url, PHP_URL_PATH));
+		$query_string = parse_url($page_url, PHP_URL_QUERY);
+		if ($query_string && isset($_GET)) {
+			parse_str($query_string, $query_params);
+			foreach ($query_params as $key => $value) {
+				if (isset($_GET[$key]) && $_GET[$key] == $value) {
+					return ($current_page == $menu_page) ? ' active' : '';
+				}
+			}
+		}
+	}
+	return ($current_page == $menu_page) ? ' active' : '';
+}
+?>
+
 <TABLE width="250" cellPadding=0 cellSpacing=0 class=menu>
 
         <TBODY>
@@ -16,7 +38,7 @@
 
         <tr>
 
-	      <td class="menu"><a class="menu" href="global.php"><i class="fa-solid fa-gear"></i> Configuration</a></td>
+	      <td class="menu"><a class="menu<?=is_active('global.php')?>" href="global.php"><i class="fa-solid fa-gear"></i> Configuration</a></td>
 
         </tr>
 
@@ -24,7 +46,7 @@
 
           <TD class=menu><A class=menu 
 
-            href="sum.php"><i class="fa-solid fa-chart-line"></i> Summary</A></TD>
+            href="sum.php" class="menu<?=is_active('sum.php')?>"><i class="fa-solid fa-chart-line"></i> Summary</A></TD>
 
         </TR>
 
@@ -34,7 +56,7 @@
 
           <TD class=menu><A class=menu 
 
-            href="password.php"><i class="fa-solid fa-key"></i> Change Password </A></TD>
+            href="password.php" class="menu<?=is_active('password.php')?>"><i class="fa-solid fa-key"></i> Change Password </A></TD>
 
         </TR>
 
@@ -46,7 +68,7 @@
 
           <TD class=menu><A class=menu 
 
-            href="copyright.php"><i class="fa-solid fa-copyright"></i> Website Copyright</A></TD>
+            href="copyright.php" class="menu<?=is_active('copyright.php')?>"><i class="fa-solid fa-copyright"></i> Website Copyright</A></TD>
 
         </TR>
 
@@ -54,7 +76,7 @@
 
           <TD class=menu><A class=menu 
 
-            href="contactus.php"><i class="fa-solid fa-envelope"></i> Change Email Address</A></TD>
+            href="contactus.php" class="menu<?=is_active('contactus.php')?>"><i class="fa-solid fa-envelope"></i> Change Email Address</A></TD>
 
         </TR>
 
@@ -62,7 +84,7 @@
 
           <TD class=menu><A class=menu 
 
-            href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</A></TD>
+            href="logout.php" class="menu<?=is_active('logout.php')?>"><i class="fa-solid fa-right-from-bracket"></i> Logout</A></TD>
 
         </TR></TBODY></TABLE>
 
@@ -86,7 +108,7 @@
 
           <TD class=menu><A class=menu 
 
-            href="stats.php"><i class="fa-solid fa-chart-bar"></i> Quick Stats</A></TD>
+            href="stats.php" class="menu<?=is_active('stats.php')?>"><i class="fa-solid fa-chart-bar"></i> Quick Stats</A></TD>
 
         </TR>
 
@@ -94,7 +116,7 @@
 
           <TD class=menu><A class=menu 
 
-            href="userstats.php?ref=all"><i class="fa-solid fa-users"></i> All Registered Users</A></TD>
+            href="userstats.php?ref=all" class="menu<?=is_active('userstats.php') && isset($_GET['ref']) && $_GET['ref'] == 'all' ? ' active' : ''?>"><i class="fa-solid fa-users"></i> All Registered Users</A></TD>
 
         </TR>
 
@@ -132,7 +154,7 @@
 
           <TD class=menu><A class=menu 
 
-            href="bannermanage.php"><i class="fa-solid fa-images"></i> Banners Management</A></TD>
+            href="bannermanage.php" class="menu<?=is_active('bannermanage.php')?>"><i class="fa-solid fa-images"></i> Banners Management</A></TD>
 
         </TR>
 
@@ -140,7 +162,7 @@
 
           <TD class=menu><A class=menu 
 
-            href="addslider.php"><i class="fa-solid fa-plus-circle"></i> Add Banner</A></TD>
+            href="addslider.php" class="menu<?=is_active('addslider.php')?>"><i class="fa-solid fa-plus-circle"></i> Add Banner</A></TD>
 
         </TR>
 
@@ -185,7 +207,7 @@
 
           <TD class=menu><A class=menu 
 
-            href="galley_management.php"><i class="fa-solid fa-photo-film"></i> Gallery Management</A></TD>
+            href="galley_management.php" class="menu<?=is_active('galley_management.php')?>"><i class="fa-solid fa-photo-film"></i> Gallery Management</A></TD>
 
         </TR>
 
@@ -193,7 +215,7 @@
 
           <TD class=menu><A class=menu 
 
-            href="add_gallery.php"><i class="fa-solid fa-plus"></i> Add Gallery</A></TD>
+            href="add_gallery.php" class="menu<?=is_active('add_gallery.php')?>"><i class="fa-solid fa-plus"></i> Add Gallery</A></TD>
 
         </TR>
 
@@ -225,37 +247,37 @@
 
         <TR>
 
-          <TD class=menu><A class=menu href="bulk_update.php?action=all_date"><i class="fa-solid fa-calendar-days"></i> Update Date of all Exams</A></TD>
+          <TD class=menu><A class="menu<?=is_active('bulk_update.php') && isset($_GET['action']) && $_GET['action'] == 'all_date' ? ' active' : ''?>" href="bulk_update.php?action=all_date"><i class="fa-solid fa-calendar-days"></i> Update Date of all Exams</A></TD>
 
         </TR>
 
         <TR>
 
-          <TD class=menu><A class=menu href="bulk_update.php?action=bundle_date"><i class="fa-solid fa-calendar-days"></i> Update Date of Exams in Vendor</A></TD>
+          <TD class=menu><A class="menu<?=is_active('bulk_update.php') && isset($_GET['action']) && $_GET['action'] == 'bundle_date' ? ' active' : ''?>" href="bulk_update.php?action=bundle_date"><i class="fa-solid fa-calendar-days"></i> Update Date of Exams in Vendor</A></TD>
 
         </TR>
 
         <TR>
 
-          <TD class=menu><A class=menu href="bulk_update.php?action=cert_date"><i class="fa-solid fa-calendar-days"></i> Update Date of Exams in Certificates</A></TD>
+          <TD class=menu><A class="menu<?=is_active('bulk_update.php') && isset($_GET['action']) && $_GET['action'] == 'cert_date' ? ' active' : ''?>" href="bulk_update.php?action=cert_date"><i class="fa-solid fa-calendar-days"></i> Update Date of Exams in Certificates</A></TD>
 
         </TR>
 
         <TR>
 
-          <TD class=menu><A class=menu href="bulk_update.php?action=all_price"><i class="fa-solid fa-dollar-sign"></i> Update Price of all Exams</A></TD>
+          <TD class=menu><A class="menu<?=is_active('bulk_update.php') && isset($_GET['action']) && $_GET['action'] == 'all_price' ? ' active' : ''?>" href="bulk_update.php?action=all_price"><i class="fa-solid fa-dollar-sign"></i> Update Price of all Exams</A></TD>
 
         </TR>
 
         <TR>
 
-          <TD class=menu><A class=menu href="bulk_update.php?action=bundle_price"><i class="fa-solid fa-dollar-sign"></i> Update Price of Exams in Vendor</A></TD>
+          <TD class=menu><A class="menu<?=is_active('bulk_update.php') && isset($_GET['action']) && $_GET['action'] == 'bundle_price' ? ' active' : ''?>" href="bulk_update.php?action=bundle_price"><i class="fa-solid fa-dollar-sign"></i> Update Price of Exams in Vendor</A></TD>
 
         </TR>
 
         <TR>
 
-          <TD class=menu><A class=menu href="bulk_update.php?action=cert_price"><i class="fa-solid fa-dollar-sign"></i> Update Price of Exams in Certificates</A></TD>
+          <TD class=menu><A class="menu<?=is_active('bulk_update.php') && isset($_GET['action']) && $_GET['action'] == 'cert_price' ? ' active' : ''?>" href="bulk_update.php?action=cert_price"><i class="fa-solid fa-dollar-sign"></i> Update Price of Exams in Certificates</A></TD>
 
         </TR>
 
@@ -279,49 +301,49 @@
 
 		  <tr>
 
-	      <td class="menu"><a class="menu" href="addvendors.php"><i class="fa-solid fa-plus"></i> Add Vendors</a></td>
+	      <td class="menu"><a class="menu<?=is_active('addvendors.php')?>" href="addvendors.php"><i class="fa-solid fa-plus"></i> Add Vendors</a></td>
 
         </tr>
 
 		  <tr>
 
-	      <td class="menu"><a class="menu" href="vendormanage.php"><i class="fa-solid fa-store"></i> Vendors Management</a></td>
+	      <td class="menu"><a class="menu<?=is_active('vendormanage.php')?>" href="vendormanage.php"><i class="fa-solid fa-store"></i> Vendors Management</a></td>
 
         </tr>
 
          <tr>
 
-	      <td class="menu"><a class="menu" href="addcertif.php"><i class="fa-solid fa-certificate"></i> Add Certification</a></td>
+	      <td class="menu"><a class="menu<?=is_active('addcertif.php')?>" href="addcertif.php"><i class="fa-solid fa-certificate"></i> Add Certification</a></td>
 
         </tr>
 
 		  <tr>
 
-	      <td class="menu"><a class="menu" href="certifmanage.php"><i class="fa-solid fa-certificate"></i> Certifications Management</a></td>
+	      <td class="menu"><a class="menu<?=is_active('certifmanage.php')?>" href="certifmanage.php"><i class="fa-solid fa-certificate"></i> Certifications Management</a></td>
 
         </tr>
 
         <tr>
 
-	      <td class="menu"><a class="menu" href="addexam.php"><i class="fa-solid fa-plus"></i> Add Exam</a></td>
+	      <td class="menu"><a class="menu<?=is_active('addexam.php')?>" href="addexam.php"><i class="fa-solid fa-plus"></i> Add Exam</a></td>
 
         </tr>
 
 		  <tr>
 
-	      <td class="menu"><a class="menu" href="exammanage.php"><i class="fa-solid fa-clipboard-list"></i> Exams Management</a></td>
+	      <td class="menu"><a class="menu<?=is_active('exammanage.php')?>" href="exammanage.php"><i class="fa-solid fa-clipboard-list"></i> Exams Management</a></td>
 
         </tr>
 
 			  <tr>
 
-	      <td class="menu"><a class="menu" href="addfiles.php"><i class="fa-solid fa-layer-group"></i> Add Multi Exams</a></td>
+	      <td class="menu"><a class="menu<?=is_active('addfiles.php')?>" href="addfiles.php"><i class="fa-solid fa-layer-group"></i> Add Multi Exams</a></td>
 
         </tr>
 
 		  <tr>
 
-	      <td class="menu"><a class="menu" href="updateDate.php"><i class="fa-solid fa-calendar"></i> Update Exam Date</a></td>
+	      <td class="menu"><a class="menu<?=is_active('updateDate.php')?>" href="updateDate.php"><i class="fa-solid fa-calendar"></i> Update Exam Date</a></td>
 
         </tr>
 
@@ -351,7 +373,7 @@
 
               <td class="menu"><a class="menu" 
 
-            href="view_demoDownload.php"><i class="fa-solid fa-envelope-open"></i> View Demo Emails </a></td>
+            href="view_demoDownload.php" class="menu<?=is_active('view_demoDownload.php')?>"><i class="fa-solid fa-envelope-open"></i> View Demo Emails </a></td>
 
             </tr>
 
@@ -359,7 +381,7 @@
 
               <td class="menu"><a class="menu" 
 
-            href="exam_request.php"><i class="fa-solid fa-envelope"></i> View Exam Request Email </a></td>
+            href="exam_request.php" class="menu<?=is_active('exam_request.php')?>"><i class="fa-solid fa-envelope"></i> View Exam Request Email </a></td>
 
             </tr>
 
@@ -367,7 +389,7 @@
 
               <td class="menu"><a class="menu" 
 
-            href="managefull.php"><i class="fa-solid fa-download"></i> Full Download Management</a></td>
+            href="managefull.php" class="menu<?=is_active('managefull.php')?>"><i class="fa-solid fa-download"></i> Full Download Management</a></td>
 
             </tr>
 
@@ -397,7 +419,7 @@
 
 	      <td class="menu"><a class="menu" 
 
-            href="masterorder.php"><i class="fa-solid fa-shopping-bag"></i> Final Orders</a></td>
+            href="masterorder.php" class="menu<?=is_active('masterorder.php')?>"><i class="fa-solid fa-shopping-bag"></i> Final Orders</a></td>
 
         </tr>
 
@@ -405,7 +427,7 @@
 
 	      <td class="menu"><a class="menu" 
 
-            href="odrproces.php"><i class="fa-solid fa-list"></i> List Cart</a></td>
+            href="odrproces.php" class="menu<?=is_active('odrproces.php')?>"><i class="fa-solid fa-list"></i> List Cart</a></td>
 
         </tr>
 
@@ -413,7 +435,7 @@
 
 	      <td class="menu"><a class="menu" 
 
-            href="reodrproces.php"><i class="fa-solid fa-rotate-right"></i> Re-Order Cart</a></td>
+            href="reodrproces.php" class="menu<?=is_active('reodrproces.php')?>"><i class="fa-solid fa-rotate-right"></i> Re-Order Cart</a></td>
 
         </tr>
 
@@ -445,7 +467,7 @@
 
 			<td class="menu"><a class="menu" 
 
-					href="managecoupon.php"><i class="fa-solid fa-ticket"></i> Manage Coupons</a></td>
+					href="managecoupon.php" class="menu<?=is_active('managecoupon.php')?>"><i class="fa-solid fa-ticket"></i> Manage Coupons</a></td>
 
 			</tr>
 
@@ -453,7 +475,7 @@
 
 			<td class="menu"><a class="menu" 
 
-					href="addcoupon.php"><i class="fa-solid fa-plus"></i> Add new Coupon</a></td>
+					href="addcoupon.php" class="menu<?=is_active('addcoupon.php')?>"><i class="fa-solid fa-plus"></i> Add new Coupon</a></td>
 
 			</tr>	
 
@@ -482,7 +504,7 @@
 
 					<td class="menu"><a class="menu" 
 
-					href="courses_status_manage.php"><i class="fa-solid fa-book"></i> Manage Course</a></td>
+					href="courses_status_manage.php" class="menu<?=is_active('courses_status_manage.php')?>"><i class="fa-solid fa-book"></i> Manage Course</a></td>
 
 			</tr>
 
@@ -490,7 +512,7 @@
 
 			<td class="menu"><a class="menu" 
 
-					href="course_add.php"><i class="fa-solid fa-plus"></i> Add new Course</a></td>
+					href="course_add.php" class="menu<?=is_active('course_add.php')?>"><i class="fa-solid fa-plus"></i> Add new Course</a></td>
 
 			</tr>	
 
@@ -584,7 +606,7 @@
 
 			  <td class="menu">
 
-			  <a class="menu" href="editemails.php"><i class="fa-solid fa-envelope"></i> Edit Emails</a>			  </td>
+			  <a class="menu<?=is_active('editemails.php')?>" href="editemails.php"><i class="fa-solid fa-envelope"></i> Edit Emails</a>			  </td>
 
 		  </tr>
 
@@ -594,19 +616,19 @@
 
         <tr>
 
-	      <td class="menu"><a class="menu" href="vendorgloble.php?pid=1"><i class="fa-solid fa-globe"></i> Vendor Global Content</a></td>
+	      <td class="menu"><a class="menu<?=is_active('vendorgloble.php') && isset($_GET['pid']) && $_GET['pid'] == '1' ? ' active' : ''?>" href="vendorgloble.php?pid=1"><i class="fa-solid fa-globe"></i> Vendor Global Content</a></td>
 
         </tr>
 
         <tr>
 
-	      <td class="menu"><a class="menu" href="vendorgloble.php?pid=2"><i class="fa-solid fa-globe"></i> Certification Global Content</a></td>
+	      <td class="menu"><a class="menu<?=is_active('vendorgloble.php') && isset($_GET['pid']) && $_GET['pid'] == '2' ? ' active' : ''?>" href="vendorgloble.php?pid=2"><i class="fa-solid fa-globe"></i> Certification Global Content</a></td>
 
         </tr>
 
         <tr>
 
-	      <td class="menu"><a class="menu" href="vendorgloble.php?pid=3"><i class="fa-solid fa-globe"></i> Exam Global Content</a></td>
+	      <td class="menu"><a class="menu<?=is_active('vendorgloble.php') && isset($_GET['pid']) && $_GET['pid'] == '3' ? ' active' : ''?>" href="vendorgloble.php?pid=3"><i class="fa-solid fa-globe"></i> Exam Global Content</a></td>
 
         </tr>
 
@@ -672,7 +694,7 @@
 
 	      <td class="menu"><a class="menu" 
 
-            href="adduser.php"><i class="fa-solid fa-user-plus"></i> Add <span class="menu_header">User</span></a></td>
+            href="adduser.php" class="menu<?=is_active('adduser.php')?>"><i class="fa-solid fa-user-plus"></i> Add <span class="menu_header">User</span></a></td>
 
         </tr>
 
@@ -680,7 +702,7 @@
 
 	      <td class="menu"><a class="menu" 
 
-            href="manageuser.php"><i class="fa-solid fa-users-gear"></i> User<span class="menu_header"> Management</span></a></td>
+            href="manageuser.php" class="menu<?=is_active('manageuser.php')?>"><i class="fa-solid fa-users-gear"></i> User<span class="menu_header"> Management</span></a></td>
 
         </tr>
 
