@@ -36,7 +36,7 @@ global $base_path;
 // Only select carts with a valid user (UserID != 0) and with notify_attempt < max,
 // where the cart Date is older than the cutoff. Group by CartID to process one cart per user.
 // ---------------------------------------------------------------------
-$query = "SELECT CartID, UserID, MIN(created_at) AS cart_date 
+$query = "SELECT CartID, UserID, MIN(created_at) AS cart_date, MIN(notify_attempt) AS notify_attempt
           FROM temp_order 
           WHERE notify_attempt < ? 
             AND STR_TO_DATE(created_at, '%Y-%m-%d %H:%i:%s') < ? 
@@ -255,10 +255,11 @@ function showd_cart($result2) {
 // ---------------------------------------------------------------------
 
 while ($row = $result->fetch_assoc()) {
-    $cartID    = $row['CartID'];
-    // $userID    = 109276;
-    $userID    = $row['UserID'];
-    $cart_date = $row['cart_date'];
+    $cartID        = $row['CartID'];
+    // $userID     = 109276;
+    $userID        = $row['UserID'];
+    $cart_date     = $row['cart_date'];
+    $notifyAttempt = isset($row['notify_attempt']) ? (int)$row['notify_attempt'] : 0;
     
     // Retrieve all items in this cart (ordered in reverse by primary key)
     $query2 = "SELECT * FROM temp_order WHERE UserID = ? AND notify_attempt < ? ORDER BY ID DESC";
@@ -324,6 +325,7 @@ while ($row = $result->fetch_assoc()) {
 
     // --------------------------------------------------
     // Build HTML Email for the Admin
+    // (only on the FIRST notification attempt)
     // --------------------------------------------------
     // $adminMsg = '<p>Hi Admin,</p>
     // <p>An abandoned cart has been detected. Details are as follows:</p>
@@ -334,20 +336,22 @@ while ($row = $result->fetch_assoc()) {
     // ' .
     // $show_cart;
     
-    $adminMsg = '<p>Hi Admin,</p>
-    <p>An abandoned cart has been detected. Details are as follows:</p>
-    <p><strong>Cart Date:</strong> ' . date("F j, Y, g:i a", strtotime($cart_date)) . '<br>
-    <strong>User Name:</strong> ' . htmlspecialchars($fullName) . '<br>
-    <strong>User Email:</strong> ' . $userEmail . '<br>';
-    
-    if (!empty($userPhone)) {
-        $adminMsg .= '<strong>User Phone:</strong> ' . htmlspecialchars($userPhone) . '<br>';
-    }
-    
-    $adminMsg .= '</p><p><strong>Product details:</strong></p>' . $show_cart;
+    if ($notifyAttempt === 0) {
+        $adminMsg = '<p>Hi Admin,</p>
+        <p>An abandoned cart has been detected. Details are as follows:</p>
+        <p><strong>Cart Date:</strong> ' . date("F j, Y, g:i a", strtotime($cart_date)) . '<br>
+        <strong>User Name:</strong> ' . htmlspecialchars($fullName) . '<br>
+        <strong>User Email:</strong> ' . $userEmail . '<br>';
+        
+        if (!empty($userPhone)) {
+            $adminMsg .= '<strong>User Phone:</strong> ' . htmlspecialchars($userPhone) . '<br>';
+        }
+        
+        $adminMsg .= '</p><p><strong>Product details:</strong></p>' . $show_cart;
 
-    sendEmail($adminEmail, "Reminder - Abandoned Cart", $adminMsg, $headers);
-    sendEmail($adminEmail2, "Reminder - Abandoned Cart", $adminMsg, $headers);
+        sendEmail($adminEmail, "Reminder - Abandoned Cart", $adminMsg, $headers);
+    }
+    // sendEmail($adminEmail2, "Reminder - Abandoned Cart", $adminMsg, $headers);
     // @mail($adminEmail, "Reminder – Abandoned Cart", $adminMsg, $headers);
     // @mail($adminEmail2, "Reminder – Abandoned Cart", $adminMsg, $headers);
     
