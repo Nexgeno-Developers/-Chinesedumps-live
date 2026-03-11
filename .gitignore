@@ -19,8 +19,6 @@ uploads/*
 !images
 images/*
 
-cms2/hitcount.txt
-includes/config/config.php
 
 
 1blog
