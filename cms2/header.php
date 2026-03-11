@@ -16,8 +16,7 @@
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
   <td valign="middle">
-    <img src="../images/logo-white.png" alt="ChineseDumps Admin" style="height:38px; margin-right:12px;" />
-    <span class="admin-title">Admin Panel</span>
+    <img src="/images/chinesedumps-logo.png" alt="ChineseDumps Admin" style="height:38px;" />
   </td>
 </tr>
 </table></div>

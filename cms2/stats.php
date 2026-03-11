@@ -489,7 +489,7 @@ return false;
 
 <tr>
 
-<td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
+<td valign="top"><img src="images/admin_icon.png" border="0" alt="Admin Header" /></td>
 
 <td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
 

@@ -36,7 +36,7 @@ $tot_sale	=	$fetcho['tot_sale'];
 <div class="topbar">
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
-<td valign="top"><img src="images/admin_icon.jpg" alt="Admin Header" width="382" height="103" border="0" /></td>
+<td valign="top"><img src="images/admin_icon.png" alt="Admin Header" width="200" height="" border="0" /></td>
 <td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
 </tr>
 </table></div>
