@@ -19,6 +19,9 @@ uploads/*
 !images
 images/*
 
+!/images/custom/
+!/images/custom/*
+
 
 1blog
 /includes/config/classDbConnection.php
