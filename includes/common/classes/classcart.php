@@ -1329,7 +1329,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 			$totalpriceall	=	'';
 
-			$show_cart	.="<table width='600' style="margin: 0 auto;" border='0' align='centre' cellpadding='5' cellspacing='5' ><tr>
+			$show_cart	.= "<table width='600' style=\"margin: 0 auto;\" border='0' align='centre' cellpadding='5' cellspacing='5'><tr>
 
 			<td style='' align='right'><strong>Total Price:&nbsp;&nbsp;</strong></td>";
 
