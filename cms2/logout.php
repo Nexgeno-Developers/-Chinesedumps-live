@@ -3,7 +3,7 @@ ob_start();
 session_start();
 session_destroy();
 unset($_SESSION["strAdmin"]);
-header("location:index.php");
+header("location:login.php");
 
 //root path
 /*
