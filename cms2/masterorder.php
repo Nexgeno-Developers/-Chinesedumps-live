@@ -78,7 +78,7 @@ $ccAdminData = get_session_data();
 //............................................
 
 	if(mysql_num_rows($result) < 1){
-	$emptyError	=	"No record exist.";
+	$emptyError	=	'<span style="color: #64748b; font-size: 14px;">No record exist.</span>';
 	}else{
 	$emptyError	=	'';
 	}
