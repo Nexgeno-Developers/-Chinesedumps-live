@@ -61,7 +61,7 @@ $ccAdminData = get_session_data();
 Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.<br /><form name="catForm" id="catForm" method="post" action="" enctype="multipart/form-data"><br />
 
   <label></label>
-  <table cellpadding='0' cellspacing='0' width='900'>
+  <table cellpadding='0' cellspacing='0' width='900' style="margin: 0 auto;">
     <tr>
       <td></td>
     </tr>
