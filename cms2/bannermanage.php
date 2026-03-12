@@ -258,7 +258,7 @@ if (isset($_GET['action']) && $_GET['action'] === "up" && isset($_GET['nid'])) {
 
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
 
-<table cellpadding="0" cellspacing="0" width="90%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 

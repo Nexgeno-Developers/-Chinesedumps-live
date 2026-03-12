@@ -4,9 +4,11 @@
 	color: #FFFFFF;
 	font-family: Tahoma;
 }
+
 .border {
 	border: 1px solid #336600;
 }
+
 .listBg {
 	background-color: #D8D3CF;
 }
@@ -26,8 +28,7 @@
 .tblHead {
 	font-family: Tahoma;
 	font-size: 11px;
-	color:#0033CC	
-	text-decoration: none;
+	color: #0033CC text-decoration: none;
 	;
 }
 
@@ -40,13 +41,14 @@
 }
 
 .box {
-	font-family:Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10px;
-	color:#666666;
-	font-weight:900;	
+	color: #666666;
+	font-weight: 900;
 	text-decoration: none;
 	border: 1px solid #999999;
 }
+
 .txtBtn {
 	font-family: Tahoma;
 	font-size: 10px;
@@ -64,6 +66,7 @@
 	text-decoration: none;
 	border: 1px solid #F97B00;
 }
+
 .link {
 	font-family: Tahoma;
 	font-size: 11px;
@@ -71,15 +74,17 @@
 	text-decoration: none;
 	font-weight: bold;
 }
+
 .link1 {
 	font-family: Tahoma;
 	font-size: 11px;
-	color:#006600;
+	color: #006600;
 	text-decoration: none;
 	font-weight: bold;
 }
+
 a:active {
-	color:#009900;
+	color: #009900;
 }
 
 .listBgAlt {
@@ -95,6 +100,7 @@ a:active {
 	font-weight: bold;
 	text-transform: uppercase;
 }
+
 .link_new {
 
 	font-family: Tahoma;
@@ -103,6 +109,7 @@ a:active {
 	text-decoration: none;
 	font-weight: bold;
 }
+
 .link_newbig {
 	font-family: Tahoma;
 	font-size: 11px;
@@ -110,150 +117,170 @@ a:active {
 	text-decoration: none;
 	font-weight: bold;
 	text-transform: uppercase;
-}.error {
+}
+
+.error {
 	font-family: Tahoma;
 	font-size: 12px;
-	font-weight:bold;
+	font-weight: bold;
 	color: #FF3300;
 	text-decoration: none;
 	border: 1px solid #F97B00;
 }
 
-#calendarDiv{
-	position:absolute;
-	width:205px;
-	border:1px solid #317082;
-	padding:1px;
+#calendarDiv {
+	position: absolute;
+	width: 205px;
+	border: 1px solid #317082;
+	padding: 1px;
 	background-color: #FFF;
-	font-family:arial;
-	font-size:10px;
-	padding-bottom:20px;
-	visibility:hidden;
-}
-#calendarDiv span,#calendarDiv img{
-	float:left;
-}
-#calendarDiv .selectBox,#calendarDiv .selectBoxOver{
-	
-	line-height:12px;
-	padding:1px;
-	cursor:pointer;
-	padding-left:2px;
+	font-family: arial;
+	font-size: 10px;
+	padding-bottom: 20px;
+	visibility: hidden;
 }
 
-#calendarDiv .selectBoxTime,#calendarDiv .selectBoxTimeOver{	
-	line-height:12px;
-	padding:1px;
-	cursor:pointer;
-	padding-left:2px;
+#calendarDiv span,
+#calendarDiv img {
+	float: left;
 }
 
-#calendarDiv td{
-	padding:3px;
-	margin:0px;
-	font-size:10px;
+#calendarDiv .selectBox,
+#calendarDiv .selectBoxOver {
+
+	line-height: 12px;
+	padding: 1px;
+	cursor: pointer;
+	padding-left: 2px;
 }
 
-#calendarDiv .selectBox{
-	border:1px solid #E2EBED;		
+#calendarDiv .selectBoxTime,
+#calendarDiv .selectBoxTimeOver {
+	line-height: 12px;
+	padding: 1px;
+	cursor: pointer;
+	padding-left: 2px;
+}
+
+#calendarDiv td {
+	padding: 3px;
+	margin: 0px;
+	font-size: 10px;
+}
+
+#calendarDiv .selectBox {
+	border: 1px solid #E2EBED;
 	color: #E2EBED;
-	position:relative;
+	position: relative;
 }
-#calendarDiv .selectBoxOver{
-	border:1px solid #FFF;
+
+#calendarDiv .selectBoxOver {
+	border: 1px solid #FFF;
 	background-color: #317082;
 	color: #FFF;
-	position:relative;
-}
-#calendarDiv .selectBoxTime{
-	border:1px solid #317082;		
-	color: #317082;
-	position:relative;
-}
-#calendarDiv .selectBoxTimeOver{
-	border:1px solid #216072;	
-	color: #216072;
-	position:relative;
+	position: relative;
 }
 
-#calendarDiv .topBar{
-	height:16px;
-	padding:2px;
+#calendarDiv .selectBoxTime {
+	border: 1px solid #317082;
+	color: #317082;
+	position: relative;
+}
+
+#calendarDiv .selectBoxTimeOver {
+	border: 1px solid #216072;
+	color: #216072;
+	position: relative;
+}
+
+#calendarDiv .topBar {
+	height: 16px;
+	padding: 2px;
 	background-color: #317082;
 
 
 }
-#calendarDiv .activeDay{	/* Active day in the calendar */
-	color:#FF0000;
-}
-#calendarDiv .todaysDate{
-	height:17px;
-	line-height:17px;
-	padding:2px;
-	background-color: #E2EBED;
-	text-align:center;
-	position:absolute;
-	bottom:0px;
-	width:201px;
-}
-#calendarDiv .todaysDate div{
-	float:left;
-}
-	
-#calendarDiv .timeBar{
-	height:17px;
-	line-height:17px;
-	background-color: #E2EBED;
-	width:72px;
-	color:#FFF;
-	position:absolute;
-	right:0px;
+
+#calendarDiv .activeDay {
+	/* Active day in the calendar */
+	color: #FF0000;
 }
 
-#calendarDiv .timeBar div{
-	float:left;
-	margin-right:1px;
+#calendarDiv .todaysDate {
+	height: 17px;
+	line-height: 17px;
+	padding: 2px;
+	background-color: #E2EBED;
+	text-align: center;
+	position: absolute;
+	bottom: 0px;
+	width: 201px;
+}
+
+#calendarDiv .todaysDate div {
+	float: left;
+}
+
+#calendarDiv .timeBar {
+	height: 17px;
+	line-height: 17px;
+	background-color: #E2EBED;
+	width: 72px;
+	color: #FFF;
+	position: absolute;
+	right: 0px;
+}
+
+#calendarDiv .timeBar div {
+	float: left;
+	margin-right: 1px;
 }
 
 
-#calendarDiv .monthYearPicker{
+#calendarDiv .monthYearPicker {
 	background-color: #E2EBED;
-	border:1px solid #AAAAAA;
-	position:absolute;
+	border: 1px solid #AAAAAA;
+	position: absolute;
 	color: #317082;
-	left:0px;
-	top:15px;
-	z-index:1000;
-	display:none;
+	left: 0px;
+	top: 15px;
+	z-index: 1000;
+	display: none;
 
 }
-#calendarDiv #monthSelect{
-	width:70px;
+
+#calendarDiv #monthSelect {
+	width: 70px;
 }
-#calendarDiv .monthYearPicker div{
-	float:none;
-	clear:both;	
-	padding:1px;
-	margin:1px;	
-	cursor:pointer;
+
+#calendarDiv .monthYearPicker div {
+	float: none;
+	clear: both;
+	padding: 1px;
+	margin: 1px;
+	cursor: pointer;
 }
-#calendarDiv .monthYearActive{
-	background-color:#317082;
+
+#calendarDiv .monthYearActive {
+	background-color: #317082;
 	color: #E2EBED;
 }
 
-#calendarDiv td{
-	text-align:right;
-	cursor:pointer;
+#calendarDiv td {
+	text-align: right;
+	cursor: pointer;
 }
 
-#calendarDiv .topBar img{
-	cursor:pointer;
+#calendarDiv .topBar img {
+	cursor: pointer;
 }
-#calendarDiv .topBar div{
-	float:left;
-	margin-right:1px;
-}.head1 {
+
+#calendarDiv .topBar div {
+	float: left;
+	margin-right: 1px;
+}
+
+.head1 {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	color: #F7AF0F;
@@ -262,6 +289,7 @@ a:active {
 	font-style: normal;
 	font-variant: normal;
 }
+
 .footer_link {
 	font-family: Tahoma;
 	font-size: 11px;
@@ -269,6 +297,7 @@ a:active {
 	text-decoration: none;
 	font-weight: bold;
 }
+
 .footer_divider {
 	font-family: Tahoma;
 	font-size: 10px;
@@ -276,14 +305,18 @@ a:active {
 	text-decoration: none;
 	font-weight: normal;
 }
+
 .txt_CustomHeading {
 	font-family: Times New Roman, Times, serif;
 	font-size: 19px;
 	color: #FFFFFF;
 }
 
-tbl.header
-{
-background:#0033CC;
+tbl.header {
+	background: #0033CC;
 
+}
+
+body {
+	overflow-x: hidden;
 }

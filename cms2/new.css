@@ -48,15 +48,24 @@ FORM {
    ========================================================================== */
 
 DIV.topbar {
-	background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
+	background: #1e293b;
 	background-image: none;
 	color: #ffffff;
 	font-family: inherit;
 	padding: 16px 32px;
-	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 	position: sticky;
 	top: 0;
 	z-index: 1000;
+}
+
+.topbar img {
+	filter: invert(1) grayscale(1) brightness(2) contrast(2);
+}
+
+.topbar td div {
+	position: relative;
+	top: 1px;
+	text-transform: capitalize;
 }
 
 .admin-title {
@@ -88,21 +97,25 @@ DIV.shadow {
 
 TD.leftside {
 	padding: 0;
-	vertical-align: top;
 	background-color: #1e293b;
-	width: 280px;
-	min-height: calc(100vh - 60px);
-	position: sticky;
-	top: 60px;
-	height: calc(100vh - 60px);
+	width: 16%;
+	height: 100vh;
+	max-height: 100vh;
+	padding-top: 30px;
+	top: 25px;
+	left: 0;
+	position: fixed;
 	overflow-y: auto;
 	overflow-x: hidden;
+	z-index: 999;
+	box-sizing: border-box;
+	display: block;
 }
 
 TD.rightside {
 	padding: 32px;
 	vertical-align: top;
-	width: auto;
+	width: 84%;
 	max-width: 1400px;
 	color: #1e293b;
 	font-family: inherit;
@@ -118,7 +131,7 @@ TD.stat0,
 TD.stat1,
 TD.stat2 {
 	background-color: #ffffff;
-	border-radius: 12px;
+	border-radius: 0px;
 	border: 1px solid #e2e8f0;
 	padding: 24px;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -226,6 +239,36 @@ TD.leftside IMG[src*="admin_menu_bar"] {
 }
 
 /* ==========================================================================
+   Logout Button
+   ========================================================================== */
+
+.btn-logout {
+	color: #ffffff !important;
+	text-decoration: none !important;
+	padding: 8px 18px;
+	background-color: #dc2626;
+	border-radius: 9999px;
+	font-weight: 600;
+	font-size: 13px;
+	border: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	box-shadow: 0 2px 4px rgba(248, 113, 113, 0.4);
+	transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.btn-logout i {
+	font-size: 14px;
+}
+
+.btn-logout:hover {
+	background-color: #b91c1c;
+	box-shadow: 0 4px 6px rgba(248, 113, 113, 0.5);
+	transform: translateY(-1px);
+}
+
+/* ==========================================================================
    Tables - Modern Design
    ========================================================================== */
 
@@ -247,13 +290,13 @@ TD.header {
 	font-size: 12px;
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
-	background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
+	background: #3c85ba;
 	color: #ffffff;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 TD.item {
-	padding: 16px 20px;
+	padding: 6px 10px;
 	font-size: 14px;
 	color: #475569;
 	border-top: 1px solid #f1f5f9;
@@ -546,4 +589,9 @@ TD.leftside::-webkit-scrollbar-thumb:hover {
 
 #txtHint {
 	width: 300px;
+}
+
+
+body {
+	overflow-x: hidden;
 }

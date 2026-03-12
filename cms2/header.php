@@ -16,7 +16,25 @@
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
   <td valign="middle">
-    <img src="/images/chinesedumps-logo.png" alt="ChineseDumps Admin" style="height:38px;" />
+    <img src="images/admin_icon.png" alt="ChineseDumps Admin" style="height:38px;" />
+  </td>
+  <td valign="middle" align="right">
+<?php if(isset($_SESSION['strAdmin'])): ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<span style="color: #ffffff; margin-right: 15px; font-weight: 500;">Welcome, <?php echo htmlspecialchars($_SESSION['strAdmin']); ?></span>
+		<a href="logout.php" class="btn-logout">
+			<i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+			Logout
+		</a>
+	</div>
+<?php else: ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<a href="index.php" class="btn-logout" style="background-color: rgba(255, 255, 255, 0.1);">
+			<i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+			Login
+		</a>
+	</div>
+<?php endif; ?>
   </td>
 </tr>
 </table></div>

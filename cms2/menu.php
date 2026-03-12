@@ -82,13 +82,7 @@ function is_active($page_url) {
         </TR>
         */ ?>
 
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="logout.php" class="menu<?=is_active('logout.php')?>"><i class="fa-solid fa-right-from-bracket"></i> Logout</A></TD>
-
-        </TR></TBODY></TABLE>
+        </TBODY></TABLE>
 
         
 
@@ -168,21 +162,7 @@ function is_active($page_url) {
 
         </TR>
 
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="userstats.php?ref=p"><i class="fa-solid fa-cart-shopping"></i> Users with Purchse(s)</A></TD>
-
-        </TR>
-
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="userstats.php?ref=np"><i class="fa-solid fa-user-slash"></i> Users without Purchse</A></TD>
-
-</TR></TBODY></TABLE>   
+       </TBODY></TABLE>   
 
 
 
@@ -696,7 +676,7 @@ function is_active($page_url) {
 
 	      <td class="menu"><a class="menu" 
 
-            href="adduser.php" class="menu<?=is_active('adduser.php')?>"><i class="fa-solid fa-user-plus"></i> Add <span class="menu_header">User</span></a></td>
+            href="adduser.php" class="menu<?=is_active('adduser.php')?>"><i class="fa-solid fa-user-plus"></i> Add User</a></td>
 
         </tr>
 
@@ -704,7 +684,7 @@ function is_active($page_url) {
 
 	      <td class="menu"><a class="menu" 
 
-            href="manageuser.php" class="menu<?=is_active('manageuser.php')?>"><i class="fa-solid fa-users-gear"></i> User<span class="menu_header"> Management</span></a></td>
+            href="manageuser.php" class="menu<?=is_active('manageuser.php')?>"><i class="fa-solid fa-users-gear"></i> User Management</a></td>
 
         </tr>
 
@@ -905,6 +885,12 @@ function is_active($page_url) {
 		<tr>
 
           <td class="menu"><a class="menu" href="editpagetext.php?pid=32"><i class="fa-solid fa-house"></i> Home Text 3</a></td>
+
+        </tr>
+
+        <tr>
+
+          <td class="menu">&nbsp; &nbsp;</td>
 
         </tr>
 

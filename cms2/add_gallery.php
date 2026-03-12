@@ -178,7 +178,7 @@ function watermark_image($oldimage_name, $new_image_name) {
 
 
 
-<table cellpadding="0" cellspacing="0" width="102%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 

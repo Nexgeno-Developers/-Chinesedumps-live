@@ -69,21 +69,25 @@ DIV.shadow {
 
 TD.leftside {
 	padding: 0;
-	vertical-align: top;
 	background-color: #1e293b;
-	width: 280px;
-	min-height: calc(100vh - 60px);
-	position: sticky;
-	top: 60px;
-	height: calc(100vh - 60px);
+	width: 16%;
+	height: 100vh;
+	max-height: 100vh;
+	padding-top: 15px;
+	top: 25px;
+	left: 0;
+	position: fixed;
 	overflow-y: auto;
 	overflow-x: hidden;
+	z-index: 999;
+	box-sizing: border-box;
+	display: block;
 }
 
 TD.rightside {
 	padding: 32px;
 	vertical-align: top;
-	width: auto;
+	width: 84%;
 	max-width: 1400px;
 	color: #1e293b;
 	font-family: inherit;
@@ -98,7 +102,7 @@ TD.stat0,
 TD.stat1,
 TD.stat2 {
 	background-color: #ffffff;
-	border-radius: 12px;
+	border-radius: 0px;
 	border: 1px solid #e2e8f0;
 	padding: 24px;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -136,6 +140,10 @@ TD.menu_header:first-child {
 TD.menu {
 	padding: 0;
 	border-bottom: none;
+}
+
+body {
+	overflow-x: hidden;
 }
 
 TD.menu A {
@@ -216,13 +224,13 @@ TD.header {
 	font-size: 12px;
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
-	background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
+	background: #3c85ba;
 	color: #ffffff;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 TD.item {
-	padding: 16px 20px;
+	padding: 5px 10px;
 	font-size: 14px;
 	color: #475569;
 	border-top: 1px solid #f1f5f9;

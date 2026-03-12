@@ -110,7 +110,7 @@ $image_path = base_path('images/stamp_logo.png');
 
 
 
-<table cellpadding="0" cellspacing="0" width="102%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 
