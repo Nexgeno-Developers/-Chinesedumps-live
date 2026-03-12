@@ -8,34 +8,46 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 <br />
 <form id="form1" name="form1" method="post" action="">
 
-<br />
-<table cellpadding='0' cellspacing='0' class='list' width='90%'>
-  <tr>
-    <td height="19" align="right" colspan="7">&nbsp;</td>
-	</tr>
-    
-    <tr>
-    <td colspan="6" >&nbsp;&nbsp;&nbsp;&nbsp;Search Keyword:
-      <input type="text" name="textSearch" value="<? if(isset($_POST['textSearch'])){ echo $_POST['textSearch'];}  ?>" style="width:100px" />&nbsp;&nbsp;Hot:<select name="hothot">
-	  <option value="" >Select</option>
-	  <option value="1" <? if(isset($_POST['hothot']) && $_POST['hothot']=='1'){ echo "selected='selected'"; }?>>Yes</option>
-	  <option value="0" <? if(isset($_POST['hothot']) && $_POST['hothot']=='0'){ echo "selected='selected'"; }?>>No</option>
-	  </select>&nbsp;&nbsp;Home:<select name="homehome">
-	  <option value="" >Select</option>
-	  <option value="1" <? if(isset($_POST['homehome']) && $_POST['homehome']=='1'){ echo "selected='selected'"; }?>>Yes</option>
-	  <option value="0" <? if(isset($_POST['homehome']) && $_POST['homehome']=='0'){ echo "selected='selected'"; }?>>No</option>
-	  </select>&nbsp;&nbsp;&nbsp;Status:
-	  <select name="criteriacriteria">
-	  <option value="">Select</option>
-	  <option value="1" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='1'){ echo "selected='selected'"; }?>>Enable</option>
-	  <option value="0" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='0'){ echo "selected='selected'"; }?>>Disable</option>
-	  </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="submit" name="Search" value="Search" />&nbsp;&nbsp;&nbsp;<input type="reset" name="reset" value="Reset" /></td>
-      <td align="right"><a class="menu" href="addcertif.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add Certification </span>&nbsp;&nbsp;</a></td>
-	  </tr>
-  <tr>
-    <td height="19" align="center" colspan="7">&nbsp;</td>
-	</tr>
+<div class="filter-bar">
+	<div class="filter-group">
+		<label for="textSearch">Search Keyword</label>
+		<input type="text" name="textSearch" id="textSearch" value="<?php if(isset($_POST['textSearch'])){ echo htmlspecialchars($_POST['textSearch']);} ?>" placeholder="Search..." />
+	</div>
+	<div class="filter-group">
+		<label for="hothot">Hot</label>
+		<select name="hothot" id="hothot">
+			<option value="">Select</option>
+			<option value="1" <?php if(isset($_POST['hothot']) && $_POST['hothot']=='1'){ echo "selected='selected'"; }?>>Yes</option>
+			<option value="0" <?php if(isset($_POST['hothot']) && $_POST['hothot']=='0'){ echo "selected='selected'"; }?>>No</option>
+		</select>
+	</div>
+	<div class="filter-group">
+		<label for="homehome">Home</label>
+		<select name="homehome" id="homehome">
+			<option value="">Select</option>
+			<option value="1" <?php if(isset($_POST['homehome']) && $_POST['homehome']=='1'){ echo "selected='selected'"; }?>>Yes</option>
+			<option value="0" <?php if(isset($_POST['homehome']) && $_POST['homehome']=='0'){ echo "selected='selected'"; }?>>No</option>
+		</select>
+	</div>
+	<div class="filter-group">
+		<label for="criteriacriteria">Status</label>
+		<select name="criteriacriteria" id="criteriacriteria">
+			<option value="">Select</option>
+			<option value="1" <?php if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='1'){ echo "selected='selected'"; }?>>Enable</option>
+			<option value="0" <?php if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='0'){ echo "selected='selected'"; }?>>Disable</option>
+		</select>
+	</div>
+	<div class="filter-actions">
+		<input type="submit" name="Search" value="Search" class="button" />
+		<input type="reset" name="reset" value="Reset" class="button" style="background: linear-gradient(135deg, #64748b 0%, #475569 100%);" />
+		<a href="addcertif.php" class="btn-add">
+			<i class="fa-solid fa-plus"></i> Add Certification
+		</a>
+	</div>
+</div>
+
+<div class="table-responsive">
+<table cellpadding='0' cellspacing='0' class='list' width='100%'>
   <tr>
     <td width='33' class='header' align="center"><input name="CheckBoxControl" type="checkbox" id="chkbox_select_all" onclick="checkAllOneOne(this);" value=""  /></td>
      <td class='header' width='133' align="center">Certification Name </td>
@@ -49,23 +61,24 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
   <!-- LOOP THROUGH USERS -->
   <?php echo $show ;?>
 </table>
-<table>
-<tr> 
-<td valign="top" class="rightside"><div align="center"><strong>&nbsp;&nbsp; 
-	  <?=$BackNaviLinks;?>
-	  &nbsp;&nbsp; 
-	  <?=$NaviLinks;?>
-	  &nbsp;&nbsp; 
-	  <?=$ForwardNaviLinks;?> </strong><br />
-                  Total Records Found &nbsp;
-		<?=$TotalRecs;?><br />
-                  Total Pages Found &nbsp;
-		<?=$TotalPages;?><br /><br />
-		</div></td><br />
-		<tr>
-		<td valign="top" class="rightside"><div align="center"><?=$emptyError?></div></td>
-		</tr>
-</table>
+</div>
+
+<div class="pagination-container">
+	<div class="pagination-left">
+		<?=$emptyError?>
+	</div>
+	
+	<div class="pagination-right">
+		<div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+			<strong><?=$BackNaviLinks;?></strong>
+			<strong><?=$NaviLinks;?></strong>
+			<strong><?=$ForwardNaviLinks;?></strong>
+		</div>
+		<p class="pagination-info">Total Records Found: <strong><?=$TotalRecs;?></strong></p>
+		<p class="pagination-info">Total Pages Found: <strong><?=$TotalPages;?></strong></p>
+	</div>
+</div>
+
 </form></td>
 
 </table>
