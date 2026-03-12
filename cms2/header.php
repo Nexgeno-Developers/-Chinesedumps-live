@@ -16,7 +16,7 @@
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
   <td valign="middle">
-    <img src="/images/chinesedumps-logo.png" alt="ChineseDumps Admin" style="height:38px;" />
+    <img src="images/admin_icon.png" alt="ChineseDumps Admin" style="height:38px;" />
   </td>
   <td valign="middle" align="right">
 <?php if(isset($_SESSION['strAdmin'])): ?>

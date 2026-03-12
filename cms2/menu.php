@@ -674,7 +674,7 @@ function is_active($page_url) {
 
 	      <td class="menu"><a class="menu" 
 
-            href="adduser.php" class="menu<?=is_active('adduser.php')?>"><i class="fa-solid fa-user-plus"></i> Add <span class="menu_header">User</span></a></td>
+            href="adduser.php" class="menu<?=is_active('adduser.php')?>"><i class="fa-solid fa-user-plus"></i> Add User</a></td>
 
         </tr>
 
@@ -682,7 +682,7 @@ function is_active($page_url) {
 
 	      <td class="menu"><a class="menu" 
 
-            href="manageuser.php" class="menu<?=is_active('manageuser.php')?>"><i class="fa-solid fa-users-gear"></i> User<span class="menu_header"> Management</span></a></td>
+            href="manageuser.php" class="menu<?=is_active('manageuser.php')?>"><i class="fa-solid fa-users-gear"></i> User Management</a></td>
 
         </tr>
 
@@ -883,6 +883,12 @@ function is_active($page_url) {
 		<tr>
 
           <td class="menu"><a class="menu" href="editpagetext.php?pid=32"><i class="fa-solid fa-house"></i> Home Text 3</a></td>
+
+        </tr>
+
+        <tr>
+
+          <td class="menu">&nbsp; &nbsp;</td>
 
         </tr>
 

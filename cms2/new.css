@@ -96,21 +96,25 @@ DIV.shadow {
 
 TD.leftside {
 	padding: 0;
-	vertical-align: top;
 	background-color: #1e293b;
-	width: 280px;
-	min-height: calc(100vh - 60px);
-	position: sticky;
-	top: 60px;
-	height: calc(100vh - 60px);
+	width: 15%;
+	height: 100vh;
+	max-height: 100vh;
+	padding-top: 30px;
+	top: 25px;
+	left: 0;
+	position: fixed;
 	overflow-y: auto;
 	overflow-x: hidden;
+	z-index: 999;
+	box-sizing: border-box;
+	display: block;
 }
 
 TD.rightside {
 	padding: 32px;
 	vertical-align: top;
-	width: auto;
+	width: 85%;
 	max-width: 1400px;
 	color: #1e293b;
 	font-family: inherit;
