@@ -70,7 +70,7 @@ require_once __DIR__ . '/vendor/autoload.php';
         // foreach ($adminEmails as $admin) {
         //     sendEmail($admin, "chinesedumps.com - New User Registration", $message, $headers);
         // }
-            sendEmail('sales@chinesedumps.com', "chinesedumps.com - New User Registration", $message, $headers);
+            sendEmail(from_email(), "chinesedumps.com - New User Registration", $message, $headers);
 	}
 
 

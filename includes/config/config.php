@@ -67,6 +67,36 @@ if (!function_exists('secret_js')) {
 	}
 }
 
+// Central "from" email helper used throughout the site.
+// Priority: DB-configured $fromEmail (if present) -> SMTP secrets -> SMTP username -> no-reply@domain.
+if (!function_exists('from_email')) {
+	function from_email()
+	{
+		$candidates = [];
+
+		if (isset($GLOBALS['fromEmail'])) {
+			$candidates[] = (string)$GLOBALS['fromEmail'];
+		}
+
+		$candidates[] = (string)secret('SMTP_FROM_EMAIL', '');
+		$candidates[] = (string)secret('SMTP_USERNAME', '');
+
+		foreach ($candidates as $email) {
+			$email = trim($email);
+			if ($email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+				return $email;
+			}
+		}
+
+		$domain = trim((string)secret('SMTP_HELO_DOMAIN', ''));
+		if ($domain !== '' && preg_match('/^[a-z0-9.-]+\.[a-z]{2,}$/i', $domain)) {
+			return 'no-reply@' . $domain;
+		}
+
+		return 'no-reply@localhost';
+	}
+}
+
 // Central base path for filesystem operations (project root with trailing separator)
 if (!defined('BASE_PATH')) {
 	$root = realpath(__DIR__ . '/../../');

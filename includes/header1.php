@@ -42,7 +42,7 @@ if (function_exists('start_root_url_rewrite')) {
 		$headers = "From: www.chinesedumps.com" . "\r\n" ;
     mail($to,$subject,$txt,$headers); 		 
 		 /*for admin */
-		$to_admin = "sales@chinesedumps.com";
+		$to_admin = from_email();
 		$subject_admin = "www.chinesedumps.com" ;
 	 $txt_admin = "Subscribe By " .$spram[0]." , course Name ( ".$spram[1]." )" ;
 		$headers_admin = "From: www.chinesedumps.com" . "\r\n" ;

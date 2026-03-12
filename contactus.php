@@ -1,5 +1,5 @@
-<?php $this_page = "contact" ?>
 <?php
+$this_page = "contact";
 ob_start();
 session_start();
 include("includes/config/classDbConnection.php");
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contactus_form'])) {
         }
     } else {
         // --- Send Email ---
-        $to = "sales@chinesedumps.com"; // umair.makent@gmail.com or support@chinesedumps.com
+        $to = from_email(); // umair.makent@gmail.com or support@chinesedumps.com
         // $to = "support@chinesedumps.com"; // umair.makent@gmail.com or support@chinesedumps.com
         $subject = 'Chinese Dumps ' . ucfirst($type) . ' Page Enquiry';
         $txt  = "<strong>Name:</strong> " . $name . "<br><br>";
@@ -101,24 +101,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contactus_form'])) {
 
         $mail_send = sendEmail($to, $subject, $txt, $headers);
 
+        header('Content-Type: application/json');
         if ($mail_send) {
-            // header("Location: <?php echo BASE_URL; ?>thankyou-page.php");
-            header('Content-Type: application/json');
-            echo json_encode([
-              'success' => true,
-              'mail_sent' => true
-            ]);
+            echo json_encode(array('success' => true, 'mail_sent' => true));
             exit;
-        } else {
-            // eco "<script>alert('Failed to send email. Please try again later.');</script>";
-            echo json_encode([
-              'success' => false,
-              'mail_sent' => false,
-              'message' => 'Failed to send email. Please try again later.'
-            ]);
         }
+
+        echo json_encode(array(
+            'success' => false,
+            'mail_sent' => false,
+            'message' => 'Failed to send email. Please try again later.'
+        ));
+        exit;
     }
 }
 
 include("html/login.html");
-?>

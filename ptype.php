@@ -229,7 +229,7 @@ if (isset($_POST['download_free_dump'])) {
 		$pdfUrl = $baseUrl . '/' . $freeDumpWebPath;
 
 // 		$adminEmail = "webdeveloper@nexgeno.in";
-		$adminEmail = "sales@chinesedumps.com";
+		$adminEmail = from_email();
 		$subject = "Free dump download: {$examName} ({$examCode})";
 
 		$message = "

@@ -421,7 +421,7 @@ if (isset($_GET['cancel_failed']) && $_GET['cancel_failed'] == '1' && isset($_GE
             // Common email headers
             $headers = "MIME-Version: 1.0\r\n";
             $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
-            $headers .= "From: chinesedumps <sales@chinesedumps.com>\r\n";
+            $headers .= "From: chinesedumps <" . from_email() . ">\r\n";
     
             // ----------------------------
             // Email to USER
@@ -449,7 +449,7 @@ if (isset($_GET['cancel_failed']) && $_GET['cancel_failed'] == '1' && isset($_GE
                               {$cart_html}";
                               
             // $admin_emails = [
-            //     'sales@chinesedumps.com',
+            //     from_email(),
             //     'support@chinesedumps.com'
             // ];
             
@@ -458,11 +458,11 @@ if (isset($_GET['cancel_failed']) && $_GET['cancel_failed'] == '1' && isset($_GE
             //     'rashid.makent@gmail.com'
             // ];
 
-            // $admin_emails = ['sales@chinesedumps.com', 'support@chinesedumps.com'];
+            // $admin_emails = [from_email(), 'support@chinesedumps.com'];
             // foreach ($admin_emails as $admin_email) {
             //     sendEmail($admin_email, $admin_subject, $admin_message, $headers);
             // }
-                sendEmail('sales@chinesedumps.com', $admin_subject, $admin_message, $headers);
+                sendEmail(from_email(), $admin_subject, $admin_message, $headers);
             
             // Mark the email as sent
             $_SESSION['email_sent'] = true;

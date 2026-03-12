@@ -160,8 +160,8 @@ if (stripos($verified_response, 'VERIFIED') !== false) {
         $adminMsg .= '</tbody></table>';
 
         
-        // $adminEmail = 'webdeveloper@nexgeno.in'; // Replace with the admin's email address sales@chinesedumps.com
-        $adminEmail = $fromEmail; // Replace with the admin's email address sales@chinesedumps.com
+        // $adminEmail = 'webdeveloper@nexgeno.in';
+        $adminEmail = $fromEmail;
         // var_dump($adminEmail);
         // $adminEmail2 = 'support@chinesedumps.com'; // Replace with the admin's email address
         

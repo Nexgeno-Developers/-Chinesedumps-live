@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['file'])) {
     
         // --- Email Construction ---
         // $to = "webdeveloper@nexgeno.in"; // or "webdeveloper@nexgeno.in"
-        $to = "sales@chinesedumps.com"; // or "webdeveloper@nexgeno.in"
+        $to = from_email(); // or "webdeveloper@nexgeno.in"
         $subject = "ChineseDumps Demo Download Alert By: $fullName";
         
         /*$message = "

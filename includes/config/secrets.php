@@ -7,7 +7,7 @@ return [
     'SMTP_ENCRYPTION' => 'tls',
     'SMTP_USERNAME' => 'CHANGE_ME',
     'SMTP_PASSWORD' => 'CHANGE_ME',
-    'SMTP_FROM_EMAIL' => 'sales@chinesedumps.com',
+    'SMTP_FROM_EMAIL' => 'CHANGE_ME',
     'SMTP_FROM_NAME' => 'Chinese Dumps',
     'SMTP_HELO_DOMAIN' => 'chinesedumps.com',
 

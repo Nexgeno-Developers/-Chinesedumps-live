@@ -29,7 +29,7 @@ require_once __DIR__ . '/config/load_secrets.php';
 </style>
 <!--sandeep-->
 
-<?php if(isset($this_page) and $this_page == "demo"){ }else{ ?>
+<?php if (!isset($this_page) || $this_page !== "demo") : ?>
 
         <div class="newsletter-box news_sections" style="background-image: url(../images/new-image/subscription_bg.png);">
 
@@ -913,7 +913,7 @@ require_once __DIR__ . '/config/load_secrets.php';
 
         </div>
 
-<? } ?>
+<?php endif; ?>
 
 
 
@@ -1005,7 +1005,7 @@ require_once __DIR__ . '/config/load_secrets.php';
                      <div class="widget text-widget">
                         <h5 class="widget-title footer_title">Contact Info</h5>
                         <p class="pd15"><img class="social_iconss" src="images/new-image/address_icons.svg" alt="address" style="filter: invert(1);"/> 143 Gordon Terrace bassingthorpe ng33 0zt CHINA.</p>
-                        <p><img class="social_iconss" src="images/new-image/email_icons.svg" alt="email"/ style="filter: invert(1);"><a href="mailto:sales@chinesedumps.com"> Sales@chinesedumps.com</a> </p>
+                        <p><img class="social_iconss" src="images/new-image/email_icons.svg" alt="email"/ style="filter: invert(1);"><a href="mailto:<?php echo htmlspecialchars((string)from_email(), ENT_QUOTES); ?>"> <?php echo htmlspecialchars((string)from_email(), ENT_QUOTES); ?></a> </p>
                         
                            <p><a href="tel: +44 7591 437400"><img class="social_iconss" src="images/new-image/call_icons1.svg" alt="Phone"/ style="filter: invert(1);"> +44 7591 437400</a> </p>
                        

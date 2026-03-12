@@ -28,7 +28,7 @@ $cutoff = date('Y-m-d H:i:s', strtotime('-24 hour'));
 // For demonstration, we assign these globals as they are used in your cart page.
 global $fromEmail;
 global $base_path;
-// $fromEmail = "sales@chinesedumps.com";         // You may also retrieve this from your configuration
+// $fromEmail = from_email();         // You may also retrieve this from your configuration
 // $base_path  = "https://updated.chinesedumps.com/";
 
 // ---------------------------------------------------------------------
@@ -53,7 +53,7 @@ $result = $stmt->get_result();
 // $adminEmail = "webdeveloper@nexgeno.in";  // Admin notification email
 // $adminEmail = "webdeveloper@nexgeno.in";  // Admin notification email
 // $adminEmail2 = "umair.makent@gmail.com";  // Admin notification email
-$adminEmail = "sales@chinesedumps.com";  // Admin notification email
+$adminEmail = from_email();  // Admin notification email
 // $adminEmail2 = "support@chinesedumps.com";  // Admin notification email
 
 function getdbPrice($pCode,$duration)

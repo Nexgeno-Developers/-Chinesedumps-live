@@ -105,7 +105,7 @@ if (isset($_POST['home_form'])) {
     if (empty($errors) && count($errors) == 0) {
         
         // $to = "webdeveloper@nexgeno.in";
-        $to = "sales@chinesedumps.com";
+        $to = from_email();
         $subject = 'Chinese Dumps ' . $type . ' page enquiry';
         $txt = "<strong>Name:</strong> " . $name . "<br><br>";
         $txt .= "<strong>Email:</strong> " . $email . "<br><br>";

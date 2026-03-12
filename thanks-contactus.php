@@ -78,7 +78,7 @@ exit();
     if (empty($errors) && count($errors) == 0) {
         
         // $to = "umair.makent@gmail.com";
-        $to = "sales@chinesedumps.com";
+        $to = from_email();
         $subject = 'Chinese Dumps ' . $type . ' page enquiry';
         $txt = "<strong>Name:</strong> " . $name . "<br><br>";
         $txt .= "<strong>Email:</strong> " . $email . "<br><br>";

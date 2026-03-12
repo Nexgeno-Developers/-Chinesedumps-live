@@ -60,7 +60,7 @@ $_SESSION['email_otp_email']   = $email;
 $_SESSION['email_otp_expires'] = time() + 300; // 5 minutes
 
 // $host      = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'no-reply.local';
-$fromEmail = secret('SMTP_FROM_EMAIL', 'sales@chinesedumps.com');
+$fromEmail = from_email();
 
 $subject = 'Your verification code';
 // $message = "Your verification code is: {$otp}\n\nThe code expires in 5 minutes.\n\nIf you did not request this, you can ignore this email.";

@@ -118,7 +118,7 @@ if (function_exists('start_root_url_rewrite')) {
 
 		 /*for admin */
 
-		$to_admin = "sales@chinesedumps.com";
+		$to_admin = from_email();
 
 		$subject_admin = "www.chinesedumps.com" ;
 

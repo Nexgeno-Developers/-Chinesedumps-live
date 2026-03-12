@@ -646,7 +646,9 @@
 
 		{
 
-			$sqlQuery1 = "UPDATE website SET title='".$spram['title']."', website_url ='".$spram['website_url']."', admin_title ='".$spram['admin_title']."', course_update ='".$spram['course_update']."', copyright='".$spram['copyright']."', contactus_email='".$spram['contactus_email']."', paypalid='".$spram['paypalid']."', from_email='".$spram['from_email']."'";
+			$course_update = isset($spram['course_update']) ? $spram['course_update'] : '';
+
+			$sqlQuery1 = "UPDATE website SET title='".$spram['title']."', website_url ='".$spram['website_url']."', admin_title ='".$spram['admin_title']."', course_update='".$course_update."', copyright='".$spram['copyright']."', contactus_email='".$spram['contactus_email']."', paypalid='".$spram['paypalid']."', from_email='".$spram['from_email']."'";
 
 			$this->objDbConn->Dml_Query_Parser($sqlQuery1);							
 

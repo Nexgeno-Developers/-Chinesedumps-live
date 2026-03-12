@@ -74,11 +74,13 @@ function is_active($page_url) {
 
         <TR>
 
+        <?php /*
           <TD class=menu><A class=menu 
 
             href="contactus.php" class="menu<?=is_active('contactus.php')?>"><i class="fa-solid fa-envelope"></i> Change Email Address</A></TD>
 
         </TR>
+        */ ?>
 
         <TR>
 
