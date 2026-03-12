@@ -98,7 +98,7 @@ TD.stat0,
 TD.stat1,
 TD.stat2 {
 	background-color: #ffffff;
-	border-radius: 12px;
+	border-radius: 0px;
 	border: 1px solid #e2e8f0;
 	padding: 24px;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -136,6 +136,10 @@ TD.menu_header:first-child {
 TD.menu {
 	padding: 0;
 	border-bottom: none;
+}
+
+body {
+	overflow-x: hidden;
 }
 
 TD.menu A {
