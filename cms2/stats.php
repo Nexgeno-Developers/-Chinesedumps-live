@@ -485,7 +485,7 @@ return false;
 
 <div class="topbar">
 
-<table cellpadding="0" cellspacing="0" width="90%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 
@@ -510,7 +510,7 @@ return false;
 
 
 
-<table cellpadding="0" cellspacing="0" width="92%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 
