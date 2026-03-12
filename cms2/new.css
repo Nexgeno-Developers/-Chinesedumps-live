@@ -423,7 +423,7 @@ input[type="submit"] {
 }
 
 .btn-add:hover {
-	background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+	background: #333;
 	box-shadow: 0 4px 8px rgba(22, 163, 74, 0.3);
 	transform: translateY(-1px);
 	color: #ffffff !important;

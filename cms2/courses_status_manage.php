@@ -151,7 +151,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 <br />
 
-<table cellpadding='0' cellspacing='0' class='list' width='90%'>
+<table cellpadding='0' cellspacing='0' class='list' width='100%'>
 
    <tr>
 
