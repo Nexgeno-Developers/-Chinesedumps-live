@@ -115,53 +115,51 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 
 
-<br /><table cellpadding='0' cellspacing='0' class='list' width='87%'>
+<br />
 
+<div class="filter-bar">
+	<div class="filter-row">
+		<div class="filter-group" style="flex: 0 0 200px;">
+			<label>Search</label>
+			<input type="text" name="textSearch" value="<? if($_POST['textSearch']){ echo $_POST['textSearch']; }?>" placeholder="Enter search term..." />
+		</div>
+		
+		<div class="filter-group" style="flex: 0 0 180px;">
+			<label>Search By</label>
+			<select name="criteria">
+				<option value="Order_Id" <? if($_POST['criteria'] && $_POST['criteria']=='Order_Id'){ echo "selected='selected'"; }?>>Transaction Id</option>
+				<option value="user_email" <? if($_POST['criteria'] && $_POST['criteria']=='user_email'){ echo "selected='selected'"; }?>>Email Address</option>
+				<option value="user_fname" <? if($_POST['criteria'] && $_POST['criteria']=='user_fname'){ echo "selected='selected'"; }?>>First Name</option>
+				<option value="user_lname" <? if($_POST['criteria'] && $_POST['criteria']=='user_lname'){ echo "selected='selected'"; }?>>Last Name</option>
+			</select>
+		</div>
+		
+		<div class="date-range-group">
+			<div class="date-input-wrapper">
+				<label>Start Date</label>
+				<input name="txt_StartDate" type="text" class="clsTxtBox" id="txt_StartDate" readonly="readonly" value="<?=$_POST['txt_StartDate']?>" placeholder="YYYY-MM-DD" />
+				<img src="images/calendar-icon.gif" alt="select" width="22" height="18" class="calImg" style="cursor:pointer" onclick="displayCalendarSe(document.frm1.txt_StartDate,'yyyy-mm-dd',this)" />
+			</div>
+			
+			<span class="date-separator">TO</span>
+			
+			<div class="date-input-wrapper">
+				<label>End Date</label>
+				<input name="txt_StartDate2" type="text" class="clsTxtBox" id="txt_StartDate2" readonly="readonly" value="<?=$_POST['txt_StartDate2']?>" placeholder="YYYY-MM-DD" />
+				<img src="images/calendar-icon.gif" alt="select" width="22" height="18" class="calImg" style="cursor:pointer" onclick="displayCalendarSe(document.frm1.txt_StartDate2,'yyyy-mm-dd',this)" />
+			</div>
+		</div>
+		
+		<div class="filter-actions">
+			<input type="submit" name="Search" value="Search" class="btn-search" />
+			<a href="adduser.php" class="btn-add">
+				<i class="fa-solid fa-plus"></i> Add User
+			</a>
+		</div>
+	</div>
+</div>
 
-
-	 <tr>
-
-    <td height="19" align="right" colspan="5">&nbsp;</td>
-
-	</tr>
-
-    
-
-    <tr>
-
-    <td colspan="4"  align="center">Search :
-
-      <input type="text" name="textSearch" value="<? if($_POST['textSearch']){ echo $_POST['textSearch']; }?>" style="width:160px" />&nbsp;&nbsp;&nbsp;
-
-	   <input name="txt_StartDate" type="text" class="clsTxtBox"  id="txt_StartDate" readonly="readonly" value="<?=$_POST['txt_StartDate']?>"  style="width:100px; height:16px" />
-
-           <img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" 
-
-				  style="cursor:hand" onclick="displayCalendarSe(document.frm1.txt_StartDate,'yyyy-mm-dd',this)" /> &nbsp; TO &nbsp; <input name="txt_StartDate2" type="text" class="clsTxtBox"  id="txt_StartDate2" readonly="readonly" value="<?=$_POST['txt_StartDate2']?>"  style="width:100px; height:16px" />
-
-                  <img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" 
-
-				  style="cursor:hand" onclick="displayCalendarSe(document.frm1.txt_StartDate2,'yyyy-mm-dd',this)" />&nbsp;&nbsp;&nbsp;
-
-	  <select name="criteria">
-
-	   <option value="Order_Id" <? if($_POST['criteria'] && $_POST['criteria']=='Order_Id'){ echo "selected='selected'"; }?>>Transaction Id</option>
-
-	  <option value="user_email" <? if($_POST['criteria'] && $_POST['criteria']=='user_email'){ echo "selected='selected'"; }?>>Email Address</option>
-
-	  <option value="user_fname" <? if($_POST['criteria'] && $_POST['criteria']=='user_fname'){ echo "selected='selected'"; }?>>First Name</option>
-
-	  <option value="user_lname" <? if($_POST['criteria'] && $_POST['criteria']=='user_lname'){ echo "selected='selected'"; }?>>Last Name</option></select>
-
-      &nbsp;&nbsp;&nbsp;<input type="submit" name="Search" value="Search" />
-
-	  </td>
-
-
-
-      <td align="right"><a class="menu" href="adduser.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add User </span>&nbsp;&nbsp;</a></td>
-
-	  </tr>
+<table cellpadding='0' cellspacing='0' class='list' width='100%'>
 
   <tr>
 
