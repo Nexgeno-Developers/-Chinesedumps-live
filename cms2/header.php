@@ -22,11 +22,17 @@
 <?php if(isset($_SESSION['strAdmin'])): ?>
 	<div style="display: inline-block; vertical-align: middle;">
 		<span style="color: #ffffff; margin-right: 15px; font-weight: 500;">Welcome, <?php echo htmlspecialchars($_SESSION['strAdmin']); ?></span>
-		<a href="logout.php" style="color: #ffffff; text-decoration: none; padding: 8px 16px; background-color: rgba(255, 255, 255, 0.2); border-radius: 4px; font-weight: 500; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.2)'">Logout</a>
+		<a href="logout.php" class="btn-logout">
+			<i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+			Logout
+		</a>
 	</div>
 <?php else: ?>
 	<div style="display: inline-block; vertical-align: middle;">
-		<a href="index.php" style="color: #ffffff; text-decoration: none; padding: 8px 16px; background-color: rgba(255, 255, 255, 0.2); border-radius: 4px; font-weight: 500; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.2)'">Login</a>
+		<a href="index.php" class="btn-logout" style="background-color: rgba(255, 255, 255, 0.1);">
+			<i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+			Login
+		</a>
 	</div>
 <?php endif; ?>
   </td>

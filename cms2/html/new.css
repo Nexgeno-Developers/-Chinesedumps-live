@@ -70,7 +70,7 @@ DIV.shadow {
 TD.leftside {
 	padding: 0;
 	background-color: #1e293b;
-	width: 15%;
+	width: 16%;
 	height: 100vh;
 	max-height: 100vh;
 	padding-top: 15px;
@@ -87,7 +87,7 @@ TD.leftside {
 TD.rightside {
 	padding: 32px;
 	vertical-align: top;
-	width: 85%;
+	width: 84%;
 	max-width: 1400px;
 	color: #1e293b;
 	font-family: inherit;

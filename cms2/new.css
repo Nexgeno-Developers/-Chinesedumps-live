@@ -64,7 +64,8 @@ DIV.topbar {
 
 .topbar td div {
 	position: relative;
-	top: 10px;
+	top: 1px;
+	text-transform: capitalize;
 }
 
 .admin-title {
@@ -97,7 +98,7 @@ DIV.shadow {
 TD.leftside {
 	padding: 0;
 	background-color: #1e293b;
-	width: 15%;
+	width: 16%;
 	height: 100vh;
 	max-height: 100vh;
 	padding-top: 30px;
@@ -114,7 +115,7 @@ TD.leftside {
 TD.rightside {
 	padding: 32px;
 	vertical-align: top;
-	width: 85%;
+	width: 84%;
 	max-width: 1400px;
 	color: #1e293b;
 	font-family: inherit;
@@ -235,6 +236,36 @@ IMG.icon2 {
 /* Hide separator images */
 TD.leftside IMG[src*="admin_menu_bar"] {
 	display: none;
+}
+
+/* ==========================================================================
+   Logout Button
+   ========================================================================== */
+
+.btn-logout {
+	color: #ffffff !important;
+	text-decoration: none !important;
+	padding: 8px 18px;
+	background-color: #dc2626;
+	border-radius: 9999px;
+	font-weight: 600;
+	font-size: 13px;
+	border: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	box-shadow: 0 2px 4px rgba(248, 113, 113, 0.4);
+	transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.btn-logout i {
+	font-size: 14px;
+}
+
+.btn-logout:hover {
+	background-color: #b91c1c;
+	box-shadow: 0 4px 6px rgba(248, 113, 113, 0.5);
+	transform: translateY(-1px);
 }
 
 /* ==========================================================================
