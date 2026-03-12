@@ -414,7 +414,7 @@ input[type="submit"] {
 	font-size: 14px;
 	font-weight: 600;
 	color: #ffffff !important;
-	background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+	background: #333;
 	border-radius: 8px;
 	text-decoration: none;
 	transition: all 0.2s ease;

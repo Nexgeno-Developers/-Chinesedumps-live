@@ -166,7 +166,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 	  </td>
 
-	  <td align="right"><a class="menu" href="course_add.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Course </span></a>&nbsp;&nbsp;</td>
+	  <td align="right" style="padding: 16px;"><a href="course_add.php" class="btn-add"><i class="fa-solid fa-plus"></i> Add Course</a></td>
 
     </tr>
 
