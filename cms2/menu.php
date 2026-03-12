@@ -80,13 +80,7 @@ function is_active($page_url) {
 
         </TR>
 
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="logout.php" class="menu<?=is_active('logout.php')?>"><i class="fa-solid fa-right-from-bracket"></i> Logout</A></TD>
-
-        </TR></TBODY></TABLE>
+        </TBODY></TABLE>
 
         
 

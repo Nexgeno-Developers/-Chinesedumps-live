@@ -37,7 +37,18 @@ $tot_sale	=	$fetcho['tot_sale'];
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <td valign="top"><img src="images/admin_icon.png" alt="Admin Header" width="200" height="" border="0" /></td>
-<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+<td valign="top" align="right">
+<?php if(isset($_SESSION['strAdmin'])): ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<span style="color: #ffffff; margin-right: 15px; font-weight: 500;">Welcome, <?php echo htmlspecialchars($_SESSION['strAdmin']); ?></span>
+		<a href="logout.php" style="color: #ffffff; text-decoration: none; padding: 8px 16px; background-color: rgba(255, 255, 255, 0.2); border-radius: 4px; font-weight: 500; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.2)'">Logout</a>
+	</div>
+<?php else: ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<a href="index.php" style="color: #ffffff; text-decoration: none; padding: 8px 16px; background-color: rgba(255, 255, 255, 0.2); border-radius: 4px; font-weight: 500; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.2)'">Login</a>
+	</div>
+<?php endif; ?>
+</td>
 </tr>
 </table></div>
 
