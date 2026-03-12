@@ -151,6 +151,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 <br />
 
+<div class="table-responsive">
 <table cellpadding='0' cellspacing='0' class='list' width='100%'>
 
    <tr>
@@ -207,6 +208,7 @@ $course = mysql_fetch_object($sqlcourse);
 <?php } ?>
 
 </table>
+</div>
 
 <table>
 

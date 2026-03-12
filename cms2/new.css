@@ -621,6 +621,43 @@ input.button_small:active {
 }
 
 /* ==========================================================================
+   Responsive Table Wrapper
+   ========================================================================== */
+
+.table-responsive {
+	width: 100%;
+	overflow-x: auto;
+	overflow-y: visible;
+	-webkit-overflow-scrolling: touch;
+	margin-bottom: 20px;
+	border-radius: 8px;
+	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.table-responsive::-webkit-scrollbar {
+	height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+	background: #f1f5f9;
+	border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+	background: #cbd5e1;
+	border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+	background: #94a3b8;
+}
+
+.table-responsive table {
+	margin-bottom: 0;
+	min-width: 100%;
+}
+
+/* ==========================================================================
    Filter Bar (Search Sections)
    ========================================================================== */
 
