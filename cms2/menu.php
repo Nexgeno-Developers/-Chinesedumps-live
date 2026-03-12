@@ -160,21 +160,7 @@ function is_active($page_url) {
 
         </TR>
 
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="userstats.php?ref=p"><i class="fa-solid fa-cart-shopping"></i> Users with Purchse(s)</A></TD>
-
-        </TR>
-
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="userstats.php?ref=np"><i class="fa-solid fa-user-slash"></i> Users without Purchse</A></TD>
-
-</TR></TBODY></TABLE>   
+       </TBODY></TABLE>   
 
 
 

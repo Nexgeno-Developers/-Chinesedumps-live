@@ -59,7 +59,7 @@ $getPage[5]	=	'Re-order';
 	
 	$Expiredate	=	date('Y-m-d', strtotime( '+'.$roword['submonth'].' months' ) );
 	
-	$show_cart	.="<table width='600' border='0' align='centre' cellpadding='5' cellspacing='5' ><tr>
+	$show_cart	.="<table width='600' style="margin: 0 auto;" border='0' align='centre' cellpadding='5' cellspacing='5' ><tr>
 			<td style='' align='right'><strong>Total Price:&nbsp;&nbsp;</strong></td>";
 	$show_cart	.= '<td style=""><strong>$ '.$priceprice.'</strong></td></tr><tr><td>&nbsp;</td><td align="left" valign="top" class="allvendor" ><input name="Final2" type="image" src="'.$base_path.'images/confirm_order.jpg" id="Final2" value="Final" />
 	<input name="Final" type="hidden" id="Final" value="Final" /></td></tr></table>';
