@@ -74,12 +74,11 @@ $tot_sale	=	$fetcho['tot_sale'];
   line-height: 1.6;
 }
 .system-info-bar {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 12px;
   padding: 20px 24px;
   margin-bottom: 24px;
   color: #ffffff;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
 }
 .system-info-bar table {
   width: 100%;
@@ -160,7 +159,7 @@ $tot_sale	=	$fetcho['tot_sale'];
   margin-bottom: 16px;
   background: #f8fafc;
   border-radius: 8px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #3c85ba;
   transition: background 0.2s;
 }
 .step-item:hover {
@@ -169,7 +168,7 @@ $tot_sale	=	$fetcho['tot_sale'];
 .step-number {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
   color: #ffffff;
   border-radius: 50%;
   display: flex;

@@ -54,7 +54,7 @@ $ccAdminData = get_session_data();
 </tr>
 </table></div>
 
-<table cellpadding="0" cellspacing="0" width="102%">
+<table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <td width="190" class="leftside"><?php include ("menu.php"); ?></td>
 <td width="810" class="rightside"><h2>Available Soon!</h2>

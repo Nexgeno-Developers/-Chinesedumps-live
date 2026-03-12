@@ -220,7 +220,7 @@ TD.header {
 	font-size: 12px;
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
-	background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
+	background: #3c85ba;
 	color: #ffffff;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
