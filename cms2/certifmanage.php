@@ -161,11 +161,11 @@ $ccAdminData = get_session_data();
 //----------------------------------------------------------------------------------------------------		
 		if(mysql_num_rows($result)<1)
 			{
-			$emptyError	=	"No record exist.";
+			$emptyError	=	'<span style="color: #64748b; font-size: 14px;">No record exist.</span>';
 			}
 		else
 			{
-				$emptyError	=	'<input type="submit" name="btn_delete" id="btn_delete" class="button" value="Delete Selected Items" onclick= "return delete_pro();" />';
+				$emptyError	=	'<input type="submit" name="btn_delete" id="btn_delete" class="btn-delete" value="Delete Selected Items" onclick= "return delete_pro();" />';
 				$show	=	$objProduct->show_certif($result);		
 			}
 			

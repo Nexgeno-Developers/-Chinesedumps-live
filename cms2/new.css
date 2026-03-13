@@ -269,6 +269,172 @@ TD.leftside IMG[src*="admin_menu_bar"] {
 }
 
 /* ==========================================================================
+   Filter/Search Bar - Modern Design
+   ========================================================================== */
+
+.filter-bar {
+	background: #ffffff;
+	border-radius: 12px;
+	padding: 24px;
+	margin-bottom: 24px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	border: 1px solid #e2e8f0;
+}
+
+.filter-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	align-items: flex-end;
+	margin-bottom: 16px;
+}
+
+.filter-row:last-child {
+	margin-bottom: 0;
+}
+
+.filter-group {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	flex: 1;
+	min-width: 150px;
+}
+
+.filter-group label {
+	font-size: 13px;
+	font-weight: 600;
+	color: #475569;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.filter-group input[type="text"],
+.filter-group select {
+	margin: 0;
+}
+
+.date-range-group {
+	display: flex;
+	align-items: flex-end;
+	gap: 12px;
+	flex: 1;
+	min-width: 320px;
+}
+
+.date-input-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	flex: 1;
+	position: relative;
+}
+
+.date-input-wrapper label {
+	font-size: 13px;
+	font-weight: 600;
+	color: #475569;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.date-input-wrapper input[type="text"] {
+	padding-right: 40px;
+	position: relative;
+}
+
+.date-input-wrapper .calImg {
+	position: absolute;
+	right: 12px;
+	bottom: 10px;
+	cursor: pointer;
+	width: 18px;
+	height: 18px;
+	opacity: 0.6;
+	transition: opacity 0.2s;
+	z-index: 1;
+}
+
+.date-input-wrapper .calImg:hover {
+	opacity: 1;
+}
+
+.date-separator {
+	color: #64748b;
+	font-weight: 600;
+	font-size: 14px;
+	padding: 0 8px;
+}
+
+.filter-actions {
+	display: flex;
+	gap: 12px;
+	align-items: flex-end;
+}
+
+.btn-search {
+	padding: 10px 24px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #ffffff;
+	background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 4px rgba(60, 133, 186, 0.2);
+	white-space: nowrap;
+}
+
+.btn-search:hover {
+	background: linear-gradient(135deg, #2d6a9a 0%, #1e4a6e 100%);
+	box-shadow: 0 4px 8px rgba(60, 133, 186, 0.3);
+	transform: translateY(-1px);
+}
+
+input[type="submit"] {
+	padding: 10px 24px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #ffffff;
+	background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 4px rgba(60, 133, 186, 0.2);
+	white-space: nowrap;
+}
+
+.btn-add {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 24px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #ffffff !important;
+	background: #333;
+	border-radius: 8px;
+	text-decoration: none;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);
+	white-space: nowrap;
+}
+
+.btn-add:hover {
+	background: #333;
+	box-shadow: 0 4px 8px rgba(22, 163, 74, 0.3);
+	transform: translateY(-1px);
+	color: #ffffff !important;
+	text-decoration: none;
+}
+
+.btn-add i {
+	font-size: 16px;
+}
+
+/* ==========================================================================
    Tables - Modern Design
    ========================================================================== */
 
@@ -349,7 +515,7 @@ select,
 textarea {
 	font-family: inherit;
 	font-size: 14px;
-	padding: 10px 14px;
+	padding: 10px 7px;
 	border-radius: 8px;
 	border: 1px solid #cbd5e1;
 	background-color: #ffffff;
@@ -404,6 +570,153 @@ input.button:active,
 input.button_small:active {
 	transform: translateY(0);
 	box-shadow: 0 2px 4px rgba(60, 133, 186, 0.2);
+}
+
+.btn-delete {
+	padding: 10px 24px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #ffffff !important;
+	background: #dc2626 !important;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3);
+	white-space: nowrap;
+}
+
+.btn-delete:hover {
+	background: #b91c1c;
+	box-shadow: 0 4px 8px rgba(220, 38, 38, 0.4);
+	transform: translateY(-1px);
+	color: #ffffff !important;
+}
+
+.pagination-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20px;
+	padding: 0;
+	gap: 20px;
+}
+
+.pagination-left {
+	display: flex;
+	align-items: center;
+}
+
+.pagination-right {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 8px;
+}
+
+.pagination-info {
+	font-size: 13px;
+	color: #64748b;
+	margin: 0;
+}
+
+/* ==========================================================================
+   Responsive Table Wrapper
+   ========================================================================== */
+
+.table-responsive {
+	width: 100%;
+	overflow-x: auto;
+	overflow-y: visible;
+	-webkit-overflow-scrolling: touch;
+	margin-bottom: 20px;
+	border-radius: 8px;
+	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.table-responsive::-webkit-scrollbar {
+	height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+	background: #f1f5f9;
+	border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+	background: #cbd5e1;
+	border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+	background: #94a3b8;
+}
+
+.table-responsive table {
+	margin-bottom: 0;
+	min-width: 100%;
+}
+
+/* ==========================================================================
+   Filter Bar (Search Sections)
+   ========================================================================== */
+
+.filter-bar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	align-items: flex-end;
+	background-color: #ffffff;
+	border-radius: 12px;
+	padding: 16px 20px;
+	margin: 8px 0 16px;
+	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+	border: 1px solid #e2e8f0;
+}
+
+.filter-field {
+	flex: 1 1 180px;
+	min-width: 160px;
+}
+
+.filter-label {
+	display: block;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: #64748b;
+	margin-bottom: 6px;
+}
+
+.filter-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.btn-secondary {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 8px 16px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #1e293b;
+	background-color: #e2e8f0;
+	border-radius: 8px;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.btn-secondary:hover {
+	background-color: #cbd5e1;
+	box-shadow: 0 2px 4px rgba(148, 163, 184, 0.4);
+	transform: translateY(-1px);
 }
 
 INPUT.checkbox {

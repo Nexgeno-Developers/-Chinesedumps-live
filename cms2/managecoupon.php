@@ -154,11 +154,11 @@ $showTr		.=		'<td align="center" class=item nowrap=nowrap>'.$edit.''.$del.' </td
 
 	if(mysql_num_rows($result2) < 1)
 	{
-		$emptyError	=	"No record exist.";
+		$emptyError	=	'<span style="color: #64748b; font-size: 14px;">No record exist.</span>';
 	}
 	else
 	{
-		$emptyError	=	'<input type="submit" name="btn_delete" id="btn_delete" class="button" value="Delete Selected Items" onclick="return Cofirm();"  />';
+		$emptyError	=	'<input type="submit" name="btn_delete" id="btn_delete" class="btn-delete" value="Delete Selected Items" onclick="return Cofirm();"  />';
 	}
 	$show =	getCouponhtml($result1);
 

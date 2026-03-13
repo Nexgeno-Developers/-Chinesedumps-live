@@ -71,13 +71,19 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 		
             <tr>
           <td align="right" nowrap="nowrap">* Start Date:</td>
-          <td width="72%" ><input type="text" name="Start_Date" value="<?php echo $row1['start_date'];?>" id="Start_Date" class="required" readonly="readonly" />&nbsp;<img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.Start_Date,'yyyy-mm-dd',this)" /></td>
+          <td width="72%" style="position: relative;">
+            <input type="text" name="Start_Date" value="<?php echo $row1['start_date'];?>" id="Start_Date" class="required" readonly="readonly" style="padding-right: 40px; width: 100%; padding: 8px 40px 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;" onclick="displayCalendarSe(document.Form.Start_Date,'yyyy-mm-dd',this)" />
+            <img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.Start_Date,'yyyy-mm-dd',this)" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; width: 18px; height: 18px; opacity: 0.6; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'" />
+          </td>
           <td width="4%" ></td>
         </tr>
 		
 		<tr>
           <td align="right">* End Date:</td>
-          <td colspan="2"><input  type="text" name="End_Date" value="<?php echo $row1['end_date'];?>" id="End_Date" readonly="readonly" />&nbsp;<img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.End_Date,'yyyy-mm-dd',this)" /></td>
+          <td colspan="2" style="position: relative;">
+            <input type="text" name="End_Date" value="<?php echo $row1['end_date'];?>" id="End_Date" readonly="readonly" style="padding-right: 40px; width: 100%; padding: 8px 40px 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;" onclick="displayCalendarSe(document.Form.End_Date,'yyyy-mm-dd',this)" />
+            <img src="images/calendar-icon.gif" alt="End Time" onclick="displayCalendarSe(document.Form.End_Date,'yyyy-mm-dd',this)" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; width: 18px; height: 18px; opacity: 0.6; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'" />
+          </td>
         </tr>
 		<tr>
           <td align="right">* Coupon Value:</td>

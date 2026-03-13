@@ -59,23 +59,26 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 <br />
 
 <form id="frm1" name="frm1" method="post" action="" enctype="multipart/form-data">
-<br /><table cellpadding='0' cellspacing='0' class='list' width='87%'>
- <tr>
-    <td height="19" align="right" colspan="5">&nbsp;</td>
-	</tr>
-	<tr>
-	<td colspan="4"  align="center">Search :
-	<input type="text" name="textSearch" value="<? if($_POST['textSearch']){ echo $_POST['textSearch']; }?>" style="width:160px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <select name="criteria">
-        <option value="user_email" <? if($_POST['criteria'] && $_POST['criteria']=='user_email'){ echo "selected='selected'"; }?>>Email Address</option>
-        <option value="exam_name" <? if(isset($_POST['criteria']) && $_POST['criteria']=='exam_name'){ echo "selected='selected'"; }?>>Exam Code</option>
-    </select>
-      &nbsp;&nbsp;&nbsp;<input type="submit" name="Search" value="Search" />
-	  </td><td align="right"></td>
-	  </tr>
-  <tr>
-    <td height="19" align="center" colspan="5">&nbsp;</td>
-	</tr>
+
+<div class="filter-bar">
+	<div class="filter-group">
+		<label for="textSearch">Search</label>
+		<input type="text" name="textSearch" id="textSearch" value="<?php if(isset($_POST['textSearch'])){ echo htmlspecialchars($_POST['textSearch']); }?>" placeholder="Search..." />
+	</div>
+	<div class="filter-group">
+		<label for="criteria">Criteria</label>
+		<select name="criteria" id="criteria">
+			<option value="user_email" <?php if(isset($_POST['criteria']) && $_POST['criteria']=='user_email'){ echo "selected='selected'"; }?>>Email Address</option>
+			<option value="exam_name" <?php if(isset($_POST['criteria']) && $_POST['criteria']=='exam_name'){ echo "selected='selected'"; }?>>Exam Code</option>
+		</select>
+	</div>
+	<div class="filter-actions">
+		<input type="submit" name="Search" value="Search" class="button" />
+	</div>
+</div>
+
+<div class="table-responsive">
+<table cellpadding='0' cellspacing='0' class='list' width='100%'>
 	<tr>
     <td width='80' class='header' align="center">
 	<input name="chkbox_select_all" type="checkbox" id="chkbox_select_all"  onclick="checkAllOneOne(this);" value=""  /></td>
@@ -116,24 +119,25 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
   <?php echo $show ;?>
 </table>
-<table>
-<tr>  
-<td valign="top" class="rightside"><div align="center"><strong>&nbsp;&nbsp; 
-	  <?=$BackNaviLinks;?>
-	  &nbsp;&nbsp; 
-	  <?=$NaviLinks;?>
-	  &nbsp;&nbsp; 
-	  <?=$ForwardNaviLinks;?> </strong><br />
-                  Total Records Found &nbsp;
-		<?=$TotalRecs;?><br />
-                  Total Pages Found &nbsp;
-		<?=$TotalPages;?><br /><br />
-		</div> 
-	 </td>
-		<tr>
-		<td valign="top" class="rightside"><div align="center"><?=$emptyError?></div></td>
-		</tr>
-</table></form></td>
+</div>
+
+<div class="pagination-container">
+	<div class="pagination-left">
+		<?=$emptyError?>
+	</div>
+	
+	<div class="pagination-right">
+		<div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+			<strong><?=$BackNaviLinks;?></strong>
+			<strong><?=$NaviLinks;?></strong>
+			<strong><?=$ForwardNaviLinks;?></strong>
+		</div>
+		<p class="pagination-info">Total Records Found: <strong><?=$TotalRecs;?></strong></p>
+		<p class="pagination-info">Total Pages Found: <strong><?=$TotalPages;?></strong></p>
+	</div>
+</div>
+
+</form></td>
 </table>
 <? include("footer.php")?>
 </body>

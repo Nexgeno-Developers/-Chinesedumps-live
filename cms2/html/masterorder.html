@@ -63,28 +63,27 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 
 
-<br /><table cellpadding='0' cellspacing='0' class='list' width='97%'>
+<div class="filter-bar">
+	<div class="filter-group">
+		<label for="textSearch">Search</label>
+		<input type="text" name="textSearch" id="textSearch" value="<?php if(isset($_POST['textSearch'])){ echo htmlspecialchars($_POST['textSearch']); }?>" placeholder="Search..." />
+	</div>
+	<div class="filter-group">
+		<label for="criteria">Criteria</label>
+		<select name="criteria" id="criteria">
+			<option value="Order_Id" <?php if(isset($_POST['criteria']) && $_POST['criteria']=='Order_Id'){ echo "selected='selected'"; }?>>Order Id</option>
+			<option value="user_email" <?php if(isset($_POST['criteria']) && $_POST['criteria']=='user_email'){ echo "selected='selected'"; }?>>Email Address</option>
+		</select>
+	</div>
+	<div class="filter-actions">
+		<input type="submit" name="Search" value="Search" class="button" />
+	</div>
+</div>
 
- 
-    <tr>
-    <td  colspan="9" align="center">Search :
-      <input type="text" name="textSearch" value="<? if($_POST['textSearch']){ echo $_POST['textSearch']; }?>" style="width:160px" />&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-	  <select name="criteria">
-	   <option value="Order_Id" <? if($_POST['criteria'] && $_POST['criteria']=='Order_Id'){ echo "selected='selected'"; }?>>Order Id</option>
-	  <option value="user_email" <? if($_POST['criteria'] && $_POST['criteria']=='user_email'){ echo "selected='selected'"; }?>>Email Address</option>
-      </select>
-      &nbsp;&nbsp;&nbsp;<input type="submit" name="Search" value="Search" />
-	  </td>
+<div id="successmsg" style="color:#FF0000; margin-bottom: 16px; text-align: center;"></div>
 
-	  </tr>
-  <tr>
-    <td height="19" align="center" colspan="5" style="color:#FF0000; font-weight:bold;"></td>
-	</tr>
-  <tr>
-
-    <td colspan="9" align="center"><div id="successmsg" style="color:#FF0000;"></div></td>
-    </tr>
+<div class="table-responsive">
+<table cellpadding='0' cellspacing='0' class='list' width='100%'>
 <!--<tr height="50">
 
     <td width='80'  align="center"></td>
@@ -132,30 +131,27 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 
 </table>
-<br />
-<?=$emptyError?>
-<table>
-<tr>  
-<td valign="top" class="rightside">&nbsp;&nbsp; 
-	 </td>
-		<tr>
-		<td valign="top" class="rightside"><div align="center"><strong>&nbsp;&nbsp; 
-	  <?=$BackNaviLinks;?>
-	  &nbsp;&nbsp; 
-	  <?=$NaviLinks;?>
-	  &nbsp;&nbsp; 
-	  <?=$ForwardNaviLinks;?> </strong><br />
-                  Total Records Found &nbsp;
-		<?=$TotalRecs;?><br />
-                  Total Pages Found &nbsp;
-		<?=$TotalPages;?><br /><br />
-		</div></td>
+</div>
 
-		</tr>
+<div class="pagination-container">
+	<div class="pagination-left">
+		<?php if(!empty($emptyError)): ?>
+			<?=$emptyError?>
+		<?php endif; ?>
+	</div>
+	
+	<div class="pagination-right">
+		<div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+			<strong><?=$BackNaviLinks;?></strong>
+			<strong><?=$NaviLinks;?></strong>
+			<strong><?=$ForwardNaviLinks;?></strong>
+		</div>
+		<p class="pagination-info">Total Records Found: <strong><?=$TotalRecs;?></strong></p>
+		<p class="pagination-info">Total Pages Found: <strong><?=$TotalPages;?></strong></p>
+	</div>
+</div>
 
-
-
-</table></form></td>
+</form></td>
 
 
 

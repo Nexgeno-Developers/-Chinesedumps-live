@@ -568,23 +568,26 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
               <td align="right">* Date: </td>
 
-              <td colspan="2"><input name="startdate" type="text" readonly="readonly"  id="startdate" value="<?php if(isset($spram[29])){ echo  $spram[29];} ?>" />&nbsp;<img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" /></td>
+              <td colspan="2" style="position: relative;">
+                <input name="startdate" type="text" readonly="readonly" id="startdate" value="<?php if(isset($spram[29])){ echo  $spram[29];} ?>" style="padding-right: 40px; width: 100%; padding: 8px 40px 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" />
+                <img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; width: 18px; height: 18px; opacity: 0.6; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'" />
+              </td>
 
             </tr>
 
             <tr>
-              <td align="right"> Secure PDC Price:</td>
-              <td colspan="2"><input name="pr3" type="text" id="pr3" value="<?php if(isset($spram[3])){ echo  $spram[3];} ?>" />&nbsp;$</td>
+              <td align="right"><i class="fa-solid fa-dollar-sign" style="color: #000; margin-right: 2px;"></i> Secure PDC Price:</td>
+              <td colspan="2"><input name="pr3" type="text" id="pr3" value="<?php if(isset($spram[3])){ echo  $spram[3];} ?>" /></td>
             </tr>
 
             <tr>
-              <td align="right"> Engine Price:</td>
-              <td colspan="2"><input name="engn_pri3" type="text" id="engn_pri3" value="<?php if(isset($spram[32])){ echo  $spram[32];} ?>" />&nbsp;$</td>
+              <td align="right"><i class="fa-solid fa-dollar-sign" style="color: #000; margin-right: 2px;"></i> Engine Price:</td>
+              <td colspan="2"><input name="engn_pri3" type="text" id="engn_pri3" value="<?php if(isset($spram[32])){ echo  $spram[32];} ?>" /></td>
             </tr>
 
 			<tr>
-              <td align="right"> Both Price:</td>
-              <td colspan="2"><input name="both_pri" type="text" id="both_pri" value="<?php if(isset($spram[4])){ echo  $spram[4];} ?>" />&nbsp;$</td>
+              <td align="right"><i class="fa-solid fa-dollar-sign" style="color: #000; margin-right: 2px;"></i> Both Price:</td>
+              <td colspan="2"><input name="both_pri" type="text" id="both_pri" value="<?php if(isset($spram[4])){ echo  $spram[4];} ?>" /></td>
             </tr>
             
             <tr>

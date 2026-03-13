@@ -279,7 +279,7 @@ select,
 textarea {
 	font-family: inherit;
 	font-size: 14px;
-	padding: 10px 14px;
+	padding: 10px 7px;
 	border-radius: 8px;
 	border: 1px solid #cbd5e1;
 	background-color: #ffffff;
@@ -505,4 +505,78 @@ TD.leftside::-webkit-scrollbar-thumb {
 
 TD.leftside::-webkit-scrollbar-thumb:hover {
 	background: #64748b;
+}
+
+/* Banner Management Page Enhancements */
+TABLE.list TR:hover {
+	background-color: #f8fafc;
+	transition: background-color 0.2s ease;
+}
+
+TABLE.list TR:hover TD.item {
+	background-color: transparent;
+}
+
+TABLE.list TD.item {
+	transition: background-color 0.2s ease;
+}
+
+/* Button hover effects */
+.button:hover {
+	transform: translateY(-1px);
+}
+
+/* Empty state styling */
+.empty-state {
+	padding: 48px 20px;
+	text-align: center;
+	color: #94a3b8;
+}
+
+.empty-state i {
+	font-size: 48px;
+	margin-bottom: 16px;
+	display: block;
+	color: #cbd5e1;
+}
+
+/* Badge/Tag styling */
+.badge {
+	display: inline-block;
+	padding: 4px 12px;
+	background: #e0f2fe;
+	color: #0369a1;
+	border-radius: 6px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+/* Action buttons container */
+.action-buttons {
+	display: flex;
+	gap: 8px;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Image preview styling */
+.image-preview {
+	display: inline-block;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.image-preview:hover {
+	transform: scale(1.05);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.image-preview img {
+	max-width: 200px;
+	max-height: 100px;
+	display: block;
+	object-fit: cover;
 }

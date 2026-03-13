@@ -63,7 +63,8 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 
 
-<br /><table cellpadding='0' cellspacing='0' class='list' width='97%'>
+<br /><div class="table-responsive">
+<table cellpadding='0' cellspacing='0' class='list' width='100%'>
 
  
 
@@ -122,30 +123,25 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 
 </table>
-<br />
-<?=$emptyError?>
-<table>
-<tr>  
-<td valign="top" class="rightside">&nbsp;&nbsp; 
-	 </td>
-		<tr>
-		<td valign="top" class="rightside"><div align="center"><strong>&nbsp;&nbsp; 
-	  <?=$BackNaviLinks;?>
-	  &nbsp;&nbsp; 
-	  <?=$NaviLinks;?>
-	  &nbsp;&nbsp; 
-	  <?=$ForwardNaviLinks;?> </strong><br />
-                  Total Records Found &nbsp;
-		<?=$TotalRecs;?><br />
-                  Total Pages Found &nbsp;
-		<?=$TotalPages;?><br /><br />
-		</div></td>
+</div>
 
-		</tr>
+<div class="pagination-container">
+	<div class="pagination-left">
+		<?=$emptyError?>
+	</div>
+	
+	<div class="pagination-right">
+		<div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+			<strong><?=$BackNaviLinks;?></strong>
+			<strong><?=$NaviLinks;?></strong>
+			<strong><?=$ForwardNaviLinks;?></strong>
+		</div>
+		<p class="pagination-info">Total Records Found: <strong><?=$TotalRecs;?></strong></p>
+		<p class="pagination-info">Total Pages Found: <strong><?=$TotalPages;?></strong></p>
+	</div>
+</div>
 
-
-
-</table></form></td>
+</form></td>
 
 
 

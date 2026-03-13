@@ -168,7 +168,10 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
        <tr>
               <td align="right">* Date: </td>
-              <td colspan="2"><input name="startdate" type="text" readonly="readonly"  id="startdate" value="<?php if(isset($_POST['startdate'])){ echo  $_POST['startdate'];} ?>" />&nbsp;<img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" /></td>
+              <td colspan="2" style="position: relative;">
+                <input name="startdate" type="text" readonly="readonly" id="startdate" value="<?php if(isset($_POST['startdate'])){ echo  $_POST['startdate'];} ?>" style="padding-right: 40px; width: 100%; padding: 8px 40px 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" />
+                <img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; width: 18px; height: 18px; opacity: 0.6; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'" />
+              </td>
             </tr>
             
            	<tr>

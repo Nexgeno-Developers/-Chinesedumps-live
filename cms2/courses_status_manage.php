@@ -132,57 +132,85 @@ $ccAdminData = get_session_data();
 <? include ("header.php"); ?>
 
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
-
+<style>
+TABLE.list TR TD.item {
+	padding: 12px;
+	font-size: 14px;
+	color: #1e293b;
+	border-bottom: 1px solid #e2e8f0;
+}
+TABLE.list TR TD.item a {
+	color: #3c85ba;
+	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.2s ease;
+	margin: 0 4px;
+}
+TABLE.list TR TD.item a:hover {
+	color: #2d6a9a;
+	text-decoration: underline;
+}
+TABLE.list TR:last-child TD.item {
+	border-bottom: none;
+}
+.badge {
+	display: inline-block;
+	padding: 4px 12px;
+	border-radius: 12px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+.badge-stable {
+	background: #d1fae5;
+	color: #065f46;
+}
+.badge-unstable {
+	background: #fee2e2;
+	color: #991b1b;
+}
+</style>
 <table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 
 <td width="190" valign="top" class="leftside"><?php include("menu.php"); ?></td>
 
-<td width="810" valign="top" class="rightside"><h2>Stable Courses Management</h2>
-
-Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
-
-<br />
+<td width="810" valign="top" class="rightside">
+<div style="margin-bottom: 32px;">
+	<h2 style="margin: 0 0 8px 0; font-size: 28px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 12px;">
+		<i class="fa-solid fa-graduation-cap" style="color: #3c85ba;"></i>
+		Stable Courses Management
+	</h2>
+	<p style="margin: 0; color: #64748b; font-size: 14px;">Manage and organize your courses. You can add, edit, or remove courses from this page.</p>
+</div>
 
 <form id="form1" name="form1" method="post" action="">
 
+<div style="background: #ffffff; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); border: 1px solid #e2e8f0;">
+	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+		<div style="flex: 1;">
+			<h3 style="margin: 0 0 4px 0; font-size: 16px; font-weight: 600; color: #1e293b;">Courses List</h3>
+			<p style="margin: 0; font-size: 13px; color: #64748b;">Total: <strong><?=$course_count;?></strong> course<?= $course_count != 1 ? 's' : '' ?></p>
+		</div>
+		<div>
+			<a href="course_add.php" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; font-size: 14px; font-weight: 600; color: #ffffff; background: #333; border-radius: 8px; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+				<i class="fa-solid fa-plus"></i>
+				Add Course
+			</a>
+		</div>
+	</div>
 
-
-<br />
-
-<table cellpadding='0' cellspacing='0' class='list' width='90%'>
-
-   <tr>
-
-    <td height="19" align="center" colspan="6">&nbsp;</td>
-
-   </tr>
-
-  <tr>
-
-     <td colspan="5"  align="center">
-      
-
-	  </td>
-
-	  <td align="right"><a class="menu" href="course_add.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Course </span></a>&nbsp;&nbsp;</td>
-
-    </tr>
+<div style="overflow-x: auto;">
+<table cellpadding='0' cellspacing='0' class='list' width='100%' style="border-collapse: collapse;">
 
   <tr>
 
-    <td height="19" align="center" colspan="6">&nbsp;</td>
+	<td class='header' align="center" style="padding: 12px;"><i class="fa-solid fa-book" style="margin-right: 6px;"></i>Course Name</td>
 
-   </tr>
+  <td class='header' align="center" style="padding: 12px;"><i class="fa-solid fa-toggle-on" style="margin-right: 6px;"></i>Status</td>
 
-  <tr>
-
-	<td class='header' width='33%' align="center">Course Name </td>
-
-  <td class='header' width='33%' align="center">Status </td>
-
-	<td width="33%" align="center" class='header'>Option</td>
+	<td align="center" class='header' style="padding: 12px;"><i class="fa-solid fa-gear" style="margin-right: 6px;"></i>Actions</td>
 
     </tr>
 
@@ -199,46 +227,49 @@ $course = mysql_fetch_object($sqlcourse);
 
 
  <tr>
-    <td class="item" style="padding-left:" 0px;="" align="center"><?= $course->name?></td>
-		<td class="item" style="padding-left:" 0px;="" align="center"><?= ($course->status == 1) ? 'Stable' : ''; ?><?= ($course->status == 0) ? 'Unstable' : ''; ?></td>
-    <td class="item" nowrap="nowrap" align="center"><a href="course_edit.php?id=<?= $course->id?>">Edit </a>| <a href="courses_status_manage.php?action=up&nid=<?= $course->id?>" onclick="return delete_pro();">Delete</a></td>
+    <td class="item" align="center" style="padding: 12px;"><?= $course->name?></td>
+		<td class="item" align="center" style="padding: 12px;">
+			<?php if($course->status == 1): ?>
+				<span class="badge badge-stable">Stable</span>
+			<?php else: ?>
+				<span class="badge badge-unstable">Unstable</span>
+			<?php endif; ?>
+		</td>
+    <td class="item" nowrap="nowrap" align="center" style="padding: 12px;">
+		<a href="course_edit.php?id=<?= $course->id?>">Edit</a> | 
+		<a href="courses_status_manage.php?action=up&nid=<?= $course->id?>" onclick="return delete_pro();" style="color: #dc2626;">Delete</a>
+	</td>
 </tr>
 
 <?php } ?>
 
 </table>
+</div>
+</div>
 
-<table>
+<div style="background: #ffffff; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); border: 1px solid #e2e8f0;">
+	<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+		<div style="flex: 1;">
+			<div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+				<?=$BackNaviLinks;?>
+				<?=$NaviLinks;?>
+				<?=$ForwardNaviLinks;?>
+			</div>
+			<div style="margin-top: 12px; display: flex; gap: 24px; flex-wrap: wrap;">
+				<div style="display: flex; align-items: center; gap: 8px;">
+					<i class="fa-solid fa-list" style="color: #64748b;"></i>
+					<span style="color: #64748b; font-size: 14px;">Total Records: <strong style="color: #1e293b;"><?=$course_count;?></strong></span>
+				</div>
+			</div>
+		</div>
+		<div>
+			<?=$emptyError?>
+		</div>
+	</div>
+</div>
 
-<tr> 
-
-<td valign="top" align="center" class="rightside" ><div align="center"><strong>&nbsp;&nbsp; 
-
-	  <?=$BackNaviLinks;?>
-
-	  &nbsp;&nbsp; 
-
-	  <?=$NaviLinks;?>
-
-	  &nbsp;&nbsp; 
-
-	  <?=$ForwardNaviLinks;?> </strong><br />
-
-                  Total Records Found &nbsp;
-
-		<?=$course_count;?><br />
-
-		</div></td><br />
-
-		<tr>
-
-		<td valign="top" class="rightside"  align="center"><div align="center"><?=$emptyError?></div></td>
-
-		</tr>
-
-</table>
-
-</form></td>
+</form>
+</td>
 
 
 

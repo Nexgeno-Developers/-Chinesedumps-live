@@ -518,15 +518,14 @@ return false;
 
 
 
-<td width="610" valign="top" class="rightside"><h2>Stats !</h2>
-
-
-
-Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
-
-
-
-<br />
+<td width="610" valign="top" class="rightside">
+<div style="margin-bottom: 32px;">
+	<h2 style="margin: 0 0 8px 0; font-size: 28px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 12px;">
+		<i class="fa-solid fa-chart-line" style="color: #3c85ba;"></i>
+		Statistics Dashboard
+	</h2>
+	<p style="margin: 0; color: #64748b; font-size: 14px;">View comprehensive statistics about user registrations, sales, and manual assignments.</p>
+</div>
 
 
 
@@ -538,130 +537,99 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 
 
-<br /><table cellpadding='0' cellspacing='0' class='list' width='87%'>
+<div style="background: #ffffff; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); border: 1px solid #e2e8f0;">
+	<div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px;">
+		<div style="display: flex; align-items: center; gap: 8px;">
+			<label style="font-weight: 600; color: #1e293b; font-size: 14px;">Filter by Date Range:</label>
+		</div>
+		<div style="display: flex; align-items: center; gap: 8px;">
+			<span style="color: #64748b; font-weight: 500;">From:</span>
+			<input name="txt_StartDate" type="text" class="clsTxtBox" id="txt_StartDate" readonly="readonly" value="<?=$_POST['txt_StartDate']?>" style="width: 120px; padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 14px;" />
+			<img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" style="cursor: pointer;" onclick="displayCalendarSe(document.frm1.txt_StartDate,'yyyy-mm-dd',this)" />
+		</div>
+		<div style="display: flex; align-items: center; gap: 8px;">
+			<span style="color: #64748b; font-weight: 500;">To:</span>
+			<input name="txt_StartDate2" type="text" class="clsTxtBox" id="txt_StartDate2" readonly="readonly" value="<?=$_POST['txt_StartDate2']?>" style="width: 120px; padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 14px;" />
+			<img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" style="cursor: pointer;" onclick="displayCalendarSe(document.frm1.txt_StartDate2,'yyyy-mm-dd',this)" />
+		</div>
+		<button type="submit" name="Search" value="Show" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; font-size: 14px; font-weight: 600; color: #ffffff; background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%); border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(60, 133, 186, 0.2);">
+			<i class="fa-solid fa-filter"></i>
+			Show Stats
+		</button>
+	</div>
+	<?php if (isset($str22) && $str22): ?>
+	<div style="margin-top: 16px; padding: 12px 16px; background: #fef2f2; border-radius: 8px; border-left: 4px solid #dc2626;">
+		<p style="margin: 0; color: #dc2626; font-weight: 600; font-size: 14px;"><? echo $str22; ?></p>
+	</div>
+	<?php endif; ?>
+</div>
 
-
-
-	 <tr>
-
-    <td height="19" align="right" colspan="5">&nbsp;</td>
-
-	</tr>
-
-    
-
-    <tr>
-
-    <td colspan="4"  align="center">Stats :
-
-	    &nbsp; FROM &nbsp; <input name="txt_StartDate" type="text" class="clsTxtBox"  id="txt_StartDate" readonly="readonly" value="<?=$_POST['txt_StartDate']?>"  style="width:100px; height:16px" />
-
-           <img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" 
-
-				  style="cursor:hand" onclick="displayCalendarSe(document.frm1.txt_StartDate,'yyyy-mm-dd',this)" /> &nbsp; TO &nbsp; <input name="txt_StartDate2" type="text" class="clsTxtBox"  id="txt_StartDate2" readonly="readonly" value="<?=$_POST['txt_StartDate2']?>"  style="width:100px; height:16px" />
-
-                  <img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" 
-
-				  style="cursor:hand" onclick="displayCalendarSe(document.frm1.txt_StartDate2,'yyyy-mm-dd',this)" />&nbsp;&nbsp;&nbsp;
-
-      &nbsp;&nbsp;&nbsp;<input type="submit" name="Search" value="Show" />	  </td>
-
-	  </tr>
-
-  <tr>
-
-    <td height="19" align="center" colspan="5" style="color:#FF0000; font-weight:bold;"><? echo $str22; ?></td>
-
-	</tr>
+<table cellpadding='0' cellspacing='0' class='list' width='100%' style="margin-bottom: 24px;">
 
     <tr>
-
-    <td width="136" align="center"  class='header' colspan="4">Users Report</td>
-
+    <td width="136" align="center" class='header' colspan="4" style="font-size: 16px; padding: 20px;">
+		<i class="fa-solid fa-users" style="margin-right: 8px;"></i>
+		Users Report
+	</td>
     </tr>
 
     <tr>
-
-    <td width="136" align="center"  class='header'>Period</td>
-
-    <td class='header' width='150' align="center">User Registered</td>
-
-    <td width="127" class='header' align="center">Got Sales</td>
-
-    <td width="144" class='header' align="center">Not Got Sales</td>
-
+    <td width="136" align="center" class='header' style="padding: 16px 20px;">Period</td>
+    <td class='header' width='150' align="center" style="padding: 16px 20px;">User Registered</td>
+    <td width="127" class='header' align="center" style="padding: 16px 20px;">Got Sales</td>
+    <td width="144" class='header' align="center" style="padding: 16px 20px;">Not Got Sales</td>
     </tr>
 
-    <tr>
-
-    <td width="136" align="center" >Today</td>
-
-    <td width='80' align="center"><?=$reg_today?></td>
-
-    <td width="127" align="center"><a href="stats.php?getSearch=td"><?=$sold_today?></a></td>
-
-    <td width="144" align="center"><?php echo $reg_today - $sold_today?></td>
-
+    <tr style="transition: background-color 0.2s ease;">
+    <td width="136" align="center" class="item" style="padding: 16px 20px; font-weight: 500; color: #1e293b;">Today</td>
+    <td width='80' align="center" class="item" style="padding: 16px 20px; font-size: 16px; font-weight: 600; color: #3c85ba;"><?=$reg_today?></td>
+    <td width="127" align="center" class="item" style="padding: 16px 20px;">
+		<a href="stats.php?getSearch=td" style="color: #16a34a; text-decoration: none; font-weight: 600; font-size: 16px; transition: color 0.2s ease;" onmouseover="this.style.color='#15803d';" onmouseout="this.style.color='#16a34a';"><?=$sold_today?></a>
+	</td>
+    <td width="144" align="center" class="item" style="padding: 16px 20px; font-size: 16px; font-weight: 500; color: #64748b;"><?php echo $reg_today - $sold_today?></td>
     </tr>
 
-    <tr>
-
-      <td align="center" >Yesterday</td>
-
-      <td align="center"><?=$reg_yesterday?></td>
-
-      <td align="center"><a href="stats.php?getSearch=yd"><?=$sold_yesterday?></a></td>
-
-      <td align="center"><?php echo $reg_yesterday - $sold_yesterday?></td>
-
+    <tr style="transition: background-color 0.2s ease;">
+      <td align="center" class="item" style="padding: 16px 20px; font-weight: 500; color: #1e293b;">Yesterday</td>
+      <td align="center" class="item" style="padding: 16px 20px; font-size: 16px; font-weight: 600; color: #3c85ba;"><?=$reg_yesterday?></td>
+      <td align="center" class="item" style="padding: 16px 20px;">
+		<a href="stats.php?getSearch=yd" style="color: #16a34a; text-decoration: none; font-weight: 600; font-size: 16px; transition: color 0.2s ease;" onmouseover="this.style.color='#15803d';" onmouseout="this.style.color='#16a34a';"><?=$sold_yesterday?></a>
+	</td>
+      <td align="center" class="item" style="padding: 16px 20px; font-size: 16px; font-weight: 500; color: #64748b;"><?php echo $reg_yesterday - $sold_yesterday?></td>
     </tr>
 
-    <tr>
-
-    <td width="136" align="center" >Last 7 days</td>
-
-    <td width='80' align="center"><?=$reg_last_week?></td>
-
-    <td width="127" align="center"><a href="stats.php?getSearch=lw"><?=$sold_last_week?></a></td>
-
-    <td width="144" align="center"><?php echo $reg_last_week - $sold_last_week?></td>
-
+    <tr style="transition: background-color 0.2s ease;">
+    <td width="136" align="center" class="item" style="padding: 16px 20px; font-weight: 500; color: #1e293b;">Last 7 days</td>
+    <td width='80' align="center" class="item" style="padding: 16px 20px; font-size: 16px; font-weight: 600; color: #3c85ba;"><?=$reg_last_week?></td>
+    <td width="127" align="center" class="item" style="padding: 16px 20px;">
+		<a href="stats.php?getSearch=lw" style="color: #16a34a; text-decoration: none; font-weight: 600; font-size: 16px; transition: color 0.2s ease;" onmouseover="this.style.color='#15803d';" onmouseout="this.style.color='#16a34a';"><?=$sold_last_week?></a>
+	</td>
+    <td width="144" align="center" class="item" style="padding: 16px 20px; font-size: 16px; font-weight: 500; color: #64748b;"><?php echo $reg_last_week - $sold_last_week?></td>
     </tr>
 
-    <tr>
-
-    <td width="136" align="center" >Last 30 Days</td>
-
-    <td width='80' align="center"><?=$reg_last_month?></td>
-
-    <td width="127" align="center"><a href="stats.php?getSearch=lm"><?=$sold_last_month?></a></td>
-
-    <td width="144" align="center"><?php echo $reg_last_month- $sold_last_month?></td>
-
+    <tr style="transition: background-color 0.2s ease;">
+    <td width="136" align="center" class="item" style="padding: 16px 20px; font-weight: 500; color: #1e293b;">Last 30 Days</td>
+    <td width='80' align="center" class="item" style="padding: 16px 20px; font-size: 16px; font-weight: 600; color: #3c85ba;"><?=$reg_last_month?></td>
+    <td width="127" align="center" class="item" style="padding: 16px 20px;">
+		<a href="stats.php?getSearch=lm" style="color: #16a34a; text-decoration: none; font-weight: 600; font-size: 16px; transition: color 0.2s ease;" onmouseover="this.style.color='#15803d';" onmouseout="this.style.color='#16a34a';"><?=$sold_last_month?></a>
+	</td>
+    <td width="144" align="center" class="item" style="padding: 16px 20px; font-size: 16px; font-weight: 500; color: #64748b;"><?php echo $reg_last_month- $sold_last_month?></td>
     </tr>
 
-    <tr>
-
-    <td width="136" align="center" >Last 1 Year</td>
-
-    <td width='80' align="center"><?=$reg_last_year?></td>
-
-    <td width="127" align="center"><a href="stats.php?getSearch=ly"><?=$sold_last_year?></a></td>
-
-    <td width="144" align="center"><?php echo $reg_last_year - $sold_last_year?></td>
-
+    <tr style="transition: background-color 0.2s ease;">
+    <td width="136" align="center" class="item" style="padding: 16px 20px; font-weight: 500; color: #1e293b;">Last 1 Year</td>
+    <td width='80' align="center" class="item" style="padding: 16px 20px; font-size: 16px; font-weight: 600; color: #3c85ba;"><?=$reg_last_year?></td>
+    <td width="127" align="center" class="item" style="padding: 16px 20px;">
+		<a href="stats.php?getSearch=ly" style="color: #16a34a; text-decoration: none; font-weight: 600; font-size: 16px; transition: color 0.2s ease;" onmouseover="this.style.color='#15803d';" onmouseout="this.style.color='#16a34a';"><?=$sold_last_year?></a>
+	</td>
+    <td width="144" align="center" class="item" style="padding: 16px 20px; font-size: 16px; font-weight: 500; color: #64748b;"><?php echo $reg_last_year - $sold_last_year?></td>
     </tr>
 
-    <tr>
-
-    <td width="136" align="center" class="error" >In Selected Period</td>
-
-    <td width='80' align="center" class="error"><?=$reg_sel?></td>
-
-    <td width="127" align="center" class="error"><?=$sold_sel?></td>
-
-    <td width="144" align="center" class="error"><?php echo $reg_sel - $sold_sel?></td>
-
+    <tr style="background: #fef2f2; transition: background-color 0.2s ease;">
+    <td width="136" align="center" class="item" style="padding: 16px 20px; font-weight: 600; color: #dc2626;">In Selected Period</td>
+    <td width='80' align="center" class="item" style="padding: 16px 20px; font-size: 16px; font-weight: 700; color: #dc2626;"><?=$reg_sel?></td>
+    <td width="127" align="center" class="item" style="padding: 16px 20px; font-size: 16px; font-weight: 700; color: #dc2626;"><?=$sold_sel?></td>
+    <td width="144" align="center" class="item" style="padding: 16px 20px; font-size: 16px; font-weight: 700; color: #dc2626;"><?php echo $reg_sel - $sold_sel?></td>
     </tr>
 
     <tr>
@@ -681,41 +649,28 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
     <table cellpadding='0' cellspacing='0' class='list' width='87%'>
 
     <tr>
-
-    <td width="136" align="center"  class='header' colspan="6">Sales Report</td>
-
+    <td width="136" align="center" class='header' colspan="6" style="font-size: 16px; padding: 20px;">
+		<i class="fa-solid fa-dollar-sign" style="margin-right: 8px;"></i>
+		Sales Report
+	</td>
     </tr>
 
     <tr>
-
-    <td width="136" align="center"  class='header'>Today</td>
-
-    <td width="136" align="center"  class='header'>Yesterday</td>
-
-    <td width="136" align="center"  class='header'>Last 7 Days</td>
-
-    <td class='header' width='150' align="center">Last 30 Days</td>
-
-    <td width="127" class='header' align="center">Last 1 Year</td>
-
-    <td width="127" class='header' align="center">In Selected Period</td>
-
+    <td width="136" align="center" class='header' style="padding: 16px 20px;">Today</td>
+    <td width="136" align="center" class='header' style="padding: 16px 20px;">Yesterday</td>
+    <td width="136" align="center" class='header' style="padding: 16px 20px;">Last 7 Days</td>
+    <td class='header' width='150' align="center" style="padding: 16px 20px;">Last 30 Days</td>
+    <td width="127" class='header' align="center" style="padding: 16px 20px;">Last 1 Year</td>
+    <td width="127" class='header' align="center" style="padding: 16px 20px;">In Selected Period</td>
     </tr>
 
-    <tr>
-
-    <td width="136" align="center">$<?=$sale_today?></td>
-
-    <td width="136" align="center">$<?=$sale_yesterday?></td>
-
-    <td width="136" align="center">$<?=$sale_week?></td>
-
-    <td width='80' align="center"> $<?=$sale_month?></td>
-
-    <td width="127" align="center">$<?=$sale_year?></td>
-
-    <td width="144" align="center" class="error">$<?=$sale_per?></td>
-
+    <tr style="transition: background-color 0.2s ease;">
+    <td width="136" align="center" class="item" style="padding: 16px 20px; font-size: 18px; font-weight: 700; color: #16a34a;">$<?= number_format($sale_today, 2) ?></td>
+    <td width="136" align="center" class="item" style="padding: 16px 20px; font-size: 18px; font-weight: 700; color: #16a34a;">$<?= number_format($sale_yesterday, 2) ?></td>
+    <td width="136" align="center" class="item" style="padding: 16px 20px; font-size: 18px; font-weight: 700; color: #16a34a;">$<?= number_format($sale_week, 2) ?></td>
+    <td width='80' align="center" class="item" style="padding: 16px 20px; font-size: 18px; font-weight: 700; color: #16a34a;">$<?= number_format($sale_month, 2) ?></td>
+    <td width="127" align="center" class="item" style="padding: 16px 20px; font-size: 18px; font-weight: 700; color: #16a34a;">$<?= number_format($sale_year, 2) ?></td>
+    <td width="144" align="center" class="item" style="padding: 16px 20px; font-size: 18px; font-weight: 700; color: #dc2626; background: #fef2f2;">$<?= number_format($sale_per, 2) ?></td>
     </tr>
 
     <tr>
@@ -735,43 +690,28 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
     </tr>
 
     <tr>
-
-    <td width="136" align="center"  class='header' colspan="6">Manual Assigned</td>
-
+    <td width="136" align="center" class='header' colspan="6" style="font-size: 16px; padding: 20px;">
+		<i class="fa-solid fa-hand-pointer" style="margin-right: 8px;"></i>
+		Manual Assigned
+	</td>
     </tr>
 
     <tr>
-
-    <td width="136" align="center"  class='header'>Today</td>
-
-    <td width="136" align="center"  class='header'>Yesterday</td>
-
-    <td width="136" align="center"  class='header'>Last 7 Days</td>
-
-    <td class='header' width='150' align="center">Last 30 Days</td>
-
-    <td width="127" class='header' align="center">Last 1 Year</td>
-
-    <td width="127" class='header' align="center">In Selected Period</td>
-
+    <td width="136" align="center" class='header' style="padding: 16px 20px;">Today</td>
+    <td width="136" align="center" class='header' style="padding: 16px 20px;">Yesterday</td>
+    <td width="136" align="center" class='header' style="padding: 16px 20px;">Last 7 Days</td>
+    <td class='header' width='150' align="center" style="padding: 16px 20px;">Last 30 Days</td>
+    <td width="127" class='header' align="center" style="padding: 16px 20px;">Last 1 Year</td>
+    <td width="127" class='header' align="center" style="padding: 16px 20px;">In Selected Period</td>
     </tr>
 
-    <tr>
-
-    <td width="136" align="center" >$<?=$manual_today?></td>
-
-    <td width="136" align="center" >$
-
-      <?=$sale_yesterday?></td>
-
-    <td width="136" align="center" >$<?=$manual_last_week?></td>
-
-    <td width='80' align="center">$<?=$manual_last_month?></td>
-
-    <td width="127" align="center">$<?=$manual_last_year?></td>
-
-    <td width="144" align="center" class="error">$<?=$manual_sel?></td>
-
+    <tr style="transition: background-color 0.2s ease;">
+    <td width="136" align="center" class="item" style="padding: 16px 20px; font-size: 18px; font-weight: 700; color: #0369a1;">$<?= number_format($manual_today, 2) ?></td>
+    <td width="136" align="center" class="item" style="padding: 16px 20px; font-size: 18px; font-weight: 700; color: #0369a1;">$<?= number_format($manual_yesterday, 2) ?></td>
+    <td width="136" align="center" class="item" style="padding: 16px 20px; font-size: 18px; font-weight: 700; color: #0369a1;">$<?= number_format($manual_last_week, 2) ?></td>
+    <td width='80' align="center" class="item" style="padding: 16px 20px; font-size: 18px; font-weight: 700; color: #0369a1;">$<?= number_format($manual_last_month, 2) ?></td>
+    <td width="127" align="center" class="item" style="padding: 16px 20px; font-size: 18px; font-weight: 700; color: #0369a1;">$<?= number_format($manual_last_year, 2) ?></td>
+    <td width="144" align="center" class="item" style="padding: 16px 20px; font-size: 18px; font-weight: 700; color: #dc2626; background: #fef2f2;">$<?= number_format($manual_sel, 2) ?></td>
     </tr>
 
 </table>
@@ -800,24 +740,19 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 <!-- Hunain -->
 
-<table cellpadding='0' cellspacing='0' class='list' width='87%'>
+<div style="margin-top: 32px;">
+	<h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+		<i class="fa-solid fa-list" style="color: #3c85ba;"></i>
+		Order Details
+	</h3>
+</div>
 
- <tr>
-
-    <td height="19" align="right" colspan="5">&nbsp;</td>
-
-	</tr>
+<table cellpadding='0' cellspacing='0' class='list' width='100%' style="margin-bottom: 24px;">
 
 	<tr>
-
-	<td width="127" class='header' align="center">Email</td>
-
-	<td class='header' width='133' align="center">Exam Code </td>
-
-	<td width="136" align="center"  class='header'>Date</td>
-
-    
-
+	<td width="127" class='header' align="center" style="padding: 16px 20px;">Email</td>
+	<td class='header' width='133' align="center" style="padding: 16px 20px;">Exam Code</td>
+	<td width="136" align="center" class='header' style="padding: 16px 20px;">Date</td>
     </tr>
 
 
