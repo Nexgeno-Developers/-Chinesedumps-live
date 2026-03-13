@@ -290,7 +290,7 @@ $totalRows = intval($countRow['cnt']);
 				<i class="fa-solid fa-save"></i>
 				Save Order
 			</button>
-			<a href="addslider.php" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; font-size: 14px; font-weight: 600; color: #ffffff; background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); border-radius: 8px; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);">
+			<a href="addslider.php" style="display: inline-flex; align-items: center; gap: 8px; padding: 7px 20px; font-size: 14px; font-weight: 600; color: #ffffff; background: #333; border-radius: 8px; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);">
 				<i class="fa-solid fa-plus"></i>
 				Add Banner
 			</a>
@@ -384,7 +384,7 @@ $totalRows = intval($countRow['cnt']);
 			<i class="fa-solid fa-images" style="font-size: 48px; margin-bottom: 16px; display: block;"></i>
 			<p style="font-size: 16px; font-weight: 500; margin: 0 0 8px 0; color: #64748b;">No banners found</p>
 			<p style="font-size: 14px; margin: 0; color: #94a3b8;">Get started by adding your first banner.</p>
-			<a href="addslider.php" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 10px 20px; background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.2s ease;">
+			<a href="addslider.php" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 7px 20px; background:#333; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.2s ease;">
 				<i class="fa-solid fa-plus"></i>
 				Add Your First Banner
 			</a>
