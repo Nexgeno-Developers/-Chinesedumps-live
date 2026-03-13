@@ -97,9 +97,9 @@ echo "<div style='clear:both'></div>";
       
        ?></td>
     </tr>
-    <tr>
+    /* <tr>
       <td class='setting2'>&nbsp;</td>
-    </tr>
+    </tr> */
   </table>
   		  </form>
 
