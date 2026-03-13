@@ -412,27 +412,30 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
               <td align="right">* Date: </td>
 
-              <td colspan="2"><input name="startdate" type="text" readonly="readonly"  id="startdate" value="<?php if(isset($_POST['startdate'])){ echo  $_POST['startdate'];} ?>" />&nbsp;<img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" /></td>
+              <td colspan="2" style="position: relative;">
+                <input name="startdate" type="text" readonly="readonly" id="startdate" value="<?php if(isset($_POST['startdate'])){ echo  $_POST['startdate'];} ?>" style="padding-right: 40px; width: 100%; padding: 8px 40px 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" />
+                <img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; width: 18px; height: 18px; opacity: 0.6; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'" />
+              </td>
 
             </tr>
 			<tr>
               <td align="right"> Lab Name:</td>
-              <td colspan="2"><input name="labName" type="text" id="labName" value="<?php if(isset($_POST['labName'])){ echo  $_POST['labName'];} ?>" />&nbsp;</td>
+              <td colspan="2"><input name="labName" type="text" id="labName" value="<?php if(isset($_POST['labName'])){ echo  $_POST['labName'];} ?>" /></td>
             </tr>
 
             <tr>
-              <td align="right"> PDF Price:</td>
-              <td colspan="2"><input name="pr3" type="text" id="pr3" value="<?php if(isset($_POST['pr3'])){ echo  $_POST['pr3'];} ?>" />&nbsp;$</td>
+              <td align="right"><i class="fa-solid fa-dollar-sign" style="color: #000; margin-right: 2px;"></i> PDF Price:</td>
+              <td colspan="2"><input name="pr3" type="text" id="pr3" value="<?php if(isset($_POST['pr3'])){ echo  $_POST['pr3'];} ?>" /></td>
             </tr>
 
             <tr>
-              <td align="right"> Engine Price:</td>
-              <td colspan="2"><input name="sp_pri" type="text" id="pr3" value="<?php if(isset($_POST['sp_pri'])){ echo  $_POST['sp_pri'];} ?>" />&nbsp;$</td>
+              <td align="right"><i class="fa-solid fa-dollar-sign" style="color: #000; margin-right: 2px;"></i> Engine Price:</td>
+              <td colspan="2"><input name="sp_pri" type="text" id="pr3" value="<?php if(isset($_POST['sp_pri'])){ echo  $_POST['sp_pri'];} ?>" /></td>
             </tr>
 
 			<tr>
-              <td align="right"> Both Price:</td>
-              <td colspan="2"><input name="both_pri" type="text" id="both_pri" value="<?php if(isset($_POST['both_pri'])){ echo  $_POST['both_pri'];} ?>" />&nbsp;$</td>
+              <td align="right"><i class="fa-solid fa-dollar-sign" style="color: #000; margin-right: 2px;"></i> Both Price:</td>
+              <td colspan="2"><input name="both_pri" type="text" id="both_pri" value="<?php if(isset($_POST['both_pri'])){ echo  $_POST['both_pri'];} ?>" /></td>
             </tr>
             
             <tr>
