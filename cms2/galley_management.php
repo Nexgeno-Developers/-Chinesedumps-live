@@ -98,7 +98,7 @@ $ccAdminData = get_session_data();
 
 		if(!isset($pgObj) && empty($pgObj))
 
-				$pgObj 		=  new classPaging ("vendormanage.php",$rowsPerPage,$linkPerPage,"","","");
+				$pgObj 		=  new classPaging ("galley_management.php",$rowsPerPage,$linkPerPage,"","","");
 
 		
 
@@ -154,6 +154,26 @@ $ccAdminData = get_session_data();
 
 		}
 
+// Setup query for pagination
+$sqlSliderQuery = "
+    SELECT 
+        sc.cert_name,
+        v.ven_name,
+        e.exam_name,
+        s.group_id,
+        s.s_image,
+        s.s_id
+    FROM sliders_new s
+    LEFT JOIN tbl_exam e ON s.group_id = e.exam_id
+    LEFT JOIN tbl_cert sc ON e.cert_id = sc.cert_id
+    LEFT JOIN tbl_vendors v ON e.ven_id = v.ven_id
+";
+
+$sqlSliderAll = mysql_query($sqlSliderQuery);
+$pgObj->SetNavigationalLinksNew($sqlSliderAll);
+
+$sqlSlider = mysql_query($sqlSliderQuery . $LIMIT);
+$emptyError = "";
 
 ?>
 
@@ -167,43 +187,20 @@ $ccAdminData = get_session_data();
 
 <td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
 
-<td width="810" valign="top" class="rightside"><h2>Banners Management Replica!</h2>
+<td width="810" valign="top" class="rightside"><h2>Gallery Management</h2>
 
 Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
 
-<br />
-
 <form id="form1" name="form1" method="post" action="">
 
+<div style="margin-bottom: 20px; text-align: right;">
+	<a href="add_gallery.php" class="btn-add">
+		<i class="fa-solid fa-plus"></i> Add Banner
+	</a>
+</div>
 
-
-<br />
-
-<table cellpadding='0' cellspacing='0' class='list' width='90%'>
-
-   <tr>
-
-    <td height="19" align="center" colspan="6">&nbsp;</td>
-
-   </tr>
-
-  <tr>
-
-     <td colspan="5"  align="center">
-      
-
-	  </td>
-
-	  <td align="right"><a class="menu" href="add_gallery.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Banner </span></a>&nbsp;&nbsp;</td>
-
-    </tr>
-
-  <tr>
-
-    <td height="19" align="center" colspan="6">&nbsp;</td>
-
-   </tr>
-
+<div class="table-responsive">
+<table cellpadding='0' cellspacing='0' class='list' width='100%'>
   <tr>
 
 	<!--<td class='header' width='206' align="center">Group ID </td>-->
@@ -244,20 +241,6 @@ $slider = mysql_fetch_object($sqlSlider);
 
 <?php 
 
-$sqlSlider = mysql_query("
-    SELECT 
-        sc.cert_name,
-        v.ven_name,
-        e.exam_name,
-        s.group_id,
-        s.s_image,
-        s.s_id
-    FROM sliders_new s
-    LEFT JOIN tbl_exam e ON s.group_id = e.exam_id
-    LEFT JOIN tbl_cert sc ON e.cert_id = sc.cert_id
-    LEFT JOIN tbl_vendors v ON e.ven_id = v.ven_id
-");
-
 for($sr = 0; $sr < mysql_num_rows($sqlSlider); $sr++){
 
 $slider = mysql_fetch_object($sqlSlider);
@@ -276,40 +259,27 @@ $slider = mysql_fetch_object($sqlSlider);
 <?php } ?>
 
 </table>
+</div>
 
-<table>
-
-<tr> 
-
-<td valign="top" align="center" class="rightside" ><div align="center"><strong>&nbsp;&nbsp; 
-
-	  <?=$BackNaviLinks;?>
-
-	  &nbsp;&nbsp; 
-
-	  <?=$NaviLinks;?>
-
-	  &nbsp;&nbsp; 
-
-	  <?=$ForwardNaviLinks;?> </strong><br />
-
-                  Total Records Found &nbsp;
-
-		<?=$TotalRecs;?><br />
-
-                  Total Pages Found &nbsp;
-
-		<?=$TotalPages;?><br /><br />
-
-		</div></td><br/>
-
-		<tr>
-
-		<td valign="top" class="rightside"  align="center"><div align="center"><?=$emptyError?></div></td>
-
-		</tr>
-
-</table>
+<div class="pagination-container">
+	<div class="pagination-left">
+		<?php if(isset($emptyError) && !empty($emptyError)): ?>
+			<?=$emptyError?>
+		<?php else: ?>
+			<span style="color: #64748b; font-size: 14px;">No record exist.</span>
+		<?php endif; ?>
+	</div>
+	
+	<div class="pagination-right">
+		<div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+			<strong><?=$BackNaviLinks;?></strong>
+			<strong><?=$NaviLinks;?></strong>
+			<strong><?=$ForwardNaviLinks;?></strong>
+		</div>
+		<p class="pagination-info">Total Records Found: <strong><?=$TotalRecs;?></strong></p>
+		<p class="pagination-info">Total Pages Found: <strong><?=$TotalPages;?></strong></p>
+	</div>
+</div>
 
 </form></td>
 
