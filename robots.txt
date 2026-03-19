@@ -1,4 +1,20 @@
 User-agent: *
-Disallow: /
+Allow: /
+
+# Block common file types
+Disallow: /*.jpg$
+Disallow: /*.jpeg$
+Disallow: /*.png$
+Disallow: /*.gif$
+Disallow: /*.webp$
+Disallow: /*.pdf$
+Disallow: /*.xls$
+Disallow: /*.xlsx$
+Disallow: /*.doc$
+Disallow: /*.docx$
+
+# Block hidden files and folders (starting with .)
+Disallow: /.*
+
 Disallow: /test
 Disallow: /test/
