@@ -1187,21 +1187,19 @@ function verifyCaptcha() {
 
 <!--End of Zopim Live Chat Script--> 
 </div> 
-<!-- open of LiveChat code -->
+<!--Start of Tawk.to Script-->
 <script type="text/javascript">
-window.__lc = window.__lc || {};
-window.__lc.license = 10322872;
-(function() {
-  var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
-  lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/69b912ab9fc5711c36fc161e/1jjtf1rre';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
-<noscript>
-<a href="https://www.livechatinc.com/chat-with/10322872/">Chat with us</a>,
-powered by <a href="https://www.livechatinc.com/?welcome" rel="noopener" target="_blank">LiveChat</a>
-</noscript>
-<!-- End of LiveChat code -->
+<!--End of Tawk.to Script-->
 <!-- Start of chi9321172 Zendesk Widget script -->
 <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=17400775-fb21-4f0b-937b-ead737d35778"> </script>
 <!-- End of chi9321172 Zendesk Widget script -->
