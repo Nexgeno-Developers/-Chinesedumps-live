@@ -162,6 +162,8 @@
 
 		 exam_url,
 
+		 exam_type,
+
 		 exam_pri3,
 
 		 exam_pri0,
@@ -212,6 +214,8 @@
 		 '".$spram[14]."',
 
 		 '".$spram[1]."',
+
+		 '".$spram['exam_type']."',
 
 		 '".$spram[2]."',
 
@@ -448,7 +452,7 @@
 
 				{
 
-				 $add_que = "UPDATE tbl_exam set ven_id='".$spram[12]."',cert_id='".$spram[13]."',exam_fullname='".$spram[14]."',exam_name='".$spram[1]."',labName='".$spram[32]."',exam_url='".$spram[2]."',exam_pri3='".$spram[3]."',exam_pri0='".$spram[3]."',both_pri='".$spram[4]."',engn_pri3='".$spram[33]."',QA='".$spram[20]."',exam_home='".$spram[5]."',exam_hot='".$spram[6]."',exam_descr='".str_replace("'","\'",$spram[7])."',exam_descr2='".str_replace("'","\'",$spram[39])."',exam_related_descr='".str_replace("'","\'",$spram[41])."'
+				 $add_que = "UPDATE tbl_exam set ven_id='".$spram[12]."',cert_id='".$spram[13]."',exam_fullname='".$spram[14]."',exam_name='".$spram[1]."',labName='".$spram[32]."',exam_url='".$spram[2]."',exam_type='".$spram['exam_type']."',exam_pri3='".$spram[3]."',exam_pri0='".$spram[3]."',both_pri='".$spram[4]."',engn_pri3='".$spram[33]."',QA='".$spram[20]."',exam_home='".$spram[5]."',exam_hot='".$spram[6]."',exam_descr='".str_replace("'","\'",$spram[7])."',exam_descr2='".str_replace("'","\'",$spram[39])."',exam_related_descr='".str_replace("'","\'",$spram[41])."'
 
 				 ,exam_tests='".str_replace("'","\'",$spram[77])."',exam_title='".str_replace("'","\'",$spram[8])."',exam_keywords='".str_replace("'","\'",$spram[9])."',exam_desc_seo='".str_replace("'","\'",$spram[10])."',exam_status='".$spram[11]."',exam_date='".$spram[29]."',telegram_url='".$spram[38]."',whatsapp_url='".$spram[30]."',skype_url='".$spram[31]."',video_code='".$spram[37]."',course_image='".$spram[36]."',youtube_links='".$spram['youtube_links']."',free_dump_pdf='".mysql_real_escape_string(isset($spram['free_dump_pdf']) ? $spram['free_dump_pdf'] : '')."' where exam_id ='".$spram[0]."'";
 

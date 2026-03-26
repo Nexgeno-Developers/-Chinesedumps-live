@@ -199,6 +199,9 @@ function buildVideoLinksFromPost()
             $spram[31]	=	$_POST['skype_url'];
             $spram[37]	=	$_POST['video_code'];
             $spram[32]	=	$_POST['labName'];
+
+            $examType = isset($_POST['exam_type']) ? strtolower(trim((string)$_POST['exam_type'])) : 'written';
+            $spram['exam_type'] = ($examType === 'lab') ? 'lab' : 'written';
             $spram[35]  =   $_POST["oldBanner"];
             $spram[34]	=	$_FILES['course_image'];
             
@@ -393,6 +396,9 @@ function buildVideoLinksFromPost()
                 $spram[37]	=	$row['video_code'];				
                 $spram[33]	=	$row['labName'];
                 $spram[36]	=	$row['course_image'];
+
+                $spram['exam_type'] = isset($row['exam_type']) ? strtolower(trim((string)$row['exam_type'])) : 'written';
+                $spram['exam_type'] = ($spram['exam_type'] === 'lab') ? 'lab' : 'written';
                 $spram[39]	= 	$row['exam_descr2'];
                 $spram[41]	= 	$row['exam_related_descr'];
                 $spram['free_dump_pdf'] = $row['free_dump_pdf'];
@@ -549,6 +555,16 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 		<tr>
           <td align="right"> Lab Name:</td>
           <td colspan="2"><input  name="labName" id="labName" type="text"  value="<?php if(isset($spram[33])){ echo  $spram[33];} ?>" /></td>
+        </tr>
+
+					<tr>
+          <td align="right">* Exam Type:</td>
+          <td colspan="2">
+            <select name="exam_type" id="exam_type">
+              <option value="written" <?php echo (!isset($spram['exam_type']) || $spram['exam_type'] === 'written') ? 'selected="selected"' : ''; ?>>Written (bootcamp.htm)</option>
+              <option value="lab" <?php echo (isset($spram['exam_type']) && $spram['exam_type'] === 'lab') ? 'selected="selected"' : ''; ?>>Lab (workbook.htm, lab.htm)</option>
+            </select>
+          </td>
         </tr>
 					<tr>
               <td align="right"> Course Image:</td>

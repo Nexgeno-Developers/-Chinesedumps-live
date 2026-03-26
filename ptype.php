@@ -183,6 +183,8 @@ $price = $objPricess->getProductPrice($examID, 'p', '0');
 $eprice = $objPricess->getProductPrice($examID, 'sp', '0');
 $bprice = $objPricess->getProductPrice($examID, 'both', '0');
 $examName = $exam['exam_fullname'];
+$examType = isset($exam['exam_type']) ? strtolower(trim((string)$exam['exam_type'])) : 'written';
+$isLab = ($examType === 'lab');
 
 if ($examName == '') {
 	header('location:index.html');
@@ -1055,7 +1057,7 @@ p.exam_reallab_desc {
 									<?php
 									$uri = explode('-', $_SERVER['REQUEST_URI']);
                                     //$uri[0] == '/CISSP.htm' ||
-									if ($uri[1] == 'Bootcamp.htm' || $uri[2] == 'Lab.htm' || $uri[1] == 'Lab.htm' || $uri[5] == 'lab.htm' || $uri[6] == 'lab.htm' || $uri[6] == 'workbook.htm' || $uri[5] == 'workbook.htm' || $uri[5] == 'bootcamp.htm' || $uri[6] == 'bootcamp.htm') {
+									if ($isLab) {
 										echo '<style>
 .courses_main_boxex1.paddtop60 {
     background: #3C85BA0D;
@@ -1295,12 +1297,12 @@ li.main_cert .package-price {
 															<?php
 															$uri = explode('-', $_SERVER['REQUEST_URI']);
 															//$uri[0] == '/CISSP.htm' ||
-															if ($uri[1] == 'Bootcamp.htm' || $uri[2] == 'Lab.htm' || $uri[1] == 'Lab.htm' || $uri[5] == 'lab.htm' || $uri[6] == 'lab.htm' || $uri[6] == 'workbook.htm' || $uri[5] == 'workbook.htm' || $uri[6] == 'bootcamp.htm' || $uri[5] == 'bootcamp.htm') {
+															if ($isLab) {
 																$pieces = explode('[BREAK]', $exam['exam_descr']);
 
 																?>
 									 
-									 <!-- template 1 -->
+									 <?php include __DIR__ . '/lab.php'; ?><?php if(false){ ?> <!-- template 1 -->
 									 <div class="row">
 									     <div class="col-md-4 col-sm-4">
 									         <li class="main_cert bootcamp_boxex_li pttop20">
@@ -1482,8 +1484,9 @@ li.main_cert .package-price {
 																
 																
 																
+																<?php } ?>
 																<?php } else { ?>
-															    	<!-- template 2 | Return Dumps -->
+															    	<?php include __DIR__ . '/written.php'; ?><?php if(false){ ?> <!-- template 2 | Return Dumps -->
 															    	
 																    <?/*php if ($freeDumpAvailable) { */  ?>
                                                                         <li class="main_cert courses_listing_prc free_dump_row">
@@ -1587,6 +1590,7 @@ li.main_cert .package-price {
 																	
 																	
 
+																	<?php } ?>
 																	<?php } ?>
 																		<? } ?>
 													</ul>
