@@ -1,176 +1,206 @@
-<!-- template 1 -->
-<div class="row">
-    <div class="col-md-4 col-sm-4">
-        <li class="main_cert bootcamp_boxex_li pttop20">
-            <div class="package-box">
-                <div class="pkg-name pro_cet">
-                    <?php
-                    // Original content
-                    $fullname = $exam['exam_fullname'];
+<?php
+$isCcdeLabRequest = ($_SERVER['REQUEST_URI'] == '/CCDE-Lab.htm');
+$fullCourseName = isset($exam['exam_fullname']) ? trim($exam['exam_fullname']) : '';
+$nameWords = preg_split('/\s+/', $fullCourseName);
+if (count($nameWords) > 2) {
+    array_splice($nameWords, -2);
+    $courseBaseName = trim(implode(' ', $nameWords));
+} else {
+    $courseBaseName = $fullCourseName;
+}
+if ($courseBaseName === '') {
+    $courseBaseName = $fullCourseName;
+}
 
-                    // Split the string into an array of words
-                    $words = explode(' ', $fullname);
+$paidPackages = array(
+    array(
+        'ptype' => '7',
+        'title' => trim($courseBaseName . ($isCcdeLabRequest ? ' Written' : ' Real Lab Workbook')),
+        'price' => $price,
+        'icon' => 'images/new-image/secure_pdf.svg',
+        'support' => isset($pieces[0]) ? $pieces[0] : ''
+    ),
+    array(
+        'ptype' => '9',
+        'title' => trim($courseBaseName . ($isCcdeLabRequest ? ' Real Lab Workbook + Bootcamp' : ' Real Lab Workbook + Racks + Bootcamp')),
+        'price' => $bprice,
+        'icon' => 'images/new-image/engine_package.svg',
+        'support' => isset($pieces[2]) ? $pieces[2] : ''
+    ),
+    array(
+        'ptype' => '8',
+        'title' => trim($courseBaseName . ($isCcdeLabRequest ? ' Real Lab Workbook' : ' Real Lab Workbook + Racks')),
+        'price' => $eprice,
+        'icon' => 'images/new-image/pdc_icons.svg',
+        'support' => isset($pieces[1]) ? $pieces[1] : ''
+    )
+);
 
-                    // Remove the last two words
-                    array_splice($words, -2);
+$cleanSupportHtml = function ($html) {
+    if (!is_string($html)) {
+        return '';
+    }
 
-                    // Join the remaining words back into a string
-                    $updatedFullname = implode(' ', $words);
+    $clean = trim($html);
+    if ($clean === '') {
+        return '';
+    }
 
-                    // Output the result
-                    echo $updatedFullname;
+    $clean = preg_replace('/<p[^>]*>\s*Includes:\s*<\/p>/i', '', $clean);
+    $clean = preg_replace('/<div[^>]*>\s*Includes:\s*<\/div>/i', '', $clean);
+    $clean = preg_replace('/Includes:\s*/i', '', $clean, 1);
 
-                    // Check if the current URL matches the specific one
-                    if ($_SERVER['REQUEST_URI'] == '/CCDE-Lab.htm') {
-                        // Output custom text for the specific URL
-                        echo ' Written';
-                    } else {
-                        // Otherwise, output 'Real Lab Workbook'
-                        echo ' Real Lab Workbook';
-                    }
-                    ?>
-                </div>
-            </div>
+    return trim($clean);
+};
+?>
+<style>
+.lab-offer-price {
+    padding-right: 10px;
+    font-weight: bold;
+}
+.lab-btn-download{
+    background-color: #0c642f;
+    border-color: #0c642f;
+}
+.lab-offer-btn {
+    border-radius: 16px;
+    font-weight: bold;
+}
+.lab-offer-row {
+    margin: 0 0 10px 0;
+    border-radius: 8px;
+}
 
-            <div class=" products_img_labs">
-                <img src="/images/slider/<?= $examID ?>/<?= $exam['course_image'] ?>" style="width: 100%;">
-            </div>
-            <div class="package-box">
-                <div style="clear:both;"></div>
-                <div class="basicLab">
-                    <?= $pieces[0]; ?>
-                </div>
-            </div>
-
-            <div class="labs_blocks">
-                <div class="labs_flex">
-                    <div class="package-price">
-                        Price: <span class="green_clr">$ <?= $price ?></span>
+.lab-offer-list {
+    display: flex;
+    gap: 3px;
+    flex-direction: column;
+}
+</style>
+<li class="main_cert lab-figma-layout">
+    <div class="lab-figma-top row">
+        <div class="col-md-4 col-sm-12">
+            <div class="lab-media-card panel panel-default">
+                <div class="panel-body text-center">
+                    <div class="lab-media-image">
+                        <img class="img-responsive center-block" src="/images/slider/<?= $examID ?>/<?= $exam['course_image'] ?>" alt="<?= htmlspecialchars($fullCourseName); ?>">
                     </div>
-                    <div class="buy-package pro_cet_1">
-                        <button class="carts_button" value="7" name="ptype" id="type_7"
-                            onclick="<?= $isLoggedIn ? "submitProexam($examID, '7');" : "redirectToLogin();" ?>">
-                            Buy Now <img src="images/new-image/new_cart_icons.png">
-                        </button>
+                    <div class="lab-verified-chip">
+                        <span class="lab-verified-icon"></span>
+                        Verified Dumps
                     </div>
                 </div>
             </div>
-        </li>
+        </div>
+        <div class="col-md-8 col-sm-12">
+            <div class="lab-offer-list list-group">
+                <form method="post" id="freeDumpFormLab">
+                    <input type="hidden" name="download_free_dump" value="1">
+                </form>
+                <form method="post" id="demoPracticeFormLab">
+                    <input type="hidden" name="download_demo_practice" value="1">
+                </form>
+
+                <div class="lab-offer-row lab-offer-free list-group-item">
+                    <div class="row">
+                        <div class="col-sm-8 col-xs-12">
+                            <div class="media lab-offer-main">
+                                <div class="media-left">
+                                    <span class="lab-offer-icon"><img src="images/new-image/demo_pdf2.svg" alt="Demo question"></span>
+                                </div>
+                                <div class="media-body">
+                                    <span class="lab-offer-title"><?= htmlspecialchars($fullCourseName); ?> Demo Question Download Free</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-12 text-right">
+                            <div class="lab-offer-side">
+                                <span class="lab-offer-price">Free</span>
+                                <button class="btn btn-success lab-offer-btn lab-btn-download" type="button"
+                                    onclick="<?= $isLoggedIn ? "document.getElementById('freeDumpFormLab').submit();" : "redirectToLogin();" ?>">
+                                    Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php if (!empty($freeDumpError)) { ?>
+                    <div class="lab-row-error"><?= htmlspecialchars($freeDumpError); ?></div>
+                <?php } ?>
+
+                <div class="lab-offer-row lab-offer-free list-group-item">
+                    <div class="row">
+                        <div class="col-sm-8 col-xs-12">
+                            <div class="media lab-offer-main">
+                                <div class="media-left">
+                                    <span class="lab-offer-icon"><img src="images/new-image/demo_pdf.svg" alt="Demo practice"></span>
+                                </div>
+                                <div class="media-body">
+                                    <span class="lab-offer-title"><?= htmlspecialchars($fullCourseName); ?> Demo Practise Test</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-12 text-right">
+                            <div class="lab-offer-side">
+                                <span class="lab-offer-price">Free</span>
+                                <button class="btn btn-success lab-offer-btn lab-btn-download" type="button"
+                                    onclick="<?= $isLoggedIn ? "document.getElementById('demoPracticeFormLab').submit();" : "redirectToLogin();" ?>">
+                                    Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php if (!empty($demoPracticeError)) { ?>
+                    <div class="lab-row-error"><?= htmlspecialchars($demoPracticeError); ?></div>
+                <?php } ?>
+
+                <?php foreach ($paidPackages as $package) { ?>
+                    <div class="lab-offer-row list-group-item">
+                        <div class="row">
+                            <div class="col-sm-8 col-xs-12">
+                                <div class="media lab-offer-main">
+                                    <div class="media-left">
+                                        <span class="lab-offer-icon"><img src="<?= $package['icon']; ?>" alt="Package"></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="lab-offer-title"><?= htmlspecialchars($package['title']); ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-12 text-right">
+                                <div class="lab-offer-side">
+                                    <span class="lab-offer-price">$<?= $package['price']; ?></span>
+                                    <button class="btn btn-primary lab-offer-btn lab-btn-buy"
+                                        value="<?= $package['ptype']; ?>"
+                                        name="ptype"
+                                        id="type_<?= $package['ptype']; ?>"
+                                        onclick="<?= $isLoggedIn ? "submitProexam($examID, '" . $package['ptype'] . "');" : "redirectToLogin();" ?>">
+                                        Buy Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-4 col-sm-4 padd000">
-        <li class="main_cert bootcamp_boxex_li">
-            <div class="package-box">
-                <div class="pkg-name pro_cet">
-                    <?php
-                    // Original content
-                    $fullname = $exam['exam_fullname'];
-
-                    // Split the string into an array of words
-                    $words = explode(' ', $fullname);
-
-                    // Remove the last two words
-                    array_splice($words, -2);
-
-                    // Join the remaining words back into a string
-                    $updatedFullname = implode(' ', $words);
-
-                    // Output the result
-                    echo $updatedFullname;
-
-                    // Check if the current URL matches the specific one
-                    if ($_SERVER['REQUEST_URI'] == '/CCDE-Lab.htm') {
-                        // Output custom text for the specific URL
-                        echo ' Real Lab Workbook + Bootcamp';
-                    } else {
-                        // Otherwise, output 'Real Lab Workbook'
-                        echo ' Real Lab Workbook + Racks + Bootcamp';
-                    }
-                    ?>
-                </div>
-            </div>
-
-            <div class="products_img_labs">
-                <img src="/images/slider/<?= $examID ?>/<?= $exam['course_image'] ?>" style="width: 100%;">
-            </div>
-            <div class="package-box">
-                <div class="bootcampLab">
-                    <?= $pieces[2]; ?>
-                </div>
-            </div>
-
-            <div class="labs_blocks">
-                <div class="labs_flex">
-                    <div class="package-price">
-                        Price: <span class="green_clr">$ <?= $bprice ?> </span>
-                    </div>
-                    <div class="buy-package pro_cet_1">
-                        <button class="carts_button" value="9" name="ptype" id="type_9"
-                            onclick="<?= $isLoggedIn ? "submitProexam($examID, '9');" : "redirectToLogin();" ?>">
-                            Buy Now <img src="images/new-image/new_cart_icons.png">
-                        </button>
+    <div class="lab-support-section">
+        <h3 class="lab-support-heading text-center bold">Exam Details &amp; Support</h3>
+        <div class="row">
+            <?php foreach ($paidPackages as $package) { ?>
+                <div class="col-md-4 col-sm-6">
+                    <div class="lab-support-card panel panel-default">
+                        <div class="panel-body">
+                            <div class="lab-support-title"><?= htmlspecialchars($package['title']); ?></div>
+                            <div class="lab-support-content"><?= $cleanSupportHtml($package['support']); ?></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </li>
+            <?php } ?>
+        </div>
     </div>
-
-    <div class="col-md-4 col-sm-4">
-        <li class="main_cert bootcamp_boxex_li pttop20">
-            <div class="package-box">
-                <div class="pkg-name pro_cet">
-                    <?php
-                    // Original content
-                    $fullname = $exam['exam_fullname'];
-
-                    // Split the string into an array of words
-                    $words = explode(' ', $fullname);
-
-                    // Remove the last two words
-                    array_splice($words, -2);
-
-                    // Join the remaining words back into a string
-                    $updatedFullname = implode(' ', $words);
-
-                    // Output the result
-                    echo $updatedFullname;
-
-                    // Check if the current URL matches the specific one
-                    if ($_SERVER['REQUEST_URI'] == '/CCDE-Lab.htm') {
-                        // Output custom text for the specific URL
-                        echo ' Real Lab Workbook';
-                    } else {
-                        // Otherwise, output 'Real Lab Workbook'
-                        echo ' Real Lab Workbook + Racks';
-                    }
-                    ?>
-                </div>
-            </div>
-
-            <div class="products_img_labs">
-                <img src="/images/slider/<?= $examID ?>/<?= $exam['course_image'] ?>" style="width:100%;">
-            </div>
-
-            <div class="package-box">
-                <div class="workbookLab">
-                    <?= $pieces[1]; ?>
-                </div>
-            </div>
-
-            <div class="labs_blocks">
-                <div class="labs_flex">
-                    <div class="package-price">
-                        Price: <span class="green_clr">$ <?= $eprice ?> </span>
-                    </div>
-                    <div class="buy-package pro_cet_1">
-                        <button class="carts_button" value="8" name="ptype" id="type_8"
-                            onclick="<?= $isLoggedIn ? "submitProexam($examID, '8');" : "redirectToLogin();" ?>">
-                            Buy Now <img src="images/new-image/new_cart_icons.png">
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </div>
-</div>
+</li>
 

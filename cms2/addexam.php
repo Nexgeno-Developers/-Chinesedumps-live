@@ -196,6 +196,28 @@ function buildVideoLinksFromPost()
                 }
             }
         }
+
+        // Handle demo practice file upload (used for lab "Demo Practise Test" download)
+        $spram['demo_practice_file'] = '';
+        if (!empty($_FILES['demo_practice_file']['name'])) {
+            $ext = strtolower(pathinfo($_FILES['demo_practice_file']['name'], PATHINFO_EXTENSION));
+            $allowedExt = array('pdf', 'zip', 'rar', '7z', 'doc', 'docx', 'txt');
+            if (!in_array($ext, $allowedExt, true)) {
+                $strError .= "<b>Error!</b> Demo practice file type is not valid.<br/>";
+            } else {
+                $uploadDir = "../devil/demo/";
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
+                $newDemoName = uniqid("demoPractice_") . "." . $ext;
+                $destPath = $uploadDir . $newDemoName;
+                if (move_uploaded_file($_FILES['demo_practice_file']['tmp_name'], $destPath)) {
+                    $spram['demo_practice_file'] = $newDemoName;
+                } else {
+                    $strError .= "<b>Error!</b> Unable to upload demo practice file. Please try again.<br/>";
+                }
+            }
+        }
         
             $spram[43]  =   $_POST["oldExamDemoImages"];
             $demoImages = [];
@@ -451,6 +473,14 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
             <tr>
               <td align="right">Free Dump PDF:</td>
               <td colspan="2"><input type="file" name="free_dump_pdf" accept="application/pdf" /></td>
+            </tr>
+
+            <tr>
+              <td align="right">Demo Practise Test File:</td>
+              <td colspan="2">
+                <input type="file" name="demo_practice_file" accept=".pdf,.zip,.rar,.7z,.doc,.docx,.txt" />
+                <br/><small>Allowed: pdf, zip, rar, 7z, doc, docx, txt</small>
+              </td>
             </tr>
 		
 

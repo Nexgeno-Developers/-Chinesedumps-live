@@ -8767,6 +8767,261 @@ a.related_buttons:hover {
     align-items: center;
 }
 
+li.main_cert.lab-figma-layout {
+    background: transparent;
+    border: 0;
+    padding: 0 !important;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.lab-figma-top {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.lab-media-card {
+    background: #ffffff;
+    border: 1px solid #e7ebf0;
+    border-radius: 12px;
+    padding: 24px 20px;
+    min-height: 460px;
+    text-align: center;
+}
+
+.lab-media-image img {
+    width: 70%;
+    max-width: 240px;
+    margin: 0 auto;
+    display: block;
+    mix-blend-mode: multiply;
+}
+
+.lab-verified-chip {
+    margin-top: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: 7px 16px;
+    background: #eaf5ef;
+    color: #1f733d;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.lab-verified-icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #1f733d;
+    display: inline-block;
+}
+
+.lab-offer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lab-offer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 18px;
+    background: #ffffff;
+    border: 1px solid #e9edf2;
+    border-radius: 12px;
+}
+
+.lab-offer-row.lab-offer-free {
+    background: #fff4f4;
+    border-color: #f2d7d7;
+}
+
+.lab-offer-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.lab-offer-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f0f8f3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.lab-offer-row.lab-offer-free .lab-offer-icon {
+    background: #ffe7e7;
+}
+
+.lab-offer-icon img {
+    width: 17px;
+    height: 17px;
+    object-fit: contain;
+}
+
+.lab-offer-title {
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 600;
+    color: #2f2f2f;
+    display: block;
+}
+
+.lab-offer-side {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    flex: 0 0 auto;
+}
+
+.lab-offer-price {
+    color: #202020;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.lab-offer-row.lab-offer-free .lab-offer-price {
+    color: #dd2f2f;
+}
+
+.lab-offer-btn {
+    border: 0;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 12px 22px;
+}
+
+.lab-btn-buy {
+    background: linear-gradient(90deg, #4ea4ff 0%, #2f7be6 100%);
+}
+
+.lab-btn-download {
+    background: #1f8d4f;
+}
+
+.lab-row-error {
+    color: #d43f3a;
+    font-size: 14px;
+    margin: -4px 6px 2px;
+}
+
+.lab-support-section {
+    margin-top: 54px;
+}
+
+.lab-support-heading {
+    margin: 0 0 24px;
+    text-align: center;
+    font-size: 42px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #272727;
+}
+
+.lab-support-card {
+    background: #ffffff;
+    border: 1px solid #e8ecf1;
+    border-radius: 12px;
+    padding: 18px 18px 16px;
+    height: 100%;
+}
+
+.lab-support-title {
+    color: #202020;
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.lab-support-content {
+    color: #444;
+    font-size: 18px;
+    line-height: 1.55;
+}
+
+.lab-support-content p,
+.lab-support-content div {
+    margin-bottom: 8px;
+}
+
+@media (max-width: 991px) {
+    .lab-media-card {
+        min-height: auto;
+        margin-bottom: 16px;
+    }
+
+    .lab-offer-title {
+        font-size: 17px;
+        line-height: 24px;
+    }
+
+    .lab-offer-price {
+        font-size: 18px;
+    }
+
+    .lab-offer-btn {
+        font-size: 15px;
+        padding: 10px 18px;
+    }
+
+    .lab-support-heading {
+        font-size: 30px;
+    }
+
+    .lab-support-title {
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    .lab-support-content {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .lab-offer-row {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px;
+    }
+
+    .lab-offer-side {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .lab-support-section {
+        margin-top: 34px;
+    }
+
+    .lab-support-heading {
+        font-size: 26px;
+        margin-bottom: 16px;
+    }
+
+    .lab-support-card {
+        margin-bottom: 14px;
+    }
+
+    .lab-media-image img {
+        width: 75%;
+        max-width: 190px;
+    }
+}
+
 .numbere_fileds input#mobile_code {
     width: 100% !important;
     padding-left: 87px !important;

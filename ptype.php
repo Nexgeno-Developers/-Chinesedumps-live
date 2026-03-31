@@ -196,6 +196,10 @@ $freeDumpAbsolutePath = __DIR__ . '/uploads/free_dumps/' . $freeDumpPdf;
 $freeDumpWebPath = 'uploads/free_dumps/' . $freeDumpPdf;
 $freeDumpError = '';
 $freeDumpAvailable = ($freeDumpPdf !== '');
+$demoPracticeFile = isset($exam['exam_demo']) ? trim($exam['exam_demo']) : '';
+$demoPracticeAbsolutePath = __DIR__ . '/devil/demo/' . $demoPracticeFile;
+$demoPracticeWebPath = 'devil/demo/' . $demoPracticeFile;
+$demoPracticeError = '';
 
 if (!function_exists('getUserDetails')) {
 	function getUserDetails($userID) {
@@ -280,6 +284,88 @@ if (isset($_POST['download_free_dump'])) {
 			exit;
 		} else {
 			$freeDumpError = "Unable to locate the free dump file.";
+		}
+	}
+}
+
+if (isset($_POST['download_demo_practice'])) {
+	if (!$isLoggedIn) {
+		$_SESSION['lasturl'] = $_SERVER['REQUEST_URI'];
+		header("Location: " . BASE_URL . "login.php");
+		exit;
+	}
+
+	if ($demoPracticeFile === '' || !file_exists($demoPracticeAbsolutePath)) {
+		$demoPracticeError = "Demo practice test file is not available right now.";
+	} else {
+		$userId = intval($_SESSION['uid']);
+		$userData = getUserDetails($userId);
+		$userFirst = isset($userData['user_fname']) ? $userData['user_fname'] : '';
+		$userLast = isset($userData['user_lname']) ? $userData['user_lname'] : '';
+		$userEmail = isset($userData['user_email']) ? $userData['user_email'] : '';
+		$userPhone = isset($userData['user_phone']) ? $userData['user_phone'] : '';
+		$userName = trim($userFirst . ' ' . $userLast);
+		$userIp = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+		$timestamp = date('Y-m-d H:i:s');
+		$baseUrl = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+		$currentUrl = $baseUrl . $_SERVER['REQUEST_URI'];
+		$demoUrl = $baseUrl . '/' . $demoPracticeWebPath;
+
+		$adminEmail = "sales@chinesedumps.com";
+		$subject = "Demo practice download: {$examName} ({$examCode})";
+		$message = "
+        <html>
+        <head><title>Demo Practice Download Notification</title></head>
+        <body>
+            <p><strong>User Details:</strong></p>
+            <ul>
+                <li><strong>Name:</strong> " . htmlspecialchars($userName) . "</li>
+                <li><strong>Email:</strong> " . htmlspecialchars($userEmail) . "</li>" .
+			(!empty($userPhone) ? "<li><strong>Phone:</strong> " . htmlspecialchars($userPhone) . "</li>" : '') . "
+                <li><strong>IP Address:</strong> " . htmlspecialchars($userIp) . "</li>
+            </ul>
+
+            <p><strong>Download Details:</strong></p>
+            <ul>
+                <li><strong>Exam:</strong> " . htmlspecialchars($examName) . " (" . htmlspecialchars($examCode) . ")</li>
+                <li><strong>File:</strong> " . htmlspecialchars($demoPracticeFile) . "</li>
+                <li><strong>Timestamp:</strong> " . htmlspecialchars($timestamp) . "</li>
+                <li><strong>Page URL:</strong> <a href=\"" . htmlspecialchars($currentUrl) . "\" target=\"_blank\">" . htmlspecialchars($currentUrl) . "</a></li>
+            </ul>
+            <p><strong>Download File:</strong> <a href=\"" . htmlspecialchars($demoUrl) . "\" target=\"_blank\">" . htmlspecialchars($demoPracticeFile) . "</a></p>
+        </body>
+        </html>";
+
+		$headers = "MIME-Version: 1.0\r\n";
+		$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+		$headers .= "From: noreply@chinesedumps.com\r\n";
+
+		try {
+			if (function_exists('sendEmail')) {
+				sendEmail($adminEmail, $subject, $message, $headers);
+			} else {
+				@mail($adminEmail, $subject, $message, $headers);
+			}
+		} catch (Exception $e) {
+			@mail($adminEmail, $subject, $message, $headers);
+		}
+
+		if (file_exists($demoPracticeAbsolutePath)) {
+			$mimeType = 'application/octet-stream';
+			if (function_exists('mime_content_type')) {
+				$detectedMimeType = @mime_content_type($demoPracticeAbsolutePath);
+				if (!empty($detectedMimeType)) {
+					$mimeType = $detectedMimeType;
+				}
+			}
+
+			header('Content-Type: ' . $mimeType);
+			header('Content-Disposition: attachment; filename="' . basename($demoPracticeFile) . '"');
+			header('Content-Length: ' . filesize($demoPracticeAbsolutePath));
+			readfile($demoPracticeAbsolutePath);
+			exit;
+		} else {
+			$demoPracticeError = "Unable to locate the demo practice test file.";
 		}
 	}
 }

@@ -238,6 +238,39 @@ function buildVideoLinksFromPost()
                     }
                 }
             }
+            $spram['demo_practice_file'] = isset($_POST['old_demo_practice_file']) ? $_POST['old_demo_practice_file'] : '';
+            if (!empty($_POST['remove_demo_practice_file'])) {
+                $oldDemoPath = "../devil/demo/" . $spram['demo_practice_file'];
+                if ($spram['demo_practice_file'] && file_exists($oldDemoPath)) {
+                    @unlink($oldDemoPath);
+                }
+                $spram['demo_practice_file'] = '';
+            }
+            if (!empty($_FILES['demo_practice_file']['name'])) {
+                $ext = strtolower(pathinfo($_FILES['demo_practice_file']['name'], PATHINFO_EXTENSION));
+                $allowedExt = array('pdf', 'zip', 'rar', '7z', 'doc', 'docx', 'txt');
+                if (!in_array($ext, $allowedExt, true)) {
+                    $strError .= "<b>Error!</b> Demo practice file type is not valid.<br/>";
+                } else {
+                    $uploadDir = "../devil/demo/";
+                    if (!is_dir($uploadDir)) {
+                        mkdir($uploadDir, 0777, true);
+                    }
+                    $newDemoName = uniqid("demoPractice_") . "." . $ext;
+                    $destPath = $uploadDir . $newDemoName;
+                    if (move_uploaded_file($_FILES['demo_practice_file']['tmp_name'], $destPath)) {
+                        if (!empty($spram['demo_practice_file']) && $spram['demo_practice_file'] !== $newDemoName) {
+                            $previousDemoPath = "../devil/demo/" . $spram['demo_practice_file'];
+                            if (file_exists($previousDemoPath)) {
+                                @unlink($previousDemoPath);
+                            }
+                        }
+                        $spram['demo_practice_file'] = $newDemoName;
+                    } else {
+                        $strError .= "<b>Error!</b> Unable to upload demo practice file. Please try again.<br/>";
+                    }
+                }
+            }
     	    $demoImages = [];
             
             if (!empty($_FILES['exam_demo_images']['name'])) {
@@ -402,6 +435,7 @@ function buildVideoLinksFromPost()
                 $spram[39]	= 	$row['exam_descr2'];
                 $spram[41]	= 	$row['exam_related_descr'];
                 $spram['free_dump_pdf'] = $row['free_dump_pdf'];
+                $spram['demo_practice_file'] = $row['exam_demo'];
 				$youtube_links = array();
                 if (!empty($row['youtube_links'])) {
                     $youtube_links = normalizeVideoLinksFromStorage($row['youtube_links']);
@@ -616,6 +650,22 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
                 <?php } ?>
                 <input type="file" name="free_dump_pdf" accept="application/pdf" />
                 <input type="hidden" name="old_free_dump_pdf" value="<?php echo $spram['free_dump_pdf']; ?>">
+              </td>
+            </tr>
+            <tr>
+              <td align="right">Demo Practise Test File:</td>
+              <td colspan="2">
+                <?php if(!empty($spram['demo_practice_file'])) { ?>
+                  <div style="margin-bottom:6px;">
+                    Current: <a href="../devil/demo/<?php echo $spram['demo_practice_file']; ?>" target="_blank">
+                      <?php echo $spram['demo_practice_file']; ?>
+                    </a>
+                  </div>
+                  <label><input type="checkbox" name="remove_demo_practice_file" value="1"> Remove current file</label><br>
+                <?php } ?>
+                <input type="file" name="demo_practice_file" accept=".pdf,.zip,.rar,.7z,.doc,.docx,.txt" />
+                <input type="hidden" name="old_demo_practice_file" value="<?php echo isset($spram['demo_practice_file']) ? $spram['demo_practice_file'] : ''; ?>">
+                <br/><small>Allowed: pdf, zip, rar, 7z, doc, docx, txt</small>
               </td>
             </tr>
             
