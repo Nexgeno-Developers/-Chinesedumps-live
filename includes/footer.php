@@ -961,7 +961,7 @@ require_once __DIR__ . '/config/load_secrets.php';
                               <li><a href="privacy.html"><img class="footer_arrow" src="images/new-image/left_arrow.svg" alt="left_arrow 2"/> Privacy Policy</a> </li>
                                 
                                  <li><a href="disclaimer.html"><img class="footer_arrow" src="images/new-image/left_arrow.svg" alt="left_arrow 3"/> Terms & Conditions </a> </li>
-                                 <li><a href="dumps_video.php"><img class="footer_arrow" src="images/new-image/left_arrow.svg" alt="left_arrow 4"/> Real Exam Videos</a> </li>
+                                 <!-- <li><a href="dumps_video.php"><img class="footer_arrow" src="images/new-image/left_arrow.svg" alt="left_arrow 4"/> Real Exam Videos</a> </li> -->
                                   <li><a href="workbooks-policy.php"><img class="footer_arrow" src="images/new-image/left_arrow.svg" alt="left_arrow 5"/> Workbook Policy</a> </li>
                                   <li><a href="verification-policy.php"><img class="footer_arrow" src="images/new-image/left_arrow.svg" alt="left_arrow 5"/> Verification Policy</a> </li>
                                   <li><a href="alldemo.php"><img class="footer_arrow" src="images/new-image/left_arrow.svg" alt="left_arrow 6"/> All Demos</a> </li>
@@ -984,7 +984,7 @@ require_once __DIR__ . '/config/load_secrets.php';
                               <ul id="menu-footer-menu" class="menu margin_top53">
                                   
 									<li><a href="group_study.php"><img class="footer_arrow" src="images/new-image/left_arrow.svg" alt="left_arrow 8"/> Study Groups</a></li>
-								<li><a href="proxy-exams.html"><img class="footer_arrow" src="images/new-image/left_arrow.svg" alt="left_arrow 9"/> Proxy Exams</a></li>
+								<li><a href="proxy-exams.html"><img class="footer_arrow" src="images/new-image/left_arrow.svg" alt="left_arrow 9"/> Remote Services</a></li>
                                 <li><a href="test-centers.html"><img class="footer_arrow" src="images/new-image/left_arrow.svg" alt="left_arrow 10"/> Test Centers</a></li>
                                 <li><a href="expert.html"><img class="footer_arrow" src="images/new-image/left_arrow.svg" alt="left_arrow 11"/> Expert</a></li>
                                 <li><a href="stable-unstable.html"><img class="footer_arrow" src="images/new-image/left_arrow.svg" alt="left_arrow 12"/> Stable/Unstable</a></li>
