@@ -1,3 +1,4 @@
+<!-- template 2 | Return Dumps by lab.php -->
 <?php
 $isCcdeLabRequest = ($_SERVER['REQUEST_URI'] == '/CCDE-Lab.htm');
 $fullCourseName = isset($exam['exam_fullname']) ? trim($exam['exam_fullname']) : '';
@@ -54,6 +55,18 @@ $cleanSupportHtml = function ($html) {
 };
 ?>
 <style>
+::root {
+    --free-color: #ff133e;
+}
+.lab-offer-row.lab-offer-free .lab-offer-price {
+    color: var(--free-color);
+}
+.lab-offer-row.lab-offer-free{
+    color: var(--free-color);    
+}
+.lab-offer-row .lab-offer-main .media-body{
+    vertical-align: middle !important;  
+}
 .lab-offer-price {
     padding-right: 10px;
     font-weight: bold;
@@ -94,10 +107,10 @@ $cleanSupportHtml = function ($html) {
         </div>
         <div class="col-md-8 col-sm-12">
             <div class="lab-offer-list list-group">
-                <form method="post" id="freeDumpFormLab">
+                <form class="hidden" method="post" id="freeDumpFormLab">
                     <input type="hidden" name="download_free_dump" value="1">
                 </form>
-                <form method="post" id="demoPracticeFormLab">
+                <form class="hidden" method="post" id="demoPracticeFormLab">
                     <input type="hidden" name="download_demo_practice" value="1">
                 </form>
 
@@ -109,7 +122,7 @@ $cleanSupportHtml = function ($html) {
                                     <span class="lab-offer-icon"><img src="images/new-image/demo_pdf2.svg" alt="Demo question"></span>
                                 </div>
                                 <div class="media-body">
-                                    <span class="lab-offer-title"><?= htmlspecialchars($fullCourseName); ?> Demo Question Download Free</span>
+                                    <span class="lab-offer-title"><?= htmlspecialchars($fullCourseName); ?> Demo Question Download</span>
                                 </div>
                             </div>
                         </div>

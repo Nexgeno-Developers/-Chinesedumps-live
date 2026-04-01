@@ -8797,6 +8797,26 @@ li.main_cert.lab-figma-layout {
     mix-blend-mode: multiply;
 }
 
+.lab-verified-status {
+    /* margin-top: 28px; */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: 7px 16px;
+    background: #eaf5ef;
+    color: #1f733d;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.lab-verified-status-icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #1f733d;
+    display: inline-block;
+}
 .lab-verified-chip {
     margin-top: 28px;
     display: inline-flex;
@@ -8836,10 +8856,14 @@ li.main_cert.lab-figma-layout {
 }
 
 .lab-offer-row.lab-offer-free {
-    background: #fff4f4;
+    background: none;
+    /* background: #fff4f4; */
     border-color: #f2d7d7;
 }
-
+/* .lab-offer-row.lab-offer-free {
+    border-color: #ffbabc;
+    background-color: #ffcdce5e;
+} */
 .lab-offer-main {
     display: flex;
     align-items: center;
@@ -8848,8 +8872,8 @@ li.main_cert.lab-figma-layout {
 }
 
 .lab-offer-icon {
-    width: 30px;
-    height: 30px;
+    width: 6rem;
+    height: 6rem;
     border-radius: 50%;
     background: #f0f8f3;
     display: inline-flex;
@@ -8859,23 +8883,25 @@ li.main_cert.lab-figma-layout {
 }
 
 .lab-offer-row.lab-offer-free .lab-offer-icon {
-    background: #ffe7e7;
+    background: none;
 }
 
 .lab-offer-icon img {
-    width: 17px;
-    height: 17px;
+    width: 4rem;
+    height: 4rem;
     object-fit: contain;
 }
 
 .lab-offer-title {
-    font-size: 22px;
-    line-height: 30px;
+    font-size: 16px;
+    /* line-height: 30px; */
     font-weight: 600;
     color: #2f2f2f;
     display: block;
 }
-
+.list-group-item{
+    display: flex !important;
+}
 .lab-offer-side {
     display: inline-flex;
     align-items: center;
@@ -8886,10 +8912,13 @@ li.main_cert.lab-figma-layout {
 .lab-offer-price {
     color: #202020;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .lab-offer-row.lab-offer-free .lab-offer-price {
+    color: #dd2f2f;
+}
+.lab-offer-row.lab-offer-free .lab-offer-title {
     color: #dd2f2f;
 }
 
@@ -8924,7 +8953,7 @@ li.main_cert.lab-figma-layout {
 .lab-support-heading {
     margin: 0 0 24px;
     text-align: center;
-    font-size: 42px;
+    font-size: 3rem;
     line-height: 1.2;
     font-weight: 700;
     color: #272727;
@@ -8940,15 +8969,14 @@ li.main_cert.lab-figma-layout {
 
 .lab-support-title {
     color: #202020;
-    font-size: 28px;
-    line-height: 36px;
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 10px;
 }
 
 .lab-support-content {
     color: #444;
-    font-size: 18px;
+    font-size: 1.3rem;
     line-height: 1.55;
 }
 
@@ -8999,6 +9027,7 @@ li.main_cert.lab-figma-layout {
     }
 
     .lab-offer-side {
+        margin-top: 1rem;
         width: 100%;
         justify-content: space-between;
     }
@@ -9019,6 +9048,9 @@ li.main_cert.lab-figma-layout {
     .lab-media-image img {
         width: 75%;
         max-width: 190px;
+    }
+    .lab-offer-main{
+        display: block !important;
     }
 }
 

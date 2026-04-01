@@ -1197,7 +1197,7 @@ p.exam_reallab_desc {
 }
 
 .popular-list-box.sidetext .popular-list-heading {
-    width: 100%;
+    width: 52%;
 }
 .basicLab p, .basicLab div, .basicLab p, .basicLab span {
     font-size: 16px !important;
@@ -1340,13 +1340,29 @@ li.main_cert .package-price {
 																					$get_course = mysql_fetch_assoc(mysql_query("SELECT * from tbl_course where name='" . $exam['exam_name'] . "'"));
 																					if (!empty($get_course)) {
 																						if ($get_course['status'] == 1) {
-																							$status = '<span style="color:green">Stable</span>';
+																							// $status = '<span style="color:green">Stable</span>';
+																								$status = '<div class="lab-verified-status">
+																									<span class="lab-verified-status-icon"></span>
+																									Stable
+																								</div>';
 																						} else {
-																							$status = '<span style="color:red">Unstable</span>';
+																							// $status = '<span style="color:red">Unstable</span>';
+																							$status = '<div class="lab-verified-status">
+																								<span style="color:red" class="lab-verified-status-icon"></span>
+																								Unstable
+																							</div>';
 																						}
 																					}
-																					?> <strong>Status: </strong>
-																						<?= (!empty($status) ? $status : '<span style="color:green">Stable</span>'); ?> <br>
+																					?> 
+																					<div class="lab-verified-status">
+																						<span class="lab-verified-status-icon"></span>
+																						Stable
+																					</div>
+																					<!-- <strong>Status: </strong>
+																						<?= (!empty($status) ? $status : '<div class="lab-verified-status">
+																									<span class="lab-verified-status-icon"></span>
+																									Stable
+																								</div>'); ?> <br> -->
 																						
 																						
 																																							    <?php

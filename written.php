@@ -1,4 +1,4 @@
-<!-- template 2 | Return Dumps -->
+<!-- template 2 | Return Dumps by written.php -->
 
 <?/*php if ($freeDumpAvailable) { */  ?>
     <li class="main_cert courses_listing_prc free_dump_row">
