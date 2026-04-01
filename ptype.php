@@ -1923,7 +1923,7 @@ li.main_cert .package-price {
 									 <?php }*/  ?>
 									 
 									<?php if($video_links){ ?>
- 									 <div class="passing_dumps paddbottom60 display_inlines">
+ 									 <!-- <div class="passing_dumps paddbottom60 display_inlines">
 									     <div class="container">
         									 <div class="main_heading text-center paddbtm10"> <?php echo $exam['exam_fullname']; ?> (<?= $exam['QA'] ?>) <span>Live Exam Videos</span></div>
         									     <div class="exam-demo-gallery">
@@ -1955,7 +1955,7 @@ li.main_cert .package-price {
                                                 </div>
         									 </div>
     									 </div>
-									 </div>
+									 </div> -->
 									 <?php } ?>									 
 									 
 									 <?php if (!empty($exam['telegram_url']) || !empty($exam['skype_url']) || !empty($exam['whatsapp_url'])) { ?>
@@ -2471,7 +2471,7 @@ li.main_cert .package-price {
                        </div>
                    </div>
 
-                   <div class="panel panel-default">
+                   <!-- <div class="panel panel-default">
                        <div class="panel-heading">
                            <a data-toggle="collapse" data-parent="#accordion" href="#faq2">
                            <h4 class="panel-title">
@@ -2487,7 +2487,7 @@ li.main_cert .package-price {
                               
                            </div>
                        </div>
-                   </div>
+                   </div> -->
 
                    <div class="panel panel-default">
                        <div class="panel-heading">
