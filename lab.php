@@ -142,15 +142,17 @@
                                         <?php
                                         $isCcdeLabRequest = ($_SERVER['REQUEST_URI'] == '/CCDE-Lab.htm');
                                         $fullCourseName = isset($exam['exam_fullname']) ? trim($exam['exam_fullname']) : '';
-                                        $nameWords = preg_split('/\s+/', $fullCourseName);
+                                        $aliasName = isset($exam['alias_name']) ? trim((string) $exam['alias_name']) : '';
+                                        $labDisplayName = ($aliasName !== '') ? $aliasName : $fullCourseName;
+                                        $nameWords = preg_split('/\s+/', $labDisplayName);
                                         if (count($nameWords) > 2) {
                                             array_splice($nameWords, -2);
                                             $courseBaseName = trim(implode(' ', $nameWords));
                                         } else {
-                                            $courseBaseName = $fullCourseName;
+                                            $courseBaseName = $labDisplayName;
                                         }
                                         if ($courseBaseName === '') {
-                                            $courseBaseName = $fullCourseName;
+                                            $courseBaseName = $labDisplayName;
                                         }
 
                                         $paidPackages = array(
@@ -326,7 +328,7 @@
                                                             <div class="lab-media-image">
                                                                 <img class="img-responsive center-block"
                                                                     src="/images/slider/<?= $examID ?>/<?= $exam['course_image'] ?>"
-                                                                    alt="<?= htmlspecialchars($fullCourseName); ?>">
+                                                                    alt="<?= htmlspecialchars($labDisplayName); ?>">
                                                             </div>
                                                             <div class="lab-verified-chip">
                                                                 <i class="fa fa-shield"></i>
@@ -338,7 +340,7 @@
                                                 <div class="col-md-8 col-sm-12">
                                                     <ul>
                                                         <li>
-                                                            <div class="courses_headings"><strong><?php echo $exam['exam_fullname']; ?></strong></div>
+                                                            <div class="courses_headings"><strong><?php echo htmlspecialchars($labDisplayName); ?></strong></div>
                                                             <div class="popular-list-box sidetext">
                                                                 <div class="popular-list-heading">
 
@@ -371,7 +373,7 @@
                                                                         </div>
                                                                         <div class="media-body">
                                                                             <span
-                                                                                class="lab-offer-title"><?= htmlspecialchars($fullCourseName); ?>
+                                                                                class="lab-offer-title"><?= htmlspecialchars($labDisplayName); ?>
                                                                                 Demo Question Download Free</span>
                                                                         </div>
                                                                     </div>
@@ -405,7 +407,7 @@
                                                                         </div>
                                                                         <div class="media-body">
                                                                             <span
-                                                                                class="lab-offer-title"><?= htmlspecialchars($fullCourseName); ?>
+                                                                                class="lab-offer-title"><?= htmlspecialchars($labDisplayName); ?>
                                                                                 Demo Practise Test</span>
                                                                         </div>
                                                                     </div>
@@ -561,7 +563,7 @@
 
         <div class="passing_dumps display_inlines paddtop60 paddbottom60 ">
             <div class="container">
-                <div class="main_heading text-center paddbtm10"><?php echo $exam['exam_fullname']; ?>
+                <div class="main_heading text-center paddbtm10"><?php echo htmlspecialchars($labDisplayName); ?>
                     (<?php echo $exam['QA'] ?>) Passing <span>Results</span></div>
                 <ul class="courses_pass_img" id="scroller">
                     <?php
@@ -835,7 +837,7 @@
         <?php if ($video_links) { ?>
             <div class="passing_dumps paddbottom60 display_inlines">
                 <div class="container">
-                    <div class="main_heading text-center paddbtm10"> <?php echo $exam['exam_fullname']; ?>
+                    <div class="main_heading text-center paddbtm10"> <?php echo htmlspecialchars($labDisplayName); ?>
                         (<?php echo $exam['QA'] ?>) <span>Live Exam Videos</span></div>
                     <div class="exam-demo-gallery">
 
@@ -1159,219 +1161,111 @@ if (!empty($relatedProducts)) {
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+                <?php
+                $faqItems = array();
+                $appendFaqItem = function ($question, $answer) use (&$faqItems) {
+                    $question = trim((string) $question);
+                    $answer = trim((string) $answer);
+                    if ($question === '' || $answer === '') {
+                        return;
+                    }
+                    $faqItems[] = array(
+                        'question' => $question,
+                        'answer' => $answer,
+                    );
+                };
+
+                $rawFaqJson = isset($exam['faq_json']) ? trim((string) $exam['faq_json']) : '';
+                if ($rawFaqJson !== '') {
+                    $decodedFaq = json_decode($rawFaqJson, true);
+                    if (json_last_error() === JSON_ERROR_NONE && is_array($decodedFaq)) {
+                        if (
+                            isset($decodedFaq['question']) || isset($decodedFaq['q']) || isset($decodedFaq['title']) ||
+                            isset($decodedFaq['answer']) || isset($decodedFaq['a']) || isset($decodedFaq['content'])
+                        ) {
+                            $appendFaqItem(
+                                isset($decodedFaq['question']) ? $decodedFaq['question'] : (isset($decodedFaq['q']) ? $decodedFaq['q'] : (isset($decodedFaq['title']) ? $decodedFaq['title'] : '')),
+                                isset($decodedFaq['answer']) ? $decodedFaq['answer'] : (isset($decodedFaq['a']) ? $decodedFaq['a'] : (isset($decodedFaq['content']) ? $decodedFaq['content'] : ''))
+                            );
+                        } else {
+                            foreach ($decodedFaq as $key => $item) {
+                                if (is_array($item)) {
+                                    $appendFaqItem(
+                                        isset($item['question']) ? $item['question'] : (isset($item['q']) ? $item['q'] : (isset($item['title']) ? $item['title'] : '')),
+                                        isset($item['answer']) ? $item['answer'] : (isset($item['a']) ? $item['a'] : (isset($item['content']) ? $item['content'] : (isset($item['description']) ? $item['description'] : '')))
+                                    );
+                                } elseif (is_string($key)) {
+                                    $appendFaqItem($key, $item);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (empty($faqItems)) {
+                    $appendFaqItem(
+                        'Are these dumps 100% real and updated?',
+                        'Yes, our exam dumps are based on real exam questions and are continuously updated to match the latest exam patterns, syllabus changes, and question formats. This ensures you always prepare with current, accurate, and exam-relevant content.'
+                    );
+                    $appendFaqItem(
+                        'Can I pass my exam just by using these dumps?',
+                        'Yes. Our exam dumps are built from real exam questions with verified answers, giving you exactly what appears in the exam and helping you pass with confidence when used properly.'
+                    );
+                    $appendFaqItem(
+                        'How soon can I access my dumps after purchase?',
+                        'After your purchase is confirmed, the study materials are typically delivered to your registered email address. In most cases, customers receive access within a few hours of completing the payment. However, because we serve customers across different time zones and process orders manually for quality verification, we maintain a delivery window of 24 to 48 hours as a standard buffer. If you need your exam dumps urgently or on priority, you can contact support at +44 7591 437400 for faster delivery assistance.'
+                    );
+                    $appendFaqItem(
+                        'Are these dumps suitable for first-time test takers?',
+                        'Yes. Our exam dumps are designed to be easy to understand and exam-focused, making them ideal for first-time candidates as well as experienced professionals preparing for certification success.'
+                    );
+                    $appendFaqItem(
+                        'Do you offer a passing guarantee?',
+                        'While we do not offer a formal passing guarantee, our exam dumps are built from highly accurate, real exam questions with verified answers, giving candidates everything they need to prepare with confidence and significantly improve their chances of success on the first attempt.'
+                    );
+                    $appendFaqItem(
+                        'What format are the dumps provided in?',
+                        'Our exam dumps are provided in Secure PDF and VCE formats, making them easy to access on desktops, laptops, and mobile devices for flexible and convenient exam preparation.'
+                    );
+                    $appendFaqItem(
+                        'Can I access these dumps on my mobile device?',
+                        'Yes. Our exam dumps are fully compatible with mobile phones, tablets, and laptops, allowing you to study anytime, anywhere with complete convenience.'
+                    );
+                    $appendFaqItem(
+                        'Is my purchase secure?',
+                        'Yes. All transactions on our platform are 100% secure and processed through trusted payment gateways such as Razorpay, PayPal, wire transfer, Western Union, purchase orders, Cisco vouchers, and Bitcoin, ensuring your payment information remains fully protected.'
+                    );
+                    $appendFaqItem(
+                        'Do you offer customer support?',
+                        'Questions or issues do not follow office hours and neither do we. Our 24/7 support team is always available to help with access, updates, or any concerns before and after your purchase.'
+                    );
+                    $appendFaqItem(
+                        'Mode of Payments',
+                        'Payments on ChineseDumps can be made securely using Razorpay or PayPal, as well as wire transfer, Western Union, credit/debit cards, purchase orders, Cisco vouchers, and Bitcoin, ensuring flexible and safe payment options for all customers. View payment mode: https://ccierack.rentals/payment-modes/'
+                    );
+                }
+                ?>
                 <div class="panel-group" id="accordion">
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#faq1">
-                                <h4 class="panel-title">
-
-                                    Are these dumps 100% real and updated?
-                                    <i class="fa fa-plus pull-right"></i>
-                                </h4>
-                            </a>
-                        </div>
-                        <div id="faq1" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <p>Yes, our exam dumps are based on real exam questions and are continuously updated to
-                                    match the latest exam patterns, syllabus changes, and question formats. This ensures
-                                    you always prepare with current, accurate, and exam-relevant content.</p>
+                    <?php foreach ($faqItems as $index => $faqItem) {
+                        $faqId = 'faq' . ($index + 1);
+                        $answerText = nl2br(htmlspecialchars($faqItem['answer'], ENT_QUOTES));
+                        ?>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $faqId; ?>">
+                                    <h4 class="panel-title">
+                                        <?php echo htmlspecialchars($faqItem['question'], ENT_QUOTES); ?>
+                                        <i class="fa fa-plus pull-right"></i>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="<?php echo $faqId; ?>" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p><?php echo $answerText; ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#faq2">
-                                <h4 class="panel-title">
-                                    Can I pass my exam just by using these dumps?
-                                    <i class="fa fa-plus pull-right"></i>
-
-                                </h4>
-                            </a>
-                        </div>
-                        <div id="faq2" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <p>Yes. Our exam dumps are built from real exam questions with verified answers, giving
-                                    you exactly what appears in the exam and helping you pass with confidence when used
-                                    properly.</p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#faq3">
-                                <h4 class="panel-title">
-                                    How soon can I access my dumps after purchase?
-                                    <i class="fa fa-plus pull-right"></i>
-
-                                </h4>
-                            </a>
-                        </div>
-                        <div id="faq3" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <p>
-                                    After your purchase is confirmed, the study materials are typically delivered to
-                                    your registered email address. In most cases, customers receive access within a few
-                                    hours of completing the payment. However, because we serve customers across
-                                    different time zones and process orders manually for quality verification, we
-                                    maintain a delivery window of 24 to 48 hours as a standard buffer. If you need your
-                                    exam dumps urgently or on priority, we’re happy to help. You can contact our support
-                                    team directly at
-                                    <a href="https://api.whatsapp.com/send/?phone=447591437400&text&type=phone_number&app_absent=0"
-                                        target="_blank">
-                                        +44 7591 437400
-                                    </a> for faster delivery assistance.
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#faq4">
-                                <h4 class="panel-title">
-                                    Are these dumps suitable for first-time test takers?
-                                    <i class="fa fa-plus pull-right"></i>
-
-                                </h4>
-                            </a>
-                        </div>
-                        <div id="faq4" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <p>Yes, our dumps are designed for both beginners and experienced professionalsYes. Our
-                                    exam dumps are designed to be easy to understand and exam-focused, making them ideal
-                                    for first-time candidates as well as experienced professionals preparing for
-                                    certification success.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#faq5">
-                                <h4 class="panel-title">
-                                    Do you offer a passing guarantee?
-                                    <i class="fa fa-plus pull-right"></i>
-
-                                </h4>
-                            </a>
-                        </div>
-                        <div id="faq5" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <p>While we don’t offer a formal passing guarantee, our exam dumps are built from highly
-                                    accurate, real exam questions with verified answers, giving candidates everything
-                                    they need to prepare with confidence and significantly improve their chances of
-                                    success on the first attempt.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#faq6">
-                                <h4 class="panel-title">
-                                    What format are the dumps provided in?
-                                    <i class="fa fa-plus pull-right"></i>
-
-                                </h4>
-                            </a>
-                        </div>
-                        <div id="faq6" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <p>Our exam dumps are provided in Secure PDF and VCE formats, making them easy to access
-                                    on desktops, laptops, and mobile devices for flexible and convenient exam
-                                    preparation.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="faq7" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <p>Yes, we offer lifetime updates to keep your study material up to date.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#faq8">
-                            <h4 class="panel-title">
-                                Can I access these dumps on my mobile device?
-                                <i class="fa fa-plus pull-right"></i>
-
-                            </h4>
-                        </a>
-                    </div>
-                    <div id="faq8" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <p>Yes. Our exam dumps are fully compatible with mobile phones, tablets, and laptops,
-                                allowing you to study anytime, anywhere with complete convenience.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#faq9">
-                            <h4 class="panel-title">
-                                Is my purchase secure?
-                                <i class="fa fa-plus pull-right"></i>
-
-                            </h4>
-                        </a>
-                    </div>
-                    <div id="faq9" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <p>Yes. All transactions on our platform are 100% secure and processed through trusted
-                                payment gateways such as Razorpay, PayPal, wire transfer, Western Union, purchase
-                                orders, Cisco vouchers, and Bitcoin, ensuring your payment information remains fully
-                                protected.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#faq10">
-                            <h4 class="panel-title">
-
-                                Do you offer customer support?
-                                <i class="fa fa-plus pull-right"></i>
-
-                            </h4>
-                        </a>
-                    </div>
-                    <div id="faq10" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <p>Questions or issues don’t follow office hours and neither do we. Our 24/7 support team is
-                                always available to help with access, updates, or any concerns before and after your
-                                purchase.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#faq11">
-                            <h4 class="panel-title">
-                                Mode of Payments
-                                <i class="fa fa-plus pull-right"></i>
-                            </h4>
-                        </a>
-                    </div>
-                    <div id="faq11" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <p>
-                                Payments on ChineseDumps can be made securely using Razorpay or PayPal, as well as wire
-                                transfer, Western Union, credit/debit cards, purchase orders, Cisco vouchers, and
-                                Bitcoin, ensuring flexible and safe payment options for all customers.
-                                <a href="https://ccierack.rentals/payment-modes/">View Payment Mode</a>
-                            </p>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
 
             </div>
