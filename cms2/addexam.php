@@ -211,6 +211,27 @@ function buildVideoLinksFromPost()
                 }
             }
         }
+
+        // Handle demo practice PDF upload
+        $spram['demo_practice_file'] = '';
+        if (!empty($_FILES['demo_practice_file']['name'])) {
+            $ext = strtolower(pathinfo($_FILES['demo_practice_file']['name'], PATHINFO_EXTENSION));
+            if ($ext !== 'pdf') {
+                $strError .= "<b>Error!</b> Demo practice file must be a PDF.<br/>";
+            } else {
+                $uploadDir = "../uploads/demo_practice/";
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
+                $newPdfName = uniqid("demoPractice_") . ".pdf";
+                $destPath = $uploadDir . $newPdfName;
+                if (move_uploaded_file($_FILES['demo_practice_file']['tmp_name'], $destPath)) {
+                    $spram['demo_practice_file'] = $newPdfName;
+                } else {
+                    $strError .= "<b>Error!</b> Unable to upload demo practice PDF. Please try again.<br/>";
+                }
+            }
+        }
         
             $spram[43]  =   $_POST["oldExamDemoImages"];
             $demoImages = [];
@@ -499,6 +520,10 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
             <tr>
               <td align="right">Free Dump PDF:</td>
               <td colspan="2"><input type="file" name="free_dump_pdf" accept="application/pdf" /></td>
+            </tr>
+            <tr>
+              <td align="right">Demo Practice PDF:</td>
+              <td colspan="2"><input type="file" name="demo_practice_file" accept="application/pdf" /></td>
             </tr>
 		
 
