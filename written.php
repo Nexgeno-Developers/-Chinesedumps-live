@@ -245,7 +245,7 @@
                                                     </li>
                                                 <?php }?>
                                                 </ul>
-																		<table width="100%" border="0">
+																		<!-- <table width="100%" border="0">
 																			<thead>
 																				<tr>
 																					<td>Products</td>
@@ -435,7 +435,7 @@
 																					</td>
 																				</tr>
 																			</tbody>
-																		</table>
+																		</table> -->
 																	</div>
 																</div>
     									</div>
