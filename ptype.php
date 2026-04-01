@@ -212,16 +212,26 @@
     function getCourseStatusLabelHtml($examName)
     {
     $examName = trim((string) $examName);
+    $buildStatusPill = function ($label, $isStable) {
+        $labelColor = $isStable ? '#1f7a3f' : '#b42318';
+        $dotColor = $isStable ? '#1f7a3f' : '#b42318';
+        $bgColor = $isStable ? '#E7F4EC' : '#FEECEE';
+
+        return '<span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:' . $bgColor . ';color:' . $labelColor . ';font-size: 1.3rem;font-weight:600;line-height:1;">'
+            . '<span style="width:7px;height:7px;border-radius:50%;background:' . $dotColor . ';display:inline-block;"></span>'
+            . htmlspecialchars($label, ENT_QUOTES)
+            . '</span>';
+    };
     if ($examName === '') {
-        return '<span style="color:green">Stable</span>';
+        return $buildStatusPill('Stable', true);
     }
 
     $get_course = mysql_fetch_assoc(mysql_query("SELECT * FROM tbl_course WHERE name='" . $examName . "'"));
     if (! empty($get_course) && isset($get_course['status']) && (int) $get_course['status'] !== 1) {
-        return '<span style="color:red">Unstable</span>';
+        return $buildStatusPill('Unstable', false);
     }
 
-    return '<span style="color:green">Stable</span>';
+    return $buildStatusPill('Stable', true);
     }
 
 function normalizeExamType($examType)
@@ -1039,7 +1049,14 @@ $isLabLayout = ($examType === 'lab');
 		.simply-scroll {
 			margin-bottom: 0em !important;
 		}
-
+		.lab-support-heading {
+			font-size: 2.7rem;
+			font-weight: 600;
+		}
+		.lab-support-title {
+			font-size: 1.7rem;
+			font-weight: 600;
+		}
 		</style>
 		<div id="main_body">
 			<?php if ($getPage[10] == '1') {?>

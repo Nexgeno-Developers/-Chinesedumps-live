@@ -236,6 +236,87 @@
                                             .lab-offer-free {
                                                 border: 1px solid #ffd8d8;
                                             }
+                                            .lab-verified-chip {
+                                                display: inline-flex;
+                                                align-items: center;
+                                                justify-content: center;
+                                                gap: 8px;
+                                                background: #e5ebe7;
+                                                color: #0f6b3c;
+                                                border-radius: 999px;
+                                                padding: 8px 16px;
+                                                font-size: 1.4rem;
+                                                font-weight: 600;
+                                                line-height: 1;
+                                                margin-top: 12px;
+                                            }
+                                            .lab-verified-chip i {
+                                                color: #69a684;
+                                                font-size: 20px;
+                                            }
+                                            .lab-support-section {
+                                                margin-top: 34px;
+                                            }
+                                            .lab-support-heading {
+                                                font-size: 40px;
+                                                font-weight: 700;
+                                                color: #1f1f1f;
+                                                margin: 0 0 26px;
+                                            }
+                                            .lab-support-section .row {
+                                                margin-left: -8px;
+                                                margin-right: -8px;
+                                            }
+                                            .lab-support-section .col-md-4,
+                                            .lab-support-section .col-sm-6 {
+                                                padding-left: 8px;
+                                                padding-right: 8px;
+                                                margin-bottom: 14px;
+                                            }
+                                            .lab-support-card {
+                                                border: 1px solid #d9d9d9;
+                                                border-radius: 12px;
+                                                box-shadow: none;
+                                                background: #fff;
+                                                min-height: 250px;
+                                            }
+                                            .lab-support-card .panel-body {
+                                                padding: 26px 24px 22px;
+                                            }
+                                            .lab-support-title {
+                                                font-size: 2rem;
+                                                line-height: 1.3;
+                                                font-weight: 700;
+                                                color: #202020;
+                                                margin-bottom: 12px;
+                                            }
+                                            .lab-support-content,
+                                            .lab-support-content p,
+                                            .lab-support-content li {
+                                                font-size: 1.5rem;
+                                                line-height: 1.7;
+                                                color: #5b5f66;
+                                            }
+                                            .lab-support-content ul {
+                                                list-style: none;
+                                                margin: 0;
+                                                padding: 0;
+                                            }
+                                            .lab-support-content li {
+                                                position: relative;
+                                                padding-left: 16px;
+                                                margin-bottom: 2px;
+                                            }
+                                            .lab-support-content li:before {
+                                                content: "";
+                                                position: absolute;
+                                                left: 0;
+                                                top: 0.75em;
+                                                width: 6px;
+                                                height: 6px;
+                                                border-radius: 50%;
+                                                background: #2f7f61;
+                                            }
                                         </style>
                                         <li class="main_cert lab-figma-layout">
                                             <div class="lab-figma-top row">
@@ -248,8 +329,8 @@
                                                                     alt="<?= htmlspecialchars($fullCourseName); ?>">
                                                             </div>
                                                             <div class="lab-verified-chip">
-                                                                <span class="lab-verified-icon"></span>
-                                                                Verified Dumps
+                                                                <i class="fa fa-shield"></i>
+                                                                <span>Verified Dumps</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -263,8 +344,7 @@
 
                                                                     <?php
                                                                     $status = getCourseStatusLabelHtml($exam['exam_name']);
-                                                                    ?> <strong>Status:
-                                                                    </strong>
+                                                                    ?>
                                                                     <?php echo $status; ?> <br>
 
 
