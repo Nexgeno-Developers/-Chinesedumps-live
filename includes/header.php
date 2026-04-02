@@ -26,7 +26,15 @@ if (function_exists('start_root_url_rewrite')) {
 </div>';exit;
  }*/
 ?>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-773441677"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'AW-773441677');
+</script>
 	<?php
 	
 	
@@ -823,27 +831,16 @@ if (function_exists('start_root_url_rewrite')) {
 				</style>
 				<meta name="google-site-verification" content="yODErouiH7tWT1B41PP9DfPOaEW2A-ykOKe7ESEadsI" />
 				<!-- Google tag (gtag.js) -->
-				<script async src="https://www.googletagmanager.com/gtag/js?id=G-WB8EKYFKN6"></script>
-				<script>
-				window.dataLayer = window.dataLayer || [];
-				function gtag(){dataLayer.push(arguments);}
-				gtag('js', new Date());
-				gtag('config', 'G-WB8EKYFKN6');
-				</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WB8EKYFKN6"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WB8EKYFKN6');
+</script>
 
-
-				<!-- Google tag (gtag.js) -->
-				<script async src="https://www.googletagmanager.com/gtag/js?id=AW-773441677"></script>
-				<script>
-				window.dataLayer = window.dataLayer || [];
-				function gtag(){dataLayer.push(arguments);}
-				gtag('js', new Date());
-
-				gtag('config', 'AW-773441677');
-				</script>
-
-				<!-- Google Tag Manager with live chat-->
-				<script>
+				<!-- Google Tag Manager -->
+				<!-- <script>
 				(function(w, d, s, l, i) {
 					w[l] = w[l] || [];
 					w[l].push({
@@ -857,7 +854,7 @@ if (function_exists('start_root_url_rewrite')) {
 					j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
 					f.parentNode.insertBefore(j, f);
 				})(window, document, 'script', 'dataLayer', 'GTM-K4FJC5Q');
-				</script>
+				</script> -->
 				<!-- End Google Tag Manager -->
 		</head>
 
