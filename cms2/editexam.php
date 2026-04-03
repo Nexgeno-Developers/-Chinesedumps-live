@@ -184,6 +184,24 @@ function buildVideoLinksFromPost()
             
             
             $spram[14]	=	$_POST['vnamefull'];
+            $spram['alias_name'] = isset($_POST['alias_name']) ? trim($_POST['alias_name']) : '';
+            $faqQuestions = isset($_POST['faq_question']) ? (array)$_POST['faq_question'] : array();
+            $faqAnswers = isset($_POST['faq_answer']) ? (array)$_POST['faq_answer'] : array();
+            $faqItems = array();
+            $faqCount = max(count($faqQuestions), count($faqAnswers));
+            for ($faqIdx = 0; $faqIdx < $faqCount; $faqIdx++) {
+                $question = isset($faqQuestions[$faqIdx]) ? trim((string)$faqQuestions[$faqIdx]) : '';
+                $answer = isset($faqAnswers[$faqIdx]) ? trim((string)$faqAnswers[$faqIdx]) : '';
+                if ($question === '' || $answer === '') {
+                    continue;
+                }
+                $faqItems[] = array('question' => $question, 'answer' => $answer);
+            }
+            if (!empty($faqItems)) {
+                $spram['faq_json'] = json_encode($faqItems);
+            } else {
+                $spram['faq_json'] = isset($_POST['faq_json']) ? trim($_POST['faq_json']) : '';
+            }
             
             // $spram[15]	=	$_FILES['exam_demo'];
             
@@ -209,6 +227,7 @@ function buildVideoLinksFromPost()
     		$video_links = buildVideoLinksFromPost();
             $spram['youtube_links'] = json_encode($video_links);            
             $spram['free_dump_pdf'] = isset($_POST['old_free_dump_pdf']) ? $_POST['old_free_dump_pdf'] : '';
+            $spram['demo_practice_file'] = isset($_POST['old_demo_practice_file']) ? $_POST['old_demo_practice_file'] : '';
             if (!empty($_POST['remove_free_dump_pdf'])) {
                 // delete physical file if it exists
                 $oldPath = "../uploads/free_dumps/" . $spram['free_dump_pdf'];
@@ -216,6 +235,14 @@ function buildVideoLinksFromPost()
                     @unlink($oldPath);
                 }
                 $spram['free_dump_pdf'] = ''; // clear DB value
+            }
+            if (!empty($_POST['remove_demo_practice_file'])) {
+                // delete physical file if it exists
+                $oldPath = "../uploads/demo_practice/" . $spram['demo_practice_file'];
+                if ($spram['demo_practice_file'] && file_exists($oldPath)) {
+                    @unlink($oldPath);
+                }
+                $spram['demo_practice_file'] = ''; // clear DB value
             }
             if (!empty($_FILES['free_dump_pdf']['name'])) {
                 $ext = strtolower(pathinfo($_FILES['free_dump_pdf']['name'], PATHINFO_EXTENSION));
@@ -232,6 +259,24 @@ function buildVideoLinksFromPost()
                         $spram['free_dump_pdf'] = $newPdfName;
                     } else {
                         $strError .= "<b>Error!</b> Unable to upload free dump PDF. Please try again.<br/>";
+                    }
+                }
+            }
+            if (!empty($_FILES['demo_practice_file']['name'])) {
+                $ext = strtolower(pathinfo($_FILES['demo_practice_file']['name'], PATHINFO_EXTENSION));
+                if ($ext !== 'pdf') {
+                    $strError .= "<b>Error!</b> Demo practice file must be a PDF.<br/>";
+                } else {
+                    $uploadDir = "../uploads/demo_practice/";
+                    if (!is_dir($uploadDir)) {
+                        mkdir($uploadDir, 0777, true);
+                    }
+                    $newPdfName = uniqid("demoPractice_") . ".pdf";
+                    $destPath = $uploadDir . $newPdfName;
+                    if (move_uploaded_file($_FILES['demo_practice_file']['tmp_name'], $destPath)) {
+                        $spram['demo_practice_file'] = $newPdfName;
+                    } else {
+                        $strError .= "<b>Error!</b> Unable to upload demo practice PDF. Please try again.<br/>";
                     }
                 }
             }
@@ -383,6 +428,8 @@ function buildVideoLinksFromPost()
 				$spram[12]	= 	$row['ven_id'];
 				$spram[13]	= 	$row['cert_id'];
 				$spram[14]	= 	$row['exam_fullname'];
+				$spram['alias_name'] = isset($row['alias_name']) ? $row['alias_name'] : '';
+				$spram['faq_json'] = isset($row['faq_json']) ? $row['faq_json'] : '';
 				$spram[20]	= 	$row['QA'];
 				$spram[29]	= 	$row['exam_date'];						
 
@@ -396,6 +443,7 @@ function buildVideoLinksFromPost()
                 $spram[39]	= 	$row['exam_descr2'];
                 $spram[41]	= 	$row['exam_related_descr'];
                 $spram['free_dump_pdf'] = $row['free_dump_pdf'];
+                $spram['demo_practice_file'] = isset($row['demo_practice_file']) ? $row['demo_practice_file'] : '';
 				$youtube_links = array();
                 if (!empty($row['youtube_links'])) {
                     $youtube_links = normalizeVideoLinksFromStorage($row['youtube_links']);
@@ -546,6 +594,63 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
           <td align="right"> Exam Name:</td>
           <td colspan="2"><input  name="vnamefull" id="vnamefull" type="text"  value="<?php if(isset($spram[14])){ echo  $spram[14];} ?>" /></td>
         </tr>
+        <tr>
+          <td align="right"> Alias Name:</td>
+          <td colspan="2"><input name="alias_name" id="alias_name" type="text" value="<?php if(isset($spram['alias_name'])){ echo $spram['alias_name'];} ?>" /></td>
+        </tr>
+        <tr>
+          <td align="right" valign="top"> FAQs:</td>
+          <td colspan="2">
+            <div id="faq_wrapper">
+              <?php
+              $faqRowsFromForm = array();
+              $postedFaqQuestions = isset($_POST['faq_question']) ? (array)$_POST['faq_question'] : array();
+              $postedFaqAnswers = isset($_POST['faq_answer']) ? (array)$_POST['faq_answer'] : array();
+              if (!empty($postedFaqQuestions) || !empty($postedFaqAnswers)) {
+                  $faqRowCount = max(count($postedFaqQuestions), count($postedFaqAnswers));
+                  for ($faqRowIndex = 0; $faqRowIndex < $faqRowCount; $faqRowIndex++) {
+                      $faqRowsFromForm[] = array(
+                          'question' => isset($postedFaqQuestions[$faqRowIndex]) ? $postedFaqQuestions[$faqRowIndex] : '',
+                          'answer' => isset($postedFaqAnswers[$faqRowIndex]) ? $postedFaqAnswers[$faqRowIndex] : '',
+                      );
+                  }
+              } else {
+                  $decodedFaq = array();
+                  if (!empty($spram['faq_json'])) {
+                      $decodedFaq = json_decode($spram['faq_json'], true);
+                  }
+                  if (is_array($decodedFaq)) {
+                      foreach ($decodedFaq as $item) {
+                          if (!is_array($item)) {
+                              continue;
+                          }
+                          $faqRowsFromForm[] = array(
+                              'question' => isset($item['question']) ? $item['question'] : '',
+                              'answer' => isset($item['answer']) ? $item['answer'] : '',
+                          );
+                      }
+                  }
+              }
+
+              if (empty($faqRowsFromForm)) {
+                  $faqRowsFromForm[] = array('question' => '', 'answer' => '');
+              }
+
+              foreach ($faqRowsFromForm as $faqRow) {
+                  ?>
+                  <div class="faq_row" style="margin-bottom:8px;">
+                    <input type="text" name="faq_question[]" placeholder="Question" style="width:400px;" value="<?php echo htmlspecialchars($faqRow['question'], ENT_QUOTES); ?>">
+                    <input type="text" name="faq_answer[]" placeholder="Answer" style="width:400px;" value="<?php echo htmlspecialchars($faqRow['answer'], ENT_QUOTES); ?>">
+                    <button type="button" class="remove_faq_row">Remove</button>
+                  </div>
+                  <?php
+              }
+              ?>
+            </div>
+            <button type="button" id="add_more_faq">Add More FAQ</button>
+            <input type="hidden" name="faq_json" id="faq_json" value="<?php if(isset($spram['faq_json'])){ echo htmlspecialchars($spram['faq_json'], ENT_QUOTES);} ?>">
+          </td>
+        </tr>
 		<tr>
           <td align="right"> Lab Name:</td>
           <td colspan="2"><input  name="labName" id="labName" type="text"  value="<?php if(isset($spram[33])){ echo  $spram[33];} ?>" /></td>
@@ -600,6 +705,21 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
                 <?php } ?>
                 <input type="file" name="free_dump_pdf" accept="application/pdf" />
                 <input type="hidden" name="old_free_dump_pdf" value="<?php echo $spram['free_dump_pdf']; ?>">
+              </td>
+            </tr>
+            <tr>
+              <td align="right">Demo Practice PDF:</td>
+              <td colspan="2">
+                <?php if(!empty($spram['demo_practice_file'])) { ?>
+                  <div style="margin-bottom:6px;">
+                    Current: <a href="../uploads/demo_practice/<?php echo $spram['demo_practice_file']; ?>" target="_blank">
+                      <?php echo $spram['demo_practice_file']; ?>
+                    </a>
+                  </div>
+                  <label><input type="checkbox" name="remove_demo_practice_file" value="1"> Remove current PDF</label><br>
+                <?php } ?>
+                <input type="file" name="demo_practice_file" accept="application/pdf" />
+                <input type="hidden" name="old_demo_practice_file" value="<?php echo isset($spram['demo_practice_file']) ? $spram['demo_practice_file'] : ''; ?>">
               </td>
             </tr>
             
@@ -1440,6 +1560,52 @@ document.addEventListener('DOMContentLoaded', function () {
       if (e.target.classList.contains('remove_row')) {
         const row = e.target.closest('.youtube_link_row');
         if (row) row.remove();
+      }
+    });
+  }
+
+  /* ---------------------- FAQ ROWS ---------------------- */
+  const faqWrapper = document.getElementById('faq_wrapper');
+  const faqAddBtn = document.getElementById('add_more_faq');
+  const formEl = document.getElementById('Form');
+
+  if (faqWrapper && faqAddBtn) {
+    faqAddBtn.addEventListener('click', function () {
+      const div = document.createElement('div');
+      div.className = 'faq_row';
+      div.style.marginBottom = '8px';
+      div.innerHTML = `
+        <input type="text" name="faq_question[]" placeholder="Question" style="width:400px;">
+        <input type="text" name="faq_answer[]" placeholder="Answer" style="width:400px;">
+        <button type="button" class="remove_faq_row">Remove</button>
+      `;
+      faqWrapper.appendChild(div);
+    });
+
+    faqWrapper.addEventListener('click', function (e) {
+      if (e.target.classList.contains('remove_faq_row')) {
+        const row = e.target.closest('.faq_row');
+        if (row) row.remove();
+      }
+    });
+  }
+
+  if (formEl) {
+    formEl.addEventListener('submit', function () {
+      const rows = faqWrapper ? faqWrapper.querySelectorAll('.faq_row') : [];
+      const data = [];
+      rows.forEach(function (row) {
+        const q = row.querySelector('input[name="faq_question[]"]');
+        const a = row.querySelector('input[name="faq_answer[]"]');
+        const question = q ? q.value.trim() : '';
+        const answer = a ? a.value.trim() : '';
+        if (question && answer) {
+          data.push({ question: question, answer: answer });
+        }
+      });
+      const hidden = document.getElementById('faq_json');
+      if (hidden) {
+        hidden.value = JSON.stringify(data);
       }
     });
   }
