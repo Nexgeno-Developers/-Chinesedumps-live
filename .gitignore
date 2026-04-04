@@ -25,3 +25,7 @@ images/*
 
 cgi-bin
 vendor
+
+**/sitemap.xml
+
+**/config.php
