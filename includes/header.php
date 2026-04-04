@@ -1348,7 +1348,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 
 																	<ul class="nav-list list-inline">
 
-																		<li><a href="/350-101.htm">350-101 WLCOR</a></li>
+																		<li><a href="/WLCOR-350-101-dumps.htm">350-101 WLCOR</a></li>
 
 																		<li><a href="300-110.htm">300-110 WLSD</a></li>
 
@@ -1552,7 +1552,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 
 																	<ul class="nav-list list-inline">
 
-																		<li> <a href="/350-101.htm">350-101 WLCOR</a> </li>
+																		<li> <a href="/WLCOR-350-101-dumps.htm">350-101 WLCOR</a> </li>
 
 																		<li> <a href="/CCIE-Wireless-Lab.htm">CCIE Wireless Workbook</a> </li>
 
@@ -2956,7 +2956,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 													</li>
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Ent Wireless v1.1<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu menu_mrg">
-															<li> <a href="/350-101.htm">350-101 WLCOR</a> </li>
+															<li> <a href="WLCOR-350-101-dumps.htm">350-101 WLCOR</a> </li>
 															<li><a href="300-110.htm">300-110 WLSD</a></li>
 															<li><a href="300-120.htm">300-120 WLSI</a></li>
 														</ul>
@@ -3037,7 +3037,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 													</li>
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Enterprise Wireless v1.0<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu menu_mrg">
-															<li> <a href="/350-101.htm">350-101 WLCOR</a> </li>
+															<li> <a href="/WLCOR-350-101-dumps.htm">350-101 WLCOR</a> </li>
 															<li> <a href="/CCIE-Wireless-Lab.htm">CCIE Wireless Workbook</a> </li>
 															<li> <a href="/Wireless-Bootcamp.htm">CCIE Wireless Bootcamp</a> </li>
 															<li> <a href="https://ccierack.rentals/ccie-wireless-rack-rental/">Rack Rental Wireless Pricing</a> </li>
