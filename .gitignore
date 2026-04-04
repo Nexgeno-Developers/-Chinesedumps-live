@@ -25,3 +25,5 @@ images/*
 
 cgi-bin
 vendor
+
+**/sitemap.xml
