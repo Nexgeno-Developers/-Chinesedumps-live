@@ -3490,21 +3490,27 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 									</li>
 
 									<li> <a data-toggle="dropdown" class="dropdown-toggle" href="/exam-CompTIA.htm">CompTIA <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
-										<ul class="dropdown-menu">
-											<li> <a href="fco-u61.htm">CompTIA IT Fundamentals FCO-U61</a> </li>
-											<li> <a href="220-1001.htm">CompTIA A+ 220-1001</a> </li>
-											<li> <a href="N10-007.htm">CompTIA Network+ N10-007</a> </li>
-											<li> <a href="SY0-501.htm">CompTIA Security+ SY0-501</a> </li>
-											<li> <a href="CV0-002.htm">CompTIA Cloud+ CV0-002</a> </li>
-											<li> <a href="XK0-004.htm">CompTIA Linux+ XK0-004</a> </li>
-											<li> <a href="SK0-004.htm">CompTIA Server+ SK0-004</a> </li>
-											<li> <a href="CS0-001.htm">CompTIA CySA+ CS0-001</a> </li>
-											<li> <a href="CAS-003.htm">CompTIA CASP+ CAS-003</a> </li>
-											<li> <a href="PT0-001.htm">CompTIA PenTest+ PT0-001</a> </li>
-											<li> <a href="PK0-004.htm">CompTIA Project+ PK0-004</a> </li>
-											<li> <a href="TK0-201.htm">CompTIA CTT+ TK0-201</a> </li>
-											<li> <a href="CLO-001.htm">CompTIA Cloud Essentials+ CLO-001</a> </li>
-										</ul>
+									<ul class="dropdown-menu">
+										<li> <a href="fc0-u61.htm">CompTIA IT Fundamentals+ FC0-U61</a> </li>
+										
+										<li> <a href="220-1101.htm">CompTIA A+ 220-1101</a> </li>
+										<li> <a href="220-1102.htm">CompTIA A+ 220-1102</a> </li>
+										
+										<li> <a href="n10-008.htm">CompTIA Network+ N10-008</a> </li>
+										<li> <a href="sy0-701.htm">CompTIA Security+ SY0-701</a> </li>
+										
+										<li> <a href="cv0-003.htm">CompTIA Cloud+ CV0-003</a> </li>
+										<li> <a href="xk0-005.htm">CompTIA Linux+ XK0-005</a> </li>
+										<li> <a href="sk0-005.htm">CompTIA Server+ SK0-005</a> </li>
+										
+										<li> <a href="cs0-003.htm">CompTIA CySA+ CS0-003</a> </li>
+										<li> <a href="pt0-002.htm">CompTIA PenTest+ PT0-002</a> </li>
+										<li> <a href="cas-004.htm">CompTIA CASP+ CAS-004</a> </li>
+										
+										<li> <a href="pk0-005.htm">CompTIA Project+ PK0-005</a> </li>
+										<li> <a href="da0-001.htm">CompTIA Data+ DA0-001</a> </li>
+										<li> <a href="clo-002.htm">CompTIA Cloud Essentials+ CLO-002</a> </li>
+									</ul>
 									</li>
 
 									<li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="/Google-Cloud-Certified-cert.htm">Google <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
