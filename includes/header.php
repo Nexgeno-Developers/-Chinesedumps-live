@@ -1334,6 +1334,8 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 
 																		<li><a href="300-820-ccnp-collaboration-clcei-dumps.htm"> 300-820 CLHCT</a></li>
 
+																		<li><a href="clcce-300-830-ccnp-dumps.htm"> 300-830 CLCCE</a></li>
+
 																		<!--<li><a href="300-835-ccnp-clauto-dumps.htm">	300-835 CLAUTO</a></li>-->
 
 																	</ul>
@@ -2955,6 +2957,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 															<!--<li><a href="300-810-ccnp-collaboration-clica-dumps.htm">300-810 CLICA</a></li>-->
 															<li><a href="300-815-ccnp-collaboration-claccm-dumps.htm">300-815 CLACC</a></li>
 															<li><a href="300-820-ccnp-collaboration-clcei-dumps.htm">300-820 CLHCT</a></li>
+															<li><a href="clcce-300-830-ccnp-dumps.htm"> 300-830 CLHCT</a></li>
 															<!--<li><a href="300-835-ccnp-clauto-dumps.htm">300-835 CLAUTO</a></li>-->
 														</ul>
 													</li>
