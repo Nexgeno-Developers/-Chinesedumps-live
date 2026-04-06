@@ -1350,9 +1350,9 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 
 																		<li><a href="WLCOR-350-101-dumps.htm">350-101 WLCOR</a></li>
 
-																		<li><a href="300-110.htm">300-110 WLSD</a></li>
+																		<li><a href="WLSD-300-110-dumps.htm">300-110 WLSD</a></li>
 
-																		<li><a href="300-120.htm">300-120 WLSI</a></li>
+																		<li><a href="WLSI-300-120-dumps.htm">300-120 WLSI</a></li>
 
 																	</ul>
 
@@ -1362,7 +1362,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 
 																<div class="col-md-3 ht-ul">
 
-																	<span>Automation v2.0</span>
+																	<span>Automation v1.1</span>
 
 																	<ul class="nav-list list-inline">
 
@@ -1574,7 +1574,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 
 																	<ul class="nav-list list-inline">
 
-																		<li> <a href="/350-901-ccnp-Automation-dumps.htm">350-901 AUTOCOR</a> </li>
+																		<li> <a href="/autocor-350-901-dumps.htm">350-901 AUTOCOR</a> </li>
 
 																		<li> <a href="/ccie-Automation-v1-1-lab-workbook.htm">CCIE Automation Workbook</a> </li>
 
@@ -1665,7 +1665,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 												<img src="images/new-image/caret_icons.svg" alt="caret" />
 											</a>
 											<ul class="dropdown-menu">
-												<li><a href="#">CC</a></li>
+												<li><a href="<?php echo BASE_URL; ?>CC-dumps.htm">CC</a></li>
 												<li><a href="<?php echo BASE_URL; ?>CCSP.htm">CCSP</a></li>
 												<li>
 													<a href="<?php echo BASE_URL; ?>ISSAP.htm">ISSAP</a>
@@ -1772,7 +1772,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 															<div class="tab-pane tabcontent active" id="juniper_data_center" style="display:block !important;">
 																<div class="col-md-3 ht-ul"> <span><a href="jncia-cert.htm?">JNCIA-DC</a></span>
 																	<ul class="nav-list list-inline">
-																		<li><a href="jn0-280.htm">JN0-280</a></li>
+																		<li><a href="jn0-281.htm">JN0-281</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-3 ht-ul"> <span><a href="jncis-ent-cert.htm?">JNCIS-DC</a></span>
@@ -1823,7 +1823,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 																<div class="col-md-3 ht-ul"> <span><a href="associate-jncia-sec-cert.htm?">JNCIA-SEC</a></span>
 																	<ul class="nav-list list-inline">
 																		<li></li>
-																		<li><a href="jn0-231.htm">JN0-231</a></li>
+																		<li><a href="jn0-232.htm">JN0-232</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-3 ht-ul"> <span><a href="jncis-sec-cert.htm?">JNCIS-SEC</a></span>
@@ -2961,13 +2961,13 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Ent Wireless v1.1<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu menu_mrg">
 															<li> <a href="WLCOR-350-101-dumps.htm">350-101 WLCOR</a> </li>
-															<li><a href="300-110.htm">300-110 WLSD</a></li>
-															<li><a href="300-120.htm">300-120 WLSI</a></li>
+															<li><a href="WLSD-300-110-dumps.htm">300-110 WLSD</a></li>
+															<li><a href="WLSI-300-120-dumps.htm">300-120 WLSI</a></li>
 														</ul>
 													</li>
-													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Automation v2.0<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Automation v1.1<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu menu_mrg">
-															<li><a href="350-901-ccie-devcor-dumps.htm">350-901 AUTOCOR</a></li>
+															<li><a href="autocor-350-901-dumps.htm">350-901 AUTOCOR</a></li>
 															<li><a href="300-435-ccnp-ent-enauto-dumps.htm">300-435 ENAUTO</a></li>
 															<!--<li><a href="300-835-ccnp-clauto-dumps.htm">300-835 CLAUTO</a></li>-->
 															<li><a href="300-635-ccnp-dcauto-dumps.htm">300-635 DCAUTO</a></li>
@@ -3050,7 +3050,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 													</li>
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Automation v1.1<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu menu_mrg">
-															<li><a href="350-901-ccie-devcor-dumps.htm">350-901 AUTOCOR</a></li>
+															<li><a href="autocor-350-901-dumps.htm">350-901 AUTOCOR</a></li>
 															<li> <a href="/ccie-Automation-v1-1-lab-workbook.htm">CCIE Automation Workbook</a> </li>
 															<li> <a href="/Automation-Bootcamp.htm">CCIE Automation Bootcamp</a> </li>
 															<li> <a href="https://ccierack.rentals/ccie-devnet-rack-rental/">Rack Rental DevNet Pricing</a> </li>
