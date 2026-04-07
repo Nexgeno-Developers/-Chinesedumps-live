@@ -164,6 +164,7 @@ function buildVideoLinksFromPost()
 		  $spram[13]	=	$_POST['cert_id'];
 		  $spram[14]	=	$_POST['vnamefull'];
 		  $spram['alias_name'] = isset($_POST['alias_name']) ? trim($_POST['alias_name']) : '';
+          $spram['exam_type'] = (isset($_POST['exam_type']) && $_POST['exam_type'] === 'lab') ? 'lab' : 'written';
 		  $faqQuestions = isset($_POST['faq_question']) ? (array)$_POST['faq_question'] : array();
 		  $faqAnswers = isset($_POST['faq_answer']) ? (array)$_POST['faq_answer'] : array();
 		  $faqItems = array();
@@ -437,6 +438,15 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td colspan="2"><input  name="vnamefull" id="vnamefull" type="text"  value="<?php if(isset($_POST['vnamefull'])){ echo  $_POST['vnamefull'];} ?>" /></td>
 
+        </tr>
+        <tr>
+          <td align="right">* Exam Type:</td>
+          <td colspan="2">
+            <select name="exam_type" id="exam_type">
+              <option value="written" <?php echo (!isset($_POST['exam_type']) || $_POST['exam_type'] === 'written') ? "selected='selected'" : ""; ?>>Written</option>
+              <option value="lab" <?php echo (isset($_POST['exam_type']) && $_POST['exam_type'] === 'lab') ? "selected='selected'" : ""; ?>>Lab</option>
+            </select>
+          </td>
         </tr>
         <tr>
 

@@ -185,6 +185,7 @@ function buildVideoLinksFromPost()
             
             $spram[14]	=	$_POST['vnamefull'];
             $spram['alias_name'] = isset($_POST['alias_name']) ? trim($_POST['alias_name']) : '';
+            $spram['exam_type'] = (isset($_POST['exam_type']) && $_POST['exam_type'] === 'lab') ? 'lab' : 'written';
             $faqQuestions = isset($_POST['faq_question']) ? (array)$_POST['faq_question'] : array();
             $faqAnswers = isset($_POST['faq_answer']) ? (array)$_POST['faq_answer'] : array();
             $faqItems = array();
@@ -429,6 +430,7 @@ function buildVideoLinksFromPost()
 				$spram[13]	= 	$row['cert_id'];
 				$spram[14]	= 	$row['exam_fullname'];
 				$spram['alias_name'] = isset($row['alias_name']) ? $row['alias_name'] : '';
+				$spram['exam_type'] = isset($row['exam_type']) && $row['exam_type'] !== '' ? $row['exam_type'] : 'written';
 				$spram['faq_json'] = isset($row['faq_json']) ? $row['faq_json'] : '';
 				$spram[20]	= 	$row['QA'];
 				$spram[29]	= 	$row['exam_date'];						
@@ -593,6 +595,15 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         <tr>
           <td align="right"> Exam Name:</td>
           <td colspan="2"><input  name="vnamefull" id="vnamefull" type="text"  value="<?php if(isset($spram[14])){ echo  $spram[14];} ?>" /></td>
+        </tr>
+        <tr>
+          <td align="right">* Exam Type:</td>
+          <td colspan="2">
+            <select name="exam_type" id="exam_type">
+              <option value="written" <?php if(!isset($spram['exam_type']) || $spram['exam_type'] == 'written'){ echo "selected='selected'";} ?>>Written</option>
+              <option value="lab" <?php if(isset($spram['exam_type']) && $spram['exam_type'] == 'lab'){ echo "selected='selected'";} ?>>Lab</option>
+            </select>
+          </td>
         </tr>
         <tr>
           <td align="right"> Alias Name:</td>
