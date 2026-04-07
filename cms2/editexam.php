@@ -186,6 +186,8 @@ function buildVideoLinksFromPost()
             $spram[14]	=	$_POST['vnamefull'];
             $spram['alias_name'] = isset($_POST['alias_name']) ? trim($_POST['alias_name']) : '';
             $spram['exam_type'] = (isset($_POST['exam_type']) && $_POST['exam_type'] === 'lab') ? 'lab' : 'written';
+            $spram['free_dump_label'] = isset($_POST['free_dump_label']) ? trim($_POST['free_dump_label']) : '';
+            $spram['demo_practice_label'] = isset($_POST['demo_practice_label']) ? trim($_POST['demo_practice_label']) : '';
             $faqQuestions = isset($_POST['faq_question']) ? (array)$_POST['faq_question'] : array();
             $faqAnswers = isset($_POST['faq_answer']) ? (array)$_POST['faq_answer'] : array();
             $faqItems = array();
@@ -442,10 +444,12 @@ function buildVideoLinksFromPost()
                 $spram[37]	=	$row['video_code'];				
                 $spram[33]	=	$row['labName'];
                 $spram[36]	=	$row['course_image'];
-                $spram[39]	= 	$row['exam_descr2'];
-                $spram[41]	= 	$row['exam_related_descr'];
-                $spram['free_dump_pdf'] = $row['free_dump_pdf'];
-                $spram['demo_practice_file'] = isset($row['demo_practice_file']) ? $row['demo_practice_file'] : '';
+				$spram[39]	= 	$row['exam_descr2'];
+				$spram[41]	= 	$row['exam_related_descr'];
+				$spram['free_dump_pdf'] = $row['free_dump_pdf'];
+				$spram['demo_practice_file'] = isset($row['demo_practice_file']) ? $row['demo_practice_file'] : '';
+                $spram['free_dump_label'] = isset($row['free_dump_label']) ? $row['free_dump_label'] : '';
+                $spram['demo_practice_label'] = isset($row['demo_practice_label']) ? $row['demo_practice_label'] : '';
 				$youtube_links = array();
                 if (!empty($row['youtube_links'])) {
                     $youtube_links = normalizeVideoLinksFromStorage($row['youtube_links']);
@@ -706,6 +710,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
             <tr>
               <td align="right">Free Dump PDF:</td>
               <td colspan="2">
+                <input type="text" name="free_dump_label" placeholder="Label to display on site" style="width:320px" value="<?php echo isset($spram['free_dump_label']) ? htmlspecialchars($spram['free_dump_label'], ENT_QUOTES) : ''; ?>" /><br />
                 <?php if(!empty($spram['free_dump_pdf'])) { ?>
                   <div style="margin-bottom:6px;">
                     Current: <a href="../uploads/free_dumps/<?php echo $spram['free_dump_pdf']; ?>" target="_blank">
@@ -721,6 +726,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
             <tr>
               <td align="right">Demo Practice PDF:</td>
               <td colspan="2">
+                <input type="text" name="demo_practice_label" placeholder="Label to display on site" style="width:320px" value="<?php echo isset($spram['demo_practice_label']) ? htmlspecialchars($spram['demo_practice_label'], ENT_QUOTES) : ''; ?>" /><br />
                 <?php if(!empty($spram['demo_practice_file'])) { ?>
                   <div style="margin-bottom:6px;">
                     Current: <a href="../uploads/demo_practice/<?php echo $spram['demo_practice_file']; ?>" target="_blank">

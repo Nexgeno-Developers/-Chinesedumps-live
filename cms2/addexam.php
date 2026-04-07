@@ -165,6 +165,8 @@ function buildVideoLinksFromPost()
 		  $spram[14]	=	$_POST['vnamefull'];
 		  $spram['alias_name'] = isset($_POST['alias_name']) ? trim($_POST['alias_name']) : '';
           $spram['exam_type'] = (isset($_POST['exam_type']) && $_POST['exam_type'] === 'lab') ? 'lab' : 'written';
+          $spram['free_dump_label'] = isset($_POST['free_dump_label']) ? trim($_POST['free_dump_label']) : '';
+          $spram['demo_practice_label'] = isset($_POST['demo_practice_label']) ? trim($_POST['demo_practice_label']) : '';
 		  $faqQuestions = isset($_POST['faq_question']) ? (array)$_POST['faq_question'] : array();
 		  $faqAnswers = isset($_POST['faq_answer']) ? (array)$_POST['faq_answer'] : array();
 		  $faqItems = array();
@@ -529,11 +531,17 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
             
             <tr>
               <td align="right">Free Dump PDF:</td>
-              <td colspan="2"><input type="file" name="free_dump_pdf" accept="application/pdf" /></td>
+              <td colspan="2">
+                <input type="text" name="free_dump_label" placeholder="Label to display on site" style="width:320px" value="<?php if(isset($_POST['free_dump_label'])){ echo htmlspecialchars($_POST['free_dump_label'], ENT_QUOTES); } ?>" /><br />
+                <input type="file" name="free_dump_pdf" accept="application/pdf" />
+              </td>
             </tr>
             <tr>
               <td align="right">Demo Practice PDF:</td>
-              <td colspan="2"><input type="file" name="demo_practice_file" accept="application/pdf" /></td>
+              <td colspan="2">
+                <input type="text" name="demo_practice_label" placeholder="Label to display on site" style="width:320px" value="<?php if(isset($_POST['demo_practice_label'])){ echo htmlspecialchars($_POST['demo_practice_label'], ENT_QUOTES); } ?>" /><br />
+                <input type="file" name="demo_practice_file" accept="application/pdf" />
+              </td>
             </tr>
 		
 

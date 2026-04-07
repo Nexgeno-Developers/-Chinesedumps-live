@@ -268,6 +268,11 @@
                                             .lab-support-section .row {
                                                 margin-left: -8px;
                                                 margin-right: -8px;
+                                                display: flex;
+                                                flex-wrap: wrap;
+                                            }
+                                            .lab-support-section .row [class*="col-"] {
+                                                display: flex;
                                             }
                                             .lab-support-section .col-md-4,
                                             .lab-support-section .col-sm-6 {
@@ -281,9 +286,15 @@
                                                 box-shadow: none;
                                                 background: #fff;
                                                 min-height: 250px;
+                                                height: 100%;
+                                                display: flex;
+                                                flex-direction: column;
                                             }
                                             .lab-support-card .panel-body {
                                                 padding: 26px 24px 22px;
+                                                flex: 1;
+                                                display: flex;
+                                                flex-direction: column;
                                             }
                                             .lab-support-title {
                                                 font-size: 2rem;
@@ -362,6 +373,12 @@
                                                             <input type="hidden" name="download_demo_practice" value="1">
                                                         </form>
 
+                                                        <?php
+                                                        $freeDumpLabel = isset($exam['free_dump_label']) ? trim((string)$exam['free_dump_label']) : '';
+                                                        $demoPracticeLabel = isset($exam['demo_practice_label']) ? trim((string)$exam['demo_practice_label']) : '';
+                                                        ?>
+
+                                                        <?php if (!empty($exam['free_dump_pdf']) && $freeDumpLabel !== ''): ?>
                                                         <div class="lab-offer-row lab-offer-free list-group-item">
                                                             <div class="row align_centers">
                                                                 <div class="col-sm-8 col-xs-12">
@@ -372,9 +389,9 @@
                                                                                     alt="Demo question"></span>
                                                                         </div>
                                                                         <div class="media-body">
-                                                                            <span
-                                                                                class="lab-offer-title"><?= htmlspecialchars($labDisplayName); ?>
-                                                                                Demo Question Download Free</span>
+                                                                            <span class="lab-offer-title">
+                                                                                <?= htmlspecialchars($freeDumpLabel, ENT_QUOTES); ?>
+                                                                            </span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -395,7 +412,9 @@
                                                             <div class="lab-row-error"><?= htmlspecialchars($freeDumpError); ?>
                                                             </div>
                                                         <?php } ?>
+                                                        <?php endif; ?>
 
+                                                        <?php if (!empty($exam['demo_practice_file']) && $demoPracticeLabel !== ''): ?>
                                                         <div class="lab-offer-row lab-offer-free list-group-item">
                                                             <div class="row align_centers">
                                                                 <div class="col-sm-8 col-xs-12">
@@ -406,9 +425,9 @@
                                                                                     alt="Demo practice"></span>
                                                                         </div>
                                                                         <div class="media-body">
-                                                                            <span
-                                                                                class="lab-offer-title"><?= htmlspecialchars($labDisplayName); ?>
-                                                                                Demo Practise Test</span>
+                                                                            <span class="lab-offer-title">
+                                                                                <?= htmlspecialchars($demoPracticeLabel, ENT_QUOTES); ?>
+                                                                            </span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -429,6 +448,7 @@
                                                             <div class="lab-row-error"><?= htmlspecialchars($demoPracticeError); ?>
                                                             </div>
                                                         <?php } ?>
+                                                        <?php endif; ?>
 
                                                         <?php foreach ($paidPackages as $package) { ?>
                                                             <div class="lab-offer-row list-group-item">
