@@ -581,44 +581,48 @@
             </div>
         </div>
 
-        <div class="passing_dumps display_inlines paddtop60 paddbottom60 ">
-            <div class="container">
-                <div class="main_heading text-center paddbtm10"><?php echo htmlspecialchars($labDisplayName); ?>
-                    (<?php echo $exam['QA'] ?>) Passing <span>Results</span></div>
-                <ul class="courses_pass_img" id="scroller">
-                    <?php
-                    $banners = mysql_query('select * from sliders_new where group_id=' . $examID);
-                    if (mysql_num_rows($banners) == 0) {
-                        $banners = mysql_query("select * from sliders where type='lab' AND status = 1");
-                    }
+        <?php
+        // Load passing results banners (group-specific first, then fallback). Hide section if none found.
+        $banners = mysql_query('select * from sliders_new where group_id=' . $examID);
+        $bannerCount = mysql_num_rows($banners);
+        if ($bannerCount == 0) {
+            $banners = mysql_query("select * from sliders where type='lab' AND status = 1");
+            $bannerCount = mysql_num_rows($banners);
+        }
 
-                    while ($banner = mysql_fetch_object($banners)) {
-                        ?>
-                        <li>
-                            <a href="/images/slider/<?php echo $banner->s_image; ?>" data-fancybox="course-gallery"
-                                data-caption="<?php echo htmlspecialchars($banner->s_alt); ?>">
+        if ($bannerCount > 0) {
+            ?>
+            <div class="passing_dumps display_inlines paddtop60 paddbottom60 ">
+                <div class="container">
+                    <div class="main_heading text-center paddbtm10"><?php echo htmlspecialchars($labDisplayName); ?>
+                        (<?php echo $exam['QA'] ?>) Passing <span>Results</span></div>
+                    <ul class="courses_pass_img" id="scroller">
+                        <?php while ($banner = mysql_fetch_object($banners)) { ?>
+                            <li>
+                                <a href="/images/slider/<?php echo $banner->s_image; ?>" data-fancybox="course-gallery"
+                                    data-caption="<?php echo htmlspecialchars($banner->s_alt); ?>">
 
-                                <img src="/images/slider/<?php echo $banner->s_image; ?>"
-                                    alt="<?php echo htmlspecialchars($banner->s_alt); ?>" />
-                            </a>
-                        </li>
-                    <?php } ?>
-                </ul>
-                <br>
-                <br>
-                <section id="service_table" class="commom-sec grey-sec display_none2">
-                    <div class="">
-                        <div class="table-responsive stable-unstable workbook_table">
-                            <table width="100%" border="0">
-                                <thead>
-                                    <tr>
-                                        <td>Products</td>
-                                        <td>Categories</td>
-                                        <td>labs</td>
-                                        <td>Stable/Unstable</td>
-                                        <td>Exam Code</td>
-                                        <td>Dumps</td>
-                                    </tr>
+                                    <img src="/images/slider/<?php echo $banner->s_image; ?>"
+                                        alt="<?php echo htmlspecialchars($banner->s_alt); ?>" />
+                                </a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                    <br>
+                    <br>
+                    <section id="service_table" class="commom-sec grey-sec display_none2">
+                        <div class="">
+                            <div class="table-responsive stable-unstable workbook_table">
+                                <table width="100%" border="0">
+                                    <thead>
+                                        <tr>
+                                            <td>Products</td>
+                                            <td>Categories</td>
+                                            <td>labs</td>
+                                            <td>Stable/Unstable</td>
+                                            <td>Exam Code</td>
+                                            <td>Dumps</td>
+                                        </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
@@ -853,6 +857,7 @@
                 </section>
             </div>
         </div>
+        <?php } ?>
 
         <?php if ($video_links) { ?>
             <div class="passing_dumps paddbottom60 display_inlines">
@@ -1136,6 +1141,7 @@ if (!empty($relatedProducts)) {
                                                                             INNER JOIN tbl_vendors v ON v.ven_id = e.ven_id
                                                                             WHERE e.exam_status = 1
                                                                               AND e.exam_id != '" . $examID . "'
+                                                                              AND e.ven_id != '" . $exam['ven_id'] . "'
                                                                               AND LOWER(TRIM(e.exam_type)) = 'lab'
                                                                             ORDER BY e.exam_name ASC
                                                                         ";
