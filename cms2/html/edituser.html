@@ -5,9 +5,144 @@
 <link href="new.css" rel="stylesheet" type="text/css" />
 <link href="style1.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
-<!--
-.style1 {color: #FF0000}
--->
+.user-page-shell {
+	background: #ffffff;
+	border: 1px solid #d7deea;
+	box-shadow: 0 10px 30px rgba(29, 46, 74, 0.08);
+	margin-top: 12px;
+}
+.user-page-header {
+	background: linear-gradient(135deg, #1a3558 0%, #22527f 55%, #4f8caf 100%);
+	color: #ffffff;
+	padding: 24px 28px;
+}
+.user-page-header h2 {
+	margin: 0 0 6px 0;
+	color: #ffffff;
+	font-size: 24px;
+}
+.user-page-header p {
+	margin: 0;
+	font-size: 13px;
+	color: #dbe9f8;
+}
+.user-page-body {
+	padding: 24px 28px 30px 28px;
+	background: #f5f8fc;
+}
+.user-page-tools {
+	margin-bottom: 18px;
+}
+.user-page-tools a {
+	display: inline-block;
+	padding: 9px 14px;
+	background: #ffffff;
+	border: 1px solid #c9d8ea;
+	color: #1d446d;
+	font-weight: bold;
+	text-decoration: none;
+}
+.user-form-notice {
+	padding: 12px 14px;
+	margin-bottom: 18px;
+	font-weight: bold;
+	border: 1px solid transparent;
+}
+.user-form-notice.is-error {
+	background: #fff1f1;
+	border-color: #f0b7b7;
+	color: #a12626;
+}
+.user-form-notice.is-success {
+	background: #edf9f0;
+	border-color: #b8debe;
+	color: #20673d;
+}
+.user-form-card {
+	background: #ffffff;
+	border: 1px solid #dce4ef;
+	padding: 22px 24px 14px 24px;
+}
+.user-form-card h3 {
+	margin: 0 0 6px 0;
+	font-size: 18px;
+	color: #1a3558;
+}
+.user-form-card .helper-text {
+	margin: 0 0 18px 0;
+	color: #5f738b;
+	font-size: 12px;
+}
+.user-form-grid {
+	margin-left: -10px;
+	margin-right: -10px;
+}
+.user-form-grid .field-group {
+	display: inline-block;
+	vertical-align: top;
+	width: 46%;
+	padding: 0 10px 16px 10px;
+}
+.user-form-grid .field-group.full {
+	width: 96%;
+}
+.field-group label {
+	display: block;
+	margin-bottom: 6px;
+	color: #22476d;
+	font-weight: bold;
+}
+.field-group input,
+.field-group select {
+	width: 100%;
+	padding: 9px 10px;
+	border: 1px solid #b8c9dc;
+	background: #fbfdff;
+	box-sizing: border-box;
+	font-family: "Trebuchet MS", verdana, arial, serif;
+	font-size: 12px;
+}
+.field-group input.readonly-field {
+	background: #eef4fb;
+	color: #355a82;
+}
+.field-group .hint {
+	margin-top: 5px;
+	font-size: 11px;
+	color: #6a7f96;
+}
+.form-actions {
+	padding: 10px 10px 2px 10px;
+}
+.primary-submit,
+.secondary-link {
+	display: inline-block;
+	padding: 10px 16px;
+	border: 0;
+	text-decoration: none;
+	font-weight: bold;
+	font-family: "Trebuchet MS", verdana, arial, serif;
+	font-size: 12px;
+	cursor: pointer;
+}
+.primary-submit {
+	background: #173e69;
+	color: #ffffff;
+}
+.secondary-link {
+	background: #e6edf5;
+	color: #294b72;
+	margin-left: 8px;
+}
+.required-pill {
+	display: inline-block;
+	padding: 4px 8px;
+	font-size: 11px;
+	font-weight: bold;
+	background: #eef5ff;
+	color: #25486f;
+	border: 1px solid #d8e6f6;
+}
 </style>
 <script language="JavaScript" src="../includes/js/calendar.js"></script>
 <script type="text/javascript" src="Editor3/scripts/innovaeditor.js"></script>
@@ -22,116 +157,88 @@
 </tr>
 </table></div>
 
-<table cellpadding="0" cellspacing="0" width="102%">
+<table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <td width="190" class="leftside"><?php include ("menu.php"); ?></td>
 
-<td width="810" class="rightside"><h2>Edit User !</h2>
+<td width="810" class="rightside" valign="top">
+	<div class="user-page-shell">
+		<div class="user-page-header">
+			<h2>Edit User</h2>
+			<p>Update names, phone details, status, and optionally replace the password from the admin panel.</p>
+		</div>
 
-Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.<br /><br />
+		<div class="user-page-body">
+			<div class="user-page-tools">
+				<a href="<?=$backToListUrl?>">Back To User Listing</a>
+			</div>
 
-<form action="" method="post" enctype="multipart/form-data" name="form" id="form">
+			<?php if($strError != ""){ ?>
+			<div class="<?=$formNoticeClass?>"><?=$strError?></div>
+			<?php } ?>
 
-  <table cellpadding='0' cellspacing='0' width='100%'>
+			<form action="" method="post" enctype="multipart/form-data" name="form" id="form">
+				<div class="user-form-card">
+					<h3>User Details</h3>
+					<p class="helper-text"><span class="required-pill">Required Fields</span> First name, last name, and phone are required. Leave password fields empty to keep the existing password unchanged.</p>
 
-    <tr>
+					<div class="user-form-grid">
+						<div class="field-group">
+							<label for="fname">First Name</label>
+							<input name="fname" id="fname" type="text" value="<?=htmlspecialchars($spram[1], ENT_QUOTES, 'UTF-8')?>" />
+						</div>
 
-      <td></td>
+						<div class="field-group">
+							<label for="surname">Last Name</label>
+							<input name="surname" id="surname" type="text" value="<?=htmlspecialchars($spram[2], ENT_QUOTES, 'UTF-8')?>" />
+						</div>
 
-    </tr>
+						<div class="field-group">
+							<label for="user_phone">Phone / WhatsApp</label>
+							<input name="user_phone" id="user_phone" type="text" value="<?=htmlspecialchars($spram[13], ENT_QUOTES, 'UTF-8')?>" />
+							<div class="hint">International format is supported. Keep punctuation limited to common phone characters.</div>
+						</div>
 
-    <tr>
+						<div class="field-group">
+							<label for="email_display">E-Mail Address</label>
+							<input id="email_display" class="readonly-field" type="text" value="<?=htmlspecialchars($spram[5], ENT_QUOTES, 'UTF-8')?>" readonly="readonly" />
+							<input type="hidden" name="hiddenemail" id="hiddenemail" value="<?=htmlspecialchars($spram[5], ENT_QUOTES, 'UTF-8')?>" />
+						</div>
 
-      <td class='header'>Edit User </td>
+						<div class="field-group">
+							<label for="passuser">Password</label>
+							<input name="passuser" id="passuser" type="password" value="" />
+							<div class="hint">Enter a new password only if the current password needs to be changed.</div>
+						</div>
 
-    </tr>
+						<div class="field-group">
+							<label for="user_cpassword">Confirm Password</label>
+							<input name="user_cpassword" id="user_cpassword" type="password" value="" />
+							<input name="user_hpassword" type="hidden" value="<?=htmlspecialchars($spram[9], ENT_QUOTES, 'UTF-8')?>" id="user_hpassword" />
+						</div>
 
-    <tr>
+						<div class="field-group full">
+							<label for="user_status">User Status</label>
+							<select name="user_status" id="user_status">
+								<option value="Active"<?php if($spram[10] == "Active"){ echo " selected=\"selected\""; } ?>>Active</option>
+								<option value="In Active"<?php if($spram[10] == "In Active"){ echo " selected=\"selected\""; } ?>>In Active</option>
+							</select>
+						</div>
+					</div>
 
-      <td class='setting1'><table width="80%" border="0" align="center" cellpadding="2" cellspacing="2">
-
-        <tr>
-
-          <td align="left">&nbsp;</td>
-
-          <td style="color: #FF0000;"><?=$strError?></td>
-        </tr>
-
-        <tr>
-
-          <td width="29%" align="left" nowrap="nowrap"><div align="right"></div></td>
-
-          <td width="71%">* Required information</td>
-        </tr>
-
-		 <tr>
-          <td align="right">* First Name:</td>
-          <td colspan="2"><input  name="fname" type="text" value="<?php if(isset($spram[1])){ echo  $spram[1]; } ?>" /></td>
-        </tr>
-        <tr>
-          <td align="right">* Last Name:</td>
-          <td colspan="2"><input name="surname" type="text" value="<?php if(isset($spram[2])){ echo  $spram[2]; } ?>" /></td>
-        </tr>
-		
-        <tr>
-          <td align="right">* E-Mail Address:</td>
-          <td width="25%"><strong><?php if(isset($spram[5])){ echo  $spram[5];} ?></strong></td>
-          <td width="46%"><div id="username_exists" style="font-size: 12px;font-weight: bold;color:#FF3300; float:left;"> </div><input type="hidden" name="hiddenemail" id="hiddenemail" value="<?=$spram[5]?>" /></td>
-        </tr>
-		
-		<tr>
-          <td align="right">* Password:</td>
-          <td colspan="2"><input name="passuser" type="password" value="" />&nbsp;&nbsp;use this if you want to update password</td>
-        </tr>
-		<tr>
-          <td align="right">* Confirm Password:</td>
-          <td colspan="2"><input name="user_cpassword" type="password"  /></td>
-        </tr>
-		
-		<tr>
-          <td align="right"> User Status:</td>
-          <td><select name="user_status" id="user_status">
-                <option value="Active"<? if($spram[10]=="Active"){ echo "selected='selected'";}?>>Active</option>
-                <option value="In Active"<? if($spram[10]=="In Active"){ echo "selected='selected'";}?>>In Active</option>
-                </select></td>
-        </tr>
-		<tr>
-
-        <tr align="right">
-
-          <td align="left">&nbsp;</td>
-
-          <td align="left"><input type="submit" name="submit" value="submit" /></td>
-        </tr>
-
-      </table></td>
-
-    </tr>
-
-  </table>
-
-</form>
-
-<br /></td>
-
-</tr>
-
-</table>
-
-
-
+					<div class="form-actions">
+						<input type="submit" name="submit" value="Update User" class="primary-submit" />
+						<a href="<?=$backToListUrl?>" class="secondary-link">Cancel</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 </td>
-
 </tr>
-
 </table>
-
 
 <? include("footer.php")?>
 
-
-
 </body>
-
 </html>
-
