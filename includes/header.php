@@ -1698,51 +1698,51 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 													<ul class="dropdown-menu">
 														<li class="dropdown"> <a class="" href="">Network Security</span></a>
 															<ul class="dropdown-menu">
-																<li> <a href="nse6_fnc-7-2.htm">NSE6_FNC-7.2</a> </li>
-																<li> <a href="">NSE6_FSW-7.2</a> </li>
-																<li> <a href="nse6_fwf-6-4.htm">NSE6_FWF-6.4</a> </li>
-																<li> <a href="fcp_fct_ad-7-2.htm">FCP_FCT_AD-7.2</a> </li>
-																<li> <a href="fcp_fac_ad-6-5.htm">FCP_FAC_AD-6.5</a> </li>
-																<li> <a href="fcp_fgt_ad-7-4.htm">FCP_FGT_AD-7.4</a> </li>
-																<li> <a href="fcp_fmg_ad-7-4.htm">FCP_FMG_AD-7.4</a> </li>
-																<li> <a href="fcp_faz_ad-7-4.htm">FCP_FAZ_AD-7.4</a> </li>
-																<li> <a href="fcp_fwf_ad-7-4.htm">FCP_FWF_AD-7.4</a> </li>
+																<li> <a href="nse6_fnc-7-2.htm">NSE6_FNC</a> </li>
+																<li> <a href="">NSE6_FSW</a> </li>
+																<li> <a href="nse6_fwf-6-4.htm">NSE6_FWF</a> </li>
+																<li> <a href="fcp_fct_ad-7-2.htm">FCP_FCT_AD</a> </li>
+																<li> <a href="fcp_fac_ad-6-5.htm">FCP_FAC_AD</a> </li>
+																<li> <a href="fcp_fgt_ad-7-4.htm">FCP_FGT_AD</a> </li>
+																<li> <a href="fcp_fmg_ad-7-4.htm">FCP_FMG_AD</a> </li>
+																<li> <a href="fcp_faz_ad-7-4.htm">FCP_FAZ_AD</a> </li>
+																<li> <a href="fcp_fwf_ad-7-4.htm">FCP_FWF_AD</a> </li>
 															</ul>
 														</li>
 														<li class="dropdown"> <a class="" href="">Security Operations</span></a>
 															<ul class="dropdown-menu">
-																<li> <a href="nse5_edr-5-0.htm">NSE5_EDR-5.0</a> </li>
-																<li> <a href="nse5_fsm-6-3.htm">NSE5_FSM-6.3</a> </li>
-																<li> <a href="nse6_fsr-7-3.htm">NSE6_FSR-7.3</a> </li>
-																<li> <a href="fcp_faz_an-7-4.htm">FCP_FAZ_AN-7.4</a> </li>
+																<li> <a href="nse5_edr-5-0.htm">NSE5_EDR</a> </li>
+																<li> <a href="nse5_fsm-6-3.htm">NSE5_FSM</a> </li>
+																<li> <a href="nse6_fsr-7-3.htm">NSE6_FSR</a> </li>
+																<li> <a href="fcp_faz_an-7-4.htm">FCP_FAZ_AN</a> </li>
 															</ul>
 														</li>
 														<li class="dropdown"> <a class="" href="">Public Cloud Security</span></a>
 															<ul class="dropdown-menu">
-																<li> <a href="nse6_wcs-7-0.htm">NSE6_WCS-7.0</a> </li>
-																<li> <a href="nse6_zcs-7-0.htm">NSE6_ZCS-7.0</a> </li>
-																<li> <a href="fcp_wcs_ad-7-4.htm">FCP_WCS_AD-7.4</a> </li>
-																<li> <a href="fcp_fwb_ad-7-4.htm">FCP_FWB_AD-7.4</a> </li>
-																<li> <a href="fcp_zcs_ad-7-4.htm">FCP_ZCS_AD-7.4</a> </li>
-																<li> <a href="fcp_fml_ad-7-4.htm">FCP_FML_AD-7.4</a> </li>
+																<li> <a href="nse6_wcs-7-0.htm">NSE6_WCS</a> </li>
+																<li> <a href="nse6_zcs-7-0.htm">NSE6_ZCS</a> </li>
+																<li> <a href="fcp_wcs_ad-7-4.htm">FCP_WCS_AD</a> </li>
+																<li> <a href="fcp_fwb_ad-7-4.htm">FCP_FWB_AD</a> </li>
+																<li> <a href="fcp_zcs_ad-7-4.htm">FCP_ZCS_AD</a> </li>
+																<li> <a href="fcp_fml_ad-7-4.htm">FCP_FML_AD</a> </li>
 															</ul>
 														</li>
 													</ul>
 												</li>
 												<li class="dropdown"> <a class="" href="">Fortinet Certified Solution Specialist</span></a>
 													<ul class="dropdown-menu">
-														<li> <a href="nse7_efw-7-2.htm">NSE7_EFW-7.2</a> </li>
-														<li> <a href="nse7_led-7-0.htm">NSE7_LED-7.0</a> </li>
-														<li> <a href="nse7_ots-7-2.htm">NSE7_OTS-7.2</a> </li>
-														<li> <a href="nse7_pbc-7-2.htm">NSE7_PBC-7.2</a> </li>
-														<li> <a href="nse7_sdw-7-2.htm">NSE7_SDW-7.2</a> </li>
-														<li> <a href="nse7_zta-7-2.htm">NSE7_ZTA-7.2</a> </li>
-														<li> <a href="fcss_ada_ar-6-7.htm">FCSS_ADA_AR-6.7</a> </li>
-														<li> <a href="fcss_sase_ad-23.htm">FCSS_SASE_AD-23</a> </li>
-														<li> <a href="fcss_soc_an-7-4.htm">FCSS_SOC_AN-7.4</a> </li>
-														<li> <a href="fcss_nst_se-7-4.htm">FCSS_NST_SE-7.4</a> </li>
-														<li> <a href="fcss_sase_ad-24.htm">FCSS_SASE_AD-24</a> </li>
-														<li> <a href="fcss_efw_ad-7-4.htm">FCSS_EFW_AD-7.4</a> </li>
+														<li> <a href="nse7_efw-7-2.htm">NSE7_EFW</a> </li>
+														<li> <a href="nse7_led-7-0.htm">NSE7_LED</a> </li>
+														<li> <a href="nse7_ots-7-2.htm">NSE7_OTS</a> </li>
+														<li> <a href="nse7_pbc-7-2.htm">NSE7_PBC</a> </li>
+														<li> <a href="nse7_sdw-7-2.htm">NSE7_SDW</a> </li>
+														<li> <a href="nse7_zta-7-2.htm">NSE7_ZTA</a> </li>
+														<li> <a href="fcss_ada_ar-6-7.htm">FCSS_ADA_AR</a> </li>
+														<li> <a href="fcss_sase_ad-23.htm">FCSS_SASE_AD</a> </li>
+														<li> <a href="fcss_soc_an-7-4.htm">FCSS_SOC_AN</a> </li>
+														<li> <a href="fcss_nst_se-7-4.htm">FCSS_NST_SE</a> </li>
+														<li> <a href="fcss_sase_ad-24.htm">FCSS_SASE_AD</a> </li>
+														<li> <a href="fcss_efw_ad-7-4.htm">FCSS_EFW_AD</a> </li>
 													</ul>
 												</li>
 												<li class="dropdown"> <a class="" href="">Fortinet Certified Expert</span></a>
@@ -3083,47 +3083,47 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 												<ul class="dropdown-menu menu_mrg bounce">
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Network Security <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu menu_mrg">
-															<li> <a href="nse6_fnc-7-2.htm">NSE6_FNC-7.2</a> </li>
-															<li> <a href="">NSE6_FSW-7.2</a> </li>
-															<li> <a href="nse6_fwf-6-4.htm">NSE6_FWF-6.4</a> </li>
-															<li> <a href="fcp_fct_ad-7-2.htm">FCP_FCT_AD-7.2</a> </li>
-															<li> <a href="fcp_fac_ad-6-5.htm">FCP_FAC_AD-6.5</a> </li>
-															<li> <a href="fcp_fgt_ad-7-4.htm">FCP_FGT_AD-7.4</a> </li>
-															<li> <a href="fcp_fmg_ad-7-4.htm">FCP_FMG_AD-7.4</a> </li>
-															<li> <a href="fcp_faz_ad-7-4.htm">FCP_FAZ_AD-7.4</a> </li>
-															<li> <a href="fcp_fwf_ad-7-4.htm">FCP_FWF_AD-7.4</a> </li>
+															<li> <a href="nse6_fnc-7-2.htm">NSE6_FNC</a> </li>
+															<li> <a href="">NSE6_FSW</a> </li>
+															<li> <a href="nse6_fwf-6-4.htm">NSE6_FWF</a> </li>
+															<li> <a href="fcp_fct_ad-7-2.htm">FCP_FCT_AD</a> </li>
+															<li> <a href="fcp_fac_ad-6-5.htm">FCP_FAC_AD</a> </li>
+															<li> <a href="fcp_fgt_ad-7-4.htm">FCP_FGT_AD</a> </li>
+															<li> <a href="fcp_fmg_ad-7-4.htm">FCP_FMG_AD</a> </li>
+															<li> <a href="fcp_faz_ad-7-4.htm">FCP_FAZ_AD</a> </li>
+															<li> <a href="fcp_fwf_ad-7-4.htm">FCP_FWF_AD</a> </li>
 														</ul>
 													</li>
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Security Operations <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu">
-															<li> <a href="nse5_edr-5-0.htm">NSE5_EDR-5.0</a> </li>
-															<li> <a href="nse5_fsm-6-3.htm">NSE5_FSM-6.3</a> </li>
-															<li> <a href="nse6_fsr-7-3.htm">NSE6_FSR-7.3</a> </li>
-															<li> <a href="fcp_faz_an-7-4.htm">FCP_FAZ_AN-7.4</a> </li>
+															<li> <a href="nse5_edr-5-0.htm">NSE5_EDR</a> </li>
+															<li> <a href="nse5_fsm-6-3.htm">NSE5_FSM</a> </li>
+															<li> <a href="nse6_fsr-7-3.htm">NSE6_FSR</a> </li>
+															<li> <a href="fcp_faz_an-7-4.htm">FCP_FAZ_AN</a> </li>
 														</ul>
 													</li>
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Public Cloud Security <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu">
-															<li> <a href="nse6_wcs-7-0.htm">NSE6_WCS-7.0</a> </li>
-															<li> <a href="nse6_zcs-7-0.htm">NSE6_ZCS-7.0</a> </li>
+															<li> <a href="nse6_wcs-7-0.htm">NSE6_WCS</a> </li>
+															<li> <a href="nse6_zcs-7-0.htm">NSE6_ZCS</a> </li>
 															<!--<li> <a  href="">FCP_WCS_AD-7.4</a> </li>-->
-															<li> <a href="fcp_fwb_ad-7-4.htm">FCP_FWB_AD-7.4</a> </li>
-															<li> <a href="fcp_zcs_ad-7-4.htm">FCP_ZCS_AD-7.4</a> </li>
-															<li> <a href="fcp_fml_ad-7-4.htm">FCP_FML_AD-7.4</a> </li>
+															<li> <a href="fcp_fwb_ad-7-4.htm">FCP_FWB_AD</a> </li>
+															<li> <a href="fcp_zcs_ad-7-4.htm">FCP_ZCS_AD</a> </li>
+															<li> <a href="fcp_fml_ad-7-4.htm">FCP_FML_AD</a> </li>
 														</ul>
 													</li>
 												</ul>
 											</li>
 											<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Fortinet Certified Solution Specialist<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 												<ul class="dropdown-menu menu_mrg bounce">
-													<li> <a href="nse7_efw-7-2.htm">NSE7_EFW-7.2</a> </li>
-													<li> <a href="nse7_led-7-0.htm">NSE7_LED-7.0</a> </li>
-													<li> <a href="nse7_ots-7-2.htm">NSE7_OTS-7.2</a> </li>
-													<li> <a href="nse7_pbc-7-2.htm">NSE7_PBC-7.2</a> </li>
-													<li> <a href="nse7_sdw-7-2.htm">NSE7_SDW-7.2</a> </li>
-													<li> <a href="nse7_zta-7-2.htm">NSE7_ZTA-7.2</a> </li>
-													<li> <a href="fcss_ada_ar-6-7.htm">FCSS_ADA_AR-6.7</a> </li>
-													<li> <a href="fcss_sase_ad-23.htm">FCSS_SASE_AD-23</a> </li>
+													<li> <a href="nse7_efw-7-2.htm">NSE7_EFW</a> </li>
+													<li> <a href="nse7_led-7-0.htm">NSE7_LED</a> </li>
+													<li> <a href="nse7_ots-7-2.htm">NSE7_OTS</a> </li>
+													<li> <a href="nse7_pbc-7-2.htm">NSE7_PBC</a> </li>
+													<li> <a href="nse7_sdw-7-2.htm">NSE7_SDW</a> </li>
+													<li> <a href="nse7_zta-7-2.htm">NSE7_ZTA</a> </li>
+													<li> <a href="fcss_ada_ar-6-7.htm">FCSS_ADA_AR</a> </li>
+													<li> <a href="fcss_sase_ad-23.htm">FCSS_SASE_AD</a> </li>
 													<!--<li> <a  href="">FCSS_SOC_AN-7.4</a> </li>-->
 													<!--<li> <a  href="">FCSS_NST_SE-7.4</a> </li>-->
 													<!--<li> <a  href="">FCSS_SASE_AD-24</a> </li>-->
