@@ -1925,7 +1925,7 @@ li.main_cert .package-price {
 									<?php if($video_links){ ?>
  									  <div class="passing_dumps paddbottom60 display_inlines">
 									     <div class="container">
-        									 <div class="main_heading text-center paddbtm10"> <?php echo $exam['exam_fullname']; ?> (<?= $exam['QA'] ?>) <span>Live Exam Videos</span></div>
+        									 <div class="main_heading text-center paddbtm10"> <?php echo $exam['exam_fullname']; ?> (<?= $exam['QA'] ?>) <span>Videos</span></div>
         									     <div class="exam-demo-gallery">
 
                                                     <div class="row">
