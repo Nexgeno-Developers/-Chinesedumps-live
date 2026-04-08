@@ -22,6 +22,11 @@ images/*
 
 1blog
 /includes/config/classDbConnection.php
+/includes/config/config.php
 
 cgi-bin
 vendor
+
+**/sitemap.xml
+
+**/config.php
