@@ -3520,6 +3520,20 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 									</ul>
 									</li>
 
+									<li> <a data-toggle="dropdown" class="dropdown-toggle" href="/ISC2-certification-dumps.html">ISC2 <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+										<ul class="dropdown-menu">
+											<li><a href="<?php echo BASE_URL; ?>CC-dumps.htm">CC</a></li>
+											<li><a href="<?php echo BASE_URL; ?>CCSP.htm">CCSP</a></li>
+											<li><a href="<?php echo BASE_URL; ?>ISSAP.htm">ISSAP</a></li>
+											<li><a href="<?php echo BASE_URL; ?>sscp-.htm">SSCP</a></li>
+											<li><a href="<?php echo BASE_URL; ?>cgrc.htm">CGRC</a></li>
+											<li><a href="<?php echo BASE_URL; ?>ISSEP.htm">ISSEP</a></li>
+											<li><a href="<?php echo BASE_URL; ?>CISSP.htm">CISSP</a></li>
+											<li><a href="<?php echo BASE_URL; ?>CSSLP.htm">CSSLP</a></li>
+											<li><a href="<?php echo BASE_URL; ?>ISSMP.htm">ISSMP</a></li>
+										</ul>
+									</li>
+
 									<li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="/Google-Cloud-Certified-cert.htm">Google <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 										<ul class="dropdown-menu">
 											<li> <a href="associate-cloud-engineer.htm">Associate Cloud Engineer</a> </li>
@@ -3540,6 +3554,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 									<!--	</ul>-->
 									<!--</li>-->
 
+									<!-- Mobile menu sequence follows desktop nav; ISACA is intentionally hidden here.
 									<li> <a data-toggle="dropdown" class="dropdown-toggle" href="/Isaca-certification-dumps.html">ISACA <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 										<ul class="dropdown-menu">
 											<li> <a href="cisa.htm">CISA</a> </li>
@@ -3547,6 +3562,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 											<li> <a href="CRISC.htm">CRISC</a> </li>
 										</ul>
 									</li>
+									-->
 
 
 
@@ -3961,6 +3977,33 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 				return false;
 			});
 		})(jQuery)
+	</script>
+	<script>
+		(function($) {
+			var mobileOrder = ['CISCO', 'COMPTIA', 'ISC2', 'FORTINET', 'JUNIPER', 'MICROSOFT', 'AWS', 'GOOGLE', 'OTHERS'];
+			var $mobileMenu = $('#fresponsive');
+
+			if (!$mobileMenu.length) {
+				return;
+			}
+
+			var $itemsByLabel = {};
+
+			$mobileMenu.children('li').each(function() {
+				var $item = $(this);
+				var label = $.trim($item.children('a').first().text()).toUpperCase();
+
+				if (label) {
+					$itemsByLabel[label] = $item;
+				}
+			});
+
+			$.each(mobileOrder, function(_, label) {
+				if ($itemsByLabel[label]) {
+					$mobileMenu.append($itemsByLabel[label]);
+				}
+			});
+		})(jQuery);
 	</script>
 	<!------script menu responsive close----------->
 	<!------script mega menu open----------->
