@@ -1741,7 +1741,6 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 														<li> <a href="fcss_sase_ad_dumps.htm">FCSS_SASE_AD</a> </li>
 														<li> <a href="fcss_soc_an_dumps.htm">FCSS_SOC_AN</a> </li>
 														<li> <a href="fcss_nst_se_dumps.htm">FCSS_NST_SE</a> </li>
-														<li> <a href="fcss_sase_ad_dumps.htm">FCSS_SASE_AD</a> </li>
 														<li> <a href="fcss_efw_ad_dumps.htm">FCSS_EFW_AD</a> </li>
 													</ul>
 												</li>
