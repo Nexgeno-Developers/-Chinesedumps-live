@@ -1761,11 +1761,12 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 														<ul class="nav nav-tabs" role="tablist">
 															<li><a href="#" class="tablinks active" onmouseover="openCity(event, 'juniper_data_center')"> Data Center </a></li>
 															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'juniper_ei')">Enterprise Infra </a></li>
-															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'juniper_security')">Juniper Security </a></li>
+															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'juniper_security')"> Security </a></li>
 															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'juniper_sp')">Service Provider</a></li>
 															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'juniper_devops')">Automation & DevOps </a></li>
-															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'juniper_cloud')">Juniper Cloud </a></li>
 															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'juniper_mist')">Mist AI</a></li>
+															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'juniper_cloud')">Juniper Cloud </a></li>
+															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'juniper_design')">Design</a></li>
 														</ul>
 													</div>
 													<div class="col-md-10 col-sm-10 ht-tab">
@@ -1778,7 +1779,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 																</div>
 																<div class="col-md-3 ht-ul"> <span><a href="jncis-ent-cert.htm?">JNCIS-DC</a></span>
 																	<ul class="nav-list list-inline">
-																		<li><a href="jn0-480.htm">JN0-480</a></li>
+																		<li><a href="jn0-480.htm">JN0-481</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-3 ht-ul menu_padd"> <span><a href="jncip-dc-cert.htm?">JNCIP-DC</a></span>
@@ -1798,7 +1799,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 																<div class="col-md-3 ht-ul"> <span><a href="jncia-cert.htm?">JNCIA-ENT</a></span>
 																	<ul class="nav-list list-inline">
 																		<li></li>
-																		<li><a href="jn0-105.htm">JN0-105</a></li>
+																		<li><a href="jn0-105.htm">JN0-106</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-3 ht-ul"> <span><a href="jncis-ent-cert.htm?">JNCIS-ENT</a></span>
@@ -1810,7 +1811,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 																<div class="col-md-3 ht-ul menu_padd"> <span><a href="jncip-ent-cert.htm?">JNCIP-ENT</a></span>
 																	<ul class="nav-list list-inline">
 																		<li></li>
-																		<li><a href="jn0-649.htm">JN0-649</a></li>
+																		<li><a href="jn0-649.htm">JN0-650</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-3 ht-ul menu_padd"> <span><a href="jncip-ent-cert.htm?">JNCIE-ENT</a></span>
@@ -1830,7 +1831,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 																<div class="col-md-3 ht-ul"> <span><a href="jncis-sec-cert.htm?">JNCIS-SEC</a></span>
 																	<ul class="nav-list list-inline">
 																		<li></li>
-																		<li><a href="jn0-335.htm">JN0-335</a></li>
+																		<li><a href="jn0-335.htm">JN0-336</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-3 ht-ul"> <span><a href="jncis-sec-cert.htm?">JNCIP-SEC</a></span>
@@ -1849,12 +1850,12 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 															<div class="tab-pane tabcontent" id="juniper_sp">
 																<div class="col-md-3 ht-ul"> <span><a href="jncia-cert.htm?">JNCIA-JUNOS</a></span>
 																	<ul class="nav-list list-inline">
-																		<li><a href="jn0-105.htm">JN0-105</a></li>
+																		<li><a href="jn0-105.htm">JN0-106</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-3 ht-ul"> <span><a href="jncip-sp-cert.htm?">JNCIS-SP </a></span>
 																	<ul class="nav-list list-inline">
-																		<li><a href="jn0-363.htm">JN0-363</a></li>
+																		<li><a href="jn0-363.htm">JN0-364</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-3 ht-ul"> <span><a href="jncip-sp-cert.htm?">JNCIP-SP </a></span>
@@ -1871,22 +1872,22 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 															<div class="tab-pane tabcontent" id="juniper_devops">
 																<div class="col-md-3 ht-ul"> <span><a href="automation-and-devops-cert.htm?">JNCIA-DevOps</a></span>
 																	<ul class="nav-list list-inline">
-																		<li><a href="jn0-222.htm">JN0-222</a></li>
+																		<li><a href="jn0-222.htm">JN0-224</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-3 ht-ul"> <span><a href="automation-and-devops-cert.htm?">JNCIS-DevOps</a></span>
 																	<ul class="nav-list list-inline">
-																		<li><a href="jn0-422.htm">JN0-422</a></li>
+																		<li><a href="jn0-422.htm">JN0-423</a></li>
 																	</ul>
 																</div>
 															</div>
 															<div class="tab-pane tabcontent" id="juniper_cloud">
 																<div class="col-md-3 ht-ul"> <span><a href="/jncia-cloud-cert.htm?">JNCIA-Cloud</a></span>
 																	<ul class="nav-list list-inline">
-																		<li><a href="jn0-212.htm">JN0-212</a></li>
+																		<li><a href="jn0-212.htm">JN0-214</a></li>
 																	</ul>
 																</div>
-																<div class="col-md-3 ht-ul"> <span><a href="jncis-cloud-cert.htm?">JNCIS-Cloud </a></span>
+																<!-- <div class="col-md-3 ht-ul"> <span><a href="jncis-cloud-cert.htm?">JNCIS-Cloud </a></span>
 																	<ul class="nav-list list-inline">
 																		<li><a href="jn0-412.htm">JN0-412</a></li>
 																	</ul>
@@ -1900,25 +1901,36 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 																	<ul class="nav-list list-inline">
 																		<li><a href="jpr-911.htm">JPR-911</a></li>
 																	</ul>
-																</div>
+																</div> -->
 															</div>
 															<div class="tab-pane tabcontent" id="juniper_mist">
-																<div class="col-md-3 ht-ul">
+																<div class="col-md-3 ht-ul"> <span><a href="jncis-mistai-cert.htm?">JNCIA MistAI</a></span>
 																	<ul class="nav-list list-inline">
-																		<li><a href="jn0-212.htm">JNCIS MistAI Wireless</a></li>
+																		<li><a href="jn0-212.htm">JN0-253</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-3 ht-ul">
-																	<ul class="nav-list list-inline">
-																		<li><a href="jn0-412.htm">JNCIS MistAI Wired</a></li>
+																	<ul class="nav-list list-inline"> <span><a href="jncis-mistai-cert.htm?">JNCIS MistAI Wired</a></span>
+																		<li><a href="jn0-412.htm">JN0-460</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-3 ht-ul">
-																	<ul class="nav-list list-inline">
-																		<li><a href="jn0-611.htm">JNCIP MistAI</a></li>
+																	<ul class="nav-list list-inline"><span><a href="jncis-mistai-cert.htm?">JNCIS MistAI Wireless</a></span>
+																		<li><a href="jn0-611.htm">JN0-452</a></li>
+																	</ul>
+																</div>
+																<div class="col-md-3 ht-ul">
+																	<ul class="nav-list list-inline"> <span><a href="jncis-mistai-cert.htm?">JNCIP MistAI</a></span>
+																		<li><a href="jn0-412.htm">JN0-750</a></li>
 																	</ul>
 																</div>
 															</div>
+															<div class="tab-pane tabcontent" id="juniper_design">
+																<div class="col-md-3 ht-ul"> <span><a href="jncis-design-cert.htm?">JNCIA-Design</a></span>
+																	<ul class="nav-list list-inline">
+																		<li><a href="jn0-212.htm">JN0-1103</a></li>
+																	</ul>
+																</div>
 														</div>
 													</div>
 												</div>
