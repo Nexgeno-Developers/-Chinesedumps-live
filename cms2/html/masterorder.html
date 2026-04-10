@@ -5,24 +5,181 @@
 <link href="new.css" rel="stylesheet" type="text/css" />
 <link href="style1.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
-<!--
-.style1 {color: #FF0000}
--->
+.order-shell {
+	background: #ffffff;
+	border: 1px solid #d7deea;
+	box-shadow: 0 10px 30px rgba(29, 46, 74, 0.08);
+	margin-top: 12px;
+}
+.order-shell-header {
+	background: linear-gradient(135deg, #183a63 0%, #24567f 55%, #4d8db5 100%);
+	color: #ffffff;
+	padding: 24px 28px;
+}
+.order-shell-header h2 {
+	margin: 0 0 6px 0;
+	color: #ffffff;
+	font-size: 24px;
+}
+.order-shell-header p {
+	margin: 0;
+	font-size: 13px;
+	color: #dbeaf8;
+}
+.order-shell-body {
+	padding: 24px 28px 30px 28px;
+	background: #f5f8fc;
+}
+.order-alert {
+	padding: 12px 14px;
+	margin-bottom: 18px;
+	font-weight: bold;
+	background: #eef5ff;
+	border: 1px solid #cfe0f6;
+	color: #234a72;
+}
+.filter-card {
+	background: #ffffff;
+	border: 1px solid #dce4ef;
+	padding: 18px 20px 10px 20px;
+	margin-bottom: 18px;
+}
+.filter-card h3 {
+	margin: 0 0 6px 0;
+	font-size: 18px;
+	color: #1a3558;
+}
+.filter-card p {
+	margin: 0 0 18px 0;
+	font-size: 12px;
+	color: #5f738b;
+}
+.filter-grid {
+	margin-left: -8px;
+	margin-right: -8px;
+}
+.filter-field {
+	display: inline-block;
+	vertical-align: top;
+	width: 23%;
+	padding: 0 8px 14px 8px;
+}
+.filter-field label {
+	display: block;
+	margin-bottom: 6px;
+	font-weight: bold;
+	color: #22476d;
+}
+.filter-field input {
+	width: 100%;
+	padding: 9px 10px;
+	border: 1px solid #b8c9dc;
+	background: #fbfdff;
+	box-sizing: border-box;
+	font-family: "Trebuchet MS", verdana, arial, serif;
+	font-size: 12px;
+}
+.date-picker-control {
+	display: flex;
+	align-items: center;
+}
+.date-picker-control input {
+	flex: 1 1 auto;
+}
+.date-picker-trigger {
+	margin-left: 8px;
+	padding: 6px;
+	border: 1px solid #b8c9dc;
+	background: #edf4fb;
+	cursor: pointer;
+}
+.primary-action,
+.secondary-action {
+	display: inline-block;
+	padding: 10px 16px;
+	text-decoration: none;
+	font-weight: bold;
+	font-family: "Trebuchet MS", verdana, arial, serif;
+	font-size: 12px;
+	border: 0;
+	cursor: pointer;
+}
+.primary-action {
+	background: #173e69;
+	color: #ffffff;
+}
+.secondary-action {
+	background: #e6edf5;
+	color: #294b72;
+	margin-left: 8px;
+}
+.results-strip {
+	margin-bottom: 14px;
+	padding: 12px 14px;
+	background: #eef4fb;
+	border: 1px solid #d7e3f2;
+	color: #25486f;
+	font-weight: bold;
+}
+.results-strip .stat {
+	display: inline-block;
+	margin-right: 18px;
+}
+.order-table-wrap {
+	background: #ffffff;
+	border: 1px solid #dce4ef;
+	overflow-x: auto;
+}
+.order-table {
+	width: 100%;
+	min-width: 980px;
+	border-collapse: collapse;
+}
+.order-table .header .sortable-link,
+.order-table .header .sortable-link:link,
+.order-table .header .sortable-link:visited,
+.order-table .header .sortable-link:active {
+	color: #ffffff !important;
+	text-decoration: none;
+	display: inline-block;
+}
+.order-table .header .sortable-link:hover,
+.order-table .header .sortable-link:focus {
+	color: #ffffff !important;
+	text-decoration: underline;
+}
+.summary-strip {
+	margin-top: 14px;
+	padding: 14px;
+	background: #ffffff;
+	border: 1px solid #dce4ef;
+	font-weight: bold;
+	color: #1f4268;
+}
+.pagination-wrap {
+	text-align: center;
+	margin-top: 16px;
+}
+.empty-state {
+	margin-top: 14px;
+	padding: 16px;
+	text-align: center;
+	background: #ffffff;
+	border: 1px dashed #c8d6e8;
+	color: #5d7188;
+	font-weight: bold;
+}
 </style>
 <script language="JavaScript" src="../includes/js/calendar.js"></script>
 <script type="text/javascript" src="Editor3/scripts/innovaeditor.js"></script>
 <script language="javascript" type="text/javascript">
-function Cofirm()
+function openOrderSearchCalendar(fieldName, triggerObj)
 {
-var mes=window.confirm ("Are You Sure To Delete the Selected Item");
-if (mes==true)
-{
-return true;
-}
-else
-{
-return false;
-}
+	if(document.orderSearchForm && document.orderSearchForm[fieldName])
+	{
+		displayCalendarSe(document.orderSearchForm[fieldName], 'yyyy-mm-dd', triggerObj);
+	}
+	return false;
 }
 </script>
 <script language="JavaScript" src="../includes/js/functions.js"></script>
@@ -42,115 +199,100 @@ return false;
 <tr>
 <td width="190" class="leftside"><?php include ("menu.php"); ?></td>
 
-<td width="810" valign="top" class="rightside"><h2>Order Process !</h2>
+<td width="810" valign="top" class="rightside">
+	<div class="order-shell">
+		<div class="order-shell-header">
+			<h2>Orders Management</h2>
+			<p>Review orders with customer, date range, and sortable listing controls.</p>
+		</div>
 
-Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
+		<div class="order-shell-body">
+			<?php if($pageNotice != ''){ ?>
+			<div class="order-alert"><?=$pageNotice?></div>
+			<?php } ?>
 
-<br />
+			<form id="orderSearchForm" name="orderSearchForm" method="get" action="masterorder.php">
+				<div class="filter-card">
+					<h3>Filter Orders</h3>
+					<p>Filter by order details, customer user id, and date range. Filters stay active across pagination and sorting links.</p>
 
-<form id="frm1" name="frm1" method="post" action="" enctype="multipart/form-data">
+					<div class="filter-grid">
+						<div class="filter-field">
+							<label for="textSearch">Search</label>
+							<input type="text" name="textSearch" id="textSearch" value="<?=htmlspecialchars($textSearch, ENT_QUOTES, 'UTF-8')?>" />
+						</div>
 
+						<div class="filter-field">
+							<label for="user_id">Customer User ID</label>
+							<input type="text" name="user_id" id="user_id" value="<?=htmlspecialchars($userIdFilter, ENT_QUOTES, 'UTF-8')?>" />
+						</div>
 
+						<div class="filter-field">
+							<label for="from_date">From Date</label>
+							<div class="date-picker-control">
+								<input name="from_date" type="text" id="from_date" value="<?=htmlspecialchars($fromDate, ENT_QUOTES, 'UTF-8')?>" readonly="readonly" onclick="return openOrderSearchCalendar('from_date', this);" />
+								<img src="images/calendar-icon.gif" alt="Select from date" class="date-picker-trigger" onclick="return openOrderSearchCalendar('from_date', this);" />
+							</div>
+						</div>
 
-<br /><table cellpadding='0' cellspacing='0' class='list' width='97%'>
+						<div class="filter-field">
+							<label for="to_date">To Date</label>
+							<div class="date-picker-control">
+								<input name="to_date" type="text" id="to_date" value="<?=htmlspecialchars($toDate, ENT_QUOTES, 'UTF-8')?>" readonly="readonly" onclick="return openOrderSearchCalendar('to_date', this);" />
+								<img src="images/calendar-icon.gif" alt="Select to date" class="date-picker-trigger" onclick="return openOrderSearchCalendar('to_date', this);" />
+							</div>
+						</div>
+					</div>
 
- 
-    <tr>
-    <td  colspan="9" align="center">Search :
-      <input type="text" name="textSearch" value="<? if($_POST['textSearch']){ echo $_POST['textSearch']; }?>" style="width:160px" />&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-	  <select name="criteria">
-	   <option value="Order_Id" <? if($_POST['criteria'] && $_POST['criteria']=='Order_Id'){ echo "selected='selected'"; }?>>Order Id</option>
-	  <option value="user_email" <? if($_POST['criteria'] && $_POST['criteria']=='user_email'){ echo "selected='selected'"; }?>>Email Address</option>
-      </select>
-      &nbsp;&nbsp;&nbsp;<input type="submit" name="Search" value="Search" />
-	  </td>
+					<div>
+						<input type="submit" value="Apply Filters" class="primary-action" />
+						<a href="<?=$clearFiltersUrl?>" class="secondary-action">Reset Filters</a>
+					</div>
+				</div>
+			</form>
 
-	  </tr>
-  <tr>
-    <td height="19" align="center" colspan="5" style="color:#FF0000; font-weight:bold;"></td>
-	</tr>
-  <tr>
+			<div class="results-strip">
+				<span class="stat">Total Records Found: <?=$TotalRecs;?></span>
+				<span class="stat">Total Pages Found: <?=$TotalPages;?></span>
+			</div>
 
-    <td colspan="9" align="center"><div id="successmsg" style="color:#FF0000;"></div></td>
-    </tr>
-<!--<tr height="50">
+			<div class="order-table-wrap">
+				<table cellpadding="0" cellspacing="0" class="list order-table" width="97%">
+					<tr>
+						<td class="header" width="82"><a class="sortable-link" href="<?=$sortUserEmailUrl?>"><?=$sortUserEmailLabel?></a></td>
+						<td class="header" width="68"><a class="sortable-link" href="<?=$sortPasswordUrl?>"><?=$sortPasswordLabel?></a></td>
+						<td class="header" width="52" align="center"><a class="sortable-link" href="<?=$sortOrderIdUrl?>"><?=$sortOrderIdLabel?></a></td>
+						<td width="113" class="header"><a class="sortable-link" href="<?=$sortOrderDescUrl?>"><?=$sortOrderDescLabel?></a></td>
+						<td width="87" class="header"><a class="sortable-link" href="<?=$sortOrderDateUrl?>"><?=$sortOrderDateLabel?></a></td>
+						<td width="74" class="header"><a class="sortable-link" href="<?=$sortNetAmountUrl?>"><?=$sortNetAmountLabel?></a></td>
+						<td width="74" class="header"><a class="sortable-link" href="<?=$sortCouponUrl?>"><?=$sortCouponLabel?></a></td>
+						<td width="74" class="header"><a class="sortable-link" href="<?=$sortDiscountUrl?>"><?=$sortDiscountLabel?></a></td>
+						<td width="133" class="header">Process Id</td>
+						<td width="127" align="left" class="header">Option</td>
+					</tr>
 
-    <td width='80'  align="center"></td>
+					<?=$show;?>
+				</table>
+			</div>
 
-    <td  width='150' align="right">Search By Field&nbsp;</td>
+			<div class="summary-strip">Total Sales Amount: <?=masterorder_format_amount($totalSalesAmount)?></div>
 
-    <td width="127"  align="left"><select name="user_field">
-	      <option <?php if($_POST['user_field']=="adm_FName"){?> selected="selected" <? }?> value="adm_FName">First Name</option>
-	   <option <?php if($_POST['user_field']=="adm_LName"){?> selected="selected" <? }?> value="adm_LName">Last Name</option>
-      <option <?php if($_POST['user_field']=="adm_Email"){?> selected="selected" <? }?> value="adm_Email">Email</option>
-	  <option <?php if($_POST['user_field']=="adm_status"){?> selected="selected" <? }?> value="adm_status">Status</option>
-    </select></td>
+			<div class="pagination-wrap">
+				<strong>
+					<?=$BackNaviLinks;?>
+					<?=$NaviLinks;?>
+					<?=$ForwardNaviLinks;?>
+				</strong>
+			</div>
 
-    <td width="108"  align="right">Provide Value &nbsp; </td>
-    <td width="144"  align="left"><input name="fieldValue" size="30" type="text" value="<?=$_POST['fieldValue']?>" /></td>
-
-    <td width="136" align="left"  ><input type="submit" name="Go" value="Go" /></td>
-
-	
-
-    <td width="69" colspan="2"  >&nbsp;</td>
-    </tr>-->
-  <tr>
-    <td class='header' width='82'>User ID</td>
-	<td class='header' width='68'>Password</td>
-     <td class='header' width='52' align="center">OrderID</td>
-    <td width="113" class='header'>Product Desc.</td>
-	<td width="87" class='header'>Date</td>
-    <td width="74"  class='header'>Net Amount</td>
-    <td width="74"  class='header'>Coupon</td>
-    <td width="74"  class='header'>Discount</td>
-	<td width="133"  class='header'>Process Id</td>
-    <td width="127" align="left"  class='header'>Option</td>
-   
-    </tr>
-
-  <!-- LOOP THROUGH USERS -->
-
-
-
-  <?php echo $show ;?>
-
- 
-
-
-
-</table>
-<br />
-<?=$emptyError?>
-<table>
-<tr>  
-<td valign="top" class="rightside">&nbsp;&nbsp; 
-	 </td>
-		<tr>
-		<td valign="top" class="rightside"><div align="center"><strong>&nbsp;&nbsp; 
-	  <?=$BackNaviLinks;?>
-	  &nbsp;&nbsp; 
-	  <?=$NaviLinks;?>
-	  &nbsp;&nbsp; 
-	  <?=$ForwardNaviLinks;?> </strong><br />
-                  Total Records Found &nbsp;
-		<?=$TotalRecs;?><br />
-                  Total Pages Found &nbsp;
-		<?=$TotalPages;?><br /><br />
-		</div></td>
-
-		</tr>
-
-
-
-</table></form></td>
-
-
-
+			<?php if(!$hasRecords){ ?>
+			<div class="empty-state"><?=$emptyError?></div>
+			<?php } ?>
+		</div>
+	</div>
+</td>
 </table>
 <? include("footer.php")?>
 </body>
 
 </html>
-

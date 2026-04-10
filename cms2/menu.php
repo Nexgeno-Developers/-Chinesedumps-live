@@ -1,3 +1,8 @@
+<style>
+  .d-none{
+    display: none;
+  }
+</style>
 <TABLE width="250" cellPadding=0 cellSpacing=0 class=menu>
 
         <TBODY>
@@ -92,13 +97,13 @@
 
           <TD><IMG src="images/admin_menu_bar.gif" border=0></TD></TR>
 
-        <TR>
+        <!-- <TR>
 
           <TD class=menu><A class=menu 
 
             href="stats.php"><IMG class=icon2 src="images/admin_summary16.gif" border=0> Quick Stats</A></TD>
 
-        </TR>
+        </TR> -->
 
         <!-- <TR>
 
@@ -112,17 +117,18 @@
 
           <TD class=menu><A class=menu 
 
-            href="userstats.php?ref=p"><IMG class=icon2 src="images/News-Edit.gif" border=0> Users with Purchse(s)</A></TD>
+            href="manageuser.php"><IMG class=icon2 src="images/News-Edit.gif" border=0> All Registered Users</A></TD>
 
         </TR>
 
-        <TR>
+        <!-- <TR>
 
-          <TD class=menu><A class=menu 
+          <TD class="menu d-none"><A class=menu 
 
             href="userstats.php?ref=np"><IMG class=icon2 src="images/News-Edit.gif" border=0> Users without Purchse</A></TD>
 
-</TR></TBODY></TABLE>
+        </TR> -->
+</TBODY></TABLE>
 
 <TABLE width="250" cellPadding=0 cellSpacing=0 class=menu2>
 
@@ -156,7 +162,7 @@
 
         <TR>
 
-          <TD class=menu><A class=menu 
+          <TD class="menu d-none"><A class=menu 
 
             href="userstats.php?ref=p"><IMG class=icon2 src="images/News-Edit.gif" border=0> Users with Purchse(s)</A></TD>
 
@@ -164,7 +170,7 @@
 
         <TR>
 
-          <TD class=menu><A class=menu 
+          <TD class="menu d-none"><A class=menu 
 
             href="userstats.php?ref=np"><IMG class=icon2 src="images/News-Edit.gif" border=0> Users without Purchse</A></TD>
 
@@ -219,7 +225,7 @@
 
         
 
-<TABLE width="250" cellPadding=0 cellSpacing=0 class=menu2>
+<TABLE width="250" cellPadding=0 cellSpacing=0 class="menu2 d-none">
 
         <TBODY>
 
@@ -323,17 +329,17 @@
 
         </tr>
 
-			  <tr>
+			  <!-- <tr>
 
 	      <td class="menu"><a class="menu" href="addfiles.php"><img src="images/Comments-edit.gif" width="16" height="16" border="0" class="icon2" />Add Multi Exams</a></td>
 
-        </tr>
+        </tr> -->
 
-		  <tr>
+		  <!-- <tr>
 
 	      <td class="menu"><a class="menu" href="updateDate.php"><img src="images/Comments-edit.gif" width="16" height="16" border="0" class="icon2" />Update Exam Date</a></td>
 
-        </tr>
+        </tr> -->
 
         </tbody>
 
@@ -525,70 +531,6 @@
 			</tr>	
 
 	</tbody>
-
-</table>
-
-<table width="250" cellpadding="0" cellspacing="0" class="menu2">
-
-
-
-        <tbody>
-
-
-
-          <tr>
-
-
-
-            <td width="198" class="menu_header">Exam Mangement Module</td>
-
-
-
-          </tr>
-
-
-
-          <tr>
-
-
-
-            <td><img src="images/admin_menu_bar.gif" border="0" /></td>
-
-
-
-          </tr>
-
-
-
-        	
-
-  
-
-
-
-		<tr>
-
-
-
-	      <td class="menu"><a class="menu" 
-
-
-
-            href="availableSoon.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-
-
-            class="icon2" />Available Soon</a></td>
-
-
-
-        </tr>
-
-
-
-		</tbody>
-
-
 
 </table>
 
@@ -792,7 +734,7 @@
 
       
 
-      <TABLE width="250" cellPadding=0 cellSpacing=0 class=menu2>
+      <TABLE width="250" cellPadding=0 cellSpacing=0 class="menu2 d-none">
 
         <TBODY>
 

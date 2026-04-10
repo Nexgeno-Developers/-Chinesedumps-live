@@ -2,15 +2,15 @@
 ob_start();
 session_start();
 
-	include ("../includes/config/classDbConnection.php");
-	include("../includes/common/functions/func_uploadimg.php");
-	include ("../includes/common/inc/sessionheader.php");
-	include("../includes/common/classes/classUser.php");
-	include("../includes/common/classes/classPagingAdmin.php");
-	include("../functions.php");
+include ("../includes/config/classDbConnection.php");
+include("../includes/common/functions/func_uploadimg.php");
+include ("../includes/common/inc/sessionheader.php");
+include("../includes/common/classes/classUser.php");
+include("../includes/common/classes/classPagingAdmin.php");
+include("../functions.php");
 
-	$objDBcon    = new classDbConnection;
-	$objUser	 = new classUser($objDBcon);
+$objDBcon = new classDbConnection;
+$objUser = new classUser($objDBcon);
 
 include_once 'functions.php';
 $ccAdminData = get_session_data();
@@ -64,41 +64,87 @@ function manageuser_redirect($params = array())
 	exit;
 }
 
-$show				=	"";
-$LIMIT				=	"";
-$TotalRecs	     	= 	0;
-$NaviLinks        	= 	"";
-$BackNaviLinks	 	= 	"";
-$ForwardNaviLinks 	= 	"";
-$TotalPages	      	= 	"";
-$PageNo		      	= 	1;
-$PageIndex	      	= 	1;
-$rowsPerPage      	= 	100;
-$linkPerPage      	= 	25;
-$noticeMessages	=	array();
-$noticeClass		=	'user-alert is-info';
+function manageuser_format_amount($amount)
+{
+	return '$'.number_format((float)$amount, 2);
+}
 
-$allowedCriteria = array(
-	'Order_Id'		=> 'Transaction Id',
-	'user_email'	=> 'Email Address',
-	'user_fname'	=> 'First Name',
-	'user_lname'	=> 'Last Name',
-	'user_phone'	=> 'Phone Number'
+function manageuser_format_date($value)
+{
+	$value = trim($value);
+	if($value == '' || $value == '0000-00-00' || $value == '0000-00-00 00:00:00')
+	{
+		return '-';
+	}
+
+	$time = strtotime($value);
+	if($time === false)
+	{
+		return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+	}
+
+	return date('d M Y', $time);
+}
+
+function manageuser_get_sort_url($column, $stateParams, $currentSortBy, $currentSortDir)
+{
+	$params = $stateParams;
+	unset($params['currentPage'], $params['pgIndex']);
+	$params['sort_by'] = $column;
+	$params['sort_dir'] = ($currentSortBy == $column && strtoupper($currentSortDir) == 'ASC') ? 'DESC' : 'ASC';
+
+	return 'manageuser.php?'.manageuser_build_query($params);
+}
+
+function manageuser_get_sort_indicator($column, $currentSortBy, $currentSortDir)
+{
+	if($currentSortBy != $column)
+	{
+		return '';
+	}
+
+	return (strtoupper($currentSortDir) == 'ASC') ? ' (ASC)' : ' (DESC)';
+}
+
+$show = '';
+$LIMIT = '';
+$TotalRecs = 0;
+$NaviLinks = '';
+$BackNaviLinks = '';
+$ForwardNaviLinks = '';
+$TotalPages = '';
+$PageNo = 1;
+$PageIndex = 1;
+$rowsPerPage = 100;
+$linkPerPage = 25;
+$noticeMessages = array();
+$noticeClass = 'user-alert is-info';
+$userRowsHtml = '';
+
+$allowedSorts = array(
+	'name' => "CONCAT_WS(' ', tbl_user.user_fname, tbl_user.user_lname)",
+	'email' => "tbl_user.user_email",
+	'phone' => "tbl_user.user_phone",
+	'password' => "tbl_user.user_password",
+	'created' => "tbl_user.creatDate",
+	'purchased' => "order_count",
+	'total_purchase' => "total_purchase_amount",
+	'last_purchase' => "last_purchase_date",
+	'status' => "tbl_user.user_status"
 );
 
-	if(isset($_GET['pgIndex']) && ctype_digit((string)$_GET['pgIndex']) && (int)$_GET['pgIndex'] > 0)
-	{
-		$PageIndex = (int)$_GET['pgIndex'];
-	}
+if(isset($_GET['pgIndex']) && ctype_digit((string)$_GET['pgIndex']) && (int)$_GET['pgIndex'] > 0)
+{
+	$PageIndex = (int)$_GET['pgIndex'];
+}
 
-	if(isset($_GET['currentPage']) && ctype_digit((string)$_GET['currentPage']) && (int)$_GET['currentPage'] > 0)
-	{
-		$PageNo = (int)$_GET['currentPage'];
-	}
+if(isset($_GET['currentPage']) && ctype_digit((string)$_GET['currentPage']) && (int)$_GET['currentPage'] > 0)
+{
+	$PageNo = (int)$_GET['currentPage'];
+}
 
 $LIMIT = " LIMIT " . (($PageNo-1) * $rowsPerPage). " , " . $rowsPerPage;
 
-$criteria = (isset($_GET['criteria']) && isset($allowedCriteria[$_GET['criteria']])) ? $_GET['criteria'] : 'user_email';
 $textSearch = isset($_GET['textSearch']) ? trim($_GET['textSearch']) : '';
 $textSearch = preg_replace('/\s+/', ' ', $textSearch);
 
@@ -106,6 +152,9 @@ $rawStartDate = isset($_GET['txt_StartDate']) ? trim($_GET['txt_StartDate']) : '
 $rawEndDate = isset($_GET['txt_StartDate2']) ? trim($_GET['txt_StartDate2']) : '';
 $txt_StartDate = manageuser_normalize_date($rawStartDate);
 $txt_StartDate2 = manageuser_normalize_date($rawEndDate);
+
+$sortBy = (isset($_GET['sort_by']) && isset($allowedSorts[$_GET['sort_by']])) ? $_GET['sort_by'] : 'created';
+$sortDir = (isset($_GET['sort_dir']) && strtoupper($_GET['sort_dir']) == 'ASC') ? 'ASC' : 'DESC';
 
 if($rawStartDate != '' && $txt_StartDate == '')
 {
@@ -120,10 +169,6 @@ if($rawEndDate != '' && $txt_StartDate2 == '')
 }
 
 $filterParams = array();
-if(isset($_GET['criteria']) || $textSearch != '')
-{
-	$filterParams['criteria'] = $criteria;
-}
 if($textSearch != '')
 {
 	$filterParams['textSearch'] = $textSearch;
@@ -135,6 +180,14 @@ if($txt_StartDate != '')
 if($txt_StartDate2 != '')
 {
 	$filterParams['txt_StartDate2'] = $txt_StartDate2;
+}
+if($sortBy != 'created')
+{
+	$filterParams['sort_by'] = $sortBy;
+}
+if($sortDir != 'DESC')
+{
+	$filterParams['sort_dir'] = $sortDir;
 }
 
 $pagingQueryString = manageuser_build_query($filterParams);
@@ -227,19 +280,14 @@ if(isset($_GET['msg']))
 $pgObj = new classPaging("manageuser.php", $rowsPerPage, $linkPerPage, $pagingQuerySuffix, "", "", "", "", "", "", "", "");
 
 $whereClauses = array();
-$escapedSearch = ($textSearch != '') ? mysql_real_escape_string($textSearch) : '';
-$queryBase = " FROM tbl_user";
-$selectClause = "SELECT tbl_user.*";
-
-if($criteria == 'Order_Id' && $textSearch != '')
+if($textSearch != '')
 {
-	$queryBase = " FROM tbl_user INNER JOIN order_master ON (order_master.Cust_ID=tbl_user.user_id)";
-	$selectClause = "SELECT DISTINCT tbl_user.*";
-	$whereClauses[] = "order_master.Order_Id LIKE '%".$escapedSearch."%'";
-}
-elseif($textSearch != '')
-{
-	$whereClauses[] = "tbl_user.".$criteria." LIKE '%".$escapedSearch."%'";
+	$escapedSearch = mysql_real_escape_string($textSearch);
+	$whereClauses[] = "(
+		CONCAT_WS(' ', tbl_user.user_fname, tbl_user.user_lname) LIKE '%".$escapedSearch."%'
+		OR tbl_user.user_email LIKE '%".$escapedSearch."%'
+		OR tbl_user.user_phone LIKE '%".$escapedSearch."%'
+	)";
 }
 
 if($txt_StartDate != '')
@@ -258,7 +306,25 @@ if(!empty($whereClauses))
 	$whereSql = " WHERE ".implode(' AND ', $whereClauses);
 }
 
-$listQuery = $selectClause.$queryBase.$whereSql." ORDER BY tbl_user.user_id DESC";
+$sortSql = $allowedSorts[$sortBy].' '.$sortDir;
+if($sortBy != 'created')
+{
+	$sortSql .= ", tbl_user.user_id DESC";
+}
+
+$selectClause = "
+	SELECT
+		tbl_user.*,
+		COUNT(order_master.ID) AS order_count,
+		COALESCE(SUM(order_master.Net_Amount), 0) AS total_purchase_amount,
+		MAX(order_master.OrderDate) AS last_purchase_date
+	FROM tbl_user
+	LEFT JOIN order_master ON (order_master.Cust_ID = tbl_user.user_id)
+";
+
+$groupBySql = " GROUP BY tbl_user.user_id";
+
+$listQuery = $selectClause.$whereSql.$groupBySql." ORDER BY ".$sortSql;
 $result1 = mysql_query($listQuery);
 $pgObj->SetNavigationalLinksNew($result1);
 $result = mysql_query($listQuery.$LIMIT);
@@ -275,10 +341,82 @@ else
 	$emptyMessage = '';
 }
 
-$show = $objUser->getUserhtml($result, '', $stateQueryString);
+$rowCounter = 1;
+while($rows = mysql_fetch_array($result))
+{
+	$rowClass = (($rowCounter % 2) == 0) ? ' class="user-row-alt"' : '';
+	$fullName = trim($rows['user_fname'].' '.$rows['user_lname']);
+	if($fullName == '')
+	{
+		$fullName = '-';
+	}
+
+	$userPhone = trim($rows['user_phone']);
+	if($userPhone == '')
+	{
+		$userPhone = '-';
+	}
+
+	$statusValue = trim($rows['user_status']);
+	if($statusValue == '')
+	{
+		$statusValue = 'Unknown';
+	}
+	$statusClass = (strcasecmp($statusValue, 'Active') == 0) ? 'is-active' : 'is-inactive';
+
+	$orderCount = (int)$rows['order_count'];
+	$purchasedHtml = 'No';
+	if($orderCount > 0)
+	{
+		$ordersUrl = 'masterorder.php?'.manageuser_build_query(array('user_id' => $rows['user_id']));
+		$purchasedHtml = '<a class="purchase-link" href="'.$ordersUrl.'">Yes</a>';
+	}
+
+	$edit = '<a class="action-link" href="edituser.php?nid='.$rows['user_id'].(($stateQueryString != '') ? '&'.$stateQueryString : '').'">Edit</a>';
+	$sendemail = '<a class="action-link" href="manageuser.php?mainsend=send&user='.$rows['user_id'].(($stateQueryString != '') ? '&'.$stateQueryString : '').'">Send Email</a>';
+	$del = '<a class="action-link action-link-danger" href="manageuser.php?action=up&nid='.$rows['user_id'].(($stateQueryString != '') ? '&'.$stateQueryString : '').'" onclick="return delete_pro();">Delete</a>';
+
+	$userRowsHtml .= '<tr'.$rowClass.'>';
+	$userRowsHtml .= '<td class="item" align="center" valign="middle"><input type="checkbox" name="chkbox'.$rowCounter.'" id="chkbox'.$rowCounter.'" value="'.$rows['user_id'].'" /></td>';
+	$userRowsHtml .= '<td class="item user-name-cell" align="left">'.htmlspecialchars($fullName, ENT_QUOTES, 'UTF-8').'</td>';
+	$userRowsHtml .= '<td class="item" align="center">'.htmlspecialchars($rows['user_email'], ENT_QUOTES, 'UTF-8').'</td>';
+	$userRowsHtml .= '<td class="item" align="center">'.htmlspecialchars($userPhone, ENT_QUOTES, 'UTF-8').'</td>';
+	$userRowsHtml .= '<td class="item" align="center">'.htmlspecialchars($rows['user_password'], ENT_QUOTES, 'UTF-8').'</td>';
+	$userRowsHtml .= '<td class="item" align="center">'.manageuser_format_date($rows['creatDate']).'</td>';
+	$userRowsHtml .= '<td class="item" align="center">'.$purchasedHtml.'</td>';
+	$userRowsHtml .= '<td class="item" align="center">'.manageuser_format_amount($rows['total_purchase_amount']).'</td>';
+	$userRowsHtml .= '<td class="item" align="center">'.manageuser_format_date($rows['last_purchase_date']).'</td>';
+	$userRowsHtml .= '<td class="item" align="center"><span class="user-status-badge '.$statusClass.'">'.htmlspecialchars($statusValue, ENT_QUOTES, 'UTF-8').'</span></td>';
+	$userRowsHtml .= '<td align="center" class="item user-action-cell" nowrap="nowrap">'.$edit.$sendemail.$del.'</td>';
+	$userRowsHtml .= '</tr>';
+
+	$rowCounter++;
+}
+
+$show = $userRowsHtml.'<input name="counter" type="hidden" value="'.$rowCounter.'" />';
 $pageNotice = !empty($noticeMessages) ? implode('<br />', $noticeMessages) : '';
 $clearFiltersUrl = 'manageuser.php';
 $addUserUrl = 'adduser.php';
+
+$sortNameUrl = manageuser_get_sort_url('name', $stateParams, $sortBy, $sortDir);
+$sortEmailUrl = manageuser_get_sort_url('email', $stateParams, $sortBy, $sortDir);
+$sortPhoneUrl = manageuser_get_sort_url('phone', $stateParams, $sortBy, $sortDir);
+$sortPasswordUrl = manageuser_get_sort_url('password', $stateParams, $sortBy, $sortDir);
+$sortCreatedUrl = manageuser_get_sort_url('created', $stateParams, $sortBy, $sortDir);
+$sortPurchasedUrl = manageuser_get_sort_url('purchased', $stateParams, $sortBy, $sortDir);
+$sortTotalPurchaseUrl = manageuser_get_sort_url('total_purchase', $stateParams, $sortBy, $sortDir);
+$sortLastPurchaseUrl = manageuser_get_sort_url('last_purchase', $stateParams, $sortBy, $sortDir);
+$sortStatusUrl = manageuser_get_sort_url('status', $stateParams, $sortBy, $sortDir);
+
+$sortNameLabel = 'Name'.manageuser_get_sort_indicator('name', $sortBy, $sortDir);
+$sortEmailLabel = 'Email'.manageuser_get_sort_indicator('email', $sortBy, $sortDir);
+$sortPhoneLabel = 'Phone'.manageuser_get_sort_indicator('phone', $sortBy, $sortDir);
+$sortPasswordLabel = 'Password'.manageuser_get_sort_indicator('password', $sortBy, $sortDir);
+$sortCreatedLabel = 'Created Date'.manageuser_get_sort_indicator('created', $sortBy, $sortDir);
+$sortPurchasedLabel = 'Purchased'.manageuser_get_sort_indicator('purchased', $sortBy, $sortDir);
+$sortTotalPurchaseLabel = 'Total Purchase Amount'.manageuser_get_sort_indicator('total_purchase', $sortBy, $sortDir);
+$sortLastPurchaseLabel = 'Last Purchase Date'.manageuser_get_sort_indicator('last_purchase', $sortBy, $sortDir);
+$sortStatusLabel = 'Status'.manageuser_get_sort_indicator('status', $sortBy, $sortDir);
 
 include("html/manageuser.html");
 ?>
