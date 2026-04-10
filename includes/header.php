@@ -1746,7 +1746,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 												</li>
 												<li class="dropdown"> <a class="" href="">Fortinet Certified Expert</span></a>
 													<ul class="dropdown-menu">
-														<li> <a href="NSE8.htm">FCX (NSE8) Written Exam</a> </li>
+														<li> <a href="NSE8_dumps.htm">FCX (NSE8) Written Exam</a> </li>
 														<li> <a href="fortinet-nse8-Lab.htm">FCX (NSE8) Practical Exam</a> </li>
 													</ul>
 												</li>
