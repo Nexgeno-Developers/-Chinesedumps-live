@@ -1667,25 +1667,16 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 												<img src="images/new-image/caret_icons.svg" alt="caret" />
 											</a>
 											<ul class="dropdown-menu">
-												<li><a href="<?php echo BASE_URL; ?>CC-dumps.htm">CC</a></li>
-												<li><a href="<?php echo BASE_URL; ?>CCSP.htm">CCSP</a></li>
-												<li>
-													<a href="<?php echo BASE_URL; ?>ISSAP.htm">ISSAP</a>
-													<!--<a href="<?php echo BASE_URL; ?>ISSAP.htm">ISSAP (Alt)</a>-->
-												</li>
-												<li><a href="<?php echo BASE_URL; ?>sscp-.htm">SSCP</a></li>
-												<li><a href="<?php echo BASE_URL; ?>cgrc.htm">CGRC</a></li>
-												<li>
-													<a href="<?php echo BASE_URL; ?>ISSEP.htm">ISSEP</a>
-												</li>
-												<li>
-													<a href="<?php echo BASE_URL; ?>CISSP.htm">CISSP</a>
-												</li>
-												<li><a href="<?php echo BASE_URL; ?>CSSLP.htm">CSSLP</a></li>
-												<li>
-													<a href="<?php echo BASE_URL; ?>ISSMP.htm">ISSMP</a>
-												</li>
-											</ul>
+											<li><a href="<?php echo BASE_URL; ?>CC_dumps.htm">CC</a></li>
+											<li><a href="<?php echo BASE_URL; ?>CCSP_dumps.htm">CCSP</a></li>
+											<li><a href="<?php echo BASE_URL; ?>ISSAP_dumps.htm">ISSAP</a></li>
+											<li><a href="<?php echo BASE_URL; ?>sscp_dumps.htm">SSCP</a></li>
+											<li><a href="<?php echo BASE_URL; ?>cgrc_dumps.htm">CGRC</a></li>
+											<li><a href="<?php echo BASE_URL; ?>ISSEP_dumps.htm">ISSEP</a></li>
+											<li><a href="<?php echo BASE_URL; ?>CISSP_dumps.htm">CISSP</a></li>
+											<li><a href="<?php echo BASE_URL; ?>CSSLP_dumps.htm">CSSLP</a></li>
+											<li><a href="<?php echo BASE_URL; ?>ISSMP_dumps.htm">ISSMP</a></li>
+										</ul>
 										</li>
 
 
