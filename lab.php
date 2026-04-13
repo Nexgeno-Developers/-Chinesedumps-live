@@ -137,8 +137,6 @@
                                         <?php } else { ?>
                                         </li>
 
-                                        <?php $pieces = explode('[BREAK]', $exam['exam_descr']); ?>
-
                                         <?php
                                         $isCcdeLabRequest = ($_SERVER['REQUEST_URI'] == '/CCDE-Lab.htm');
                                         $fullCourseName = isset($exam['exam_fullname']) ? trim($exam['exam_fullname']) : '';
@@ -154,6 +152,35 @@
                                         if ($courseBaseName === '') {
                                             $courseBaseName = $labDisplayName;
                                         }
+
+                                        $rawExamDescription = isset($exam['exam_descr']) ? trim((string) $exam['exam_descr']) : '';
+                                        $featureComparisonData = json_decode($rawExamDescription, true);
+                                        $isFeatureComparisonJson = is_array($featureComparisonData);
+                                        $hasFeatureComparison = false;
+                                        if ($isFeatureComparisonJson) {
+                                            $normalizedFeatureComparison = array();
+                                            foreach ($featureComparisonData as $featureRow) {
+                                                if (!is_array($featureRow)) {
+                                                    continue;
+                                                }
+                                                $featureName = isset($featureRow['name']) ? trim((string) $featureRow['name']) : '';
+                                                if ($featureName === '') {
+                                                    continue;
+                                                }
+                                                $normalizedFeatureComparison[] = array(
+                                                    'name' => $featureName,
+                                                    'workbook' => !empty($featureRow['workbook']),
+                                                    'racks' => !empty($featureRow['racks']),
+                                                    'bootcamp' => !empty($featureRow['bootcamp'])
+                                                );
+                                            }
+                                            $featureComparisonData = $normalizedFeatureComparison;
+                                            $hasFeatureComparison = !empty($featureComparisonData);
+                                        } else {
+                                            $featureComparisonData = array();
+                                        }
+
+                                        $pieces = explode('[BREAK]', $rawExamDescription);
 
                                         $paidPackages = array(
                                             array(
@@ -195,6 +222,16 @@
 
                                             return trim($clean);
                                         };
+
+                                        $hasLegacySupportContent = false;
+                                        if (!$isFeatureComparisonJson) {
+                                            foreach ($paidPackages as $package) {
+                                                if ($cleanSupportHtml($package['support']) !== '') {
+                                                    $hasLegacySupportContent = true;
+                                                    break;
+                                                }
+                                            }
+                                        }
                                         ?>
                                         <style>
                                             .lab-offer-price {
@@ -330,7 +367,66 @@
                                                 border-radius: 50%;
                                                 background: #2f7f61;
                                             }
+                                            .lab-comparison-table-wrap {
+                                                margin-top: 34px;
+                                            }
+                                            .lab-comparison-table {
+                                                width: 100%;
+                                                border-collapse: collapse;
+                                                background: #fff;
+                                            }
+                                            .lab-comparison-table th,
+                                            .lab-comparison-table td {
+                                                border: 1px solid #d9d9d9;
+                                                padding: 14px 16px;
+                                            }
+                                            .lab-comparison-table th {
+                                                background: #f8fafb;
+                                                font-size: 1.5rem;
+                                                font-weight: 700;
+                                                color: #202020;
+                                            }
+                                            .lab-comparison-table td {
+                                                font-size: 1.5rem;
+                                                color: #5b5f66;
+                                            }
+                                            .lab-comparison-table td:not(:first-child),
+                                            .lab-comparison-table th:not(:first-child) {
+                                                text-align: center;
+                                            }
+                                            .lab-comparison-table .fa {
+                                                font-size: 18px;
+                                            }
+                                            .lab-comparison-table .text-success {
+                                                color: #2f7f61;
+                                            }
+                                            .lab-comparison-table .text-danger {
+                                                color: #d9534f;
+                                            }
+                                            .lab-comparison-empty {
+                                                border: 1px solid #d9d9d9;
+                                                padding: 18px;
+                                                border-radius: 8px;
+                                                background: #fff;
+                                                font-size: 1.5rem;
+                                                color: #5b5f66;
+                                                text-align: center;
+                                            }
                                         </style>
+                                        <script>
+                                            (function () {
+                                                var links = document.getElementsByTagName('link');
+                                                for (var i = 0; i < links.length; i++) {
+                                                    if ((links[i].href || '').indexOf('font-awesome') !== -1) {
+                                                        return;
+                                                    }
+                                                }
+                                                var fontAwesomeLink = document.createElement('link');
+                                                fontAwesomeLink.rel = 'stylesheet';
+                                                fontAwesomeLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
+                                                document.getElementsByTagName('head')[0].appendChild(fontAwesomeLink);
+                                            })();
+                                        </script>
                                         <li class="main_cert lab-figma-layout">
                                             <div class="lab-figma-top row">
                                                 <div class="col-md-4 col-sm-12">
@@ -486,23 +582,56 @@
                                                 </div>
                                             </div>
 
+                                            <?php if ($hasFeatureComparison) { ?>
+                                            <div class="lab-comparison-table-wrap">
+                                                <h3 class="lab-support-heading text-center bold">Exam Details &amp; Support</h3>
+                                                <div class="table-responsive">
+                                                    <table class="lab-comparison-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th><?= htmlspecialchars($courseBaseName); ?></th>
+                                                                <th>Real Lab Workbook</th>
+                                                                <th>Real Lab Workbook + Racks</th>
+                                                                <th>Real Lab Workbook + Racks + Bootcamp</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php foreach ($featureComparisonData as $featureRow) { ?>
+                                                            <tr>
+                                                                <td><?= htmlspecialchars($featureRow['name']); ?></td>
+                                                                <td><i class="fa <?= !empty($featureRow['workbook']) ? 'fa-check text-success' : 'fa-times text-danger'; ?>"></i></td>
+                                                                <td><i class="fa <?= !empty($featureRow['racks']) ? 'fa-check text-success' : 'fa-times text-danger'; ?>"></i></td>
+                                                                <td><i class="fa <?= !empty($featureRow['bootcamp']) ? 'fa-check text-success' : 'fa-times text-danger'; ?>"></i></td>
+                                                            </tr>
+                                                            <?php } ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <?php } elseif ($hasLegacySupportContent) { ?>
                                             <div class="lab-support-section">
                                                 <h3 class="lab-support-heading text-center bold">Exam Details &amp; Support</h3>
                                                 <div class="row">
-                                                    <?php foreach ($paidPackages as $package) { ?>
+                                                    <?php foreach ($paidPackages as $package) {
+                                                        $supportContent = $cleanSupportHtml($package['support']);
+                                                        if ($supportContent === '') {
+                                                            continue;
+                                                        }
+                                                    ?>
                                                         <div class="col-md-4 col-sm-6">
                                                             <div class="lab-support-card panel panel-default">
                                                                 <div class="panel-body">
                                                                     <div class="lab-support-title">
                                                                         <?= htmlspecialchars($package['title']); ?></div>
                                                                     <div class="lab-support-content">
-                                                                        <?= $cleanSupportHtml($package['support']); ?></div>
+                                                                        <?= $supportContent; ?></div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     <?php } ?>
                                                 </div>
                                             </div>
+                                            <?php } ?>
                                         </li>
 
 
