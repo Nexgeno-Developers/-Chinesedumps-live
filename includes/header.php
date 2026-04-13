@@ -1785,7 +1785,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 																<div class="col-md-3 ht-ul menu_padd"> <span><a href="jncip-dc-cert.htm?">JNCIP-DC</a></span>
 																	<ul class="nav-list list-inline">
 																		<li></li>
-																		<li><a href="jn0-683_dumps.htm">JN0-683</a></li>
+																		<li><a href="jn0_683_dumps.htm">JN0-683</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-3 ht-ul menu_padd"> <span><a href="jncip-dc-cert.htm?">JNCIE-DC</a></span>
