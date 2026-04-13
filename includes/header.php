@@ -1636,25 +1636,24 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 											</a> <a data-toggle="dropdown" class="dropdown-toggle responsive_caret" href="#"> <img src="images/new-image/caret_icons.svg" alt="caret" />
 
 											<ul class="dropdown-menu">
-											<li> <a href="fc0-u61.htm">CompTIA IT Fundamentals+ FC0-U61</a> </li>
+										<li> <a href="fc0-u61_dumps.htm">CompTIA IT Fundamentals+ FC0-U61</a> </li>
+										<li> <a href="220-1101_dumps.htm">CompTIA A+ 220-1101</a> </li>
+										<li> <a href="220-1102_dumps.htm">CompTIA A+ 220-1102</a> </li>
 										
-										<li> <a href="220-1101.htm">CompTIA A+ 220-1101</a> </li>
-										<li> <a href="220-1102.htm">CompTIA A+ 220-1102</a> </li>
+										<li> <a href="n10-009_dumps.htm">CompTIA Network+ N10-009</a> </li>
+										<li> <a href="sy0-701_dumps.htm">CompTIA Security+ SY0-701</a> </li>
 										
-										<li> <a href="n10-009.htm">CompTIA Network+ N10-009</a> </li>
-										<li> <a href="sy0-701.htm">CompTIA Security+ SY0-701</a> </li>
+										<li> <a href="cv0-003_dumps.htm">CompTIA Cloud+ CV0-004</a> </li>
+										<li> <a href="xk0-006_dumps.htm">CompTIA Linux+ XK0-006</a> </li>
+										<li> <a href="sk0-005_dumps.htm">CompTIA Server+ SK0-005</a> </li>
 										
-										<li> <a href="cv0-003.htm">CompTIA Cloud+ CV0-004</a> </li>
-										<li> <a href="xk0-006.htm">CompTIA Linux+ XK0-006</a> </li>
-										<li> <a href="sk0-005.htm">CompTIA Server+ SK0-005</a> </li>
+										<li> <a href="cs0-003_dumps.htm">CompTIA CySA+ CS0-003</a> </li>
+										<li> <a href="pt0-002_dumps.htm">CompTIA PenTest+ PT0-002</a> </li>
+										<li> <a href="cas-005_dumps.htm">CompTIA CASP+ CAS-005</a> </li>
 										
-										<li> <a href="cs0-003.htm">CompTIA CySA+ CS0-003</a> </li>
-										<li> <a href="pt0-002.htm">CompTIA PenTest+ PT0-002</a> </li>
-										<li> <a href="cas-005.htm">CompTIA CASP+ CAS-005</a> </li>
-										
-										<li> <a href="pk0-005.htm">CompTIA Project+ PK0-005</a> </li>
-										<li> <a href="da0-002.htm">CompTIA Data+ DA0-002</a> </li>
-										<li> <a href="clo-002.htm">CompTIA Cloud Essentials+ CLO-002</a> </li>
+										<li> <a href="pk0-005_dumps.htm">CompTIA Project+ PK0-005</a> </li>
+										<li> <a href="da0-002_dumps.htm">CompTIA Data+ DA0-002</a> </li>
+										<li> <a href="clo-002_dumps.htm">CompTIA Cloud Essentials+ CLO-002</a> </li>
 										</ul>
 										</li>
 										</li>
