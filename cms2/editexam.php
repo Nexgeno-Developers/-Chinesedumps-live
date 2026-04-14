@@ -102,6 +102,61 @@ function buildVideoLinksFromPost()
     return $videoLinks;
 }
 
+function normalizeFeatureRowsFromPost()
+{
+    $rows = isset($_POST['features']) ? (array)$_POST['features'] : array();
+    $normalized = array();
+
+    foreach ($rows as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+
+        $name = isset($row['name']) ? trim((string)$row['name']) : '';
+        if ($name === '') {
+            continue;
+        }
+
+        $normalized[] = array(
+            'name' => $name,
+            'workbook' => !empty($row['workbook']),
+            'racks' => !empty($row['racks']),
+            'bootcamp' => !empty($row['bootcamp'])
+        );
+    }
+
+    return $normalized;
+}
+
+function normalizeFeatureRowsFromStorage($rawValue)
+{
+    $decoded = json_decode((string)$rawValue, true);
+    if (!is_array($decoded)) {
+        return array();
+    }
+
+    $normalized = array();
+    foreach ($decoded as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+
+        $name = isset($row['name']) ? trim((string)$row['name']) : '';
+        if ($name === '') {
+            continue;
+        }
+
+        $normalized[] = array(
+            'name' => $name,
+            'workbook' => !empty($row['workbook']),
+            'racks' => !empty($row['racks']),
+            'bootcamp' => !empty($row['bootcamp'])
+        );
+    }
+
+    return $normalized;
+}
+
 
 
 
@@ -121,6 +176,7 @@ function buildVideoLinksFromPost()
 	$strError	=	"";
 
 	$spram[0]		 =  $_GET['exm_id'];
+    $originalExamDescr = isset($_POST['original_exam_descr']) ? (string)$_POST['original_exam_descr'] : '';
 
 	$farr			=	array("'");
 
@@ -165,7 +221,14 @@ function buildVideoLinksFromPost()
 
 		  
 
-            $spram[7]	=	stripslashes($_POST['pro_desc']);
+            $featureRows = normalizeFeatureRowsFromPost();
+            if (!empty($featureRows)) {
+                $spram[7] = json_encode($featureRows);
+            } elseif ($originalExamDescr !== '' && empty(normalizeFeatureRowsFromStorage($originalExamDescr))) {
+                $spram[7] = $originalExamDescr;
+            } else {
+                $spram[7] = '';
+            }
             
             $spram[8]	=	stripslashes($_POST['vtitle']);
             
@@ -184,6 +247,27 @@ function buildVideoLinksFromPost()
             
             
             $spram[14]	=	$_POST['vnamefull'];
+            $spram['alias_name'] = isset($_POST['alias_name']) ? trim($_POST['alias_name']) : '';
+            $spram['exam_type'] = (isset($_POST['exam_type']) && $_POST['exam_type'] === 'lab') ? 'lab' : 'written';
+            $spram['free_dump_label'] = isset($_POST['free_dump_label']) ? trim($_POST['free_dump_label']) : '';
+            $spram['demo_practice_label'] = isset($_POST['demo_practice_label']) ? trim($_POST['demo_practice_label']) : '';
+            $faqQuestions = isset($_POST['faq_question']) ? (array)$_POST['faq_question'] : array();
+            $faqAnswers = isset($_POST['faq_answer']) ? (array)$_POST['faq_answer'] : array();
+            $faqItems = array();
+            $faqCount = max(count($faqQuestions), count($faqAnswers));
+            for ($faqIdx = 0; $faqIdx < $faqCount; $faqIdx++) {
+                $question = isset($faqQuestions[$faqIdx]) ? trim((string)$faqQuestions[$faqIdx]) : '';
+                $answer = isset($faqAnswers[$faqIdx]) ? trim((string)$faqAnswers[$faqIdx]) : '';
+                if ($question === '' || $answer === '') {
+                    continue;
+                }
+                $faqItems[] = array('question' => $question, 'answer' => $answer);
+            }
+            if (!empty($faqItems)) {
+                $spram['faq_json'] = json_encode($faqItems);
+            } else {
+                $spram['faq_json'] = isset($_POST['faq_json']) ? trim($_POST['faq_json']) : '';
+            }
             
             // $spram[15]	=	$_FILES['exam_demo'];
             
@@ -209,6 +293,7 @@ function buildVideoLinksFromPost()
     		$video_links = buildVideoLinksFromPost();
             $spram['youtube_links'] = json_encode($video_links);            
             $spram['free_dump_pdf'] = isset($_POST['old_free_dump_pdf']) ? $_POST['old_free_dump_pdf'] : '';
+            $spram['demo_practice_file'] = isset($_POST['old_demo_practice_file']) ? $_POST['old_demo_practice_file'] : '';
             if (!empty($_POST['remove_free_dump_pdf'])) {
                 // delete physical file if it exists
                 $oldPath = "../uploads/free_dumps/" . $spram['free_dump_pdf'];
@@ -216,6 +301,14 @@ function buildVideoLinksFromPost()
                     @unlink($oldPath);
                 }
                 $spram['free_dump_pdf'] = ''; // clear DB value
+            }
+            if (!empty($_POST['remove_demo_practice_file'])) {
+                // delete physical file if it exists
+                $oldPath = "../uploads/demo_practice/" . $spram['demo_practice_file'];
+                if ($spram['demo_practice_file'] && file_exists($oldPath)) {
+                    @unlink($oldPath);
+                }
+                $spram['demo_practice_file'] = ''; // clear DB value
             }
             if (!empty($_FILES['free_dump_pdf']['name'])) {
                 $ext = strtolower(pathinfo($_FILES['free_dump_pdf']['name'], PATHINFO_EXTENSION));
@@ -232,6 +325,24 @@ function buildVideoLinksFromPost()
                         $spram['free_dump_pdf'] = $newPdfName;
                     } else {
                         $strError .= "<b>Error!</b> Unable to upload free dump PDF. Please try again.<br/>";
+                    }
+                }
+            }
+            if (!empty($_FILES['demo_practice_file']['name'])) {
+                $ext = strtolower(pathinfo($_FILES['demo_practice_file']['name'], PATHINFO_EXTENSION));
+                if ($ext !== 'pdf') {
+                    $strError .= "<b>Error!</b> Demo practice file must be a PDF.<br/>";
+                } else {
+                    $uploadDir = "../uploads/demo_practice/";
+                    if (!is_dir($uploadDir)) {
+                        mkdir($uploadDir, 0777, true);
+                    }
+                    $newPdfName = uniqid("demoPractice_") . ".pdf";
+                    $destPath = $uploadDir . $newPdfName;
+                    if (move_uploaded_file($_FILES['demo_practice_file']['tmp_name'], $destPath)) {
+                        $spram['demo_practice_file'] = $newPdfName;
+                    } else {
+                        $strError .= "<b>Error!</b> Unable to upload demo practice PDF. Please try again.<br/>";
                     }
                 }
             }
@@ -376,6 +487,7 @@ function buildVideoLinksFromPost()
 				$spram[5]	=	$row['exam_home'];
 				$spram[6]	= 	$row['exam_hot'];
 				$spram[7]	= 	$row['exam_descr'];
+                $originalExamDescr = $row['exam_descr'];
 				$spram[8]	= 	$row['exam_title'];
 				$spram[9]	= 	$row['exam_keywords'];
 				$spram[10]	= 	$row['exam_desc_seo'];
@@ -383,6 +495,9 @@ function buildVideoLinksFromPost()
 				$spram[12]	= 	$row['ven_id'];
 				$spram[13]	= 	$row['cert_id'];
 				$spram[14]	= 	$row['exam_fullname'];
+				$spram['alias_name'] = isset($row['alias_name']) ? $row['alias_name'] : '';
+				$spram['exam_type'] = isset($row['exam_type']) && $row['exam_type'] !== '' ? $row['exam_type'] : 'written';
+				$spram['faq_json'] = isset($row['faq_json']) ? $row['faq_json'] : '';
 				$spram[20]	= 	$row['QA'];
 				$spram[29]	= 	$row['exam_date'];						
 
@@ -393,9 +508,12 @@ function buildVideoLinksFromPost()
                 $spram[37]	=	$row['video_code'];				
                 $spram[33]	=	$row['labName'];
                 $spram[36]	=	$row['course_image'];
-                $spram[39]	= 	$row['exam_descr2'];
-                $spram[41]	= 	$row['exam_related_descr'];
-                $spram['free_dump_pdf'] = $row['free_dump_pdf'];
+				$spram[39]	= 	$row['exam_descr2'];
+				$spram[41]	= 	$row['exam_related_descr'];
+				$spram['free_dump_pdf'] = $row['free_dump_pdf'];
+				$spram['demo_practice_file'] = isset($row['demo_practice_file']) ? $row['demo_practice_file'] : '';
+                $spram['free_dump_label'] = isset($row['free_dump_label']) ? $row['free_dump_label'] : '';
+                $spram['demo_practice_label'] = isset($row['demo_practice_label']) ? $row['demo_practice_label'] : '';
 				$youtube_links = array();
                 if (!empty($row['youtube_links'])) {
                     $youtube_links = normalizeVideoLinksFromStorage($row['youtube_links']);
@@ -405,6 +523,21 @@ function buildVideoLinksFromPost()
 
 	$category = $objEvent->fillComboCategory_exam($spram[12]);
 	$subcat	=	$objEvent->fillComboSubCategory($spram[13],$spram[12]);
+    if (isset($_POST['Submit'])) {
+        $featureRowsForForm = normalizeFeatureRowsFromPost();
+    } else {
+        $featureRowsForForm = normalizeFeatureRowsFromStorage(isset($spram[7]) ? $spram[7] : '');
+    }
+    if (empty($featureRowsForForm)) {
+        $featureRowsForForm = array(
+            array(
+                'name' => '',
+                'workbook' => false,
+                'racks' => false,
+                'bootcamp' => false
+            )
+        );
+    }
 
 ?>
 
@@ -473,6 +606,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
 
 <form name="Form" id="Form" method="post" action="" enctype="multipart/form-data" onsubmit="validateCert(this)"><br />
+  <input type="hidden" name="original_exam_descr" value="<?php echo isset($spram[7]) ? htmlspecialchars($spram[7], ENT_QUOTES) : ''; ?>">
 
 
 
@@ -546,6 +680,72 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
           <td align="right"> Exam Name:</td>
           <td colspan="2"><input  name="vnamefull" id="vnamefull" type="text"  value="<?php if(isset($spram[14])){ echo  $spram[14];} ?>" /></td>
         </tr>
+        <tr>
+          <td align="right">* Exam Type:</td>
+          <td colspan="2">
+            <select name="exam_type" id="exam_type">
+              <option value="written" <?php if(!isset($spram['exam_type']) || $spram['exam_type'] == 'written'){ echo "selected='selected'";} ?>>Written</option>
+              <option value="lab" <?php if(isset($spram['exam_type']) && $spram['exam_type'] == 'lab'){ echo "selected='selected'";} ?>>Lab</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td align="right"> Alias Name:</td>
+          <td colspan="2"><input name="alias_name" id="alias_name" type="text" value="<?php if(isset($spram['alias_name'])){ echo $spram['alias_name'];} ?>" /></td>
+        </tr>
+        <tr>
+          <td align="right" valign="top"> FAQs:</td>
+          <td colspan="2">
+            <div id="faq_wrapper">
+              <?php
+              $faqRowsFromForm = array();
+              $postedFaqQuestions = isset($_POST['faq_question']) ? (array)$_POST['faq_question'] : array();
+              $postedFaqAnswers = isset($_POST['faq_answer']) ? (array)$_POST['faq_answer'] : array();
+              if (!empty($postedFaqQuestions) || !empty($postedFaqAnswers)) {
+                  $faqRowCount = max(count($postedFaqQuestions), count($postedFaqAnswers));
+                  for ($faqRowIndex = 0; $faqRowIndex < $faqRowCount; $faqRowIndex++) {
+                      $faqRowsFromForm[] = array(
+                          'question' => isset($postedFaqQuestions[$faqRowIndex]) ? $postedFaqQuestions[$faqRowIndex] : '',
+                          'answer' => isset($postedFaqAnswers[$faqRowIndex]) ? $postedFaqAnswers[$faqRowIndex] : '',
+                      );
+                  }
+              } else {
+                  $decodedFaq = array();
+                  if (!empty($spram['faq_json'])) {
+                      $decodedFaq = json_decode($spram['faq_json'], true);
+                  }
+                  if (is_array($decodedFaq)) {
+                      foreach ($decodedFaq as $item) {
+                          if (!is_array($item)) {
+                              continue;
+                          }
+                          $faqRowsFromForm[] = array(
+                              'question' => isset($item['question']) ? $item['question'] : '',
+                              'answer' => isset($item['answer']) ? $item['answer'] : '',
+                          );
+                      }
+                  }
+              }
+
+              if (empty($faqRowsFromForm)) {
+                  $faqRowsFromForm[] = array('question' => '', 'answer' => '');
+              }
+
+              foreach ($faqRowsFromForm as $faqRow) {
+                  ?>
+                  <div class="faq_row" style="margin-bottom:8px;">
+                    <input type="text" name="faq_question[]" placeholder="Question" style="width:400px;" value="<?php echo htmlspecialchars($faqRow['question'], ENT_QUOTES); ?>">
+                    <input type="text" name="faq_answer[]" placeholder="Answer" style="width:400px;" value="<?php echo htmlspecialchars($faqRow['answer'], ENT_QUOTES); ?>">
+                    <button type="button" class="remove_faq_row">Remove</button>
+                  </div>
+                  <?php
+              }
+              ?>
+            </div>
+            <button type="button" id="add_more_faq">Add More FAQ</button>
+            <input type="hidden" name="faq_json" id="faq_json" value="<?php if(isset($spram['faq_json'])){ echo htmlspecialchars($spram['faq_json'], ENT_QUOTES);} ?>">
+          </td>
+        </tr>
 		<tr>
           <td align="right"> Lab Name:</td>
           <td colspan="2"><input  name="labName" id="labName" type="text"  value="<?php if(isset($spram[33])){ echo  $spram[33];} ?>" /></td>
@@ -590,6 +790,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
             <tr>
               <td align="right">Free Dump PDF:</td>
               <td colspan="2">
+                <input type="text" name="free_dump_label" placeholder="Label to display on site" style="width:320px" value="<?php echo isset($spram['free_dump_label']) ? htmlspecialchars($spram['free_dump_label'], ENT_QUOTES) : ''; ?>" /><br />
                 <?php if(!empty($spram['free_dump_pdf'])) { ?>
                   <div style="margin-bottom:6px;">
                     Current: <a href="../uploads/free_dumps/<?php echo $spram['free_dump_pdf']; ?>" target="_blank">
@@ -600,6 +801,22 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
                 <?php } ?>
                 <input type="file" name="free_dump_pdf" accept="application/pdf" />
                 <input type="hidden" name="old_free_dump_pdf" value="<?php echo $spram['free_dump_pdf']; ?>">
+              </td>
+            </tr>
+            <tr>
+              <td align="right">Demo Practice PDF:</td>
+              <td colspan="2">
+                <input type="text" name="demo_practice_label" placeholder="Label to display on site" style="width:320px" value="<?php echo isset($spram['demo_practice_label']) ? htmlspecialchars($spram['demo_practice_label'], ENT_QUOTES) : ''; ?>" /><br />
+                <?php if(!empty($spram['demo_practice_file'])) { ?>
+                  <div style="margin-bottom:6px;">
+                    Current: <a href="../uploads/demo_practice/<?php echo $spram['demo_practice_file']; ?>" target="_blank">
+                      <?php echo $spram['demo_practice_file']; ?>
+                    </a>
+                  </div>
+                  <label><input type="checkbox" name="remove_demo_practice_file" value="1"> Remove current PDF</label><br>
+                <?php } ?>
+                <input type="file" name="demo_practice_file" accept="application/pdf" />
+                <input type="hidden" name="old_demo_practice_file" value="<?php echo isset($spram['demo_practice_file']) ? $spram['demo_practice_file'] : ''; ?>">
               </td>
             </tr>
             
@@ -673,210 +890,58 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
           <td valign="top" nowrap="nowrap" align="right">Exam Description:</td>
 
           <td height="29" colspan="2" align="left" valign="middle">
-
-		  <textarea id="pro_desc" name="pro_desc" rows=4 cols=30><?php echo stripslashes($spram[7]) ?></textarea>
-
-                    <script>
-
-    var oEdit1 = new InnovaEditor("oEdit1");
-
-
-
-    /***************************************************
-
-      SETTING EDITOR DIMENSION (WIDTH x HEIGHT)
-
-    ***************************************************/
-
-
-
-    oEdit1.width=600;//You can also use %, for example: oEdit1.width="100%"
-
-    oEdit1.height=350;
-
-
-
-
-
-    /***************************************************
-
-      SHOWING DISABLED BUTTONS
-
-    ***************************************************/
-
-
-
-    oEdit1.btnPrint=true;
-
-    oEdit1.btnPasteText=true;
-
-    oEdit1.btnFlash=true;
-
-    oEdit1.btnMedia=true;
-
-    oEdit1.btnLTR=true;
-
-    oEdit1.btnRTL=true;
-
-    oEdit1.btnSpellCheck=true;
-
-    oEdit1.btnStrikethrough=true;
-
-    oEdit1.btnSuperscript=true;
-
-    oEdit1.btnSubscript=true;
-
-    oEdit1.btnClearAll=true;
-
-    oEdit1.btnSave=true;
-
-    oEdit1.btnStyles=true; //Show "Styles/Style Selection" button
-
-
-
-    /***************************************************
-
-      APPLYING STYLESHEET
-
-      (Using external css file)
-
-    ***************************************************/
-
-
-
-    oEdit1.css="style/test.css"; //Specify external css file here
-
-
-
-    /***************************************************
-
-      APPLYING STYLESHEET
-
-      (Using predefined style rules)
-
-    ***************************************************/
-
-    /*
-
-    oEdit1.arrStyle = [["BODY",false,"","font-family:Verdana,Arial,Helvetica;font-size:x-small;"],
-
-          [".ScreenText",true,"Screen Text","font-family:Tahoma;"],
-
-          [".ImportantWords",true,"Important Words","font-weight:bold;"],
-
-          [".Highlight",true,"Highlight","font-family:Arial;color:red;"]];
-
-
-
-    If you'd like to set the default writing to "Right to Left", you can use:
-
-
-
-    oEdit1.arrStyle = [["BODY",false,"","direction:rtl;unicode-bidi:bidi-override;"]];
-
-    */
-
-
-
-
-
-    /***************************************************
-
-      ENABLE ASSET MANAGER ADD-ON
-
-    ***************************************************/
-
-
-
-    oEdit1.cmdAssetManager = "modalDialogShow('<?=$websiteURL?>/monitor/Editor3/assetmanager/assetmanager.php',640,465)"; //Command to open the Asset Manager add-on.
-
-    //Use relative to root path (starts with "/")
-
-
-
-    /***************************************************
-
-      ADDING YOUR CUSTOM LINK LOOKUP
-
-    ***************************************************/
-
-
-
-    oEdit1.cmdInternalLink = "modelessDialogShow('links.htm',365,270)"; //Command to open your custom link lookup page.
-
-
-
-    /***************************************************
-
-      ADDING YOUR CUSTOM CONTENT LOOKUP
-
-    ***************************************************/
-
-
-
-    oEdit1.cmdCustomObject = "modelessDialogShow('objects.htm',365,270)"; //Command to open your custom content lookup page.
-
-
-
-    /***************************************************
-
-      USING CUSTOM TAG INSERTION FEATURE
-
-    ***************************************************/
-
-
-
-    oEdit1.arrCustomTag=[["First Name","{%first_name%}"],
-
-        ["Last Name","{%last_name%}"],
-
-        ["Email","{%email%}"]];//Define custom tag selection
-
-
-
-    /***************************************************
-
-      SETTING COLOR PICKER's CUSTOM COLOR SELECTION
-
-    ***************************************************/
-
-
-
-    oEdit1.customColors=["#ff4500","#ffa500","#808000","#4682b4","#1e90ff","#9400d3","#ff1493","#a9a9a9"];//predefined custom colors
-
-
-
-    /***************************************************
-
-      SETTING EDITING MODE
-
-
-
-      Possible values:
-
-        - "HTMLBody" (default)
-
-        - "XHTMLBody"
-
-        - "HTML"
-
-        - "XHTML"
-
-    ***************************************************/
-
-
-
-    oEdit1.mode="XHTMLBody";
-
-
-
-
-
-    oEdit1.REPLACE("pro_desc");
-
-              </script>
-
-                </td>
+            <style>
+              .feature-comparison-table {
+                width: 100%;
+                border-collapse: collapse;
+              }
+              .feature-comparison-table th,
+              .feature-comparison-table td {
+                border: 1px solid #cfcfcf;
+                padding: 8px;
+                vertical-align: middle;
+              }
+              .feature-comparison-table th {
+                background: #f7f7f7;
+                text-align: left;
+              }
+              .feature-comparison-table td.feature-flag-cell,
+              .feature-comparison-table th.feature-flag-cell {
+                text-align: center;
+                width: 140px;
+              }
+              .feature-comparison-table .feature-name-input {
+                width: 100%;
+                box-sizing: border-box;
+              }
+              .feature-comparison-add {
+                margin-top: 10px;
+              }
+            </style>
+            <table class="feature-comparison-table">
+              <thead>
+                <tr>
+                  <th>Feature Name</th>
+                  <th class="feature-flag-cell">Real Lab Workbook</th>
+                  <th class="feature-flag-cell">Real Lab Workbook + Racks</th>
+                  <th class="feature-flag-cell">Real Lab Workbook + Racks + Bootcamp</th>
+                  <th class="feature-flag-cell">Action</th>
+                </tr>
+              </thead>
+              <tbody id="features_table_body" data-next-index="<?php echo count($featureRowsForForm); ?>">
+                <?php foreach ($featureRowsForForm as $featureIndex => $featureRow) { ?>
+                <tr>
+                  <td><input type="text" class="feature-name-input" name="features[<?php echo $featureIndex; ?>][name]" value="<?php echo htmlspecialchars($featureRow['name'], ENT_QUOTES); ?>"></td>
+                  <td class="feature-flag-cell"><input type="checkbox" name="features[<?php echo $featureIndex; ?>][workbook]" value="1" <?php echo !empty($featureRow['workbook']) ? 'checked="checked"' : ''; ?>></td>
+                  <td class="feature-flag-cell"><input type="checkbox" name="features[<?php echo $featureIndex; ?>][racks]" value="1" <?php echo !empty($featureRow['racks']) ? 'checked="checked"' : ''; ?>></td>
+                  <td class="feature-flag-cell"><input type="checkbox" name="features[<?php echo $featureIndex; ?>][bootcamp]" value="1" <?php echo !empty($featureRow['bootcamp']) ? 'checked="checked"' : ''; ?>></td>
+                  <td class="feature-flag-cell"><button type="button" class="remove_feature_row">Remove</button></td>
+                </tr>
+                <?php } ?>
+              </tbody>
+            </table>
+            <button type="button" id="add_feature_row" class="feature-comparison-add">Add Row</button>
+          </td>
 
         </tr>
 
@@ -1417,6 +1482,37 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 document.addEventListener('DOMContentLoaded', function () {  
   const ytWrapper = document.getElementById('youtube_links_wrapper');
   const ytAddBtn  = document.getElementById('add_more_youtube');
+  const featuresTableBody = document.getElementById('features_table_body');
+  const addFeatureBtn = document.getElementById('add_feature_row');
+
+  function buildFeatureRow(index) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><input type="text" class="feature-name-input" name="features[${index}][name]"></td>
+      <td class="feature-flag-cell"><input type="checkbox" name="features[${index}][workbook]" value="1"></td>
+      <td class="feature-flag-cell"><input type="checkbox" name="features[${index}][racks]" value="1"></td>
+      <td class="feature-flag-cell"><input type="checkbox" name="features[${index}][bootcamp]" value="1"></td>
+      <td class="feature-flag-cell"><button type="button" class="remove_feature_row">Remove</button></td>
+    `;
+    return tr;
+  }
+
+  if (featuresTableBody && addFeatureBtn) {
+    addFeatureBtn.addEventListener('click', function () {
+      const currentIndex = parseInt(featuresTableBody.getAttribute('data-next-index') || '0', 10);
+      featuresTableBody.appendChild(buildFeatureRow(currentIndex));
+      featuresTableBody.setAttribute('data-next-index', String(currentIndex + 1));
+    });
+
+    featuresTableBody.addEventListener('click', function (e) {
+      if (e.target.classList.contains('remove_feature_row')) {
+        const row = e.target.closest('tr');
+        if (row) {
+          row.remove();
+        }
+      }
+    });
+  }
 
   if (ytWrapper && ytAddBtn) {
     ytAddBtn.addEventListener('click', function () {
@@ -1440,6 +1536,52 @@ document.addEventListener('DOMContentLoaded', function () {
       if (e.target.classList.contains('remove_row')) {
         const row = e.target.closest('.youtube_link_row');
         if (row) row.remove();
+      }
+    });
+  }
+
+  /* ---------------------- FAQ ROWS ---------------------- */
+  const faqWrapper = document.getElementById('faq_wrapper');
+  const faqAddBtn = document.getElementById('add_more_faq');
+  const formEl = document.getElementById('Form');
+
+  if (faqWrapper && faqAddBtn) {
+    faqAddBtn.addEventListener('click', function () {
+      const div = document.createElement('div');
+      div.className = 'faq_row';
+      div.style.marginBottom = '8px';
+      div.innerHTML = `
+        <input type="text" name="faq_question[]" placeholder="Question" style="width:400px;">
+        <input type="text" name="faq_answer[]" placeholder="Answer" style="width:400px;">
+        <button type="button" class="remove_faq_row">Remove</button>
+      `;
+      faqWrapper.appendChild(div);
+    });
+
+    faqWrapper.addEventListener('click', function (e) {
+      if (e.target.classList.contains('remove_faq_row')) {
+        const row = e.target.closest('.faq_row');
+        if (row) row.remove();
+      }
+    });
+  }
+
+  if (formEl) {
+    formEl.addEventListener('submit', function () {
+      const rows = faqWrapper ? faqWrapper.querySelectorAll('.faq_row') : [];
+      const data = [];
+      rows.forEach(function (row) {
+        const q = row.querySelector('input[name="faq_question[]"]');
+        const a = row.querySelector('input[name="faq_answer[]"]');
+        const question = q ? q.value.trim() : '';
+        const answer = a ? a.value.trim() : '';
+        if (question && answer) {
+          data.push({ question: question, answer: answer });
+        }
+      });
+      const hidden = document.getElementById('faq_json');
+      if (hidden) {
+        hidden.value = JSON.stringify(data);
       }
     });
   }
