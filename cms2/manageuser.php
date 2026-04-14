@@ -312,24 +312,115 @@ if($sortBy != 'created')
 	$sortSql .= ", tbl_user.user_id DESC";
 }
 
-$selectClause = "
-	SELECT
-		tbl_user.*,
-		COUNT(order_master.ID) AS order_count,
-		COALESCE(SUM(order_master.Net_Amount), 0) AS total_purchase_amount,
-		MAX(order_master.OrderDate) AS last_purchase_date
-	FROM tbl_user
-	LEFT JOIN order_master ON (order_master.Cust_ID = tbl_user.user_id)
-";
+$countQuery = "SELECT COUNT(*) AS total_users FROM tbl_user".$whereSql;
+$countResult = mysql_query($countQuery);
+$TotalRecs = 0;
+if($countResult)
+{
+	$countRow = mysql_fetch_assoc($countResult);
+	if($countRow && isset($countRow['total_users']))
+	{
+		$TotalRecs = (int)$countRow['total_users'];
+	}
+}
 
-$groupBySql = " GROUP BY tbl_user.user_id";
+$pgObj->_COUNT = $TotalRecs;
+$TotalPages = $pgObj->pageCount();
+$NaviLinks = $pgObj->NavigationInnerLinks();
+$BackNaviLinks = $pgObj->BackNavigationLink();
+$ForwardNaviLinks = $pgObj->ForwardNavigationLink();
 
-$listQuery = $selectClause.$whereSql.$groupBySql." ORDER BY ".$sortSql;
-$result1 = mysql_query($listQuery);
-$pgObj->SetNavigationalLinksNew($result1);
-$result = mysql_query($listQuery.$LIMIT);
+$rowsData = array();
+$aggregateSorts = array('purchased', 'total_purchase', 'last_purchase');
 
-$recordsOnPage = mysql_num_rows($result);
+if(in_array($sortBy, $aggregateSorts, true))
+{
+	$listQuery = "
+		SELECT
+			tbl_user.*,
+			COALESCE(order_stats.order_count, 0) AS order_count,
+			COALESCE(order_stats.total_purchase_amount, 0) AS total_purchase_amount,
+			order_stats.last_purchase_date AS last_purchase_date
+		FROM tbl_user
+		LEFT JOIN (
+			SELECT
+				order_master.Cust_ID,
+				COUNT(order_master.ID) AS order_count,
+				COALESCE(SUM(order_master.Net_Amount), 0) AS total_purchase_amount,
+				MAX(order_master.OrderDate) AS last_purchase_date
+			FROM order_master
+			GROUP BY order_master.Cust_ID
+		) AS order_stats ON (order_stats.Cust_ID = tbl_user.user_id)
+		".$whereSql."
+		ORDER BY ".$sortSql.$LIMIT;
+	$result = mysql_query($listQuery);
+	if($result)
+	{
+		while($rows = mysql_fetch_array($result))
+		{
+			$rowsData[] = $rows;
+		}
+	}
+}
+else
+{
+	$listQuery = "
+		SELECT
+			tbl_user.*,
+			0 AS order_count,
+			0 AS total_purchase_amount,
+			NULL AS last_purchase_date
+		FROM tbl_user
+		".$whereSql."
+		ORDER BY ".$sortSql.$LIMIT;
+	$result = mysql_query($listQuery);
+	$userIds = array();
+
+	if($result)
+	{
+		while($rows = mysql_fetch_array($result))
+		{
+			$rowsData[] = $rows;
+			$userIds[] = (int)$rows['user_id'];
+		}
+	}
+
+	if(!empty($userIds))
+	{
+		$orderStatsByUser = array();
+		$orderStatsQuery = "
+			SELECT
+				order_master.Cust_ID AS user_id,
+				COUNT(order_master.ID) AS order_count,
+				COALESCE(SUM(order_master.Net_Amount), 0) AS total_purchase_amount,
+				MAX(order_master.OrderDate) AS last_purchase_date
+			FROM order_master
+			WHERE order_master.Cust_ID IN (".implode(',', $userIds).")
+			GROUP BY order_master.Cust_ID
+		";
+		$orderStatsResult = mysql_query($orderStatsQuery);
+		if($orderStatsResult)
+		{
+			while($statsRow = mysql_fetch_assoc($orderStatsResult))
+			{
+				$orderStatsByUser[(int)$statsRow['user_id']] = $statsRow;
+			}
+		}
+
+		foreach($rowsData as $rowIndex => $rowData)
+		{
+			$userId = (int)$rowData['user_id'];
+			if(isset($orderStatsByUser[$userId]))
+			{
+				$rowsData[$rowIndex]['order_count'] = $orderStatsByUser[$userId]['order_count'];
+				$rowsData[$rowIndex]['total_purchase_amount'] = $orderStatsByUser[$userId]['total_purchase_amount'];
+				$rowsData[$rowIndex]['last_purchase_date'] = $orderStatsByUser[$userId]['last_purchase_date'];
+			}
+		}
+	}
+}
+
+$recordsOnPage = count($rowsData);
 $hasRecords = ($recordsOnPage > 0);
 
 if(!$hasRecords)
@@ -342,7 +433,7 @@ else
 }
 
 $rowCounter = 1;
-while($rows = mysql_fetch_array($result))
+foreach($rowsData as $rows)
 {
 	$rowClass = (($rowCounter % 2) == 0) ? ' class="user-row-alt"' : '';
 	$fullName = trim($rows['user_fname'].' '.$rows['user_lname']);
