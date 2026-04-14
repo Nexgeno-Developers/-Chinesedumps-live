@@ -100,13 +100,13 @@
 
         </TR>
 
-        <TR>
+        <!-- <TR>
 
           <TD class=menu><A class=menu 
 
             href="userstats.php?ref=all"><IMG class=icon2 src="images/News-Edit.gif" border=0> All Registered Users</A></TD>
 
-        </TR>
+        </TR> -->
 
         <TR>
 

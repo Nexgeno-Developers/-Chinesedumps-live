@@ -77,16 +77,16 @@
 		function addUser($spram)
 
 		{
+		$user_fname		= mysql_real_escape_string($spram[1]);
+		$user_lname		= mysql_real_escape_string($spram[2]);
+		$user_phone		= mysql_real_escape_string(isset($spram[13]) ? $spram[13] : '');
+		$user_email		= mysql_real_escape_string($spram[5]);
+		$user_password	= mysql_real_escape_string($spram[9]);
+		$user_status	= (isset($spram[10]) && $spram[10] != '') ? mysql_real_escape_string($spram[10]) : 'Active';
+		$create_date	= mysql_real_escape_string($spram[6]);
 
-		if($spram[10]!=''){
-
-		 $add_que = "INSERT INTO tbl_user(user_fname,user_lname,user_phone,user_email,user_password,user_status,creatDate)VALUES('".$spram[1]."','".$spram[2]."','".$spram[13]."','".$spram[5]."','".$spram[9]."','".$spram[10]."','".$spram[6]."')";
-
-		 }else{
-
-		 $add_que = "INSERT INTO tbl_user(user_fname,user_lname,user_phone,user_email,user_password,user_status,creatDate)VALUES('".$spram[1]."','".$spram[2]."','".$spram[13]."','".$spram[5]."','".$spram[9]."','Active','".$spram[6]."')";
-
-		 }
+		$add_que = "INSERT INTO tbl_user(user_fname,user_lname,user_phone,user_email,user_password,user_status,creatDate)
+					VALUES('".$user_fname."','".$user_lname."','".$user_phone."','".$user_email."','".$user_password."','".$user_status."','".$create_date."')";
 
 		 $qryexe = mysql_query($add_que) or die(mysql_error()); 
 
@@ -918,7 +918,7 @@ function getAdminEdit($spram)
 
 			}
 
-function getUserhtml($spram, $stats='')
+function getUserhtml($spram, $stats='', $extraQuery='')
 
 				{
 
@@ -933,6 +933,15 @@ function getUserhtml($spram, $stats='')
 					$del	=	"";
 
 					$counter	=	'1';
+					$extraQuery = trim($extraQuery);
+					if($extraQuery != '' && $extraQuery[0] == '?')
+					{
+						$extraQuery = '&'.substr($extraQuery, 1);
+					}
+					elseif($extraQuery != '' && $extraQuery[0] != '&')
+					{
+						$extraQuery = '&'.$extraQuery;
+					}
 
 					while($rows=mysql_fetch_array($spram))
 
@@ -944,17 +953,55 @@ function getUserhtml($spram, $stats='')
 
 										else
 
-											$intColor = "bgcolor='#f3eeee'";											
+											$intColor = " class='user-row-alt'";											
 
-							$edit	=	'<a href="edituser.php?nid='.$rows['user_id'].'">Edit </a>';
+							$edit	=	'<a class="action-link" href="edituser.php?nid='.$rows['user_id'].$extraQuery.'">Edit</a>';
 
-							$sendemail	=	'| <a href="manageuser.php?mainsend=send&user='.$rows['user_id'].'">Send Email </a>';
+							$sendemail	=	'<a class="action-link" href="manageuser.php?mainsend=send&user='.$rows['user_id'].$extraQuery.'">Send Email</a>';
 
-							$del	=	'| <a href="manageuser.php?action=up&nid='.$rows['user_id'].'" onclick= "return delete_pro();">Delete</a>';
+							$del	=	'<a class="action-link action-link-danger" href="manageuser.php?action=up&nid='.$rows['user_id'].$extraQuery.'" onclick= "return delete_pro();">Delete</a>';
+							$fullName = trim($rows['user_fname'].' '.$rows['user_lname']);
+							if($fullName == '')
+							{
+								$fullName = '-';
+							}
+							$fullNameHtml = htmlspecialchars($fullName, ENT_QUOTES, 'UTF-8');
+							$userEmail = htmlspecialchars($rows['user_email'], ENT_QUOTES, 'UTF-8');
+							$userPassword = htmlspecialchars($rows['user_password'], ENT_QUOTES, 'UTF-8');
+							$userPhone = trim($rows['user_phone']);
+							if($userPhone == '')
+							{
+								$userPhone = '-';
+							}
+							else
+							{
+								$userPhone = htmlspecialchars($userPhone, ENT_QUOTES, 'UTF-8');
+							}
+							$createdDate = trim($rows['creatDate']);
+							if($createdDate != '' && $createdDate != '0000-00-00')
+							{
+								$createdTime = strtotime($createdDate);
+								if($createdTime)
+								{
+									$createdDate = date('d M Y', $createdTime);
+								}
+							}
+							if($createdDate == '' || $createdDate == '0000-00-00')
+							{
+								$createdDate = '-';
+							}
+							$createdDate = htmlspecialchars($createdDate, ENT_QUOTES, 'UTF-8');
+							$statusValue = trim($rows['user_status']);
+							if($statusValue == '')
+							{
+								$statusValue = 'Unknown';
+							}
+							$statusClass = (strcasecmp($statusValue, 'Active') == 0) ? 'is-active' : 'is-inactive';
+							$statusHtml = '<span class="user-status-badge '.$statusClass.'">'.htmlspecialchars($statusValue, ENT_QUOTES, 'UTF-8').'</span>';
 
 							
 
-							$showTr		.='<tr '.$intColor.'>';
+							$showTr		.='<tr'.$intColor.'>';
 
 							if($stats=='')
 
@@ -966,19 +1013,38 @@ function getUserhtml($spram, $stats='')
 
 	
 
-	$showTr		.='<td width=5 align="center" class=item style=padding-center: 0px;>'.$rows['user_fname'].'&nbsp;'.$rows['user_lname'].'</td>
+							if($stats=='')
+							{
 
-    <td class=item align="center" style=padding-center: 0px;>'.$rows['user_email'].'</td>
+	$showTr		.='<td class="item user-name-cell" align="left">'.$fullNameHtml.'</td>
 
-    <td class=item align="center" style=padding-center: 0px;>'.$rows['user_password'].'</td>
+    <td class="item" align="center">'.$userEmail.'</td>
 
-	 <td align="center" class=item>'.$rows['user_status'].'</td>';
+    <td class="item" align="center">'.$userPhone.'</td>
+
+    <td class="item" align="center">'.$userPassword.'</td>
+
+    <td class="item" align="center">'.$createdDate.'</td>
+
+	 <td align="center" class="item">'.$statusHtml.'</td>';
+							}
+							else
+							{
+
+	$showTr		.='<td width=5 align="center" class=item style=padding-center: 0px;>'.$fullNameHtml.'</td>
+
+    <td class=item align="center" style=padding-center: 0px;>'.$userEmail.'</td>
+
+    <td class=item align="center" style=padding-center: 0px;>'.$userPassword.'</td>
+
+	 <td align="center" class=item>'.htmlspecialchars($statusValue, ENT_QUOTES, 'UTF-8').'</td>';
+							}
 
 	 						if($stats=='')
 
 							{
 
-								$showTr		.=		'<td align="center" class=item nowrap=nowrap>'.$edit.''.$sendemail.''.$del.' </td>';
+								$showTr		.=		'<td align="center" class="item user-action-cell" nowrap=nowrap>'.$edit.$sendemail.$del.'</td>';
 
 							}
 
@@ -1321,20 +1387,28 @@ function checkUserDuplication($email)
  function UpdateUserAdmin($spram)
 
 	  {
+		$user_id		= mysql_real_escape_string($spram[0]);
+		$user_fname		= mysql_real_escape_string($spram[1]);
+		$user_lname		= mysql_real_escape_string($spram[2]);
+		$user_phone		= mysql_real_escape_string(isset($spram[13]) ? $spram[13] : '');
+		$user_password	= mysql_real_escape_string($spram[9]);
+		$user_status	= mysql_real_escape_string($spram[10]);
 
 		$strQury="update tbl_user set 
 
-													user_fname			 = '".$spram[1]."',
+													user_fname			 = '".$user_fname."',
 
-													user_lname			 = '".$spram[2]."',
+													user_lname			 = '".$user_lname."',
 
-													user_password		 = '".$spram[9]."',
+													user_phone			 = '".$user_phone."',
 
-													user_status			 = '".$spram[10]."'
+													user_password		 = '".$user_password."',
+
+													user_status			 = '".$user_status."'
 
 													
 
-													where  user_id	     = '".$spram[0]."'";
+													where  user_id	     = '".$user_id."'";
 
 				
 

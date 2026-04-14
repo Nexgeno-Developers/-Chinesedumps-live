@@ -1,279 +1,383 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
-
 <title><?=$websitetitle?></title>
-
 <link href="new.css" rel="stylesheet" type="text/css" />
-
 <link href="style1.css" rel="stylesheet" type="text/css" />
-
 <style type="text/css">
-
-<!--
-
-.style1 {color: #FF0000}
-
--->
-
+.user-shell {
+	background: #ffffff;
+	border: 1px solid #d7deea;
+	box-shadow: 0 10px 30px rgba(29, 46, 74, 0.08);
+	margin-top: 12px;
+}
+.user-shell-header {
+	background: linear-gradient(135deg, #183a63 0%, #24567f 55%, #4d8db5 100%);
+	color: #ffffff;
+	padding: 24px 28px;
+}
+.user-shell-header h2 {
+	margin: 0 0 6px 0;
+	color: #ffffff;
+	font-size: 24px;
+}
+.user-shell-header p {
+	margin: 0;
+	font-size: 13px;
+	color: #dbeaf8;
+}
+.user-shell-body {
+	padding: 24px 28px 30px 28px;
+	background: #f5f8fc;
+}
+.user-alert {
+	padding: 12px 14px;
+	margin-bottom: 18px;
+	font-weight: bold;
+	border: 1px solid transparent;
+}
+.user-alert.is-success {
+	background: #edf9f0;
+	border-color: #b8debe;
+	color: #20673d;
+}
+.user-alert.is-warning {
+	background: #fff7e7;
+	border-color: #f1d9a1;
+	color: #8a5a00;
+}
+.user-alert.is-info {
+	background: #eef5ff;
+	border-color: #cfe0f6;
+	color: #234a72;
+}
+.user-toolbar {
+	margin-bottom: 18px;
+}
+.user-toolbar .primary-action,
+.user-toolbar .secondary-action,
+.user-filter-actions .primary-action,
+.user-filter-actions .secondary-action,
+.bulk-delete-button {
+	display: inline-block;
+	padding: 10px 16px;
+	text-decoration: none;
+	font-weight: bold;
+	font-family: "Trebuchet MS", verdana, arial, serif;
+	font-size: 12px;
+	border: 0;
+	cursor: pointer;
+}
+.primary-action {
+	background: #173e69;
+	color: #ffffff;
+}
+.secondary-action {
+	background: #e6edf5;
+	color: #294b72;
+	margin-left: 8px;
+}
+.bulk-delete-button {
+	background: #7e1f28;
+	color: #ffffff;
+}
+.filter-card {
+	background: #ffffff;
+	border: 1px solid #dce4ef;
+	padding: 18px 20px 10px 20px;
+	margin-bottom: 18px;
+}
+.filter-card h3 {
+	margin: 0 0 6px 0;
+	font-size: 18px;
+	color: #1a3558;
+}
+.filter-card p {
+	margin: 0 0 18px 0;
+	font-size: 12px;
+	color: #5f738b;
+}
+.filter-grid {
+	margin-left: -8px;
+	margin-right: -8px;
+}
+.filter-field {
+	display: inline-block;
+	vertical-align: top;
+	width: 23%;
+	padding: 0 8px 14px 8px;
+}
+.filter-field.wide {
+	width: 47%;
+}
+.filter-field label {
+	display: block;
+	margin-bottom: 6px;
+	font-weight: bold;
+	color: #22476d;
+}
+.filter-field input,
+.filter-field select {
+	width: 100%;
+	padding: 9px 10px;
+	border: 1px solid #b8c9dc;
+	background: #fbfdff;
+	box-sizing: border-box;
+	font-family: "Trebuchet MS", verdana, arial, serif;
+	font-size: 12px;
+}
+.date-picker-control {
+	display: flex;
+	align-items: center;
+}
+.date-picker-control input {
+	flex: 1 1 auto;
+}
+.date-picker-trigger {
+	margin-left: 8px;
+	padding: 6px;
+	border: 1px solid #b8c9dc;
+	background: #edf4fb;
+	cursor: pointer;
+}
+.user-filter-actions {
+	padding-top: 4px;
+}
+.results-strip {
+	margin-bottom: 14px;
+	padding: 12px 14px;
+	background: #eef4fb;
+	border: 1px solid #d7e3f2;
+	color: #25486f;
+	font-weight: bold;
+}
+.results-strip .stat {
+	display: inline-block;
+	margin-right: 18px;
+}
+.user-table-wrap {
+	background: #ffffff;
+	border: 1px solid #dce4ef;
+	overflow-x: auto;
+}
+.user-table {
+	width: 100%;
+	min-width: 1040px;
+	border-collapse: collapse;
+}
+.user-table .header {
+	white-space: nowrap;
+}
+.user-row-alt {
+	background: #f8fbff;
+}
+.user-name-cell {
+	font-weight: bold;
+	color: #1f4268;
+}
+.user-action-cell {
+	white-space: nowrap;
+}
+.action-link {
+	display: inline-block;
+	margin: 0 6px 6px 0;
+	padding: 6px 10px;
+	background: #edf4fb;
+	border: 1px solid #d4e0ef;
+	color: #22476d;
+	text-decoration: none;
+	font-weight: bold;
+}
+.action-link-danger {
+	background: #fff0f1;
+	border-color: #efc4c8;
+	color: #972b35;
+}
+.user-status-badge {
+	display: inline-block;
+	padding: 4px 10px;
+	font-size: 11px;
+	font-weight: bold;
+	border-radius: 12px;
+}
+.user-status-badge.is-active {
+	background: #e7f7ec;
+	color: #1d7a3f;
+}
+.user-status-badge.is-inactive {
+	background: #fff1df;
+	color: #8b5e00;
+}
+.list-footer {
+	margin-top: 14px;
+	padding: 14px 0 0 0;
+}
+.pagination-wrap {
+	text-align: center;
+	margin-bottom: 16px;
+}
+.empty-state {
+	margin-top: 14px;
+	padding: 16px;
+	text-align: center;
+	background: #ffffff;
+	border: 1px dashed #c8d6e8;
+	color: #5d7188;
+	font-weight: bold;
+}
 </style>
-
 <script language="JavaScript" src="../includes/js/calendar.js"></script>
-
 <script type="text/javascript" src="Editor3/scripts/innovaeditor.js"></script>
-
 <script language="javascript" type="text/javascript">
-
 function Cofirm()
-
 {
-
-var mes=window.confirm ("Are You Sure To Delete the Selected Item");
-
-if (mes==true)
-
-{
-
-return true;
-
+	return window.confirm("Are you sure you want to delete the selected users?");
 }
 
-else
-
+function delete_pro()
 {
-
-return false;
-
+	return window.confirm("Are you sure you want to delete this user?");
 }
 
+function openUserSearchCalendar(fieldName, triggerObj)
+{
+	if(document.userSearchForm && document.userSearchForm[fieldName])
+	{
+		displayCalendarSe(document.userSearchForm[fieldName], 'yyyy-mm-dd', triggerObj);
+	}
+	return false;
 }
-
 </script>
-
-<script language="JavaScript" src="../includes/js/functions.js"></script></head>
-
+<script language="JavaScript" src="../includes/js/functions.js"></script>
 </head>
 
 <body>
 
-
-
 <div class="topbar">
-
 <table cellpadding="0" cellspacing="0" width="90%">
-
 <tr>
-
 <td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
-
 <td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
-
 </tr>
-
 </table></div>
 
-
-
-<table cellpadding="0" cellspacing="0" width="92%">
-
+<table cellpadding="0" cellspacing="0" width="96%">
 <tr>
-
 <td width="190" class="leftside"><?php include ("menu.php"); ?></td>
 
-
-
-<td width="610" valign="top" class="rightside"><h2>Users Management !</h2>
-
-
-
-Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
-
-
-
-<br />
-
-
-
-<form id="frm1" name="frm1" method="post" action="" enctype="multipart/form-data">
-
-
-
-
-
-
-
-<br /><table cellpadding='0' cellspacing='0' class='list' width='87%'>
-
-
-
-	 <tr>
-
-    <td height="19" align="right" colspan="5">&nbsp;</td>
-
-	</tr>
-
-    
-
-    <tr>
-
-    <td colspan="4"  align="center">Search :
-
-      <input type="text" name="textSearch" value="<? if($_POST['textSearch']){ echo $_POST['textSearch']; }?>" style="width:160px" />&nbsp;&nbsp;&nbsp;
-
-	   <input name="txt_StartDate" type="text" class="clsTxtBox"  id="txt_StartDate" readonly="readonly" value="<?=$_POST['txt_StartDate']?>"  style="width:100px; height:16px" />
-
-           <img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" 
-
-				  style="cursor:hand" onclick="displayCalendarSe(document.frm1.txt_StartDate,'yyyy-mm-dd',this)" /> &nbsp; TO &nbsp; <input name="txt_StartDate2" type="text" class="clsTxtBox"  id="txt_StartDate2" readonly="readonly" value="<?=$_POST['txt_StartDate2']?>"  style="width:100px; height:16px" />
-
-                  <img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" 
-
-				  style="cursor:hand" onclick="displayCalendarSe(document.frm1.txt_StartDate2,'yyyy-mm-dd',this)" />&nbsp;&nbsp;&nbsp;
-
-	  <select name="criteria">
-
-	   <option value="Order_Id" <? if($_POST['criteria'] && $_POST['criteria']=='Order_Id'){ echo "selected='selected'"; }?>>Transaction Id</option>
-
-	  <option value="user_email" <? if($_POST['criteria'] && $_POST['criteria']=='user_email'){ echo "selected='selected'"; }?>>Email Address</option>
-
-	  <option value="user_fname" <? if($_POST['criteria'] && $_POST['criteria']=='user_fname'){ echo "selected='selected'"; }?>>First Name</option>
-
-	  <option value="user_lname" <? if($_POST['criteria'] && $_POST['criteria']=='user_lname'){ echo "selected='selected'"; }?>>Last Name</option></select>
-
-      &nbsp;&nbsp;&nbsp;<input type="submit" name="Search" value="Search" />
-
-	  </td>
-
-
-
-      <td align="right"><a class="menu" href="adduser.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add User </span>&nbsp;&nbsp;</a></td>
-
-	  </tr>
-
-  <tr>
-
-    <td height="19" align="center" colspan="5" style="color:#FF0000; font-weight:bold;"><? echo $str22; ?></td>
-
-	</tr>
-
-    <td width='80' class='header' align="center">
-
-
-
-	<input name="chkbox_select_all" type="checkbox" id="chkbox_select_all"  onclick="checkAllOneOne(this);" value=""  /></td>
-
-
-
-    <td class='header' width='150' align="center">Name</td>
-
-    <td width="127" class='header' align="center">Email</td>
-
-    <td width="127" class='header' align="center">Password</td>
-    <td width="144" class='header' align="center">Status </td>
-
-    <td width="136" align="center"  class='header'>Option</td>
-
-   
-
-    </tr>
-
-
-
-  <!-- LOOP THROUGH USERS -->
-
-
-
-
-
-
-
-  <?php echo $show ;?>
-
-
-
- 
-
-
-
-
-
-
-
+<td width="810" valign="top" class="rightside">
+	<div class="user-shell">
+		<div class="user-shell-header">
+			<h2>Users Management</h2>
+			<p>Search, review, and maintain user records with phone-aware add/edit support and paginated filters.</p>
+		</div>
+
+		<div class="user-shell-body">
+			<div class="user-toolbar">
+				<a class="primary-action" href="<?=$addUserUrl?>">Add User</a>
+			</div>
+
+			<?php if($pageNotice != ""){ ?>
+			<div class="<?=$noticeClass?>"><?=$pageNotice?></div>
+			<?php } ?>
+
+			<form id="userSearchForm" name="userSearchForm" method="get" action="manageuser.php">
+				<div class="filter-card">
+					<h3>Search Users</h3>
+					<p>Filter by transaction id, name, email, phone number, or creation date range. Filters stay active across pagination links.</p>
+
+					<div class="filter-grid">
+						<div class="filter-field wide">
+							<label for="textSearch">Search Text</label>
+							<input type="text" name="textSearch" id="textSearch" value="<?=htmlspecialchars($textSearch, ENT_QUOTES, 'UTF-8')?>" />
+						</div>
+
+						<div class="filter-field">
+							<label for="criteria">Search By</label>
+							<select name="criteria" id="criteria">
+								<option value="Order_Id"<?php if($criteria == 'Order_Id'){ echo " selected=\"selected\""; } ?>>Transaction Id</option>
+								<option value="user_email"<?php if($criteria == 'user_email'){ echo " selected=\"selected\""; } ?>>Email Address</option>
+								<option value="user_fname"<?php if($criteria == 'user_fname'){ echo " selected=\"selected\""; } ?>>First Name</option>
+								<option value="user_lname"<?php if($criteria == 'user_lname'){ echo " selected=\"selected\""; } ?>>Last Name</option>
+								<option value="user_phone"<?php if($criteria == 'user_phone'){ echo " selected=\"selected\""; } ?>>Phone Number</option>
+							</select>
+						</div>
+
+						<div class="filter-field">
+							<label for="txt_StartDate">Created From</label>
+							<div class="date-picker-control">
+								<input name="txt_StartDate" type="text" class="clsTxtBox" id="txt_StartDate" value="<?=htmlspecialchars($txt_StartDate, ENT_QUOTES, 'UTF-8')?>" readonly="readonly" onclick="return openUserSearchCalendar('txt_StartDate', this);" />
+								<img src="images/calendar-icon.gif" alt="Select start date" class="date-picker-trigger" onclick="return openUserSearchCalendar('txt_StartDate', this);" />
+							</div>
+						</div>
+
+						<div class="filter-field">
+							<label for="txt_StartDate2">Created To</label>
+							<div class="date-picker-control">
+								<input name="txt_StartDate2" type="text" class="clsTxtBox" id="txt_StartDate2" value="<?=htmlspecialchars($txt_StartDate2, ENT_QUOTES, 'UTF-8')?>" readonly="readonly" onclick="return openUserSearchCalendar('txt_StartDate2', this);" />
+								<img src="images/calendar-icon.gif" alt="Select end date" class="date-picker-trigger" onclick="return openUserSearchCalendar('txt_StartDate2', this);" />
+							</div>
+						</div>
+					</div>
+
+					<div class="user-filter-actions">
+						<input type="submit" value="Search Users" class="primary-action" />
+						<a href="<?=$clearFiltersUrl?>" class="secondary-action">Reset Filters</a>
+					</div>
+				</div>
+			</form>
+
+			<div class="results-strip">
+				<span class="stat">Total Records Found: <?=$TotalRecs;?></span>
+				<span class="stat">Total Pages Found: <?=$TotalPages;?></span>
+			</div>
+
+			<form id="userListForm" name="userListForm" method="post" action="manageuser.php<?php if($stateQueryString != ''){ echo '?'.htmlspecialchars($stateQueryString, ENT_QUOTES, 'UTF-8'); } ?>">
+				<input type="hidden" name="return_query" value="<?=htmlspecialchars($stateQueryString, ENT_QUOTES, 'UTF-8')?>" />
+
+				<div class="user-table-wrap">
+					<table cellpadding="0" cellspacing="0" class="list user-table">
+						<tr>
+							<td width="60" class="header" align="center"><input name="chkbox_select_all" type="checkbox" id="chkbox_select_all" onclick="checkAllOneOne(this);" value="" /></td>
+							<td class="header" align="center">Name</td>
+							<td class="header" align="center">Email</td>
+							<td class="header" align="center">Phone</td>
+							<td class="header" align="center">Password</td>
+							<td class="header" align="center">Created Date</td>
+							<td class="header" align="center">Status</td>
+							<td class="header" align="center">Option</td>
+						</tr>
+
+						<?=$show;?>
+					</table>
+				</div>
+
+				<div class="list-footer">
+					<div class="pagination-wrap">
+						<strong>
+							<?=$BackNaviLinks;?>
+							<?=$NaviLinks;?>
+							<?=$ForwardNaviLinks;?>
+						</strong>
+					</div>
+
+					<?php if($hasRecords){ ?>
+					<div align="center">
+						<input type="submit" name="btn_delete" id="btn_delete" class="bulk-delete-button" value="Delete Selected Items" onclick="return Cofirm();" />
+					</div>
+					<?php } ?>
+				</div>
+			</form>
+
+			<?php if(!$hasRecords){ ?>
+			<div class="empty-state"><?=$emptyMessage?></div>
+			<?php } ?>
+		</div>
+	</div>
+</td>
+</tr>
 </table>
-
-
-
-<table>
-
-
-
-<tr>  
-
-
-
-<td valign="top" class="rightside"><div align="center"><strong>&nbsp;&nbsp; 
-
-	  <?=$BackNaviLinks;?>
-
-	  &nbsp;&nbsp; 
-
-	  <?=$NaviLinks;?>
-
-	  &nbsp;&nbsp; 
-
-	  <?=$ForwardNaviLinks;?> </strong><br />
-
-                  Total Records Found &nbsp;
-
-		<?=$TotalRecs;?><br />
-
-                  Total Pages Found &nbsp;
-
-		<?=$TotalPages;?><br /><br />
-
-		</div> 
-
-
-
-	 </td>
-
-
-
-		<tr>
-
-
-
-		<td valign="top" class="rightside"><div align="center"><?=$emptyError?></div></td>
-
-
-
-		</tr>
-
-
-
-
-
-
-
-</table></form></td>
-
-
-
-
-
-
-
-</table>
-
 <? include("footer.php")?>
-
 </body>
 
-
-
 </html>
-
-
-
