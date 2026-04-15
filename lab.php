@@ -191,18 +191,18 @@
                                                 'support' => isset($pieces[0]) ? $pieces[0] : ''
                                             ),
                                             array(
-                                                'ptype' => '9',
-                                                'title' => trim($courseBaseName . ($isCcdeLabRequest ? ' Real Lab Workbook + Bootcamp' : ' Real Lab Workbook + Racks + Bootcamp')),
-                                                'price' => $bprice,
-                                                'icon' => 'images/new-image/engine_package.svg',
-                                                'support' => isset($pieces[2]) ? $pieces[2] : ''
-                                            ),
-                                            array(
                                                 'ptype' => '8',
                                                 'title' => trim($courseBaseName . ($isCcdeLabRequest ? ' Real Lab Workbook' : ' Real Lab Workbook + Racks')),
                                                 'price' => $eprice,
                                                 'icon' => 'images/new-image/pdc_icons.svg',
                                                 'support' => isset($pieces[1]) ? $pieces[1] : ''
+                                            ),
+                                            array(
+                                                'ptype' => '9',
+                                                'title' => trim($courseBaseName . ($isCcdeLabRequest ? ' Real Lab Workbook + Bootcamp' : ' Real Lab Workbook + Racks + Bootcamp')),
+                                                'price' => $bprice,
+                                                'icon' => 'images/new-image/engine_package.svg',
+                                                'support' => isset($pieces[2]) ? $pieces[2] : ''
                                             )
                                         );
 
@@ -584,24 +584,24 @@
 
                                             <?php if ($hasFeatureComparison) { ?>
                                             <div class="lab-comparison-table-wrap">
-                                                <h3 class="lab-support-heading text-center bold">Exam Details &amp; Support</h3>
+                                                <h3 class="lab-support-heading text-center bold">Package Details &amp; Support</h3>
                                                 <div class="table-responsive">
                                                     <table class="lab-comparison-table">
                                                         <thead>
                                                             <tr>
                                                                 <th><?= htmlspecialchars($courseBaseName); ?></th>
-                                                                <th>Real Lab Workbook</th>
-                                                                <th>Real Lab Workbook + Racks</th>
                                                                 <th>Real Lab Workbook + Racks + Bootcamp</th>
+                                                                <th>Real Lab Workbook + Racks</th>
+                                                                <th>Real Lab Workbook</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php foreach ($featureComparisonData as $featureRow) { ?>
                                                             <tr>
                                                                 <td><?= htmlspecialchars($featureRow['name']); ?></td>
-                                                                <td><i class="fa <?= !empty($featureRow['workbook']) ? 'fa-check text-success' : 'fa-times text-danger'; ?>"></i></td>
-                                                                <td><i class="fa <?= !empty($featureRow['racks']) ? 'fa-check text-success' : 'fa-times text-danger'; ?>"></i></td>
                                                                 <td><i class="fa <?= !empty($featureRow['bootcamp']) ? 'fa-check text-success' : 'fa-times text-danger'; ?>"></i></td>
+                                                                <td><i class="fa <?= !empty($featureRow['racks']) ? 'fa-check text-success' : 'fa-times text-danger'; ?>"></i></td>
+                                                                <td><i class="fa <?= !empty($featureRow['workbook']) ? 'fa-check text-success' : 'fa-times text-danger'; ?>"></i></td>
                                                             </tr>
                                                             <?php } ?>
                                                         </tbody>
@@ -610,7 +610,7 @@
                                             </div>
                                             <?php } elseif ($hasLegacySupportContent) { ?>
                                             <div class="lab-support-section">
-                                                <h3 class="lab-support-heading text-center bold">Exam Details &amp; Support</h3>
+                                                <h3 class="lab-support-heading text-center bold">Package Details &amp; Support</h3>
                                                 <div class="row">
                                                     <?php foreach ($paidPackages as $package) {
                                                         $supportContent = $cleanSupportHtml($package['support']);
@@ -992,7 +992,7 @@
             <div class="passing_dumps paddbottom60 display_inlines">
                 <div class="container">
                     <div class="main_heading text-center paddbtm10"> <?php echo htmlspecialchars($labDisplayName); ?>
-                        (<?php echo $exam['QA'] ?>) <span>Live Exam Videos</span></div>
+                        <?php if (!empty($exam['QA'])) { ?>(<?php echo $exam['QA'] ?>)<?php } ?> <span>Live Exam Videos</span></div>
                     <div class="exam-demo-gallery">
 
                         <div class="row">
