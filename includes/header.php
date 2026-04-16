@@ -1740,7 +1740,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 														<li> <a href="fortinet-nse8-Lab.htm">FCX (NSE8) Practical Exam</a> </li>
 													</ul>
 												</li>
-												<li> <a href="/fortinet-demo.php">Demo</a> </li>
+												<li> <a href="/fortinet-demo.php">Demo1</a> </li>
 											</ul>
 										</li>
 										<li class="dropdown mega-dropdown"> <a href="/Juniper-certification-dumps.html" class="dropdown-toggle padding_20"> Juniper <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
