@@ -992,7 +992,7 @@
             <div class="passing_dumps paddbottom60 display_inlines">
                 <div class="container">
                     <div class="main_heading text-center paddbtm10"> <?php echo htmlspecialchars($labDisplayName); ?>
-                        <?php if (!empty($exam['QA'])) { ?>(<?php echo $exam['QA'] ?>)<?php } ?> <span>Live Exam Videos</span></div>
+                        <?php if (!empty($exam['QA'])) { ?>(<?php echo $exam['QA'] ?>)<?php } ?> <span> Videos</span></div>
                     <div class="exam-demo-gallery">
 
                         <div class="row">
