@@ -1648,7 +1648,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 										<li> <a href="sk0-005_dumps.htm">CompTIA Server+ SK0-005</a> </li>
 										
 										<li> <a href="cs0-003_dumps.htm">CompTIA CySA+ CS0-003</a> </li>
-										<li> <a href="pt0-002_dumps.htm">CompTIA PenTest+ PT0-002</a> </li>
+										<li> <a href="pt0-003_dumps.htm">CompTIA PenTest+ PT0-003</a> </li>
 										<li> <a href="cas-005_dumps.htm">CompTIA CASP+ CAS-005</a> </li>
 										
 										<li> <a href="pk0-005_dumps.htm">CompTIA Project+ PK0-005</a> </li>
