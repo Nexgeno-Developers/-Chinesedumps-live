@@ -2,6 +2,12 @@
 require_once __DIR__ . '/config/load_secrets.php';
 ?>
 <style>
+
+  /* Increase Crisp chat button size */
+.crisp-client .cc-kv6t .cc-1xry .cc-unoo {
+    transform: scale(1.3) !important;  /* adjust size */
+    transform-origin: bottom right;
+}
     .footer_chacpha .g-recaptcha {
     transform: scale(.93);
     -webkit-transform: scale(0.68);
@@ -1203,7 +1209,6 @@ s0.parentNode.insertBefore(s1,s0);
 <!-- Start of chi9321172 Zendesk Widget script -->
 <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=17400775-fb21-4f0b-937b-ead737d35778"> </script>
 <!-- End of chi9321172 Zendesk Widget script -->
-<meta name="viewport" content="width=device-width, initial-scale=2">
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="9e11c90c-d6e1-4aab-bf32-2ab60a6bac59";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
 
