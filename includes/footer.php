@@ -1203,7 +1203,7 @@ s0.parentNode.insertBefore(s1,s0);
 <!-- Start of chi9321172 Zendesk Widget script -->
 <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=17400775-fb21-4f0b-937b-ead737d35778"> </script>
 <!-- End of chi9321172 Zendesk Widget script -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=2">
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="9e11c90c-d6e1-4aab-bf32-2ab60a6bac59";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
 
