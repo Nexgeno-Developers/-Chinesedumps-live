@@ -154,6 +154,20 @@ $ccAdminData = get_session_data();
 
 		}
 
+	$searchExamName = "";
+	$whereClause = "";
+	$searchConditions = array();
+	if(isset($_POST['exam_name'])){
+		$searchExamName = trim($_POST['exam_name']);
+	}
+	if($searchExamName !== ""){
+		$searchConditions[] = "e.exam_name LIKE '%" . mysql_real_escape_string($searchExamName) . "%'";
+	}
+	if(!empty($searchConditions)){
+		$whereClause = " WHERE " . implode(" AND ", $searchConditions);
+	}
+	$searchExamNameSafe = htmlspecialchars($searchExamName, ENT_QUOTES, 'UTF-8');
+
 
 ?>
 
@@ -167,7 +181,7 @@ $ccAdminData = get_session_data();
 
 <td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
 
-<td width="810" valign="top" class="rightside"><h2>Banners Management Replica!</h2>
+<td width="810" valign="top" class="rightside"><h2>Exam Results Management</h2>
 
 Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
 
@@ -190,7 +204,12 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
   <tr>
 
      <td colspan="5"  align="center">
-      
+		Exam Name
+		<input type="text" name="exam_name" id="exam_name" value="<?=$searchExamNameSafe;?>" />
+		&nbsp;&nbsp;
+		<input type="submit" name="Search" id="Search" value="Search" class="button" />
+		&nbsp;&nbsp;
+		<a class="menu" href="galley_management.php">Reset</a>
 
 	  </td>
 
@@ -256,6 +275,8 @@ $sqlSlider = mysql_query("
     LEFT JOIN tbl_exam e ON s.group_id = e.exam_id
     LEFT JOIN tbl_cert sc ON e.cert_id = sc.cert_id
     LEFT JOIN tbl_vendors v ON e.ven_id = v.ven_id
+	" . $whereClause . "
+	ORDER BY e.exam_name ASC
 ");
 
 for($sr = 0; $sr < mysql_num_rows($sqlSlider); $sr++){

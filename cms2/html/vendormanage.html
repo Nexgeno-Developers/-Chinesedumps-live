@@ -39,19 +39,11 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
    </tr>
   <tr>
     <td width='33' class='header' align="center"><input name="CheckBoxControl" type="checkbox" id="chkbox_select_all" onclick="checkAllOneOne(this);" value=""  /></td>
-   <? if(isset($_GET['ty']))
-     {
-     	if($_GET['ty']=='DESC'){?>
-    <td class='header' width='133' align="center"><a href="vendormanage.php?ord=vendor&ty=ASC" style=" color:#FFFFFF;">Vendor Name</a></td>
-    <? }else{?>
-    <td class='header' width='133' align="center"><a href="vendormanage.php?ord=vendor&ty=DESC" style=" color:#FFFFFF;">Vendor Name</a></td>
-    <? }}else{ ?>
-    <td class='header' width='133' align="center"><a href="vendormanage.php?ord=vendor&ty=ASC" style=" color:#FFFFFF;">Vendor Name</a></td>
-    <? } ?>
-	<td class='header' width='206' align="center">Is Hot </td>
-  <td class='header' width='171' align="center">Is Home </td>
+    <td class='header' width='133' align="center"><a href="vendormanage.php?ord=ven_name&ty=<?=$vendorNameNextTy;?>" style=" color:#FFFFFF;">Vendor Name<?=$vendorNameArrow;?></a></td>
+	<td class='header' width='206' align="center"><a href="vendormanage.php?ord=ven_hot&ty=<?=$hotNextTy;?>" style=" color:#FFFFFF;">Is Hot<?=$hotArrow;?></a></td>
+  <td class='header' width='171' align="center"><a href="vendormanage.php?ord=ven_home&ty=<?=$homeNextTy;?>" style=" color:#FFFFFF;">Is Home<?=$homeArrow;?></a></td>
  <!-- <td class='header' width='171' align="center">Sell All Vendor</td>-->
-  <td class='header' width='171' align="center">Status </td>
+  <td class='header' width='171' align="center"><a href="vendormanage.php?ord=ven_status&ty=<?=$statusNextTy;?>" style=" color:#FFFFFF;">Status<?=$statusArrow;?></a></td>
 	<td width="271" align="center" class='header'>Option</td>
     </tr>
   <!-- LOOP THROUGH USERS -->

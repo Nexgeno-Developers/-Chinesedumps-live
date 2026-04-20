@@ -42,10 +42,43 @@ $ccAdminData = get_session_data();
 		}										
 	$linkPerPage      	= 	10;
 	$of					=	"of";
+
+	$allowedSortColumns = array(
+		"cert_name" => "cert_name",
+		"vendor_name" => "(SELECT ven_name FROM tbl_vendors WHERE tbl_vendors.ven_id = tbl_cert.ven_id)",
+		"cert_hot" => "cert_hot",
+		"cert_home" => "cert_home",
+		"cert_status" => "cert_status"
+	);
+
+	$ord = "vendor_name";
+	if(isset($_GET['ord']) && array_key_exists($_GET['ord'], $allowedSortColumns)){
+		$ord = $_GET['ord'];
+	}
+
+	$ty = "ASC";
+	if(isset($_GET['ty']) && strtoupper($_GET['ty']) == "DESC"){
+		$ty = "DESC";
+	}
+
+	$orderByClause = $allowedSortColumns[$ord];
+	$pagingQueryString = "&ord=".$ord."&ty=".$ty;
+
+	$certNameNextTy = ($ord == "cert_name" && $ty == "ASC") ? "DESC" : "ASC";
+	$vendorNameNextTy = ($ord == "vendor_name" && $ty == "ASC") ? "DESC" : "ASC";
+	$certHotNextTy = ($ord == "cert_hot" && $ty == "ASC") ? "DESC" : "ASC";
+	$certHomeNextTy = ($ord == "cert_home" && $ty == "ASC") ? "DESC" : "ASC";
+	$certStatusNextTy = ($ord == "cert_status" && $ty == "ASC") ? "DESC" : "ASC";
+
+	$certNameArrow = ($ord == "cert_name") ? (($ty == "ASC") ? " &uarr;" : " &darr;") : "";
+	$vendorNameArrow = ($ord == "vendor_name") ? (($ty == "ASC") ? " &uarr;" : " &darr;") : "";
+	$certHotArrow = ($ord == "cert_hot") ? (($ty == "ASC") ? " &uarr;" : " &darr;") : "";
+	$certHomeArrow = ($ord == "cert_home") ? (($ty == "ASC") ? " &uarr;" : " &darr;") : "";
+	$certStatusArrow = ($ord == "cert_status") ? (($ty == "ASC") ? " &uarr;" : " &darr;") : "";
 //----------------------------------------------------------------------------------------------------		
 
 		if(!isset($pgObj) && empty($pgObj))
-				$pgObj 		=  new classPaging ("certifmanage.php",$rowsPerPage,$linkPerPage,"","","");
+				$pgObj 		=  new classPaging ("certifmanage.php",$rowsPerPage,$linkPerPage,$pagingQueryString,"","");
 		
 		if(isset($_GET['pgIndex']) && !empty($_GET['pgIndex']) && is_numeric($_GET['pgIndex']) && is_numeric($_GET['currentPage']))
 				{
@@ -136,21 +169,21 @@ $ccAdminData = get_session_data();
 	{
 			if($_POST['textSearch']=='' && $_POST['hothot']==''&& $_POST['homehome']==''&& $_POST['criteriacriteria']==''){
 			
-				$result1		=	$objMain->get_all_Tabledate($limist,'tbl_cert'," order by ven_id  DESC");	
+				$result1		=	$objMain->get_all_Tabledate($limist,'tbl_cert'," order by ".$orderByClause." ".$ty);	
 				$pgObj->SetNavigationalLinksNew($result1);
-				$result		=	$objMain->get_all_Tabledate($LIMIT,'tbl_cert'," order by cert_id  DESC");
+				$result		=	$objMain->get_all_Tabledate($LIMIT,'tbl_cert'," order by ".$orderByClause." ".$ty);
 			}else{
-			$sql =   "select * from tbl_cert where ".$extra." ".$criteriasearch." ".$homesearch." ".$hotsearch." ";
+			$sql =   "select * from tbl_cert where ".$extra." ".$criteriasearch." ".$homesearch." ".$hotsearch." order by ".$orderByClause." ".$ty;
 		    $result1=mysql_query($sql);
 			$pgObj->SetNavigationalLinksNew($result1);
-			$sql =   "select * from tbl_cert where ".$extra." ".$criteriasearch." ".$homesearch." ".$hotsearch." ";
+			$sql =   "select * from tbl_cert where ".$extra." ".$criteriasearch." ".$homesearch." ".$hotsearch." order by ".$orderByClause." ".$ty;
 		    $result=mysql_query($sql);
 			
 	}
 	}else{
-			$result1		=	$objMain->get_all_Tabledate($limist,'tbl_cert'," order by ven_id ASC");	
+			$result1		=	$objMain->get_all_Tabledate($limist,'tbl_cert'," order by ".$orderByClause." ".$ty);	
 			$pgObj->SetNavigationalLinksNew($result1);
-			$result		=	$objMain->get_all_Tabledate($LIMIT,'tbl_cert'," order by ven_id ASC");
+			$result		=	$objMain->get_all_Tabledate($LIMIT,'tbl_cert'," order by ".$orderByClause." ".$ty);
 	
 	
 	}

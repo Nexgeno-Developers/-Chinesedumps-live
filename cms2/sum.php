@@ -24,12 +24,160 @@ $tot_user	=	$fetchu['user'];
 $fetcho		=	mysql_fetch_array(mysql_query("SELECT count(*) as tot_ord, sum(Net_Amount) as tot_sale FROM `order_master` where OrderDate='$date'"));
 $tot_order	=	$fetcho['tot_ord'];
 $tot_sale	=	$fetcho['tot_sale'];
+
+$summaryStaffs		= mysql_fetch_array(mysql_query("SELECT COUNT(*) AS total_count FROM tbladmin"));
+$summaryVendors		= mysql_fetch_array(mysql_query("SELECT COUNT(*) AS total_count FROM tbl_vendors"));
+$summaryCertificates= mysql_fetch_array(mysql_query("SELECT COUNT(*) AS total_count FROM tbl_cert"));
+$summaryExams		= mysql_fetch_array(mysql_query("SELECT COUNT(*) AS total_count FROM tbl_exam"));
+$summaryUsers		= mysql_fetch_array(mysql_query("SELECT COUNT(*) AS total_count FROM tbl_user"));
+$summaryOrders		= mysql_fetch_array(mysql_query("SELECT COUNT(*) AS total_count FROM order_master"));
+
+$currentMonthStart	= date("Y-m-01");
+$currentMonthEnd	= date("Y-m-t");
+$lastMonthStart		= date("Y-m-01", strtotime("-1 month"));
+$lastMonthEnd		= date("Y-m-t", strtotime("-1 month"));
+
+$summaryCurrentMonthSale = mysql_fetch_array(mysql_query("SELECT COALESCE(SUM(Net_Amount),0) AS total_amount FROM order_master WHERE DATE(OrderDate) BETWEEN '".$currentMonthStart."' AND '".$currentMonthEnd."'"));
+$summaryLastMonthSale	 = mysql_fetch_array(mysql_query("SELECT COALESCE(SUM(Net_Amount),0) AS total_amount FROM order_master WHERE DATE(OrderDate) BETWEEN '".$lastMonthStart."' AND '".$lastMonthEnd."'"));
+
+$totalStaffs			= isset($summaryStaffs['total_count']) ? (int)$summaryStaffs['total_count'] : 0;
+$totalVendors			= isset($summaryVendors['total_count']) ? (int)$summaryVendors['total_count'] : 0;
+$totalCertificates		= isset($summaryCertificates['total_count']) ? (int)$summaryCertificates['total_count'] : 0;
+$totalExams				= isset($summaryExams['total_count']) ? (int)$summaryExams['total_count'] : 0;
+$totalUsers				= isset($summaryUsers['total_count']) ? (int)$summaryUsers['total_count'] : 0;
+$totalOrders			= isset($summaryOrders['total_count']) ? (int)$summaryOrders['total_count'] : 0;
+$currentMonthSaleAmount	= isset($summaryCurrentMonthSale['total_amount']) ? (float)$summaryCurrentMonthSale['total_amount'] : 0;
+$lastMonthSaleAmount	= isset($summaryLastMonthSale['total_amount']) ? (float)$summaryLastMonthSale['total_amount'] : 0;
+
+$staffListUrl			= "manageadmin.php";
+$vendorsListUrl			= "vendormanage.php";
+$certificatesListUrl	= "certifmanage.php";
+$examsListUrl			= "exammanage.php";
+$usersListUrl			= "manageuser.php";
+$ordersListUrl			= "masterorder.php";
+$currentMonthSalesUrl	= "masterorder.php?".http_build_query(array("from_date" => $currentMonthStart, "to_date" => $currentMonthEnd));
+$lastMonthSalesUrl		= "masterorder.php?".http_build_query(array("from_date" => $lastMonthStart, "to_date" => $lastMonthEnd));
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title><?=$websitetitle?></title>
 <link href="new.css" rel="stylesheet" type="text/css" />
+<style>
+.d-none{display:none;}
+.dashboard-shell{
+	background:#f7fafc;
+	border:1px solid #dbe7f3;
+	border-radius:12px;
+	padding:18px;
+	margin-top:8px;
+}
+.dashboard-title{
+	margin:0;
+	font-size:22px;
+	color:#1e3854;
+	font-weight:bold;
+}
+.dashboard-subtitle{
+	margin:8px 0 0 0;
+	color:#58708a;
+	font-size:12px;
+}
+.visit-summary{
+	margin-top:14px !important;
+	border:1px solid #d7e4ef;
+	border-radius:10px;
+	overflow:hidden;
+	background:#ffffff;
+}
+.visit-summary .stat0{
+	padding:0;
+}
+.visit-summary-inner{
+	width:100%;
+}
+.visit-metric{
+	padding:14px 16px;
+	border-right:1px solid #e4edf5;
+	vertical-align:top;
+}
+.visit-metric:last-child{
+	border-right:0;
+}
+.metric-label{
+	display:block;
+	font-size:11px;
+	color:#6f859c;
+	text-transform:uppercase;
+	letter-spacing:0.3px;
+	margin-bottom:4px;
+}
+.metric-value{
+	display:block;
+	font-size:20px;
+	line-height:1.2;
+	color:#163654;
+	font-weight:bold;
+}
+.metric-value.small{
+	font-size:12px;
+	font-weight:normal;
+	color:#3c5875;
+}
+.summary-grid{
+	margin-top:14px !important;
+	border-collapse:separate;
+	border-spacing:10px;
+}
+.summary-card-cell{
+	background:#ffffff;
+	border:1px solid #d9e5f1;
+	border-radius:12px;
+	padding:0 !important;
+	transition:all .2s ease-in-out;
+}
+.summary-card-cell:hover{
+	transform:translateY(-2px);
+	box-shadow:0 8px 18px rgba(23,58,88,0.12);
+	border-color:#c8daea;
+}
+.summary-card-link{
+	display:block;
+	padding:14px 16px;
+	text-decoration:none;
+	color:#233f5b;
+}
+.summary-card-title{
+	font-size:11px;
+	font-weight:bold;
+	text-transform:uppercase;
+	letter-spacing:0.4px;
+	color:#6e8299;
+}
+.summary-card-value{
+	margin-top:8px;
+	font-size:25px;
+	line-height:1;
+	font-weight:bold;
+	color:#0f3c67;
+}
+.summary-card-hint{
+	margin-top:8px;
+	font-size:11px;
+	color:#7d8ea1;
+}
+@media (max-width: 1100px){
+	.summary-grid{
+		border-spacing:8px;
+	}
+	.summary-card-value{
+		font-size:22px;
+	}
+	.visit-metric{
+		padding:12px;
+	}
+}
+</style>
 </head>
 <body>
 
@@ -44,10 +192,11 @@ $tot_sale	=	$fetcho['tot_sale'];
 <table cellpadding="0" cellspacing="0" width="102%">
 <tr>
 <td width="190" class="leftside"><?php include ("menu.php"); ?></td>
-<td width="810" class="rightside"><h2>Hello, Admin!</h2>
-
-Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?> website. 
-<table width="100%" border="0" class="stats">
+<td width="810" class="rightside">
+<div class="dashboard-shell">
+<h2 class="dashboard-title">Hello, Admin!</h2>
+<p class="dashboard-subtitle">Welcome to your <?=$websitename?> control panel. Here you can manage and modify every aspect of your <?=$websitename?> website.</p>
+<table width="100%" border="0" class="stats d-none">
   <tr>
     <td width="2%">&nbsp;</td>
     <td width="29%"><strong><?php echo $websitename;?> Admin System:</strong> 1.0</td>
@@ -95,14 +244,14 @@ print getip();
 </div></td>
     </tr>
 </table>
-<table width='100%' cellpadding='0' cellspacing='0' class='stats' style='margin-top: 10px;'>
+<table width='100%' cellpadding='0' cellspacing='0' class='d-none stats visit-summary'>
 <tr>
 <td class='stat0'>
-  <table width="100%" cellpadding='0' cellspacing='0'>
+  <table width="100%" cellpadding='0' cellspacing='0' class="visit-summary-inner">
   <tr>
 
-  <td width="33%"><b>Total Admin's:</b> 1 </td>
-  <td width="33%" align='left' ><b>Total Visits:</b>&nbsp;<?php
+  <td width="33%" class="visit-metric"><span class="metric-label">Total Admin's</span><span class="metric-value">1</span></td>
+  <td width="33%" align='left' class="visit-metric"><span class="metric-label">Total Visits</span><span class="metric-value"><?php
 
 $filename = 'hitcount.txt';
 $handle = fopen($filename, 'r');
@@ -116,8 +265,8 @@ fclose($handle);
 // Uncomment the next line (remove //) to display the number of hits on your page.
 //echo $hits;
 echo $hits;
-?></td>
-  <td width="33%" align='left' ><b>Last Visits :</b><script type="text/javascript">
+?></span></td>
+  <td width="33%" align='left' class="visit-metric"><span class="metric-label">Last Visit</span><span class="metric-value small"><script type="text/javascript">
 
 /***********************************************
 * Display time of last visit script- by JavaScriptKit.com
@@ -154,37 +303,101 @@ document.write(lastvisit.subsequentvisitmsg.replace("\[displaydate\]", new Date(
 
 lastvisit.showmessage()
 
-</script></td>
+</script></span></td>
   </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td style='padding-left: 60px;' align='right'>&nbsp;</td>
-    <td  align='left'>&nbsp;</td>
+  <tr class="d-none">
+    <td class="d-none">&nbsp;</td>
+    <td class="d-none" style='padding-left: 60px;' align='right'>&nbsp;</td>
+    <td class="d-none"  align='left'>&nbsp;</td>
   </tr>
-  <tr>
-    <td><strong>Hot Demo Download: <?=$examcode['exam_name']?>&nbsp;(<?=$Recordnum?>)</strong></td>
-    <td align='left'><strong>Hot Full Exam Download: <?=$examcode2['exam_name']?>&nbsp;(<?=$Recordnum2?>)</strong></td>
-    <td  align='left'><strong>Hot Vendor Maximum Sold: <?=$hotvendo2['ven_name']?>&nbsp;(<?=$highthot?>)</strong></td>
+  <tr class="d-none">
+    <td class="d-none"><strong>Hot Demo Download: <?=$examcode['exam_name']?>&nbsp;(<?=$Recordnum?>)</strong></td>
+    <td class="d-none" align='left'><strong>Hot Full Exam Download: <?=$examcode2['exam_name']?>&nbsp;(<?=$Recordnum2?>)</strong></td>
+    <td class="d-none"  align='left'><strong>Hot Vendor Maximum Sold: <?=$hotvendo2['ven_name']?>&nbsp;(<?=$highthot?>)</strong></td>
   </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td style='padding-left: 60px;' align='right'>&nbsp;</td>
-    <td  align='left'>&nbsp;</td>
+  <tr class="d-none">
+    <td class="d-none">&nbsp;</td>
+    <td class="d-none" style='padding-left: 60px;' align='right'>&nbsp;</td>
+    <td class="d-none"  align='left'>&nbsp;</td>
   </tr>
-  <tr>
-    <td><strong>User Registered yesterday: <?=$tot_user?>&nbsp;</strong></td>
-    <td align='left'><strong>Orders Received Yesterday: <?=$tot_order?></strong></td>
-    <td  align='left'><strong>Yesterday's Sale: <?=$tot_sale?></strong></td>
+  <tr class="d-none">
+    <td class="d-none"><strong>User Registered yesterday: <?=$tot_user?>&nbsp;</strong></td>
+    <td class="d-none" align='left'><strong>Orders Received Yesterday: <?=$tot_order?></strong></td>
+    <td class="d-none"  align='left'><strong>Yesterday's Sale: <?=$tot_sale?></strong></td>
   </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td style='padding-left: 60px;' align='right'>&nbsp;</td>
-    <td  align='left'>&nbsp;</td>
+  <tr class="d-none">
+    <td class="d-none">&nbsp;</td>
+    <td class="d-none" style='padding-left: 60px;' align='right'>&nbsp;</td>
+    <td class="d-none"  align='left'>&nbsp;</td>
   </tr>
   </table></td>
 </tr>
 </table><!--<img src="http://www.yourdomain.com/worldmap_track.php" border="0" alt="" width="1" height="1">--><br>
 
+<table width="100%" cellpadding="0" cellspacing="0" class="summary-grid">
+<tr>
+<td class="stat1 summary-card-cell" width="25%">
+	<a href="<?=$staffListUrl;?>" class="summary-card-link">
+		<div class="summary-card-title">Total Staffs</div>
+		<div class="summary-card-value"><?=$totalStaffs;?></div>
+		<div class="summary-card-hint">View staff listing</div>
+	</a>
+</td>
+<td class="stat1 summary-card-cell" width="25%">
+	<a href="<?=$vendorsListUrl;?>" class="summary-card-link">
+		<div class="summary-card-title">Total Vendors</div>
+		<div class="summary-card-value"><?=$totalVendors;?></div>
+		<div class="summary-card-hint">Open vendors page</div>
+	</a>
+</td>
+<td class="stat1 summary-card-cell" width="25%">
+	<a href="<?=$certificatesListUrl;?>" class="summary-card-link">
+		<div class="summary-card-title">Total Certificate</div>
+		<div class="summary-card-value"><?=$totalCertificates;?></div>
+		<div class="summary-card-hint">Open certificates page</div>
+	</a>
+</td>
+<td class="stat2 summary-card-cell" width="25%">
+	<a href="<?=$examsListUrl;?>" class="summary-card-link">
+		<div class="summary-card-title">Total Exams</div>
+		<div class="summary-card-value"><?=$totalExams;?></div>
+		<div class="summary-card-hint">Open exams page</div>
+	</a>
+</td>
+</tr>
+<tr>
+<td class="stat1 summary-card-cell" width="25%">
+	<a href="<?=$usersListUrl;?>" class="summary-card-link">
+		<div class="summary-card-title">Total Users</div>
+		<div class="summary-card-value"><?=$totalUsers;?></div>
+		<div class="summary-card-hint">Open users page</div>
+	</a>
+</td>
+<td class="stat1 summary-card-cell" width="25%">
+	<a href="<?=$ordersListUrl;?>" class="summary-card-link">
+		<div class="summary-card-title">Total Orders</div>
+		<div class="summary-card-value"><?=$totalOrders;?></div>
+		<div class="summary-card-hint">Open orders page</div>
+	</a>
+</td>
+<td class="stat1 summary-card-cell" width="25%">
+	<a href="<?=$currentMonthSalesUrl;?>" class="summary-card-link">
+		<div class="summary-card-title">Current Month Sale</div>
+		<div class="summary-card-value">$<?=number_format($currentMonthSaleAmount, 2);?></div>
+		<div class="summary-card-hint">View current month sales</div>
+	</a>
+</td>
+<td class="stat2 summary-card-cell" width="25%">
+	<a href="<?=$lastMonthSalesUrl;?>" class="summary-card-link">
+		<div class="summary-card-title">Last Month Sale</div>
+		<div class="summary-card-value">$<?=number_format($lastMonthSaleAmount, 2);?></div>
+		<div class="summary-card-hint">View last month sales</div>
+	</a>
+</td>
+</tr>
+</table>
+
+<div class="d-none">
 <h2>Getting Started</h2>
 If you are a new user and are ready to build your website, here are some helpful suggestions:
 
@@ -215,11 +428,13 @@ Reviews Management gives you full control of your members reviews. You can read 
 This module is used to send the newsletter to the subscribers. You can change your content in the newsletter.</td>
 </tr>-->
 </table>
-<? } ?>
+<?php } ?>
+</div>
+</div>
 </td>
 </tr>
 </table>
 
-<? include("footer.php")?>
+<?php include("footer.php")?>
 </body>
 </html>

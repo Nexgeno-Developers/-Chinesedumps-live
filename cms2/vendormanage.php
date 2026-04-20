@@ -42,9 +42,40 @@ $ccAdminData = get_session_data();
 		}
 	$linkPerPage      	= 	10;
 	$of					=	"of";
+
+	$allowedSortColumns = array(
+		"ven_name" => "ven_name",
+		"ven_hot" => "ven_hot",
+		"ven_home" => "ven_home",
+		"ven_status" => "ven_status",
+		"vendor" => "ven_name"
+	);
+
+	$ord = "ven_name";
+	if(isset($_GET['ord']) && array_key_exists($_GET['ord'], $allowedSortColumns)){
+		$ord = $_GET['ord'];
+	}
+
+	$ty = "ASC";
+	if(isset($_GET['ty']) && strtoupper($_GET['ty']) == "DESC"){
+		$ty = "DESC";
+	}
+
+	$orderByClause = $allowedSortColumns[$ord];
+	$pagingQueryString = "&ord=".$ord."&ty=".$ty;
+
+	$vendorNameNextTy = ($ord == "ven_name" || $ord == "vendor") && $ty == "ASC" ? "DESC" : "ASC";
+	$hotNextTy = ($ord == "ven_hot" && $ty == "ASC") ? "DESC" : "ASC";
+	$homeNextTy = ($ord == "ven_home" && $ty == "ASC") ? "DESC" : "ASC";
+	$statusNextTy = ($ord == "ven_status" && $ty == "ASC") ? "DESC" : "ASC";
+
+	$vendorNameArrow = ($ord == "ven_name" || $ord == "vendor") ? (($ty == "ASC") ? " &uarr;" : " &darr;") : "";
+	$hotArrow = ($ord == "ven_hot") ? (($ty == "ASC") ? " &uarr;" : " &darr;") : "";
+	$homeArrow = ($ord == "ven_home") ? (($ty == "ASC") ? " &uarr;" : " &darr;") : "";
+	$statusArrow = ($ord == "ven_status") ? (($ty == "ASC") ? " &uarr;" : " &darr;") : "";
 //----------------------------------------------------------------------------------------------------		
 		if(!isset($pgObj) && empty($pgObj))
-				$pgObj 		=  new classPaging ("vendormanage.php",$rowsPerPage,$linkPerPage,"","","");
+				$pgObj 		=  new classPaging ("vendormanage.php",$rowsPerPage,$linkPerPage,$pagingQueryString,"","","");
 		if(isset($_GET['pgIndex']) && !empty($_GET['pgIndex']) && is_numeric($_GET['pgIndex']) && is_numeric($_GET['currentPage']))
 				{
 					$PageNo			 = $_GET['currentPage'];	# Shows # of Page			
@@ -113,30 +144,25 @@ $ccAdminData = get_session_data();
 				$hotsearch	=	"";
 			}
 	}
-	if(isset($_GET['ord'])){
-		$ordersortord	=	$_GET['ty'];
-	}else{
-		$ordersortord	=	"ASC";
-	}
 	if(isset($_POST['Search']) )
 	{
 			if($_POST['textSearch']=='' && $_POST['hothot']==''&& $_POST['homehome']==''&& $_POST['criteriacriteria']==''){
-				$result1		=	$objMain->get_all_Tabledate($limist,'tbl_vendors'," order by ven_name ".$ordersortord."");	
+				$result1		=	$objMain->get_all_Tabledate($limist,'tbl_vendors'," order by ".$orderByClause." ".$ty."");	
 				$pgObj->SetNavigationalLinksNew($result1);
-				$result		=	$objMain->get_all_Tabledate($LIMIT,'tbl_vendors'," order by ven_name  ".$ordersortord."");
+				$result		=	$objMain->get_all_Tabledate($LIMIT,'tbl_vendors'," order by ".$orderByClause." ".$ty."");
 			}else{
-		    $sql =   "select * from tbl_vendors where ".$extra." ".$criteriasearch." ".$homesearch." ".$hotsearch." order by ven_name ".$ordersortord."";
+		    $sql =   "select * from tbl_vendors where ".$extra." ".$criteriasearch." ".$homesearch." ".$hotsearch." order by ".$orderByClause." ".$ty."";
 		    $result1=mysql_query($sql);
 			$pgObj->SetNavigationalLinksNew($result1);
-			$sql =   "select * from tbl_vendors where ".$extra." ".$criteriasearch." ".$homesearch." ".$hotsearch." order by ven_name  ".$ordersortord."";
+			$sql =   "select * from tbl_vendors where ".$extra." ".$criteriasearch." ".$homesearch." ".$hotsearch." order by ".$orderByClause." ".$ty."";
 		    $result=mysql_query($sql);
 	}
 	}
 	else
 	{
-			$result1		=	$objMain->get_all_Tabledate($limist,'tbl_vendors'," order by ven_name ".$ordersortord."");	
+			$result1		=	$objMain->get_all_Tabledate($limist,'tbl_vendors'," order by ".$orderByClause." ".$ty."");	
 			$pgObj->SetNavigationalLinksNew($result1);
-			$result		=	$objMain->get_all_Tabledate($LIMIT,'tbl_vendors'," order by ven_name  ".$ordersortord."");
+			$result		=	$objMain->get_all_Tabledate($LIMIT,'tbl_vendors'," order by ".$orderByClause." ".$ty."");
 			}
 //----------------------------------------------------------------------------------------------------		
 //----------------------------------------------------------------------------------------------------		

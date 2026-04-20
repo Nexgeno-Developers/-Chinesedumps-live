@@ -136,7 +136,7 @@
 
         <TR>
 
-          <TD width="198" class=menu_header>Sliders</TD>
+          <TD width="198" class=menu_header>Banners</TD>
 
         </TR>
 
@@ -152,13 +152,13 @@
 
         </TR>
 
-        <TR>
+        <!-- <TR>
 
           <TD class=menu><A class=menu 
 
             href="addslider.php"><IMG class=icon2 src="images/News-Edit.gif" border=0> Add Banner</A></TD>
 
-        </TR>
+        </TR> -->
 
         <TR>
 
@@ -189,7 +189,7 @@
 
         <TR>
 
-          <TD width="198" class=menu_header>Gallery</TD>
+          <TD width="198" class=menu_header>Exam Results</TD>
 
         </TR>
 
@@ -201,7 +201,7 @@
 
           <TD class=menu><A class=menu 
 
-            href="galley_management.php"><IMG class=icon2 src="images/admin_summary16.gif" border=0> Gallery Management</A></TD>
+            href="galley_management.php"><IMG class=icon2 src="images/admin_summary16.gif" border=0> Exam Results Management</A></TD>
 
         </TR>
 
@@ -209,7 +209,7 @@
 
           <TD class=menu><A class=menu 
 
-            href="add_gallery.php"><IMG class=icon2 src="images/News-Edit.gif" border=0> Add Gallery</A></TD>
+            href="add_gallery.php"><IMG class=icon2 src="images/News-Edit.gif" border=0> Add Exam Results Image</A></TD>
 
         </TR>
 

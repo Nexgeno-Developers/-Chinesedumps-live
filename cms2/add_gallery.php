@@ -186,7 +186,7 @@ function watermark_image($oldimage_name, $new_image_name) {
 
 
 
-<td width="810" class="rightside"><h2>Add Banner!</h2>
+<td width="810" class="rightside"><h2>Add Exam Results!</h2>
 
 
 
