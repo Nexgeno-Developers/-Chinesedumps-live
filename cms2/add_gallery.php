@@ -176,6 +176,35 @@ function watermark_image($oldimage_name, $new_image_name) {
 
 <script language="JavaScript" src="../includes/js/calendar.js"></script>
 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript">
+function initializeExamSelect2() {
+	if (!window.jQuery || !jQuery.fn || !jQuery.fn.select2) {
+		return;
+	}
+
+	var $examSelect = jQuery('#group_id');
+	if (!$examSelect.length) {
+		return;
+	}
+
+	if ($examSelect.hasClass('select2-hidden-accessible')) {
+		return;
+	}
+
+	$examSelect.select2({
+		width: '100%',
+		placeholder: 'Select Exam Name'
+	});
+}
+
+jQuery(document).ready(function() {
+	initializeExamSelect2();
+});
+</script>
+
 
 
 <table cellpadding="0" cellspacing="0" width="102%">

@@ -617,7 +617,7 @@
 <div class="seo_sections">
     <div class="container">
         <div style="clear:both">
-            <div class="course-description" style="clear:both"> <?php echo $exam['exam_descr']; ?> </div>
+            <div class="course-description" style="clear:both"> <?php echo $exam['exam_descr2']; ?> </div>
 
 
 
