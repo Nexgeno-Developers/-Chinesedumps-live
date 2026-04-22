@@ -444,7 +444,7 @@
 									<?php if ($video_links) {?>
  									 <div class="passing_dumps paddbottom60 display_inlines">
 									     <div class="container">
-        									 <div class="main_heading text-center paddbtm10"> <?php echo $exam['exam_fullname']; ?> (<?php echo $exam['QA'] ?>) <span>Live Exam Videos</span></div>
+        									 <div class="main_heading text-center paddbtm10"> <?php echo $exam['exam_fullname']; ?> (<?php echo $exam['QA'] ?>) <span> Videos</span></div>
         									     <div class="exam-demo-gallery">
 
                                                     <div class="row">
@@ -789,25 +789,6 @@
                            </div>
                        </div>
                    </div>
-
-                   <div class="panel panel-default">
-                       <div class="panel-heading">
-                           <a data-toggle="collapse" data-parent="#accordion" href="#faq2">
-                           <h4 class="panel-title">
-                                   Can I pass my exam just by using these dumps?
-                                   <i class="fa fa-plus pull-right"></i>
-
-                           </h4>
-                            </a>
-                       </div>
-                       <div id="faq2" class="panel-collapse collapse">
-                           <div class="panel-body">
-                               <p>Yes. Our exam dumps are built from real exam questions with verified answers, giving you exactly what appears in the exam and helping you pass with confidence when used properly.</p>
-
-                           </div>
-                       </div>
-                   </div>
-
                    <div class="panel panel-default">
                        <div class="panel-heading">
                            <a data-toggle="collapse" data-parent="#accordion" href="#faq3">
