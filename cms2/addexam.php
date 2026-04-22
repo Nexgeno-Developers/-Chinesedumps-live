@@ -518,14 +518,14 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
             </select>
           </td>
         </tr>
-        <tr>
+        <tr id="row_alias_name">
 
           <td align="right">Alias Name:</td>
 
           <td colspan="2"><input name="alias_name" id="alias_name" type="text" value="<?php if(isset($_POST['alias_name'])){ echo $_POST['alias_name'];} ?>" /></td>
 
         </tr>
-        <tr>
+        <tr id="row_faqs">
           <td align="right" valign="top">FAQs:</td>
           <td colspan="2">
             <div id="faq_wrapper">
@@ -604,7 +604,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
                 <input type="file" name="free_dump_pdf" accept="application/pdf" />
               </td>
             </tr>
-            <tr>
+            <tr id="row_demo_practice">
               <td align="right">Demo Practice PDF:</td>
               <td colspan="2">
                 <input type="text" name="demo_practice_label" placeholder="Label to display on site" style="width:320px" value="<?php if(isset($_POST['demo_practice_label'])){ echo htmlspecialchars($_POST['demo_practice_label'], ENT_QUOTES); } ?>" /><br />
@@ -655,7 +655,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
           </td>
         </tr>		
 
-         <tr>
+         <tr id="row_exam_description">
           <td valign="top" nowrap="nowrap" align="right">Exam Description:</td>
           <td height="29" colspan="2" align="left" valign="middle">
             <style>
@@ -803,6 +803,26 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 document.addEventListener('DOMContentLoaded', function () {  
   const ytWrapper = document.getElementById('youtube_links_wrapper');
   const ytAddBtn  = document.getElementById('add_more_youtube');
+  const examTypeSelect = document.getElementById('exam_type');
+  const examTypeToggleRows = [
+    document.getElementById('row_alias_name'),
+    document.getElementById('row_faqs'),
+    document.getElementById('row_demo_practice'),
+    document.getElementById('row_exam_description')
+  ].filter(Boolean);
+
+  function applyExamTypeVisibility() {
+    if (!examTypeSelect) return;
+    const hide = examTypeSelect.value === 'written';
+    examTypeToggleRows.forEach(function (row) {
+      row.style.display = hide ? 'none' : '';
+    });
+  }
+
+  if (examTypeSelect) {
+    examTypeSelect.addEventListener('change', applyExamTypeVisibility);
+    applyExamTypeVisibility();
+  }
 
   if (ytWrapper && ytAddBtn) {
     ytAddBtn.addEventListener('click', function () {

@@ -276,8 +276,6 @@ function normalizeFeatureRowsFromStorage($rawValue)
             $spram[29]	=	$_POST['startdate'];
 
             $spram[39]	=	stripslashes($_POST['pro_desc2']);
-
-            $spram[77]	=	$_POST['pro_tests']; 
             $spram[38]  =    $_POST['telegram_url'];
             $spram[30]	=	$_POST['whatsapp_url'];
             $spram[31]	=	$_POST['skype_url'];
@@ -500,8 +498,6 @@ function normalizeFeatureRowsFromStorage($rawValue)
 				$spram['faq_json'] = isset($row['faq_json']) ? $row['faq_json'] : '';
 				$spram[20]	= 	$row['QA'];
 				$spram[29]	= 	$row['exam_date'];						
-
-                $spram[77]	= 	$row['exam_tests'];	
                 $spram[38]  =   $row['telegram_url'];	
                 $spram[30]	=	$row['whatsapp_url'];
                 $spram[31]	=	$row['skype_url'];				
@@ -689,11 +685,11 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
             </select>
           </td>
         </tr>
-        <tr>
+        <tr id="row_alias_name">
           <td align="right"> Alias Name:</td>
           <td colspan="2"><input name="alias_name" id="alias_name" type="text" value="<?php if(isset($spram['alias_name'])){ echo $spram['alias_name'];} ?>" /></td>
         </tr>
-        <tr>
+        <tr id="row_faqs">
           <td align="right" valign="top"> FAQs:</td>
           <td colspan="2">
             <div id="faq_wrapper">
@@ -803,7 +799,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
                 <input type="hidden" name="old_free_dump_pdf" value="<?php echo $spram['free_dump_pdf']; ?>">
               </td>
             </tr>
-            <tr>
+            <tr id="row_demo_practice">
               <td align="right">Demo Practice PDF:</td>
               <td colspan="2">
                 <input type="text" name="demo_practice_label" placeholder="Label to display on site" style="width:320px" value="<?php echo isset($spram['demo_practice_label']) ? htmlspecialchars($spram['demo_practice_label'], ENT_QUOTES) : ''; ?>" /><br />
@@ -885,7 +881,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </td>
         </tr>		
 		
-         <tr>
+         <tr id="row_exam_description">
 
           <td valign="top" nowrap="nowrap" align="right">Exam Description:</td>
 
@@ -1161,214 +1157,6 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
           <td align="right"> Related product description:</td>
           <td colspan="2"><textarea id="exam_related_descr" name="exam_related_descr" cols="22" rows="6"><?php if(isset($spram[41])){echo $spram[41];} ?></textarea></td>
         </tr>
-            
-        <tr>
-
-          <td valign="top" nowrap="nowrap" align="right">User Testimonials:</td>
-
-          <td height="29" colspan="2" align="left" valign="middle">
-
-		  <textarea id="pro_tests" name="pro_tests" rows=4 cols=30><?php echo stripslashes($spram[77]) ?></textarea>
-
-                    <script>
-
-    var oEdit2 = new InnovaEditor("oEdit2");
-
-
-
-    /***************************************************
-
-      SETTING EDITOR DIMENSION (WIDTH x HEIGHT)
-
-    ***************************************************/
-
-
-
-    oEdit2.width=600;//You can also use %, for example: oEdit2.width="100%"
-
-    oEdit2.height=350;
-
-
-
-
-
-    /***************************************************
-
-      SHOWING DISABLED BUTTONS
-
-    ***************************************************/
-
-
-
-    oEdit2.btnPrint=true;
-
-    oEdit2.btnPasteText=true;
-
-    oEdit2.btnFlash=true;
-
-    oEdit2.btnMedia=true;
-
-    oEdit2.btnLTR=true;
-
-    oEdit2.btnRTL=true;
-
-    oEdit2.btnSpellCheck=true;
-
-    oEdit2.btnStrikethrough=true;
-
-    oEdit2.btnSuperscript=true;
-
-    oEdit2.btnSubscript=true;
-
-    oEdit2.btnClearAll=true;
-
-    oEdit2.btnSave=true;
-
-    oEdit2.btnStyles=true; //Show "Styles/Style Selection" button
-
-
-
-    /***************************************************
-
-      APPLYING STYLESHEET
-
-      (Using external css file)
-
-    ***************************************************/
-
-
-
-    oEdit2.css="style/test.css"; //Specify external css file here
-
-
-
-    /***************************************************
-
-      APPLYING STYLESHEET
-
-      (Using predefined style rules)
-
-    ***************************************************/
-
-    /*
-
-    oEdit2.arrStyle = [["BODY",false,"","font-family:Verdana,Arial,Helvetica;font-size:x-small;"],
-
-          [".ScreenText",true,"Screen Text","font-family:Tahoma;"],
-
-          [".ImportantWords",true,"Important Words","font-weight:bold;"],
-
-          [".Highlight",true,"Highlight","font-family:Arial;color:red;"]];
-
-
-
-    If you'd like to set the default writing to "Right to Left", you can use:
-
-
-
-    oEdit2.arrStyle = [["BODY",false,"","direction:rtl;unicode-bidi:bidi-override;"]];
-
-    */
-
-
-
-
-
-    /***************************************************
-
-      ENABLE ASSET MANAGER ADD-ON
-
-    ***************************************************/
-
-
-
-    oEdit2.cmdAssetManager = "modalDialogShow('<?=$websiteURL?>/monitor/Editor3/assetmanager/assetmanager.php',640,465)"; //Command to open the Asset Manager add-on.
-
-    //Use relative to root path (starts with "/")
-
-
-
-    /***************************************************
-
-      ADDING YOUR CUSTOM LINK LOOKUP
-
-    ***************************************************/
-
-
-
-    oEdit2.cmdInternalLink = "modelessDialogShow('links.htm',365,270)"; //Command to open your custom link lookup page.
-
-
-
-    /***************************************************
-
-      ADDING YOUR CUSTOM CONTENT LOOKUP
-
-    ***************************************************/
-
-
-
-    oEdit2.cmdCustomObject = "modelessDialogShow('objects.htm',365,270)"; //Command to open your custom content lookup page.
-
-
-
-    /***************************************************
-
-      USING CUSTOM TAG INSERTION FEATURE
-
-    ***************************************************/
-
-
-
-    oEdit2.arrCustomTag=[["First Name","{%first_name%}"],
-
-        ["Last Name","{%last_name%}"],
-
-        ["Email","{%email%}"]];//Define custom tag selection
-
-
-
-    /***************************************************
-
-      SETTING COLOR PICKER's CUSTOM COLOR SELECTION
-
-    ***************************************************/
-
-
-
-    oEdit2.customColors=["#ff4500","#ffa500","#808000","#4682b4","#1e90ff","#9400d3","#ff1493","#a9a9a9"];//predefined custom colors
-
-
-
-    /***************************************************
-
-      SETTING EDITING MODE
-
-
-
-      Possible values:
-
-        - "HTMLBody" (default)
-
-        - "XHTMLBody"
-
-        - "HTML"
-
-        - "XHTML"
-
-    ***************************************************/
-
-
-
-    oEdit2.mode="XHTMLBody";
-
-    oEdit2.REPLACE("pro_tests");
-
-              </script>
-
-                </td>
-
-        </tr>
 
          <tr>
 
@@ -1484,6 +1272,26 @@ document.addEventListener('DOMContentLoaded', function () {
   const ytAddBtn  = document.getElementById('add_more_youtube');
   const featuresTableBody = document.getElementById('features_table_body');
   const addFeatureBtn = document.getElementById('add_feature_row');
+  const examTypeSelect = document.getElementById('exam_type');
+  const examTypeToggleRows = [
+    document.getElementById('row_alias_name'),
+    document.getElementById('row_faqs'),
+    document.getElementById('row_demo_practice'),
+    document.getElementById('row_exam_description')
+  ].filter(Boolean);
+
+  function applyExamTypeVisibility() {
+    if (!examTypeSelect) return;
+    const hide = examTypeSelect.value === 'written';
+    examTypeToggleRows.forEach(function (row) {
+      row.style.display = hide ? 'none' : '';
+    });
+  }
+
+  if (examTypeSelect) {
+    examTypeSelect.addEventListener('change', applyExamTypeVisibility);
+    applyExamTypeVisibility();
+  }
 
   function buildFeatureRow(index) {
     const tr = document.createElement('tr');
