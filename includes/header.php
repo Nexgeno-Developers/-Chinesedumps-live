@@ -2231,53 +2231,101 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 												</div>
 												<!-- Nav tabs -->
 											</div>
+											
 										</li>
-
-										<li class="dropdown">
-											<a class="padding_20" href="/Google-Cloud-Certified-cert.htm">Google <img src="images/new-image/caret_icons.svg" alt="caret" />
-
+										<li class="dropdown mega-dropdown"> 
+											<a href="/Google-Cloud-Certified-cert.htm" class="dropdown-toggle padding_20">
+												Google <img src="images/new-image/caret_icons.svg" alt="caret" />
 											</a>
-
-											</a>
-										<ul class="dropdown-menu">
-											<!-- Beginner Level -->
-											<li><a href="ai_essentials_dumps.htm">AI Essentials</a></li>
-											<li><a href="agile_essentials_dumps.htm">Agile Essentials</a></li>
-											<li><a href="prompting_essentials_dumps.htm">Prompting Essentials</a></li>
-											<li><a href="cloud_digital_leader_dumps.htm">Cloud Digital Leader</a></li>
-											<li><a href="business_intelligence_dumps.htm">Business Intelligence</a></li>
-											<li><a href="advanced_data_analytics_dumps.htm">Advanced Data Analytics</a></li>
 											
-											<!-- Intermediate Level -->
-											<li><a href="associate_cloud_engineer_dumps.htm">Associate Cloud Engineer</a></li>
-											<li><a href="associate_data_practitioner_dumps.htm">Associate Data Practitioner</a></li>
-											<li><a href="associate_google_workspace_administrator_dumps.htm">Associate Google Workspace Administrator</a></li>
-											<li><a href="it_automation_with_python_dumps.htm">IT Automation with Python</a></li>
-											<li><a href="generative_ai_leader_dumps.htm">Generative AI Leader</a></li>
-											
-											<!-- Professional / Advanced -->
-											<li><a href="professional_cloud_architect_dumps.htm">Google Certified Professional - Cloud Architect (GCP)</a></li>
-											<li><a href="professional_cloud_database_engineer_dumps.htm">Professional Cloud Database Engineer</a></li>
-											<li><a href="professional_cloud_developer_dumps.htm">Professional Cloud Developer</a></li>
-											<li><a href="professional_cloud_devops_engineer_dumps.htm">Professional Cloud DevOps Engineer</a></li>
-											<li><a href="professional_cloud_network_engineer_dumps.htm">Google Cloud Certified - Professional Cloud Network Engineer</a></li>
-											<li><a href="professional_cloud_security_engineer_dumps.htm">Professional Cloud Security Engineer</a></li>
-											<li><a href="professional_collaboration_engineer_dumps.htm">Professional Collaboration Engineer</a></li>
-											<li><a href="professional_data_engineer_dumps.htm">Google Professional Data Engineer Exam</a></li>
-											<li><a href="professional_google_workspace_administrator_dumps.htm">Professional Google Workspace Administrator</a></li>
-											<li><a href="professional_machine_learning_engineer_dumps.htm">Professional Machine Learning Engineer</a></li>
-											<li><a href="professional_security_operations_engineer_dumps.htm">Professional Security Operations Engineer</a></li>
-											<li><a href="apigee_api_engineer_dumps.htm">Google Cloud - Apigee Certified API Engineer</a></li>
-											
-											<!-- Career Certificates -->
-											<li><a href="ai_professional_certificate_dumps.htm">AI Professional Certificate</a></li>
-											<li><a href="cybersecurity_professional_certificate_dumps.htm">Cybersecurity Professional Certificate</a></li>
-											<li><a href="data_analytics_professional_certificate_dumps.htm">Data Analytics Professional Certificate</a></li>
-											<li><a href="digital_marketing_and_e-commerce_dumps.htm">Digital Marketing & E-commerce</a></li>
-											<li><a href="it_support_professional_certificate_dumps.htm">IT Support Professional Certificate</a></li>
-											<li><a href="project_management_certificate_dumps.htm">Project Management Certificate</a></li>
-											<li><a href="ux_design_professional_certificate_dumps.htm">UX Design Professional Certificate</a></li>
-										</ul>
+											<div class="dropdown_megamenu dropdown-menu mega-dropdown-menu micrisoft_menu">
+												<div class="">
+													
+													<!-- LEFT TABS -->
+													<div class="col-md-2 col-sm-2 ht-tab">
+														<ul class="nav nav-tabs" role="tablist">
+															<li><a href="#" class="tablinks active" onmouseover="openCity(event, 'google_beginner')">Beginner</a></li>
+															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'google_intermediate')">Intermediate</a></li>
+															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'google_advanced')">Advanced</a></li>
+															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'google_career')">Career Certificates</a></li>
+														</ul>
+													</div>
+													
+													<!-- RIGHT CONTENT -->
+													<div class="col-md-10 col-sm-10 ht-tab">
+														<div class="tab-content">
+															
+															<!-- Beginner -->
+															<div class="tab-pane tabcontent active" id="google_beginner" style="display:block !important;">
+																<div class="col-md-12 ht-ul">
+																	<span>Beginner</span>
+																	<ul class="nav-list list-inline">
+																		<li><a href="ai_essentials_dumps.htm">AI Essentials</a></li>
+																		<li><a href="agile_essentials_dumps.htm">Agile Essentials</a></li>
+																		<li><a href="prompting_essentials_dumps.htm">Prompting Essentials</a></li>
+																		<li><a href="cloud_digital_leader_dumps.htm">Cloud Digital Leader</a></li>
+																		<li><a href="business_intelligence_dumps.htm">Business Intelligence</a></li>
+																		<li><a href="advanced_data_analytics_dumps.htm">Advanced Data Analytics</a></li>
+																	</ul>
+																</div>
+															</div>
+															
+															<!-- Intermediate -->
+															<div class="tab-pane tabcontent" id="google_intermediate">
+																<div class="col-md-12 ht-ul">
+																	<span>Intermediate</span>
+																	<ul class="nav-list list-inline">
+																		<li><a href="associate_cloud_engineer_dumps.htm">Associate Cloud Engineer</a></li>
+																		<li><a href="associate_data_practitioner_dumps.htm">Associate Data Practitioner</a></li>
+																		<li><a href="associate_google_workspace_administrator_dumps.htm">Associate Google Workspace Administrator</a></li>
+																		<li><a href="it_automation_with_python_dumps.htm">IT Automation with Python</a></li>
+																		<li><a href="generative_ai_leader_dumps.htm">Generative AI Leader</a></li>
+																	</ul>
+																</div>
+															</div>
+															
+															<!-- Advanced -->
+															<div class="tab-pane tabcontent" id="google_advanced">
+																<div class="col-md-12 ht-ul">
+																	<span>Advanced</span>
+																	<ul class="nav-list list-inline">
+																		<li><a href="professional_cloud_architect_dumps.htm">Cloud Architect (GCP)</a></li>
+																		<li><a href="professional_cloud_database_engineer_dumps.htm">Cloud Database Engineer</a></li>
+																		<li><a href="professional_cloud_developer_dumps.htm">Cloud Developer</a></li>
+																		<li><a href="professional_cloud_devops_engineer_dumps.htm">Cloud DevOps Engineer</a></li>
+																		<li><a href="professional_cloud_network_engineer_dumps.htm">Cloud Network Engineer</a></li>
+																		<li><a href="professional_cloud_security_engineer_dumps.htm">Cloud Security Engineer</a></li>
+																		<li><a href="professional_collaboration_engineer_dumps.htm">Collaboration Engineer</a></li>
+																		<li><a href="professional_data_engineer_dumps.htm">Data Engineer</a></li>
+																		<li><a href="professional_google_workspace_administrator_dumps.htm">Workspace Admin</a></li>
+																		<li><a href="professional_machine_learning_engineer_dumps.htm">ML Engineer</a></li>
+																		<li><a href="professional_security_operations_engineer_dumps.htm">Security Ops Engineer</a></li>
+																		<li><a href="apigee_api_engineer_dumps.htm">Apigee API Engineer</a></li>
+																	</ul>
+																</div>
+															</div>
+															
+															<!-- Career Certificates -->
+															<div class="tab-pane tabcontent" id="google_career">
+																<div class="col-md-12 ht-ul">
+																	<span>Career Certificates</span>
+																	<ul class="nav-list list-inline">
+																		<li><a href="ai_professional_certificate_dumps.htm">AI Professional Certificate</a></li>
+																		<li><a href="cybersecurity_professional_certificate_dumps.htm">Cybersecurity Professional Certificate</a></li>
+																		<li><a href="data_analytics_professional_certificate_dumps.htm">Data Analytics Professional Certificate</a></li>
+																		<li><a href="digital_marketing_and_e-commerce_dumps.htm">Digital Marketing & E-commerce</a></li>
+																		<li><a href="it_support_professional_certificate_dumps.htm">IT Support Professional Certificate</a></li>
+																		<li><a href="project_management_certificate_dumps.htm">Project Management Certificate</a></li>
+																		<li><a href="ux_design_professional_certificate_dumps.htm">UX Design Professional Certificate</a></li>
+																	</ul>
+																</div>
+															</div>
+															
+														</div>
+													</div>
+													
+												</div>
+											</div>
 										</li>
 
 
