@@ -2239,7 +2239,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 										
 										<ul class="dropdown-menu">
 											
-											<!-- Beginner -->
+											<!-- 🟢 Beginner -->
 											<li class="dropdown-header">Beginner</li>
 											<li><a href="ai_essentials_dumps.htm">AI Essentials</a></li>
 											<li><a href="agile_essentials_dumps.htm">Agile Essentials</a></li>
@@ -2250,7 +2250,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 											
 											<li class="divider"></li>
 											
-											<!-- Intermediate -->
+											<!-- 🟡 Intermediate -->
 											<li class="dropdown-header">Intermediate</li>
 											<li><a href="associate_cloud_engineer_dumps.htm">Associate Cloud Engineer</a></li>
 											<li><a href="associate_data_practitioner_dumps.htm">Associate Data Practitioner</a></li>
@@ -2260,7 +2260,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 											
 											<li class="divider"></li>
 											
-											<!-- Advanced -->
+											<!-- 🔵 Advanced -->
 											<li class="dropdown-header">Advanced</li>
 											<li><a href="professional_cloud_architect_dumps.htm">Cloud Architect (GCP)</a></li>
 											<li><a href="professional_cloud_database_engineer_dumps.htm">Cloud Database Engineer</a></li>
@@ -2277,7 +2277,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 											
 											<li class="divider"></li>
 											
-											<!-- Career Certificates -->
+											<!-- 🟣 Career Certificates -->
 											<li class="dropdown-header">Career Certificates</li>
 											<li><a href="ai_professional_certificate_dumps.htm">AI Professional Certificate</a></li>
 											<li><a href="cybersecurity_professional_certificate_dumps.htm">Cybersecurity Professional Certificate</a></li>
