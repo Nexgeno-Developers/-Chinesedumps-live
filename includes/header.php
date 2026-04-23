@@ -2239,16 +2239,45 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 											</a>
 
 											</a>
-											<ul class="dropdown-menu">
-												<li> <a href="associate_cloud_engineer_dumps.htm">Associate Cloud Engineer</a> </li>
-												<li> <a href="Professional-Cloud-Architect.htm">Professional Cloud Architect</a> </li>
-												<li> <a href="Professional-Data-Engineer.htm">Professional Data Engineer</a> </li>
-												<li> <a href="professional-cloud-devops-engineer.htm">Professional Cloud DevOps Engineer</a> </li>
-												<li> <a href="Professional-Cloud-Network-Engineer.htm">Professional Cloud Network Engineer</a> </li>
-												<li> <a href="professional-cloud-security-engineer.htm">Professional Cloud Security Engineer</a> </li>
-												<li> <a href="professional-collaboration-engineer.htm">Professional Collaboration Engineer</a> </li>
-												<li> <a href="professional-machine-learning-engineer.htm">Professional Machine Learning Engineer</a> </li>
-											</ul>
+										<ul class="dropdown-menu">
+											<!-- Beginner Level -->
+											<li><a href="ai_essentials_dumps.htm">AI Essentials</a></li>
+											<li><a href="agile_essentials_dumps.htm">Agile Essentials</a></li>
+											<li><a href="prompting_essentials_dumps.htm">Prompting Essentials</a></li>
+											<li><a href="cloud_digital_leader_dumps.htm">Cloud Digital Leader</a></li>
+											<li><a href="business_intelligence_dumps.htm">Business Intelligence</a></li>
+											<li><a href="advanced_data_analytics_dumps.htm">Advanced Data Analytics</a></li>
+											
+											<!-- Intermediate Level -->
+											<li><a href="associate_cloud_engineer_dumps.htm">Associate Cloud Engineer</a></li>
+											<li><a href="associate_data_practitioner_dumps.htm">Associate Data Practitioner</a></li>
+											<li><a href="associate_google_workspace_administrator_dumps.htm">Associate Google Workspace Administrator</a></li>
+											<li><a href="it_automation_with_python_dumps.htm">IT Automation with Python</a></li>
+											<li><a href="generative_ai_leader_dumps.htm">Generative AI Leader</a></li>
+											
+											<!-- Professional / Advanced -->
+											<li><a href="professional_cloud_architect_dumps.htm">Google Certified Professional - Cloud Architect (GCP)</a></li>
+											<li><a href="professional_cloud_database_engineer_dumps.htm">Professional Cloud Database Engineer</a></li>
+											<li><a href="professional_cloud_developer_dumps.htm">Professional Cloud Developer</a></li>
+											<li><a href="professional_cloud_devops_engineer_dumps.htm">Professional Cloud DevOps Engineer</a></li>
+											<li><a href="professional_cloud_network_engineer_dumps.htm">Google Cloud Certified - Professional Cloud Network Engineer</a></li>
+											<li><a href="professional_cloud_security_engineer_dumps.htm">Professional Cloud Security Engineer</a></li>
+											<li><a href="professional_collaboration_engineer_dumps.htm">Professional Collaboration Engineer</a></li>
+											<li><a href="professional_data_engineer_dumps.htm">Google Professional Data Engineer Exam</a></li>
+											<li><a href="professional_google_workspace_administrator_dumps.htm">Professional Google Workspace Administrator</a></li>
+											<li><a href="professional_machine_learning_engineer_dumps.htm">Professional Machine Learning Engineer</a></li>
+											<li><a href="professional_security_operations_engineer_dumps.htm">Professional Security Operations Engineer</a></li>
+											<li><a href="apigee_api_engineer_dumps.htm">Google Cloud - Apigee Certified API Engineer</a></li>
+											
+											<!-- Career Certificates -->
+											<li><a href="ai_professional_certificate_dumps.htm">AI Professional Certificate</a></li>
+											<li><a href="cybersecurity_professional_certificate_dumps.htm">Cybersecurity Professional Certificate</a></li>
+											<li><a href="data_analytics_professional_certificate_dumps.htm">Data Analytics Professional Certificate</a></li>
+											<li><a href="digital_marketing_and_e-commerce_dumps.htm">Digital Marketing & E-commerce</a></li>
+											<li><a href="it_support_professional_certificate_dumps.htm">IT Support Professional Certificate</a></li>
+											<li><a href="project_management_certificate_dumps.htm">Project Management Certificate</a></li>
+											<li><a href="ux_design_professional_certificate_dumps.htm">UX Design Professional Certificate</a></li>
+										</ul>
 										</li>
 
 
