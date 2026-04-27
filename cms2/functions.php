@@ -240,7 +240,7 @@ function role_can($module, $action)
 		}
 	}
 
-	return true;
+	return false;
 }
 
 function cms2_role_legacy_permission_bits($role, $moduleName)
@@ -315,9 +315,27 @@ function cms2_ensure_legacy_modules_and_permissions()
 			$moduleId = (int)$moduleRow['ModuleID'];
 			$existingPermission = mysql_fetch_array(mysql_query("SELECT COUNT(*) AS total_count FROM `tblpermissions` WHERE `AdminID`=".$adminId." AND `ModuleID`=".$moduleId));
 			if (!$existingPermission || (int)$existingPermission['total_count'] == 0) {
-				mysql_query("INSERT INTO `tblpermissions` (`AdminID`,`ModuleID`,`Read`,`Write`,`Edit`,`Delete`) VALUES (".$adminId.",".$moduleId.",".$bits['Read'].",".$bits['Write'].",".$bits['Edit'].",".$bits['Delete'].")");
+				mysql_query("INSERT INTO `tblpermissions` (`AdminID`,`ModuleID`,`Read`,`Write`,`Edit`,`Delete`) VALUES (".$adminId.",".$moduleId.",0,0,0,0)");
 			}
 		}
+	}
+}
+
+function cms2_apply_default_permissions_for_admin($adminId, $role)
+{
+	$adminId = (int)$adminId;
+	$role = cms2_normalize_admin_role($role);
+	cms2_ensure_legacy_modules_and_permissions();
+
+	$moduleResult = mysql_query("SELECT ModuleID, Name FROM tblmodules");
+	if (!$moduleResult) {
+		return;
+	}
+
+	while ($moduleRow = mysql_fetch_array($moduleResult)) {
+		$moduleId = (int)$moduleRow['ModuleID'];
+		$bits = cms2_role_legacy_permission_bits($role, $moduleRow['Name']);
+		mysql_query("INSERT INTO `tblpermissions` (`AdminID`,`ModuleID`,`Read`,`Write`,`Edit`,`Delete`) VALUES (".$adminId.",".$moduleId.",".$bits['Read'].",".$bits['Write'].",".$bits['Edit'].",".$bits['Delete'].") ON DUPLICATE KEY UPDATE `Read`=".$bits['Read'].", `Write`=".$bits['Write'].", `Edit`=".$bits['Edit'].", `Delete`=".$bits['Delete']);
 	}
 }
 

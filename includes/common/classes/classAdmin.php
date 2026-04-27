@@ -471,8 +471,16 @@
 		function addAdminPermission($adminId)
 
 		{
-			if (function_exists('cms2_ensure_legacy_modules_and_permissions')) {
-				cms2_ensure_legacy_modules_and_permissions();
+			if (function_exists('cms2_apply_default_permissions_for_admin')) {
+				$role = 'admin';
+				$adminRoleResult = mysql_query("SELECT admin_role FROM tbladmin WHERE admin_id='".(int)$adminId."'");
+				if ($adminRoleResult) {
+					$adminRoleRow = mysql_fetch_array($adminRoleResult);
+					if (isset($adminRoleRow['admin_role']) && $adminRoleRow['admin_role'] != '') {
+						$role = $adminRoleRow['admin_role'];
+					}
+				}
+				cms2_apply_default_permissions_for_admin($adminId, $role);
 				return;
 			}
 
