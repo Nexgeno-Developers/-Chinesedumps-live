@@ -428,7 +428,9 @@
 
 											admin_status,
 
- 											admin_name
+											admin_name,
+
+											admin_role
 
 											)
 
@@ -446,7 +448,9 @@
 
 											'".$spram[5]."',
 
-											'".$spram[6]."'
+											'".$spram[6]."',
+
+											'".$spram[7]."'
 
 											)";
 
@@ -564,7 +568,9 @@
 
     <td align="center" class=item>'.$rows['admin_name'].'</td>
 
-	 <td align="center" class=item>'.$rows['admin_status'].'</td>
+    <td align="center" class=item>'.$rows['admin_status'].'</td>
+
+	 <td align="center" class=item>'.(isset($rows['admin_role']) ? cms2_role_label($rows['admin_role']) : 'Admin').'</td>
 
 	 <td align="center" class=item nowrap=nowrap>'.$edit.''.$del.' </td>
 
@@ -608,7 +614,9 @@
 
 													admin_password 		 = '".$spram[5]."',	
 
-													admin_status 	     = '".$spram[4]."'																																											
+													admin_status 	     = '".$spram[4]."',
+
+													admin_role 	     	 = '".$spram[6]."'
 
 
 

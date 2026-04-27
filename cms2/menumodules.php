@@ -7,7 +7,7 @@ $LinkPath="../";
 $strTitle	=	"Add Contents";
 /*include files*/
 
-include ("../includes/config/classDbConnection.php");
+include_once ("../includes/config/classDbConnection.php");
 
 include ("../includes/common/inc/sessionheader.php");
 $objDBcon    = new classDbConnection; 

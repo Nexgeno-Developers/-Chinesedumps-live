@@ -6,7 +6,7 @@ ini_set("display_errors","0");
 //----------------------------------------------------------------------------------------------------		
 	$strTitle	=	"ShowNews";
 //----------------------------------------------------------------------------------------------------		
-include ("../includes/config/classDbConnection.php");
+include_once ("../includes/config/classDbConnection.php");
 include ("../includes/common/classes/classmain.php");
 include ("../includes/common/inc/sessionheader.php");
 include("../includes/common/classes/classPagingAdmin.php");

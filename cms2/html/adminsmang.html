@@ -44,6 +44,9 @@ return false;
 <td width="810" valign="top" class="rightside"><h2>Admin Users Management !</h2>
 
 Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
+<?php if(role_can('staff', 'write')) { ?>
+<div style="margin-top:12px;"><a href="addadmin.php" class="button">Add Admin User</a></div>
+<?php } ?>
 
 <br />
 
@@ -95,6 +98,8 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
     <td width="144" class='header' align="center">Status </td>
 
+    <td width="120" class='header' align="center">Role </td>
+
     <td width="136" align="center"  class='header'>Option</td>
 
 	
@@ -137,4 +142,3 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 </body>
 
 </html>
-

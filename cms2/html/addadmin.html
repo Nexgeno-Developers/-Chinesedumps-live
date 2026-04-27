@@ -80,6 +80,14 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
           <td><select name="user_status">
 		  <option value="Active">Active</option><option value="In Active">In Active</option></select></td>
         </tr>
+		<tr>
+          <td align="right">Role :</td>
+          <td><select name="admin_role">
+		  <?php foreach(cms2_valid_admin_roles() as $roleOption){ ?>
+		  <option <?php if(isset($_POST['admin_role']) && $_POST['admin_role'] == $roleOption){?>selected="selected" <? }?> value="<?=$roleOption?>"><?=cms2_role_label($roleOption)?></option>
+		  <?php } ?>
+		  </select></td>
+        </tr>
         <tr align="right">
           <td align="left">&nbsp;</td>
           <td colspan="2" align="left"><input type="submit" name="Submit" value="Submit" /></td>

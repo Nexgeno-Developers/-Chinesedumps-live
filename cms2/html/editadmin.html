@@ -111,6 +111,16 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 		  <option <?php if($spram[5]=="In Active"){?>selected="selected" <? }?> value="In Active">In Active</option>
 		  </select></td>
         </tr>
+		<tr>
+
+          <td align="right">Role :</td>
+
+          <td><select name="admin_role">
+		  <?php foreach(cms2_valid_admin_roles() as $roleOption){ ?>
+		  <option <?php if($spram[7] == $roleOption){?>selected="selected" <? }?> value="<?=$roleOption?>"><?=cms2_role_label($roleOption)?></option>
+		  <?php } ?>
+		  </select></td>
+        </tr>
 
         <tr align="right">
 
@@ -149,4 +159,3 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 </body>
 
 </html>
-

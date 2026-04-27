@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include ("../includes/common/inc/sessionheader.php");
-include ("../includes/config/classDbConnection.php");
+include_once ("../includes/config/classDbConnection.php");
 include_once 'functions.php';
 $ccAdminData = get_session_data();
 $objDBcon    = new classDbConnection; 			// VALIDATION CLASS OBJECT

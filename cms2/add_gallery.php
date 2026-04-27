@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 
-	include ("../includes/config/classDbConnection.php");
+	include_once ("../includes/config/classDbConnection.php");
   include ("../includes/config/config.php");
 	include("../includes/common/classes/validation_class.php");
 	include("../includes/common/functions/func_uploadimg.php");

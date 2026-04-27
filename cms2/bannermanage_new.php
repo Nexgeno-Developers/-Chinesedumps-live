@@ -14,7 +14,7 @@ ini_set("display_errors","0");
 
 //----------------------------------------------------------------------------------------------------		
 
-include ("../includes/config/classDbConnection.php");
+include_once ("../includes/config/classDbConnection.php");
 
 include ("../includes/common/classes/classmain.php");
 

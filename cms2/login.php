@@ -3,7 +3,7 @@ session_start();
 //root path
 $LinkPath="../";
 
-include ("../includes/config/classDbConnection.php");
+include_once ("../includes/config/classDbConnection.php");
 //title of the page
 $strTitle	=	"Get Logged In to the admin panel";
 //javascript file name if any

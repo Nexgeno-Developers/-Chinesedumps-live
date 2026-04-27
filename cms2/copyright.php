@@ -7,7 +7,7 @@ $LinkPath="../";
 $strTitle	=	"Add News";
 /*include files*/
 
-include ("../includes/config/classDbConnection.php");
+include_once ("../includes/config/classDbConnection.php");
 include("../includes/common/classes/validation_class.php");
 include ("../includes/common/inc/sessionheader.php");
 include ("../includes/common/classes/classAdmin.php");

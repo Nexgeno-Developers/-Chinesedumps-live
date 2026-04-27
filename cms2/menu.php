@@ -1,873 +1,97 @@
-<style>
-  .d-none{
-    display: none;
-  }
-</style>
-<TABLE width="250" cellPadding=0 cellSpacing=0 class=menu>
-
-        <TBODY>
-
-        <TR>
-
-          <TD width="198" class=menu_header>Global</TD>
-
-        </TR>
-
-        <TR>
-
-          <TD><IMG src="images/admin_menu_bar.gif" border=0></TD></TR>
-
-        <tr>
-
-	      <td class="menu"><a class="menu" href="global.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" class="icon2" />Configuration</a></td>
-
-        </tr>
-
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="sum.php"><IMG class=icon2 
-
-            src="images/admin_summary16.gif" border=0> Summary</A></TD>
-
-        </TR>
-
-	
-
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="password.php"><IMG 
-
-            class=icon2 src="images/admin_log16.gif" border=0> Change Password </A></TD>
-
-        </TR>
-
-      
-
-		
-
-		 <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="copyright.php"><IMG 
-
-            class=icon2 src="images/News-Edit.gif" border=0> Website Copyright</A></TD>
-
-        </TR>
-
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="contactus.php"><IMG 
-
-            class=icon2 src="images/Chart1-Edit.gif" border=0> Change Email Address</A></TD>
-
-        </TR>
-
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="logout.php"><IMG class=icon2 
-
-            src="images/admin_banning16.gif" 
-
-        border=0> Logout</A></TD>
-
-        </TR></TBODY></TABLE>
-
-        
-
-<TABLE width="250" cellPadding=0 cellSpacing=0 class=menu2>
-
-        <TBODY>
-
-        <TR>
-
-          <TD width="198" class=menu_header>Stats</TD>
-
-        </TR>
-
-        <TR>
-
-          <TD><IMG src="images/admin_menu_bar.gif" border=0></TD></TR>
-
-        <!-- <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="stats.php"><IMG class=icon2 src="images/admin_summary16.gif" border=0> Quick Stats</A></TD>
-
-        </TR> -->
-
-        <!-- <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="userstats.php?ref=all"><IMG class=icon2 src="images/News-Edit.gif" border=0> All Registered Users</A></TD>
-
-        </TR> -->
-
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="manageuser.php"><IMG class=icon2 src="images/News-Edit.gif" border=0> All Registered Users</A></TD>
-
-        </TR>
-
-        <!-- <TR>
-
-          <TD class="menu d-none"><A class=menu 
-
-            href="userstats.php?ref=np"><IMG class=icon2 src="images/News-Edit.gif" border=0> Users without Purchse</A></TD>
-
-        </TR> -->
-</TBODY></TABLE>
-
-<TABLE width="250" cellPadding=0 cellSpacing=0 class=menu2>
-
-        <TBODY>
-
-        <TR>
-
-          <TD width="198" class=menu_header>Banners</TD>
-
-        </TR>
-
-        <TR>
-
-          <TD><IMG src="images/admin_menu_bar.gif" border=0></TD></TR>
-
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="bannermanage.php"><IMG class=icon2 src="images/admin_summary16.gif" border=0> Banners Management</A></TD>
-
-        </TR>
-
-        <!-- <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="addslider.php"><IMG class=icon2 src="images/News-Edit.gif" border=0> Add Banner</A></TD>
-
-        </TR> -->
-
-        <TR>
-
-          <TD class="menu d-none"><A class=menu 
-
-            href="userstats.php?ref=p"><IMG class=icon2 src="images/News-Edit.gif" border=0> Users with Purchse(s)</A></TD>
-
-        </TR>
-
-        <TR>
-
-          <TD class="menu d-none"><A class=menu 
-
-            href="userstats.php?ref=np"><IMG class=icon2 src="images/News-Edit.gif" border=0> Users without Purchse</A></TD>
-
-</TR></TBODY></TABLE>   
-
-
-
-
-
-
-
-
-<TABLE width="250" cellPadding=0 cellSpacing=0 class=menu2>
-
-        <TBODY>
-
-        <TR>
-
-          <TD width="198" class=menu_header>Exam Results</TD>
-
-        </TR>
-
-        <TR>
-
-          <TD><IMG src="images/admin_menu_bar.gif" border=0></TD></TR>
-
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="galley_management.php"><IMG class=icon2 src="images/admin_summary16.gif" border=0> Exam Results Management</A></TD>
-
-        </TR>
-
-        <TR>
-
-          <TD class=menu><A class=menu 
-
-            href="add_gallery.php"><IMG class=icon2 src="images/News-Edit.gif" border=0> Add Exam Results Image</A></TD>
-
-        </TR>
-
-       
-
-    </TBODY></TABLE>   
-
-
-
-
-
-     
-
-        
-
-<TABLE width="250" cellPadding=0 cellSpacing=0 class="menu2 d-none">
-
-        <TBODY>
-
-        <TR>
-
-          <TD width="198" class=menu_header>Bulk Update</TD>
-
-        </TR>
-
-        <TR>
-
-          <TD><IMG src="images/admin_menu_bar.gif" border=0></TD></TR>
-
-        <TR>
-
-          <TD class=menu><A class=menu href="bulk_update.php?action=all_date"><IMG class=icon2 src="images/admin_summary16.gif" border=0>Update Date of all Exams</A></TD>
-
-        </TR>
-
-        <TR>
-
-          <TD class=menu><A class=menu href="bulk_update.php?action=bundle_date"><IMG class=icon2 src="images/admin_summary16.gif" border=0>Update Date of Exams in Vendor</A></TD>
-
-        </TR>
-
-        <TR>
-
-          <TD class=menu><A class=menu href="bulk_update.php?action=cert_date"><IMG class=icon2 src="images/admin_summary16.gif" border=0>Update Date of Exams in Certificates</A></TD>
-
-        </TR>
-
-        <TR>
-
-          <TD class=menu><A class=menu href="bulk_update.php?action=all_price"><IMG class=icon2 src="images/admin_summary16.gif" border=0>Update Price of all Exams</A></TD>
-
-        </TR>
-
-        <TR>
-
-          <TD class=menu><A class=menu href="bulk_update.php?action=bundle_price"><IMG class=icon2 src="images/admin_summary16.gif" border=0>Update Price of Exams in Vendor</A></TD>
-
-        </TR>
-
-        <TR>
-
-          <TD class=menu><A class=menu href="bulk_update.php?action=cert_price"><IMG class=icon2 src="images/admin_summary16.gif" border=0>Update Price of Exams in Certificates</A></TD>
-
-        </TR>
-
-</TBODY></TABLE>        
-
-        <table width="250" cellpadding="0" cellspacing="0" class="menu2">
-
-        <tbody>
-
-          <tr>
-
-            <td width="198" class="menu_header">Products Module</td>
-
-          </tr>
-
-          <tr>
-
-            <td><img src="images/admin_menu_bar.gif" border="0" /></td>
-
-          </tr>
-
-		  <tr>
-
-	      <td class="menu"><a class="menu" href="addvendors.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" />Add Vendors</a></td>
-
-        </tr>
-
-		  <tr>
-
-	      <td class="menu"><a class="menu" href="vendormanage.php"><img src="images/Comments-edit.gif" width="16" height="16" border="0" class="icon2" />Vendors Management</a></td>
-
-        </tr>
-
-         <tr>
-
-	      <td class="menu"><a class="menu" href="addcertif.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" />Add Certification</a></td>
-
-        </tr>
-
-		  <tr>
-
-	      <td class="menu"><a class="menu" href="certifmanage.php"><img src="images/Comments-edit.gif" width="16" height="16" border="0" class="icon2" />Certifications Management</a></td>
-
-        </tr>
-
-        <tr>
-
-	      <td class="menu"><a class="menu" href="addexam.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" />Add Exam</a></td>
-
-        </tr>
-
-		  <tr>
-
-	      <td class="menu"><a class="menu" href="exammanage.php"><img src="images/Comments-edit.gif" width="16" height="16" border="0" class="icon2" />Exams Management</a></td>
-
-        </tr>
-
-			  <!-- <tr>
-
-	      <td class="menu"><a class="menu" href="addfiles.php"><img src="images/Comments-edit.gif" width="16" height="16" border="0" class="icon2" />Add Multi Exams</a></td>
-
-        </tr> -->
-
-		  <!-- <tr>
-
-	      <td class="menu"><a class="menu" href="updateDate.php"><img src="images/Comments-edit.gif" width="16" height="16" border="0" class="icon2" />Update Exam Date</a></td>
-
-        </tr> -->
-
-        </tbody>
-
-</table>
-
-	    <table width="250" cellpadding="0" cellspacing="0" class="menu2">
-
-          <tbody>
-
-            <tr>
-
-              <td width="198" class="menu_header">Demo &amp; Exams  Mangement Modules</td>
-
-            </tr>
-
-            <tr>
-
-              <td><img src="images/admin_menu_bar.gif" border="0" /></td>
-
-            </tr>
-
-            
-
-            <tr>
-
-              <td class="menu"><a class="menu" 
-
-            href="view_demoDownload.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-            class="icon2" />View Demo Emails </a></td>
-
-            </tr>
-
-            <tr>
-
-              <td class="menu"><a class="menu" 
-
-            href="exam_request.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-            class="icon2" />View Exam Request Email </a></td>
-
-            </tr>
-
-            <tr>
-
-              <td class="menu"><a class="menu" 
-
-            href="managefull.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-            class="icon2" />Full Download Management</a></td>
-
-            </tr>
-
-          </tbody>
-
-</table>
-
-	    <table width="250" cellpadding="0" cellspacing="0" class="menu2">
-
-        <tbody>
-
-          <tr>
-
-            <td width="198" class="menu_header">Cart Mangement Modules</td>
-
-          </tr>
-
-          <tr>
-
-            <td><img src="images/admin_menu_bar.gif" border="0" /></td>
-
-          </tr>
-
-           
-
-           <tr>
-
-	      <td class="menu"><a class="menu" 
-
-            href="masterorder.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-            class="icon2" />Final Orders</a></td>
-
-        </tr>
-
-        <tr>
-
-	      <td class="menu"><a class="menu" 
-
-            href="odrproces.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-            class="icon2" />List Cart</a></td>
-
-        </tr>
-
-       <tr>
-
-	      <td class="menu"><a class="menu" 
-
-            href="reodrproces.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-            class="icon2" />Re-Order Cart</a></td>
-
-        </tr>
-
-       
-
-	
-
-		</tbody>
-
-</table>
-
-<table width="250" cellpadding="0" cellspacing="0" class="menu2">
-
-			<tbody>
-
-				<tr>
-
-					<td width="198" class="menu_header">Coupon Mangement Module</td>
-
-				</tr>
-
-				<tr>
-
-					<td><img src="images/admin_menu_bar.gif" border="0" /></td>
-
-				</tr>
-
-				 <tr>
-
-			<td class="menu"><a class="menu" 
-
-					href="managecoupon.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-					class="icon2" />Manage Coupons</a></td>
-
-			</tr>
-
-			<tr>
-
-			<td class="menu"><a class="menu" 
-
-					href="addcoupon.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-					class="icon2" />Add new Coupon</a></td>
-
-			</tr>	
-
-	</tbody>
-
-</table>
-
-
-<table width="250" cellpadding="0" cellspacing="0" class="menu2">
-
-			<tbody>
-
-				<tr>
-
-					<td width="198" class="menu_header">Stable/Unstable Course Management Module</td>
-
-				</tr>
-
-				<tr>
-
-					<td><img src="images/admin_menu_bar.gif" border="0" /></td>
-
-				</tr>
-
-				<tr>
-
-					<td class="menu"><a class="menu" 
-
-					href="courses_status_manage.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-					class="icon2" />Manage Course</a></td>
-
-			</tr>
-
-			<tr>
-
-			<td class="menu"><a class="menu" 
-
-					href="course_add.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-					class="icon2" />Add new Course</a></td>
-
-			</tr>	
-
-	</tbody>
-
-</table>
-
-      <table width="250" cellpadding="0" cellspacing="0" class="menu2">
-
-        <tbody>
-
-          <tr>
-
-            <td width="198" class="menu_header">Global Content</td>
-
-          </tr>
-
-          <tr>
-
-            <td><img src="images/admin_menu_bar.gif" border="0" /></td>
-
-          </tr>
-
-		  
-
-          <tr>
-
-			  <td class="menu">
-
-			  <a class="menu" href="editemails.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" class="icon2" />Edit Emails</a>			  </td>
-
-		  </tr>
-
-        
-
-        
-
-        <tr>
-
-	      <td class="menu"><a class="menu" href="vendorgloble.php?pid=1"><img src="images/News-Edit.gif" width="16" height="16" border="0" class="icon2" />Vendor Global Content</a></td>
-
-        </tr>
-
-        <tr>
-
-	      <td class="menu"><a class="menu" href="vendorgloble.php?pid=2"><img src="images/News-Edit.gif" width="16" height="16" border="0" class="icon2" />Certification Global Content</a></td>
-
-        </tr>
-
-        <tr>
-
-	      <td class="menu"><a class="menu" href="vendorgloble.php?pid=3"><img src="images/News-Edit.gif" width="16" height="16" border="0" class="icon2" />Exam Global Content</a></td>
-
-        </tr>
-
-        
-
-        
-
-         
-
-       		
-
-		  <?php if(permission("Articles","Read")==TRUE){ 
-
-		  	 if(permission("Articles","Write")==TRUE){ ?>
-
-	  <!-- <tr>
-
-	      <td class="menu"><a class="menu" 
-
-            href="addarticles.php"><img src="images/News-Add.gif" width="16" height="16" border="0" 
-
-            class="icon2" />Add Articles</a></td>
-
-        </tr>-->
-
-		<? } ?>
-
-	   <!-- <tr>
-
-	      <td class="menu"><a class="menu" 
-
-            href="articlesmanage.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-            class="icon2" />Articles Management</span></a></td>
-
-        </tr> -->
-
-	  <? } ?>
-
-		</tbody>
-
-</table>
-
-      <table width="250" cellpadding="0" cellspacing="0" class="menu2">
-
-        <tbody>
-
-          <tr>
-
-            <td width="198" class="menu_header">Users Module</td>
-
-          </tr>
-
-          <tr>
-
-            <td><img src="images/admin_menu_bar.gif" border="0" /></td>
-
-          </tr>
-
-		  
-
-	     <tr>
-
-	      <td class="menu"><a class="menu" 
-
-            href="adduser.php"><img src="images/News-Add.gif" width="16" height="16" border="0" 
-
-            class="icon2" />Add <span class="menu_header">User</span></a></td>
-
-        </tr>
-
-		<tr>
-
-	      <td class="menu"><a class="menu" 
-
-            href="manageuser.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-            class="icon2" />User<span class="menu_header"> Management</span></a></td>
-
-        </tr>
-
-        
-
-			   </tr>
-
-        </tbody>
-
-</table>
-
-	  <?php if(permission("Articles","Read")==TRUE){ ?>
-
-		<table width="250" cellpadding="0" cellspacing="0" class="menu2">
-
-        <tbody>
-
-          <tr>
-
-            <td width="198" class="menu_header">Articles Module</td>
-
-          </tr>
-
-          <tr>
-
-            <td><img src="images/admin_menu_bar.gif" border="0" /></td>
-
-          </tr>
-
-		  <?php if(permission("Articles","Write")==TRUE){ ?>
-
-	     <tr>
-
-	      <td class="menu"><a class="menu" 
-
-            href="addarticles.php"><img src="images/News-Add.gif" width="16" height="16" border="0" 
-
-            class="icon2" />Add <span class="menu_header">Articles</span></a></td>
-
-        </tr>
-
-		<? } ?>
-
-	    <tr>
-
-	      <td class="menu"><a class="menu" 
-
-            href="articlesmanage.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" 
-
-            class="icon2" />Articles<span class="menu_header"> Management</span></a></td>
-
-        </tr>
-
-			   </tr>
-
-        </tbody>
-
-</table>
-
-	   <? } ?>
-
-	  <?php if(permission("Contents Management","Read")==TRUE){ 
-
-	 
-
-	  ?>
-
-     
-
-	  <?php if(permission("Contents Management","Read")==TRUE){ 
-
-	 
-
-	  ?>  
-
-      
-
-      <TABLE width="250" cellPadding=0 cellSpacing=0 class="menu2 d-none">
-
-        <TBODY>
-
-        <TR>
-
-          <TD width="168" class=menu_header>Manage Content</TD>
-
-        </TR>
-
-        <TR>
-
-          <TD background="images/admin_menu_bar.gif"><IMG src="images/admin_menu_bar.gif" border=0></TD>
-
-        </TR>
-
-		  <tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=1"><img class="icon2" src="images/admin_profile16.gif" border="0" />Home</a></td>
-
-        </tr>
-
-		<tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=4"><img class="icon2" src="images/admin_profile16.gif" border="0" />All Vendors</a></td>
-
-        </tr>
-
-        <tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=5"><img class="icon2" src="images/admin_profile16.gif" border="0" />Login Page</a></td>
-
-        </tr>
-
-        <tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=6"><img class="icon2" src="images/admin_profile16.gif" border="0" />Forgot Your Password</a></td>
-
-        </tr>
-
-         <tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=7"><img class="icon2" src="images/admin_profile16.gif" border="0" />Support</a></td>
-
-        </tr>
-
-         <tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=8"><img class="icon2" src="images/admin_profile16.gif" border="0" />Contact Us</a></td>
-
-        </tr>
-
-         <tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=9"><img class="icon2" src="images/admin_profile16.gif" border="0" />FAQs</a></td>
-
-        </tr>
-
-         <tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=11"><img class="icon2" src="images/admin_profile16.gif" border="0" />Paypal Payment Page</a></td>
-
-        </tr>
-
-		<tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=2"><img class="icon2" src="images/admin_profile16.gif" border="0" />Guarantee</a></td>
-
-        </tr>
-
-        <tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=3"><img class="icon2" src="images/admin_profile16.gif" border="0" />Privacy and Policy</a></td>
-
-        </tr>
-
-        <tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=13"><img class="icon2" src="images/admin_profile16.gif" border="0" />Thanks Page</a></td>
-
-        </tr>
-
-		<tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=14"><img class="icon2" src="images/admin_profile16.gif" border="0" />File Not Found Page</a></td>
-
-        </tr>
-
-        <tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=21"><img class="icon2" src="images/admin_profile16.gif" border="0" />Testimonials</a></td>
-
-        </tr>        
-
-		<tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=26"><img class="icon2" src="images/admin_profile16.gif" border="0" />Demo</a></td>
-
-        </tr>
-
-		<tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=29"><img class="icon2" src="images/admin_profile16.gif" border="0" />About Us</a></td>
-
-        </tr>
-
-		<tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=30"><img class="icon2" src="images/admin_profile16.gif" border="0" />Services</a></td>
-
-        </tr>
-
-		<tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=33"><img class="icon2" src="images/admin_profile16.gif" border="0" />Disclaimer</a></td>
-
-        </tr>
-
-		<tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=31"><img class="icon2" src="images/admin_profile16.gif" border="0" />Home Text 2</a></td>
-
-        </tr>
-
-		<tr>
-
-          <td class="menu"><a class="menu" href="editpagetext.php?pid=32"><img class="icon2" src="images/admin_profile16.gif" border="0" />Home Text 3</a></td>
-
-        </tr>
-
-</TBODY></TABLE>
-
-      <? } ?>  
-
-	  
-
-	  <? } ?>
+<?php
+if (!function_exists('role_can')) {
+	include_once 'functions.php';
+}
+
+function cms2_menu_sections()
+{
+	return array(
+		array('Global', array(
+			array('Configuration', 'global.php', 'settings', 'edit', 'images/News-Edit.gif'),
+			array('Summary', 'sum.php', 'dashboard', 'read', 'images/admin_summary16.gif'),
+			array('Change Password', 'password.php', 'dashboard', 'read', 'images/admin_log16.gif'),
+			array('Website Copyright', 'copyright.php', 'settings', 'edit', 'images/News-Edit.gif'),
+			array('Change Email Address', 'contactus.php', 'settings', 'edit', 'images/Chart1-Edit.gif'),
+			array('Logout', 'logout.php', 'dashboard', 'read', 'images/admin_banning16.gif')
+		)),
+		array('Stats', array(
+			array('All Registered Users', 'manageuser.php', 'users', 'read', 'images/News-Edit.gif'),
+			array('Reports', 'backup_stats.php', 'reports', 'read', 'images/admin_summary16.gif')
+		)),
+		array('Banners', array(
+			array('Banners Management', 'bannermanage.php', 'banners', 'read', 'images/admin_summary16.gif'),
+			array('Add Banner', 'addslider.php', 'banners', 'write', 'images/News-Add.gif')
+		)),
+		array('Exam Results', array(
+			array('Exam Results Management', 'galley_management.php', 'content', 'read', 'images/admin_summary16.gif'),
+			array('Add Exam Results Image', 'add_gallery.php', 'content', 'write', 'images/News-Edit.gif')
+		)),
+		array('Products Module', array(
+			array('Add Vendors', 'addvendors.php', 'products', 'write', 'images/News-Add.gif'),
+			array('Vendors Management', 'vendormanage.php', 'products', 'read', 'images/Comments-edit.gif'),
+			array('Add Certification', 'addcertif.php', 'products', 'write', 'images/News-Add.gif'),
+			array('Certifications Management', 'certifmanage.php', 'products', 'read', 'images/Comments-edit.gif'),
+			array('Add Exam', 'addexam.php', 'products', 'write', 'images/News-Add.gif'),
+			array('Exams Management', 'exammanage.php', 'products', 'read', 'images/Comments-edit.gif')
+		)),
+		array('Demo & Exams Management Modules', array(
+			array('View Demo Emails', 'view_demoDownload.php', 'support', 'read', 'images/News-Edit.gif'),
+			array('View Exam Request Email', 'exam_request.php', 'support', 'read', 'images/News-Edit.gif'),
+			array('Full Download Management', 'managefull.php', 'downloads', 'read', 'images/News-Edit.gif')
+		)),
+		array('Cart Management Modules', array(
+			array('Final Orders', 'masterorder.php', 'orders', 'read', 'images/News-Edit.gif'),
+			array('List Cart', 'odrproces.php', 'orders', 'edit', 'images/News-Edit.gif'),
+			array('Re-Order Cart', 'reodrproces.php', 'orders', 'edit', 'images/News-Edit.gif')
+		)),
+		array('Coupon Management Module', array(
+			array('Manage Coupons', 'managecoupon.php', 'coupons', 'read', 'images/News-Edit.gif'),
+			array('Add new Coupon', 'addcoupon.php', 'coupons', 'write', 'images/News-Edit.gif')
+		)),
+		array('Stable/Unstable Course Management Module', array(
+			array('Manage Course', 'courses_status_manage.php', 'courses', 'read', 'images/News-Edit.gif'),
+			array('Add new Course', 'course_add.php', 'courses', 'write', 'images/News-Edit.gif')
+		)),
+		array('Global Content', array(
+			array('Edit Emails', 'editemails.php', 'content', 'edit', 'images/News-Edit.gif'),
+			array('Vendor Global Content', 'vendorgloble.php?pid=1', 'content', 'edit', 'images/News-Edit.gif'),
+			array('Certification Global Content', 'vendorgloble.php?pid=2', 'content', 'edit', 'images/News-Edit.gif'),
+			array('Exam Global Content', 'vendorgloble.php?pid=3', 'content', 'edit', 'images/News-Edit.gif')
+		)),
+		array('Users Module', array(
+			array('Add User', 'adduser.php', 'users', 'write', 'images/News-Add.gif'),
+			array('User Management', 'manageuser.php', 'users', 'read', 'images/News-Edit.gif')
+		)),
+		array('Admin Users', array(
+			array('Admin User Management', 'manageadmin.php', 'staff', 'read', 'images/News-Edit.gif'),
+			array('Add Admin User', 'addadmin.php', 'staff', 'write', 'images/News-Add.gif')
+		))
+	);
+}
+
+function cms2_render_menu_section($title, $items, $first)
+{
+	$visible = array();
+	foreach ($items as $item) {
+		if ($item[1] == 'logout.php' || role_can($item[2], $item[3])) {
+			$visible[] = $item;
+		}
+	}
+	if (count($visible) == 0) {
+		return;
+	}
+	$class = $first ? 'menu' : 'menu2';
+	echo '<table width="250" cellPadding="0" cellSpacing="0" class="'.$class.'"><tbody>';
+	echo '<tr><td width="198" class="menu_header">'.$title.'</td></tr>';
+	echo '<tr><td><img src="images/admin_menu_bar.gif" border="0" /></td></tr>';
+	foreach ($visible as $item) {
+		echo '<tr><td class="menu"><a class="menu" href="'.$item[1].'"><img src="'.$item[4].'" width="16" height="16" border="0" class="icon2" />'.$item[0].'</a></td></tr>';
+	}
+	echo '</tbody></table>';
+}
+
+$cms2MenuSections = cms2_menu_sections();
+for ($cms2MenuIndex = 0; $cms2MenuIndex < count($cms2MenuSections); $cms2MenuIndex++) {
+	cms2_render_menu_section($cms2MenuSections[$cms2MenuIndex][0], $cms2MenuSections[$cms2MenuIndex][1], $cms2MenuIndex == 0);
+}
+?>

@@ -1,5 +1,7 @@
 <?PHP
-include ("../includes/config/classDbConnection.php");
+session_start();
+include_once ("../includes/config/classDbConnection.php");
+include ("../includes/common/inc/sessionheader.php");
 //-------------------------------------------------------------------------------------
 	$objCon		 = 	new classDbConnection();
 	

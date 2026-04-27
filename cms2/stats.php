@@ -5,7 +5,7 @@ session_start();
 
 
 
-	include ("../includes/config/classDbConnection.php");
+	include_once ("../includes/config/classDbConnection.php");
 
 	include("../includes/common/functions/func_uploadimg.php");
 

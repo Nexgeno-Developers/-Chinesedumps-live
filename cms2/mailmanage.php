@@ -9,7 +9,7 @@
 	$strTitle	=	"Show Sub Pages";
 	
 //----------------------------------------------------------------------------------------------------		
-include ("../includes/config/classDbConnection.php");
+include_once ("../includes/config/classDbConnection.php");
 include("../includes/common/classes/classmain.php");
 include ("../includes/common/inc/sessionheader.php");
 

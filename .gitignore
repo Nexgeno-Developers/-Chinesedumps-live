@@ -6,6 +6,8 @@
 *.log
 .htaccess
 *.sql
+!cms2/sql/
+!cms2/sql/rbac_admin_role.sql
 /includes/config/secrets.local.php
 /oauth/callback/*.txt
 /oauth/callback/.zoho_refresh_token

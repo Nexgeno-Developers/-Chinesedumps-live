@@ -3,7 +3,7 @@
 ob_start();
 session_start();
 
-	include ("../includes/config/classDbConnection.php");
+	include_once ("../includes/config/classDbConnection.php");
 	include("../includes/common/classes/validation_class.php");
 	include("../includes/common/functions/func_uploadimg.php");
 	include ("../includes/common/inc/sessionheader.php");
@@ -28,6 +28,7 @@ if (isset($_POST['submit']) && $_POST['submit']	==	"submit")
 		$spram[3]		 =  $_POST['user_email'];
 		$spram[4]		 =  $_POST['user_status'];
 		$spram[5]		 =  md5($_POST['user_password']);
+		$spram[6]		 =  cms2_normalize_admin_role(isset($_POST['admin_role']) ? $_POST['admin_role'] : 'admin');
 		
 //------------------------------------------validation--------------------------------//	
 
@@ -61,6 +62,7 @@ if (isset($_POST['submit']) && $_POST['submit']	==	"submit")
 			$spram[3]		 =  "";
 			$spram[4]		 =  "";
 			$spram[5]		 =  "";
+			$spram[7]		 =  "";
 			
 			$resultSet		 =	$objAdmin->getAdminEdit($spram[0]);
 			
@@ -72,6 +74,7 @@ if (isset($_POST['submit']) && $_POST['submit']	==	"submit")
 			$spram[4]		 =  $row1['admin_password'];
 			$spram[5]		 =  $row1['admin_status'];
 			$spram[6]		 =  $row1['admin_name'];
+			$spram[7]		 =  isset($row1['admin_role']) ? cms2_normalize_admin_role($row1['admin_role']) : 'admin';
 
 			}
 
