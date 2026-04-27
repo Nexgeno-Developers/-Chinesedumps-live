@@ -30,17 +30,35 @@ $ccAdminData = get_session_data();
 	$TotalPages	      	= 	"";
 	$PageNo		      	= 	1;			
 	$PageIndex	      	= 	1 ;				
-	if(isset($_POST['Search'])){
-	$rowsPerPage      	= 	1000000000;
-	}else{
 	$rowsPerPage      	= 	100;
-	}											
 	$linkPerPage      	= 	25;
 	$of					=	"of";
 //----------------------------------------------------------------------------------------------------		
 
+	$pagingParams = array();
+	if(isset($_REQUEST['Search']) && isset($_REQUEST['textSearch']) && trim($_REQUEST['textSearch']) != ''){
+		$pagingParams['Search'] = 'Search';
+		$pagingParams['textSearch'] = trim($_REQUEST['textSearch']);
+		if(isset($_REQUEST['criteria'])){
+			$pagingParams['criteria'] = $_REQUEST['criteria'];
+		}
+	}
+	if(isset($_GET['getSearch']) && $_GET['getSearch'] != ''){
+		$pagingParams['getSearch'] = $_GET['getSearch'];
+	}
+	if(isset($_GET['ord']) && $_GET['ord'] != ''){
+		$pagingParams['ord'] = $_GET['ord'];
+	}
+	if(isset($_GET['ty']) && $_GET['ty'] != ''){
+		$pagingParams['ty'] = $_GET['ty'];
+	}
+	$pagingQueryString = '';
+	if(!empty($pagingParams)){
+		$pagingQueryString = '&'.http_build_query($pagingParams);
+	}
+
 		if(!isset($pgObj) && empty($pgObj))
-				$pgObj 		=  new classPaging ("exam_request.php",$rowsPerPage,$linkPerPage,"","","");
+				$pgObj 		=  new classPaging ("view_demoDownload.php",$rowsPerPage,$linkPerPage,$pagingQueryString,"","","");
 		
 		if(isset($_GET['pgIndex']) && !empty($_GET['pgIndex']) && is_numeric($_GET['pgIndex']) && is_numeric($_GET['currentPage']))
 				{
@@ -66,6 +84,9 @@ $ccAdminData = get_session_data();
 				}
 	}
 	$query = "select * from tbl_demo_download_email";
+	$where = "";
+	$groupby = "";
+	$orderby = "ORDER BY tbl_demo_id DESC";
 	/*$query = "SELECT 
     `tbl_full_download`.`dnID`
     , `tbl_user`.`user_fname`
@@ -83,9 +104,15 @@ FROM
 	$orderby = "ORDER BY `tbl_full_download`.`dnID` DESC";*/
 	$today_datee = date("Y-m-d");
 	$yesterday_datee = date('Y-m-d', strtotime($today_datee . ' - 1 day'));
-	if(isset($_POST['Search']))
+	if(isset($_REQUEST['Search']) && isset($_REQUEST['textSearch']) && trim($_REQUEST['textSearch']) != '')
 	{
-		$where = " where ".$_POST['criteria']." like '%".$_POST['textSearch']."%'";
+		$allowedCriteria = array(
+			"demo_download_email" => "demo_download_email",
+			"exam_code" => "exam_code"
+		);
+		$criteria = isset($_REQUEST['criteria']) && isset($allowedCriteria[$_REQUEST['criteria']]) ? $_REQUEST['criteria'] : "demo_download_email";
+		$textSearch = mysql_real_escape_string(trim($_REQUEST['textSearch']));
+		$where = " where ".$allowedCriteria[$criteria]." like '%".$textSearch."%'";
 	}
 	if(isset($_GET['getSearch']))
 	{	
@@ -112,11 +139,21 @@ FROM
 	}
 	if(isset($_GET['ord']))
 	{
-		$orderby = "ORDER BY ".$_GET['ord'] ." ". $_GET['ty'];
+		$allowedSorts = array(
+			"demo_download_email" => "demo_download_email",
+			"exam_code" => "exam_code",
+			"demo_download_date" => "demo_download_date"
+		);
+		if(isset($allowedSorts[$_GET['ord']])){
+			$sortDir = (isset($_GET['ty']) && strtoupper($_GET['ty']) == "DESC") ? "DESC" : "ASC";
+			$orderby = "ORDER BY ".$allowedSorts[$_GET['ord']]." ".$sortDir;
+		}
 	}
 	
 //............................................
-	$result = mysql_query("$query $where $groupby $orderby");
+	$result1 = mysql_query("$query $where $groupby $orderby");
+	$pgObj->SetNavigationalLinksNew($result1);
+	$result = mysql_query("$query $where $groupby $orderby $LIMIT");
 	if(mysql_num_rows($result) < 1){
 	$emptyError	=	"No record exist.";
 	}else{
