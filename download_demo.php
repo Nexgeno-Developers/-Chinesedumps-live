@@ -91,6 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['file'])) {
     }
 
     $userDetails = getUserDetails($uid, $mysqli);
+    $userEmail = '';
     
     if ($userDetails) {
         $userEmail     = $userDetails['user_email'];
@@ -158,6 +159,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['file'])) {
         // Send via your helper
         // sendEmail($to, $subject, $message, $headers);
         // mail($to, $subject, $message, $headers);
+    }
+
+    if (!empty($userEmail)) {
+        $examCodeForReport = $displayName !== '' ? $displayName : pathinfo($file, PATHINFO_FILENAME);
+        $stmtDemoEmail = $mysqli->prepare(
+            "SELECT tbl_demo_id FROM tbl_demo_download_email WHERE demo_download_email = ? AND exam_code = ? LIMIT 1"
+        );
+        if ($stmtDemoEmail) {
+            $stmtDemoEmail->bind_param("ss", $userEmail, $examCodeForReport);
+            $stmtDemoEmail->execute();
+            $stmtDemoEmail->store_result();
+
+            if ($stmtDemoEmail->num_rows == 0) {
+                $todayDate = date('Y-m-d');
+                $stmtInsertDemoEmail = $mysqli->prepare(
+                    "INSERT INTO tbl_demo_download_email (exam_code, exam_id, demo_download_email, demo_download_date) VALUES (?, ?, ?, ?)"
+                );
+                if ($stmtInsertDemoEmail) {
+                    $stmtInsertDemoEmail->bind_param("siss", $examCodeForReport, $cert_id, $userEmail, $todayDate);
+                    $stmtInsertDemoEmail->execute();
+                    $stmtInsertDemoEmail->close();
+                } else {
+                    error_log("Prepare failed for demo email insert: (" . $mysqli->errno . ") " . $mysqli->error);
+                }
+            }
+
+            $stmtDemoEmail->close();
+        } else {
+            error_log("Prepare failed for demo email lookup: (" . $mysqli->errno . ") " . $mysqli->error);
+        }
     }
     
     $escaped_file = mysqli_real_escape_string($mysqli, $file);

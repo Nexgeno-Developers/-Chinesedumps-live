@@ -2556,9 +2556,19 @@ function add_demo_email($usrdm)
 
 	{
 
+		$examCode = '';
+		if(isset($usrdm[0]) && trim($usrdm[0]) != '') {
+			$examCode = trim($usrdm[0]);
+		} elseif(isset($usrdm[1])) {
+			$examCode = trim($usrdm[1]);
+		}
+		$examCode = str_replace("-demo", "", $examCode);
+		$examCodeSql = mysql_real_escape_string($examCode);
+		$emailSql = mysql_real_escape_string($usrdm[2]);
+		$examIdSql = mysql_real_escape_string($usrdm[4]);
 		
 
-		$chked = "select demo_download_email from tbl_demo_download_email where demo_download_email='".$usrdm[2]."' and exam_code='".str_replace("-demo","",$usrdm[0])."'";
+		$chked = "select demo_download_email from tbl_demo_download_email where demo_download_email='".$emailSql."' and exam_code='".$examCodeSql."'";
 
 		$cked_query = mysql_query($chked);
 
@@ -2576,7 +2586,7 @@ function add_demo_email($usrdm)
 
 			$todayDate	=	date("Y-m-d");
 
-			$query_demo = "insert into tbl_demo_download_email(exam_code, exam_id, demo_download_email, demo_download_date)values('".str_replace("-demo","",$usrdm[0])."','".$usrdm[4]."','".$usrdm[2]."','".$todayDate."')";
+			$query_demo = "insert into tbl_demo_download_email(exam_code, exam_id, demo_download_email, demo_download_date)values('".$examCodeSql."','".$examIdSql."','".$emailSql."','".$todayDate."')";
 
 				if(mysql_query($query_demo))
 

@@ -570,6 +570,8 @@ $isLabLayout = ($examType === 'lab');
     // ------------------------Demo Download--------------------------//
 
     if (isset($_POST['email'])) {
+    $usrdm[0] = $_POST['ecode'];
+
     $usrdm[1] = $_POST['ecode'];
 
     $usrdm[2] = $_POST['email'];
