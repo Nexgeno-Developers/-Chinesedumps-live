@@ -18,11 +18,17 @@ include_once 'functions.php';
 $ccAdminData = get_session_data();
 $display	=	"";
 $message	=	"";
+$moduleNames = cms2_required_legacy_modules();
+$moduleNameSql = array();
+foreach ($moduleNames as $moduleName) {
+	$moduleNameSql[] = "'".mysql_real_escape_string($moduleName)."'";
+}
+$moduleNameWhere = implode(",", $moduleNameSql);
 
 	if(isset($_POST['permission']) &&	$_POST['permission']	== "Update Now" )
 	{		
 	
-	$qry = "select * from  tblmodules";
+	$qry = "select * from  tblmodules where `Name` IN (".$moduleNameWhere.")";
 	
 	$res = mysql_query($qry);
 	
@@ -50,7 +56,7 @@ $message	=	"";
 
 	
 
-	$qry = "select * from  tblmodules a, tblpermissions b  where a.ModuleID = b.ModuleID and b.AdminID = ".$_REQUEST['nid']."";
+	$qry = "select * from  tblmodules a, tblpermissions b  where a.ModuleID = b.ModuleID and b.AdminID = ".$_REQUEST['nid']." and a.`Name` IN (".$moduleNameWhere.")";
 	$read	=	"";
 	$edit	=	"";
 	$delete	=	"";

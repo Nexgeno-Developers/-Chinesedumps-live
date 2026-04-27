@@ -471,6 +471,10 @@
 		function addAdminPermission($adminId)
 
 		{
+			if (function_exists('cms2_ensure_legacy_modules_and_permissions')) {
+				cms2_ensure_legacy_modules_and_permissions();
+				return;
+			}
 
 			$qry = "select * from  tblmodules";
 
