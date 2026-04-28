@@ -16,7 +16,7 @@ session_start();
 
 include_once 'functions.php';
 $ccAdminData = get_session_data();
-require_role_permission('Add Admin User', 'write', false);
+require_role_permission('Admin Users Module', 'write', false);
 
 if (isset($_POST['Submit']) && $_POST['Submit'] == "Submit")
 {

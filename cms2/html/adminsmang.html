@@ -44,7 +44,7 @@ return false;
 <td width="810" valign="top" class="rightside"><h2>Admin Users Management !</h2>
 
 Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
-<?php if(role_can('staff', 'write')) { ?>
+<?php if(role_can('Admin Users Module', 'write')) { ?>
 <div style="margin-top:12px;"><a href="addadmin.php" class="button">Add Admin User</a></div>
 <?php } ?>
 
@@ -69,10 +69,10 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
     <td  width='150' align="right">Search By Field&nbsp;</td>
 
     <td width="127"  align="left"><select name="user_field">
-	      <option <?php if($_POST['user_field']=="adm_FName"){?> selected="selected" <? }?> value="adm_FName">First Name</option>
-	   <option <?php if($_POST['user_field']=="adm_LName"){?> selected="selected" <? }?> value="adm_LName">Last Name</option>
-      <option <?php if($_POST['user_field']=="adm_Email"){?> selected="selected" <? }?> value="adm_Email">Email</option>
-	  <option <?php if($_POST['user_field']=="adm_status"){?> selected="selected" <? }?> value="adm_status">Status</option>
+	      <option <?php if($_POST['user_field']=="adm_FName"){?> selected="selected" <?php } ?> value="adm_FName">First Name</option>
+	   <option <?php if($_POST['user_field']=="adm_LName"){?> selected="selected" <?php } ?> value="adm_LName">Last Name</option>
+      <option <?php if($_POST['user_field']=="adm_Email"){?> selected="selected" <?php } ?> value="adm_Email">Email</option>
+	  <option <?php if($_POST['user_field']=="adm_status"){?> selected="selected" <?php } ?> value="adm_status">Status</option>
     </select></td>
 
     <td width="108"  align="right">Provide Value &nbsp; </td>

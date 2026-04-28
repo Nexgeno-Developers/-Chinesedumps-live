@@ -47,7 +47,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
         </select>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="submit" name="Search" value="Search" />&nbsp;&nbsp;&nbsp;<input type="reset" name="reset" value="Reset" /></td>
-    <td align="right"><a class="menu" href="addexam.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add Exam </span>&nbsp;&nbsp;</a></td>
+    <td align="right"><?php if(role_can('Exams Module', 'write')){ ?><a class="menu" href="addexam.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add Exam </span>&nbsp;&nbsp;</a><?php } ?></td>
 	  </tr>
   <tr>
     <td height="19" align="center" colspan="8">&nbsp;</td>

@@ -166,7 +166,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 	  </td>
 
-	  <td align="right"><a class="menu" href="course_add.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Course </span></a>&nbsp;&nbsp;</td>
+	  <td align="right"><?php if(role_can('Courses Module', 'write')){ ?><a class="menu" href="course_add.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Course </span></a>&nbsp;&nbsp;<?php } ?></td>
 
     </tr>
 
@@ -201,7 +201,7 @@ $course = mysql_fetch_object($sqlcourse);
  <tr>
     <td class="item" style="padding-left:" 0px;="" align="center"><?= $course->name?></td>
 		<td class="item" style="padding-left:" 0px;="" align="center"><?= ($course->status == 1) ? 'Stable' : ''; ?><?= ($course->status == 0) ? 'Unstable' : ''; ?></td>
-    <td class="item" nowrap="nowrap" align="center"><a href="course_edit.php?id=<?= $course->id?>">Edit </a>| <a href="courses_status_manage.php?action=up&nid=<?= $course->id?>" onclick="return delete_pro();">Delete</a></td>
+    <td class="item" nowrap="nowrap" align="center"><?php if(role_can('Courses Module', 'edit')){ ?><a href="course_edit.php?id=<?= $course->id?>">Edit </a><?php } ?><?php if(role_can('Courses Module', 'delete')){ ?>| <a href="courses_status_manage.php?action=up&nid=<?= $course->id?>" onclick="return delete_pro();">Delete</a><?php } ?></td>
 </tr>
 
 <?php } ?>

@@ -67,8 +67,8 @@ function getCouponhtml($spram)
 		$coupon_type="Total";
 		if($rows['coupon_type']==2)
 			$coupon_type="Percent";
-		$edit	=	'<a href="editcoupon.php?nid='.$rows['id'].'">Edit </a>';
-		$del	=	'| <a href="managecoupon.php?action=up&nid='.$rows['id'].'" onclick= "return delete_pro();">Delete</a>';
+		$edit	=	role_can('Coupons Module', 'edit') ? '<a href="editcoupon.php?nid='.$rows['id'].'">Edit </a>' : '';
+		$del	=	role_can('Coupons Module', 'delete') ? '| <a href="managecoupon.php?action=up&nid='.$rows['id'].'" onclick= "return delete_pro();">Delete</a>' : '';
 		
 		$showTr		.='<tr '.$intColor.'>';
 		$showTr		.=		'<td class=item align="center" valign="middle"><input type="checkbox" name="chkbox'.$counter.'" id="chkbox'.$counter.'" value="'.$rows['id'].'" /></td>';
@@ -158,7 +158,7 @@ $showTr		.=		'<td align="center" class=item nowrap=nowrap>'.$edit.''.$del.' </td
 	}
 	else
 	{
-		$emptyError	=	'<input type="submit" name="btn_delete" id="btn_delete" class="button" value="Delete Selected Items" onclick="return Cofirm();"  />';
+		$emptyError	=	role_can('Coupons Module', 'delete') ? '<input type="submit" name="btn_delete" id="btn_delete" class="button" value="Delete Selected Items" onclick="return Cofirm();"  />' : '';
 	}
 	$show =	getCouponhtml($result1);
 

@@ -172,7 +172,7 @@ $ccAdminData = get_session_data();
 			}
 		else
 			{
-				$emptyError	=	'<input type="submit" name="btn_delete" id="btn_delete" class="button" value="Delete Selected Items" onclick= "return delete_pro();" />';
+				$emptyError	=	role_can('Vendors Module', 'delete') ? '<input type="submit" name="btn_delete" id="btn_delete" class="button" value="Delete Selected Items" onclick= "return delete_pro();" />' : '';
 				$show	=	$objProduct->show_review($result);		
 			}
 //----------------------------------------------------------------------------------------------------			

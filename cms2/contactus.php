@@ -34,6 +34,7 @@ $strCatName	=	"";		//it will contain the category name in case of duplication
 
 	if (isset($_POST['changepassword']) && $_POST['changepassword']	==	"Change Email")
 	{
+		require_role_permission('Change Email Address', 'edit', false);
 	//print  $_FILES['txtImage']; exit();
 		$spram[1]		 =  $_POST['link1'];
 		$spram[2]		 =  $_POST['link2'];

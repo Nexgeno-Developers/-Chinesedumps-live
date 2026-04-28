@@ -2224,7 +2224,7 @@ jQuery(function($) {
 <!--  </div>-->
 <!--</section>-->
 
-<? php /* 
+<?php /* 
 
 <section class="stable-unstable home_tbl">
   <div class="container">

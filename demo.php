@@ -4,7 +4,7 @@
 <?php
 ob_start();
 session_start();
-include("includes/config/classDbConnection.php");
+include_once("includes/config/classDbConnection.php");
 
 include("includes/common/classes/classmain.php");
 include("includes/common/classes/classProductMain.php");

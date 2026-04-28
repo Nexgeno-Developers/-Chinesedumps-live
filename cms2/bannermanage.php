@@ -291,7 +291,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 	  </td>
 
-	  <td align="right"><input type="submit" name="btn_save_order" value="Save Order" class="button" />&nbsp;&nbsp;<a class="menu" href="addslider.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Banner </span></a>&nbsp;&nbsp;</td>
+	  <td align="right"><?php if(role_can('Banners Module', 'edit')){ ?><input type="submit" name="btn_save_order" value="Save Order" class="button" />&nbsp;&nbsp;<?php } ?><?php if(role_can('Banners Module', 'write')){ ?><a class="menu" href="addslider.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Banner </span></a>&nbsp;&nbsp;<?php } ?></td>
 
     </tr>
 
@@ -349,7 +349,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 	 <td class="item" style="padding-left:" 0px;="" align="center"><?=$slider->type?></td>
 	 <td class="item" align="center"><input type="number" name="order[<?= intval($slider->s_id) ?>]" value="<?= intval($slider->banner_order) ?>" style="width: 50px; text-align: center;" min="1" /></td>
 	 <td class="item" style="padding-left:" 0px;="" align="center"><a href="../images/slider/<?=$slider->s_image?>"><img src="../images/slider/<?=$slider->s_image?>" width="350"></a></td>
-    <td class="item" nowrap="nowrap" align="center"><a href="editslider.php?ven_id=<?=$slider->s_id?>">Edit </a>| <a href="bannermanage.php?action=up&amp;nid=<?=$slider->s_id?>" onclick="return delete_pro();">Delete</a></td>
+    <td class="item" nowrap="nowrap" align="center"><?php if(role_can('Banners Module', 'edit')){ ?><a href="editslider.php?ven_id=<?=$slider->s_id?>">Edit </a><?php } ?><?php if(role_can('Banners Module', 'delete')){ ?>| <a href="bannermanage.php?action=up&amp;nid=<?=$slider->s_id?>" onclick="return delete_pro();">Delete</a><?php } ?></td>
 </tr>
 
 <?php } ?>

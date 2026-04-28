@@ -213,7 +213,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 	  </td>
 
-	  <td align="right"><a class="menu" href="add_gallery.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Banner </span></a>&nbsp;&nbsp;</td>
+	  <td align="right"><?php if(role_can('Exam Results Module', 'write')){ ?><a class="menu" href="add_gallery.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Banner </span></a>&nbsp;&nbsp;<?php } ?></td>
 
     </tr>
 
@@ -256,7 +256,7 @@ $slider = mysql_fetch_object($sqlSlider);
 	 <td class="item" style="padding-left:" 0px;="" align="center"><?=$slider->type?></td>
 	 <td class="item" style="padding-left:" 0px;="" align="center"><a href="../images/slider/<?=$slider->s_image?>"><img src="../images/slider/<?=$slider->s_image?>" width="350"></a></td>-->
 	 <td class="item" style="padding-left:" 0px;="" align="center"><a href="../images/slider_new/<?=$slider->filesb?>"><img src="../images/slider_new/<?=$slider->filesb?>" width="350"></a></td>
-    <td class="item" nowrap="nowrap" align="center"><a href="gallery_new.php?group_id=<?=$slider->group_id?>">View By group ID </a>| <a href="galley_management.php?action=up&amp;nid=<?=$slider->s_id?>" onclick="return delete_pro();">Delete</a></td>
+    <td class="item" nowrap="nowrap" align="center"><a href="gallery_new.php?group_id=<?=$slider->group_id?>">View By group ID </a><?php if(role_can('Exam Results Module', 'delete')){ ?>| <a href="galley_management.php?action=up&amp;nid=<?=$slider->s_id?>" onclick="return delete_pro();">Delete</a><?php } ?></td>
 </tr>
 
 <?php }*/  ?>

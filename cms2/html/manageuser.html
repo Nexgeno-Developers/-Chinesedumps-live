@@ -290,7 +290,9 @@ function openUserSearchCalendar(fieldName, triggerObj)
 
 		<div class="user-shell-body">
 			<div class="user-toolbar">
+				<?php if($addUserUrl != ''){ ?>
 				<a class="primary-action" href="<?=$addUserUrl?>">Add User</a>
+				<?php } ?>
 			</div>
 
 			<?php if($pageNotice != ""){ ?>
@@ -369,7 +371,7 @@ function openUserSearchCalendar(fieldName, triggerObj)
 						</strong>
 					</div>
 
-					<?php if($hasRecords){ ?>
+					<?php if($hasRecords && $canDeleteUsers){ ?>
 					<div align="center">
 						<input type="submit" name="btn_delete" id="btn_delete" class="bulk-delete-button" value="Delete Selected Items" onclick="return Cofirm();" />
 					</div>

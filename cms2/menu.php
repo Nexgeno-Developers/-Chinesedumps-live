@@ -7,7 +7,9 @@ function cms2_render_menu_section($title, $items, $first)
 {
 	$visible = array();
 	foreach ($items as $item) {
-		if ($item[1] == 'logout.php' || role_can($item[0], $item[2])) {
+		$module = isset($item[2]) ? trim((string)$item[2]) : '';
+		$action = isset($item[3]) ? trim((string)$item[3]) : '';
+		if (($module == '' && $action == '') || role_can($module, $action)) {
 			$visible[] = $item;
 		}
 	}
@@ -19,7 +21,7 @@ function cms2_render_menu_section($title, $items, $first)
 	echo '<tr><td width="198" class="menu_header">'.$title.'</td></tr>';
 	echo '<tr><td><img src="images/admin_menu_bar.gif" border="0" /></td></tr>';
 	foreach ($visible as $item) {
-		echo '<tr><td class="menu"><a class="menu" href="'.$item[1].'"><img src="'.$item[3].'" width="16" height="16" border="0" class="icon2" />'.$item[0].'</a></td></tr>';
+		echo '<tr><td class="menu"><a class="menu" href="'.$item[1].'"><img src="'.$item[4].'" width="16" height="16" border="0" class="icon2" />'.$item[0].'</a></td></tr>';
 	}
 	echo '</tbody></table>';
 }

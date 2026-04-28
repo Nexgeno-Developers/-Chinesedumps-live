@@ -39,174 +39,217 @@ function current_admin_role()
 	return 'admin';
 }
 
-function cms2_legacy_section_module($section)
+function cms2_feature_modules()
 {
-	$map = array(
+	return array(
+		'Configuration',
+		'Summary',
+		'Change Password',
+		'Website Copyright',
+		'Change Email Address',
+		'Report',
+		'Banners Module',
+		'Exam Results Module',
+		'Vendors Module',
+		'Certifications Module',
+		'Exams Module',
+		'Demo Exams Module',
+		'Orders Module',
+		'Coupons Module',
+		'Courses Module',
+		'Global Content Module',
+		'Users Module',
+		'Admin Users Module'
+	);
+}
+
+function cms2_module_alias_map()
+{
+	return array(
 		'Dashboard' => 'Summary',
 		'Settings' => 'Configuration',
-		'Banners' => 'Banners Management',
-		'Products Module' => 'Exams Management',
-		'Users Module' => 'User Management',
-		'Cart Mangement Modules' => 'Final Orders',
-		'Cart Management Modules' => 'Final Orders',
-		'Coupon Mangement Module' => 'Manage Coupons',
-		'Coupon Management Module' => 'Manage Coupons',
-		'Courses' => 'Manage Course',
-		'Downloads' => 'Full Download Management',
-		'Support' => 'View Exam Request Email',
-		'Articles' => 'Edit Emails',
-		'Contents Management' => 'Edit Emails',
-		'Staff' => 'Admin User Management',
-		'staff' => 'Admin User Management'
+		'Stats' => 'Report',
+		'Reports' => 'Report',
+		'Banners' => 'Banners Module',
+		'Banners Management' => 'Banners Module',
+		'Add Banner' => 'Banners Module',
+		'Exam Results Management' => 'Exam Results Module',
+		'Add Exam Results Image' => 'Exam Results Module',
+		'Products Module' => 'Exams Module',
+		'Add Vendors' => 'Vendors Module',
+		'Vendors Management' => 'Vendors Module',
+		'Add Certification' => 'Certifications Module',
+		'Certifications Management' => 'Certifications Module',
+		'Add Exam' => 'Exams Module',
+		'Exams Management' => 'Exams Module',
+		'Downloads' => 'Demo Exams Module',
+		'Support' => 'Demo Exams Module',
+		'View Demo Emails' => 'Demo Exams Module',
+		'View Exam Request Email' => 'Demo Exams Module',
+		'Full Download Management' => 'Demo Exams Module',
+		'Cart Mangement Modules' => 'Orders Module',
+		'Cart Management Modules' => 'Orders Module',
+		'Final Orders' => 'Orders Module',
+		'List Cart' => 'Orders Module',
+		'Re-Order Cart' => 'Orders Module',
+		'Coupon Mangement Module' => 'Coupons Module',
+		'Coupon Management Module' => 'Coupons Module',
+		'Manage Coupons' => 'Coupons Module',
+		'Add new Coupon' => 'Coupons Module',
+		'Courses' => 'Courses Module',
+		'Manage Course' => 'Courses Module',
+		'Add new Course' => 'Courses Module',
+		'Articles' => 'Global Content Module',
+		'Contents Management' => 'Global Content Module',
+		'Edit Emails' => 'Global Content Module',
+		'Vendor Global Content' => 'Global Content Module',
+		'Certification Global Content' => 'Global Content Module',
+		'Exam Global Content' => 'Global Content Module',
+		'Add User' => 'Users Module',
+		'User Management' => 'Users Module',
+		'Staff' => 'Admin Users Module',
+		'staff' => 'Admin Users Module',
+		'Admin User Management' => 'Admin Users Module',
+		'Add Admin User' => 'Admin Users Module'
 	);
+}
+
+function cms2_legacy_section_module($section)
+{
+	$map = cms2_module_alias_map();
 	return isset($map[$section]) ? $map[$section] : $section;
+}
+
+function cms2_admin_menu_item($label, $url, $module, $action, $icon)
+{
+	return array($label, $url, $module, $action, $icon);
 }
 
 function cms2_admin_panel_sections()
 {
 	return array(
 		array('Global', array(
-			array('Configuration', 'global.php', 'edit', 'images/News-Edit.gif'),
-			array('Summary', 'sum.php', 'read', 'images/admin_summary16.gif'),
-			array('Change Password', 'password.php', 'edit', 'images/admin_log16.gif'),
-			array('Website Copyright', 'copyright.php', 'edit', 'images/News-Edit.gif'),
-			array('Change Email Address', 'contactus.php', 'edit', 'images/Chart1-Edit.gif'),
-			array('Logout', 'logout.php', 'read', 'images/admin_banning16.gif')
+			cms2_admin_menu_item('Configuration', 'global.php', 'Configuration', 'read', 'images/News-Edit.gif'),
+			cms2_admin_menu_item('Summary', 'sum.php', 'Summary', 'read', 'images/admin_summary16.gif'),
+			cms2_admin_menu_item('Change Password', 'password.php', 'Change Password', 'read', 'images/admin_log16.gif'),
+			cms2_admin_menu_item('Website Copyright', 'copyright.php', 'Website Copyright', 'read', 'images/News-Edit.gif'),
+			cms2_admin_menu_item('Change Email Address', 'contactus.php', 'Change Email Address', 'read', 'images/Chart1-Edit.gif'),
+			cms2_admin_menu_item('Logout', 'logout.php', '', '', 'images/admin_banning16.gif')
 		)),
-		array('Stats', array(
-			array('All Registered Users', 'manageuser.php', 'read', 'images/News-Edit.gif'),
-			array('Reports', 'backup_stats.php', 'read', 'images/admin_summary16.gif')
+		array('Report', array(
+			cms2_admin_menu_item('All Registered Users', 'manageuser.php', 'Users Module', 'read', 'images/News-Edit.gif'),
+			cms2_admin_menu_item('Reports', 'backup_stats.php', 'Report', 'read', 'images/admin_summary16.gif')
 		)),
 		array('Banners', array(
-			array('Banners Management', 'bannermanage.php', 'read', 'images/admin_summary16.gif'),
-			array('Add Banner', 'addslider.php', 'write', 'images/News-Add.gif')
+			cms2_admin_menu_item('Banners Management', 'bannermanage.php', 'Banners Module', 'read', 'images/admin_summary16.gif'),
+			cms2_admin_menu_item('Add Banner', 'addslider.php', 'Banners Module', 'write', 'images/News-Add.gif')
 		)),
 		array('Exam Results', array(
-			array('Exam Results Management', 'galley_management.php', 'read', 'images/admin_summary16.gif'),
-			array('Add Exam Results Image', 'add_gallery.php', 'write', 'images/News-Edit.gif')
+			cms2_admin_menu_item('Exam Results Management', 'galley_management.php', 'Exam Results Module', 'read', 'images/admin_summary16.gif'),
+			cms2_admin_menu_item('Add Exam Results Image', 'add_gallery.php', 'Exam Results Module', 'write', 'images/News-Edit.gif')
 		)),
 		array('Products Module', array(
-			array('Add Vendors', 'addvendors.php', 'write', 'images/News-Add.gif'),
-			array('Vendors Management', 'vendormanage.php', 'read', 'images/Comments-edit.gif'),
-			array('Add Certification', 'addcertif.php', 'write', 'images/News-Add.gif'),
-			array('Certifications Management', 'certifmanage.php', 'read', 'images/Comments-edit.gif'),
-			array('Add Exam', 'addexam.php', 'write', 'images/News-Add.gif'),
-			array('Exams Management', 'exammanage.php', 'read', 'images/Comments-edit.gif')
+			cms2_admin_menu_item('Add Vendors', 'addvendors.php', 'Vendors Module', 'write', 'images/News-Add.gif'),
+			cms2_admin_menu_item('Vendors Management', 'vendormanage.php', 'Vendors Module', 'read', 'images/Comments-edit.gif'),
+			cms2_admin_menu_item('Add Certification', 'addcertif.php', 'Certifications Module', 'write', 'images/News-Add.gif'),
+			cms2_admin_menu_item('Certifications Management', 'certifmanage.php', 'Certifications Module', 'read', 'images/Comments-edit.gif'),
+			cms2_admin_menu_item('Add Exam', 'addexam.php', 'Exams Module', 'write', 'images/News-Add.gif'),
+			cms2_admin_menu_item('Exams Management', 'exammanage.php', 'Exams Module', 'read', 'images/Comments-edit.gif')
 		)),
 		array('Demo & Exams Management Modules', array(
-			array('View Demo Emails', 'view_demoDownload.php', 'read', 'images/News-Edit.gif'),
-			array('View Exam Request Email', 'exam_request.php', 'read', 'images/News-Edit.gif'),
-			array('Full Download Management', 'managefull.php', 'read', 'images/News-Edit.gif')
+			cms2_admin_menu_item('View Demo Emails', 'view_demoDownload.php', 'Demo Exams Module', 'read', 'images/News-Edit.gif'),
+			cms2_admin_menu_item('View Exam Request Email', 'exam_request.php', 'Demo Exams Module', 'read', 'images/News-Edit.gif'),
+			cms2_admin_menu_item('Full Download Management', 'managefull.php', 'Demo Exams Module', 'read', 'images/News-Edit.gif')
 		)),
 		array('Cart Management Modules', array(
-			array('Final Orders', 'masterorder.php', 'read', 'images/News-Edit.gif'),
-			array('List Cart', 'odrproces.php', 'edit', 'images/News-Edit.gif'),
-			array('Re-Order Cart', 'reodrproces.php', 'edit', 'images/News-Edit.gif')
+			cms2_admin_menu_item('Final Orders', 'masterorder.php', 'Orders Module', 'read', 'images/News-Edit.gif'),
+			cms2_admin_menu_item('List Cart', 'odrproces.php', 'Orders Module', 'edit', 'images/News-Edit.gif'),
+			cms2_admin_menu_item('Re-Order Cart', 'reodrproces.php', 'Orders Module', 'edit', 'images/News-Edit.gif')
 		)),
 		array('Coupon Management Module', array(
-			array('Manage Coupons', 'managecoupon.php', 'read', 'images/News-Edit.gif'),
-			array('Add new Coupon', 'addcoupon.php', 'write', 'images/News-Edit.gif')
+			cms2_admin_menu_item('Manage Coupons', 'managecoupon.php', 'Coupons Module', 'read', 'images/News-Edit.gif'),
+			cms2_admin_menu_item('Add new Coupon', 'addcoupon.php', 'Coupons Module', 'write', 'images/News-Edit.gif')
 		)),
 		array('Stable/Unstable Course Management Module', array(
-			array('Manage Course', 'courses_status_manage.php', 'read', 'images/News-Edit.gif'),
-			array('Add new Course', 'course_add.php', 'write', 'images/News-Edit.gif')
+			cms2_admin_menu_item('Manage Course', 'courses_status_manage.php', 'Courses Module', 'read', 'images/News-Edit.gif'),
+			cms2_admin_menu_item('Add new Course', 'course_add.php', 'Courses Module', 'write', 'images/News-Edit.gif')
 		)),
 		array('Global Content', array(
-			array('Edit Emails', 'editemails.php', 'edit', 'images/News-Edit.gif'),
-			array('Vendor Global Content', 'vendorgloble.php?pid=1', 'edit', 'images/News-Edit.gif'),
-			array('Certification Global Content', 'vendorgloble.php?pid=2', 'edit', 'images/News-Edit.gif'),
-			array('Exam Global Content', 'vendorgloble.php?pid=3', 'edit', 'images/News-Edit.gif')
+			cms2_admin_menu_item('Edit Emails', 'editemails.php', 'Global Content Module', 'edit', 'images/News-Edit.gif'),
+			cms2_admin_menu_item('Vendor Global Content', 'vendorgloble.php?pid=1', 'Global Content Module', 'edit', 'images/News-Edit.gif'),
+			cms2_admin_menu_item('Certification Global Content', 'vendorgloble.php?pid=2', 'Global Content Module', 'edit', 'images/News-Edit.gif'),
+			cms2_admin_menu_item('Exam Global Content', 'vendorgloble.php?pid=3', 'Global Content Module', 'edit', 'images/News-Edit.gif')
 		)),
 		array('Users Module', array(
-			array('Add User', 'adduser.php', 'write', 'images/News-Add.gif'),
-			array('User Management', 'manageuser.php', 'read', 'images/News-Edit.gif')
+			cms2_admin_menu_item('Add User', 'adduser.php', 'Users Module', 'write', 'images/News-Add.gif'),
+			cms2_admin_menu_item('User Management', 'manageuser.php', 'Users Module', 'read', 'images/News-Edit.gif')
 		)),
 		array('Admin Users', array(
-			array('Admin User Management', 'manageadmin.php', 'read', 'images/News-Edit.gif'),
-			array('Add Admin User', 'addadmin.php', 'write', 'images/News-Add.gif')
+			cms2_admin_menu_item('Admin User Management', 'manageadmin.php', 'Admin Users Module', 'read', 'images/News-Edit.gif'),
+			cms2_admin_menu_item('Add Admin User', 'addadmin.php', 'Admin Users Module', 'write', 'images/News-Add.gif')
 		))
 	);
 }
 
 function cms2_required_legacy_modules()
 {
-	$modules = array();
-	$sections = cms2_admin_panel_sections();
-	foreach ($sections as $section) {
-		foreach ($section[1] as $item) {
-			$modules[] = $item[0];
-		}
-	}
-	return $modules;
+	return cms2_feature_modules();
 }
 
-function cms2_actions_for_item($item)
+function cms2_permission_bits($actions)
 {
-	$readOnly = array('Summary', 'Logout', 'Reports', 'All Registered Users', 'View Demo Emails', 'View Exam Request Email', 'Full Download Management', 'Final Orders');
-	$writeOnly = array('Add Banner', 'Add Exam Results Image', 'Add Vendors', 'Add Certification', 'Add Exam', 'Add new Coupon', 'Add new Course', 'Add User', 'Add Admin User');
-	$editOnly = array('Configuration', 'Change Password', 'Website Copyright', 'Change Email Address', 'List Cart', 'Re-Order Cart', 'Edit Emails', 'Vendor Global Content', 'Certification Global Content', 'Exam Global Content');
-
-	if (in_array($item, $readOnly)) {
-		return array('read');
-	}
-	if (in_array($item, $writeOnly)) {
-		return array('read', 'write');
-	}
-	if (in_array($item, $editOnly)) {
-		return array('read', 'edit');
-	}
-	return array('read', 'edit', 'delete');
-}
-
-function cms2_permissions_for_items($items, $allowDelete)
-{
-	$permissions = array();
-	foreach ($items as $item) {
-		$actions = cms2_actions_for_item($item);
-		if (!$allowDelete) {
-			$filteredActions = array();
-			foreach ($actions as $action) {
-				if ($action != 'delete') {
-					$filteredActions[] = $action;
-				}
-			}
-			$actions = $filteredActions;
+	$bits = array('read' => 0, 'write' => 0, 'edit' => 0, 'delete' => 0);
+	foreach ($actions as $action) {
+		$action = strtolower($action);
+		if (isset($bits[$action])) {
+			$bits[$action] = 1;
 		}
-		$permissions[strtolower($item)] = $actions;
 	}
-	return $permissions;
+	return $bits;
 }
 
 function cms2_role_permissions()
 {
-	$adminItems = array(
-		'Configuration', 'Summary', 'Change Password', 'Website Copyright', 'Change Email Address', 'Logout',
-		'All Registered Users', 'Reports', 'Banners Management', 'Add Banner', 'Exam Results Management',
-		'Add Exam Results Image', 'Add Vendors', 'Vendors Management', 'Add Certification',
-		'Certifications Management', 'Add Exam', 'Exams Management', 'View Demo Emails',
-		'View Exam Request Email', 'Full Download Management', 'Final Orders', 'List Cart', 'Re-Order Cart',
-		'Manage Coupons', 'Add new Coupon', 'Manage Course', 'Add new Course', 'Edit Emails',
-		'Vendor Global Content', 'Certification Global Content', 'Exam Global Content', 'Add User',
-		'User Management'
-	);
-	$editorItems = array(
-		'Summary', 'Change Password', 'Logout', 'Banners Management', 'Add Banner',
-		'Exam Results Management', 'Add Exam Results Image', 'Add Vendors', 'Vendors Management',
-		'Add Certification', 'Certifications Management', 'Add Exam', 'Exams Management',
-		'Manage Course', 'Add new Course', 'Edit Emails', 'Vendor Global Content',
-		'Certification Global Content', 'Exam Global Content'
-	);
-	$supportItems = array(
-		'Summary', 'Change Password', 'Logout', 'All Registered Users', 'Reports',
-		'View Demo Emails', 'View Exam Request Email', 'Full Download Management',
-		'Final Orders', 'List Cart', 'Re-Order Cart', 'Add User', 'User Management'
-	);
-
 	return array(
 		'super_admin' => array('*' => array('read', 'write', 'edit', 'delete')),
-		'admin' => cms2_permissions_for_items($adminItems, true),
-		'editor' => cms2_permissions_for_items($editorItems, false),
-		'support' => cms2_permissions_for_items($supportItems, false)
+		'admin' => array(
+			'configuration' => array('read', 'edit'),
+			'summary' => array('read'),
+			'change password' => array('read', 'edit'),
+			'website copyright' => array('read', 'edit'),
+			'change email address' => array('read', 'edit'),
+			'report' => array('read', 'write'),
+			'banners module' => array('read', 'write', 'edit', 'delete'),
+			'exam results module' => array('read', 'write', 'edit', 'delete'),
+			'vendors module' => array('read', 'write', 'edit', 'delete'),
+			'certifications module' => array('read', 'write', 'edit', 'delete'),
+			'exams module' => array('read', 'write', 'edit', 'delete'),
+			'demo exams module' => array('read', 'write', 'edit', 'delete'),
+			'orders module' => array('read', 'edit', 'delete'),
+			'coupons module' => array('read', 'write', 'edit', 'delete'),
+			'courses module' => array('read', 'write', 'edit', 'delete'),
+			'global content module' => array('read', 'edit'),
+			'users module' => array('read', 'write', 'edit', 'delete')
+		),
+		'editor' => array(
+			'summary' => array('read'),
+			'change password' => array('read', 'edit'),
+			'banners module' => array('read', 'write', 'edit'),
+			'exam results module' => array('read', 'write', 'edit'),
+			'vendors module' => array('read', 'write', 'edit'),
+			'certifications module' => array('read', 'write', 'edit'),
+			'exams module' => array('read', 'write', 'edit'),
+			'courses module' => array('read', 'write', 'edit'),
+			'global content module' => array('read', 'edit')
+		),
+		'support' => array(
+			'summary' => array('read'),
+			'change password' => array('read', 'edit'),
+			'report' => array('read'),
+			'demo exams module' => array('read'),
+			'orders module' => array('read', 'edit'),
+			'users module' => array('read', 'write', 'edit')
+		)
 	);
 }
 
@@ -219,6 +262,16 @@ function role_can($module, $action)
 	$module = strtolower(trim((string)$module));
 	$action = strtolower(trim((string)$action));
 	$permissions = cms2_role_permissions();
+	$bitMap = array('read' => 'Read', 'write' => 'Write', 'edit' => 'Edit', 'delete' => 'Delete');
+	$permissionKey = isset($bitMap[$action]) ? $bitMap[$action] : '';
+
+	if ($permissionKey != '' && is_array($ccAdminData)) {
+		foreach ($ccAdminData as $sectionName => $sectionPermissions) {
+			if (strtolower((string)$sectionName) == $module && is_array($sectionPermissions) && isset($sectionPermissions[$permissionKey])) {
+				return ($sectionPermissions[$permissionKey] == true);
+			}
+		}
+	}
 
 	if (isset($permissions[$role]['*'])) {
 		return in_array($action, $permissions[$role]['*']);
@@ -228,16 +281,6 @@ function role_can($module, $action)
 	}
 	if (!in_array($action, $permissions[$role][$module])) {
 		return false;
-	}
-
-	$bitMap = array('read' => 'Read', 'write' => 'Write', 'edit' => 'Edit', 'delete' => 'Delete');
-	$permissionKey = isset($bitMap[$action]) ? $bitMap[$action] : '';
-	if ($permissionKey != '' && is_array($ccAdminData)) {
-		foreach ($ccAdminData as $sectionName => $sectionPermissions) {
-			if (strtolower((string)$sectionName) == $module && is_array($sectionPermissions) && isset($sectionPermissions[$permissionKey])) {
-				return ($sectionPermissions[$permissionKey] == true);
-			}
-		}
 	}
 
 	return false;
@@ -259,6 +302,167 @@ function cms2_role_legacy_permission_bits($role, $moduleName)
 		$bits['Delete'] = 1;
 	}
 	return $bits;
+}
+
+function cms2_old_module_groups()
+{
+	return array(
+		'Users Module' => array('User Management', 'Add User', 'All Registered Users'),
+		'Courses Module' => array('Manage Course', 'Add new Course'),
+		'Certifications Module' => array('Certifications Management', 'Add Certification'),
+		'Vendors Module' => array('Vendors Management', 'Add Vendors'),
+		'Exams Module' => array('Exams Management', 'Add Exam'),
+		'Banners Module' => array('Banners Management', 'Add Banner'),
+		'Exam Results Module' => array('Exam Results Management', 'Add Exam Results Image'),
+		'Coupons Module' => array('Manage Coupons', 'Add new Coupon'),
+		'Orders Module' => array('Final Orders', 'List Cart', 'Re-Order Cart'),
+		'Demo Exams Module' => array('View Demo Emails', 'View Exam Request Email', 'Full Download Management'),
+		'Global Content Module' => array('Edit Emails', 'Vendor Global Content', 'Certification Global Content', 'Exam Global Content'),
+		'Configuration' => array('Configuration', 'Global Module'),
+		'Summary' => array('Summary', 'Global Module'),
+		'Change Password' => array('Change Password', 'Global Module'),
+		'Website Copyright' => array('Website Copyright', 'Global Module'),
+		'Change Email Address' => array('Change Email Address', 'Global Module'),
+		'Report' => array('Reports', 'Stats Module'),
+		'Admin Users Module' => array('Admin User Management', 'Add Admin User')
+	);
+}
+
+function cms2_merge_old_permission_rows($adminId, $newModule, $oldRows, $role)
+{
+	$groups = cms2_old_module_groups();
+	$oldNames = isset($groups[$newModule]) ? $groups[$newModule] : array();
+	$hasLegacyRows = false;
+	foreach ($oldNames as $oldName) {
+		if (isset($oldRows[$oldName])) {
+			$hasLegacyRows = true;
+			break;
+		}
+	}
+	if (isset($oldRows[$newModule])) {
+		$bits = array(
+			'Read' => (int)$oldRows[$newModule]['Read'],
+			'Write' => (int)$oldRows[$newModule]['Write'],
+			'Edit' => (int)$oldRows[$newModule]['Edit'],
+			'Delete' => (int)$oldRows[$newModule]['Delete']
+		);
+	} else {
+		$defaultBits = $hasLegacyRows ? array('Read' => 0, 'Write' => 0, 'Edit' => 0, 'Delete' => 0) : cms2_role_legacy_permission_bits($role, $newModule);
+		$bits = array(
+			'Read' => (int)$defaultBits['Read'],
+			'Write' => (int)$defaultBits['Write'],
+			'Edit' => (int)$defaultBits['Edit'],
+			'Delete' => (int)$defaultBits['Delete']
+		);
+	}
+	foreach ($oldNames as $oldName) {
+		if (!isset($oldRows[$oldName])) {
+			continue;
+		}
+		$row = $oldRows[$oldName];
+		if ($row['Read'] == 1 || $row['Edit'] == 1 || $row['Delete'] == 1) {
+			$bits['Read'] = 1;
+		}
+		if ($row['Write'] == 1) {
+			$bits['Write'] = 1;
+		}
+		if ($row['Edit'] == 1) {
+			$bits['Edit'] = 1;
+		}
+		if ($row['Delete'] == 1) {
+			$bits['Delete'] = 1;
+		}
+	}
+	return $bits;
+}
+
+function cms2_upsert_permission_bits($adminId, $moduleId, $bits)
+{
+	$adminId = (int)$adminId;
+	$moduleId = (int)$moduleId;
+	$read = (int)$bits['Read'];
+	$write = (int)$bits['Write'];
+	$edit = (int)$bits['Edit'];
+	$delete = (int)$bits['Delete'];
+
+	$permissionIdResult = mysql_query("SHOW COLUMNS FROM tblpermissions LIKE 'PermissionID'");
+	$hasPermissionId = ($permissionIdResult && mysql_num_rows($permissionIdResult) > 0);
+
+	if ($hasPermissionId) {
+		$existingResult = mysql_query("SELECT PermissionID FROM tblpermissions WHERE AdminID=".$adminId." AND ModuleID=".$moduleId." ORDER BY PermissionID ASC LIMIT 1");
+		$existing = $existingResult ? mysql_fetch_array($existingResult) : false;
+		if ($existing && isset($existing['PermissionID'])) {
+			mysql_query("UPDATE tblpermissions SET `Read`=".$read.", `Write`=".$write.", `Edit`=".$edit.", `Delete`=".$delete." WHERE PermissionID=".(int)$existing['PermissionID']);
+			mysql_query("DELETE FROM tblpermissions WHERE AdminID=".$adminId." AND ModuleID=".$moduleId." AND PermissionID<>".(int)$existing['PermissionID']);
+			return;
+		}
+		mysql_query("INSERT INTO `tblpermissions` (`AdminID`,`ModuleID`,`Read`,`Write`,`Edit`,`Delete`) VALUES (".$adminId.",".$moduleId.",".$read.",".$write.",".$edit.",".$delete.")");
+		return;
+	}
+
+	mysql_query("DELETE FROM tblpermissions WHERE AdminID=".$adminId." AND ModuleID=".$moduleId);
+	mysql_query("INSERT INTO `tblpermissions` (`AdminID`,`ModuleID`,`Read`,`Write`,`Edit`,`Delete`) VALUES (".$adminId.",".$moduleId.",".$read.",".$write.",".$edit.",".$delete.")");
+}
+
+function cms2_cleanup_duplicate_feature_modules_and_permissions()
+{
+	$modules = cms2_feature_modules();
+	foreach ($modules as $moduleName) {
+		$moduleNameSql = mysql_real_escape_string($moduleName);
+		$moduleResult = mysql_query("SELECT ModuleID FROM tblmodules WHERE Name='".$moduleNameSql."' ORDER BY ModuleID ASC");
+		if (!$moduleResult) {
+			continue;
+		}
+
+		$canonicalModuleId = 0;
+		$duplicateModuleIds = array();
+		while ($moduleRow = mysql_fetch_array($moduleResult)) {
+			$moduleId = (int)$moduleRow['ModuleID'];
+			if ($canonicalModuleId == 0) {
+				$canonicalModuleId = $moduleId;
+			} else {
+				$duplicateModuleIds[] = $moduleId;
+			}
+		}
+		if ($canonicalModuleId == 0) {
+			continue;
+		}
+
+		foreach ($duplicateModuleIds as $duplicateModuleId) {
+			$permissionResult = mysql_query("SELECT AdminID, MAX(`Read`) AS R, MAX(`Write`) AS W, MAX(`Edit`) AS E, MAX(`Delete`) AS D FROM tblpermissions WHERE ModuleID=".$duplicateModuleId." GROUP BY AdminID");
+			if ($permissionResult) {
+				while ($permissionRow = mysql_fetch_array($permissionResult)) {
+					$adminId = (int)$permissionRow['AdminID'];
+					$existingResult = mysql_query("SELECT MAX(`Read`) AS R, MAX(`Write`) AS W, MAX(`Edit`) AS E, MAX(`Delete`) AS D FROM tblpermissions WHERE AdminID=".$adminId." AND ModuleID=".$canonicalModuleId);
+					$existing = $existingResult ? mysql_fetch_array($existingResult) : array('R' => 0, 'W' => 0, 'E' => 0, 'D' => 0);
+					$bits = array(
+						'Read' => max((int)$permissionRow['R'], (int)$existing['R']),
+						'Write' => max((int)$permissionRow['W'], (int)$existing['W']),
+						'Edit' => max((int)$permissionRow['E'], (int)$existing['E']),
+						'Delete' => max((int)$permissionRow['D'], (int)$existing['D'])
+					);
+					cms2_upsert_permission_bits($adminId, $canonicalModuleId, $bits);
+				}
+			}
+			mysql_query("DELETE FROM tblpermissions WHERE ModuleID=".$duplicateModuleId);
+			mysql_query("DELETE FROM tblmodules WHERE ModuleID=".$duplicateModuleId);
+		}
+
+		$permissionIdResult = mysql_query("SHOW COLUMNS FROM tblpermissions LIKE 'PermissionID'");
+		$hasPermissionId = ($permissionIdResult && mysql_num_rows($permissionIdResult) > 0);
+		$adminResult = mysql_query("SELECT AdminID, MAX(`Read`) AS R, MAX(`Write`) AS W, MAX(`Edit`) AS E, MAX(`Delete`) AS D".($hasPermissionId ? ", MIN(PermissionID) AS KeepID" : "")." FROM tblpermissions WHERE ModuleID=".$canonicalModuleId." GROUP BY AdminID HAVING COUNT(*) > 1");
+		if ($adminResult) {
+			while ($adminRow = mysql_fetch_array($adminResult)) {
+				if ($hasPermissionId) {
+					$keepId = (int)$adminRow['KeepID'];
+					mysql_query("UPDATE tblpermissions SET `Read`=".(int)$adminRow['R'].", `Write`=".(int)$adminRow['W'].", `Edit`=".(int)$adminRow['E'].", `Delete`=".(int)$adminRow['D']." WHERE PermissionID=".$keepId);
+					mysql_query("DELETE FROM tblpermissions WHERE AdminID=".(int)$adminRow['AdminID']." AND ModuleID=".$canonicalModuleId." AND PermissionID<>".$keepId);
+				} else {
+					cms2_upsert_permission_bits((int)$adminRow['AdminID'], $canonicalModuleId, array('Read' => (int)$adminRow['R'], 'Write' => (int)$adminRow['W'], 'Edit' => (int)$adminRow['E'], 'Delete' => (int)$adminRow['D']));
+				}
+			}
+		}
+	}
 }
 
 function role_can_for_role($role, $module, $action)
@@ -283,7 +487,7 @@ function cms2_ensure_legacy_modules_and_permissions()
 	mysql_query("CREATE TABLE IF NOT EXISTS `tblmodules` (`ModuleID` int(11) NOT NULL AUTO_INCREMENT, `Name` varchar(255) NOT NULL, PRIMARY KEY (`ModuleID`), UNIQUE KEY `Name` (`Name`))");
 	mysql_query("CREATE TABLE IF NOT EXISTS `tblpermissions` (`PermissionID` int(11) NOT NULL AUTO_INCREMENT, `AdminID` int(11) NOT NULL, `ModuleID` int(11) NOT NULL, `Read` tinyint(1) NOT NULL DEFAULT '0', `Write` tinyint(1) NOT NULL DEFAULT '0', `Edit` tinyint(1) NOT NULL DEFAULT '0', `Delete` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`PermissionID`), UNIQUE KEY `admin_module` (`AdminID`,`ModuleID`))");
 
-	$modules = cms2_required_legacy_modules();
+	$modules = cms2_feature_modules();
 	foreach ($modules as $moduleName) {
 		$moduleNameSql = mysql_real_escape_string($moduleName);
 		$existingModule = mysql_fetch_array(mysql_query("SELECT COUNT(*) AS total_count FROM `tblmodules` WHERE `Name`='".$moduleNameSql."'"));
@@ -291,6 +495,7 @@ function cms2_ensure_legacy_modules_and_permissions()
 			mysql_query("INSERT INTO `tblmodules` (`Name`) VALUES ('".$moduleNameSql."')");
 		}
 	}
+	cms2_cleanup_duplicate_feature_modules_and_permissions();
 
 	$adminResult = mysql_query("SELECT admin_id, admin_role FROM tbladmin");
 	if (!$adminResult) {
@@ -303,22 +508,44 @@ function cms2_ensure_legacy_modules_and_permissions()
 	}
 
 	$moduleRows = array();
+	$moduleIdsByName = array();
+	$featureNames = array();
+	foreach ($modules as $moduleName) {
+		$featureNames[strtolower($moduleName)] = $moduleName;
+	}
 	while ($moduleRow = mysql_fetch_array($moduleResult)) {
 		$moduleRows[] = $moduleRow;
+		$moduleIdsByName[$moduleRow['Name']] = (int)$moduleRow['ModuleID'];
 	}
 
 	while ($adminRow = mysql_fetch_array($adminResult)) {
 		$adminId = (int)$adminRow['admin_id'];
 		$role = isset($adminRow['admin_role']) && $adminRow['admin_role'] != '' ? $adminRow['admin_role'] : (($adminId == 1) ? 'super_admin' : 'admin');
-		foreach ($moduleRows as $moduleRow) {
-			$bits = cms2_role_legacy_permission_bits($role, $moduleRow['Name']);
-			$moduleId = (int)$moduleRow['ModuleID'];
-			$existingPermission = mysql_fetch_array(mysql_query("SELECT COUNT(*) AS total_count FROM `tblpermissions` WHERE `AdminID`=".$adminId." AND `ModuleID`=".$moduleId));
-			if (!$existingPermission || (int)$existingPermission['total_count'] == 0) {
-				mysql_query("INSERT INTO `tblpermissions` (`AdminID`,`ModuleID`,`Read`,`Write`,`Edit`,`Delete`) VALUES (".$adminId.",".$moduleId.",0,0,0,0)");
+		$oldRows = array();
+		$oldResult = mysql_query("SELECT m.Name, p.`Read`, p.`Write`, p.`Edit`, p.`Delete` FROM tblmodules m INNER JOIN tblpermissions p ON m.ModuleID = p.ModuleID WHERE p.AdminID=".$adminId);
+		if ($oldResult) {
+			while ($oldRow = mysql_fetch_array($oldResult)) {
+				$oldRows[$oldRow['Name']] = $oldRow;
 			}
 		}
+		foreach ($modules as $moduleName) {
+			if (!isset($moduleIdsByName[$moduleName])) {
+				continue;
+			}
+			$moduleId = $moduleIdsByName[$moduleName];
+			$bits = cms2_merge_old_permission_rows($adminId, $moduleName, $oldRows, $role);
+			cms2_upsert_permission_bits($adminId, $moduleId, $bits);
+		}
 	}
+
+	$featureSql = array();
+	foreach ($modules as $moduleName) {
+		$featureSql[] = "'".mysql_real_escape_string($moduleName)."'";
+	}
+	$featureWhere = implode(',', $featureSql);
+	mysql_query("DELETE p FROM tblpermissions p INNER JOIN tblmodules m ON p.ModuleID = m.ModuleID WHERE m.Name NOT IN (".$featureWhere.")");
+	mysql_query("DELETE FROM tblmodules WHERE Name NOT IN (".$featureWhere.")");
+	cms2_cleanup_duplicate_feature_modules_and_permissions();
 }
 
 function cms2_apply_default_permissions_for_admin($adminId, $role)
@@ -327,7 +554,12 @@ function cms2_apply_default_permissions_for_admin($adminId, $role)
 	$role = cms2_normalize_admin_role($role);
 	cms2_ensure_legacy_modules_and_permissions();
 
-	$moduleResult = mysql_query("SELECT ModuleID, Name FROM tblmodules");
+	$moduleNames = cms2_feature_modules();
+	$moduleNameSql = array();
+	foreach ($moduleNames as $moduleName) {
+		$moduleNameSql[] = "'".mysql_real_escape_string($moduleName)."'";
+	}
+	$moduleResult = mysql_query("SELECT ModuleID, Name FROM tblmodules WHERE Name IN (".implode(',', $moduleNameSql).")");
 	if (!$moduleResult) {
 		return;
 	}
@@ -335,7 +567,7 @@ function cms2_apply_default_permissions_for_admin($adminId, $role)
 	while ($moduleRow = mysql_fetch_array($moduleResult)) {
 		$moduleId = (int)$moduleRow['ModuleID'];
 		$bits = cms2_role_legacy_permission_bits($role, $moduleRow['Name']);
-		mysql_query("INSERT INTO `tblpermissions` (`AdminID`,`ModuleID`,`Read`,`Write`,`Edit`,`Delete`) VALUES (".$adminId.",".$moduleId.",".$bits['Read'].",".$bits['Write'].",".$bits['Edit'].",".$bits['Delete'].") ON DUPLICATE KEY UPDATE `Read`=".$bits['Read'].", `Write`=".$bits['Write'].", `Edit`=".$bits['Edit'].", `Delete`=".$bits['Delete']);
+		cms2_upsert_permission_bits($adminId, $moduleId, $bits);
 	}
 }
 
@@ -362,83 +594,83 @@ function cms2_page_permissions()
 {
 	return array(
 		'sum.php' => array('Summary', 'read'),
-		'password.php' => array('Change Password', 'edit'),
-		'global.php' => array('Configuration', 'edit'),
-		'copyright.php' => array('Website Copyright', 'edit'),
-		'contactus.php' => array('Change Email Address', 'edit'),
+		'password.php' => array('Change Password', 'read'),
+		'global.php' => array('Configuration', 'read'),
+		'copyright.php' => array('Website Copyright', 'read'),
+		'contactus.php' => array('Change Email Address', 'read'),
 		'bootomcontact.php' => array('Configuration', 'edit'),
 		'website.php' => array('Configuration', 'edit'),
 		'mainimg.php' => array('Configuration', 'edit'),
 		'menusetting.php' => array('Configuration', 'edit'),
 		'menumodules.php' => array('Configuration', 'edit'),
-		'manageadmin.php' => array('Admin User Management', 'read'),
-		'admin.php' => array('Admin User Management', 'read'),
-		'addadmin.php' => array('Add Admin User', 'write'),
-		'editadmin.php' => array('Admin User Management', 'edit'),
-		'permission.php' => array('Admin User Management', 'edit'),
-		'addvendors.php' => array('Add Vendors', 'write'),
-		'editvendor.php' => array('Vendors Management', 'edit'),
-		'vendormanage.php' => array('Vendors Management', 'read'),
-		'addcertif.php' => array('Add Certification', 'write'),
-		'editcertif.php' => array('Certifications Management', 'edit'),
-		'certifmanage.php' => array('Certifications Management', 'read'),
-		'addexam.php' => array('Add Exam', 'write'),
-		'editexam.php' => array('Exams Management', 'edit'),
-		'exammanage.php' => array('Exams Management', 'read'),
-		'bulk_update.php' => array('Exams Management', 'edit'),
-		'bulk_update_date.php' => array('Exams Management', 'edit'),
-		'updateDate.php' => array('Exams Management', 'edit'),
-		'bannermanage.php' => array('Banners Management', 'read'),
-		'bannermanage_new.php' => array('Banners Management', 'read'),
-		'addslider.php' => array('Add Banner', 'write'),
-		'editslider.php' => array('Banners Management', 'edit'),
-		'editslider_new.php' => array('Banners Management', 'edit'),
-		'add_gallery.php' => array('Add Exam Results Image', 'write'),
-		'galley_management.php' => array('Exam Results Management', 'read'),
-		'gallery_new.php' => array('Exam Results Management', 'read'),
-		'editpagetext.php' => array('Edit Emails', 'edit'),
-		'editemails.php' => array('Edit Emails', 'edit'),
-		'vendorgloble.php' => array('Vendor Global Content', 'edit'),
-		'editstylesheet.php' => array('Edit Emails', 'edit'),
-		'courses_status_manage.php' => array('Manage Course', 'read'),
-		'course_add.php' => array('Add new Course', 'write'),
-		'course_edit.php' => array('Manage Course', 'edit'),
-		'manageuser.php' => array('User Management', 'read'),
-		'adduser.php' => array('Add User', 'write'),
-		'edituser.php' => array('User Management', 'edit'),
-		'download.php' => array('All Registered Users', 'read'),
-		'userstats.php' => array('Reports', 'read'),
-		'backup_stats.php' => array('Reports', 'read'),
-		'stats.php' => array('Reports', 'read'),
-		'masterorder.php' => array('Final Orders', 'read'),
-		'ordermanage.php' => array('Final Orders', 'read'),
-		'orderdetail.php' => array('Final Orders', 'read'),
-		'editorder.php' => array('Final Orders', 'edit'),
-		'odrproces.php' => array('List Cart', 'edit'),
-		'reodrproces.php' => array('Re-Order Cart', 'edit'),
-		'assign_user.php' => array('Final Orders', 'edit'),
-		'managecoupon.php' => array('Manage Coupons', 'read'),
-		'addcoupon.php' => array('Add new Coupon', 'write'),
-		'editcoupon.php' => array('Manage Coupons', 'edit'),
-		'view_demoDownload.php' => array('View Demo Emails', 'read'),
-		'exam_request.php' => array('View Exam Request Email', 'read'),
-		'managefull.php' => array('Full Download Management', 'read'),
-		'managedemo.php' => array('Full Download Management', 'read'),
-		'keys_action.php' => array('Full Download Management', 'edit'),
-		'multi_keys_action.php' => array('Full Download Management', 'edit'),
-		'manage_keys.php' => array('Full Download Management', 'read'),
-		'addreport.php' => array('Reports', 'write'),
-		'addsubscriber.php' => array('View Exam Request Email', 'write'),
-		'editsubscriber.php' => array('View Exam Request Email', 'edit'),
-		'mailmanage.php' => array('View Exam Request Email', 'read'),
-		'changestatus.php' => array('Exams Management', 'edit'),
-		'changestatusall.php' => array('Final Orders', 'edit'),
-		'changestatusnew.php' => array('Exams Management', 'edit'),
-		'changestatusnewnew.php' => array('Exams Management', 'edit'),
+		'manageadmin.php' => array('Admin Users Module', 'read'),
+		'admin.php' => array('Admin Users Module', 'read'),
+		'addadmin.php' => array('Admin Users Module', 'write'),
+		'editadmin.php' => array('Admin Users Module', 'edit'),
+		'permission.php' => array('Admin Users Module', 'edit'),
+		'addvendors.php' => array('Vendors Module', 'write'),
+		'editvendor.php' => array('Vendors Module', 'edit'),
+		'vendormanage.php' => array('Vendors Module', 'read'),
+		'addcertif.php' => array('Certifications Module', 'write'),
+		'editcertif.php' => array('Certifications Module', 'edit'),
+		'certifmanage.php' => array('Certifications Module', 'read'),
+		'addexam.php' => array('Exams Module', 'write'),
+		'editexam.php' => array('Exams Module', 'edit'),
+		'exammanage.php' => array('Exams Module', 'read'),
+		'bulk_update.php' => array('Exams Module', 'edit'),
+		'bulk_update_date.php' => array('Exams Module', 'edit'),
+		'updateDate.php' => array('Exams Module', 'edit'),
+		'bannermanage.php' => array('Banners Module', 'read'),
+		'bannermanage_new.php' => array('Banners Module', 'read'),
+		'addslider.php' => array('Banners Module', 'write'),
+		'editslider.php' => array('Banners Module', 'edit'),
+		'editslider_new.php' => array('Banners Module', 'edit'),
+		'add_gallery.php' => array('Exam Results Module', 'write'),
+		'galley_management.php' => array('Exam Results Module', 'read'),
+		'gallery_new.php' => array('Exam Results Module', 'read'),
+		'editpagetext.php' => array('Global Content Module', 'edit'),
+		'editemails.php' => array('Global Content Module', 'edit'),
+		'vendorgloble.php' => array('Global Content Module', 'edit'),
+		'editstylesheet.php' => array('Global Content Module', 'edit'),
+		'courses_status_manage.php' => array('Courses Module', 'read'),
+		'course_add.php' => array('Courses Module', 'write'),
+		'course_edit.php' => array('Courses Module', 'edit'),
+		'manageuser.php' => array('Users Module', 'read'),
+		'adduser.php' => array('Users Module', 'write'),
+		'edituser.php' => array('Users Module', 'edit'),
+		'download.php' => array('Report', 'read'),
+		'userstats.php' => array('Report', 'read'),
+		'backup_stats.php' => array('Report', 'read'),
+		'stats.php' => array('Report', 'read'),
+		'masterorder.php' => array('Orders Module', 'read'),
+		'ordermanage.php' => array('Orders Module', 'read'),
+		'orderdetail.php' => array('Orders Module', 'read'),
+		'editorder.php' => array('Orders Module', 'edit'),
+		'odrproces.php' => array('Orders Module', 'edit'),
+		'reodrproces.php' => array('Orders Module', 'edit'),
+		'assign_user.php' => array('Exams Module', 'edit'),
+		'managecoupon.php' => array('Coupons Module', 'read'),
+		'addcoupon.php' => array('Coupons Module', 'write'),
+		'editcoupon.php' => array('Coupons Module', 'edit'),
+		'view_demoDownload.php' => array('Demo Exams Module', 'read'),
+		'exam_request.php' => array('Demo Exams Module', 'read'),
+		'managefull.php' => array('Demo Exams Module', 'read'),
+		'managedemo.php' => array('Demo Exams Module', 'read'),
+		'keys_action.php' => array('Demo Exams Module', 'edit'),
+		'multi_keys_action.php' => array('Demo Exams Module', 'edit'),
+		'manage_keys.php' => array('Demo Exams Module', 'read'),
+		'addreport.php' => array('Report', 'write'),
+		'addsubscriber.php' => array('Demo Exams Module', 'write'),
+		'editsubscriber.php' => array('Demo Exams Module', 'edit'),
+		'mailmanage.php' => array('Demo Exams Module', 'read'),
+		'changestatus.php' => array('Exams Module', 'edit'),
+		'changestatusall.php' => array('Orders Module', 'edit'),
+		'changestatusnew.php' => array('Exams Module', 'edit'),
+		'changestatusnewnew.php' => array('Exams Module', 'edit'),
 		'changemodule.php' => array('Configuration', 'edit'),
-		'processsave.php' => array('List Cart', 'edit'),
-		'processsavere.php' => array('Re-Order Cart', 'edit'),
-		'getsubcategory.php' => array('Vendors Management', 'read')
+		'processsave.php' => array('Orders Module', 'edit'),
+		'processsavere.php' => array('Orders Module', 'edit'),
+		'getsubcategory.php' => array('Vendors Module', 'read')
 	);
 }
 
@@ -474,7 +706,7 @@ function permission($section, $permission, $halt = false)
 
 	$mappedModule = cms2_legacy_section_module($section);
 	$knownModules = array();
-	foreach (cms2_required_legacy_modules() as $moduleName) {
+	foreach (cms2_feature_modules() as $moduleName) {
 		$knownModules[] = strtolower($moduleName);
 	}
 	if ($mappedModule != $section || in_array(strtolower($mappedModule), $knownModules)) {
@@ -514,9 +746,9 @@ function get_session_data()
 	}
 
 	$objDBcon = new classDbConnection();
-	if (!isset($_SESSION['rbacPermissionsSynced']) || $_SESSION['rbacPermissionsSynced'] != 'menu-items-v1') {
+	if (!isset($_SESSION['rbacPermissionsSynced']) || $_SESSION['rbacPermissionsSynced'] != 'feature-modules-v2') {
 		cms2_ensure_legacy_modules_and_permissions();
-		$_SESSION['rbacPermissionsSynced'] = 'menu-items-v1';
+		$_SESSION['rbacPermissionsSynced'] = 'feature-modules-v2';
 	}
 	$adminId = (int)$_SESSION['adminId'];
 	$query = "SELECT * FROM tbladmin WHERE admin_id='".$adminId."' AND admin_status='Active'";

@@ -33,6 +33,7 @@ $ccAdminData = get_session_data();
 
 	if (isset($_POST['changeCopyright']) && $_POST['changeCopyright']	==	"Change Copyright")
 	{
+		require_role_permission('Website Copyright', 'edit', false);
 	//print  $_FILES['txtImage']; exit();
 		$spram[1]		 =  $_POST['copyright'];
 

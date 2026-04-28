@@ -1188,11 +1188,11 @@ function getProductsbyId($pro_id){
 
 
 
-							$edit	=	'<a href="editvendor.php?ven_id='.$rows['ven_id'].'">Edit </a>';
+							$edit	=	(function_exists('role_can') && role_can('Vendors Module', 'edit')) ? '<a href="editvendor.php?ven_id='.$rows['ven_id'].'">Edit </a>' : '';
 
 
 
-							$del	=	'| <a href="vendormanage.php?action=up&nid='.$rows['ven_id'].'" onclick= "return delete_pro();">Delete</a>';
+							$del	=	(function_exists('role_can') && role_can('Vendors Module', 'delete')) ? '| <a href="vendormanage.php?action=up&nid='.$rows['ven_id'].'" onclick= "return delete_pro();">Delete</a>' : '';
 
 
 
@@ -1404,11 +1404,11 @@ function show_certif($resutlSet)
 
 
 
-							$edit	=	'<a href="editcertif.php?cer_id='.$rows['cert_id'].'">Edit </a>';
+							$edit	=	(function_exists('role_can') && role_can('Certifications Module', 'edit')) ? '<a href="editcertif.php?cer_id='.$rows['cert_id'].'">Edit </a>' : '';
 
 
 
-							$del	=	'| <a href="certifmanage.php?action=up&nid='.$rows['cert_id'].'" onclick= "return delete_pro();">Delete</a>';
+							$del	=	(function_exists('role_can') && role_can('Certifications Module', 'delete')) ? '| <a href="certifmanage.php?action=up&nid='.$rows['cert_id'].'" onclick= "return delete_pro();">Delete</a>' : '';
 
 
 
@@ -1624,15 +1624,19 @@ function show_allExams($resutlSet)
 
 
 
-							$edit	=	'<a href="editexam.php?exm_id='.$rows['exam_id'].'">Edit </a>';
+							$edit	=	(function_exists('role_can') && role_can('Exams Module', 'edit')) ? '<a href="editexam.php?exm_id='.$rows['exam_id'].'">Edit </a>' : '';
 
-							$assign	=	'<a href="assign_user.php?exm_id='.$rows['exam_id'].'&ptype=p">PDF</a>';
-							$assign	.=	' | <a href="assign_user.php?exm_id='.$rows['exam_id'].'&ptype=sp">Engine</a>';
-							$assign	.=	' | <a href="assign_user.php?exm_id='.$rows['exam_id'].'&ptype=both">Both</a>';
+							$assign	=	'';
+							if(function_exists('role_can') && role_can('Exams Module', 'edit'))
+							{
+								$assign	=	'<a href="assign_user.php?exm_id='.$rows['exam_id'].'&ptype=p">PDF</a>';
+								$assign	.=	' | <a href="assign_user.php?exm_id='.$rows['exam_id'].'&ptype=sp">Engine</a>';
+								$assign	.=	' | <a href="assign_user.php?exm_id='.$rows['exam_id'].'&ptype=both">Both</a>';
+							}
 
 
 
-							$del	=	'| <a href="exammanage.php?action=up&nid='.$rows['exam_id'].'" onclick= "return delete_pro();">Delete</a>';
+							$del	=	(function_exists('role_can') && role_can('Exams Module', 'delete')) ? '| <a href="exammanage.php?action=up&nid='.$rows['exam_id'].'" onclick= "return delete_pro();">Delete</a>' : '';
 
 
 
@@ -1704,11 +1708,25 @@ function show_allExams($resutlSet)
 
 
 
-							$statususer= "<div id='txtHint".$rows['exam_id']."'><a href='javascript:showHint(".$rows['exam_id'].", \"$tableName\",\"$tablefield\",\"$tablestatus\")' ".$st.">".$chek." </a></div>";	
+							if(function_exists('role_can') && role_can('Exams Module', 'edit'))
+							{
+								$statususer= "<div id='txtHint".$rows['exam_id']."'><a href='javascript:showHint(".$rows['exam_id'].", \"$tableName\",\"$tablefield\",\"$tablestatus\")' ".$st.">".$chek." </a></div>";
+							}
+							else
+							{
+								$statususer= "<div id='txtHint".$rows['exam_id']."' ".$st.">".$chek."</div>";
+							}
 
 							
 
-							$statushome= "<div id='txtHint".$rows['exam_id']."'><a href='javascript:showHome(".$rows['exam_id'].", \"$tableName\",\"$tablefield\",\"$tableshome\")' ".$st.">".$home." </a></div>";	
+							if(function_exists('role_can') && role_can('Exams Module', 'edit'))
+							{
+								$statushome= "<div id='txtHint".$rows['exam_id']."'><a href='javascript:showHome(".$rows['exam_id'].", \"$tableName\",\"$tablefield\",\"$tableshome\")' ".$st.">".$home." </a></div>";
+							}
+							else
+							{
+								$statushome= "<div id='txtHint".$rows['exam_id']."' ".$st.">".$home."</div>";
+							}
 
 
 

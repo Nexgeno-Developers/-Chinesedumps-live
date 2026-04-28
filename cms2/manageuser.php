@@ -463,9 +463,9 @@ foreach($rowsData as $rows)
 		$purchasedHtml = '<a class="purchase-link" href="'.$ordersUrl.'">Yes</a>';
 	}
 
-	$edit = '<a class="action-link" href="edituser.php?nid='.$rows['user_id'].(($stateQueryString != '') ? '&'.$stateQueryString : '').'">Edit</a>';
+	$edit = role_can('Users Module', 'edit') ? '<a class="action-link" href="edituser.php?nid='.$rows['user_id'].(($stateQueryString != '') ? '&'.$stateQueryString : '').'">Edit</a>' : '';
 	$sendemail = '<a class="action-link" href="manageuser.php?mainsend=send&user='.$rows['user_id'].(($stateQueryString != '') ? '&'.$stateQueryString : '').'">Send Email</a>';
-	$del = '<a class="action-link action-link-danger" href="manageuser.php?action=up&nid='.$rows['user_id'].(($stateQueryString != '') ? '&'.$stateQueryString : '').'" onclick="return delete_pro();">Delete</a>';
+	$del = role_can('Users Module', 'delete') ? '<a class="action-link action-link-danger" href="manageuser.php?action=up&nid='.$rows['user_id'].(($stateQueryString != '') ? '&'.$stateQueryString : '').'" onclick="return delete_pro();">Delete</a>' : '';
 
 	$userRowsHtml .= '<tr'.$rowClass.'>';
 	$userRowsHtml .= '<td class="item" align="center" valign="middle"><input type="checkbox" name="chkbox'.$rowCounter.'" id="chkbox'.$rowCounter.'" value="'.$rows['user_id'].'" /></td>';
@@ -487,7 +487,8 @@ foreach($rowsData as $rows)
 $show = $userRowsHtml.'<input name="counter" type="hidden" value="'.$rowCounter.'" />';
 $pageNotice = !empty($noticeMessages) ? implode('<br />', $noticeMessages) : '';
 $clearFiltersUrl = 'manageuser.php';
-$addUserUrl = 'adduser.php';
+$addUserUrl = role_can('Users Module', 'write') ? 'adduser.php' : '';
+$canDeleteUsers = role_can('Users Module', 'delete');
 
 $sortNameUrl = manageuser_get_sort_url('name', $stateParams, $sortBy, $sortDir);
 $sortEmailUrl = manageuser_get_sort_url('email', $stateParams, $sortBy, $sortDir);

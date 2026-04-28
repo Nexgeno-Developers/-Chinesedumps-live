@@ -32,7 +32,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 	  </select>&nbsp;&nbsp;
       <input type="submit" name="Search" value="Search" />
 	  </td>
-	  <td align="right"><a class="menu" href="addvendors.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Vendor </span></a>&nbsp;&nbsp;</td>
+	  <td align="right"><?php if(role_can('Vendors Module', 'write')){ ?><a class="menu" href="addvendors.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Vendor </span></a>&nbsp;&nbsp;<?php } ?></td>
     </tr>
   <tr>
     <td height="19" align="center" colspan="6">&nbsp;</td>

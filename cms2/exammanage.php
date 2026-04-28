@@ -198,7 +198,7 @@ $ccAdminData = get_session_data();
 	if(mysql_num_rows($result)<1){
         $emptyError	=	"No record exist.";
 	}else{
-        $emptyError	=	'<input type="submit" name="btn_delete" id="btn_delete" class="button" value="Delete Selected Items" onclick= "return delete_pro();" />';
+        $emptyError	=	role_can('Exams Module', 'delete') ? '<input type="submit" name="btn_delete" id="btn_delete" class="button" value="Delete Selected Items" onclick= "return delete_pro();" />' : '';
         $show	=	$objProduct->show_allExams($result);		
 	}
 //----------------------------------------------------------------------------------------------------			

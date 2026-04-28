@@ -34,6 +34,7 @@ $strCatName	=	"";		//it will contain the category name in case of duplication
 
 	if (isset($_POST['changepassword']) && $_POST['changepassword']	==	"Change Settings")
 	{
+		require_role_permission('Configuration', 'edit', false);
 		if (!$objValid->validation())
 			$strError = $objValid->create_msg();
 			

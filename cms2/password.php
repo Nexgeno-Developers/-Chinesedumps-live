@@ -69,6 +69,7 @@ $strCatName	=	"";		//it will contain the category name in case of duplication
 	if (isset($_POST['changepassword']) && $_POST['changepassword']	==	"Change Password")
 
 	{
+		require_role_permission('Change Password', 'edit', false);
 
 	//print  $_FILES['txtImage']; exit();
 

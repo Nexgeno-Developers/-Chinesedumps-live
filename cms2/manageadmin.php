@@ -39,7 +39,7 @@ $ccAdminData = get_session_data();
 if(mysql_num_rows($res) < 1){
 	$emptyError	=	"No record exist.";
 	}else{
-	$emptyError	=	'<input type="submit" name="btn_delete" id="btn_delete" class="button" value="Delete Selected Items" onclick="return Cofirm();"  />';
+	$emptyError	=	role_can('Admin Users Module', 'delete') ? '<input type="submit" name="btn_delete" id="btn_delete" class="button" value="Delete Selected Items" onclick="return Cofirm();"  />' : '';
 	}
 	$show		 =	$objAdmin->getAdmin($res);
 

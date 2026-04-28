@@ -31,7 +31,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 	  <option value="0" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='0'){ echo "selected='selected'"; }?>>Disable</option>
 	  </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <input type="submit" name="Search" value="Search" />&nbsp;&nbsp;&nbsp;<input type="reset" name="reset" value="Reset" /></td>
-      <td align="right"><a class="menu" href="addcertif.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add Certification </span>&nbsp;&nbsp;</a></td>
+      <td align="right"><?php if(role_can('Certifications Module', 'write')){ ?><a class="menu" href="addcertif.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add Certification </span>&nbsp;&nbsp;</a><?php } ?></td>
 	  </tr>
   <tr>
     <td height="19" align="center" colspan="7">&nbsp;</td>

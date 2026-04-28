@@ -16,6 +16,7 @@ session_start();
 //---------------------------------------------------------------
 include_once 'functions.php';
 $ccAdminData = get_session_data();
+cms2_ensure_legacy_modules_and_permissions();
 $display	=	"";
 $message	=	"";
 $moduleNames = cms2_required_legacy_modules();
@@ -28,7 +29,7 @@ $moduleNameWhere = implode(",", $moduleNameSql);
 	if(isset($_POST['permission']) &&	$_POST['permission']	== "Update Now" )
 	{		
 	
-	$qry = "select * from  tblmodules where `Name` IN (".$moduleNameWhere.")";
+	$qry = "select MIN(ModuleID) AS ModuleID, `Name` from tblmodules where `Name` IN (".$moduleNameWhere.") GROUP BY `Name`";
 	
 	$res = mysql_query($qry);
 	
@@ -47,16 +48,17 @@ $moduleNameWhere = implode(",", $moduleNameSql);
 		if(isset($_POST['delete_'.$rows['ModuleID']]))$delete	=	"1";
 
 					
-  mysql_query("UPDATE `tblpermissions` SET `Read` = '".$read."',`Write` = '".$write."',	`Edit` = '".$edit."', `Delete` = '".$delete."'  WHERE  `ModuleID` = ".$rows['ModuleID']." and  `AdminID` = ".$_REQUEST['nid']."") ;
+  cms2_upsert_permission_bits((int)$_REQUEST['nid'], (int)$rows['ModuleID'], array('Read' => (int)$read, 'Write' => (int)$write, 'Edit' => (int)$edit, 'Delete' => (int)$delete));
 		
 	}
+	cms2_ensure_legacy_modules_and_permissions();
 	$message	=	"Data has been saved...";
 }
 //............................................
 
 	
 
-	$qry = "select * from  tblmodules a, tblpermissions b  where a.ModuleID = b.ModuleID and b.AdminID = ".$_REQUEST['nid']." and a.`Name` IN (".$moduleNameWhere.")";
+	$qry = "select a.ModuleID, a.Name, MAX(b.`Read`) AS `Read`, MAX(b.`Write`) AS `Write`, MAX(b.`Edit`) AS `Edit`, MAX(b.`Delete`) AS `Delete` from tblmodules a left join tblpermissions b on a.ModuleID = b.ModuleID and b.AdminID = ".(int)$_REQUEST['nid']." where a.`Name` IN (".$moduleNameWhere.") group by a.Name order by FIELD(a.Name, ".$moduleNameWhere.")";
 	$read	=	"";
 	$edit	=	"";
 	$delete	=	"";

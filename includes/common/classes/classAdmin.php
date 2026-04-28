@@ -532,7 +532,7 @@
 
 							
 
-							if(permission("Admin User Management","Edit")==TRUE)
+							if(permission("Admin Users Module","Edit")==TRUE)
 
 							{
 
@@ -550,7 +550,7 @@
 
 							
 
-							if(permission("Admin User Management","Delete")==TRUE)
+							if(permission("Admin Users Module","Delete")==TRUE)
 
 							{
 
