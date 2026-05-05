@@ -181,22 +181,22 @@ $ccAdminData = get_session_data();
 
 <td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
 
-<td width="810" valign="top" class="rightside"><h2>Exam Results Management</h2>
+<td width="810" valign="top" class="rightside" style="padding: 20px 18px;"><h2 style="margin: 0 0 8px 0;">Exam Results Management</h2>
 
-Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
+<p style="margin: 0 0 16px 0; color: #64748b;">Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.</p>
 
 <form id="form1" name="form1" method="post" action="">
 
-<div style="margin-bottom: 20px; text-align: right;">
+<div style="margin-bottom: 16px; text-align: right;">
+	<?php if(role_can('Exam Results Module', 'write')){ ?>
 	<a href="add_gallery.php" class="btn-add">
 		<i class="fa-solid fa-plus"></i> Add Banner
 	</a>
+	<?php } ?>
 </div>
 
 
-<br />
-
-<table cellpadding='0' cellspacing='0' class='list' width='90%'>
+<table cellpadding='0' cellspacing='0' class='list' width='100%'>
 
    <tr>
 
@@ -206,25 +206,17 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
   <tr>
 
-     <td colspan="5"  align="center">
-		Exam Name
-		<input type="text" name="exam_name" id="exam_name" value="<?=$searchExamNameSafe;?>" />
-		&nbsp;&nbsp;
-		<input type="submit" name="Search" id="Search" value="Search" class="button" />
-		&nbsp;&nbsp;
-		<a class="menu" href="galley_management.php">Reset</a>
-
+     <td colspan="5" align="left" style="padding: 12px;">
+		<div style="display: flex; align-items: center; gap: 10px; width: 100%;">
+			<input type="text" name="exam_name" id="exam_name" value="<?=$searchExamNameSafe;?>" placeholder="Exam Name" style="width: 70%; box-sizing: border-box;" />
+			<input type="submit" name="Search" id="Search" value="Search" class="button" style="width: 15%; min-width: 110px;" />
+			<a class="menu" href="galley_management.php" style="width: 15%; min-width: 110px; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box;">Reset</a>
+		</div>
 	  </td>
 
-	  <td align="right"><?php if(role_can('Exam Results Module', 'write')){ ?><a class="menu" href="add_gallery.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Banner </span></a>&nbsp;&nbsp;<?php } ?></td>
-
+	 
     </tr>
 
-  <tr>
-
-    <td height="19" align="center" colspan="6">&nbsp;</td>
-
-   </tr>
 
   <tr>
 
