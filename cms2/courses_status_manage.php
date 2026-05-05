@@ -204,7 +204,7 @@ TABLE.list TR:last-child TD.item {
 <div style="overflow-x: auto;">
 <table cellpadding='0' cellspacing='0' class='list' width='100%' style="border-collapse: collapse;">
 
-  <tr>
+  <!-- <tr>
 
 	<td class='header' align="center" style="padding: 12px;"><i class="fa-solid fa-book" style="margin-right: 6px;"></i>Course Name</td>
 
@@ -212,7 +212,7 @@ TABLE.list TR:last-child TD.item {
 
 	  <td align="right"><?php if(role_can('Courses Module', 'write')){ ?><a class="menu" href="course_add.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Course </span></a>&nbsp;&nbsp;<?php } ?></td>
 
-    </tr>
+    </tr> -->
 
   <tr>
 
