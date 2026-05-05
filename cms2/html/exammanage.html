@@ -9,45 +9,57 @@
 Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
 <br />
 <form id="form1" name="form1" method="post" action="">
+
+<?php if(role_can('Exams Module', 'write')){ ?>
+<div style="margin: 12px 0; text-align: right;">
+	<a href="addexam.php" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; font-size: 14px; font-weight: 600; color: #ffffff; background: #333; border-radius: 8px; text-decoration: none;">
+		<i class="fa-solid fa-plus"></i>
+		Add Exam
+	</a>
+</div>
+<?php } ?>
+
 <br />
 <table cellpadding='0' cellspacing='0' class='list' width='90%'>
     <tr>
     <td height="19" align="right" colspan="8">&nbsp;</td>
 	</tr>
     <tr>
-    <td colspan="8" >&nbsp;&nbsp;&nbsp;&nbsp;Search Keyword:
-        <input type="text" name="textSearch" value="<? if(isset($_POST['textSearch'])){ echo $_POST['textSearch'];}  ?>" style="width:100px" />&nbsp;&nbsp;Hot:
-        <select name="hothot">
-            <option value="" >Select</option>
-            <option value="1" <? if(isset($_POST['hothot']) && $_POST['hothot']=='1'){ echo "selected='selected'"; }?>>Yes</option>
-            <option value="0" <? if(isset($_POST['hothot']) && $_POST['hothot']=='0'){ echo "selected='selected'"; }?>>No</option>
-	    </select>
-        &nbsp;&nbsp;Home:
-        <select name="homehome">
-            <option value="" >Select</option>
-            <option value="1" <? if(isset($_POST['homehome']) && $_POST['homehome']=='1'){ echo "selected='selected'"; }?>>Yes</option>
-            <option value="0" <? if(isset($_POST['homehome']) && $_POST['homehome']=='0'){ echo "selected='selected'"; }?>>No</option>
-	    </select>
-	    &nbsp;&nbsp;&nbsp;Status:
-        <select name="criteriacriteria">
-            <option value="">Select</option>
-            <option value="1" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='1'){ echo "selected='selected'"; }?>>Enable</option>
-            <option value="0" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='0'){ echo "selected='selected'"; }?>>Disable</option>
-        </select>
-	    &nbsp;&nbsp;Vendor:
-        <select name="vendor_id" id="vendor_id">
-            <option value="">Select Vendor</option>
-            <?php
-            $vendorRes = mysql_query("SELECT ven_id, ven_name FROM tbl_vendors ORDER BY ven_name ASC");
-            while($vendor = mysql_fetch_assoc($vendorRes)){
-                $selected = (isset($_POST['vendor_id']) && $_POST['vendor_id'] == $vendor['ven_id']) ? "selected" : "";
-                echo "<option value='{$vendor['ven_id']}' {$selected}>{$vendor['ven_name']}</option>";
-            }
-            ?>
-        </select>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="submit" name="Search" value="Search" />&nbsp;&nbsp;&nbsp;<input type="reset" name="reset" value="Reset" /></td>
-    <td align="right"><?php if(role_can('Exams Module', 'write')){ ?><a class="menu" href="addexam.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add Exam </span>&nbsp;&nbsp;</a><?php } ?></td>
+    <td colspan="8" style="padding: 12px;">
+		<div style="display:flex; align-items:end; gap:10px; width:100%;">
+			<div style="width:20%;">
+				<label style="display:block; margin-bottom:6px; font-weight:600;">Search</label>
+				<input type="text" name="textSearch" value="<? if(isset($_POST['textSearch'])){ echo $_POST['textSearch'];}  ?>" style="width:100%; box-sizing:border-box;" />
+			</div>
+			<div style="width:20%;">
+				<label style="display:block; margin-bottom:6px; font-weight:600;">Hot</label>
+				<select name="hothot" style="width:100%; box-sizing:border-box;">
+					<option value="" >Select</option>
+					<option value="1" <? if(isset($_POST['hothot']) && $_POST['hothot']=='1'){ echo "selected='selected'"; }?>>Yes</option>
+					<option value="0" <? if(isset($_POST['hothot']) && $_POST['hothot']=='0'){ echo "selected='selected'"; }?>>No</option>
+				</select>
+			</div>
+			<div style="width:20%;">
+				<label style="display:block; margin-bottom:6px; font-weight:600;">Home</label>
+				<select name="homehome" style="width:100%; box-sizing:border-box;">
+					<option value="" >Select</option>
+					<option value="1" <? if(isset($_POST['homehome']) && $_POST['homehome']=='1'){ echo "selected='selected'"; }?>>Yes</option>
+					<option value="0" <? if(isset($_POST['homehome']) && $_POST['homehome']=='0'){ echo "selected='selected'"; }?>>No</option>
+				</select>
+			</div>
+			<div style="width:20%;">
+				<label style="display:block; margin-bottom:6px; font-weight:600;">Status</label>
+				<select name="criteriacriteria" style="width:100%; box-sizing:border-box;">
+					<option value="">Select</option>
+					<option value="1" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='1'){ echo "selected='selected'"; }?>>Enable</option>
+					<option value="0" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='0'){ echo "selected='selected'"; }?>>Disable</option>
+				</select>
+			</div>
+			<div style="width:20%;">
+				<input type="submit" name="Search" value="Search" style="width:100%;" />
+			</div>
+		</div>
+	</td>
 	  </tr>
   <tr>
     <td height="19" align="center" colspan="8">&nbsp;</td>
@@ -103,28 +115,6 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 </form></td>
 </table>
-<!-- Select2 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-<!-- jQuery (required) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Select2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#vendor_id').select2({
-        placeholder: "Select Vendor",
-        allowClear: true,
-        width: '100%',
-        minimumResultsForSearch: 5,
-        dropdownAutoWidth: true,
-        theme: 'default',
-    });
-});
-</script>
-
-
 <? include("footer.php")?>
 </body>
 </html>
