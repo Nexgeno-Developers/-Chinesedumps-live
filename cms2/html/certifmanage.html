@@ -1,21 +1,54 @@
 <? include ("header.php"); ?>
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
+<style>
+.page-head-row{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	gap:12px;
+}
+.page-title{
+	margin:0;
+}
+.theme-action-btn{
+	display:inline-flex;
+	align-items:center;
+	gap:8px;
+	padding:8px 20px;
+	font-size:14px;
+	font-weight:600;
+	color:#ffffff !important;
+	background:#333;
+	border-radius:8px;
+	text-decoration:none;
+	position: relative;
+	top:20px;
+}
+.theme-action-btn:link,
+.theme-action-btn:visited,
+.theme-action-btn:hover,
+.theme-action-btn:active,
+.theme-action-btn:focus{
+	color:#ffffff !important;
+	text-decoration:none;
+}
+</style>
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
-<td width="810" valign="top" class="rightside"><h2>Certifications Management!</h2>
-Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
-<br />
-<form id="form1" name="form1" method="post" action="">
-
-<?php if(role_can('Certifications Module', 'write')){ ?>
-<div style="margin: 12px 0; text-align: right;">
-	<a href="addcertif.php" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; font-size: 14px; font-weight: 600; color: #ffffff; background: #333; border-radius: 8px; text-decoration: none;">
+<td width="810" valign="top" class="rightside">
+<div class="page-head-row">
+	<h2 class="page-title">Certifications Management!</h2>
+	<?php if(role_can('Certifications Module', 'write')){ ?>
+	<a href="addcertif.php" class="theme-action-btn">
 		<i class="fa-solid fa-plus"></i>
 		Add Certification
 	</a>
+	<?php } ?>
 </div>
-<?php } ?>
+Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
+<br />
+<form id="form1" name="form1" method="post" action="">
 
 <br />
 <table cellpadding='0' cellspacing='0' class='list' width='90%'>
