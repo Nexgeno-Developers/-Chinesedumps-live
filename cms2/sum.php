@@ -227,16 +227,17 @@ printf("This page took %f seconds to load.", $totaltime);
 ?></td>
     <td width="25%"><div align="left"><strong>Your IP</strong>: <?php
 function getip() {
-    if (isSet($_SERVER)) {
-        if (isSet($_SERVER["HTTP_X_FORWARDED_FOR"])) {
-            $realip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-        } elseif (isSet($_SERVER["HTTP_CLIENT_IP"])) {
-            $realip = $_SERVER["HTTP_CLIENT_IP"];
-        } else {
-             $realip = $_SERVER["REMOTE_ADDR"];
-        }
-        print getip();
-        ?>
+    if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+        return $_SERVER["HTTP_X_FORWARDED_FOR"];
+    } elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
+        return $_SERVER["HTTP_CLIENT_IP"];
+    } elseif (isset($_SERVER["REMOTE_ADDR"])) {
+        return $_SERVER["REMOTE_ADDR"];
+    }
+    return "";
+}
+echo htmlspecialchars(getip());
+?>
       </td>
     </tr>
 </table>
