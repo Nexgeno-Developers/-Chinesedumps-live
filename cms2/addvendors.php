@@ -231,7 +231,7 @@ $ccAdminData = get_session_data();
 
 		    $addevent = $objEvent->addVendor($spram);
 		
-    		$strError	.= "Vendor has been added successfully";
+    		$strError	.= "<span style='color: green; font-weight: 600;'>Vendor has been added successfully</span>";
     		//header("location:vendormanage.php");
 		}
     }

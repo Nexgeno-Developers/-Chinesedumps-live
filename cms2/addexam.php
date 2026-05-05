@@ -380,7 +380,7 @@ function normalizeFeatureRowsFromStorage($rawValue)
 
 				$addevent = $objEvent->addExam($spram);
 
-				$strError	.= "Exam has been added successfully";
+				$strError	.= "<span style='color: green; font-weight: 600;'>Exam has been added successfully</span>";
 
 				//header("location:exammanage.php");
 
