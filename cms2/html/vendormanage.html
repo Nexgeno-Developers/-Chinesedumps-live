@@ -40,29 +40,79 @@ TABLE.list TR:last-child TD.item {
 	box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);
 	transform: translateY(-1px);
 }
+.page-head-wrap {
+	margin-bottom: 32px;
+}
+.page-head-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+}
+.page-head-title {
+	margin: 0 0 8px 0;
+	font-size: 28px;
+	font-weight: 700;
+	color: #0f172a;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+.page-head-icon {
+	color: #3c85ba;
+}
+.page-head-sub {
+	margin: 0;
+	color: #64748b;
+	font-size: 14px;
+}
+.theme-action-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 20px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #ffffff !important;
+	background: #333;
+	border-radius: 8px;
+	text-decoration: none;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	white-space: nowrap;
+	position: relative;
+	top:20px;
+}
+.theme-action-btn:link,
+.theme-action-btn:visited,
+.theme-action-btn:hover,
+.theme-action-btn:active,
+.theme-action-btn:focus {
+	color: #ffffff !important;
+	text-decoration: none;
+}
 </style>
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
 <td width="810" valign="top" class="rightside">
-<div style="margin-bottom: 32px;">
-	<h2 style="margin: 0 0 8px 0; font-size: 28px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 12px;">
-		<i class="fa-solid fa-building" style="color: #3c85ba;"></i>
-		Vendors Management
-	</h2>
-	<p style="margin: 0; color: #64748b; font-size: 14px;">Manage and organize your vendors. You can search, filter, edit, or remove vendors from this page.</p>
+<div class="page-head-wrap">
+	<div class="page-head-row">
+		<h2 class="page-head-title">
+			<i class="fa-solid fa-building page-head-icon"></i>
+			Vendors Management
+		</h2>
+		<?php if(role_can('Vendors Module', 'write')){ ?>
+		<a href="addvendors.php" class="theme-action-btn">
+			<i class="fa-solid fa-plus"></i>
+			Add Vendor
+		</a>
+		<?php } ?>
+	</div>
+	<p class="page-head-sub">Manage and organize your vendors. You can search, filter, edit, or remove vendors from this page.</p>
 </div>
 
 <form id="form1" name="form1" method="post" action="">
-
-<?php if(role_can('Vendors Module', 'write')){ ?>
-<div style="margin-bottom: 12px; text-align: right;">
-	<a href="addvendors.php" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; font-size: 14px; font-weight: 600; color: #ffffff; background: #333; border-radius: 8px; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); white-space: nowrap;">
-		<i class="fa-solid fa-plus"></i>
-		Add Vendor
-	</a>
-</div>
-<?php } ?>
 
 <div style="background: #ffffff; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); border: 1px solid #e2e8f0;">
 	<div style="display: flex; align-items: end; gap: 12px; width: 100%;">

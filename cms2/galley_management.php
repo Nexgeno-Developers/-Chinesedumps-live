@@ -174,6 +174,46 @@ $ccAdminData = get_session_data();
 <? include ("header.php"); ?>
 
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
+<style>
+.page-head-wrap{
+	padding:20px 18px;
+}
+.page-head-row{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	gap:12px;
+}
+.page-head-title{
+	margin:0 0 8px 0;
+}
+.page-head-sub{
+	margin:0 0 16px 0;
+	color:#64748b;
+}
+.theme-action-btn{
+	display:inline-flex;
+	align-items:center;
+	gap:8px;
+	padding:8px 20px;
+	font-size:14px;
+	font-weight:600;
+	color:#ffffff;
+	background:#333;
+	border-radius:8px;
+	text-decoration:none;
+	position: relative;
+	top:20px;
+}
+.theme-action-btn:link,
+.theme-action-btn:visited,
+.theme-action-btn:hover,
+.theme-action-btn:active,
+.theme-action-btn:focus{
+	color:#ffffff;
+	text-decoration:none;
+}
+</style>
 
 <table cellpadding="0" cellspacing="0" width="100%">
 
@@ -181,19 +221,19 @@ $ccAdminData = get_session_data();
 
 <td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
 
-<td width="810" valign="top" class="rightside" style="padding: 20px 18px;"><h2 style="margin: 0 0 8px 0;">Exam Results Management</h2>
-
-<p style="margin: 0 0 16px 0; color: #64748b;">Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.</p>
-
-<form id="form1" name="form1" method="post" action="">
-
-<div style="margin-bottom: 16px; text-align: right;">
+<td width="810" valign="top" class="rightside page-head-wrap">
+<div class="page-head-row">
+	<h2 class="page-head-title">Exam Results Management</h2>
 	<?php if(role_can('Exam Results Module', 'write')){ ?>
-	<a href="add_gallery.php" class="btn-add">
+	<a href="add_gallery.php" class="theme-action-btn">
 		<i class="fa-solid fa-plus"></i> Add Banner
 	</a>
 	<?php } ?>
 </div>
+
+<p class="page-head-sub">Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.</p>
+
+<form id="form1" name="form1" method="post" action="">
 
 
 <table cellpadding='0' cellspacing='0' class='list' width='100%'>
