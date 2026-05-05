@@ -126,8 +126,8 @@ if (isset($_POST['btn_save_order']) && $_POST['btn_save_order'] === "Save Order"
     // 6) Commit transaction
     mysql_query("COMMIT") or die("Could not commit transaction: " . mysql_error());
 
-    // 7) Redirect to avoid resubmission
-    header("Location: bannermanage.php");
+    // 7) Redirect to avoid resubmission and show success feedback
+    header("Location: bannermanage.php?status=order_saved");
     exit;
 }
 
@@ -277,6 +277,13 @@ $totalRows = intval($countRow['cnt']);
 	<p style="margin: 0; color: #64748b; font-size: 14px;">Manage and organize your website banners. You can reorder banners, edit details, or remove banners from this page.</p>
 </div>
 
+<?php if (isset($_GET['status']) && $_GET['status'] === 'order_saved'): ?>
+<div style="margin-bottom: 16px; background: #ecfdf3; border: 1px solid #86efac; color: #166534; padding: 12px 14px; border-radius: 8px; font-size: 14px; font-weight: 600;">
+	<i class="fa-solid fa-circle-check" style="margin-right: 8px;"></i>
+	Banner order saved successfully.
+</div>
+<?php endif; ?>
+
 <form id="form1" name="form1" method="post" action="">
 
 <div style="background: #ffffff; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); border: 1px solid #e2e8f0;">
@@ -303,13 +310,9 @@ $totalRows = intval($countRow['cnt']);
 
 <table cellpadding='0' cellspacing='0' class='list' width='90%'>
 
-   <tr>
+  
 
-    <td height="19" align="center" colspan="6">&nbsp;</td>
-
-   </tr>
-
-  <tr>
+  <!-- <tr>
 
      <td colspan="5"  align="center">
       
@@ -318,7 +321,7 @@ $totalRows = intval($countRow['cnt']);
 
 	  <td align="right"><?php if(role_can('Banners Module', 'edit')){ ?><input type="submit" name="btn_save_order" value="Save Order" class="button" />&nbsp;&nbsp;<?php } ?><?php if(role_can('Banners Module', 'write')){ ?><a class="menu" href="addslider.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Banner </span></a>&nbsp;&nbsp;<?php } ?></td>
 
-    </tr>
+    </tr> -->
 
   <tr>
 
