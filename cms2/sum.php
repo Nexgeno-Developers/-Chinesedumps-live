@@ -66,22 +66,20 @@ $lastMonthSalesUrl		= "masterorder.php?".http_build_query(array("from_date" => $
 <style>
 .d-none{display:none;}
 .dashboard-shell{
-	background:#f7fafc;
-	border:1px solid #dbe7f3;
-	border-radius:12px;
-	padding:18px;
-	margin-top:8px;
+
 }
 .dashboard-title{
-	margin:0;
-	font-size:22px;
-	color:#1e3854;
-	font-weight:bold;
+	font-size: 32px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.02em;
 }
 .dashboard-subtitle{
-	margin:8px 0 0 0;
-	color:#58708a;
-	font-size:12px;
+	font-size: 16px;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.6;
 }
 .visit-summary{
 	margin-top:14px !important;
@@ -130,11 +128,12 @@ $lastMonthSalesUrl		= "masterorder.php?".http_build_query(array("from_date" => $
 	border-spacing:10px;
 }
 .summary-card-cell{
-	background:#ffffff;
-	border:1px solid #d9e5f1;
-	border-radius:12px;
-	padding:0 !important;
-	transition:all .2s ease-in-out;
+	background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 .summary-card-cell:hover{
 	transform:translateY(-2px);
