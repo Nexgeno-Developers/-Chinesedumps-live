@@ -1,215 +1,910 @@
+/* ==========================================================================
+   Modern Admin Panel UI - Inspired by Modernize Tailwind Admin
+   Global Layout & Typography
+   ========================================================================== */
+
 BODY {
-	MARGIN: 0px;
-}
-BODY {
-	COLOR: #666666
-}
-TD {
-	COLOR: #666666
-}
-DIV {
-	COLOR: #666666
-}
-DIV.topbar {
-	FONT-WEIGHT: bold; FONT-SIZE: 30pt; BACKGROUND-IMAGE: url(images/admin_topbarbg.gif); COLOR: #ffffff; BACKGROUND-REPEAT: repeat-x; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif
-}
-TD.topbar_right {
-	BORDER-BOTTOM: #c8ccd1 1px solid
-}
-TD.topbar_menu {
-	PADDING-LEFT: 7px; BACKGROUND-IMAGE: url(images/admin_topbar_menu.gif); PADDING-BOTTOM: 3px; COLOR: #eeeeee; PADDING-TOP: 3px; BACKGROUND-REPEAT: repeat-x; BACKGROUND-COLOR: #436088
-}
-DIV.shadow {
-	BACKGROUND-IMAGE: url(images/admin_shadow.gif); BACKGROUND-REPEAT: repeat-x; HEIGHT: 8px
-}
-TD {
-	FONT-SIZE: 8pt
-}
-TD.leftside {
-	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; VERTICAL-ALIGN: top; PADDING-TOP: 0px
-}
-TD.rightside {
-	PADDING-RIGHT: 10px; PADDING-LEFT: 0px; FONT-SIZE: 9pt; PADDING-BOTTOM: 10px; VERTICAL-ALIGN: top; WIDTH: 800px; COLOR: #555555; PADDING-TOP: 0px; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif
-}
-TD.menu a {
-	PADDING-RIGHT: 3px; BACKGROUND-POSITION: right top; DISPLAY: block; PADDING-LEFT: 5px; FONT-SIZE: 8pt; BACKGROUND-IMAGE: url(images/admin_menu_bg1.gif); PADDING-BOTTOM: 3px; PADDING-TOP: 3px; BORDER-BOTTOM: #dddddd 1px solid; BACKGROUND-REPEAT: repeat-y; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif; BACKGROUND-COLOR: #ffffff
-}
-TD.menu A:hover {
-	BACKGROUND-IMAGE: url(images/admin_menu_bg2.gif); BACKGROUND-COLOR: #f5f5f5
-}
-TD.menu_header {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 8px; FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND-IMAGE: url(images/admin_header.gif); PADDING-BOTTOM: 5px; COLOR: #ffffff; PADDING-TOP: 5px; BACKGROUND-REPEAT: repeat-x; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif; BACKGROUND-COLOR: #436088
-}
-TD.header {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 8px; FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND-IMAGE: url(images/admin_header.gif); PADDING-BOTTOM: 5px; COLOR: #ffffff; PADDING-TOP: 5px; BACKGROUND-REPEAT: repeat-x; FONT-FAMILY: "Trebuchet MS", verdana, arial, serif; BACKGROUND-COLOR: #436088
-}
-TD.item {
-	PADDING-RIGHT: 5px; BORDER-TOP: #dddddd 1px solid; PADDING-LEFT: 8px; FONT-SIZE: 8pt; PADDING-BOTTOM: 5px; COLOR: #666666; PADDING-TOP: 5px
-}
-TD.setting1 {
-	BORDER-RIGHT: #dddddd 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: medium none; PADDING-LEFT: 10px; BACKGROUND: #ffffff; PADDING-BOTTOM: 10px; BORDER-LEFT: #dddddd 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #dddddd 1px solid
-}
-TD.setting2 {
-	BORDER-RIGHT: #dddddd 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: medium none; PADDING-LEFT: 10px; BACKGROUND: url(images/admin_setting.gif) #ffffff repeat-y; PADDING-BOTTOM: 10px; BORDER-LEFT: #dddddd 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #dddddd 1px solid
-}
-TR.background1 {
-	BACKGROUND: #f4f9ff
-}
-TR.background2 {
-	BACKGROUND: #ffffff
-}
-TD.stat0 {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 8px; FONT-SIZE: 8pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 5px; COLOR: #666666; PADDING-TOP: 5px
-}
-TD.stat1 {
-	BORDER-RIGHT: #dddddd 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #dddddd 1px solid; PADDING-LEFT: 8px; FONT-SIZE: 8pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 5px; BORDER-LEFT: medium none; COLOR: #666666; PADDING-TOP: 5px; BORDER-BOTTOM: medium none
-}
-TD.stat2 {
-	PADDING-RIGHT: 5px; BORDER-TOP: #dddddd 1px solid; PADDING-LEFT: 8px; FONT-SIZE: 8pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 5px; COLOR: #666666; PADDING-TOP: 5px
-}
-TD.pagecell {
-	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #ffffff; PADDING-BOTTOM: 10px; BORDER-LEFT: medium none; PADDING-TOP: 7px; BORDER-BOTTOM: #cccccc 1px solid
-}
-TD.vert_tab0 {
-	BORDER-RIGHT: #cccccc 1px solid
-}
-TD.vert_tab {
-	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #ffffff; PADDING-BOTTOM: 5px; BORDER-LEFT: #cccccc 1px solid; PADDING-TOP: 5px; BORDER-BOTTOM: #cccccc 1px solid; HEIGHT: 35px
-}
-TD.form1 {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 9pt; PADDING-BOTTOM: 5px; VERTICAL-ALIGN: top; PADDING-TOP: 7px; TEXT-ALIGN: right
-}
-TD.form2 {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
-}
-TABLE.list {
-	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; WIDTH: 100%; BORDER-BOTTOM: #cccccc 1px solid
-}
-TABLE.stats {
-	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid
-}
-TABLE.menu {
-	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; WIDTH: 170px; BORDER-BOTTOM: medium none
-}
-TABLE.menu2 {
-	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; WIDTH: 170px; BORDER-BOTTOM: medium none
-}
-TABLE.menu2 {
-	MARGIN-TOP: 10px
-}
-DIV.error {
-	FONT-WEIGHT: bold; MARGIN-BOTTOM: 12px; COLOR: #ff0000
-}
-TD.error {
-	PADDING-RIGHT: 7px; PADDING-LEFT: 7px; BACKGROUND: #fff3f3; PADDING-BOTTOM: 5px; COLOR: #ff0000; PADDING-TOP: 5px
-}
-DIV.success {
-	FONT-WEIGHT: bold; MARGIN-BOTTOM: 12px; COLOR: #00cc33
-}
-TD.bannerborder {
-	BORDER-RIGHT: #aaaaaa 1px dashed; PADDING-RIGHT: 10px; BORDER-TOP: #aaaaaa 1px dashed; MARGIN-TOP: 2px; PADDING-LEFT: 10px; BACKGROUND: #ffffff; MARGIN-BOTTOM: 5px; PADDING-BOTTOM: 8px; VERTICAL-ALIGN: middle; BORDER-LEFT: #aaaaaa 1px dashed; PADDING-TOP: 8px; BORDER-BOTTOM: #aaaaaa 1px dashed; HEIGHT: 150px; TEXT-ALIGN: center
-}
-TD.bannerborder2 {
-	
-}
-TD.step {
-	PADDING-RIGHT: 10px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 32pt; PADDING-BOTTOM: 7px; VERTICAL-ALIGN: top; COLOR: #cccccc; PADDING-TOP: 7px; TEXT-ALIGN: center
-}
-TD.plugin {
-	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 8pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 10px; COLOR: #666666; PADDING-TOP: 7px
-}
-TD.plugin_name {
-	FONT-WEIGHT: bold; FONT-SIZE: 12pt
-}
-DIV.box {
-	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #f1f8ff; PADDING-BOTTOM: 10px; BORDER-LEFT: #cccccc 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #cccccc 1px solid
-}
-DIV.center {
-	TEXT-ALIGN: center
-}
-DIV.floatleft {
-	FLOAT: left
-}
-DIV.pages {
-	PADDING-BOTTOM: 5px
-}
-DIV.pages2 {
-	PADDING-TOP: 0px
-}
-H2 {
-	MARGIN-TOP: 0px; FONT-WEIGHT: normal; FONT-SIZE: 16pt; MARGIN-BOTTOM: 2px
-}
-H3 {
-	MARGIN-TOP: 0px; FONT-WEIGHT: normal; FONT-SIZE: 12pt; MARGIN-BOTTOM: 2px
-}
-.text {
-	FONT-SIZE: 9pt; FONT-FAMILY: arial, verdana, serif
-}
-TEXTAREA.template {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; WIDTH: 100%; PADDING-TOP: 8px; FONT-FAMILY: courier, verdana, arial, serif
-}
-TEXTAREA.text {
-	FONT-FAMILY: arial, verdana, serif
-}
-FORM {
-	MARGIN: 0px
-}
-IMG.icon {
-	VERTICAL-ALIGN: middle
-}
-INPUT.checkbox {
-	VERTICAL-ALIGN: middle
-}
-IMG.icon2 {
-	VERTICAL-ALIGN: middle; MARGIN-RIGHT: 5px
-}
-FONT.large {
-	FONT-SIZE: 25pt
-}
-FONT.large_gray {
-	FONT-SIZE: 25pt; COLOR: #555555
-}
-A:link {
-	COLOR: #336699
-}
-A:visited {
-	COLOR: #336699
-}
-A:hover {
-	COLOR: #336699
-}
-A.header:link {
-	COLOR: #ffffff
-}
-A.header:visited {
-	COLOR: #ffffff
-}
-A.header:hover {
-	COLOR: #ffffff
-}
-A.menu:link {
-	COLOR: #336699; TEXT-DECORATION: none
-}
-A.menu:visited {
-	COLOR: #336699; TEXT-DECORATION: none
-}
-A.menu:hover {
-	COLOR: #336699; TEXT-DECORATION: none
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #1e293b;
+	background-color: #f1f5f9;
 }
 
-input.button {
-	background: #EEEEEE;
-	padding: 3px;
-	font-size: 9pt;
-	font-family: "Trebuchet MS", verdana, arial, serif;
-	font-weight: bold;
+TD,
+DIV {
+	color: inherit;
+	font-size: 14px;
+}
+
+H2 {
+	margin: 0 0 12px;
+	font-weight: 600;
+	font-size: 24px;
+	color: #0f172a;
+	letter-spacing: -0.02em;
+}
+
+H3 {
+	margin: 0 0 8px;
+	font-weight: 600;
+	font-size: 18px;
+	color: #1e293b;
+}
+
+.text {
+	font-size: 14px;
+	font-family: inherit;
+}
+
+FORM {
+	margin: 0;
+}
+
+/* ==========================================================================
+   Top Bar / Header - Modern Design
+   ========================================================================== */
+
+DIV.topbar {
+	background: #1e293b;
+	background-image: none;
+	color: #ffffff;
+	font-family: inherit;
+	padding: 16px 32px;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+}
+
+.topbar img {
+	filter: invert(1) grayscale(1) brightness(2) contrast(2);
+}
+
+.topbar td div {
+	position: relative;
+	top: 1px;
+	text-transform: capitalize;
+}
+
+.admin-title {
+	font-size: 20px;
+	font-weight: 700;
+	letter-spacing: -0.01em;
+	color: #ffffff;
+	vertical-align: middle;
+}
+
+TD.topbar_right {
+	border-bottom: 0;
+}
+
+TD.topbar_menu {
+	padding: 6px 12px;
+	background: transparent;
+	color: #e5e7eb;
+}
+
+DIV.shadow {
+	height: 1px;
+	background: linear-gradient(to right, rgba(15, 23, 42, 0.2), transparent);
+}
+
+/* ==========================================================================
+   Main Layout - Modern Sidebar + Content
+   ========================================================================== */
+
+TD.leftside {
+	padding: 0;
+	background-color: #1e293b;
+	width: 16%;
+	height: 100vh;
+	max-height: 100vh;
+	padding-top: 30px;
+	top: 25px;
+	left: 0;
+	position: fixed;
+	overflow-y: auto;
+	overflow-x: hidden;
+	z-index: 999;
+	box-sizing: border-box;
+	display: block;
+}
+
+TD.rightside {
+	padding: 32px;
+	vertical-align: top;
+	width: 84%;
+	max-width: 1400px;
+	color: #1e293b;
+	font-family: inherit;
+	background-color: #f1f5f9;
+	min-height: calc(100vh - 60px);
+}
+
+/* Card-style wrapper for content areas */
+TD.pagecell,
+TD.setting1,
+TD.setting2,
+TD.stat0,
+TD.stat1,
+TD.stat2 {
+	background-color: #ffffff;
+	border-radius: 0px;
+	border: 1px solid #e2e8f0;
+	padding: 24px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+TD.setting2 {
+	background-image: none;
+}
+
+/* ==========================================================================
+   Modern Sidebar Menu Design
+   ========================================================================== */
+
+TD.leftside TABLE.menu,
+TD.leftside TABLE.menu2 {
+	width: 100%;
+	border-radius: 0;
+	border: none;
+	background-color: transparent;
+	overflow: visible;
+	margin-bottom: 0;
+}
+
+TD.menu_header {
+	padding: 16px 20px 12px;
+	font-weight: 600;
+	font-size: 11px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	background: transparent;
+	color: #94a3b8;
+	border-bottom: none;
+}
+
+TD.menu_header:first-child {
+	padding-top: 24px;
+}
+
+TD.menu {
+	padding: 0;
+	border-bottom: none;
+}
+
+TD.menu A {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 20px;
+	font-size: 14px;
+	color: #cbd5e1;
+	text-decoration: none;
+	border-bottom: none;
+	background: transparent;
+	transition: all 0.2s ease;
+	border-left: 3px solid transparent;
+	position: relative;
+}
+
+TD.menu A:hover {
+	background-color: rgba(60, 133, 186, 0.1);
+	color: #ffffff;
+	padding-left: 24px;
+	border-left-color: #3c85ba;
+}
+
+/* Active menu item styling */
+TD.menu A.active,
+TD.menu A.menu.active {
+	background: linear-gradient(90deg, rgba(60, 133, 186, 0.15) 0%, rgba(60, 133, 186, 0.05) 100%);
+	color: #ffffff;
+	border-left-color: #3c85ba;
+	font-weight: 600;
+	padding-left: 24px;
+}
+
+TD.menu A.active i,
+TD.menu A.menu.active i {
+	color: #60a5fa;
+}
+
+/* Font Awesome icons in menu */
+TD.menu a.menu i,
+TD.menu A i {
+	margin-right: 0;
+	font-size: 16px;
+	width: 20px;
+	text-align: center;
+	vertical-align: middle;
+	color: #94a3b8;
+	transition: color 0.2s ease;
+}
+
+TD.menu A:hover i,
+TD.menu A.active i {
+	color: #60a5fa;
+}
+
+IMG.icon2 {
+	display: none;
+}
+
+/* Hide separator images */
+TD.leftside IMG[src*="admin_menu_bar"] {
+	display: none;
+}
+
+/* ==========================================================================
+   Logout Button
+   ========================================================================== */
+
+.btn-logout {
+	color: #ffffff !important;
+	text-decoration: none !important;
+	padding: 8px 18px;
+	background-color: #dc2626;
+	border-radius: 9999px;
+	font-weight: 600;
+	font-size: 13px;
+	border: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	box-shadow: 0 2px 4px rgba(248, 113, 113, 0.4);
+	transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.btn-logout i {
+	font-size: 14px;
+}
+
+.btn-logout:hover {
+	background-color: #b91c1c;
+	box-shadow: 0 4px 6px rgba(248, 113, 113, 0.5);
+	transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Filter/Search Bar - Modern Design
+   ========================================================================== */
+
+.filter-bar {
+	background: #ffffff;
+	border-radius: 12px;
+	padding: 24px;
+	margin-bottom: 24px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	border: 1px solid #e2e8f0;
+}
+
+.filter-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	align-items: flex-end;
+	margin-bottom: 16px;
+}
+
+.filter-row:last-child {
+	margin-bottom: 0;
+}
+
+.filter-group {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	flex: 1;
+	min-width: 150px;
+}
+
+.filter-group label {
+	font-size: 13px;
+	font-weight: 600;
+	color: #475569;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.filter-group input[type="text"],
+.filter-group select {
+	margin: 0;
+}
+
+.date-range-group {
+	display: flex;
+	align-items: flex-end;
+	gap: 12px;
+	flex: 1;
+	min-width: 320px;
+}
+
+.date-input-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	flex: 1;
+	position: relative;
+}
+
+.date-input-wrapper label {
+	font-size: 13px;
+	font-weight: 600;
+	color: #475569;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.date-input-wrapper input[type="text"] {
+	padding-right: 40px;
+	position: relative;
+}
+
+.date-input-wrapper .calImg {
+	position: absolute;
+	right: 12px;
+	bottom: 10px;
+	cursor: pointer;
+	width: 18px;
+	height: 18px;
+	opacity: 0.6;
+	transition: opacity 0.2s;
+	z-index: 1;
+}
+
+.date-input-wrapper .calImg:hover {
+	opacity: 1;
+}
+
+.date-separator {
+	color: #64748b;
+	font-weight: 600;
+	font-size: 14px;
+	padding: 0 8px;
+}
+
+.filter-actions {
+	display: flex;
+	gap: 12px;
+	align-items: flex-end;
+}
+
+.btn-search {
+	padding: 10px 24px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #ffffff;
+	background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 4px rgba(60, 133, 186, 0.2);
+	white-space: nowrap;
+}
+
+.btn-search:hover {
+	background: linear-gradient(135deg, #2d6a9a 0%, #1e4a6e 100%);
+	box-shadow: 0 4px 8px rgba(60, 133, 186, 0.3);
+	transform: translateY(-1px);
+}
+
+input[type="submit"] {
+	padding: 10px 24px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #ffffff;
+	background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 4px rgba(60, 133, 186, 0.2);
+	white-space: nowrap;
+}
+
+.btn-add {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 24px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #ffffff !important;
+	background: #333;
+	border-radius: 8px;
+	text-decoration: none;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);
+	white-space: nowrap;
+}
+
+.btn-add:hover {
+	background: #333;
+	box-shadow: 0 4px 8px rgba(22, 163, 74, 0.3);
+	transform: translateY(-1px);
+	color: #ffffff !important;
+	text-decoration: none;
+}
+
+.btn-add i {
+	font-size: 16px;
+}
+
+/* ==========================================================================
+   Tables - Modern Design
+   ========================================================================== */
+
+TABLE.list,
+TABLE.stats {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	border-radius: 12px;
+	overflow: hidden;
+	border: 1px solid #e2e8f0;
+	background-color: #ffffff;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+TD.header {
+	padding: 16px 20px;
+	font-weight: 600;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	background: #3c85ba;
+	color: #ffffff;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+TD.item {
+	padding: 6px 10px;
+	font-size: 14px;
+	color: #475569;
+	border-top: 1px solid #f1f5f9;
+}
+
+TR.background1 {
+	background-color: #ffffff;
+}
+
+TR.background2 {
+	background-color: #f8fafc;
+}
+
+TR.background1:hover,
+TR.background2:hover {
+	background-color: #f1f5f9;
+}
+
+TD.stat0,
+TD.stat1,
+TD.stat2 {
+	font-size: 14px;
+	background-color: transparent;
+	border: none;
+	padding: 12px;
+}
+
+/* ==========================================================================
+   Forms & Inputs - Modern Design
+   ========================================================================== */
+
+TD.form1 {
+	padding: 12px;
+	font-size: 14px;
+	vertical-align: middle;
+	text-align: right;
+	color: #475569;
+	font-weight: 500;
+}
+
+TD.form2 {
+	padding: 12px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+	font-family: inherit;
+	font-size: 14px;
+	padding: 10px 7px;
+	border-radius: 8px;
+	border: 1px solid #cbd5e1;
+	background-color: #ffffff;
+	color: #1e293b;
+	outline: none;
+	box-sizing: border-box;
+	transition: all 0.2s ease;
+	width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+	border-color: #3c85ba;
+	box-shadow: 0 0 0 3px rgba(60, 133, 186, 0.1);
+}
+
+input.button,
+input.button_small {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 20px;
+	font-size: 14px;
+	font-family: inherit;
+	font-weight: 600;
+	color: #ffffff;
+	background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%);
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 4px rgba(60, 133, 186, 0.2);
 }
 
 input.button_small {
-	background: #EEEEEE;
-	font-size: 9pt;
-	font-family: "Trebuchet MS", verdana, arial, serif;
-	font-weight: bold;
+	padding: 8px 16px;
+	font-size: 13px;
 }
 
-#txtHint{width:300px;}
+input.button:hover,
+input.button_small:hover {
+	background: linear-gradient(135deg, #2d6a9a 0%, #1e4a6e 100%);
+	box-shadow: 0 4px 8px rgba(60, 133, 186, 0.3);
+	transform: translateY(-1px);
+}
+
+input.button:active,
+input.button_small:active {
+	transform: translateY(0);
+	box-shadow: 0 2px 4px rgba(60, 133, 186, 0.2);
+}
+
+.btn-delete {
+	padding: 10px 24px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #ffffff !important;
+	background: #dc2626 !important;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3);
+	white-space: nowrap;
+}
+
+.btn-delete:hover {
+	background: #b91c1c;
+	box-shadow: 0 4px 8px rgba(220, 38, 38, 0.4);
+	transform: translateY(-1px);
+	color: #ffffff !important;
+}
+
+.pagination-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20px;
+	padding: 0;
+	gap: 20px;
+}
+
+.pagination-left {
+	display: flex;
+	align-items: center;
+}
+
+.pagination-right {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 8px;
+}
+
+.pagination-info {
+	font-size: 13px;
+	color: #64748b;
+	margin: 0;
+}
+
+/* ==========================================================================
+   Responsive Table Wrapper
+   ========================================================================== */
+
+.table-responsive {
+	width: 100%;
+	overflow-x: auto;
+	overflow-y: visible;
+	-webkit-overflow-scrolling: touch;
+	margin-bottom: 20px;
+	border-radius: 8px;
+	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.table-responsive::-webkit-scrollbar {
+	height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+	background: #f1f5f9;
+	border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+	background: #cbd5e1;
+	border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+	background: #94a3b8;
+}
+
+.table-responsive table {
+	margin-bottom: 0;
+	min-width: 100%;
+}
+
+/* ==========================================================================
+   Filter Bar (Search Sections)
+   ========================================================================== */
+
+.filter-bar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	align-items: flex-end;
+	background-color: #ffffff;
+	border-radius: 12px;
+	padding: 16px 20px;
+	margin: 8px 0 16px;
+	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+	border: 1px solid #e2e8f0;
+}
+
+.filter-field {
+	flex: 1 1 180px;
+	min-width: 160px;
+}
+
+.filter-label {
+	display: block;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: #64748b;
+	margin-bottom: 6px;
+}
+
+.filter-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.btn-secondary {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 8px 16px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #1e293b;
+	background-color: #e2e8f0;
+	border-radius: 8px;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.btn-secondary:hover {
+	background-color: #cbd5e1;
+	box-shadow: 0 2px 4px rgba(148, 163, 184, 0.4);
+	transform: translateY(-1px);
+}
+
+INPUT.checkbox {
+	vertical-align: middle;
+	width: 18px;
+	height: 18px;
+	cursor: pointer;
+}
+
+TEXTAREA.template,
+TEXTAREA.text {
+	width: 100%;
+	padding: 12px 14px;
+	border-radius: 8px;
+	border: 1px solid #cbd5e1;
+	font-family: inherit;
+	resize: vertical;
+}
+
+/* ==========================================================================
+   Utility & Status Styles
+   ========================================================================== */
+
+DIV.error {
+	font-weight: 600;
+	margin-bottom: 16px;
+	color: #dc2626;
+	padding: 12px 16px;
+	background-color: #fef2f2;
+	border-radius: 8px;
+	border-left: 4px solid #dc2626;
+}
+
+TD.error {
+	padding: 12px 16px;
+	background: #fef2f2;
+	color: #dc2626;
+	border-radius: 8px;
+	border-left: 4px solid #dc2626;
+}
+
+DIV.success {
+	font-weight: 600;
+	margin-bottom: 16px;
+	color: #16a34a;
+	padding: 12px 16px;
+	background-color: #f0fdf4;
+	border-radius: 8px;
+	border-left: 4px solid #16a34a;
+}
+
+TD.bannerborder {
+	border-radius: 12px;
+	border: 2px dashed #cbd5e1;
+	padding: 24px;
+	background-color: #ffffff;
+	vertical-align: middle;
+	text-align: center;
+	height: auto;
+}
+
+DIV.box {
+	border-radius: 12px;
+	border: 1px solid #e2e8f0;
+	padding: 24px;
+	background-color: #ffffff;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+DIV.center {
+	text-align: center;
+}
+
+DIV.floatleft {
+	float: left;
+}
+
+DIV.pages,
+DIV.pages2 {
+	padding: 8px 0;
+	font-size: 13px;
+	color: #64748b;
+}
+
+TD.step {
+	padding: 8px 12px;
+	font-weight: 700;
+	font-size: 28px;
+	vertical-align: top;
+	color: #cbd5e1;
+	text-align: center;
+}
+
+TD.plugin {
+	padding: 16px;
+	font-size: 14px;
+	background: #ffffff;
+	color: #475569;
+}
+
+TD.plugin_name {
+	font-weight: 600;
+	font-size: 16px;
+	color: #0f172a;
+}
+
+FONT.large {
+	font-size: 28px;
+	font-weight: 700;
+}
+
+FONT.large_gray {
+	font-size: 28px;
+	color: #64748b;
+	font-weight: 700;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+A:link,
+A:visited {
+	color: #3c85ba;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+A:hover {
+	color: #2d6a9a;
+	text-decoration: underline;
+}
+
+A.header:link,
+A.header:visited,
+A.header:hover {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+A.menu:link,
+A.menu:visited,
+A.menu:hover {
+	text-decoration: none;
+}
+
+/* ==========================================================================
+   Scrollbar Styling for Sidebar
+   ========================================================================== */
+
+TD.leftside::-webkit-scrollbar {
+	width: 6px;
+}
+
+TD.leftside::-webkit-scrollbar-track {
+	background: #1e293b;
+}
+
+TD.leftside::-webkit-scrollbar-thumb {
+	background: #475569;
+	border-radius: 3px;
+}
+
+TD.leftside::-webkit-scrollbar-thumb:hover {
+	background: #64748b;
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+	TD.leftside {
+		width: 240px;
+	}
+
+	TD.rightside {
+		padding: 24px;
+	}
+}
+
+/* Misc */
+
+#txtHint {
+	width: 300px;
+}
+
+
+body {
+	overflow-x: hidden;
+}

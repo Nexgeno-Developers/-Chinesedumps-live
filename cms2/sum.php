@@ -184,12 +184,23 @@ $lastMonthSalesUrl		= "masterorder.php?".http_build_query(array("from_date" => $
 <div class="topbar">
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
-<td valign="top"><img src="images/admin_icon.jpg" alt="Admin Header" width="382" height="103" border="0" /></td>
-<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+<td valign="top"><img src="images/admin_icon.png" alt="Admin Header" width="200" height="" border="0" /></td>
+<td valign="top" align="right">
+<?php if(isset($_SESSION['strAdmin'])): ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<span style="color: #ffffff; margin-right: 15px; font-weight: 500;">Welcome, <?php echo htmlspecialchars($_SESSION['strAdmin']); ?></span>
+		<a href="logout.php" class="btn-logout"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Logout</a>
+	</div>
+<?php else: ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<a href="index.php" style="color: #ffffff; text-decoration: none; padding: 8px 16px; background-color: rgba(255, 255, 255, 0.2); border-radius: 4px; font-weight: 500; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.2)'">Login</a>
+	</div>
+<?php endif; ?>
+</td>
 </tr>
 </table></div>
 
-<table cellpadding="0" cellspacing="0" width="102%">
+<table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <td width="190" class="leftside"><?php include ("menu.php"); ?></td>
 <td width="810" class="rightside">
@@ -224,24 +235,9 @@ function getip() {
         } else {
              $realip = $_SERVER["REMOTE_ADDR"];
         }
-    } else {
-         if ( getenv( 'HTTP_X_FORWARDED_FOR' ) ) {
-              $realip = getenv( 'HTTP_X_FORWARDED_FOR' );
-         } elseif ( getenv( 'HTTP_CLIENT_IP' ) ) {
-              $realip = getenv( 'HTTP_CLIENT_IP' );
-         } else {
-              $realip = getenv( 'REMOTE_ADDR' );
-         }
-    }
-    return $realip; 
-}
-
-//print out the ip and browser information
-
-print getip();
- 
-?> 
-</div></td>
+        print getip();
+        ?>
+      </td>
     </tr>
 </table>
 <table width='100%' cellpadding='0' cellspacing='0' class='d-none stats visit-summary'>

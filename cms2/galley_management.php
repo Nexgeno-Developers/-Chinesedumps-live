@@ -98,7 +98,7 @@ $ccAdminData = get_session_data();
 
 		if(!isset($pgObj) && empty($pgObj))
 
-				$pgObj 		=  new classPaging ("vendormanage.php",$rowsPerPage,$linkPerPage,"","","");
+				$pgObj 		=  new classPaging ("galley_management.php",$rowsPerPage,$linkPerPage,"","","");
 
 		
 
@@ -175,7 +175,7 @@ $ccAdminData = get_session_data();
 
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
 
-<table cellpadding="0" cellspacing="0" width="90%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 
@@ -185,10 +185,13 @@ $ccAdminData = get_session_data();
 
 Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
 
-<br />
-
 <form id="form1" name="form1" method="post" action="">
 
+<div style="margin-bottom: 20px; text-align: right;">
+	<a href="add_gallery.php" class="btn-add">
+		<i class="fa-solid fa-plus"></i> Add Banner
+	</a>
+</div>
 
 
 <br />
@@ -297,40 +300,27 @@ $slider = mysql_fetch_object($sqlSlider);
 <?php } ?>
 
 </table>
+</div>
 
-<table>
-
-<tr> 
-
-<td valign="top" align="center" class="rightside" ><div align="center"><strong>&nbsp;&nbsp; 
-
-	  <?=$BackNaviLinks;?>
-
-	  &nbsp;&nbsp; 
-
-	  <?=$NaviLinks;?>
-
-	  &nbsp;&nbsp; 
-
-	  <?=$ForwardNaviLinks;?> </strong><br />
-
-                  Total Records Found &nbsp;
-
-		<?=$TotalRecs;?><br />
-
-                  Total Pages Found &nbsp;
-
-		<?=$TotalPages;?><br /><br />
-
-		</div></td><br/>
-
-		<tr>
-
-		<td valign="top" class="rightside"  align="center"><div align="center"><?=$emptyError?></div></td>
-
-		</tr>
-
-</table>
+<div class="pagination-container">
+	<div class="pagination-left">
+		<?php if(isset($emptyError) && !empty($emptyError)): ?>
+			<?=$emptyError?>
+		<?php else: ?>
+			<span style="color: #64748b; font-size: 14px;">No record exist.</span>
+		<?php endif; ?>
+	</div>
+	
+	<div class="pagination-right">
+		<div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+			<strong><?=$BackNaviLinks;?></strong>
+			<strong><?=$NaviLinks;?></strong>
+			<strong><?=$ForwardNaviLinks;?></strong>
+		</div>
+		<p class="pagination-info">Total Records Found: <strong><?=$TotalRecs;?></strong></p>
+		<p class="pagination-info">Total Pages Found: <strong><?=$TotalPages;?></strong></p>
+	</div>
+</div>
 
 </form></td>
 

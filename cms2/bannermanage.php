@@ -251,6 +251,10 @@ if (isset($_GET['action']) && $_GET['action'] === "up" && isset($_GET['nid'])) {
 
 		}
 
+// Count total records (for pagination info) - moved before HTML output
+$countRes = mysql_query("SELECT COUNT(*) AS cnt FROM `sliders`");
+$countRow = mysql_fetch_assoc($countRes);
+$totalRows = intval($countRow['cnt']);
 
 ?>
 
@@ -258,20 +262,41 @@ if (isset($_GET['action']) && $_GET['action'] === "up" && isset($_GET['nid'])) {
 
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
 
-<table cellpadding="0" cellspacing="0" width="90%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 
 <td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
 
-<td width="810" valign="top" class="rightside"><h2>Banners Management!</h2>
-
-Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
-
-<br />
+<td width="810" valign="top" class="rightside">
+<div style="margin-bottom: 32px;">
+	<h2 style="margin: 0 0 8px 0; font-size: 28px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 12px;">
+		<i class="fa-solid fa-images" style="color: #3c85ba;"></i>
+		Banners Management
+	</h2>
+	<p style="margin: 0; color: #64748b; font-size: 14px;">Manage and organize your website banners. You can reorder banners, edit details, or remove banners from this page.</p>
+</div>
 
 <form id="form1" name="form1" method="post" action="">
 
+<div style="background: #ffffff; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); border: 1px solid #e2e8f0;">
+	<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+		<div style="flex: 1;">
+			<h3 style="margin: 0 0 4px 0; font-size: 16px; font-weight: 600; color: #1e293b;">Banner List</h3>
+			<p style="margin: 0; font-size: 13px; color: #64748b;">Total: <strong><?= $totalRows ?></strong> banner<?= $totalRows != 1 ? 's' : '' ?></p>
+		</div>
+		<div style="display: flex; gap: 12px; align-items: center;">
+			<button type="submit" name="btn_save_order" value="Save Order" class="button" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; font-size: 14px; font-weight: 600; color: #ffffff; background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%); border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(60, 133, 186, 0.2);">
+				<i class="fa-solid fa-save"></i>
+				Save Order
+			</button>
+			<a href="addslider.php" style="display: inline-flex; align-items: center; gap: 8px; padding: 7px 20px; font-size: 14px; font-weight: 600; color: #ffffff; background: #333; border-radius: 8px; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);">
+				<i class="fa-solid fa-plus"></i>
+				Add Banner
+			</a>
+		</div>
+	</div>
+</div>
 
 
 <br />
@@ -302,19 +327,12 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
    </tr>
 
     <tr>
-    
-        <td class='header' width='206' align="center">Alt Text </td>
-        
-        <td class='header' width='171' align="center">Link </td>
-        
-        <td class='header' width='171' align="center">Type </td>
-        
-        <td class="header" width="80" align="center">Banner Order</td>
-        
-        <td class='header' width='171' align="center">Preview </td>
-        
-        <td width="271" align="center" class='header'>Option</td>
-    
+        <td class='header' align="center" style="padding: 16px 20px;">Alt Text</td>
+        <td class='header' align="center" style="padding: 16px 20px;">Link</td>
+        <td class='header' align="center" style="padding: 16px 20px;">Type</td>
+        <td class="header" align="center" style="padding: 16px 20px; min-width: 120px;">Order</td>
+        <td class='header' align="center" style="padding: 16px 20px; min-width: 200px;">Preview</td>
+        <td class='header' align="center" style="padding: 16px 20px; min-width: 150px;">Actions</td>
     </tr>
 
   <!-- LOOP THROUGH USERS -->
@@ -330,11 +348,6 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
    // Fetch sliders ordered by (type, banner_order)
   $sqlAll = "SELECT * FROM `sliders` ORDER BY `type` ASC, `banner_order` ASC {$LIMIT}";
   $sqlSlider = mysql_query($sqlAll) or die(mysql_error());
-
-  // Count total records (for pagination info)
-  $countRes = mysql_query("SELECT COUNT(*) AS cnt FROM `sliders`");
-  $countRow = mysql_fetch_assoc($countRes);
-  $totalRows = intval($countRow['cnt']);
 
   $counter = 0;
   while ($slider = mysql_fetch_object($sqlSlider)) {
@@ -354,25 +367,46 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 <?php } ?>
 
+<?php if ($counter == 0): ?>
+<tr>
+	<td colspan="6" class="item" style="padding: 48px 20px; text-align: center;">
+		<div style="color: #94a3b8;">
+			<i class="fa-solid fa-images" style="font-size: 48px; margin-bottom: 16px; display: block;"></i>
+			<p style="font-size: 16px; font-weight: 500; margin: 0 0 8px 0; color: #64748b;">No banners found</p>
+			<p style="font-size: 14px; margin: 0; color: #94a3b8;">Get started by adding your first banner.</p>
+			<a href="addslider.php" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 7px 20px; background:#333; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.2s ease;">
+				<i class="fa-solid fa-plus"></i>
+				Add Your First Banner
+			</a>
+		</div>
+	</td>
+</tr>
+<?php endif; ?>
+
 </table>
 
-<table>
-  <tr>
-    <td valign="top" align="center" class="rightside">
-      <div align="center">
+<div style="background: #ffffff; border-radius: 12px; padding: 20px; margin-top: 24px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); border: 1px solid #e2e8f0;">
+  <div style="text-align: center;">
+    <div style="margin-bottom: 12px;">
         <?= $BackNaviLinks ?>&nbsp;&nbsp;<?= $NaviLinks ?>&nbsp;&nbsp;<?= $ForwardNaviLinks ?>
-        <br />
-        Total Records Found: <?= $totalRows ?><br />
-        Total Pages: <?= $TotalPages ?><br /><br />
+    </div>
+    <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 14px; color: #64748b;">
+      <div>
+        <strong style="color: #1e293b;">Total Records:</strong> <?= $totalRows ?>
       </div>
-    </td>
-  </tr>
-  <tr>
-    <td valign="top" class="rightside" align="center">
-      <div align="center"><?= $emptyError ?></div>
-    </td>
-  </tr>
-</table>
+      <?php if ($TotalPages): ?>
+      <div>
+        <strong style="color: #1e293b;">Total Pages:</strong> <?= $TotalPages ?>
+      </div>
+      <?php endif; ?>
+    </div>
+    <?php if (isset($emptyError) && $emptyError): ?>
+    <div style="margin-top: 16px;">
+      <?= $emptyError ?>
+    </div>
+    <?php endif; ?>
+  </div>
+</div>
         
 <!--<table>-->
 

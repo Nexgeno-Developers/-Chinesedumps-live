@@ -218,7 +218,7 @@ $ccAdminData = get_session_data();
 
 </script>
 
-<table cellpadding="0" cellspacing="0" width="102%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 
