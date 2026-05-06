@@ -306,23 +306,23 @@ $rowCounter = 1;
 $showRows = '';
 while($rows = mysql_fetch_array($result))
 {
-	$intColor = (($rowCounter % 2) != 0) ? '#FFFFFF' : '#f3eeee';
+	$rowClass = (($rowCounter % 2) != 0) ? 'background1' : 'background2';
 
 	if($rows['Status'] == 1)
 	{
 		$chek = 'Disable this';
-		$colstatus = 'style="color:#FF0000"';
+		$statusClass = 'is-disable';
 	}
 	else
 	{
 		$chek = 'Enable this';
-		$colstatus = 'style="color:#00FF00"';
+		$statusClass = 'is-enable';
 	}
 
 	$tableName = "order_master";
 	$tablefield = "ID";
 	$tablestatus = "Status";
-	$statusOrder = "<div id='txtHint".$rows['ID']."'><a href='javascript:showHint(".$rows['ID'].", \"$tableName\",\"$tablefield\",\"$tablestatus\")' ".$colstatus.">".$chek." </a></div>";
+	$statusOrder = "<div id='txtHint".$rows['ID']."'><a class='master-status-link ".$statusClass."' href='javascript:showHint(".$rows['ID'].", \"$tableName\",\"$tablefield\",\"$tablestatus\")'>".$chek."</a></div>";
 
 	$deleteUrl = 'masterorder.php?action=up&nid='.$rows['ID'].'&cart='.$rows['Cart_ID'];
 	if($stateQueryString != '')
@@ -330,17 +330,17 @@ while($rows = mysql_fetch_array($result))
 		$deleteUrl .= '&'.$stateQueryString;
 	}
 
-	$showRows .= '<tr bgcolor="'.$intColor.'">';
-	$showRows .= '<td class="item" style="padding-left: 0px;">'.htmlspecialchars($rows['user_email'], ENT_QUOTES, 'UTF-8').'</td>';
-	$showRows .= '<td class="item" align="left" valign="middle">'.htmlspecialchars($rows['user_password'], ENT_QUOTES, 'UTF-8').'</td>';
-	$showRows .= '<td width="5" class="item" style="padding-right: 0px;">'.htmlspecialchars($rows['Order_Id'], ENT_QUOTES, 'UTF-8').'</td>';
-	$showRows .= '<td class="item" style="padding-left: 0px;"><i>'.htmlspecialchars($rows['OrderDesc'], ENT_QUOTES, 'UTF-8').'</i></td>';
-	$showRows .= '<td class="item" style="padding-left: 0px;">'.masterorder_format_date($rows['OrderDate']).'</td>';
-	$showRows .= '<td class="item" style="padding-left: 0px;">'.masterorder_format_amount($rows['Net_Amount']).'</td>';
-	$showRows .= '<td class="item" style="padding-left: 0px;">'.htmlspecialchars($rows['coupon_code'], ENT_QUOTES, 'UTF-8').'</td>';
-	$showRows .= '<td class="item" style="padding-left: 0px;">'.masterorder_format_amount($rows['computed_value']).'</td>';
-	$showRows .= '<td class="item" style="padding-left: 0px;">'.$statusOrder.'</td>';
-	$showRows .= '<td class="item" nowrap="nowrap"><a href="orderdetail.php?ord='.$rows['ID'].'">Details</a></td>';
+	$showRows .= '<tr class="'.$rowClass.'">';
+	$showRows .= '<td class="item">'.htmlspecialchars($rows['user_email'], ENT_QUOTES, 'UTF-8').'</td>';
+	$showRows .= '<td class="item">'.htmlspecialchars($rows['user_password'], ENT_QUOTES, 'UTF-8').'</td>';
+	$showRows .= '<td class="item" align="center">'.htmlspecialchars($rows['Order_Id'], ENT_QUOTES, 'UTF-8').'</td>';
+	$showRows .= '<td class="item master-desc-cell">'.htmlspecialchars($rows['OrderDesc'], ENT_QUOTES, 'UTF-8').'</td>';
+	$showRows .= '<td class="item" align="center">'.masterorder_format_date($rows['OrderDate']).'</td>';
+	$showRows .= '<td class="item master-amount-cell" align="right">'.masterorder_format_amount($rows['Net_Amount']).'</td>';
+	$showRows .= '<td class="item" align="center">'.htmlspecialchars($rows['coupon_code'], ENT_QUOTES, 'UTF-8').'</td>';
+	$showRows .= '<td class="item master-amount-cell" align="right">'.masterorder_format_amount($rows['computed_value']).'</td>';
+	$showRows .= '<td class="item" align="center">'.$statusOrder.'</td>';
+	$showRows .= '<td class="item master-action-cell" align="center" nowrap="nowrap"><a class="master-action-link" href="orderdetail.php?ord='.$rows['ID'].'">Details</a></td>';
 	$showRows .= '</tr>';
 
 	$rowCounter++;
