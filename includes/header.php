@@ -3033,8 +3033,8 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 														<ul class="dropdown-menu menu_mrg">
 															<li><a href="clcor-350-801-ccnp-dumps.htm">350-801 CLCOR </a></li>
 															<!--<li><a href="300-810-ccnp-collaboration-clica-dumps.htm">300-810 CLICA</a></li>-->
-															<li><a href="300-815-ccnp-collaboration-claccm-dumps.htm">300-815 CLACC</a></li>
-															<li><a href="300-820-ccnp-collaboration-clcei-dumps.htm">300-820 CLHCT</a></li>
+															<li><a href="300-815-ccnp-collaboration-clacc-dumps.htm">300-815 CLACC</a></li>
+															<li><a href="300-820-ccnp-collaboration-clhct-dumps">300-820 CLHCT</a></li>
 															<li><a href="clcce-300-830-ccnp-dumps.htm"> 300-830 CLHCT</a></li>
 															<!--<li><a href="300-835-ccnp-clauto-dumps.htm">300-835 CLAUTO</a></li>-->
 														</ul>
@@ -3063,7 +3063,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 														<ul class="dropdown-menu menu_mrg">
 															<li><a href="350-201-cyberops-cbrcor-dumps.htm">350-201 CBRCOR</a></li>
 															<li><a href="300-215-cyberops-cbrfir-dumps.htm">300-215 CBRFIR</a></li>
-															<li><a href="300-220-cyberops-cbthd-dumps.htm">300-220 CBTHD</a></li>
+															<li><a href="300-220-cyberops-cbrthd-dumps.htm">300-220 CBTHD</a></li>
 														</ul>
 													</li>
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">CCDE v3.1<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
