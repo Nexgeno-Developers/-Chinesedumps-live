@@ -134,14 +134,14 @@ input.bulk-delete-button:hover {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 16px;
-	margin-bottom: 14px;
+	align-items: flex-end;
 }
 .filter-field {
-	flex: 1 1 180px;
-	min-width: 180px;
+	flex: 1 1 210px;
+	min-width: 200px;
 }
 .filter-field.wide {
-	flex: 2 1 340px;
+	flex: 2 1 360px;
 }
 .filter-field label {
 	display: block;
@@ -174,7 +174,15 @@ input.bulk-delete-button:hover {
 	opacity: 0.65;
 }
 .user-filter-actions {
-	padding-top: 4px;
+	display: flex;
+	flex: 0 0 auto;
+	gap: 12px;
+	align-items: flex-end;
+	padding-bottom: 1px;
+	white-space: nowrap;
+}
+.user-filter-actions .secondary-action {
+	margin-left: 0;
 }
 .results-strip {
 	margin-bottom: 14px;
@@ -369,11 +377,11 @@ function openUserSearchCalendar(fieldName, triggerObj)
 								<img src="images/calendar-icon.gif" alt="Select end date" class="date-picker-trigger" onclick="return openUserSearchCalendar('txt_StartDate2', this);" />
 							</div>
 						</div>
-					</div>
 
-					<div class="user-filter-actions">
-						<input type="submit" value="Search Users" class="primary-action" />
-						<a href="<?=$clearFiltersUrl?>" class="secondary-action">Reset Filters</a>
+						<div class="user-filter-actions">
+							<input type="submit" value="Search Users" class="primary-action" />
+							<a href="<?=$clearFiltersUrl?>" class="secondary-action">Reset Filters</a>
+						</div>
 					</div>
 				</div>
 			</form>
