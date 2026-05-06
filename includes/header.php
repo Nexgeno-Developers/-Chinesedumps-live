@@ -1942,211 +1942,245 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 										<!--				</ul>-->
 										<!--			</li> -->
 
-										<li class="dropdown mega-dropdown"> <a href="/Microsoft-certification-dumps.html" class="dropdown-toggle padding_20"> Microsoft <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
-											<div class="dropdown_megamenu dropdown-menu mega-dropdown-menu micrisoft_menu">
-												<div class="">
-													<!-- Tab panes -->
-													<div class="col-md-2 col-sm-2 ht-tab">
-														<ul class="nav nav-tabs" role="tablist">
-															<li><a href="#" class="tablinks active" onmouseover="openCity(event, 'azure_exams')"> Azure exams</a></li>
-															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'data_exams')">Data exams </a></li>
-															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'microsoft_exams')">Microsoft 365 exams </a></li>
-															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'modern_desktop_exams')">Modern Desktop exams</a></li>
-															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'windows_server_exams')">Windows Server 2016 exams </a></li>
-															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'microsoft_dynamics_exams')">Microsoft Dynamics 365 exams </a></li>
-															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'microsoft_others')">Microsoft Other Certification</a></li>
-														</ul>
-													</div>
-													<div class="col-md-10 col-sm-10 ht-tab">
-														<div class="tab-content">
-															<div class="tab-pane tabcontent active" id="azure_exams" style="display: block !important">
-																<div class="col-md-12 ht-ul"> <span>Azure exams</span>
-																	<ul class="nav-list list-inline">
-																		<li><a href="az-103.htm">AZ-103 Microsoft Azure Administrator</a></li>
-																		<li><a href="AZ-104.htm">AZ-104 Azure Administrator Associate</a></li>
-																		<li><a href="az-120.htm">AZ-120 Planning and Administering Microsoft Azure for SAP Workloads</a></li>
-																		<li><a href="az-203.htm">AZ-203 Developing Solutions for Microsoft Azure</a></li>
-																		<li><a href="AZ-204.htm">AZ-204 Azure Solutions Architect Expert</a></li>
-																		<li><a href="az-300.htm">AZ-300 Microsoft Azure Architect Technologies</a></li>
-																		<li><a href="az-301.htm">AZ-301 Microsoft Azure Architect Design</a></li>
-																		<li><a href="AZ-305.htm">AZ-305 Azure Solutions Architect Expert</a></li>
-																		<li><a href="az-400.htm">AZ-400 Microsoft Azure DevOps Solutions</a></li>
-																		<li><a href="az-500.htm">AZ-500 Microsoft Azure Security Technologies</a></li>
-																		<li><a href="az-900.htm">AZ-900 Microsoft Azure Fundamentals</a></li>
-																		<li><a href="70-487.htm">70-487 Developing Microsoft Azure and Web Services </a></li>
-																		<li><a href="70-537.htm"> 70-537 Configuring and Operating a Hybrid Cloud with Microsoft Azure Stack </a></li>
-																	</ul>
-																</div>
-															</div>
-															<div class="tab-pane tabcontent" id="data_exams">
-																<div class="col-md-12 ht-ul"> <span>Data exams</span>
-																	<ul class="nav-list list-inline">
-																		<li><a href="ai-100.htm">AI-100 Designing and Implementing an Azure AI Solution</a></li>
-																		<li><a href="dp-100.htm">DP-100 Designing and Implementing a Data Science Solution on Azure</a></li>
-																		<li><a href="dp-200.htm">DP-200 Implementing an Azure Data Solution</a></li>
-																		<li><a href="dp-201.htm">DP-201 Designing an Azure Data Solution</a></li>
-																		<li><a href="DP-203.htm">DP-203 Azure Data Engineer Associate</a></li>
-																		<li><a href="70-761.htm">70-761 Querying Data with Transact-SQL</a></li>
-																		<li><a href="70-762.htm">70-762 Developing SQL Databases</a></li>
-																		<li><a href="70-764.htm">70-764 Administering a SQL Database Infrastructure</a></li>
-																		<li><a href="70-765.htm">70-765 Provisioning SQL Databases</a></li>
-																		<li><a href="70-767.htm">70-767 Implementing a Data Warehouse Using SQL</a></li>
-																		<li><a href="70-768.htm">70-768 Developing SQL Data Models</a></li>
-																		<li><a href="70-777.htm">70-777 Implementing Microsoft Azure Cosmos DB Solutions</a></li>
-																		<li><a href="70-778.htm">70-778 Analyzing and Visualizing Data with Microsoft Power BI</a></li>
-																		<li><a href="70-779.htm"> 70-779 Analyzing and Visualizing Data with Microsoft Excel</a></li>
-																	</ul>
-																</div>
-															</div>
-															<div class="tab-pane tabcontent" id="microsoft_exams">
-																<div class="col-md-12 ht-ul"> <span>Microsoft 365 exams</span>
-																	<ul class="nav-list list-inline">
-																		<li><a href="md-100.htm">MD-100 Windows 10</a></li>
-																		<li><a href="md-101.htm">MD-101 Managing Modern Desktops</a></li>
-																		<li><a href="ms-100.htm">MS-100 Microsoft 365 Identity and Services</a></li>
-																		<li><a href="ms-101.htm">MS-101 Microsoft 365 Mobility and Security</a></li>
-																		<li><a href="ms-200.htm">MS-200 Planning and Configuring a Messaging Platform</a></li>
-																		<li><a href="ms-201.htm">MS-201 Implementing a Hybrid and Secure Messaging Platform</a></li>
-																		<li><a href="ms-300.htm">MS-300 Deploying Microsoft 365 Teamwork</a></li>
-																		<li><a href="ms-301.htm">MS-301 Deploying SharePoint Server Hybrid</a></li>
-																		<li><a href="ms-500.htm">MS-500 Microsoft 365 Security Administration</a></li>
-																		<li><a href="ms-900.htm">MS-900 Microsoft 365</a></li>
-																	</ul>
-																</div>
-															</div>
-															<div class="tab-pane tabcontent" id="modern_desktop_exams">
-																<div class="col-md-12 ht-ul"> <span>Modern Desktop exams</span>
-																	<ul class="nav-list list-inline">
-																		<li><a href="md-100.htm">MD-100 Windows 10</a></li>
-																		<li><a href="md-101.htm">MD-101 Managing Modern Desktops</a></li>
-																	</ul>
-																</div>
-															</div>
-															<div class="tab-pane tabcontent" id="windows_server_exams">
-																<div class="col-md-12 ht-ul"> <span>Windows Server 2016 exams</span>
-																	<ul class="nav-list list-inline">
-																		<li><a href="70-740.htm">70-740 Installation, Storage, and Compute with Windows Server 2016</a></li>
-																		<li><a href="70-741.htm">70-741 Networking with Windows Server 2016</a></li>
-																		<li><a href="70-742.htm">70-742 Identity with Windows Server 2016</a></li>
-																		<li><a href="70-743.htm">70-743 Upgrading Your Skills to MCSA: Windows Server 2016</a></li>
-																		<li><a href="70-744.htm"> 70-744 Securing Windows Server 2016</a></li>
-																		<li><a href="70-745.htm">70-745 Implementing a Software-Defined Datacenter</a></li>
-																	</ul>
-																</div>
-															</div>
-															<div class="tab-pane tabcontent" id="microsoft_dynamics_exams">
-																<div class="col-md-12 ht-ul"> <span>Microsoft Dynamics 365 exams</span>
-																	<ul class="nav-list list-inline">
-																		<li><a href="mb-200.htm">MB-200 Microsoft Power Platform + Dynamics 365 Core</a></li>
-																		<li><a href="mb-210.htm">MB-210 Microsoft Dynamics 365 Sales</a></li>
-																		<li><a href="mb-220.htm">MB-220 Microsoft Dynamics 365 Marketing</a></li>
-																		<li><a href="mb-230.htm">MB-230 Microsoft Dynamics 365 Customer Service</a></li>
-																		<li><a href="mb-240.htm">MB-240 Microsoft Dynamics 365 Field Service</a></li>
-																		<li><a href="mb-300.htm">MB-300 Microsoft Dynamics 365: Core Finance and Operations</a></li>
-																		<li><a href="mb-310.htm">MB-310 Microsoft Dynamics 365 Finance</a></li>
-																		<li><a href="mb-320.htm">MB-320 Microsoft Dynamics 365 Supply Chain Management, Manufacturing</a></li>
-																		<li><a href="mb-330.htm">MB-330 Microsoft Dynamics 365 Supply Chain Management</a></li>
-																		<li><a href="mb-400.htm">MB-400 Microsoft Power Apps + Dynamics 365 Developer</a></li>
-																		<li><a href="mb-500.htm">MB-500 Microsoft Dynamics 365: Finance and Operations Apps Developer</a></li>
-																		<li><a href="mb-900.htm">MB-900 Microsoft Dynamics 365 Fundamentals</a></li>
-																	</ul>
-																</div>
-															</div>
-															<div class="tab-pane tabcontent" id="microsoft_others">
-																<div class="col-md-3 ht-ul">
-																	<ul class="nav-list list-inline">
-																		<li><a href="77-887.htm">77-887 </a></li>
-																		<li><a href="77-888.htm">77-888 </a></li>
-																		<li><a href="77-881.htm">77-881 </a></li>
-																		<li><a href="77-883.htm">77-883 </a></li>
-																		<li><a href="77-884.htm">77-884 </a></li>
-																		<li><a href="77-885.htm">77-885 </a></li>
-																		<li><a href="77-882.htm">77-882 </a></li>
-																		<li><a href="98-375.htm">98-375 </a></li>
-																		<li><a href="98-367.htm">98-367 </a></li>
-																		<li><a href="98-349.htm">98-349 </a></li>
-																		<li><a href="98-361.htm">98-361 </a></li>
-																		<li><a href="98-365.htm">98-365 </a></li>
-																		<li><a href="98-366.htm">98-366 </a></li>
-																		<li><a href="98-369.htm">98-369 </a></li>
-																		<li><a href="98-368.htm">98-368 </a></li>
-																		<li><a href="98-364.htm">98-364 </a></li>
-																		<li><a href="70-333.htm">70-333 </a></li>
-																		<li><a href="70-411.htm">70-411 </a></li>
-																	</ul>
-																</div>
-																<div class="col-md-3 ht-ul">
-																	<ul class="nav-list list-inline">
-																		<li><a href="70-345.htm ">70-345 </a></li>
-																		<li><a href="70-334.htm ">70-334 </a></li>
-																		<li><a href="70-410.htm ">70-410 </a></li>
-																		<li><a href="70-412.htm ">70-412 </a></li>
-																		<li><a href="70-417.htm ">70-417 </a></li>
-																		<li><a href="70-461.htm ">70-461 </a></li>
-																		<li><a href="70-462.htm ">70-462 </a></li>
-																		<li><a href="70-463.htm ">70-463 </a></li>
-																		<li><a href="70-413.htm ">70-413 </a></li>
-																		<li><a href="70-466.htm ">70-466 </a></li>
-																		<li><a href="70-467.htm ">70-467 </a></li>
-																		<li><a href="70-464.htm ">70-464 </a></li>
-																		<li><a href="70-465.htm ">70-465 </a></li>
-																		<li><a href="70-480.htm ">70-480 </a></li>
-																		<li><a href="70-483.htm ">70-483 </a></li>
-																		<li><a href="70-486.htm ">70-486 </a></li>
-																		<li><a href="MB2-712.htm">MB2-712 </a></li>
-																		<li><a href="MB2-707.htm">MB2-707 </a></li>
-																	</ul>
-																</div>
-																<div class="col-md-3 ht-ul">
-																	<ul class="nav-list list-inline">
-																		<li><a href="MB2-710.htm">MB2-710 </a></li>
-																		<li><a href="MB2-713.htm">MB2-713 </a></li>
-																		<li><a href="77-420.htm ">77-420 </a></li>
-																		<li><a href="70-414.htm ">70-414 </a></li>
-																		<li><a href="70-339.htm ">70-339 </a></li>
-																		<li><a href="62-193.htm ">62-193 </a></li>
-																		<li><a href="70-348.htm ">70-348 </a></li>
-																		<li><a href="70-357.htm ">70-357 </a></li>
-																		<li><a href="70-740.htm ">70-740 </a></li>
-																		<li><a href="MB2-706.htm">MB2-706 </a></li>
-																		<li><a href="MB2-708.htm">MB2-708 </a></li>
-																		<li><a href="MB2-711.htm">MB2-711 </a></li>
-																		<li><a href="MB2-714.htm">MB2-714 </a></li>
-																		<li><a href="MB2-716.htm">MB2-716 </a></li>
-																		<li><a href="MB2-717.htm">MB2-717 </a></li>
-																		<li><a href="70-713.htm ">70-713 </a></li>
-																		<li><a href="98-380.htm ">98-380 </a></li>
-																		<li><a href="70-735.htm ">70-735 </a></li>
-																	</ul>
-																</div>
-																<div class="col-md-3 ht-ul">
-																	<ul class="nav-list list-inline">
-																		<li><a href="70-705.htm ">70-705 </a></li>
-																		<li><a href="98-381.htm ">98-381 </a></li>
-																		<li><a href="98-382.htm ">98-382 </a></li>
-																		<li><a href="98-383.htm ">98-383 </a></li>
-																		<li><a href="98-388.htm ">98-388 </a></li>
-																		<li><a href="MB6-897.htm">MB6-897 </a></li>
-																		<li><a href="MB6-894.htm">MB6-894 </a></li>
-																		<li><a href="70-703.htm ">70-703 </a></li>
-																		<li><a href="77-419.htm ">77-419 </a></li>
-																		<li><a href="77-725.htm ">77-725 </a></li>
-																		<li><a href="77-726.htm ">77-726 </a></li>
-																		<li><a href="77-727.htm ">77-727 </a></li>
-																		<li><a href="77-728.htm ">77-728 </a></li>
-																		<li><a href="77-729.htm ">77-729 </a></li>
-																		<li><a href="77-730.htm ">77-730 </a></li>
-																		<li><a href="77-731.htm ">77-731 </a></li>
-																		<li><a href="MB6-898.htm">MB6-898 </a></li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- Nav tabs -->
-											</div>
-										</li>
+										<li class="dropdown mega-dropdown">
+    <a href="/Microsoft-certification-dumps.html" class="dropdown-toggle padding_20">
+        Microsoft <img src="images/new-image/caret_icons.svg" alt="caret" />
+    </a>
+    <div class="dropdown_megamenu dropdown-menu mega-dropdown-menu microsoft_menu">
+        <div class="">
+            <!-- Nav tabs -->
+            <div class="col-md-2 col-sm-2 ht-tab">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li><a href="#" class="tablinks active" onmouseover="openCity(event, 'azure_exams')">Azure Exams</a></li>
+                    <li><a href="#" class="tablinks" onmouseover="openCity(event, 'azure_ai_exams')">Azure AI Exams</a></li>
+                    <li><a href="#" class="tablinks" onmouseover="openCity(event, 'data_exams')">Data Exams</a></li>
+                    <li><a href="#" class="tablinks" onmouseover="openCity(event, 'microsoft_365_exams')">Microsoft 365 Exams</a></li>
+                    <li><a href="#" class="tablinks" onmouseover="openCity(event, 'dynamics_exams')">Microsoft Dynamics 365 Exams</a></li>
+                    <li><a href="#" class="tablinks" onmouseover="openCity(event, 'power_platform_exams')">Power Platform Exams</a></li>
+                    <li><a href="#" class="tablinks" onmouseover="openCity(event, 'security_exams')">Security Exams</a></li>
+                    <li><a href="#" class="tablinks" onmouseover="openCity(event, 'github_exams')">GitHub Exams</a></li>
+                    <li><a href="#" class="tablinks" onmouseover="openCity(event, 'ai_cert_exams')">Microsoft AI Certification</a></li>
+                    <li><a href="#" class="tablinks" onmouseover="openCity(event, 'mos_exams')">MOS / Office Specialist</a></li>
+                    <li><a href="#" class="tablinks" onmouseover="openCity(event, 'other_exams')">Microsoft Other Certification</a></li>
+                </ul>
+            </div>
+
+            <!-- Tab panes -->
+            <div class="col-md-10 col-sm-10 ht-tab">
+                <div class="tab-content">
+
+                    <!-- Azure Exams -->
+                    <!-- Admin panel category: Azure Administrator Associate / Azure Solutions Architect Expert / Azure Security Engineer Associate / Microsoft Azure -->
+                    <div class="tab-pane tabcontent active" id="azure_exams" style="display: block !important">
+                        <div class="col-md-12 ht-ul">
+                            <span>Azure Exams</span>
+                            <ul class="nav-list list-inline">
+                                <li><a href="az-104_dumps.htm">AZ-104 Azure Administrator Associate</a></li>
+                                <li><a href="AZ-120_dumps.htm">AZ-120 Azure for SAP Workloads Specialty</a></li>
+                                <li><a href="az-140_dumps.htm">AZ-140 Azure Virtual Desktop Specialty</a></li>
+                                <li><a href="az-204_dumps.htm">AZ-204 Azure Developer Associate</a></li>
+                                <li><a href="az-305_dumps.htm">AZ-305 Designing Microsoft Azure Infrastructure Solutions</a></li>
+                                <li><a href="AZ-400_dumps.htm">AZ-400 Designing and Implementing Microsoft DevOps Solutions</a></li>
+                                <li><a href="AZ-500_dumps.htm">AZ-500 Azure Security Engineer Associate</a></li>
+                                <li><a href="az-700_dumps.htm">AZ-700 Azure Network Engineer Associate</a></li>
+                                <li><a href="az-800_dumps.htm">AZ-800 Administering Windows Server Hybrid Core Infrastructure</a></li>
+                                <li><a href="az-801_dumps.htm">AZ-801 Configuring Windows Server Hybrid Advanced Services</a></li>
+                                <li><a href="AZ-900_dumps.htm">AZ-900 Microsoft Azure Fundamentals</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Azure AI Exams -->
+                    <!-- Admin panel category: Azure AI Engineer Associate -->
+                    <div class="tab-pane tabcontent" id="azure_ai_exams">
+                        <div class="col-md-12 ht-ul">
+                            <span>Azure AI Exams</span>
+                            <ul class="nav-list list-inline">
+                                <li><a href="ai-102_dumps.htm">AI-102 Azure AI Engineer Associate</a></li>
+                                <li><a href="ai-300_dumps.htm">AI-300 Machine Learning Operations (MLOps) Engineer Associate</a></li>
+                                <li><a href="ai-900_dumps.htm">AI-900 Microsoft Azure AI Fundamentals</a></li>
+                                <li><a href="ai-901_dumps.htm">AI-901 Microsoft Azure AI Fundamentals (beta)</a></li>
+                                <li><a href="dp-800_dumps.htm">DP-800 SQL AI Developer Associate (beta)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Data Exams -->
+                    <!-- Admin panel category: Azure Data Engineer Associate / Azure Administrator Associate (DP-600, DP-700) / Microsoft Azure (DP-100) -->
+                    <div class="tab-pane tabcontent" id="data_exams">
+                        <div class="col-md-12 ht-ul">
+                            <span>Data Exams</span>
+                            <ul class="nav-list list-inline">
+                                <li><a href="DP-100_dumps.htm">DP-100 Azure Data Scientist Associate</a></li>
+                                <li><a href="DP-200_dumps.htm">DP-200 Implementing an Azure Data Solution</a></li>
+                                <li><a href="dp-203_dumps.htm">DP-203 Azure Data Engineer Associate</a></li>
+                                <li><a href="dp-300_dumps.htm">DP-300 Azure Database Administrator Associate</a></li>
+                                <li><a href="dp-420_dumps.htm">DP-420 Azure Cosmos DB Developer Specialty</a></li>
+                                <li><a href="dp-600_dumps.htm">DP-600 Fabric Analytics Engineer Associate</a></li>
+                                <li><a href="dp-700_dumps.htm">DP-700 Fabric Data Engineer Associate</a></li>
+                                <li><a href="dp-750_dumps.htm">DP-750 Azure Databricks Data Engineer Associate (beta)</a></li>
+                                <li><a href="dp-900_dumps.htm">DP-900 Azure Data Fundamentals</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Microsoft 365 Exams -->
+                    <!-- Admin panel category: Microsoft 365 -->
+                    <div class="tab-pane tabcontent" id="microsoft_365_exams">
+                        <div class="col-md-12 ht-ul">
+                            <span>Microsoft 365 Exams</span>
+                            <ul class="nav-list list-inline">
+                                <li><a href="MS-100_dumps.htm">MS-100 Microsoft 365 Identity and Services</a></li>
+                                <li><a href="MS-101_dumps.htm">MS-101 Microsoft 365 Mobility and Security</a></li>
+                                <li><a href="MS-500_dumps.htm">MS-500 Microsoft 365 Security Administration</a></li>
+                                <li><a href="MS-900_dumps.htm">MS-900 Microsoft 365 Fundamentals</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Microsoft Dynamics 365 Exams -->
+                    <!-- Admin panel category: Microsoft Dynamics 365 / Dynamics 365 for Sales / Dynamics 365 for Customer Service / Dynamics 365 for Field Service / Dynamics 365 for Finance and Operations -->
+                    <div class="tab-pane tabcontent" id="dynamics_exams">
+                        <div class="col-md-12 ht-ul">
+                            <span>Microsoft Dynamics 365 Exams</span>
+                            <ul class="nav-list list-inline">
+                                <li><a href="ab-900_dumps.htm">AB-900 Microsoft 365 Copilot and Agent Administration Fundamentals</a></li>
+                                <li><a href="MB-210_dumps.htm">MB-210 Microsoft Dynamics 365 for Sales</a></li>
+                                <li><a href="MB-230_dumps.htm">MB-230 Dynamics 365 Customer Service Functional Consultant Associate</a></li>
+                                <li><a href="MB-240_dumps.htm">MB-240 Dynamics 365 Field Service Functional Consultant Associate</a></li>
+                                <li><a href="mb-280_dumps.htm">MB-280 Dynamics 365 Customer Experience Analyst Associate</a></li>
+                                <li><a href="MB-310_dumps.htm">MB-310 Dynamics 365 Finance Functional Consultant Associate</a></li>
+                                <li><a href="MB-330_dumps.htm">MB-330 Dynamics 365 Supply Chain Management Functional Consultant Associate</a></li>
+                                <li><a href="mb-700_dumps.htm">MB-700 Dynamics 365 Finance and Operations Apps Solution Architect Expert</a></li>
+                                <li><a href="mb-800_dumps.htm">MB-800 Dynamics 365 Business Central Functional Consultant Associate</a></li>
+                                <li><a href="mb-820_dumps.htm">MB-820 Dynamics 365 Business Central Developer Associate</a></li>
+                                <li><a href="MB2-717_dumps.htm">MB2-717 Microsoft Dynamics 365 for Sales</a></li>
+                                <li><a href="md-102_dumps.htm">MD-102 Microsoft 365 Endpoint Administrator Associate</a></li>
+                                <li><a href="ms-721_dumps.htm">MS-721 Collaboration Communications Systems Engineer Associate</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Power Platform Exams -->
+                    <!-- Admin panel category: Microsoft Certified Power Platform Fundamentals / Microsoft Excel - Power BI - MCSA -->
+                    <div class="tab-pane tabcontent" id="power_platform_exams">
+                        <div class="col-md-12 ht-ul">
+                            <span>Power Platform Exams</span>
+                            <ul class="nav-list list-inline">
+                                <li><a href="pl-200_dumps.htm">PL-200 Power Platform Functional Consultant Associate</a></li>
+                                <li><a href="pl-300_dumps.htm">PL-300 Power BI Data Analyst Associate</a></li>
+                                <li><a href="pl-400_dumps.htm">PL-400 Power Platform Developer Associate</a></li>
+                                <li><a href="pl-500_dumps.htm">PL-500 Power Automate RPA Developer Associate</a></li>
+                                <li><a href="PL-900_dumps.htm">PL-900 Power Platform Fundamentals</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Security Exams -->
+                    <!-- Admin panel category: Microsoft Other Certification (SC exams) -->
+                    <div class="tab-pane tabcontent" id="security_exams">
+                        <div class="col-md-12 ht-ul">
+                            <span>Security Exams</span>
+                            <ul class="nav-list list-inline">
+                                <li><a href="sc-100_dumps.htm">SC-100 Cybersecurity Architect Expert</a></li>
+                                <li><a href="sc-300_dumps.htm">SC-300 Identity and Access Administrator Associate</a></li>
+                                <li><a href="sc-401_dumps.htm">SC-401 Information Security Administrator Associate</a></li>
+                                <li><a href="sc-900_dumps.htm">SC-900 Security, Compliance, and Identity Fundamentals</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- GitHub Exams -->
+                    <!-- Admin panel category: GitHub -->
+                    <div class="tab-pane tabcontent" id="github_exams">
+                        <div class="col-md-12 ht-ul">
+                            <span>GitHub Exams</span>
+                            <ul class="nav-list list-inline">
+                                <li><a href="gh-100_dumps.htm">GH-100 GitHub Administration</a></li>
+                                <li><a href="gh-200_dumps.htm">GH-200 GitHub Actions</a></li>
+                                <li><a href="gh-300_dumps.htm">GH-300 GitHub Copilot</a></li>
+                                <li><a href="gh-500_dumps.htm">GH-500 GitHub Advanced Security</a></li>
+                                <li><a href="gh-900_dumps.htm">GH-900 GitHub Foundations</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Microsoft AI Certification -->
+                    <!-- Admin panel category: Microsoft AI Certification -->
+                    <div class="tab-pane tabcontent" id="ai_cert_exams">
+                        <div class="col-md-12 ht-ul">
+                            <span>Microsoft AI Certification</span>
+                            <ul class="nav-list list-inline">
+                                <li><a href="ab-100_dumps.htm">AB-100 Agentic AI Business Solutions Architect</a></li>
+                                <li><a href="ab-730_dumps.htm">AB-730 AI Business Professional</a></li>
+                                <li><a href="ab-731_dumps.htm">AB-731 AI Transformation Leader</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- MOS / Office Specialist -->
+                    <!-- Admin panel category: MOS-Microsoft Office Specialist / Microsoft Office Specialist / Outlook 2016 -->
+                    <div class="tab-pane tabcontent" id="mos_exams">
+                        <div class="col-md-6 ht-ul">
+                            <span>Office 2016</span>
+                            <ul class="nav-list list-inline">
+                                <li><a href="77-420_dumps.htm">77-420 Microsoft Office Excel 2013</a></li>
+                                <li><a href="77-725_dumps.htm">77-725 Microsoft Office Specialist: Word (Office 2016)</a></li>
+                                <li><a href="77-727_dumps.htm">77-727 Microsoft Office Specialist: Excel (Office 2016)</a></li>
+                                <li><a href="77-728_dumps.htm">77-728 Microsoft Office Specialist: Excel Expert (Office 2016)</a></li>
+                                <li><a href="77-729_dumps.htm">77-729 Microsoft PowerPoint (Office 2016)</a></li>
+                                <li><a href="77-730_dumps.htm">77-730 Microsoft Office Specialist: Access (Office 2016)</a></li>
+                                <li><a href="77-731_dumps.htm">77-731 Microsoft Office Specialist: Outlook (Office 2016)</a></li>
+                                <li><a href="77-888_dumps.htm">77-888 Microsoft Excel 2010 Expert</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 ht-ul">
+                            <span>Office 2019 &amp; Microsoft 365 Apps</span>
+                            <ul class="nav-list list-inline">
+                                <li><a href="mo-110_dumps.htm">MO-110 Microsoft Office Specialist: Associate (Microsoft 365 Apps)</a></li>
+                                <li><a href="mo-111_dumps.htm">MO-111 Microsoft Office Specialist: Word Expert (Microsoft 365 Apps)</a></li>
+                                <li><a href="mo-210_dumps.htm">MO-210 Microsoft Office Specialist: Excel Associate (Microsoft 365 Apps)</a></li>
+                                <li><a href="mo-220_dumps.htm">MO-220 Microsoft Office Specialist: Excel for Accounting Associate</a></li>
+                                <li><a href="mo-230_dumps.htm">MO-230 Microsoft Office Specialist: Excel for Business Finance Associate</a></li>
+                                <li><a href="mo-310_dumps.htm">MO-310 Microsoft Office Specialist: PowerPoint Associate (Microsoft 365 Apps)</a></li>
+                                <li><a href="mo-400_dumps.htm">MO-400 Microsoft Office Specialist: Outlook Associate (Office 2019)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Microsoft Other Certification -->
+                    <!-- Admin panel category: Microsoft Other Certification -->
+                    <div class="tab-pane tabcontent" id="other_exams">
+                        <div class="col-md-12 ht-ul">
+                            <span>Microsoft Other Certification</span>
+                            <ul class="nav-list list-inline">
+                                <li><a href="62-193_dumps.htm">62-193 Microsoft Certified Educator</a></li>
+                                <li><a href="77-726_dumps.htm">77-726 Microsoft Word Expert (Office 2016)</a></li>
+                                <li><a href="mb-335_dumps.htm">MB-335 Dynamics 365 Supply Chain Management Functional Consultant Expert</a></li>
+                                <li><a href="MB-500_dumps.htm">MB-500 Dynamics 365 Finance and Operations Apps Developer Associate</a></li>
+                                <li><a href="MO-100_dumps.htm">MO-100 Microsoft Office Specialist: Word Associate (Office 2019)</a></li>
+                                <li><a href="MO-101_dumps.htm">MO-101 Microsoft Office Specialist: Word Expert (Office 2019)</a></li>
+                                <li><a href="MO-200_dumps.htm">MO-200 Microsoft Office Specialist: Excel Associate (Office 2019)</a></li>
+                                <li><a href="MO-201_dumps.htm">MO-201 Microsoft Office Specialist: Excel Expert (Office 2019)</a></li>
+                                <li><a href="mo-211_dumps.htm">MO-211 Microsoft Office Specialist: Expert (Microsoft 365 Apps)</a></li>
+                                <li><a href="MO-300_dumps.htm">MO-300 Microsoft Office Specialist: PowerPoint Associate (Office 2019)</a></li>
+                                <li><a href="mo-500_dumps.htm">MO-500 Microsoft Office Specialist: Access Expert (Office 2019)</a></li>
+                                <li><a href="ms-102_dumps.htm">MS-102 Microsoft 365 Administrator</a></li>
+                                <li><a href="MS-700_dumps.htm">MS-700 Managing Microsoft Teams</a></li>
+                                <li><a href="pl-600_dumps.htm">PL-600 Power Platform Solution Architect Expert</a></li>
+                                <li><a href="sc-100_dumps.htm">SC-100 Cybersecurity Architect Expert</a></li>
+                                <li><a href="sc-300_dumps.htm">SC-300 Identity and Access Administrator Associate</a></li>
+                                <li><a href="sc-401_dumps.htm">SC-401 Information Security Administrator Associate</a></li>
+                                <li><a href="sc-900_dumps.htm">SC-900 Security, Compliance, and Identity Fundamentals</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
 
 										<li class="dropdown mega-dropdown"> <a href="/Amazon-Web-Services-certification-dumps.html" class="dropdown-toggle padding_20">AWS <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 											<div class="dropdown_megamenu dropdown-menu mega-dropdown-menu asw_menu_width">
@@ -3192,7 +3226,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 													</li>
 												</ul>
 											</li>
-											<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Fortinet Certified Solution Specialist<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+											<liE> <a data-toggle="dropdown" class="dropdown-toggle" href="">Fortinet Certified Solution Specialist<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 												<ul class="dropdown-menu menu_mrg bounce">
 													<li> <a href="nse7_efw-7-2.htm">NSE7_EFW</a> </li>
 													<li> <a href="nse7_led-7-0.htm">NSE7_LED</a> </li>
@@ -3207,7 +3241,8 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 													<!--<li> <a  href="">FCSS_SASE_AD-24</a> </li>-->
 													<!--<li> <a  href="">FCSS_EFW_AD-7.4</a> </li>-->
 												</ul>
-											</li>
+											</liE
+											
 											<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Fortinet Certified Expert<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 												<ul class="dropdown-menu menu_mrg bounce">
 													<li> <a href="NSE8.htm">FCX (NSE8) Written Exam</a> </li>
