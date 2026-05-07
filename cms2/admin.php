@@ -7,6 +7,7 @@ include ("../includes/common/inc/sessionheader.php");
 <head>
 <title>Admin System Homes LLC</title>
 <link href="new.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 
 </head>
 <body>

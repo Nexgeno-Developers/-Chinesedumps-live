@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+
 <?php
 if (!function_exists('role_can')) {
 	include_once 'functions.php';
@@ -116,6 +119,79 @@ function cms2_menu_item_matches_active_target($item, $target)
 	return true;
 }
 
+function cms2_menu_icon_class($label, $url = '')
+{
+	$label = trim((string)$label);
+	$url = (string)$url;
+
+	$map = array(
+		'Configuration' => 'fa-solid fa-gear',
+		'Summary' => 'fa-solid fa-chart-line',
+		'Change Password' => 'fa-solid fa-key',
+		'Website Copyright' => 'fa-regular fa-copyright',
+		'Change Email Address' => 'fa-solid fa-envelope',
+		'Logout' => 'fa-solid fa-right-from-bracket',
+
+		'All Registered Users' => 'fa-solid fa-users',
+		'Reports' => 'fa-solid fa-file-lines',
+
+		'Banners Management' => 'fa-solid fa-images',
+		'Add Banner' => 'fa-solid fa-plus',
+
+		'Exam Results Management' => 'fa-solid fa-image',
+		'Add Exam Results Image' => 'fa-solid fa-plus',
+
+		'Add Vendors' => 'fa-solid fa-store',
+		'Vendors Management' => 'fa-solid fa-store',
+		'Add Certification' => 'fa-solid fa-certificate',
+		'Certifications Management' => 'fa-solid fa-certificate',
+		'Add Exam' => 'fa-solid fa-plus',
+		'Exams Management' => 'fa-solid fa-graduation-cap',
+
+		'View Demo Emails' => 'fa-solid fa-envelope-open-text',
+		'View Exam Request Email' => 'fa-solid fa-inbox',
+		'Full Download Management' => 'fa-solid fa-download',
+
+		'Final Orders' => 'fa-solid fa-cart-shopping',
+		'List Cart' => 'fa-solid fa-list',
+		'Re-Order Cart' => 'fa-solid fa-rotate-right',
+
+		'Manage Coupons' => 'fa-solid fa-ticket',
+		'Add new Coupon' => 'fa-solid fa-plus',
+
+		'Manage Course' => 'fa-solid fa-book',
+		'Add new Course' => 'fa-solid fa-plus',
+
+		'Edit Emails' => 'fa-solid fa-pen-to-square',
+		'Vendor Global Content' => 'fa-solid fa-globe',
+		'Certification Global Content' => 'fa-solid fa-globe',
+		'Exam Global Content' => 'fa-solid fa-globe',
+
+		'Add User' => 'fa-solid fa-user-plus',
+		'User Management' => 'fa-solid fa-users-gear',
+
+		'Admin User Management' => 'fa-solid fa-user-shield',
+		'Add Admin User' => 'fa-solid fa-user-plus'
+	);
+
+	if (isset($map[$label])) {
+		return $map[$label];
+	}
+
+	// Light fallback based on URL keywords.
+	$lowerUrl = strtolower($url);
+	if (strpos($lowerUrl, 'manage') !== false) {
+		return 'fa-solid fa-list';
+	}
+	if (strpos($lowerUrl, 'add') !== false) {
+		return 'fa-solid fa-plus';
+	}
+	if (strpos($lowerUrl, 'edit') !== false) {
+		return 'fa-solid fa-pen-to-square';
+	}
+	return 'fa-solid fa-circle';
+}
+
 function cms2_render_menu_section($title, $items, $first)
 {
 	$visible = array();
@@ -136,7 +212,8 @@ function cms2_render_menu_section($title, $items, $first)
 	echo '<tr><td><img src="images/admin_menu_bar.gif" border="0" /></td></tr>';
 	foreach ($visible as $item) {
 		$linkClass = cms2_menu_item_matches_active_target($item, $activeTarget) ? 'menu active' : 'menu';
-		echo '<tr><td class="menu"><a class="'.$linkClass.'" href="'.$item[1].'"><img src="'.$item[4].'" width="16" height="16" border="0" class="icon2" />'.$item[0].'</a></td></tr>';
+		$iconClass = cms2_menu_icon_class(isset($item[0]) ? $item[0] : '', isset($item[1]) ? $item[1] : '');
+		echo '<tr><td class="menu"><a class="'.$linkClass.'" href="'.$item[1].'"><i class="'.$iconClass.'" aria-hidden="true"></i>'.$item[0].'</a></td></tr>';
 	}
 	echo '</tbody></table>';
 }
