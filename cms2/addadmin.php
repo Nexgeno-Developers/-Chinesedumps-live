@@ -50,7 +50,7 @@ if (isset($_POST['Submit']) && $_POST['Submit'] == "Submit")
 	if (empty($strError)) {
 		$adminId = $objAdmin->addAdmin($spram);
 		$objAdmin->addAdminPermission($adminId);
-		$strError = "Admin has been added successfully";
+		$strError = "<span style='color: green; font-weight: 600;'>Admin has been added successfully</span>";
 		$_POST = array();
 	}
 }

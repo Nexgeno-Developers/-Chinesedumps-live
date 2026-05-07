@@ -83,7 +83,7 @@ $image_path = base_path('images/stamp_logo.png');
 						watermark_image($spram[1]['tmp_name'],"../images/slider/".$spram[0]."/".$newnamedemo);
 					}
 				}else{
-					$strError	.=	"<b>Error! Banner type is not valid.</b>";
+					$strError	.=	"";
 				}
 			}
 
@@ -91,7 +91,7 @@ $image_path = base_path('images/stamp_logo.png');
 
 		
 
-			$strError	.= "Report has been added successfully";
+			$strError	.= "<span style='color: green; font-weight: 600;'>Report has been added successfully</span>";
 
 			
 
@@ -110,7 +110,7 @@ $image_path = base_path('images/stamp_logo.png');
 
 
 
-<table cellpadding="0" cellspacing="0" width="102%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 

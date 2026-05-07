@@ -207,7 +207,7 @@ jQuery(document).ready(function() {
 
 
 
-<table cellpadding="0" cellspacing="0" width="102%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 
@@ -249,7 +249,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td align="left">&nbsp;</td>
 
-          <td colspan="2" style="color: #FF0000;"><?=$strError?></td>
+          <td colspan="2" style="color: green; font-weight: 600;"><?=$strError?></td>
 
         </tr>
 

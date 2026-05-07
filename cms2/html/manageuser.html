@@ -4,37 +4,63 @@
 <title><?=$websitetitle?></title>
 <link href="new.css" rel="stylesheet" type="text/css" />
 <link href="style1.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 <style type="text/css">
+.master-page-table,
+.master-page-table > tbody,
+.master-page-table > tbody > tr {
+	display: block;
+	width: 100%;
+}
+.master-content-cell {
+	display: block;
+	box-sizing: border-box;
+	width: 84% !important;
+	max-width: none !important;
+	margin-left: 16%;
+	padding: 32px !important;
+}
 .user-shell {
 	background: #ffffff;
-	border: 1px solid #d7deea;
-	box-shadow: 0 10px 30px rgba(29, 46, 74, 0.08);
+	border: 1px solid #dbe5f0;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(29, 46, 74, 0.08);
 	margin-top: 12px;
+	overflow: hidden;
 }
 .user-shell-header {
-	background: linear-gradient(135deg, #183a63 0%, #24567f 55%, #4d8db5 100%);
-	color: #ffffff;
-	padding: 24px 28px;
+	background: #ffffff;
+	border-bottom: 1px solid #e6edf5;
+	padding: 20px 22px 10px 22px;
+}
+.user-shell-header-top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	flex-wrap: wrap;
 }
 .user-shell-header h2 {
-	margin: 0 0 6px 0;
-	color: #ffffff;
-	font-size: 24px;
+	margin: 0;
+	color: #0f172a;
+	font-size: 28px;
+	font-weight: 700;
 }
 .user-shell-header p {
-	margin: 0;
-	font-size: 13px;
-	color: #dbeaf8;
+	margin: 8px 0 0 0;
+	font-size: 14px;
+	color: #64748b;
 }
 .user-shell-body {
-	padding: 24px 28px 30px 28px;
-	background: #f5f8fc;
+	padding: 18px 22px 24px 22px;
+	background: #f8fafc;
 }
 .user-alert {
 	padding: 12px 14px;
 	margin-bottom: 18px;
 	font-weight: bold;
 	border: 1px solid transparent;
+	border-radius: 8px;
 }
 .user-alert.is-success {
 	background: #edf9f0;
@@ -51,25 +77,37 @@
 	border-color: #cfe0f6;
 	color: #234a72;
 }
-.user-toolbar {
-	margin-bottom: 18px;
-}
-.user-toolbar .primary-action,
-.user-toolbar .secondary-action,
+.user-action-btn,
 .user-filter-actions .primary-action,
 .user-filter-actions .secondary-action,
 .bulk-delete-button {
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
 	padding: 10px 16px;
 	text-decoration: none;
-	font-weight: bold;
-	font-family: "Trebuchet MS", verdana, arial, serif;
-	font-size: 12px;
+	font-weight: 600;
+	font-family: inherit;
+	font-size: 14px;
 	border: 0;
+	border-radius: 8px;
 	cursor: pointer;
 }
+.user-action-btn {
+	padding: 8px 20px;
+	background: #333333;
+	color: #ffffff !important;
+}
+.user-action-btn:link,
+.user-action-btn:visited,
+.user-action-btn:hover,
+.user-action-btn:active,
+.user-action-btn:focus {
+	color: #ffffff !important;
+	text-decoration: none;
+}
 .primary-action {
-	background: #173e69;
+	background: #3c85ba;
 	color: #ffffff;
 }
 .secondary-action {
@@ -78,13 +116,22 @@
 	margin-left: 8px;
 }
 .bulk-delete-button {
-	background: #7e1f28;
+	background: #dc2626;
 	color: #ffffff;
+}
+input.bulk-delete-button {
+	background: #dc2626 !important;
+	box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3);
+}
+input.bulk-delete-button:hover {
+	background: #b91c1c !important;
+	box-shadow: 0 4px 8px rgba(220, 38, 38, 0.4);
 }
 .filter-card {
 	background: #ffffff;
 	border: 1px solid #dce4ef;
-	padding: 18px 20px 10px 20px;
+	border-radius: 10px;
+	padding: 18px 20px 12px 20px;
 	margin-bottom: 18px;
 }
 .filter-card h3 {
@@ -98,72 +145,79 @@
 	color: #5f738b;
 }
 .filter-grid {
-	margin-left: -8px;
-	margin-right: -8px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	align-items: flex-end;
 }
 .filter-field {
-	display: inline-block;
-	vertical-align: top;
-	width: 23%;
-	padding: 0 8px 14px 8px;
+	flex: 1 1 210px;
+	min-width: 200px;
 }
 .filter-field.wide {
-	width: 47%;
+	flex: 2 1 360px;
 }
 .filter-field label {
 	display: block;
 	margin-bottom: 6px;
-	font-weight: bold;
-	color: #22476d;
+	font-size: 13px;
+	font-weight: 600;
+	color: #475569;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
 }
 .filter-field input,
 .filter-field select {
 	width: 100%;
-	padding: 9px 10px;
-	border: 1px solid #b8c9dc;
-	background: #fbfdff;
-	box-sizing: border-box;
-	font-family: "Trebuchet MS", verdana, arial, serif;
-	font-size: 12px;
 }
 .date-picker-control {
-	display: flex;
-	align-items: center;
+	position: relative;
 }
 .date-picker-control input {
-	flex: 1 1 auto;
-}
-.date-picker-trigger {
-	margin-left: 8px;
-	padding: 6px;
-	border: 1px solid #b8c9dc;
-	background: #edf4fb;
+	padding-right: 40px;
 	cursor: pointer;
 }
+.date-picker-trigger {
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	width: 18px;
+	height: 18px;
+	margin-top: -9px;
+	cursor: pointer;
+	opacity: 0.65;
+}
 .user-filter-actions {
-	padding-top: 4px;
+	display: flex;
+	flex: 0 0 auto;
+	gap: 12px;
+	align-items: flex-end;
+	padding-bottom: 1px;
+	white-space: nowrap;
+}
+.user-filter-actions .secondary-action {
+	margin-left: 0;
 }
 .results-strip {
 	margin-bottom: 14px;
 	padding: 12px 14px;
-	background: #eef4fb;
-	border: 1px solid #d7e3f2;
-	color: #25486f;
-	font-weight: bold;
+	background: #ffffff;
+	border: 1px solid #dce4ef;
+	border-radius: 10px;
+	color: #475569;
+	font-weight: 600;
 }
 .results-strip .stat {
 	display: inline-block;
 	margin-right: 18px;
 }
 .user-table-wrap {
-	background: #ffffff;
-	border: 1px solid #dce4ef;
 	overflow-x: auto;
+	border-radius: 12px;
 }
 .user-table {
 	width: 100%;
 	min-width: 1040px;
-	border-collapse: collapse;
 }
 .user-table .header {
 	white-space: nowrap;
@@ -184,9 +238,10 @@
 	padding: 6px 10px;
 	background: #edf4fb;
 	border: 1px solid #d4e0ef;
+	border-radius: 8px;
 	color: #22476d;
 	text-decoration: none;
-	font-weight: bold;
+	font-weight: 600;
 }
 .action-link-danger {
 	background: #fff0f1;
@@ -238,8 +293,16 @@
 	text-align: center;
 	background: #ffffff;
 	border: 1px dashed #c8d6e8;
+	border-radius: 10px;
 	color: #5d7188;
 	font-weight: bold;
+}
+@media (max-width: 900px) {
+	.master-content-cell {
+		width: 100% !important;
+		margin-left: 0;
+		padding: 18px !important;
+	}
 }
 </style>
 <script language="JavaScript" src="../includes/js/calendar.js"></script>
@@ -270,31 +333,41 @@ function openUserSearchCalendar(fieldName, triggerObj)
 <body>
 
 <div class="topbar">
-<table cellpadding="0" cellspacing="0" width="90%">
+<table cellpadding="0" cellspacing="0" width="100%">
 <tr>
-<td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
-<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+<td valign="top"><img src="images/admin_icon.png" border="0" alt="Admin Header" /></td>
+<td valign="top" align="right">
+<?php if(isset($_SESSION['strAdmin'])): ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<span style="color: #ffffff; margin-right: 15px; font-weight: 500;">Welcome, <?php echo htmlspecialchars($_SESSION['strAdmin']); ?></span>
+		<a href="logout.php" class="btn-logout"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Logout</a>
+	</div>
+<?php else: ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<a href="index.php" style="color: #ffffff; text-decoration: none; padding: 8px 16px; background-color: rgba(255, 255, 255, 0.2); border-radius: 4px; font-weight: 500; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.2)'">Login</a>
+	</div>
+<?php endif; ?>
+</td>
 </tr>
 </table></div>
 
-<table cellpadding="0" cellspacing="0" width="96%">
+<table cellpadding="0" cellspacing="0" width="100%" class="master-page-table">
 <tr>
-<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+<td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
 
-<td width="810" valign="top" class="rightside">
+<td width="810" valign="top" class="rightside master-content-cell">
 	<div class="user-shell">
 		<div class="user-shell-header">
-			<h2>Users Management</h2>
-			<p>Search, review, and maintain user records with phone-aware add/edit support and paginated filters.</p>
+			<div class="user-shell-header-top">
+				<h2>Users Management !</h2>
+				<?php if($addUserUrl != ''){ ?>
+				<a class="user-action-btn" href="<?=$addUserUrl?>"><i class="fa-solid fa-plus"></i> Add User</a>
+				<?php } ?>
+			</div>
+			<p>Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.</p>
 		</div>
 
 		<div class="user-shell-body">
-			<div class="user-toolbar">
-				<?php if($addUserUrl != ''){ ?>
-				<a class="primary-action" href="<?=$addUserUrl?>">Add User</a>
-				<?php } ?>
-			</div>
-
 			<?php if($pageNotice != ""){ ?>
 			<div class="<?=$noticeClass?>"><?=$pageNotice?></div>
 			<?php } ?>
@@ -325,11 +398,11 @@ function openUserSearchCalendar(fieldName, triggerObj)
 								<img src="images/calendar-icon.gif" alt="Select end date" class="date-picker-trigger" onclick="return openUserSearchCalendar('txt_StartDate2', this);" />
 							</div>
 						</div>
-					</div>
 
-					<div class="user-filter-actions">
-						<input type="submit" value="Search Users" class="primary-action" />
-						<a href="<?=$clearFiltersUrl?>" class="secondary-action">Reset Filters</a>
+						<div class="user-filter-actions">
+							<input type="submit" value="Search Users" class="primary-action" />
+							<a href="<?=$clearFiltersUrl?>" class="secondary-action">Reset Filters</a>
+						</div>
 					</div>
 				</div>
 			</form>

@@ -33,7 +33,7 @@ $ccAdminData = get_session_data();
 		$sql=("INSERT INTO coupon(coupon_title,coupon_code,start_date,end_date,coupon_value,coupon_type,number_of_uses,status,comments) VALUES 
 		('".$title."','".$code."','".$start_date."','".$end_date."','".$coupon_value."','".$coupon_type."','".$no_of_user."','".$status."','".$comments."')") or die(mysql_error());
 		$query=mysql_query($sql);
-		$strError	.= "Coupon has been added successfully";
+		$strError	.= "<span style='color: green; font-weight: 600;'>Coupon has been added successfully</span>";
 	}
 //------------------------------------------------------------------------------------//
 

@@ -63,25 +63,24 @@ $lastMonthSalesUrl		= "masterorder.php?".http_build_query(array("from_date" => $
 <head>
 <title><?=$websitetitle?></title>
 <link href="new.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 <style>
 .d-none{display:none;}
 .dashboard-shell{
-	background:#f7fafc;
-	border:1px solid #dbe7f3;
-	border-radius:12px;
-	padding:18px;
-	margin-top:8px;
+
 }
 .dashboard-title{
-	margin:0;
-	font-size:22px;
-	color:#1e3854;
-	font-weight:bold;
+	font-size: 32px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.02em;
 }
 .dashboard-subtitle{
-	margin:8px 0 0 0;
-	color:#58708a;
-	font-size:12px;
+	font-size: 16px;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.6;
 }
 .visit-summary{
 	margin-top:14px !important;
@@ -124,17 +123,23 @@ $lastMonthSalesUrl		= "masterorder.php?".http_build_query(array("from_date" => $
 	font-weight:normal;
 	color:#3c5875;
 }
+.dashboard-shell tbody tr {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 25px;
+}
 .summary-grid{
-	margin-top:14px !important;
+	margin-top:0px !important;
 	border-collapse:separate;
 	border-spacing:10px;
 }
-.summary-card-cell{
-	background:#ffffff;
-	border:1px solid #d9e5f1;
-	border-radius:12px;
-	padding:0 !important;
-	transition:all .2s ease-in-out;
+.summary-card-cell {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+    border: 1px solid #e2e8f0 !important;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 .summary-card-cell:hover{
 	transform:translateY(-2px);
@@ -143,8 +148,8 @@ $lastMonthSalesUrl		= "masterorder.php?".http_build_query(array("from_date" => $
 }
 .summary-card-link{
 	display:block;
-	padding:14px 16px;
-	text-decoration:none;
+	padding:0px 16px;
+	text-decoration:none !important;
 	color:#233f5b;
 }
 .summary-card-title{
@@ -154,12 +159,13 @@ $lastMonthSalesUrl		= "masterorder.php?".http_build_query(array("from_date" => $
 	letter-spacing:0.4px;
 	color:#6e8299;
 }
-.summary-card-value{
-	margin-top:8px;
-	font-size:25px;
-	line-height:1;
-	font-weight:bold;
-	color:#0f3c67;
+.summary-card-value {
+    margin-top: 8px;
+    font-size: 32px;
+    line-height: 1;
+    font-weight: bold;
+    color: #0f3c67;
+    padding: 5px 0px;
 }
 .summary-card-hint{
 	margin-top:8px;
@@ -184,12 +190,23 @@ $lastMonthSalesUrl		= "masterorder.php?".http_build_query(array("from_date" => $
 <div class="topbar">
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
-<td valign="top"><img src="images/admin_icon.jpg" alt="Admin Header" width="382" height="103" border="0" /></td>
-<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+<td valign="top"><img src="images/admin_icon.png" alt="Admin Header" width="200" height="" border="0" /></td>
+<td valign="top" align="right">
+<?php if(isset($_SESSION['strAdmin'])): ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<span style="color: #ffffff; margin-right: 15px; font-weight: 500;">Welcome, <?php echo htmlspecialchars($_SESSION['strAdmin']); ?></span>
+		<a href="logout.php" class="btn-logout"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Logout</a>
+	</div>
+<?php else: ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<a href="index.php" style="color: #ffffff; text-decoration: none; padding: 8px 16px; background-color: rgba(255, 255, 255, 0.2); border-radius: 4px; font-weight: 500; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.2)'">Login</a>
+	</div>
+<?php endif; ?>
+</td>
 </tr>
 </table></div>
 
-<table cellpadding="0" cellspacing="0" width="102%">
+<table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <td width="190" class="leftside"><?php include ("menu.php"); ?></td>
 <td width="810" class="rightside">
@@ -216,32 +233,18 @@ printf("This page took %f seconds to load.", $totaltime);
 ?></td>
     <td width="25%"><div align="left"><strong>Your IP</strong>: <?php
 function getip() {
-    if (isSet($_SERVER)) {
-        if (isSet($_SERVER["HTTP_X_FORWARDED_FOR"])) {
-            $realip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-        } elseif (isSet($_SERVER["HTTP_CLIENT_IP"])) {
-            $realip = $_SERVER["HTTP_CLIENT_IP"];
-        } else {
-             $realip = $_SERVER["REMOTE_ADDR"];
-        }
-    } else {
-         if ( getenv( 'HTTP_X_FORWARDED_FOR' ) ) {
-              $realip = getenv( 'HTTP_X_FORWARDED_FOR' );
-         } elseif ( getenv( 'HTTP_CLIENT_IP' ) ) {
-              $realip = getenv( 'HTTP_CLIENT_IP' );
-         } else {
-              $realip = getenv( 'REMOTE_ADDR' );
-         }
+    if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+        return $_SERVER["HTTP_X_FORWARDED_FOR"];
+    } elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
+        return $_SERVER["HTTP_CLIENT_IP"];
+    } elseif (isset($_SERVER["REMOTE_ADDR"])) {
+        return $_SERVER["REMOTE_ADDR"];
     }
-    return $realip; 
+    return "";
 }
-
-//print out the ip and browser information
-
-print getip();
- 
-?> 
-</div></td>
+echo htmlspecialchars(getip());
+?>
+      </td>
     </tr>
 </table>
 <table width='100%' cellpadding='0' cellspacing='0' class='d-none stats visit-summary'>

@@ -85,6 +85,16 @@ function masterorder_format_date($value)
 	return date('d M Y', $time);
 }
 
+function masterorder_format_description($value)
+{
+	$value = html_entity_decode((string)$value, ENT_QUOTES, 'UTF-8');
+	$value = preg_replace('/<br\s*\/?>/i', ' ', $value);
+	$value = strip_tags($value);
+	$value = preg_replace('/\s+/', ' ', trim($value));
+
+	return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
+
 function masterorder_get_sort_url($column, $stateParams, $currentSortBy, $currentSortDir)
 {
 	$params = $stateParams;
@@ -118,6 +128,7 @@ $linkPerPage = 25;
 $LIMIT = '';
 $emptyError = '';
 $pageNotice = '';
+$noticeClass = 'master-alert is-info';
 $totalSalesAmount = 0;
 $hasRecords = false;
 
@@ -164,11 +175,13 @@ $sortDir = (isset($_GET['sort_dir']) && strtoupper($_GET['sort_dir']) == 'ASC') 
 if($rawFromDate != '' && $fromDate == '')
 {
 	$pageNotice .= (($pageNotice != '') ? '<br />' : '').'The from date filter was ignored because it was not in YYYY-MM-DD format.';
+	$noticeClass = 'master-alert is-warning';
 }
 
 if($rawToDate != '' && $toDate == '')
 {
 	$pageNotice .= (($pageNotice != '') ? '<br />' : '').'The to date filter was ignored because it was not in YYYY-MM-DD format.';
+	$noticeClass = 'master-alert is-warning';
 }
 
 $filterParams = array();
@@ -223,6 +236,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'up' && isset($_GET['nid']) && c
 if(isset($_GET['msg']) && $_GET['msg'] == 'deleted')
 {
 	$pageNotice .= (($pageNotice != '') ? '<br />' : '').'Order has been deleted successfully.';
+	$noticeClass = 'master-alert is-success';
 }
 
 $pgObj = new classPaging("masterorder.php", $rowsPerPage, $linkPerPage, $pagingQuerySuffix, "", "", "", "", "", "", "", "");
@@ -306,23 +320,23 @@ $rowCounter = 1;
 $showRows = '';
 while($rows = mysql_fetch_array($result))
 {
-	$intColor = (($rowCounter % 2) != 0) ? '#FFFFFF' : '#f3eeee';
+	$rowClass = (($rowCounter % 2) == 0) ? ' class="master-row-alt"' : '';
 
 	if($rows['Status'] == 1)
 	{
 		$chek = 'Disable this';
-		$colstatus = 'style="color:#FF0000"';
+		$statusClass = 'is-disable';
 	}
 	else
 	{
 		$chek = 'Enable this';
-		$colstatus = 'style="color:#00FF00"';
+		$statusClass = 'is-enable';
 	}
 
 	$tableName = "order_master";
 	$tablefield = "ID";
 	$tablestatus = "Status";
-	$statusOrder = "<div id='txtHint".$rows['ID']."'><a href='javascript:showHint(".$rows['ID'].", \"$tableName\",\"$tablefield\",\"$tablestatus\")' ".$colstatus.">".$chek." </a></div>";
+	$statusOrder = "<div id='txtHint".$rows['ID']."'><a class='master-status-link ".$statusClass."' href='javascript:showHint(".$rows['ID'].", \"$tableName\",\"$tablefield\",\"$tablestatus\")'>".$chek."</a></div>";
 
 	$deleteUrl = 'masterorder.php?action=up&nid='.$rows['ID'].'&cart='.$rows['Cart_ID'];
 	if($stateQueryString != '')
@@ -330,17 +344,17 @@ while($rows = mysql_fetch_array($result))
 		$deleteUrl .= '&'.$stateQueryString;
 	}
 
-	$showRows .= '<tr bgcolor="'.$intColor.'">';
-	$showRows .= '<td class="item" style="padding-left: 0px;">'.htmlspecialchars($rows['user_email'], ENT_QUOTES, 'UTF-8').'</td>';
-	$showRows .= '<td class="item" align="left" valign="middle">'.htmlspecialchars($rows['user_password'], ENT_QUOTES, 'UTF-8').'</td>';
-	$showRows .= '<td width="5" class="item" style="padding-right: 0px;">'.htmlspecialchars($rows['Order_Id'], ENT_QUOTES, 'UTF-8').'</td>';
-	$showRows .= '<td class="item" style="padding-left: 0px;"><i>'.htmlspecialchars($rows['OrderDesc'], ENT_QUOTES, 'UTF-8').'</i></td>';
-	$showRows .= '<td class="item" style="padding-left: 0px;">'.masterorder_format_date($rows['OrderDate']).'</td>';
-	$showRows .= '<td class="item" style="padding-left: 0px;">'.masterorder_format_amount($rows['Net_Amount']).'</td>';
-	$showRows .= '<td class="item" style="padding-left: 0px;">'.htmlspecialchars($rows['coupon_code'], ENT_QUOTES, 'UTF-8').'</td>';
-	$showRows .= '<td class="item" style="padding-left: 0px;">'.masterorder_format_amount($rows['computed_value']).'</td>';
-	$showRows .= '<td class="item" style="padding-left: 0px;">'.$statusOrder.'</td>';
-	$showRows .= '<td class="item" nowrap="nowrap"><a href="orderdetail.php?ord='.$rows['ID'].'">Details</a></td>';
+	$showRows .= '<tr'.$rowClass.'>';
+	$showRows .= '<td class="item">'.htmlspecialchars($rows['user_email'], ENT_QUOTES, 'UTF-8').'</td>';
+	$showRows .= '<td class="item">'.htmlspecialchars($rows['user_password'], ENT_QUOTES, 'UTF-8').'</td>';
+	$showRows .= '<td class="item" align="center">'.htmlspecialchars($rows['Order_Id'], ENT_QUOTES, 'UTF-8').'</td>';
+	$showRows .= '<td class="item master-desc-cell">'.masterorder_format_description($rows['OrderDesc']).'</td>';
+	$showRows .= '<td class="item" align="center">'.masterorder_format_date($rows['OrderDate']).'</td>';
+	$showRows .= '<td class="item master-amount-cell" align="right">'.masterorder_format_amount($rows['Net_Amount']).'</td>';
+	$showRows .= '<td class="item" align="center">'.htmlspecialchars($rows['coupon_code'], ENT_QUOTES, 'UTF-8').'</td>';
+	$showRows .= '<td class="item master-amount-cell" align="right">'.masterorder_format_amount($rows['computed_value']).'</td>';
+	$showRows .= '<td class="item" align="center">'.$statusOrder.'</td>';
+	$showRows .= '<td class="item master-action-cell" align="center" nowrap="nowrap"><a class="master-action-link" href="orderdetail.php?ord='.$rows['ID'].'">Details</a></td>';
 	$showRows .= '</tr>';
 
 	$rowCounter++;
@@ -358,11 +372,11 @@ $sortNetAmountUrl = masterorder_get_sort_url('Net_Amount', $stateParams, $sortBy
 $sortCouponUrl = masterorder_get_sort_url('coupon_code', $stateParams, $sortBy, $sortDir);
 $sortDiscountUrl = masterorder_get_sort_url('computed_value', $stateParams, $sortBy, $sortDir);
 
-$sortUserEmailLabel = 'User ID'.masterorder_get_sort_indicator('user_email', $sortBy, $sortDir);
+$sortUserEmailLabel = 'Customer Email'.masterorder_get_sort_indicator('user_email', $sortBy, $sortDir);
 $sortPasswordLabel = 'Password'.masterorder_get_sort_indicator('user_password', $sortBy, $sortDir);
-$sortOrderIdLabel = 'OrderID'.masterorder_get_sort_indicator('Order_Id', $sortBy, $sortDir);
-$sortOrderDescLabel = 'Product Desc.'.masterorder_get_sort_indicator('OrderDesc', $sortBy, $sortDir);
-$sortOrderDateLabel = 'Date'.masterorder_get_sort_indicator('OrderDate', $sortBy, $sortDir);
+$sortOrderIdLabel = 'Order ID'.masterorder_get_sort_indicator('Order_Id', $sortBy, $sortDir);
+$sortOrderDescLabel = 'Product Description'.masterorder_get_sort_indicator('OrderDesc', $sortBy, $sortDir);
+$sortOrderDateLabel = 'Order Date'.masterorder_get_sort_indicator('OrderDate', $sortBy, $sortDir);
 $sortNetAmountLabel = 'Net Amount'.masterorder_get_sort_indicator('Net_Amount', $sortBy, $sortDir);
 $sortCouponLabel = 'Coupon'.masterorder_get_sort_indicator('coupon_code', $sortBy, $sortDir);
 $sortDiscountLabel = 'Discount'.masterorder_get_sort_indicator('computed_value', $sortBy, $sortDir);

@@ -62,13 +62,24 @@ return false;
 
 <div class="topbar">
 
-<table cellpadding="0" cellspacing="0" width="90%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 
-<td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
+<td valign="top"><img src="images/admin_icon.png" border="0" alt="Admin Header" /></td>
 
-<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
+<td valign="top" align="right">
+<?php if(isset($_SESSION['strAdmin'])): ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<span style="color: #ffffff; margin-right: 15px; font-weight: 500;">Welcome, <?php echo htmlspecialchars($_SESSION['strAdmin']); ?></span>
+		<a href="logout.php" class="btn-logout"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Logout</a>
+	</div>
+<?php else: ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<a href="index.php" style="color: #ffffff; text-decoration: none; padding: 8px 16px; background-color: rgba(255, 255, 255, 0.2); border-radius: 4px; font-weight: 500; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.2)'">Login</a>
+	</div>
+<?php endif; ?>
+</td>
 
 </tr>
 
@@ -76,7 +87,7 @@ return false;
 
 
 
-<table cellpadding="0" cellspacing="0" width="92%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 
@@ -84,7 +95,16 @@ return false;
 
 
 
-<td width="610" valign="top" class="rightside"><h2>Coupon Management !</h2>
+<td width="610" valign="top" class="rightside">
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+	<h2 style="margin:0;">Coupon Management !</h2>
+	<?php if(role_can('Coupons Module', 'write')){ ?>
+	<a href="addcoupon.php" style="display:inline-flex; align-items:center; gap:8px; padding:8px 20px; font-size:14px; font-weight:600; color:#ffffff; background:#333; border-radius:8px; text-decoration:none; box-shadow:0 2px 4px rgba(0,0,0,0.2);">
+		<i class="fa-solid fa-plus"></i>
+		Add Coupon
+	</a>
+	<?php } ?>
+</div>
 
 
 
@@ -103,10 +123,6 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 
 
-
-<?php if(role_can('Coupons Module', 'write')){ ?>
-<div style="margin-bottom:10px;"><a class="menu" href="addcoupon.php"><img src="images/News-Edit.gif" width="16" height="16" border="0" class="icon2" /> Add Coupon</a></div>
-<?php } ?>
 
 <br /><table cellpadding='0' cellspacing='0' class='list' width='87%'>
 
@@ -172,24 +188,25 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
   <!-- LOOP THROUGH Coupons -->
   <?php echo $show ;?>
 </table>
-<table>
-<tr>  
-<td valign="top" class="rightside"><div align="center"><strong>&nbsp;&nbsp; 
-	  <?=$BackNaviLinks;?>
-	  &nbsp;&nbsp; 
-	  <?=$NaviLinks;?>
-	  &nbsp;&nbsp; 
-	  <?=$ForwardNaviLinks;?> </strong><br />
-                  Total Records Found &nbsp;
-		<?=$TotalRecs;?><br />
-                  Total Pages Found &nbsp;
-		<?=$TotalPages;?><br /><br />
-		</div> 
-	 </td>
-		<tr>
-		<td valign="top" class="rightside"><div align="center"><?=$emptyError?></div></td>
-		</tr>
-</table></form></td>
+</div>
+
+<div class="pagination-container">
+	<div class="pagination-left">
+		<?=$emptyError?>
+	</div>
+	
+	<div class="pagination-right">
+		<div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+			<strong><?=$BackNaviLinks;?></strong>
+			<strong><?=$NaviLinks;?></strong>
+			<strong><?=$ForwardNaviLinks;?></strong>
+		</div>
+		<p class="pagination-info">Total Records Found: <strong><?=$TotalRecs;?></strong></p>
+		<p class="pagination-info">Total Pages Found: <strong><?=$TotalPages;?></strong></p>
+	</div>
+</div>
+
+</form></td>
 </table>
 <? include("footer.php")?>
 </body>

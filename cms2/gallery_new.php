@@ -161,7 +161,7 @@ $ccAdminData = get_session_data();
 
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
 
-<table cellpadding="0" cellspacing="0" width="90%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 

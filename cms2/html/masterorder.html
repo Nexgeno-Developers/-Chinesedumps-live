@@ -1,177 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title><?=$websitetitle?></title>
-<link href="new.css" rel="stylesheet" type="text/css" />
-<link href="style1.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-.order-shell {
-	background: #ffffff;
-	border: 1px solid #d7deea;
-	box-shadow: 0 10px 30px rgba(29, 46, 74, 0.08);
-	margin-top: 12px;
-}
-.order-shell-header {
-	background: linear-gradient(135deg, #183a63 0%, #24567f 55%, #4d8db5 100%);
-	color: #ffffff;
-	padding: 24px 28px;
-}
-.order-shell-header h2 {
-	margin: 0 0 6px 0;
-	color: #ffffff;
-	font-size: 24px;
-}
-.order-shell-header p {
-	margin: 0;
-	font-size: 13px;
-	color: #dbeaf8;
-}
-.order-shell-body {
-	padding: 24px 28px 30px 28px;
-	background: #f5f8fc;
-}
-.order-alert {
-	padding: 12px 14px;
-	margin-bottom: 18px;
-	font-weight: bold;
-	background: #eef5ff;
-	border: 1px solid #cfe0f6;
-	color: #234a72;
-}
-.filter-card {
-	background: #ffffff;
-	border: 1px solid #dce4ef;
-	padding: 18px 20px 10px 20px;
-	margin-bottom: 18px;
-}
-.filter-card h3 {
-	margin: 0 0 6px 0;
-	font-size: 18px;
-	color: #1a3558;
-}
-.filter-card p {
-	margin: 0 0 18px 0;
-	font-size: 12px;
-	color: #5f738b;
-}
-.filter-grid {
-	margin-left: -8px;
-	margin-right: -8px;
-}
-.filter-field {
-	display: inline-block;
-	vertical-align: top;
-	width: 23%;
-	padding: 0 8px 14px 8px;
-}
-.filter-field label {
-	display: block;
-	margin-bottom: 6px;
-	font-weight: bold;
-	color: #22476d;
-}
-.filter-field input {
-	width: 100%;
-	padding: 9px 10px;
-	border: 1px solid #b8c9dc;
-	background: #fbfdff;
-	box-sizing: border-box;
-	font-family: "Trebuchet MS", verdana, arial, serif;
-	font-size: 12px;
-}
-.date-picker-control {
-	display: flex;
-	align-items: center;
-}
-.date-picker-control input {
-	flex: 1 1 auto;
-}
-.date-picker-trigger {
-	margin-left: 8px;
-	padding: 6px;
-	border: 1px solid #b8c9dc;
-	background: #edf4fb;
-	cursor: pointer;
-}
-.primary-action,
-.secondary-action {
-	display: inline-block;
-	padding: 10px 16px;
-	text-decoration: none;
-	font-weight: bold;
-	font-family: "Trebuchet MS", verdana, arial, serif;
-	font-size: 12px;
-	border: 0;
-	cursor: pointer;
-}
-.primary-action {
-	background: #173e69;
-	color: #ffffff;
-}
-.secondary-action {
-	background: #e6edf5;
-	color: #294b72;
-	margin-left: 8px;
-}
-.results-strip {
-	margin-bottom: 14px;
-	padding: 12px 14px;
-	background: #eef4fb;
-	border: 1px solid #d7e3f2;
-	color: #25486f;
-	font-weight: bold;
-}
-.results-strip .stat {
-	display: inline-block;
-	margin-right: 18px;
-}
-.order-table-wrap {
-	background: #ffffff;
-	border: 1px solid #dce4ef;
-	overflow-x: auto;
-}
-.order-table {
-	width: 100%;
-	min-width: 980px;
-	border-collapse: collapse;
-}
-.order-table .header .sortable-link,
-.order-table .header .sortable-link:link,
-.order-table .header .sortable-link:visited,
-.order-table .header .sortable-link:active {
-	color: #ffffff !important;
-	text-decoration: none;
-	display: inline-block;
-}
-.order-table .header .sortable-link:hover,
-.order-table .header .sortable-link:focus {
-	color: #ffffff !important;
-	text-decoration: underline;
-}
-.summary-strip {
-	margin-top: 14px;
-	padding: 14px;
-	background: #ffffff;
-	border: 1px solid #dce4ef;
-	font-weight: bold;
-	color: #1f4268;
-}
-.pagination-wrap {
-	text-align: center;
-	margin-top: 16px;
-}
-.empty-state {
-	margin-top: 14px;
-	padding: 16px;
-	text-align: center;
-	background: #ffffff;
-	border: 1px dashed #c8d6e8;
-	color: #5d7188;
-	font-weight: bold;
-}
-</style>
-<script language="JavaScript" src="../includes/js/calendar.js"></script>
-<script type="text/javascript" src="Editor3/scripts/innovaeditor.js"></script>
+<? include ("header.php"); ?>
+<script language="JavaScript" src="js/categorystatusall.js"></script>
 <script language="javascript" type="text/javascript">
 function openOrderSearchCalendar(fieldName, triggerObj)
 {
@@ -182,117 +10,384 @@ function openOrderSearchCalendar(fieldName, triggerObj)
 	return false;
 }
 </script>
-<script language="JavaScript" src="../includes/js/functions.js"></script>
-<script language="JavaScript" src="js/categorystatusall.js"></script>
-</head>
-<body>
+<style type="text/css">
+.master-page-table,
+.master-page-table > tbody,
+.master-page-table > tbody > tr {
+	display: block;
+	width: 100%;
+}
+.master-content-cell {
+	display: block;
+	box-sizing: border-box;
+	width: 84% !important;
+	max-width: none !important;
+	margin-left: 16%;
+	padding: 32px !important;
+}
+.master-shell {
+	background: #ffffff;
+	border: 1px solid #dbe5f0;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(29, 46, 74, 0.08);
+	margin-top: 12px;
+	overflow: hidden;
+}
+.master-shell-header {
+	background: #ffffff;
+	border-bottom: 1px solid #e6edf5;
+	padding: 20px 22px 10px 22px;
+}
+.master-shell-header h2 {
+	margin: 0;
+	color: #0f172a;
+	font-size: 28px;
+	font-weight: 700;
+}
+.master-shell-header p {
+	margin: 8px 0 0 0;
+	font-size: 14px;
+	color: #64748b;
+}
+.master-shell-body {
+	padding: 18px 22px 24px 22px;
+	background: #f8fafc;
+}
+.master-alert {
+	padding: 12px 14px;
+	margin-bottom: 18px;
+	font-weight: bold;
+	border: 1px solid transparent;
+	border-radius: 8px;
+}
+.master-alert.is-success {
+	background: #edf9f0;
+	border-color: #b8debe;
+	color: #20673d;
+}
+.master-alert.is-warning {
+	background: #fff7e7;
+	border-color: #f1d9a1;
+	color: #8a5a00;
+}
+.master-alert.is-info {
+	background: #eef5ff;
+	border-color: #cfe0f6;
+	color: #234a72;
+}
+.master-filter-card {
+	background: #ffffff;
+	border: 1px solid #dce4ef;
+	border-radius: 8px;
+	padding: 18px 20px 12px 20px;
+	margin-bottom: 18px;
+}
+.master-filter-card h3 {
+	margin: 0 0 18px 0;
+	font-size: 18px;
+	color: #1a3558;
+}
+.master-filter-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	align-items: flex-end;
+}
+.master-filter-field {
+	flex: 1 1 210px;
+	min-width: 200px;
+}
+.master-filter-field.wide {
+	flex: 2 1 360px;
+}
+.master-filter-field label {
+	display: block;
+	margin-bottom: 6px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #475569;
+	text-transform: uppercase;
+	letter-spacing: 0;
+}
+.master-filter-field input {
+	width: 100%;
+	box-sizing: border-box;
+}
+.master-date-control {
+	position: relative;
+}
+.master-date-control input {
+	padding-right: 40px;
+	cursor: pointer;
+}
+.master-date-trigger {
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	width: 18px;
+	height: 18px;
+	margin-top: -9px;
+	cursor: pointer;
+	opacity: 0.65;
+}
+.master-filter-actions {
+	display: flex;
+	flex: 0 0 auto;
+	gap: 12px;
+	align-items: flex-end;
+	white-space: nowrap;
+}
+.master-filter-actions .primary-action,
+.master-filter-actions .secondary-action {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 10px 16px;
+	border: 0;
+	border-radius: 8px;
+	text-decoration: none;
+	font-weight: 600;
+	font-family: inherit;
+	font-size: 14px;
+	cursor: pointer;
+}
+.master-filter-actions .primary-action {
+	background: #3c85ba;
+	color: #ffffff;
+}
+.master-filter-actions .primary-action:hover {
+	background: #2d6a9a;
+}
+.master-filter-actions .secondary-action {
+	background: #e6edf5;
+	color: #294b72;
+}
+.master-filter-actions .secondary-action:link,
+.master-filter-actions .secondary-action:visited,
+.master-filter-actions .secondary-action:hover,
+.master-filter-actions .secondary-action:active,
+.master-filter-actions .secondary-action:focus {
+	color: #294b72;
+	text-decoration: none;
+}
+.master-results-strip {
+	margin-bottom: 14px;
+	padding: 12px 14px;
+	background: #ffffff;
+	border: 1px solid #dce4ef;
+	border-radius: 8px;
+	color: #475569;
+	font-weight: 600;
+}
+.master-results-strip .stat {
+	display: inline-block;
+	margin-right: 18px;
+}
+.master-results-strip strong {
+	color: #0f172a;
+}
+.master-table-wrap {
+	overflow-x: auto;
+	border-radius: 8px;
+}
+.master-order-table {
+	width: 100%;
+	min-width: 1320px;
+	table-layout: auto;
+}
+.master-order-table .header {
+	text-align: center;
+	white-space: nowrap;
+}
+.master-sort-link,
+.master-sort-link:link,
+.master-sort-link:visited,
+.master-sort-link:hover,
+.master-sort-link:active,
+.master-sort-link:focus {
+	color: #ffffff;
+	text-decoration: none;
+}
+.master-sort-link:hover {
+	text-decoration: underline;
+}
+.master-row-alt {
+	background: #f8fbff;
+}
+.master-desc-cell {
+	min-width: 280px;
+	color: #334155;
+	line-height: 1.5;
+}
+.master-amount-cell {
+	color: #0f172a;
+	font-weight: 600;
+	white-space: nowrap;
+}
+.master-status-link {
+	display: inline-block;
+	padding: 5px 10px;
+	font-size: 12px;
+	font-weight: 700;
+	border-radius: 8px;
+	text-decoration: none;
+	white-space: nowrap;
+}
+.master-status-link.is-disable,
+.master-status-link.is-disable:link,
+.master-status-link.is-disable:visited {
+	background: #fef2f2;
+	color: #b91c1c;
+}
+.master-status-link.is-enable,
+.master-status-link.is-enable:link,
+.master-status-link.is-enable:visited {
+	background: #f0fdf4;
+	color: #15803d;
+}
+.master-action-cell {
+	white-space: nowrap;
+}
+.master-action-link {
+	display: inline-block;
+	padding: 6px 10px;
+	background: #edf4fb;
+	border: 1px solid #d4e0ef;
+	border-radius: 8px;
+	color: #22476d;
+	font-weight: 600;
+	text-decoration: none;
+}
+.master-action-link:hover {
+	color: #22476d;
+	text-decoration: none;
+	background: #dfeaf6;
+}
+.master-list-footer {
+	margin-top: 14px;
+	padding: 14px 0 0 0;
+}
+.master-pagination-wrap {
+	text-align: center;
+	margin-bottom: 16px;
+}
+.master-empty {
+	margin-top: 14px;
+	padding: 16px;
+	text-align: center;
+	background: #ffffff;
+	border: 1px dashed #c8d6e8;
+	border-radius: 8px;
+	color: #5d7188;
+	font-weight: bold;
+}
+@media (max-width: 900px) {
+	.master-content-cell {
+		width: 100% !important;
+		margin-left: 0;
+		padding: 18px !important;
+	}
+}
+</style>
 
-<div class="topbar">
-<table cellpadding="0" cellspacing="0" width="100%">
+<table cellpadding="0" cellspacing="0" width="100%" class="master-page-table">
 <tr>
-<td valign="top"><img src="images/admin_icon.jpg" border="0" alt="Admin Header" /></td>
-<td valign="top" align="right"><img src="images/admin_watermark.gif" border="0" alt="Admin Header" /></td>
-</tr>
-</table></div>
-
-<table cellpadding="0" cellspacing="0" width="102%">
-<tr>
-<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
-
-<td width="810" valign="top" class="rightside">
-	<div class="order-shell">
-		<div class="order-shell-header">
-			<h2>Orders Management</h2>
-			<p>Review orders with customer, date range, and sortable listing controls.</p>
+<td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
+<td width="810" valign="top" class="rightside master-content-cell">
+	<div class="master-shell">
+		<div class="master-shell-header">
+			<h2>Orders Management!</h2>
+			<p>Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.</p>
 		</div>
 
-		<div class="order-shell-body">
+		<div class="master-shell-body">
 			<?php if($pageNotice != ''){ ?>
-			<div class="order-alert"><?=$pageNotice?></div>
+			<div class="<?=$noticeClass?>"><?=$pageNotice?></div>
 			<?php } ?>
 
 			<form id="orderSearchForm" name="orderSearchForm" method="get" action="masterorder.php">
-				<div class="filter-card">
-					<h3>Filter Orders</h3>
-					<p>Filter by order details, customer user id, and date range. Filters stay active across pagination and sorting links.</p>
+				<div class="master-filter-card">
+					<h3>Search Orders</h3>
 
-					<div class="filter-grid">
-						<div class="filter-field">
+					<div class="master-filter-grid">
+						<div class="master-filter-field wide">
 							<label for="textSearch">Search</label>
-							<input type="text" name="textSearch" id="textSearch" value="<?=htmlspecialchars($textSearch, ENT_QUOTES, 'UTF-8')?>" />
+							<input type="text" name="textSearch" id="textSearch" value="<?=htmlspecialchars($textSearch, ENT_QUOTES, 'UTF-8')?>" placeholder="Order, email, name, or phone" />
 						</div>
 
-						<div class="filter-field">
+						<div class="master-filter-field">
 							<label for="user_id">Customer User ID</label>
 							<input type="text" name="user_id" id="user_id" value="<?=htmlspecialchars($userIdFilter, ENT_QUOTES, 'UTF-8')?>" />
 						</div>
 
-						<div class="filter-field">
+						<div class="master-filter-field">
 							<label for="from_date">From Date</label>
-							<div class="date-picker-control">
+							<div class="master-date-control">
 								<input name="from_date" type="text" id="from_date" value="<?=htmlspecialchars($fromDate, ENT_QUOTES, 'UTF-8')?>" readonly="readonly" onclick="return openOrderSearchCalendar('from_date', this);" />
-								<img src="images/calendar-icon.gif" alt="Select from date" class="date-picker-trigger" onclick="return openOrderSearchCalendar('from_date', this);" />
+								<img src="images/calendar-icon.gif" alt="Select from date" class="master-date-trigger" onclick="return openOrderSearchCalendar('from_date', this);" />
 							</div>
 						</div>
 
-						<div class="filter-field">
+						<div class="master-filter-field">
 							<label for="to_date">To Date</label>
-							<div class="date-picker-control">
+							<div class="master-date-control">
 								<input name="to_date" type="text" id="to_date" value="<?=htmlspecialchars($toDate, ENT_QUOTES, 'UTF-8')?>" readonly="readonly" onclick="return openOrderSearchCalendar('to_date', this);" />
-								<img src="images/calendar-icon.gif" alt="Select to date" class="date-picker-trigger" onclick="return openOrderSearchCalendar('to_date', this);" />
+								<img src="images/calendar-icon.gif" alt="Select to date" class="master-date-trigger" onclick="return openOrderSearchCalendar('to_date', this);" />
 							</div>
 						</div>
-					</div>
 
-					<div>
-						<input type="submit" value="Apply Filters" class="primary-action" />
-						<a href="<?=$clearFiltersUrl?>" class="secondary-action">Reset Filters</a>
+						<div class="master-filter-actions">
+							<input type="submit" value="Search Orders" class="primary-action" />
+							<a href="<?=$clearFiltersUrl?>" class="secondary-action">Reset Filters</a>
+						</div>
 					</div>
 				</div>
 			</form>
 
-			<div class="results-strip">
-				<span class="stat">Total Records Found: <?=$TotalRecs;?></span>
-				<span class="stat">Total Pages Found: <?=$TotalPages;?></span>
+			<div class="master-results-strip">
+				<span class="stat">Total Sales: <strong><?=masterorder_format_amount($totalSalesAmount)?></strong></span>
+				<span class="stat">Total Records Found: <strong><?=$TotalRecs;?></strong></span>
+				<span class="stat">Total Pages Found: <strong><?=$TotalPages;?></strong></span>
 			</div>
 
-			<div class="order-table-wrap">
-				<table cellpadding="0" cellspacing="0" class="list order-table" width="97%">
+			<div class="master-table-wrap">
+				<table cellpadding="0" cellspacing="0" class="list master-order-table">
 					<tr>
-						<td class="header" width="82"><a class="sortable-link" href="<?=$sortUserEmailUrl?>"><?=$sortUserEmailLabel?></a></td>
-						<td class="header" width="68"><a class="sortable-link" href="<?=$sortPasswordUrl?>"><?=$sortPasswordLabel?></a></td>
-						<td class="header" width="52" align="center"><a class="sortable-link" href="<?=$sortOrderIdUrl?>"><?=$sortOrderIdLabel?></a></td>
-						<td width="113" class="header"><a class="sortable-link" href="<?=$sortOrderDescUrl?>"><?=$sortOrderDescLabel?></a></td>
-						<td width="87" class="header"><a class="sortable-link" href="<?=$sortOrderDateUrl?>"><?=$sortOrderDateLabel?></a></td>
-						<td width="74" class="header"><a class="sortable-link" href="<?=$sortNetAmountUrl?>"><?=$sortNetAmountLabel?></a></td>
-						<td width="74" class="header"><a class="sortable-link" href="<?=$sortCouponUrl?>"><?=$sortCouponLabel?></a></td>
-						<td width="74" class="header"><a class="sortable-link" href="<?=$sortDiscountUrl?>"><?=$sortDiscountLabel?></a></td>
-						<td width="133" class="header">Process Id</td>
-						<td width="127" align="left" class="header">Option</td>
+						<td class="header"><a class="master-sort-link" href="<?=$sortUserEmailUrl?>"><?=$sortUserEmailLabel?></a></td>
+						<td class="header"><a class="master-sort-link" href="<?=$sortPasswordUrl?>"><?=$sortPasswordLabel?></a></td>
+						<td class="header"><a class="master-sort-link" href="<?=$sortOrderIdUrl?>"><?=$sortOrderIdLabel?></a></td>
+						<td class="header"><a class="master-sort-link" href="<?=$sortOrderDescUrl?>"><?=$sortOrderDescLabel?></a></td>
+						<td class="header"><a class="master-sort-link" href="<?=$sortOrderDateUrl?>"><?=$sortOrderDateLabel?></a></td>
+						<td class="header"><a class="master-sort-link" href="<?=$sortNetAmountUrl?>"><?=$sortNetAmountLabel?></a></td>
+						<td class="header"><a class="master-sort-link" href="<?=$sortCouponUrl?>"><?=$sortCouponLabel?></a></td>
+						<td class="header"><a class="master-sort-link" href="<?=$sortDiscountUrl?>"><?=$sortDiscountLabel?></a></td>
+						<td class="header">Status</td>
+						<td class="header">Option</td>
 					</tr>
 
 					<?=$show;?>
 				</table>
 			</div>
 
-			<div class="summary-strip">Total Sales Amount: <?=masterorder_format_amount($totalSalesAmount)?></div>
-
-			<div class="pagination-wrap">
-				<strong>
-					<?=$BackNaviLinks;?>
-					<?=$NaviLinks;?>
-					<?=$ForwardNaviLinks;?>
-				</strong>
+			<div class="master-list-footer">
+				<div class="master-pagination-wrap">
+					<strong>
+						<?=$BackNaviLinks;?>
+						<?=$NaviLinks;?>
+						<?=$ForwardNaviLinks;?>
+					</strong>
+				</div>
 			</div>
 
 			<?php if(!$hasRecords){ ?>
-			<div class="empty-state"><?=$emptyError?></div>
+			<div class="master-empty"><?=$emptyError?></div>
 			<?php } ?>
 		</div>
 	</div>
 </td>
+</tr>
 </table>
 <? include("footer.php")?>
 </body>
-
 </html>

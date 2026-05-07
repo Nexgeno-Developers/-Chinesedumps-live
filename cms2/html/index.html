@@ -1,63 +1,290 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title><?php echo $websitetitle; ?> Administrator Section</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<HTML><HEAD><TITLE><?php echo $websitetitle; ?> Administrator Section</TITLE>
-<META http-equiv=Content-Type content="text/html; charset=windows-1252">
-<STYLE type=text/css>BODY {
-	BACKGROUND-POSITION: center center; BACKGROUND-IMAGE: url(admin_login.gif); BACKGROUND-REPEAT: no-repeat; BACKGROUND-COLOR: #eeeeee; TEXT-ALIGN: center
-}
-TD.box {
-	BORDER-RIGHT: #aaaaaa 1px dashed; PADDING-RIGHT: 15px; BORDER-TOP: #aaaaaa 1px dashed; PADDING-LEFT: 15px; FONT-SIZE: 9pt; BACKGROUND: #ffffff; PADDING-BOTTOM: 15px; BORDER-LEFT: #aaaaaa 1px dashed; PADDING-TOP: 15px; BORDER-BOTTOM: #aaaaaa 1px dashed; FONT-FAMILY: "Trebuchet MS", tahoma, verdana, serif
-}
-TD.login {
-	FONT-SIZE: 9pt; FONT-FAMILY: "Trebuchet MS", tahoma, verdana, serif
-}
-INPUT.text {
-	FONT-SIZE: 9pt; FONT-FAMILY: arial, tahoma, verdana, serif
-}
-DIV.error {
-	FONT-WEIGHT: bold; PADDING-TOP: 3px; TEXT-ALIGN: center
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+      background: #ffffff;
+      color: #333;
+    }
 
-INPUT.button {
-	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: bold; FONT-SIZE: 9pt; BACKGROUND: #dddddd; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; FONT-FAMILY: arial, tahoma, verdana, serif
-}
-A:link {
-	COLOR: #336699
-}
-A:visited {
-	COLOR: #336699
-}
-A:hover {
-	COLOR: #336699
-}
-</STYLE>
+    .login-container {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+    }
 
-<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
-<BODY onLoad="document.form1.textUser.focus();">
-<TABLE height="100%" cellSpacing=0 cellPadding=0 width="100%" style="padding-top:70px;">
-  <TBODY>
-  <TR>
-    <TD>
+    .login-image-section {
+      width: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0px;
+    }
 
-      <TABLE cellSpacing=0 cellPadding=0 align=center>
-        <TBODY>
-        <TR>
-          <TD class=box>
-            <TABLE cellSpacing=0 cellPadding=0>
-          <form action="chklogin.php" method="post" enctype="multipart/form-data" name="form1">
-              <TBODY>
-			  </TR>
-			  <span style="color:#FF0000; padding-left:50px;"><?=$strError?></span>
-                <TD class=login>Username: &nbsp;</TD>
+    .login-image-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-                <TD class=login>
-				<input name="textUser" type="text" id="textUser" class="text"  />
-				&nbsp;</TD>
-                <TD class=login>Password: &nbsp;</TD>
-                <TD class=login><input  type="password" class="text" name="textfield3" />&nbsp;</TD>
-                <TD class=login>
-				<input name="btnLogin" id="btnLogin" type="submit" class="cssMenu_txt" class="button" value="Login" />
-				</TD></FORM></TR></TBODY></TABLE>
-            <DIV class=error></DIV></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
-<? include("footer.php")?>
-</BODY></HTML>
+    .login-form-section {
+      width: 50%;
+      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px 40px;
+      position: relative;
+    }
+
+    .login-form-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+    }
+
+    .login-shell {
+      width: 100%;
+      max-width: 420px;
+      background: #ffffff;
+      padding: 48px 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      position: relative;
+    }
+
+    .login-shell::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      height: 3px;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .login-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .login-subtitle {
+      font-size: 15px;
+      color: #64748b;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .error-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: #ef4444;
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      background: #fef2f2;
+      border-radius: 8px;
+      border-left: 3px solid #ef4444;
+      display: none;
+      line-height: 1.5;
+    }
+
+    .error-text:not(:empty) {
+      display: block;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #334155;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .field-input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 2px solid #e2e8f0;
+      background-color: #f8fafc;
+      color: #1e293b;
+      font-size: 15px;
+      outline: none;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .field-input:hover {
+      border-color: #cbd5e1;
+      background-color: #ffffff;
+    }
+
+    .field-input:focus {
+      border-color: #3C85BA;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(60, 133, 186, 0.1), 0 4px 12px rgba(60, 133, 186, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .field-row {
+      margin-bottom: 24px;
+    }
+
+    .login-actions {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .login-button {
+      padding: 14px 32px;
+      border-radius: 10px;
+      border: none;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #ffffff;
+      background:#3C85BA;
+      box-shadow: 0 4px 14px rgba(60, 133, 186, 0.4), 0 2px 4px rgba(60, 133, 186, 0.2);
+      transition: all 0.3s ease;
+      letter-spacing: 0.3px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .login-button:hover {
+      background: linear-gradient(135deg, #2d6a9a 0%, #25608a 50%, #1e4d73 100%);
+      box-shadow: 0 6px 20px rgba(60, 133, 186, 0.5), 0 4px 8px rgba(60, 133, 186, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .login-button:hover::before {
+      left: 100%;
+    }
+
+    .login-button:active {
+      transform: translateY(0px);
+      box-shadow: 0 2px 8px rgba(60, 133, 186, 0.4);
+    }
+
+    .login-footer {
+      margin-top: 32px;
+      font-size: 12px;
+      text-align: center;
+      color: #94a3b8;
+      padding-top: 24px;
+      border-top: 1px solid #e2e8f0;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .login-container {
+        flex-direction: column;
+      }
+
+      .login-image-section {
+        width: 100%;
+        height: 40vh;
+        padding: 20px;
+      }
+
+      .login-form-section {
+        width: 100%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body onLoad="document.form1.textUser.focus();">
+  <div class="login-container">
+    <div class="login-image-section">
+      <img src="../images/custom/login-images1.jpg" alt="Login" />
+    </div>
+    <div class="login-form-section">
+      <div class="login-shell">
+        <div class="login-title">Admin Sign In</div>
+        <div class="login-subtitle">Access the <?php echo $websitename; ?> control panel.</div>
+
+        <form action="chklogin.php" method="post" enctype="multipart/form-data" name="form1">
+          <?php if(!empty($strError)): ?>
+          <div class="error-text"><?=$strError?></div>
+          <?php endif; ?>
+
+          <div class="field-row">
+            <label for="textUser" class="field-label">Username</label>
+            <input
+              name="textUser"
+              id="textUser"
+              type="text"
+              class="field-input"
+            />
+          </div>
+
+          <div class="field-row">
+            <label for="textfield3" class="field-label">Password</label>
+            <input
+              type="password"
+              name="textfield3"
+              id="textfield3"
+              class="field-input"
+            />
+          </div>
+
+          <div class="login-actions">
+            <input
+              name="btnLogin"
+              id="btnLogin"
+              type="submit"
+              class="login-button"
+              value="Login"
+            />
+          </div>
+        </form>
+
+        <div class="login-footer">
+          Secure admin access • Please keep your credentials safe.
+        </div>
+      </div>
+    </div>
+  </div>
+  <? include("footer.php")?>
+</body>
+</html>

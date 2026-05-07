@@ -37,7 +37,7 @@ $spram[9]			=	"";
 $spram[10]			=	"Active";
 $spram[13]			=	"";
 
-	if(isset($_POST['Submit']) && $_POST['Submit'] == "Submit")
+	if(isset($_POST['Submit']))
 	{
 		$spram[1]	= trim($_POST['fname']);
 		$spram[2]	= trim($_POST['surname']);
@@ -86,6 +86,8 @@ $spram[13]			=	"";
 		if(empty($strError))
 		{
 			$objUser->addUser($spram);
+			$spram[3] = $spram[9];
+			signupemail($spram, $fromEmail);
 			$strError = "User has been added successfully";
 			$formNoticeClass = 'user-form-notice is-success';
 			$spram[1] = '';

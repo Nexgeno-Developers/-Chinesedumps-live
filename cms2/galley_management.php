@@ -98,7 +98,7 @@ $ccAdminData = get_session_data();
 
 		if(!isset($pgObj) && empty($pgObj))
 
-				$pgObj 		=  new classPaging ("vendormanage.php",$rowsPerPage,$linkPerPage,"","","");
+				$pgObj 		=  new classPaging ("galley_management.php",$rowsPerPage,$linkPerPage,"","","");
 
 		
 
@@ -174,26 +174,69 @@ $ccAdminData = get_session_data();
 <? include ("header.php"); ?>
 
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
+<style>
+.page-head-wrap{
+	padding:20px 18px;
+}
+.page-head-row{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	gap:12px;
+}
+.page-head-title{
+	margin:0 0 8px 0;
+}
+.page-head-sub{
+	margin:0 0 16px 0;
+	color:#64748b;
+}
+.theme-action-btn{
+	display:inline-flex;
+	align-items:center;
+	gap:8px;
+	padding:8px 20px;
+	font-size:14px;
+	font-weight:600;
+	color:#ffffff;
+	background:#333;
+	border-radius:8px;
+	text-decoration:none;
+	position: relative;
+	top:20px;
+}
+.theme-action-btn:link,
+.theme-action-btn:visited,
+.theme-action-btn:hover,
+.theme-action-btn:active,
+.theme-action-btn:focus{
+	color:#ffffff;
+	text-decoration:none;
+}
+</style>
 
-<table cellpadding="0" cellspacing="0" width="90%">
+<table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
 
 <td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
 
-<td width="810" valign="top" class="rightside"><h2>Exam Results Management</h2>
+<td width="810" valign="top" class="rightside page-head-wrap">
+<div class="page-head-row">
+	<h2 class="page-head-title">Exam Results Management</h2>
+	<?php if(role_can('Exam Results Module', 'write')){ ?>
+	<a href="add_gallery.php" class="theme-action-btn">
+		<i class="fa-solid fa-plus"></i> Add Banner
+	</a>
+	<?php } ?>
+</div>
 
-Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.
-
-<br />
+<p class="page-head-sub">Welcome to your <?=$websitename?> Website control panel. Here you can manage and modify every aspect of your <?=$websitename?>.</p>
 
 <form id="form1" name="form1" method="post" action="">
 
 
-
-<br />
-
-<table cellpadding='0' cellspacing='0' class='list' width='90%'>
+<table cellpadding='0' cellspacing='0' class='list' width='100%'>
 
    <tr>
 
@@ -203,25 +246,17 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
   <tr>
 
-     <td colspan="5"  align="center">
-		Exam Name
-		<input type="text" name="exam_name" id="exam_name" value="<?=$searchExamNameSafe;?>" />
-		&nbsp;&nbsp;
-		<input type="submit" name="Search" id="Search" value="Search" class="button" />
-		&nbsp;&nbsp;
-		<a class="menu" href="galley_management.php">Reset</a>
-
+     <td colspan="5" align="left" style="padding: 12px;">
+		<div style="display: flex; align-items: center; gap: 10px; width: 100%;">
+			<input type="text" name="exam_name" id="exam_name" value="<?=$searchExamNameSafe;?>" placeholder="Exam Name" style="width: 70%; box-sizing: border-box;" />
+			<input type="submit" name="Search" id="Search" value="Search" class="button" style="width: 15%; min-width: 110px;" />
+			<a class="menu" href="galley_management.php" style="width: 15%; min-width: 110px; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box;">Reset</a>
+		</div>
 	  </td>
 
-	  <td align="right"><?php if(role_can('Exam Results Module', 'write')){ ?><a class="menu" href="add_gallery.php"><img src="images/News-Add.gif" width="16" height="16" border="0" class="icon2" /> Add <span class="menu_header"> Banner </span></a>&nbsp;&nbsp;<?php } ?></td>
-
+	 
     </tr>
 
-  <tr>
-
-    <td height="19" align="center" colspan="6">&nbsp;</td>
-
-   </tr>
 
   <tr>
 
@@ -297,40 +332,27 @@ $slider = mysql_fetch_object($sqlSlider);
 <?php } ?>
 
 </table>
+</div>
 
-<table>
-
-<tr> 
-
-<td valign="top" align="center" class="rightside" ><div align="center"><strong>&nbsp;&nbsp; 
-
-	  <?=$BackNaviLinks;?>
-
-	  &nbsp;&nbsp; 
-
-	  <?=$NaviLinks;?>
-
-	  &nbsp;&nbsp; 
-
-	  <?=$ForwardNaviLinks;?> </strong><br />
-
-                  Total Records Found &nbsp;
-
-		<?=$TotalRecs;?><br />
-
-                  Total Pages Found &nbsp;
-
-		<?=$TotalPages;?><br /><br />
-
-		</div></td><br/>
-
-		<tr>
-
-		<td valign="top" class="rightside"  align="center"><div align="center"><?=$emptyError?></div></td>
-
-		</tr>
-
-</table>
+<div class="pagination-container">
+	<div class="pagination-left">
+		<?php if(isset($emptyError) && !empty($emptyError)): ?>
+			<?=$emptyError?>
+		<?php else: ?>
+			<span style="color: #64748b; font-size: 14px;">No record exist.</span>
+		<?php endif; ?>
+	</div>
+	
+	<div class="pagination-right">
+		<div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+			<strong><?=$BackNaviLinks;?></strong>
+			<strong><?=$NaviLinks;?></strong>
+			<strong><?=$ForwardNaviLinks;?></strong>
+		</div>
+		<p class="pagination-info">Total Records Found: <strong><?=$TotalRecs;?></strong></p>
+		<p class="pagination-info">Total Pages Found: <strong><?=$TotalPages;?></strong></p>
+	</div>
+</div>
 
 </form></td>
 
