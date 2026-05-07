@@ -85,6 +85,16 @@ function masterorder_format_date($value)
 	return date('d M Y', $time);
 }
 
+function masterorder_format_description($value)
+{
+	$value = html_entity_decode((string)$value, ENT_QUOTES, 'UTF-8');
+	$value = preg_replace('/<br\s*\/?>/i', ' ', $value);
+	$value = strip_tags($value);
+	$value = preg_replace('/\s+/', ' ', trim($value));
+
+	return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
+
 function masterorder_get_sort_url($column, $stateParams, $currentSortBy, $currentSortDir)
 {
 	$params = $stateParams;
@@ -338,7 +348,7 @@ while($rows = mysql_fetch_array($result))
 	$showRows .= '<td class="item">'.htmlspecialchars($rows['user_email'], ENT_QUOTES, 'UTF-8').'</td>';
 	$showRows .= '<td class="item">'.htmlspecialchars($rows['user_password'], ENT_QUOTES, 'UTF-8').'</td>';
 	$showRows .= '<td class="item" align="center">'.htmlspecialchars($rows['Order_Id'], ENT_QUOTES, 'UTF-8').'</td>';
-	$showRows .= '<td class="item master-desc-cell">'.htmlspecialchars($rows['OrderDesc'], ENT_QUOTES, 'UTF-8').'</td>';
+	$showRows .= '<td class="item master-desc-cell">'.masterorder_format_description($rows['OrderDesc']).'</td>';
 	$showRows .= '<td class="item" align="center">'.masterorder_format_date($rows['OrderDate']).'</td>';
 	$showRows .= '<td class="item master-amount-cell" align="right">'.masterorder_format_amount($rows['Net_Amount']).'</td>';
 	$showRows .= '<td class="item" align="center">'.htmlspecialchars($rows['coupon_code'], ENT_QUOTES, 'UTF-8').'</td>';
