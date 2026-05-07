@@ -6,6 +6,20 @@
 <link href="style1.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 <style type="text/css">
+.master-page-table,
+.master-page-table > tbody,
+.master-page-table > tbody > tr {
+	display: block;
+	width: 100%;
+}
+.master-content-cell {
+	display: block;
+	box-sizing: border-box;
+	width: 84% !important;
+	max-width: none !important;
+	margin-left: 16%;
+	padding: 32px !important;
+}
 .user-shell {
 	background: #ffffff;
 	border: 1px solid #dbe5f0;
@@ -283,6 +297,13 @@ input.bulk-delete-button:hover {
 	color: #5d7188;
 	font-weight: bold;
 }
+@media (max-width: 900px) {
+	.master-content-cell {
+		width: 100% !important;
+		margin-left: 0;
+		padding: 18px !important;
+	}
+}
 </style>
 <script language="JavaScript" src="../includes/js/calendar.js"></script>
 <script type="text/javascript" src="Editor3/scripts/innovaeditor.js"></script>
@@ -330,11 +351,11 @@ function openUserSearchCalendar(fieldName, triggerObj)
 </tr>
 </table></div>
 
-<table cellpadding="0" cellspacing="0" width="100%">
+<table cellpadding="0" cellspacing="0" width="100%" class="master-page-table">
 <tr>
-<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+<td width="190" valign="top" class="leftside"><?php include ("menu.php"); ?></td>
 
-<td width="810" valign="top" class="rightside">
+<td width="810" valign="top" class="rightside master-content-cell">
 	<div class="user-shell">
 		<div class="user-shell-header">
 			<div class="user-shell-header-top">
