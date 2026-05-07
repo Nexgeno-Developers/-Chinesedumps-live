@@ -311,8 +311,8 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
             <td>
                 <div id="certification_wrapper">
                     <div class="cert-group">
-                        <input type="text" name="demo_download_name[]" placeholder="Button Name" required />
-                        <input type="file" name="demo_file[]" accept=".pdf,.doc,.docx" required />
+                        <input type="text" name="demo_download_name[]" placeholder="Button Name"  />
+                        <input type="file" name="demo_file[]" accept=".pdf,.doc,.docx"  />
                     </div>
                 </div>
                 <button type="button" onclick="addMore()">Add More</button>
