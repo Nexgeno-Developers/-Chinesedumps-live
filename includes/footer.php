@@ -1187,19 +1187,9 @@ function verifyCaptcha() {
 
 <!--End of Zopim Live Chat Script--> 
 </div> 
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/69b912ab9fc5711c36fc161e/1jjtf1rre';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
+<!-- BEGIN ProvideSupport.com Graphics Chat Button Code -->
+<script>(function(D){function f(){function n(n,e){e=D.createElement("script");e.src="https://image.providesupport.com/"+n,D.body.appendChild(e)}n("js/10z1f36y8nk1y0rp6tl0jqmo26/safe-standard-sync.js?ps_h=CZSE&ps_t="+Date.now()),n("sjs/static.js")}D.readyState=="complete"?f():window.addEventListener("load",f)})(document)</script><noscript><div style="display:inline"><a href="https://vm.providesupport.com/10z1f36y8nk1y0rp6tl0jqmo26">Online Chat</a></div></noscript>
+<!-- END ProvideSupport.com Graphics Chat Button Code -->
 <!-- Start of chi9321172 Zendesk Widget script -->
 <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=17400775-fb21-4f0b-937b-ead737d35778"> </script>
 <!-- End of chi9321172 Zendesk Widget script -->
