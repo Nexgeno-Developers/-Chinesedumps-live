@@ -89,6 +89,24 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 				</select>
 			</div>
 			<div style="width:20%;">
+				<label style="display:block; margin-bottom:6px; font-weight:600;">Vendor</label>
+                    <select name="vendor_id" id="vendor_id">
+                        <option value="">Select Vendor</option>
+                        <?php
+                        $vendorRes = mysql_query("SELECT ven_id, ven_name FROM tbl_vendors ORDER BY ven_name ASC");
+                        while($vendor = mysql_fetch_assoc($vendorRes)){
+                            $selected = (isset($_POST['vendor_id']) && $_POST['vendor_id'] == $vendor['ven_id']) ? "selected" : "";
+                            echo "<option value='{$vendor['ven_id']}' {$selected}>{$vendor['ven_name']}</option>";
+                        }
+                        ?>
+                    </select>
+				<select name="criteriacriteria" style="width:100%; box-sizing:border-box;">
+					<option value="">Select</option>
+					<option value="1" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='1'){ echo "selected='selected'"; }?>>Enable</option>
+					<option value="0" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='0'){ echo "selected='selected'"; }?>>Disable</option>
+				</select>
+			</div>
+			<div style="width:20%;">
 				<input type="submit" name="Search" value="Search" style="width:100%;" />
 			</div>
 		</div>
@@ -149,5 +167,19 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 </form></td>
 </table>
 <? include("footer.php")?>
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#vendor_id').select2({
+        placeholder: "Select Vendor",
+        allowClear: true,
+        width: '220px',        // same as your old dropdown
+        minimumResultsForSearch: 5, // hide search if few options
+        dropdownAutoWidth: true,
+        theme: 'default',       // or 'classic' for older look
+    });
+});
+</script>
 </body>
 </html>
