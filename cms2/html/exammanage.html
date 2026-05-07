@@ -90,7 +90,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 			</div>
 			<div style="width:20%;">
                 <label style="display:block; margin-bottom:6px; font-weight:600;">Vendor</label>
-                <select name="vendor_id" id="vendor_id">
+                <select id="vendor_id" name="vendor_id" style="width:100%; box-sizing:border-box;">
                     <option value="">Select Vendor</option>
                     <?php
                     $vendorRes = mysql_query("SELECT ven_id, ven_name FROM tbl_vendors ORDER BY ven_name ASC");
