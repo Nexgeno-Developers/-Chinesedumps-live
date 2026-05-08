@@ -277,13 +277,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 			left: -163px;
 		}
 
-		.dropdown_megamenu.dropdown-menu.mega-dropdown-menu.micrisoft_menu {
-			left: -100px;
-		}
-
-		.dropdown_megamenu.dropdown-menu.mega-dropdown-menu.asw_menu_width {
-			left: -202px;
-		}
+		
 
 		.dropdown_megamenu.dropdown-menu.mega-dropdown-menu.detadenter_menu {
 			left: -270px;
@@ -849,6 +843,65 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 		.col-md-12.ht-ul {
 			margin-top: 7px;
 		}
+
+		body .fortinet_menu ul.nav.nav-tabs li a {
+    width: 184px !important;
+}
+
+.dropdown_megamenu.dropdown-menu.mega-dropdown-menu.fortinet_menu {
+    left: -251px;
+    width: 800px;
+}
+
+.dropdown_megamenu.dropdown-menu.mega-dropdown-menu.fortinet_menu .col-md-2.col-sm-2.ht-tab {
+    width: 23%;
+}
+
+.dropdown_megamenu.dropdown-menu.mega-dropdown-menu.fortinet_menu .col-md-10.col-sm-10.ht-tab {
+    width: 77%;
+}
+
+body .microsoft_menu ul.nav.nav-tabs li a {
+    width: 190px !important;
+}
+
+.dropdown_megamenu.dropdown-menu.mega-dropdown-menu.microsoft_menu {
+	left: -348px;
+    width: 700px;
+}
+
+.dropdown_megamenu.dropdown-menu.mega-dropdown-menu.microsoft_menu .col-md-2.col-sm-2.ht-tab {
+    width: 27%;
+}
+
+.dropdown_megamenu.dropdown-menu.mega-dropdown-menu.microsoft_menu .col-md-10.col-sm-10.ht-tab {
+    width: 73%;
+}
+body .google_menu ul.nav.nav-tabs li a {
+    width: 190px !important;
+}
+
+.dropdown_megamenu.dropdown-menu.mega-dropdown-menu.google_menu {
+    left: -392px;
+    width: 550px;
+}
+
+.dropdown_megamenu.dropdown-menu.mega-dropdown-menu.google_menu .col-md-2.col-sm-2.ht-tab {
+    width: 35%;
+}
+
+.dropdown_megamenu.dropdown-menu.mega-dropdown-menu.google_menu .col-md-10.col-sm-10.ht-tab {
+    width: 65%;
+}
+
+.dropdown_megamenu.dropdown-menu.mega-dropdown-menu.asw_menu_width {
+	left: -556px;
+    width: 700px;
+}
+a:focus {
+    outline: none !important;
+    outline-offset: 0px !important;
+}
 	</style>
 	<meta name="google-site-verification" content="yODErouiH7tWT1B41PP9DfPOaEW2A-ykOKe7ESEadsI" />
 	<!-- Google tag (gtag.js) -->
@@ -1681,67 +1734,95 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 
 
 
-										<li class="dropdown">
-											<a class="padding_20" href="/Fortinet-certification-dumps.html">Fortinet <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
-											<ul class="dropdown-menu">
-												<li class="dropdown"> <a class="" href="">Fortinet Certified Professional</span></a>
-													<ul class="dropdown-menu">
-														<li class="dropdown"> <a class="" href="">Network Security</span></a>
-															<ul class="dropdown-menu">
-																<li> <a href="nse6_fnc_dumps.htm">NSE6_FNC</a> </li>
-																<li> <a href="nse6_fsw_dumps.htm">NSE6_FSW</a> </li>
-																<li> <a href="nse6_fwf_dumps.htm">NSE6_FWF</a> </li>
-																<li> <a href="fcp_fct_ad_dumps.htm">FCP_FCT_AD</a> </li>
-																<li> <a href="fcp_fac_ad_dumps.htm">FCP_FAC_AD</a> </li>
-																<li> <a href="fcp_fgt_ad_dumps.htm">FCP_FGT_AD</a> </li>
-																<li> <a href="fcp_fmg_ad_dumps.htm">FCP_FMG_AD</a> </li>
-																<li> <a href="fcp_faz_ad_dumps.htm">FCP_FAZ_AD</a> </li>
-																<li> <a href="fcp_fwf_ad_dumps.htm">FCP_FWF_AD</a> </li>
-															</ul>
-														</li>
-														<li class="dropdown"> <a class="" href="">Security Operations</span></a>
-															<ul class="dropdown-menu">
-																<li> <a href="nse5_edr_dumps.htm">NSE5_EDR</a> </li>
-																<li> <a href="nse5_fsm_dumps.htm">NSE5_FSM</a> </li>
-																<li> <a href="nse6_fsr_dumps.htm">NSE6_FSR</a> </li>
-																<li> <a href="fcp_faz_an_dumps.htm">FCP_FAZ_AN</a> </li>
-															</ul>
-														</li>
-														<li class="dropdown"> <a class="" href="">Public Cloud Security</span></a>
-															<ul class="dropdown-menu">
-																<li> <a href="nse6_wcs_dumps.htm">NSE6_WCS</a> </li>
-																<li> <a href="nse6_zcs_dumps.htm">NSE6_ZCS</a> </li>
-																<li> <a href="fcp_wcs_ad_dumps.htm">FCP_WCS_AD</a> </li>
-																<li> <a href="fcp_fwb_ad_dumps.htm">FCP_FWB_AD</a> </li>
-																<li> <a href="fcp_zcs_ad_dumps.htm">FCP_ZCS_AD</a> </li>
-																<li> <a href="fcp_fml_ad_dumps.htm">FCP_FML_AD</a> </li>
-															</ul>
-														</li>
-													</ul>
-												</li>
-												<li class="dropdown"> <a class="" href="">Fortinet Certified Solution Specialist</span></a>
-													<ul class="dropdown-menu">
-														<li> <a href="nse7_efw_dumps.htm">NSE7_EFW</a> </li>
-														<li> <a href="nse7_led_dumps.htm">NSE7_LED</a> </li>
-														<li> <a href="nse7_ots_dumps.htm">NSE7_OTS</a> </li>
-														<li> <a href="nse7_pbc_dumps.htm">NSE7_PBC</a> </li>
-														<li> <a href="nse7_sdw_dumps.htm">NSE7_SDW</a> </li>
-														<li> <a href="nse7_zta_dumps.htm">NSE7_ZTA</a> </li>
-														<li> <a href="fcss_ada_ar_dumps.htm">FCSS_ADA_AR</a> </li>
-														<li> <a href="fcss_sase_ad_dumps.htm">FCSS_SASE_AD</a> </li>
-														<li> <a href="fcss_soc_an_dumps.htm">FCSS_SOC_AN</a> </li>
-														<li> <a href="fcss_nst_se_dumps.htm">FCSS_NST_SE</a> </li>
-														<li> <a href="fcss_efw_ad_dumps.htm">FCSS_EFW_AD</a> </li>
-													</ul>
-												</li>
-												<li class="dropdown"> <a class="" href="">Fortinet Certified Expert</span></a>
-													<ul class="dropdown-menu">
-														<li> <a href="NSE8_dumps.htm">FCX (NSE8) Written Exam</a> </li>
-														<li> <a href="fortinet-nse8-Lab.htm">FCX (NSE8) Practical Exam</a> </li>
-													</ul>
-												</li>
-												<li> <a href="/fortinet-demo.php">Demo</a> </li>
-											</ul>
+										<li class="dropdown mega-dropdown">
+											<a class="dropdown-toggle padding_20" href="/Fortinet-certification-dumps.html">
+												Fortinet <img src="images/new-image/caret_icons.svg" alt="caret" />
+											</a>
+											<div class="dropdown_megamenu dropdown-menu mega-dropdown-menu fortinet_menu">
+												<div class="">
+													<!-- Nav tabs (like Microsoft) -->
+													<div class="col-md-2 col-sm-2 ht-tab">
+														<ul class="nav nav-tabs" role="tablist">
+															<li><a href="#" class="tablinks active" onmouseover="openCity(event, 'fortinet_professional')">Fortinet Professional</a></li>
+															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'fortinet_solution')">Fortinet Solution</a></li>
+															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'fortinet_expert')">Fortinet Expert</a></li>
+															<li><a href="/fortinet-demo.php" class="tablinks">Demo</a></li>
+														</ul>
+													</div>
+
+													<!-- Tab panes -->
+													<div class="col-md-10 col-sm-10 ht-tab">
+														<div class="tab-content">
+															<div class="tab-pane tabcontent active" id="fortinet_professional" style="display:block !important;">
+																<div class="col-md-4 ht-ul">
+																	<span>Network Security</span>
+																	<ul class="nav-list list-inline">
+																		<li><a href="nse6_fnc_dumps.htm">NSE6_FNC</a></li>
+																		<li><a href="nse6_fsw_dumps.htm">NSE6_FSW</a></li>
+																		<li><a href="nse6_fwf_dumps.htm">NSE6_FWF</a></li>
+																		<li><a href="fcp_fct_ad_dumps.htm">FCP_FCT_AD</a></li>
+																		<li><a href="fcp_fac_ad_dumps.htm">FCP_FAC_AD</a></li>
+																		<li><a href="fcp_fgt_ad_dumps.htm">FCP_FGT_AD</a></li>
+																		<li><a href="fcp_fmg_ad_dumps.htm">FCP_FMG_AD</a></li>
+																		<li><a href="fcp_faz_ad_dumps.htm">FCP_FAZ_AD</a></li>
+																		<li><a href="fcp_fwf_ad_dumps.htm">FCP_FWF_AD</a></li>
+																	</ul>
+																</div>
+																<div class="col-md-4 ht-ul">
+																	<span>Security Operations</span>
+																	<ul class="nav-list list-inline">
+																		<li><a href="nse5_edr_dumps.htm">NSE5_EDR</a></li>
+																		<li><a href="nse5_fsm_dumps.htm">NSE5_FSM</a></li>
+																		<li><a href="nse6_fsr_dumps.htm">NSE6_FSR</a></li>
+																		<li><a href="fcp_faz_an_dumps.htm">FCP_FAZ_AN</a></li>
+																	</ul>
+																</div>
+																<div class="col-md-4 ht-ul">
+																	<span>Public Cloud Security</span>
+																	<ul class="nav-list list-inline">
+																		<li><a href="nse6_wcs_dumps.htm">NSE6_WCS</a></li>
+																		<li><a href="nse6_zcs_dumps.htm">NSE6_ZCS</a></li>
+																		<li><a href="fcp_wcs_ad_dumps.htm">FCP_WCS_AD</a></li>
+																		<li><a href="fcp_fwb_ad_dumps.htm">FCP_FWB_AD</a></li>
+																		<li><a href="fcp_zcs_ad_dumps.htm">FCP_ZCS_AD</a></li>
+																		<li><a href="fcp_fml_ad_dumps.htm">FCP_FML_AD</a></li>
+																	</ul>
+																</div>
+															</div>
+
+															<div class="tab-pane tabcontent" id="fortinet_solution">
+																<div class="col-md-12 ht-ul">
+																	<span>Fortinet Certified Solution Specialist</span>
+																	<ul class="nav-list list-inline">
+																		<li><a href="nse7_efw_dumps.htm">NSE7_EFW</a></li>
+																		<li><a href="nse7_led_dumps.htm">NSE7_LED</a></li>
+																		<li><a href="nse7_ots_dumps.htm">NSE7_OTS</a></li>
+																		<li><a href="nse7_pbc_dumps.htm">NSE7_PBC</a></li>
+																		<li><a href="nse7_sdw_dumps.htm">NSE7_SDW</a></li>
+																		<li><a href="nse7_zta_dumps.htm">NSE7_ZTA</a></li>
+																		<li><a href="fcss_ada_ar_dumps.htm">FCSS_ADA_AR</a></li>
+																		<li><a href="fcss_sase_ad_dumps.htm">FCSS_SASE_AD</a></li>
+																		<li><a href="fcss_soc_an_dumps.htm">FCSS_SOC_AN</a></li>
+																		<li><a href="fcss_nst_se_dumps.htm">FCSS_NST_SE</a></li>
+																		<li><a href="fcss_efw_ad_dumps.htm">FCSS_EFW_AD</a></li>
+																	</ul>
+																</div>
+															</div>
+
+															<div class="tab-pane tabcontent" id="fortinet_expert">
+																<div class="col-md-12 ht-ul">
+																	<span>Fortinet Certified Expert</span>
+																	<ul class="nav-list list-inline">
+																		<li><a href="NSE8_dumps.htm">FCX (NSE8) Written Exam</a></li>
+																		<li><a href="fortinet-nse8-Lab.htm">FCX (NSE8) Practical Exam</a></li>
+																		<li><a href="/fortinet-demo.php">Demo</a></li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
 										</li>
 										<li class="dropdown mega-dropdown"> <a href="/Juniper-certification-dumps.html" class="dropdown-toggle padding_20"> Juniper <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 											<div class="dropdown_megamenu dropdown-menu mega-dropdown-menu detadenter_menu">
@@ -2272,7 +2353,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 												Google <img src="images/new-image/caret_icons.svg" alt="caret" />
 											</a>
 											
-											<div class="dropdown_megamenu dropdown-menu mega-dropdown-menu micrisoft_menu">
+											<div class="dropdown_megamenu dropdown-menu mega-dropdown-menu google_menu">
 												<div class="">
 													
 													<!-- LEFT TABS -->
