@@ -1491,9 +1491,9 @@ a:focus {
 
 																		<li> <a href="encor-350-401-dumps.htm"> 350-401 ENCOR</a> </li>
 
-																		<li> <a href="ccie-enterprise-infrastructure-v1-1-lab-workbook.htm">CCIE EI Workbook</a> </li>
+																		<li> <a href="ccie-enterprise-infrastructure-v1-1-lab-workbook.htm">CCIE EI Packages</a> </li>
 
-																		<li> <a href="ccie-enterprise-infrastructure-v1-1-lab-bootcamp.htm">CCIE EI Bootcamp</a> </li>
+																		<!-- <li> <a href="ccie-enterprise-infrastructure-v1-1-lab-bootcamp.htm">CCIE EI Bootcamp</a> </li> -->
 
 																		<li> <a href="https://ccierack.rentals/ccie-enterprise-infrastructure-v1-1-rack-rental/">Rack Rental EI Pricing</a> </li>
 
@@ -1514,9 +1514,9 @@ a:focus {
 
 																		<li> <a href="spcor-350-501-ccnp-dumps.htm">SPCOR 350-501</a> </li>
 
-																		<li> <a href="ccie-service-provider-v5-1-lab-workbook.htm">CCIE SP Workbook</a> </li>
+																		<li> <a href="ccie-service-provider-v5-1-lab-workbook.htm">CCIE SP Packages</a> </li>
 
-																		<li> <a href="ccie-service-provider-v5-1-lab-bootcamp.htm">CCIE SP Bootcamp</a> </li>
+																		<!-- <li> <a href="ccie-service-provider-v5-1-lab-bootcamp.htm">CCIE SP Bootcamp</a> </li> -->
 
 																		<li> <a href="https://ccierack.rentals/ccie-service-provider-v5-1-rack-rental/">Rack Rental SP Pricing</a> </li>
 
@@ -1538,9 +1538,9 @@ a:focus {
 
 																		<li> <a href="350-701-ccnp-scor-dumps.htm">SCOR 350-701</a> </li>
 
-																		<li> <a href="ccie-security-v6-1-lab-workbook.htm">CCIE SEC Workbook</a> </li>
+																		<li> <a href="ccie-security-v6-1-lab-workbook.htm">CCIE SEC Packages</a> </li>
 
-																		<li> <a href="ccie-security-v6-1-lab-bootcamp.htm">CCIE SEC Bootcamp</a> </li>
+																		<!-- <li> <a href="ccie-security-v6-1-lab-bootcamp.htm">CCIE SEC Bootcamp</a> </li> -->
 
 																		<li> <a href="https://ccierack.rentals/ccie-security-v6-1-rack-rental/">Rack Rental SEC Pricing</a> </li>
 
@@ -1561,9 +1561,9 @@ a:focus {
 
 																		<li> <a href="350-601-ccnp-dccor-dumps.htm">DCCOR 350-601</a> </li>
 
-																		<li> <a href="CCIE-DC-Lab.htm">CCIE DC Workbook</a> </li>
+																		<li> <a href="CCIE-DC-Lab.htm">CCIE DC Packages</a> </li>
 
-																		<li> <a href="DC-Bootcamp.htm">CCIE DC Bootcamp</a> </li>
+																		<!-- <li> <a href="DC-Bootcamp.htm">CCIE DC Bootcamp</a> </li> -->
 
 																		<li> <a href="https://ccierack.rentals/ccie-datacenter-rack-rental/">Rack Rental DC Pricing</a> </li>
 
@@ -1584,9 +1584,9 @@ a:focus {
 
 																		<li> <a href="clcor-350-801-ccnp-dumps.htm">350-801 CLCOR </a> </li>
 
-																		<li> <a href="ccie-collaboration-v3-1-lab-workbook.htm">CCIE Collab Workbook</a> </li>
+																		<li> <a href="ccie-collaboration-v3-1-lab-workbook.htm">CCIE Collab Packages</a> </li>
 
-																		<li> <a href="ccie-collaboration-v3-1-lab-bootcamp.htm">CCIE Collab Bootcamp</a> </li>
+																		<!-- <li> <a href="ccie-collaboration-v3-1-lab-bootcamp.htm">CCIE Collab Bootcamp</a> </li> -->
 
 																		<li> <a href="https://ccierack.rentals/ccie-collaboration-v3-1-rack-rental/">Rack Rental Collab Pricing</a> </li>
 
@@ -1609,9 +1609,9 @@ a:focus {
 
 																		<li> <a href="WLCOR-350-101-dumps.htm">350-101 WLCOR</a> </li>
 
-																		<li> <a href="/CCIE-Wireless-Lab.htm">CCIE Wireless Workbook</a> </li>
+																		<li> <a href="/CCIE-Wireless-Lab.htm">CCIE Wireless Packages</a> </li>
 
-																		<li> <a href="/Wireless-Bootcamp.htm">CCIE Wireless Bootcamp</a> </li>
+																		<!-- <li> <a href="/Wireless-Bootcamp.htm">CCIE Wireless Bootcamp</a> </li> -->
 
 																		<li> <a href="https://ccierack.rentals/ccie-wireless-rack-rental/">Rack Rental Wireless Pricing</a> </li>
 
@@ -1631,9 +1631,9 @@ a:focus {
 
 																		<li> <a href="/autocor-350-901-dumps.htm">350-901 AUTOCOR</a> </li>
 
-																		<li> <a href="/ccie-Automation-v1-1-lab-workbook.htm">CCIE Automation Workbook</a> </li>
+																		<li> <a href="/ccie-Automation-v1-1-lab-workbook.htm">CCIE Automation Packages</a> </li>
 
-																		<li> <a href="/Automation-Bootcamp.htm">CCIE Automation Bootcamp</a> </li>
+																		<!-- <li> <a href="/Automation-Bootcamp.htm">CCIE Automation Bootcamp</a> </li> -->
 
 																		<li> <a href="https://ccierack.rentals/ccie-devnet-rack-rental/">Rack Rental Automation Pricing</a> </li>
 
@@ -1650,9 +1650,9 @@ a:focus {
 
 																	<ul class="nav-list list-inline">
 
-																		<!--<li> <a href="/CCDE.htm">400-007 CCDE</a> </li>-->
-																		<li> <a href="/CCDE-Lab.htm">CCDE Lab</a> </li>
-																		<li> <a href="/CCDE-Bootcamp.htm">CCDE Bootcamp</a> </li>
+																		<li> <a href="/CCDE.htm">400-007 CCDE</a> </li>
+																		<li> <a href="/CCDE-Lab.htm">CCDE Lab Packages</a> </li>
+																		<!-- <li> <a href="/CCDE-Bootcamp.htm">CCDE Bootcamp</a> </li> -->
 																		<li> <a href="/demo.php?cert_id=85&name=CCDE v3.1">Demo</a> </li>
 																		<!--<li> <a href="ccde-demo.php">Demo</a> </li>-->
 
