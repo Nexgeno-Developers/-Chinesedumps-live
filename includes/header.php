@@ -1302,8 +1302,6 @@ a:focus {
 
 																		<li> <a href="300-515-ccnp-spvi-dumps.htm"> 300-515 SPVI</a> </li>
 
-																		<!--<li> <a href="300-535-ccnp-spauto-dumps.htm">		300-535 SPAUTO</a> </li>-->
-
 																		<li> <a href="300-540-ccnp-spcni-dumps.htm"> 300-540 SPCNI</a> </li>
 
 																	</ul>
@@ -1428,8 +1426,6 @@ a:focus {
 																		<!--<li><a href="300-835-ccnp-clauto-dumps.htm">300-835 CLAUTO</a></li>-->
 
 																		<li><a href="dcauto-300-635-dumps.htm">300-635 DCNAUTO</a></li>
-
-																		<!--<li><a href="300-535-ccnp-spauto-dumps.htm">300-535 SPAUTO</a></li>-->
 
 																		<!--<li><a href="300-735-ccnp-security-sauto-dumps.htm">300-735 SAUTO</a></li>-->
 
@@ -3116,7 +3112,6 @@ a:focus {
 															<li> <a href="spcor-350-501-ccnp-dumps.htm">350-501 SPCOR</a> </li>
 															<li> <a href="300-510-ccnp-spri-dumps.htm">300-510 SPRI</a> </li>
 															<li> <a href="300-515-ccnp-spvi-dumps.htm">300-515 SPVI</a> </li>
-															<!--<li> <a href="300-535-ccnp-spauto-dumps.htm">300-535 SPAUTO</a> </li>-->
 															<li> <a href="300-540-ccnp-spcloud-dumps.htm">300-540 SPCNI</a> </li>
 														</ul>
 													</li>
@@ -3167,7 +3162,6 @@ a:focus {
 															<li><a href="300-435-ccnp-ent-enauto-dumps.htm">300-435 ENAUTO</a></li>
 															<!--<li><a href="300-835-ccnp-clauto-dumps.htm">300-835 CLAUTO</a></li>-->
 															<li><a href="300-635-ccnp-dcauto-dumps.htm">300-635 DCNAUTO</a></li>
-															<!--<li><a href="300-535-ccnp-spauto-dumps.htm">300-535 SPAUTO</a></li>-->
 															<!--<li><a href="300-735-ccnp-security-sauto-dumps.htm">300-735 SAUTO</a></li>-->
 															<!--<li><a href="300-910-DEVOPS-dumps.htm">300-910 DEVOPS</a></li>-->
 															<li><a href="300-915-deviot-dumps.htm">300-915 DEVIOT</a></li>
