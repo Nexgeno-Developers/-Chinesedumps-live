@@ -3149,7 +3149,7 @@ a:focus {
 															<li><a href="clcor-350-801-ccnp-dumps.htm">350-801 CLCOR </a></li>
 															<!--<li><a href="300-810-ccnp-collaboration-clica-dumps.htm">300-810 CLICA</a></li>-->
 															<li><a href="300-815-ccnp-collaboration-clacc-dumps.htm">300-815 CLACC</a></li>
-															<li><a href="300-820-ccnp-collaboration-clhct-dumps">300-820 CLHCT</a></li>
+															<li><a href="300-820-ccnp-collaboration-clhct-dumps.htm">300-820 CLHCT</a></li>
 															<li><a href="clcce-300-830-ccnp-dumps.htm"> 300-830 CLHCT</a></li>
 															<!--<li><a href="300-835-ccnp-clauto-dumps.htm">300-835 CLAUTO</a></li>-->
 														</ul>
