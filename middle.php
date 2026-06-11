@@ -890,11 +890,6 @@ function examDate($code) {
                     				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-730-ccnp-security-svpn-dumps.htm" target="_blank" >Get Now</a></td>
                     			</tr>
                     			<tr>
-                    				<td><a href="<?php echo BASE_URL; ?>300-735-ccnp-security-sauto-dumps.htm">300-735</a></td>
-                    				<td><?php echo examDate('300-735'); ?></td>
-                    				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>300-735-ccnp-security-sauto-dumps.htm" target="_blank" >Get Now</a></td>
-                    			</tr>
-                    			<tr>
                     				<td><a href="<?php echo BASE_URL; ?>clcor-350-801-ccnp-dumps.htm">350-801</a></td>
                     				<td><?php echo examDate('350-801'); ?></td>
                     				<td><a class="flat-button bg-red" href="<?php echo BASE_URL; ?>clcor-350-801-ccnp-dumps.htm" target="_blank" >Get Now</a></td>
