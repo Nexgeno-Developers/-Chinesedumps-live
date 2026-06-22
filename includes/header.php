@@ -1730,96 +1730,99 @@ a:focus {
 
 
 
-										<li class="dropdown mega-dropdown">
-											<a class="dropdown-toggle padding_20" href="/Fortinet-certification-dumps.html">
-												Fortinet <img src="images/new-image/caret_icons.svg" alt="caret" />
-											</a>
-											<div class="dropdown_megamenu dropdown-menu mega-dropdown-menu fortinet_menu">
-												<div class="">
-													<!-- Nav tabs (like Microsoft) -->
-													<div class="col-md-2 col-sm-2 ht-tab">
-														<ul class="nav nav-tabs" role="tablist">
-															<li><a href="#" class="tablinks active" onmouseover="openCity(event, 'fortinet_professional')">Fortinet Professional</a></li>
-															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'fortinet_solution')">Fortinet Solution</a></li>
-															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'fortinet_expert')">Fortinet Expert</a></li>
-															<li><a href="/fortinet-demo.php" class="tablinks">Demo</a></li>
-														</ul>
-													</div>
+										<li class="dropdown mega-dropdown"> <a href="/Fortinet-certification-dumps.html" class="dropdown-toggle padding_20"> Fortinet <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+										<div class="dropdown_megamenu dropdown-menu mega-dropdown-menu fortinet_menu">
+											<div class="">
+												<!-- Tab panes -->
+												<div class="col-md-2 col-sm-2 ht-tab">
+													<ul class="nav nav-tabs" role="tablist">
+														<li><a href="#" class="tablinks active" onmouseover="openCity(event, 'fortinet_professional')"> Professional (FCP)</a></li>
+														<li><a href="#" class="tablinks" onmouseover="openCity(event, 'fortinet_solution')"> Solution Specialist (FCSS)</a></li>
+														<li><a href="#" class="tablinks" onmouseover="openCity(event, 'fortinet_expert')"> Expert (FCX)</a></li>
+														<li><a href="#" class="tablinks" onmouseover="openCity(event, 'fortinet_demo')"> Demo</a></li>
+													</ul>
+												</div>
+												<div class="col-md-10 col-sm-10 ht-tab">
+													<div class="tab-content">
 
-													<!-- Tab panes -->
-													<div class="col-md-10 col-sm-10 ht-tab">
-														<div class="tab-content">
-															<div class="tab-pane tabcontent active" id="fortinet_professional" style="display:block !important;">
-																<div class="col-md-4 ht-ul">
-																	<span>Network Security</span>
-																	<ul class="nav-list list-inline">
-																		<li><a href="nse6_fnc_dumps.htm">NSE6_FNC</a></li>
-																		<li><a href="nse6_fsw_dumps.htm">NSE6_FSW</a></li>
-																		<li><a href="nse6_fwf_dumps.htm">NSE6_FWF</a></li>
-																		<li><a href="fcp_fct_ad_dumps.htm">FCP_FCT_AD</a></li>
-																		<li><a href="fcp_fac_ad_dumps.htm">FCP_FAC_AD</a></li>
-																		<li><a href="fcp_fgt_ad_dumps.htm">FCP_FGT_AD</a></li>
-																		<li><a href="fcp_fmg_ad_dumps.htm">FCP_FMG_AD</a></li>
-																		<li><a href="fcp_faz_ad_dumps.htm">FCP_FAZ_AD</a></li>
-																		<li><a href="fcp_fwf_ad_dumps.htm">FCP_FWF_AD</a></li>
-																	</ul>
-																</div>
-																<div class="col-md-4 ht-ul">
-																	<span>Security Operations</span>
-																	<ul class="nav-list list-inline">
-																		<li><a href="nse5_edr_dumps.htm">NSE5_EDR</a></li>
-																		<li><a href="nse5_fsm_dumps.htm">NSE5_FSM</a></li>
-																		<li><a href="nse6_fsr_dumps.htm">NSE6_FSR</a></li>
-																		<li><a href="fcp_faz_an_dumps.htm">FCP_FAZ_AN</a></li>
-																	</ul>
-																</div>
-																<div class="col-md-4 ht-ul">
-																	<span>Public Cloud Security</span>
-																	<ul class="nav-list list-inline">
-																		<li><a href="nse6_wcs_dumps.htm">NSE6_WCS</a></li>
-																		<li><a href="nse6_zcs_dumps.htm">NSE6_ZCS</a></li>
-																		<li><a href="fcp_wcs_ad_dumps.htm">FCP_WCS_AD</a></li>
-																		<li><a href="fcp_fwb_ad_dumps.htm">FCP_FWB_AD</a></li>
-																		<li><a href="fcp_zcs_ad_dumps.htm">FCP_ZCS_AD</a></li>
-																		<li><a href="fcp_fml_ad_dumps.htm">FCP_FML_AD</a></li>
-																	</ul>
-																</div>
+														<!-- ===================== PROFESSIONAL (FCP) ===================== -->
+														<div class="tab-pane tabcontent active" id="fortinet_professional" style="display: block !important">
+															<div class="col-md-4 ht-ul"> <span>Network Security</span>
+																<ul class="nav-list list-inline">
+																	<li><a href="nse4_fgt_ad_dumps.htm">NSE4_FGT_AD-7.6 FortiOS Administrator</a></li>
+																	<li><a href="fcp_fmg_ad_dumps.htm">FCP_FMG_AD-7.6 FortiManager Administrator</a></li>
+																	<li><a href="fcp_fct_ad_dumps.htm">FCP_FCT_AD-7.4 FortiClient EMS Administrator</a></li>
+																	<li><a href="fcp_fwf_ad_dumps.htm">FCP_FWF_AD-7.4 Secure Wireless LAN</a></li>
+																	<li><a href="nse5_fnc_ad_dumps.htm">NSE5_FNC_AD-7.6 FortiNAC-F Administrator</a></li>
+																	<li><a href="nse5_fsw_ad_dumps.htm">NSE5_FSW_AD-7.6 FortiSwitch Administrator</a></li>
+																	<li><a href="nse5_sse_ad_dumps.htm">NSE5_SSE_AD-7.6 FortiSASE &amp; SD-WAN Core</a></li>
+																</ul>
 															</div>
-
-															<div class="tab-pane tabcontent" id="fortinet_solution">
-																<div class="col-md-12 ht-ul">
-																	<span>Fortinet Certified Solution Specialist</span>
-																	<ul class="nav-list list-inline">
-																		<li><a href="nse7_efw_dumps.htm">NSE7_EFW</a></li>
-																		<li><a href="nse7_led_dumps.htm">NSE7_LED</a></li>
-																		<li><a href="nse7_ots_dumps.htm">NSE7_OTS</a></li>
-																		<li><a href="nse7_pbc_dumps.htm">NSE7_PBC</a></li>
-																		<li><a href="nse7_sdw_dumps.htm">NSE7_SDW</a></li>
-																		<li><a href="nse7_zta_dumps.htm">NSE7_ZTA</a></li>
-																		<li><a href="fcss_ada_ar_dumps.htm">FCSS_ADA_AR</a></li>
-																		<li><a href="fcss_sase_ad_dumps.htm">FCSS_SASE_AD</a></li>
-																		<li><a href="fcss_soc_an_dumps.htm">FCSS_SOC_AN</a></li>
-																		<li><a href="fcss_nst_se_dumps.htm">FCSS_NST_SE</a></li>
-																		<li><a href="fcss_efw_ad_dumps.htm">FCSS_EFW_AD</a></li>
-																	</ul>
-																</div>
+															<div class="col-md-4 ht-ul"> <span>Security Operations</span>
+																<ul class="nav-list list-inline">
+																	<li><a href="fcp_faz_an_dumps.htm">FCP_FAZ_AN-7.6 FortiAnalyzer Analyst</a></li>
+																	<li><a href="fcp_fsa_ad_dumps.htm">FCP_FSA_AD-5.0 FortiSandbox Administrator</a></li>
+																</ul>
 															</div>
-
-															<div class="tab-pane tabcontent" id="fortinet_expert">
-																<div class="col-md-12 ht-ul">
-																	<span>Fortinet Certified Expert</span>
-																	<ul class="nav-list list-inline">
-																		<li><a href="NSE8_dumps.htm">FCX (NSE8) Written Exam</a></li>
-																		<li><a href="fortinet-nse8-Lab.htm">FCX (NSE8) Practical Exam</a></li>
-																		<li><a href="/fortinet-demo.php">Demo</a></li>
-																	</ul>
-																</div>
+															<div class="col-md-4 ht-ul"> <span>Public Cloud Security</span>
+																<ul class="nav-list list-inline">
+																	<li><a href="fcp_gcs_ad_dumps.htm">FCP_GCS_AD-7.6 Google Cloud Security</a></li>
+																	<li><a href="nse5_fwb_ad_dumps.htm">NSE5_FWB_AD-8.0 FortiWeb Administrator</a></li>
+																	<li><a href="fcp_fml_ad_dumps.htm">FCP_FML_AD-7.4 FortiMail Administrator</a></li>
+																</ul>
 															</div>
 														</div>
+
+														<!-- ================ SOLUTION SPECIALIST (FCSS) ================= -->
+														<div class="tab-pane tabcontent" id="fortinet_solution">
+															<div class="col-md-4 ht-ul"> <span>Network Security</span>
+																<ul class="nav-list list-inline">
+																	<li><a href="fcss_efw_ad_dumps.htm">FCSS_EFW_AD-7.6 Enterprise Firewall</a></li>
+																	<li><a href="fcss_nst_se_dumps.htm">FCSS_NST_SE-7.6 Network Security Support Engineer</a></li>
+																	<li><a href="nse6_sdw_ad_dumps.htm">NSE6_SDW_AD-7.6 SD-WAN Enterprise Administrator</a></li>
+																</ul>
+															</div>
+															<div class="col-md-4 ht-ul"> <span>Security Operations</span>
+																<ul class="nav-list list-inline">
+																	<li><a href="nse6_edr_ad_dumps.htm">NSE6_EDR_AD-7.0 FortiEDR Administrator</a></li>
+																	<li><a href="nse6_fsm_an_dumps.htm">NSE6_FSM_AN-7.4 FortiSIEM Analyst</a></li>
+																	<li><a href="nse6_fsr_dumps.htm">NSE6_FSR-7.3 FortiSOAR Administrator</a></li>
+																	<li><a href="nse7_soc_ar_dumps.htm">NSE7_SOC_AR-7.6 Security Operations Architect</a></li>
+																</ul>
+															</div>
+															<div class="col-md-4 ht-ul"> <span>OT &amp; Cloud</span>
+																<ul class="nav-list list-inline">
+																	<li><a href="nse6_ots_ar_dumps.htm">NSE6_OTS_AR-7.6 OT Security Architect</a></li>
+																	<li><a href="nse7_cds_ar_dumps.htm">NSE7_CDS_AR-7.6 Public Cloud Security Architect</a></li>
+																</ul>
+															</div>
+														</div>
+
+														<!-- ===================== EXPERT (FCX) ========================== -->
+														<div class="tab-pane tabcontent" id="fortinet_expert">
+															<div class="col-md-12 ht-ul"> <span>Fortinet Certified Expert</span>
+																<ul class="nav-list list-inline">
+																	<li><a href="NSE8_dumps.htm">NSE8_813 — FCX (NSE8) Written Exam</a></li>
+																	<li><a href="fortinet-nse8-Lab.htm">FCX (NSE8) Practical Exam</a></li>
+																</ul>
+															</div>
+														</div>
+
+														<!-- ===================== DEMO ================================== -->
+														<div class="tab-pane tabcontent" id="fortinet_demo">
+															<div class="col-md-12 ht-ul"> <span>Demo</span>
+																<ul class="nav-list list-inline">
+																	<li><a href="/fortinet-demo.php">Fortinet Free Demo</a></li>
+																</ul>
+															</div>
+														</div>
+
 													</div>
 												</div>
 											</div>
-										</li>
+											<!-- Nav tabs -->
+										</div>
+									</li>
 										<li class="dropdown mega-dropdown"> <a href="/Juniper-certification-dumps.html" class="dropdown-toggle padding_20"> Juniper <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 											<div class="dropdown_megamenu dropdown-menu mega-dropdown-menu detadenter_menu">
 												<div class="">
@@ -3264,7 +3267,7 @@ a:focus {
 
 
 
-									<li class="dropdown"><a class="padding_20" href="/Fortinet-certification-dumps.html">
+									<li class="dropdown"><a class="padding_20" href="#">
 											Fortinet
 											<img src="images/new-image/caret_icons.svg" alt="caret" />
 										</a>
