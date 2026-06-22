@@ -3264,59 +3264,69 @@ a:focus {
 
 
 
-								<li class="dropdown">
-<a class="padding_20" href="/Fortinet-certification-dumps.html">Fortinet <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
-<ul class="dropdown-menu">
-<li class="dropdown"> <a class="" href="">Fortinet Certified Professional</a>
-<ul class="dropdown-menu">
-<li class="dropdown"> <a class="" href="">Network Security</a>
-<ul class="dropdown-menu">
-<li> <a href="nse4_fgt_ad_dumps.htm">NSE4_FGT_AD-7.6</a> </li>
-<li> <a href="fcp_fmg_ad_dumps.htm">FCP_FMG_AD-7.6</a> </li>
-<li> <a href="fcp_fct_ad_dumps.htm">FCP_FCT_AD-7.4</a> </li>
-<li> <a href="fcp_fwf_ad_dumps.htm">FCP_FWF_AD-7.4</a> </li>
-<li> <a href="nse5_fnc_ad_dumps.htm">NSE5_FNC_AD-7.6</a> </li>
-<li> <a href="nse5_fsw_ad_dumps.htm">NSE5_FSW_AD-7.6</a> </li>
-<li> <a href="nse5_sse_ad_dumps.htm">NSE5_SSE_AD-7.6</a> </li>
-</ul>
-</li>
-<li class="dropdown"> <a class="" href="">Security Operations</a>
-<ul class="dropdown-menu">
-<li> <a href="fcp_faz_an_dumps.htm">FCP_FAZ_AN-7.6</a> </li>
-<li> <a href="fcp_fsa_ad_dumps.htm">FCP_FSA_AD-5.0</a> </li>
-</ul>
-</li>
-<li class="dropdown"> <a class="" href="">Public Cloud Security</a>
-<ul class="dropdown-menu">
-<li> <a href="fcp_gcs_ad_dumps.htm">FCP_GCS_AD-7.6</a> </li>
-<li> <a href="nse5_fwb_ad_dumps.htm">NSE5_FWB_AD-8.0</a> </li>
-<li> <a href="fcp_fml_ad_dumps.htm">FCP_FML_AD-7.4</a> </li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="dropdown"> <a class="" href="">Fortinet Certified Solution Specialist</a>
-<ul class="dropdown-menu">
-<li> <a href="fcss_efw_ad_dumps.htm">FCSS_EFW_AD-7.6</a> </li>
-<li> <a href="fcss_nst_se_dumps.htm">FCSS_NST_SE-7.6</a> </li>
-<li> <a href="nse6_edr_ad_dumps.htm">NSE6_EDR_AD-7.0</a> </li>
-<li> <a href="nse6_fsm_an_dumps.htm">NSE6_FSM_AN-7.4</a> </li>
-<li> <a href="nse6_fsr_dumps.htm">NSE6_FSR-7.3</a> </li>
-<li> <a href="nse6_ots_ar_dumps.htm">NSE6_OTS_AR-7.6</a> </li>
-<li> <a href="nse6_sdw_ad_dumps.htm">NSE6_SDW_AD-7.6</a> </li>
-<li> <a href="nse7_cds_ar_dumps.htm">NSE7_CDS_AR-7.6</a> </li>
-<li> <a href="nse7_soc_ar_dumps.htm">NSE7_SOC_AR-7.6</a> </li>
-</ul>
-</li>
-<li class="dropdown"> <a class="" href="">Fortinet Certified Expert</a>
-<ul class="dropdown-menu">
-<li> <a href="NSE8_dumps.htm">NSE8_813 — FCX (NSE8) Written Exam</a> </li>
-<li> <a href="fortinet-nse8-Lab.htm">FCX (NSE8) Practical Exam</a> </li>
-</ul>
-</li>
-<li> <a href="/fortinet-demo.php">Demo</a> </li>
-</ul>
-</li>
+									<li class="dropdown"> <a href="#">Fortinet <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+										<ul class="dropdown-menu">
+											<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Fortinet Certified Professional<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+												<ul class="dropdown-menu menu_mrg bounce">
+													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Network Security <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+														<ul class="dropdown-menu menu_mrg">
+															<li> <a href="nse6_fnc-7-2.htm">NSE6_FNC</a> </li>
+															<li> <a href="">NSE6_FSW</a> </li>
+															<li> <a href="nse6_fwf-6-4.htm">NSE6_FWF</a> </li>
+															<li> <a href="fcp_fct_ad-7-2.htm">FCP_FCT_AD</a> </li>
+															<li> <a href="fcp_fac_ad-6-5.htm">FCP_FAC_AD</a> </li>
+															<li> <a href="fcp_fgt_ad-7-4.htm">FCP_FGT_AD</a> </li>
+															<li> <a href="fcp_fmg_ad-7-4.htm">FCP_FMG_AD</a> </li>
+															<li> <a href="fcp_faz_ad-7-4.htm">FCP_FAZ_AD</a> </li>
+															<li> <a href="fcp_fwf_ad-7-4.htm">FCP_FWF_AD</a> </li>
+														</ul>
+													</li>
+													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Security Operations <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+														<ul class="dropdown-menu">
+															<li> <a href="nse5_edr-5-0.htm">NSE5_EDR</a> </li>
+															<li> <a href="nse5_fsm-6-3.htm">NSE5_FSM</a> </li>
+															<li> <a href="nse6_fsr-7-3.htm">NSE6_FSR</a> </li>
+															<li> <a href="fcp_faz_an-7-4.htm">FCP_FAZ_AN</a> </li>
+														</ul>
+													</li>
+													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Public Cloud Security <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+														<ul class="dropdown-menu">
+															<li> <a href="nse6_wcs-7-0.htm">NSE6_WCS</a> </li>
+															<li> <a href="nse6_zcs-7-0.htm">NSE6_ZCS</a> </li>
+															<!--<li> <a  href="">FCP_WCS_AD-7.4</a> </li>-->
+															<li> <a href="fcp_fwb_ad-7-4.htm">FCP_FWB_AD</a> </li>
+															<li> <a href="fcp_zcs_ad-7-4.htm">FCP_ZCS_AD</a> </li>
+															<li> <a href="fcp_fml_ad-7-4.htm">FCP_FML_AD</a> </li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+											<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Fortinet Certified Solution Specialist<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+												<ul class="dropdown-menu menu_mrg bounce">
+													<li> <a href="nse7_efw-7-2.htm">NSE7_EFW</a> </li>
+													<li> <a href="nse7_led-7-0.htm">NSE7_LED</a> </li>
+													<li> <a href="nse7_ots-7-2.htm">NSE7_OTS</a> </li>
+													<li> <a href="nse7_pbc-7-2.htm">NSE7_PBC</a> </li>
+													<li> <a href="nse7_sdw-7-2.htm">NSE7_SDW</a> </li>
+													<li> <a href="nse7_zta-7-2.htm">NSE7_ZTA</a> </li>
+													<li> <a href="fcss_ada_ar-6-7.htm">FCSS_ADA_AR</a> </li>
+													<li> <a href="fcss_sase_ad-23.htm">FCSS_SASE_AD</a> </li>
+													<!--<li> <a  href="">FCSS_SOC_AN-7.4</a> </li>-->
+													<!--<li> <a  href="">FCSS_NST_SE-7.4</a> </li>-->
+													<!--<li> <a  href="">FCSS_SASE_AD-24</a> </li>-->
+													<!--<li> <a  href="">FCSS_EFW_AD-7.4</a> </li>-->
+												</ul>
+		</li>
+											
+											<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">Fortinet Certified Expert<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+												<ul class="dropdown-menu menu_mrg bounce">
+													<li> <a href="NSE8.htm">FCX (NSE8) Written Exam</a> </li>
+													<li> <a href="fortinet-nse8-Lab.htm">FCX (NSE8) Practical Exam</a> </li>
+												</ul>
+											</li>
+											<li> <a href="/fortinet-demo.php">Demo</a> </li>
+										</ul>
+									</li>
 
 									<li> <a data-toggle="dropdown" class="dropdown-toggle" href="/exam-Microsoft.htm">Microsoft <img src="images/new-image/caret_icons.svg" alt="caret" /></span></a>
 										<ul class="dropdown-menu">
