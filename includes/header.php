@@ -1123,7 +1123,7 @@ a:focus {
 															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'services_provioder')">CCNP</a></li>
 
 															<li><a href="#" class="tablinks" onmouseover="openCity(event, 'security')">CCIE/CCDE</a></li>
-															<li><a href="http://ccierack.rentals">1Rack Rental</a></li>
+															<li><a href="http://ccierack.rentals"> Rack Rental</a></li>
 
 															<li><a href="workbooks-policy.php">Workbook Policy</a></li>
 
