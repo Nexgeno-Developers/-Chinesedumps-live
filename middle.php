@@ -377,7 +377,7 @@
           </div>
           
            <div class="chooose_box_content">
-                <h5 class="green_clr">Latest Dumps with Real Exam Question Coverage</h5>
+                <h5 class="green_clr">Latest Dumps with Real Exam Question Coverage1</h5>
                 <p class="green_clr">We provide the latest exam dumps based on real exam scenarios, with frequent updates to match current exam patterns, so you always study the most accurate and relevant questions.</p>
           </div>
        </div>
