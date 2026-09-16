@@ -1105,6 +1105,7 @@ require_once __DIR__ . '/config/load_secrets.php';
    .icon-bar a{display:block;text-align:center;padding:10px 10px;transition:all 0.3s ease;color:white;font-size:20px}.icon-bar a:hover{background-color:#000}.facebook{background:#3B5998;color:white}.twitter{background:#55ACEE;color:white}.google{background:#dd4b39;color:white}.linkedin{background:#007bb5;color:white}.youtube{background:#b00;color:white}.envelope{background:#ccc;color:white}.whatsapp{background:#4fca4f;color:white}.facebook-messenger{background:#00b4ff;color:white}
 </style>
 <script type="text/javascript" src="js/custom-scripts.js"></script>
+<script type="text/javascript" src="js/cd-marketing.js?v=1.0.0"></script>
 <!--<script src='https://kit.fontawesome.com/a076d05399.js'></script>-->
 <script type="text/javascript" src="js/jquery.sidr.min.js"></script>
  <!---<script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -1380,7 +1381,7 @@ $(document).ready(function(){
 */
 </script>
 
-<?php $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST']; ?>
+<?php $base_url = defined('BASE_URL') ? rtrim(BASE_URL, '/') : ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST']); ?>
 <!-- Toastr CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 

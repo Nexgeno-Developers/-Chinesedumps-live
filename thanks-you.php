@@ -114,6 +114,12 @@ if (isset($_POST['home_form'])) {
             $txt .= "<strong>Course:</strong> " . $courses . "<br><br>";
         }
         $txt .= "<strong>Message</strong> " . $message . "<br><br>";
+        if (function_exists('utm_seo_email_html')) {
+            $txt .= utm_seo_email_html();
+        }
+        if (function_exists('utm_seo_save')) {
+            utm_seo_save('enquiry', '', $email);
+        }
         $headers = "From: " . $email . "\r\n";
         $headers .= "Content-Type: text/html; charset=UTF-8";
 
@@ -135,7 +141,8 @@ if (isset($_POST['home_form'])) {
         
         // normal POST → redirect
         if ($mail_send) {
-            header('Location: ' . $base_url . '/thankyou-page.php');
+            $thankYouUrl = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/thankyou-page.php' : 'thankyou-page.php';
+            header('Location: ' . $thankYouUrl);
             exit;
         } else {
             $_SESSION['errors'] = array('Failed to send email. Please try again later.');

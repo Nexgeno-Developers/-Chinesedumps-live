@@ -2608,6 +2608,11 @@ function examRequest_email($exmreq)
 
 	{
 
+		$utmFile = dirname(__FILE__) . '/../../marketing/utm_seo.php';
+		if (is_file($utmFile)) {
+			require_once $utmFile;
+		}
+
 		
 
 		$chked = "select * from exam_request where examr_code='".$exmreq[1]."' and examr_email='".$exmreq[2]."'";
@@ -2617,6 +2622,12 @@ function examRequest_email($exmreq)
 			if(mysql_num_rows($cked_query) != "0")
 
 			{
+
+				$rowExist = mysql_fetch_array($cked_query);
+				$existId = (isset($rowExist['examr_id']) ? $rowExist['examr_id'] : '');
+				if (function_exists('utm_seo_track_exam_request')) {
+					utm_seo_track_exam_request($existId, $exmreq[2]);
+				}
 
 				header('Location: ' . BASE_URL . $exmreq[1].'-examRequest.html');
 
@@ -2634,7 +2645,9 @@ function examRequest_email($exmreq)
 
 					{
 
-						
+						if (function_exists('utm_seo_track_exam_request')) {
+							utm_seo_track_exam_request(mysql_insert_id(), $exmreq[2]);
+						}
 
 						header('Location: ' . BASE_URL . $exmreq[1].'-examRequest.html');
 

@@ -3,6 +3,7 @@
 // Autoload (Composer) + secrets (secret(), secret_js())
 require_once __DIR__ . '/includes/config/load_secrets.php';
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/includes/marketing/utm_seo.php';
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
@@ -70,6 +71,9 @@ require_once __DIR__ . '/vendor/autoload.php';
         // foreach ($adminEmails as $admin) {
         //     sendEmail($admin, "chinesedumps.com - New User Registration", $message, $headers);
         // }
+            if (function_exists('utm_seo_email_html')) {
+                $message .= utm_seo_email_html();
+            }
             sendEmail('sales@chinesedumps.com', "chinesedumps.com - New User Registration", $message, $headers);
 	}
 

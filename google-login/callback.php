@@ -75,6 +75,9 @@ if (isset($_GET['code'])) {
             $spram[3]  = $user_pass;
             $spram[5]  = $email;
             $spram[13] = isset($phone) ? $phone : '';
+            if (function_exists('utm_seo_save')) {
+                utm_seo_save('register', $user_id, $email);
+            }
             signupemail($spram, $from_email);
         }
 

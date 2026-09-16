@@ -157,6 +157,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<script src="js/new-jquery.min.js"></script>
 	<script src="js/new-bootstrap.min.js"></script>
+	<script src="js/cd-marketing.js?v=1.0.0"></script>
 	<script type="text/javascript" src="jquery.simplyscroll.min.js" defer></script>
 
 	<link rel="preload" href="jquery.simplyscroll.css" as="style" onload="this.onload=null;this.rel='stylesheet'">

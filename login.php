@@ -319,6 +319,10 @@ if(empty($arrValid))
 
 		$sparm[3]	=	$_POST['passwords'];
 
+		if (function_exists('utm_seo_save')) {
+			utm_seo_save('register', $lastsignupd, $sparm[5]);
+		}
+
 		signupemail($sparm,$from_email);
 
 		mysql_query("UPDATE temp_order set UserID='".$lastsignupd."' where CartID='".session_id()."'");
