@@ -85,9 +85,18 @@ $spram[13]			=	"";
 
 		if(empty($strError))
 		{
-			$objUser->addUser($spram);
+			$newUserId = $objUser->addUser($spram);
 			$spram[3] = $spram[9];
 			signupemail($spram, $fromEmail);
+			notifyFormLead(array(
+				'form_type' => 'registration',
+				'name' => trim($spram[1].' '.$spram[2]),
+				'email' => $spram[5],
+				'phone' => $spram[13],
+				'source_id' => (int)$newUserId,
+				'source_page' => 'cms2/adduser.php',
+				'skip_email' => true
+			));
 			$strError = "User has been added successfully";
 			$formNoticeClass = 'user-form-notice is-success';
 			$spram[1] = '';

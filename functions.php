@@ -73,6 +73,156 @@ require_once __DIR__ . '/vendor/autoload.php';
             sendEmail('sales@chinesedumps.com', "chinesedumps.com - New User Registration", $message, $headers);
 	}
 
+	function formLeadsEnsureTable()
+	{
+		static $ready = false;
+		if ($ready) {
+			return true;
+		}
+		$sql = "CREATE TABLE IF NOT EXISTS `tbl_form_leads` (
+			`id` int(11) NOT NULL AUTO_INCREMENT,
+			`form_type` varchar(32) NOT NULL,
+			`name` varchar(255) NOT NULL DEFAULT '',
+			`email` varchar(255) NOT NULL DEFAULT '',
+			`phone` varchar(64) NOT NULL DEFAULT '',
+			`exam_code` varchar(128) NOT NULL DEFAULT '',
+			`message` text,
+			`source_page` varchar(255) NOT NULL DEFAULT '',
+			`source_id` int(11) NOT NULL DEFAULT '0',
+			`email_sent` tinyint(1) NOT NULL DEFAULT '0',
+			`ip` varchar(64) NOT NULL DEFAULT '',
+			`created_at` datetime NOT NULL,
+			PRIMARY KEY (`id`),
+			KEY `form_type` (`form_type`),
+			KEY `email` (`email`),
+			KEY `created_at` (`created_at`)
+		)";
+		$ok = mysql_query($sql);
+		$ready = ($ok) ? true : false;
+		return $ready;
+	}
+
+	function formLeadsEscape($value)
+	{
+		if (function_exists('mysql_real_escape_string')) {
+			return mysql_real_escape_string((string)$value);
+		}
+		return addslashes((string)$value);
+	}
+
+	function formLeadsSalesEmail($payload)
+	{
+		$type = isset($payload['form_type']) ? $payload['form_type'] : '';
+		$name = isset($payload['name']) ? $payload['name'] : '';
+		$email = isset($payload['email']) ? $payload['email'] : '';
+		$phone = isset($payload['phone']) ? $payload['phone'] : '';
+		$examCode = isset($payload['exam_code']) ? $payload['exam_code'] : '';
+		$message = isset($payload['message']) ? $payload['message'] : '';
+		$course = isset($payload['course']) ? $payload['course'] : '';
+		$pageType = isset($payload['page_type']) ? $payload['page_type'] : 'home';
+		$sourcePage = isset($payload['source_page']) ? $payload['source_page'] : '';
+
+		$labels = array(
+			'enquiry' => 'Enquiry',
+			'registration' => 'Registration',
+			'exam_request' => 'Exam Request'
+		);
+		$label = isset($labels[$type]) ? $labels[$type] : $type;
+
+		if ($type == 'enquiry') {
+			$subject = 'Chinese Dumps ' . $pageType . ' page enquiry';
+		} else {
+			$subject = 'Chinese Dumps ' . $label . ' form submitted';
+		}
+
+		$txt = '<strong>Form:</strong> ' . htmlspecialchars($label) . '<br><br>';
+		if ($name != '') {
+			$txt .= '<strong>Name:</strong> ' . htmlspecialchars($name) . '<br><br>';
+		}
+		$txt .= '<strong>Email:</strong> ' . htmlspecialchars($email) . '<br><br>';
+		if ($phone != '') {
+			$txt .= '<strong>Tel:</strong> ' . htmlspecialchars($phone) . '<br><br>';
+		}
+		if ($examCode != '') {
+			$txt .= '<strong>Exam Code:</strong> ' . htmlspecialchars($examCode) . '<br><br>';
+		}
+		if ($course != '') {
+			$txt .= '<strong>Course:</strong> ' . htmlspecialchars($course) . '<br><br>';
+		}
+		if ($message != '') {
+			$txt .= '<strong>Message:</strong> ' . htmlspecialchars($message) . '<br><br>';
+		}
+		if ($sourcePage != '') {
+			$txt .= '<strong>Source:</strong> ' . htmlspecialchars($sourcePage) . '<br><br>';
+		}
+
+		$headers = 'From: ' . ($email != '' ? $email : 'sales@chinesedumps.com') . "\r\n";
+		$headers .= 'Content-Type: text/html; charset=UTF-8';
+
+		return sendEmail('sales@chinesedumps.com', $subject, $txt, $headers);
+	}
+
+	function notifyFormLead($payload)
+	{
+		$allowed = array('enquiry', 'registration', 'exam_request');
+		$type = isset($payload['form_type']) ? $payload['form_type'] : '';
+		if (!in_array($type, $allowed)) {
+			return false;
+		}
+		if (!formLeadsEnsureTable()) {
+			return false;
+		}
+
+		$name = isset($payload['name']) ? $payload['name'] : '';
+		$email = isset($payload['email']) ? $payload['email'] : '';
+		$phone = isset($payload['phone']) ? $payload['phone'] : '';
+		$examCode = isset($payload['exam_code']) ? $payload['exam_code'] : '';
+		$message = isset($payload['message']) ? $payload['message'] : '';
+		$sourcePage = isset($payload['source_page']) ? $payload['source_page'] : '';
+		if ($sourcePage == '' && isset($_SERVER['HTTP_REFERER'])) {
+			$sourcePage = $_SERVER['HTTP_REFERER'];
+		}
+		$sourceId = isset($payload['source_id']) ? (int)$payload['source_id'] : 0;
+		$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+		$skipEmail = !empty($payload['skip_email']);
+		$createdAt = date('Y-m-d H:i:s');
+
+		$sql = "INSERT INTO tbl_form_leads
+			(form_type, name, email, phone, exam_code, message, source_page, source_id, email_sent, ip, created_at)
+			VALUES (
+				'".formLeadsEscape($type)."',
+				'".formLeadsEscape($name)."',
+				'".formLeadsEscape($email)."',
+				'".formLeadsEscape($phone)."',
+				'".formLeadsEscape($examCode)."',
+				'".formLeadsEscape($message)."',
+				'".formLeadsEscape($sourcePage)."',
+				'".$sourceId."',
+				'0',
+				'".formLeadsEscape($ip)."',
+				'".formLeadsEscape($createdAt)."'
+			)";
+		if (!mysql_query($sql)) {
+			return false;
+		}
+
+		$leadId = mysql_insert_id();
+		$emailSent = 0;
+		if ($skipEmail) {
+			$emailSent = 1;
+		} else {
+			$sent = formLeadsSalesEmail($payload);
+			if ($sent) {
+				$emailSent = 1;
+			}
+		}
+		if ($emailSent == 1 && $leadId) {
+			mysql_query("UPDATE tbl_form_leads SET email_sent=1 WHERE id='".(int)$leadId."'");
+		}
+
+		return array('id' => $leadId, 'email_sent' => $emailSent);
+	}
+
 
 
 	

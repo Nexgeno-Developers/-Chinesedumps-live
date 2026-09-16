@@ -824,7 +824,13 @@ function deleteExamRequestcode($spram)
 
 				mysql_query($strSql);
 
-				}	  
+				}
+
+function deleteFormLead($spram)
+				{
+				$strSql='DELETE FROM tbl_form_leads WHERE id="'.(int)$spram.'"';
+				mysql_query($strSql);
+				}
 
 function deleteDemoDownload($spram)
 
@@ -1234,6 +1240,41 @@ function getUserexamRequest($spram)
 
 			return $showTr.'<input name="counter" type="hidden" value="'.$counter.'" />';
 
+				}
+
+function getFormLeads($spram)
+				{
+					$showTr 	=	"";
+					$counter	=	'1';
+					$typeLabels = array(
+						'enquiry' => 'Enquiry',
+						'registration' => 'Registration',
+						'exam_request' => 'Exam Request'
+					);
+					while($rows=mysql_fetch_array($spram))
+					{
+						if (($counter % 2)!=0 )
+							$intColor = "";
+						else
+							$intColor = "bgcolor='#f3eeee'";
+						$del = '<a href="leads.php?action=up&nid='.(int)$rows['id'].'" onclick= "return delete_pro();">Delete</a>';
+						$typeLabel = isset($typeLabels[$rows['form_type']]) ? $typeLabels[$rows['form_type']] : $rows['form_type'];
+						$emailSent = ((int)$rows['email_sent'] == 1) ? 'Yes' : 'No';
+						$showTr		.='<tr '.$intColor.'>
+									<td class=item align="center" valign="middle">
+	<input type="checkbox" name="chkbox'.$counter.'" id="chkbox'.$counter.'" value="'.(int)$rows['id'].'" /></td>
+    <td class=item align="center">'.htmlspecialchars($typeLabel).'</td>
+    <td class=item align="center">'.htmlspecialchars($rows['name']).'</td>
+    <td class=item align="center">'.htmlspecialchars($rows['email']).'</td>
+    <td class=item align="center">'.htmlspecialchars($rows['phone']).'</td>
+    <td class=item align="center">'.htmlspecialchars($rows['exam_code']).'</td>
+    <td class=item align="center">'.$emailSent.'</td>
+    <td class=item align="center">'.htmlspecialchars($rows['created_at']).'</td>
+	 <td align="center" class=item nowrap=nowrap>'.$del.' </td>
+  </tr>';
+						$counter++;
+					}
+			return $showTr.'<input name="counter" type="hidden" value="'.$counter.'" />';
 				}
 
 // --------------------------- Demo Download------------------------------
@@ -2633,8 +2674,22 @@ function examRequest_email($exmreq)
 				if(mysql_query($query_demo))
 
 					{
-
-						
+						$examRequestId = mysql_insert_id();
+						if (!function_exists('notifyFormLead')) {
+							$functionsFile = dirname(__FILE__) . '/../../../functions.php';
+							if (file_exists($functionsFile)) {
+								include_once $functionsFile;
+							}
+						}
+						if (function_exists('notifyFormLead')) {
+							notifyFormLead(array(
+								'form_type' => 'exam_request',
+								'email' => $exmreq[2],
+								'exam_code' => $exmreq[1],
+								'source_id' => (int)$examRequestId,
+								'source_page' => isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : 'exam_request'
+							));
+						}
 
 						header('Location: ' . BASE_URL . $exmreq[1].'-examRequest.html');
 

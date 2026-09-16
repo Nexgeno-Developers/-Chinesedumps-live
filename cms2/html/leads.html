@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><?=$websitetitle?></title>
+<link href="new.css" rel="stylesheet" type="text/css" />
+<link href="style1.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+<script language="JavaScript" src="../includes/js/calendar.js"></script>
+<script type="text/javascript" src="Editor3/scripts/innovaeditor.js"></script>
+<script language="javascript" type="text/javascript">
+function Cofirm()
+{
+var mes=window.confirm ("Are You Sure To Delete the Selected Item");
+if (mes==true)
+{
+return true;
+}
+else
+{
+return false;
+}
+}
+</script>
+<script language="JavaScript" src="../includes/js/functions.js"></script></head>
+</head>
+<body>
+
+<div class="topbar">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td valign="top"><img src="images/admin_icon.png" border="0" alt="Admin Header" /></td>
+<td valign="top" align="right">
+<?php if(isset($_SESSION['strAdmin'])): ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<span style="color: #ffffff; margin-right: 15px; font-weight: 500;">Welcome, <?php echo htmlspecialchars($_SESSION['strAdmin']); ?></span>
+		<a href="logout.php" class="btn-logout"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Logout</a>
+	</div>
+<?php else: ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<a href="index.php" style="color: #ffffff; text-decoration: none; padding: 8px 16px; background-color: rgba(255, 255, 255, 0.2); border-radius: 4px; font-weight: 500;">Login</a>
+	</div>
+<?php endif; ?>
+</td>
+</tr>
+</table></div>
+
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+
+<td width="610" valign="top" class="rightside"><h2>All Form Leads</h2>
+
+Welcome to your <?=$websitename?> Website control panel. Enquiry, registration, and exam request submissions are stored here after save, and a sales email is sent on submit.
+
+<br />
+<form id="form3" name="form3" method="post" action="leads.php" style="margin:0px;">
+      <input name="form_leads" type="hidden" id="form_leads" value="formLeads" /><input type="submit" name="Export" value="Export as Excel" />
+</form>
+<form id="frm1" name="frm1" method="post" action="" enctype="multipart/form-data">
+<br /><table cellpadding='0' cellspacing='0' class='list' width='87%'>
+ <tr>
+    <td height="19" align="right" colspan="9">&nbsp;</td>
+	</tr>
+	<tr>
+	<td colspan="8"  align="center">Search :
+	<input type="text" name="textSearch" value="<? if(isset($_POST['textSearch'])){ echo htmlspecialchars($_POST['textSearch']); }?>" style="width:160px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select name="criteria">
+        <option value="email" <? if(isset($_POST['criteria']) && $_POST['criteria']=='email'){ echo "selected='selected'"; }?>>Email Address</option>
+        <option value="name" <? if(isset($_POST['criteria']) && $_POST['criteria']=='name'){ echo "selected='selected'"; }?>>Name</option>
+        <option value="phone" <? if(isset($_POST['criteria']) && $_POST['criteria']=='phone'){ echo "selected='selected'"; }?>>Phone</option>
+        <option value="exam_code" <? if(isset($_POST['criteria']) && $_POST['criteria']=='exam_code'){ echo "selected='selected'"; }?>>Exam Code</option>
+        <option value="form_type" <? if(isset($_POST['criteria']) && $_POST['criteria']=='form_type'){ echo "selected='selected'"; }?>>Form Type</option>
+    </select>
+      &nbsp;&nbsp;&nbsp;<input type="submit" name="Search" value="Search" />
+	  </td><td align="right"></td>
+	  </tr>
+  <tr>
+    <td height="19" align="center" colspan="9">&nbsp;</td>
+	</tr>
+<tr>
+    <td height="19" align="center" colspan="9"><table width='87%' cellpadding='0' cellspacing='0' class='list'>
+        <tr>
+          <td width="136" align="center"  class='header'>&nbsp;</td>
+          <td class='header' width='150' align="center">Today</td>
+          <td width="127" class='header' align="center">Yesterday</td>
+          <td width="144" class='header' align="center">1 Week </td>
+          <td width="144" class='header' align="center">Last Month </td>
+          <td width="144" class='header' align="center">1 Year </td>
+        </tr>
+        <tr>
+          <td width="136" align="center" >Leads</td>
+          <td width='80' align="center"><a href="leads.php?getSearch=td"><?=$leads_today?></a></td>
+			<td width="127" align="center"><a href="leads.php?getSearch=yd"><?=$leads_yesterday?></a></td>
+			<td width="144" align="center"><a href="leads.php?getSearch=lw"><?=$leads_last_week?></a></td>
+			<td width="144" align="center"><a href="leads.php?getSearch=lm"><?=$leads_last_month?></a></td>
+			<td width="144" align="center"><a href="leads.php?getSearch=ly"><?=$leads_last_year?></a></td>
+        </tr>
+      </table></td>
+	</tr>
+<tr>
+    <td height="19" align="center" colspan="9">
+      <a href="leads.php">All</a> |
+      <a href="leads.php?form_type=enquiry">Enquiry (<?=$leads_enquiry?>)</a> |
+      <a href="leads.php?form_type=registration">Registration (<?=$leads_registration?>)</a> |
+      <a href="leads.php?form_type=exam_request">Exam Request (<?=$leads_exam?>)</a>
+    </td>
+	</tr>
+	<tr>
+    <td width='80' class='header' align="center">
+	<input name="chkbox_select_all" type="checkbox" id="chkbox_select_all"  onclick="checkAllOneOne(this);" value=""  /></td>
+    <td width="110" class='header' align="center"><a href="leads.php?ord=form_type&ty=ASC" style=" color:#FFFFFF;">Type</a></td>
+    <td width="110" class='header' align="center"><a href="leads.php?ord=name&ty=ASC" style=" color:#FFFFFF;">Name</a></td>
+    <td width="140" class='header' align="center"><a href="leads.php?ord=email&ty=ASC" style=" color:#FFFFFF;">Email</a></td>
+    <td width="110" class='header' align="center"><a href="leads.php?ord=phone&ty=ASC" style=" color:#FFFFFF;">Phone</a></td>
+    <td width="110" class='header' align="center"><a href="leads.php?ord=exam_code&ty=ASC" style=" color:#FFFFFF;">Exam Code</a></td>
+    <td width="90" class='header' align="center"><a href="leads.php?ord=email_sent&ty=ASC" style=" color:#FFFFFF;">Email Sent</a></td>
+    <td width="130" class='header' align="center"><a href="leads.php?ord=created_at&ty=DESC" style=" color:#FFFFFF;">Date</a></td>
+    <td width="80" align="center"  class='header'>Option</td>
+    </tr>
+
+  <?php echo $show ;?>
+</table>
+<table>
+<tr>
+<td valign="top" class="rightside"><div align="center"><strong>&nbsp;&nbsp;
+	  <?=$BackNaviLinks;?>
+	  &nbsp;&nbsp;
+	  <?=$NaviLinks;?>
+	  &nbsp;&nbsp;
+	  <?=$ForwardNaviLinks;?> </strong><br />
+                  Total Records Found &nbsp;
+		<?=$TotalRecs;?><br />
+                  Total Pages Found &nbsp;
+		<?=$TotalPages;?><br /><br />
+		</div>
+	 </td>
+		<tr>
+		<td valign="top" class="rightside"><div align="center"><?=$emptyError?></div></td>
+		</tr>
+</table></form></td>
+</table>
+<? include("footer.php")?>
+</body>
+
+</html>

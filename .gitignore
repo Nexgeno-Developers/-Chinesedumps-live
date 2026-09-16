@@ -8,6 +8,7 @@
 *.sql
 !cms2/sql/
 !cms2/sql/rbac_admin_role.sql
+!cms2/sql/tbl_form_leads.sql
 /includes/config/secrets.local.php
 /oauth/callback/*.txt
 /oauth/callback/.zoho_refresh_token

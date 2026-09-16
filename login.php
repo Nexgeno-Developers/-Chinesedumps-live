@@ -320,6 +320,15 @@ if(empty($arrValid))
 		$sparm[3]	=	$_POST['passwords'];
 
 		signupemail($sparm,$from_email);
+		notifyFormLead(array(
+			'form_type' => 'registration',
+			'name' => trim($sparm[1].' '.(isset($sparm[2]) ? $sparm[2] : '')),
+			'email' => $sparm[5],
+			'phone' => isset($sparm[13]) ? $sparm[13] : '',
+			'source_id' => (int)$lastsignupd,
+			'source_page' => 'login.php',
+			'skip_email' => true
+		));
 
 		mysql_query("UPDATE temp_order set UserID='".$lastsignupd."' where CartID='".session_id()."'");
 

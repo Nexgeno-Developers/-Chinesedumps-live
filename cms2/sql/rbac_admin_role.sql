@@ -43,7 +43,8 @@ UNION ALL SELECT 'Coupons Module' FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM tblm
 UNION ALL SELECT 'Courses Module' FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM tblmodules WHERE Name = 'Courses Module')
 UNION ALL SELECT 'Global Content Module' FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM tblmodules WHERE Name = 'Global Content Module')
 UNION ALL SELECT 'Users Module' FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM tblmodules WHERE Name = 'Users Module')
-UNION ALL SELECT 'Admin Users Module' FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM tblmodules WHERE Name = 'Admin Users Module');
+UNION ALL SELECT 'Admin Users Module' FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM tblmodules WHERE Name = 'Admin Users Module')
+UNION ALL SELECT 'Form Leads Module' FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM tblmodules WHERE Name = 'Form Leads Module');
 
 -- Ensure every admin has a row for every active module before preserving old permissions.
 INSERT INTO `tblpermissions` (`AdminID`, `ModuleID`, `Read`, `Write`, `Edit`, `Delete`)
@@ -130,7 +131,7 @@ WHERE nm.Name IN (
   'Configuration','Summary','Change Password','Website Copyright','Change Email Address','Report',
   'Banners Module','Exam Results Module','Vendors Module','Certifications Module','Exams Module',
   'Demo Exams Module','Orders Module','Coupons Module','Courses Module','Global Content Module',
-  'Users Module','Admin Users Module'
+  'Users Module','Admin Users Module','Form Leads Module'
 );
 
 -- Super admin always has full access to active permission modules. Logout does not need a permission row.
@@ -147,7 +148,7 @@ WHERE m.Name NOT IN (
   'Configuration','Summary','Change Password','Website Copyright','Change Email Address','Report',
   'Banners Module','Exam Results Module','Vendors Module','Certifications Module','Exams Module',
   'Demo Exams Module','Orders Module','Coupons Module','Courses Module','Global Content Module',
-  'Users Module','Admin Users Module'
+  'Users Module','Admin Users Module','Form Leads Module'
 );
 
 DELETE FROM tblmodules
@@ -155,5 +156,5 @@ WHERE Name NOT IN (
   'Configuration','Summary','Change Password','Website Copyright','Change Email Address','Report',
   'Banners Module','Exam Results Module','Vendors Module','Certifications Module','Exams Module',
   'Demo Exams Module','Orders Module','Coupons Module','Courses Module','Global Content Module',
-  'Users Module','Admin Users Module'
+  'Users Module','Admin Users Module','Form Leads Module'
 );

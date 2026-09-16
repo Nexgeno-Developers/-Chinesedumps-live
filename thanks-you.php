@@ -1,5 +1,6 @@
-<? include("functions.php"); include ('includes/common/classes/classEmailvalidate.php');  
+<? include("functions.php"); include ('includes/config/classDbConnection.php'); include ('includes/common/classes/classEmailvalidate.php');
 
+$objDBcon = new classDbConnection;
 $emailValidator = new classEmailvalidate();
 ?>
 
@@ -104,21 +105,22 @@ if (isset($_POST['home_form'])) {
     
     if (empty($errors) && count($errors) == 0) {
         
-        // $to = "webdeveloper@nexgeno.in";
-        $to = "sales@chinesedumps.com";
-        $subject = 'Chinese Dumps ' . $type . ' page enquiry';
-        $txt = "<strong>Name:</strong> " . $name . "<br><br>";
-        $txt .= "<strong>Email:</strong> " . $email . "<br><br>";
-        $txt .= "<strong>Tel:</strong> +" . $cCode .'-'. $tel . "<br><br>";
-        if (!empty($courses)) {
-            $txt .= "<strong>Course:</strong> " . $courses . "<br><br>";
+        $pageType = isset($_POST['type']) ? sanitizeInput($_POST['type']) : 'home';
+        $phone = '+' . $cCode . '-' . $tel;
+        $leadResult = notifyFormLead(array(
+            'form_type' => 'enquiry',
+            'name' => $name,
+            'email' => $email,
+            'phone' => $phone,
+            'message' => $message,
+            'course' => $courses,
+            'page_type' => $pageType,
+            'source_page' => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'enquiry'
+        ));
+        $mail_send = is_array($leadResult) && !empty($leadResult['email_sent']);
+        if (!$mail_send && is_array($leadResult) && !empty($leadResult['id'])) {
+            $mail_send = true;
         }
-        $txt .= "<strong>Message</strong> " . $message . "<br><br>";
-        $headers = "From: " . $email . "\r\n";
-        $headers .= "Content-Type: text/html; charset=UTF-8";
-
-        // $mail_send = false; //to test mail
-        $mail_send = sendEmail($to, $subject, $txt, $headers);
         
         // AJAX? detect by header
         $xhr = '';
@@ -128,7 +130,7 @@ if (isset($_POST['home_form'])) {
         if ($xhr === 'xmlhttprequest') {
             header('Content-Type: application/json');
             echo json_encode([
-              'success' => true
+              'success' => is_array($leadResult) && !empty($leadResult['id'])
             ]);
             exit;
         }

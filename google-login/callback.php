@@ -76,6 +76,15 @@ if (isset($_GET['code'])) {
             $spram[5]  = $email;
             $spram[13] = isset($phone) ? $phone : '';
             signupemail($spram, $from_email);
+            notifyFormLead(array(
+                'form_type' => 'registration',
+                'name' => trim($user_fname.' '.$lname),
+                'email' => $email,
+                'phone' => $user_phone,
+                'source_id' => (int)$user_id,
+                'source_page' => 'google-login/callback.php',
+                'skip_email' => true
+            ));
         }
 
         // 3) set the sessions

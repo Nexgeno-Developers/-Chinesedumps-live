@@ -18,6 +18,8 @@ include("includes/common/classes/classcart.php");
 
 include("includes/common/classes/classUser.php");
 
+include("functions.php");
+
 include("includes/shoppingcart.php");
 
 

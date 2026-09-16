@@ -59,7 +59,8 @@ function cms2_feature_modules()
 		'Courses Module',
 		'Global Content Module',
 		'Users Module',
-		'Admin Users Module'
+		'Admin Users Module',
+		'Form Leads Module'
 	);
 }
 
@@ -110,7 +111,9 @@ function cms2_module_alias_map()
 		'Staff' => 'Admin Users Module',
 		'staff' => 'Admin Users Module',
 		'Admin User Management' => 'Admin Users Module',
-		'Add Admin User' => 'Admin Users Module'
+		'Add Admin User' => 'Admin Users Module',
+		'All Form Leads' => 'Form Leads Module',
+		'Form Leads' => 'Form Leads Module'
 	);
 }
 
@@ -180,6 +183,9 @@ function cms2_admin_panel_sections()
 			cms2_admin_menu_item('Certification Global Content', 'vendorgloble.php?pid=2', 'Global Content Module', 'edit', 'images/News-Edit.gif'),
 			cms2_admin_menu_item('Exam Global Content', 'vendorgloble.php?pid=3', 'Global Content Module', 'edit', 'images/News-Edit.gif')
 		)),
+		array('Form Leads', array(
+			cms2_admin_menu_item('All Form Leads', 'leads.php', 'Form Leads Module', 'read', 'images/News-Edit.gif')
+		)),
 		array('Users Module', array(
 			cms2_admin_menu_item('Add User', 'adduser.php', 'Users Module', 'write', 'images/News-Add.gif'),
 			cms2_admin_menu_item('User Management', 'manageuser.php', 'Users Module', 'read', 'images/News-Edit.gif')
@@ -229,7 +235,8 @@ function cms2_role_permissions()
 			'coupons module' => array('read', 'write', 'edit', 'delete'),
 			'courses module' => array('read', 'write', 'edit', 'delete'),
 			'global content module' => array('read', 'edit'),
-			'users module' => array('read', 'write', 'edit', 'delete')
+			'users module' => array('read', 'write', 'edit', 'delete'),
+			'form leads module' => array('read', 'delete')
 		),
 		'editor' => array(
 			'summary' => array('read'),
@@ -248,7 +255,8 @@ function cms2_role_permissions()
 			'report' => array('read'),
 			'demo exams module' => array('read'),
 			'orders module' => array('read', 'edit'),
-			'users module' => array('read', 'write', 'edit')
+			'users module' => array('read', 'write', 'edit'),
+			'form leads module' => array('read')
 		)
 	);
 }
@@ -324,7 +332,8 @@ function cms2_old_module_groups()
 		'Website Copyright' => array('Website Copyright', 'Global Module'),
 		'Change Email Address' => array('Change Email Address', 'Global Module'),
 		'Report' => array('Reports', 'Stats Module'),
-		'Admin Users Module' => array('Admin User Management', 'Add Admin User')
+		'Admin Users Module' => array('Admin User Management', 'Add Admin User'),
+		'Form Leads Module' => array('All Form Leads')
 	);
 }
 
@@ -670,7 +679,8 @@ function cms2_page_permissions()
 		'changemodule.php' => array('Configuration', 'edit'),
 		'processsave.php' => array('Orders Module', 'edit'),
 		'processsavere.php' => array('Orders Module', 'edit'),
-		'getsubcategory.php' => array('Vendors Module', 'read')
+		'getsubcategory.php' => array('Vendors Module', 'read'),
+		'leads.php' => array('Form Leads Module', 'read')
 	);
 }
 
