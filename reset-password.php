@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php if ($validLink) { ?><p class="intro">Choose a new password for your account.</p><?php } ?>
 <?php if ($message !== '') { ?><div class="form-message <?php echo $validLink ? '' : 'error'; ?>" role="status"><?php echo htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); ?></div><?php } ?>
 <?php if ($validLink) { ?>
-<form method="post" action="reset-password.html?selector=<?php echo urlencode($selector); ?>&amp;token=<?php echo urlencode($token); ?>">
+<form method="post" action="reset-password.php?selector=<?php echo urlencode($selector); ?>&amp;token=<?php echo urlencode($token); ?>">
 <input type="hidden" name="selector" value="<?php echo htmlspecialchars($selector, ENT_QUOTES, 'UTF-8'); ?>">
 <input type="hidden" name="token" value="<?php echo htmlspecialchars($token, ENT_QUOTES, 'UTF-8'); ?>">
 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(auth_csrf_token(), ENT_QUOTES, 'UTF-8'); ?>">

@@ -46,7 +46,7 @@ if (isset($_POST['Send'])) {
                 $inserted = mysql_query("INSERT INTO password_reset_tokens (user_id,selector,token_hash,expires_at,created_at) VALUES ('".(int)$user['user_id']."','".$selector."','".$tokenHash."',DATE_ADD(NOW(), INTERVAL 30 MINUTE),NOW())");
                 if ($inserted) {
                     $publicUrl = !empty($exec['website_url']) ? rtrim($exec['website_url'], '/') . '/' : base_url();
-                    $url = $publicUrl.'reset-password.html?selector='.urlencode($selector).'&token='.urlencode($token);
+                    $url = $publicUrl.'reset-password.php?selector='.urlencode($selector).'&token='.urlencode($token);
                     passwordResetEmail($user, $url, $from_email);
                 }
             } catch (Exception $e) {
