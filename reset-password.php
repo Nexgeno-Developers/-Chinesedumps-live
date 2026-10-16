@@ -12,6 +12,7 @@ $firstlink = ' Reset Password';
 $selector = isset($_GET['selector']) ? preg_replace('/[^a-f0-9]/i', '', $_GET['selector']) : '';
 $token = isset($_GET['token']) ? preg_replace('/[^a-f0-9]/i', '', $_GET['token']) : '';
 $message = '';
+$resetSuccessful = false;
 $validLink = strlen($selector) === 24 && strlen($token) === 64;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -38,11 +39,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $hash = mysql_real_escape_string(auth_password_hash($password));
             $userId = (int)$row['user_id'];
-            mysql_query("UPDATE tbl_user SET user_password='".$hash."' WHERE user_id='".$userId."'");
-            mysql_query("UPDATE password_reset_tokens SET used_at=NOW() WHERE user_id='".$userId."'");
-            session_regenerate_id(true);
-            $message = 'Your password has been reset. You can now sign in.';
-            $validLink = false;
+            $passwordUpdated = mysql_query("UPDATE tbl_user SET user_password='".$hash."' WHERE user_id='".$userId."'");
+            if ($passwordUpdated) {
+                mysql_query("UPDATE password_reset_tokens SET used_at=NOW() WHERE user_id='".$userId."'");
+                session_regenerate_id(true);
+                $message = 'Your password has been reset. You can now sign in.';
+                $resetSuccessful = true;
+                $validLink = false;
+            } else {
+                $message = 'We could not reset your password. Please request a new reset link and try again.';
+                $validLink = false;
+            }
         }
     }
 }
@@ -81,6 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php } elseif ($message === '') { ?>
 <p class="intro">This password-reset link is invalid or has expired.</p>
 <p style="text-align:center;"><a class="request-link" href="forgotpass.html">Request a new reset link</a></p>
+<?php } elseif ($resetSuccessful) { ?>
+<p style="text-align:center;"><a class="request-link" href="login.html">Sign in to your account</a></p>
 <?php } else { ?>
 <p style="text-align:center;"><a class="request-link" href="forgotpass.html">Request a new reset link</a></p>
 <?php } ?>
