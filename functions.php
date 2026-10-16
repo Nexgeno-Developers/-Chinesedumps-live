@@ -17,7 +17,7 @@ require_once __DIR__ . '/includes/marketing/utm_seo.php';
 
 	$farr	=	array("[USER_FNAME]","[USER_LNAME]","[USER_EMAIL]","[USER_PASSWORD]","[USER_PHONE]");
 
-	$aarr	=	array($spram[1],$spram[2],$spram[5],$spram[3],$spram[13]);
+	$aarr	=	array($spram[1],$spram[2],$spram[5],'',$spram[13]);
 
 	$message	=	str_replace($farr,$aarr,$getemail['mailcontent']);
 
@@ -45,8 +45,8 @@ require_once __DIR__ . '/includes/marketing/utm_seo.php';
     if (!empty($spram[5])) {
         $message .= "User Email: " . $spram[5] . "<br />";
     }
-    if (!empty($spram[3])) {
-        $message .= "User Password: " . $spram[3] . "<br />";
+    if (!empty('')) {
+        $message .= "User Password: " . '' . "<br />";
     }
 
 
@@ -56,7 +56,7 @@ require_once __DIR__ . '/includes/marketing/utm_seo.php';
 
 // 	$message .= "User Email: ".$spram[5]."<br /><br />";
 
-// 	$message .= "User Password: ".$spram[3]."<br /><br />";
+// 	$message .= "User Password: ".''."<br /><br />";
 
     //mail( $from, "$websitename - New User Registration", $message, $headers);
     // sendEmail($from, "chinesedumps.com - New User Registration", $message, $headers);
@@ -81,6 +81,17 @@ require_once __DIR__ . '/includes/marketing/utm_seo.php';
 
 	
 
+function passwordResetEmail($user, $resetUrl, $from)
+{
+    $to = $user['user_email'];
+    $name = htmlspecialchars(trim($user['user_fname'].' '.$user['user_lname']), ENT_QUOTES, 'UTF-8');
+    $safeUrl = htmlspecialchars($resetUrl, ENT_QUOTES, 'UTF-8');
+    $message = '<p>Hello '.$name.',</p><p>We received a request to reset your ChineseDumps account password.</p><p><a href="'.$safeUrl.'">Reset your password</a></p><p>This link expires in 30 minutes and can be used once. If you did not request this, you can safely ignore this email.</p>';
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+    $headers .= "From: Admin<".$from.">\r\n";
+    return sendEmail($to, 'Reset your ChineseDumps password', $message, $headers);
+}
 	function forgotemail($spram,$from){
 
 	$getemail	=	mysql_fetch_array(mysql_query("SELECT * from mailstable where mailid='1'"));
@@ -89,7 +100,7 @@ require_once __DIR__ . '/includes/marketing/utm_seo.php';
 
 	$farr	=	array("[USER_FNAME]","[USER_LNAME]","[USER_EMAIL]","[USER_PASSWORD]");
 
-	$aarr	=	array($spram[1],$spram[2],$spram[5],$spram[3]);
+	$aarr	=	array($spram[1],$spram[2],$spram[5],'');
 
 
 
@@ -119,7 +130,7 @@ require_once __DIR__ . '/includes/marketing/utm_seo.php';
 
 	$farr	=	array("[USER_FNAME]","[USER_LNAME]","[USER_EMAIL]","[USER_PASSWORD]");
 
-	$aarr	=	array($spram[1],$spram[2],$spram[5],$spram[3]);
+	$aarr	=	array($spram[1],$spram[2],$spram[5],'');
 
 
 

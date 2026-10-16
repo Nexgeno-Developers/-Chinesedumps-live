@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/config/load_secrets.php';
+require_once __DIR__ . '/../includes/common/auth.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -53,7 +54,7 @@ if (isset($_GET['code'])) {
 		
         } else {
             // Generate a 6-digit random password
-            $user_pass = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
+            $user_pass = auth_password_hash(bin2hex(auth_random_bytes(24)));
             // 2) insert new user
             $insert_sql = "
               INSERT INTO tbl_user (
@@ -72,7 +73,7 @@ if (isset($_GET['code'])) {
             $spram = [];
             $spram[1]  = $user_fname;
             $spram[2]  = $lname;
-            $spram[3]  = $user_pass;
+            $spram[3]  = '';
             $spram[5]  = $email;
             $spram[13] = isset($phone) ? $phone : '';
             if (function_exists('utm_seo_save')) {
@@ -85,7 +86,6 @@ if (isset($_GET['code'])) {
         $_SESSION['uid']      = $user_id;
         $_SESSION['email']    = $email;
         $_SESSION['Uname']    = $user_fname;
-        $_SESSION['password'] = $user_pass;
         $_SESSION['uphone']   = $user_phone;
             //   var_dump($_SESSION);
             //   exit;
@@ -97,6 +97,7 @@ if (isset($_GET['code'])) {
            $conn
         );
         
+        session_regenerate_id(true);
         // Redirect to cookie-based URL if set
         if (!empty($_COOKIE['redirect_after_login'])) {
             $safeRedirect = urldecode($_COOKIE['redirect_after_login']);

@@ -1,67 +1,57 @@
 <?php
 ob_start();
 session_start();
-if(isset($_SESSION['uid'])){
-}else{
-header("location:login.html");
+if (!isset($_SESSION['uid'])) { header('Location: login.html'); exit; }
+require_once __DIR__ . '/includes/common/auth.php';
+include('includes/config/classDbConnection.php');
+include('includes/common/classes/classmain.php');
+include('includes/common/classes/classProductMain.php');
+include('includes/common/classes/classcart.php');
+include('functions.php');
+include('includes/shoppingcart.php');
+
+$objDBcon = new classDbConnection;
+$objMain = new classMain($objDBcon);
+$objPro = new classProduct($objDBcon);
+$objCart = new classCart($objDBcon);
+$getPage = array('Edit Profile', 'Edit Profile', '', '', 'Edit Profile', 'Edit Profile');
+$quer = $objDBcon->Sql_Query_Exec('*', 'website', '');
+$exec = mysql_fetch_array($quer);
+$userId = (int)$_SESSION['uid'];
+$copyright = $exec['copyright'];
+$from_email = $exec['from_email'];
+$firstlink = ' '.$getPage[1];
+$msg = '';
+
+if (isset($_POST['emails'], $_POST['fName'])) {
+    if (!auth_csrf_is_valid(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '')) {
+        $msg = 'Your session has expired. Please refresh the page and try again.';
+    } else {
+        $newPassword = isset($_POST['passwords']) ? $_POST['passwords'] : '';
+        $confirm = isset($_POST['repassword']) ? $_POST['repassword'] : '';
+        if ($newPassword !== '' && $newPassword !== $confirm) {
+            $msg = 'Passwords do not match.';
+        } elseif ($newPassword !== '' && !auth_password_is_valid($newPassword, $passwordError)) {
+            $msg = $passwordError;
+        } else {
+            $name = mysql_real_escape_string($_POST['fName']);
+            $lastName = mysql_real_escape_string(isset($_POST['lastname']) ? $_POST['lastname'] : '');
+            $sql = "UPDATE tbl_user SET user_fname='".$name."', user_lname='".$lastName."'";
+            if ($newPassword !== '') {
+                $sql .= ", user_password='".mysql_real_escape_string(auth_password_hash($newPassword))."'";
+            }
+            $sql .= " WHERE user_id='".$userId."'";
+            mysql_query($sql);
+            $msg = 'Profile has been updated successfully.';
+        }
+    }
 }
-include("includes/config/classDbConnection.php");
-include("includes/common/classes/classmain.php");
-include("includes/common/classes/classProductMain.php");
-include("includes/common/classes/classcart.php");
-include("functions.php");
-include("includes/shoppingcart.php");
 
-$objDBcon   =   new classDbConnection; 
-$objMain	=	new classMain($objDBcon);
-$objPro		=	new classProduct($objDBcon);
-$objCart	=	new classCart($objDBcon);
-
-$getPage[0]	=	"Edit Profile";
-$getPage[1]	=	"Edit Profile";
-$getPage[2]	=	"";
-$getPage[4]	=	"Edit Profile";
-$getPage[5]	=	"Edit Profile";
-
-    $quer	=	$objDBcon->Sql_Query_Exec('*','website','');
-	$exec	=	mysql_fetch_array($quer);
-	$userId = $_SESSION['uid'];
-	$copyright	=	$exec['copyright'];
-	$from_email	=	$exec['from_email'];
-		
-	$firstlink	=	" ".$getPage[1];
-	$sparm[0]	=	$_SESSION['uid'];
-	///////////////////////////////////////sign up portion//////////////////////////////////
-	if(isset($_POST['emails']) && isset($_POST['fName']) && isset($_POST['passwords']))
-	{
-	
-$sparm[1]	=	$_POST['fName'];
-$sparm[2]	=	$_POST['lastname'];
-$sparm[5]	=	$_POST['emails'];
-$sparm[9]	=	$_POST['passwords'];
-
-$sparm[6]	=   date('m/d/Y');
-$sparm[7]	=   $_SERVER['REMOTE_ADDR'];
-if($sparm[9]==''){
-$sparm[9]	=	$_POST['hiddenpassword'];
-}else{
-$sparm[9]	=	$sparm[9];
-}
-		mysql_query("UPDATE tbl_user set user_fname='".$_POST['fName']."',user_lname='".$_POST['lastname']."',user_password='".$sparm[9]."' where user_id='".$sparm[0]."'");
-		$sparm[3]	=	$_POST['passwords'];
-		editprofileemail($sparm,$from_email);
-		$msg="Profile has been updated successfully.";
-	}
-	
-	$sql2	= "select * from tbl_user where user_id='".$sparm[0]."'";
-	$rs2	= mysql_query($sql2);
-	$fetch2	= mysql_fetch_array($rs2);
-	$sparm[1]	=	$fetch2['user_fname'];
-	$sparm[2]	=	$fetch2['user_lname'];
-	$sparm[5]	=	$fetch2['user_email'];
-	$sparm[9]	=	$fetch2['user_password'];
-	
-	//////////////////////////////////////////////////////////////////////////
-				
-include("html/editprofile.html");
+$rs2 = mysql_query("SELECT * FROM tbl_user WHERE user_id='".$userId."' LIMIT 1");
+$fetch2 = mysql_fetch_array($rs2);
+$sparm = array();
+$sparm[1] = $fetch2['user_fname'];
+$sparm[2] = $fetch2['user_lname'];
+$sparm[5] = $fetch2['user_email'];
+include('html/editprofile.html');
 ?>

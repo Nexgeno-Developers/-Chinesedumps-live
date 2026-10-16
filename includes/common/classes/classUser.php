@@ -1,4 +1,5 @@
 <?PHP
+require_once dirname(__DIR__) . '/auth.php';
 
 	//--------------------------------------------------------------------------------
 
@@ -81,7 +82,8 @@
 		$user_lname		= mysql_real_escape_string($spram[2]);
 		$user_phone		= mysql_real_escape_string(isset($spram[13]) ? $spram[13] : '');
 		$user_email		= mysql_real_escape_string($spram[5]);
-		$user_password	= mysql_real_escape_string($spram[9]);
+		$rawPassword = isset($spram[9]) ? $spram[9] : '';
+		$user_password = mysql_real_escape_string(auth_password_needs_upgrade($rawPassword) ? auth_password_hash($rawPassword) : $rawPassword);
 		$user_status	= (isset($spram[10]) && $spram[10] != '') ? mysql_real_escape_string($spram[10]) : 'Active';
 		$create_date	= mysql_real_escape_string($spram[6]);
 
@@ -1391,7 +1393,8 @@ function checkUserDuplication($email)
 		$user_fname		= mysql_real_escape_string($spram[1]);
 		$user_lname		= mysql_real_escape_string($spram[2]);
 		$user_phone		= mysql_real_escape_string(isset($spram[13]) ? $spram[13] : '');
-		$user_password	= mysql_real_escape_string($spram[9]);
+		$rawPassword = isset($spram[9]) ? $spram[9] : '';
+		$user_password = mysql_real_escape_string(auth_password_needs_upgrade($rawPassword) ? auth_password_hash($rawPassword) : $rawPassword);
 		$user_status	= mysql_real_escape_string($spram[10]);
 
 		$strQury="update tbl_user set 
