@@ -47,21 +47,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <?php include('includes/header.php'); ?>
-<div class="content-box"><div class="exam-group-box"><div class="max-width">
-    <h4 class="center-heading center-heading02"><span>Reset Password</span></h4>
-    <?php if ($message !== '') { ?><p class="forgot_message"><?php echo htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); ?></p><?php } ?>
-    <?php if ($validLink) { ?>
-    <form method="post" action="reset-password.php?selector=<?php echo urlencode($selector); ?>&amp;token=<?php echo urlencode($token); ?>">
-        <input type="hidden" name="selector" value="<?php echo htmlspecialchars($selector, ENT_QUOTES, 'UTF-8'); ?>">
-        <input type="hidden" name="token" value="<?php echo htmlspecialchars($token, ENT_QUOTES, 'UTF-8'); ?>">
-        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(auth_csrf_token(), ENT_QUOTES, 'UTF-8'); ?>">
-        <p><label>New password<br><input class="input-field" type="password" name="password" minlength="12" autocomplete="new-password" required></label></p>
-        <p><label>Confirm new password<br><input class="input-field" type="password" name="confirm_password" minlength="12" autocomplete="new-password" required></label></p>
-        <p><small>Use at least 12 characters.</small></p>
-        <p><button class="orange-button" type="submit">Reset password</button></p>
-    </form>
-    <?php } elseif ($message === '') { ?>
-    <p>This password-reset link is invalid or has expired. <a href="forgotpass.html">Request a new link</a>.</p>
-    <?php } ?>
-</div></div></div>
+<style>
+.password-page { background:#f7f9fb; padding:52px 20px 68px; min-height:430px; }
+.password-card { max-width:620px; margin:0 auto; padding:34px 42px 38px; background:#fff; border:1px solid #e1e8ef; border-radius:16px; box-shadow:0 12px 28px rgba(24,67,96,.10); }
+.password-card h1 { margin:0 0 10px; text-align:center; font-size:25px; color:#1f3c55; }
+.password-card .intro { margin:0 0 28px; text-align:center; color:#4b5f70; line-height:1.6; }
+.password-card label { display:block; margin:18px 0 8px; font-weight:700; color:#233f55; }
+.password-card .input-field { width:100%; height:46px; padding:10px 14px; border:1px solid #b8c9d7 !important; border-radius:8px; box-sizing:border-box; }
+.password-card .password-action { margin-top:24px; min-width:160px; border:0; border-radius:24px; padding:12px 24px; }
+.password-card .form-message { margin:0 0 22px; padding:12px 14px; border-radius:8px; background:#eef6fb; color:#244c68; text-align:center; }
+.password-card .form-message.error { background:#fff2f2; color:#9b2626; }
+.password-card .form-help { margin:14px 0 0; color:#617485; font-size:13px; }
+.password-card .request-link { color:#287fb6; font-weight:700; }
+@media (max-width:600px) { .password-page { padding:30px 14px 44px; } .password-card { padding:27px 22px 30px; } }
+</style>
+<div class="password-page"><div class="password-card">
+<h1>Reset your password</h1>
+<?php if ($validLink) { ?><p class="intro">Choose a new password for your account.</p><?php } ?>
+<?php if ($message !== '') { ?><div class="form-message <?php echo $validLink ? '' : 'error'; ?>" role="status"><?php echo htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); ?></div><?php } ?>
+<?php if ($validLink) { ?>
+<form method="post" action="reset-password.html?selector=<?php echo urlencode($selector); ?>&amp;token=<?php echo urlencode($token); ?>">
+<input type="hidden" name="selector" value="<?php echo htmlspecialchars($selector, ENT_QUOTES, 'UTF-8'); ?>">
+<input type="hidden" name="token" value="<?php echo htmlspecialchars($token, ENT_QUOTES, 'UTF-8'); ?>">
+<input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(auth_csrf_token(), ENT_QUOTES, 'UTF-8'); ?>">
+<label for="password">New password</label>
+<input class="input-field" id="password" type="password" name="password" minlength="12" autocomplete="new-password" required>
+<label for="confirm_password">Confirm new password</label>
+<input class="input-field" id="confirm_password" type="password" name="confirm_password" minlength="12" autocomplete="new-password" required>
+<p class="form-help">Use at least 12 characters. This link expires after 30 minutes and works only once.</p>
+<button class="orange-button password-action" type="submit">Reset password</button>
+</form>
+<?php } elseif ($message === '') { ?>
+<p class="intro">This password-reset link is invalid or has expired.</p>
+<p style="text-align:center;"><a class="request-link" href="forgotpass.html">Request a new reset link</a></p>
+<?php } else { ?>
+<p style="text-align:center;"><a class="request-link" href="forgotpass.html">Request a new reset link</a></p>
+<?php } ?>
+</div></div>
 <?php include('includes/footer.php'); ?>
