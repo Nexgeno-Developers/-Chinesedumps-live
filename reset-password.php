@@ -4,6 +4,7 @@ require_once __DIR__ . '/includes/common/auth.php';
 ob_start();
 session_start();
 include('includes/config/classDbConnection.php');
+$objDBcon = new classDbConnection; // Required before token lookup and password update.
 include('functions.php');
 $getPage = array('Reset Password', 'Reset Password', '', '', 'Reset Password', 'Reset Password');
 $firstlink = ' Reset Password';
