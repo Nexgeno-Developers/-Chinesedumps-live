@@ -1,4 +1,5 @@
 <?PHP 
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 ob_start();
 
@@ -36,12 +37,12 @@ $ccAdminData = get_session_data();
 
 	$objEvent	=	new classEvents($objDBcon);	   // VALIDATION CLASS classCategory
 
-	$cInfo = mysql_query("select * from tbl_course where id ='".$_GET['id']."'");
+	$cInfo = mysql_query("select * from tbl_course where id ='".(isset($_GET['id']) ? san_int($_GET['id']) : 0)."'");
 	$get_course = mysql_fetch_assoc($cInfo);
 
 	$strError	=	"";
 
-	$spram[0]		 =  $_GET['id'];
+	$spram[0]		 =  isset($_GET['id']) ? san_int($_GET['id']) : 0;
 
 	$farr			=	array("'");
 
@@ -82,19 +83,19 @@ $ccAdminData = get_session_data();
 				// 				'Reply-To: support@chinesedumps.com'."\r\n" .
 				// 				'X-Mailer: PHP/' . phpversion();  
 								
-					  mail("sales@chinesedumps.com","Stable Unstable Status of ".$spram[1],$msg,$headers);
+					  mail("sales@chinesedumps.com","Stable Unstable Status of ".str_replace(array("\r","\n","%0a","%0d"), '', $spram[1]),$msg,$headers);
 				// 	  mail("chinesexams@gmail.com","Stable Unstable Status of ".$spram[1],$msg,$headers);
 								// To send HTML mail, the Content-type header must be set
 				 
 						
 					
-						$course_subs_sql = mysql_query("select * from tbl_course_subscription where course = '".$spram[1]."' AND status_sbc =0");
+						$course_subs_sql = mysql_query("select * from tbl_course_subscription where course = '".db_esc($spram[1])."' AND status_sbc =0");
 						//$subs_mail = 'tamirkhan2@gmail.com';
 						for($i = 0; $i < mysql_num_rows($course_subs_sql); $i++){
 						
 							$subs_user = mysql_fetch_object($course_subs_sql);
 								 $msg1 = ' <br><br><br>To unsubscribe <a href="' . BASE_URL . 'stable-unstable-unsubscribe.php?id='.$subs_user->email.'&course_name='.$subs_user->course.'">Click here</a>';
-							mail($subs_user->email,"Stable Unstable Status of ".$spram[1],$msg.$msg1,$headers);  
+							mail($subs_user->email,"Stable Unstable Status of ".str_replace(array("\r","\n","%0a","%0d"), '', $spram[1]),$msg.$msg1,$headers);  
 					 }
 						 
 					}
@@ -103,6 +104,7 @@ $ccAdminData = get_session_data();
 				$strError	= "Course has been updated successfully";
 
 				header("location:courses_status_manage.php");
+				exit;
 
 		}
 

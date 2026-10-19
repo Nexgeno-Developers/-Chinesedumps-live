@@ -5,7 +5,7 @@
 ob_start();
 
 session_start();
-
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 include("includes/config/classDbConnection.php");
 
 
@@ -62,7 +62,7 @@ $getPage	=	$objMain->getContent(1);
 
  	
 
- 	$srch = $_POST["search"];
+ 	$srch = san_post("search");
 
 
 
@@ -209,7 +209,7 @@ label.text-left {
                             $queryPop = "SELECT * FROM tbl_exam 
                                          WHERE exam_status = '1' 
                                          AND MATCH (exam_name, exam_url, exam_fullname) 
-                                         AGAINST ('$plusSearch' IN BOOLEAN MODE)";                                
+                                         AGAINST ('" . db_esc($plusSearch) . "' IN BOOLEAN MODE)";                                
 
                             //var_dump($queryPop);
                             $res7 = mysql_query($queryPop);
@@ -359,13 +359,13 @@ label.text-left {
 
 				  $head="All Exams";
 
-				  $srch=@$_REQUEST['srch'];
+				  $srch=san_req('srch');
 
 				  if($srch!='')
 
 				  {
 
-				  	$cond=" and exam_name  like '%$srch%' or exam_fullname like '%$srch%'";
+				  	$cond=" and exam_name  like '%" . db_esc($srch) . "%' or exam_fullname like '%" . db_esc($srch) . "%'";
 
 					$head="Exams Search Results";
 
@@ -391,9 +391,9 @@ label.text-left {
 
 		{
 
-		$exmreq[1] = $_POST['request_ecode']; 
+		$exmreq[1] = db_esc(san_post('request_ecode')); 
 
-		$exmreq[2] = $_POST['request_email'];
+		$exmreq[2] = db_esc(san_post('request_email'));
 
 		$objUser->examRequest_email($exmreq);
 

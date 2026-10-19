@@ -15,12 +15,13 @@ $objCart	=	new classCart($objDBcon);
 
     $guest = session_id();
 	$_SESSION['guestId'] = $guest;
-	$rr	=	 $_SERVER['QUERY_STRING'];
+	require_once dirname(__FILE__) . '/includes/common/sanitize.php';
+	$rr	=	 'name=' . san_get('name');
 		
 	$string		=	"/";
 		
 	$certUrl		= str_replace('name=','',$rr);
-	$cert =  $objPro->getTrackID($certUrl); // get track nick id
+	$cert =  $objPro->getTrackID(db_esc($certUrl)); // get track nick id
 	$certID	=	$cert['cert_id'];
 		
 	$_SESSION['vname'] = $certUrl;

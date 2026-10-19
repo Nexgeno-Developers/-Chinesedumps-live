@@ -54,7 +54,7 @@ $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : 
                     <h4>Thanks for reaching out!</h4> <img src="images/thank_youimg.png">
                     <p class="lead"><strong>Please check your email and click on  the verification link to confirm and proceed.</strong>
                     <p class="leads"><strong>One of our team members will contact you within 24 hours to help you with your query.</strong>
-                    <br><a href="<?php echo $base_url; ?>">Go Home Page</a>
+                    <br><a href="<?php echo san_html($base_url); ?>">Go Home Page</a>
                     </p>
                 </div>
 			</div>

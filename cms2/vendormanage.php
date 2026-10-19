@@ -1,4 +1,5 @@
 <?PHP
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ini_set("display_errors","0");
 //----------------------------------------------------------------------------------------------------		
 	session_start();
@@ -78,8 +79,8 @@ $ccAdminData = get_session_data();
 				$pgObj 		=  new classPaging ("vendormanage.php",$rowsPerPage,$linkPerPage,$pagingQueryString,"","","");
 		if(isset($_GET['pgIndex']) && !empty($_GET['pgIndex']) && is_numeric($_GET['pgIndex']) && is_numeric($_GET['currentPage']))
 				{
-					$PageNo			 = $_GET['currentPage'];	# Shows # of Page			
-					$PageIndex		 = $_GET['pgIndex'];		# Shows # of Page Index				
+					$PageNo			 = san_int($_GET['currentPage']);	# Shows # of Page			
+					$PageIndex		 = san_int($_GET['pgIndex']);		# Shows # of Page Index				
 				}	
 					$LIMIT .= " LIMIT " . (($PageNo-1) * $rowsPerPage). " , " . $rowsPerPage;
 //----------------------------------------------------------------------------------------------------		
@@ -101,21 +102,21 @@ $ccAdminData = get_session_data();
 	if(isset($_POST['Search'])){
 	if($_POST['textSearch']!=''){
 				if($_POST['hothot']==''&& $_POST['homehome']==''&& $_POST['criteriacriteria']==''){
-					$extra	=	"ven_name LIKE '%".$_POST['textSearch']."%' ";
+					$extra	=	"ven_name LIKE '%".db_esc($_POST['textSearch'])."%' ";
 					}else{
-					$extra	=	"ven_name LIKE '%".$_POST['textSearch']."%' and ";
+					$extra	=	"ven_name LIKE '%".db_esc($_POST['textSearch'])."%' and ";
 					}			
 			}else{
 				$extra	=	"";
 			}
 		if($_POST['criteriacriteria']!=''){
 				if($_POST['hothot']=='' && $_POST['textSearch']=='' && $_POST['homehome']){
-					$criteriasearch	=	"ven_status ='".$_POST['criteriacriteria']."'";
+					$criteriasearch	=	"ven_status ='".db_esc($_POST['criteriacriteria'])."'";
 					}else{
 						if($_POST['homehome']==''&& $_POST['hothot']==''){
-							$criteriasearch	=	"ven_status='".$_POST['criteriacriteria']."'";
+							$criteriasearch	=	"ven_status='".db_esc($_POST['criteriacriteria'])."'";
 						}else{
-							$criteriasearch	=	"ven_status='".$_POST['criteriacriteria']."' and ";
+							$criteriasearch	=	"ven_status='".db_esc($_POST['criteriacriteria'])."' and ";
 						}				
 					}			
 			}else{
@@ -123,12 +124,12 @@ $ccAdminData = get_session_data();
 			}
 		if($_POST['homehome']!=''){
 				if($_POST['hothot']==''&& $_POST['textSearch']=='' && $_POST['criteriacriteria']==''){
-					$homesearch	=	"ven_home ='".$_POST['homehome']."'";
+					$homesearch	=	"ven_home ='".db_esc($_POST['homehome'])."'";
 					}else{
 						if($_POST['hothot']==''){
-							$homesearch	=	"ven_home ='".$_POST['homehome']."'";
+							$homesearch	=	"ven_home ='".db_esc($_POST['homehome'])."'";
 						}else{
-							$homesearch	=	"ven_home ='".$_POST['homehome']."' and ";
+							$homesearch	=	"ven_home ='".db_esc($_POST['homehome'])."' and ";
 						}				
 					}			
 			}else{
@@ -136,9 +137,9 @@ $ccAdminData = get_session_data();
 			}
 			if($_POST['hothot']!=''){
 				if($_POST['homehome']==''&& $_POST['textSearch']=='' && $_POST['criteriacriteria']==''){
-					$hotsearch	=	"ven_hot ='".$_POST['hothot']."'";
+					$hotsearch	=	"ven_hot ='".db_esc($_POST['hothot'])."'";
 					}else{
-						$hotsearch	=	"ven_hot ='".$_POST['hothot']."'";				
+						$hotsearch	=	"ven_hot ='".db_esc($_POST['hothot'])."'";				
 					}			
 			}else{
 				$hotsearch	=	"";

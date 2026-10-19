@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 
 
@@ -68,7 +69,7 @@ $ccAdminData = get_session_data();
 
 //----------------------------------------------------------------------------------------------------		
 
-	$order_id = $_GET['id'];
+	$order_id = isset($_GET['id']) ? san_int($_GET['id']) : 0;
 
 	$page_heading="Manage Keys for order $order_id";
 
@@ -191,7 +192,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 <form action="multi_keys_action.php" name="generateKeys" method="GET">
 	<input type="text" name="cot" value="2" />
-	<input type="hidden" name="id" value="<?=$_GET['id']?>" />
+	<input type="hidden" name="id" value="<?=san_html($_GET['id'])?>" />
 	<input type="hidden" name="act" value="gen" />
 	<input type="submit" value="Generate" name="submit">
 </form>
@@ -242,7 +243,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 			{
 
-				$strSql 	=	"SELECT concat(exam_name,' - ',exam_fullname) as full_name FROM tbl_exam WHERE exam_id='".$ordered_package['ProductID']."'";
+				$strSql 	=	"SELECT concat(exam_name,' - ',exam_fullname) as full_name FROM tbl_exam WHERE exam_id='".db_esc($ordered_package['ProductID'])."'";
 
 				$result		=	mysql_query($strSql) or die(mysql_error());
 

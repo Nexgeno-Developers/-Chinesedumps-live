@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 
 
@@ -77,8 +78,8 @@ $ccAdminData = get_session_data();
 
 
 
-		$order_id = $_REQUEST['id'];
-		$counter = $_REQUEST['cot'];
+		$order_id = san_int($_REQUEST['id']);
+		$counter = san_int($_REQUEST['cot']);
 
 
 
@@ -115,6 +116,6 @@ $ccAdminData = get_session_data();
 	}
 
 
-	header('Location: manage_keys.php?id='.$_REQUEST['id']);
+	header('Location: manage_keys.php?id='.(isset($_REQUEST['id']) ? san_int($_REQUEST['id']) : 0));
 
 ?>

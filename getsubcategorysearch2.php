@@ -4,7 +4,8 @@ include("includes/config/classDbConnection.php");
 //-------------------------------------------------------------------------------------
 	$objCon		 = 	new classDbConnection();
 	
-	$cateID=$_GET['q'];
+	require_once dirname(__FILE__) . '/includes/common/sanitize.php';
+	$cateID=san_int(san_get('q'));
 	echo fillComboSubCategory($intValue = 0,$cateID,$siteId);
 	function fillComboSubCategory($intValue = 0,$cateID,$siteId)
 			{

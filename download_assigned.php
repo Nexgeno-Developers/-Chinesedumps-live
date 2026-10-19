@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 
 ###############################################################
 # File Download 1.3
@@ -20,6 +21,7 @@ ob_start();
 if(isset($_SESSION['uid'])){
 }else{
 header("location:account.html");
+exit;
 }
 include("includes/config/classDbConnection.php");
 include("includes/common/classes/classProductMain.php");
@@ -38,7 +40,7 @@ $ip= $_SERVER['REMOTE_ADDR'];
 define('BASE_DIR','devil/full/');
 
 
-$orderdate	=	mysql_fetch_array(mysql_query("SELECT * from tbl_exam_user where user_id='".$_SESSION['uid']."' and exam_id='".$_GET['y']."'"));
+$orderdate	=	mysql_fetch_array(mysql_query("SELECT * from tbl_exam_user where user_id='".san_int($_SESSION['uid'])."' and exam_id='".db_esc($_GET['y'])."'"));
 $currentdate=	date("Y-m-d");
 //$currentfullydate	=	date("Y-m-d G:i:s");
 $expdate	=	$orderdate['ExpireDate'];
@@ -47,7 +49,7 @@ if($orderdate['user_id']!=$_SESSION['uid']){
 }
 
 if(($currentdate<=$expdate) || $expdate==''){
-$sql_pro = "select * from tbl_exam  where exam_id='".$_GET['y']."' ";
+$sql_pro = "select * from tbl_exam  where exam_id='".db_esc($_GET['y'])."' ";
 $rs_pro  = mysql_query($sql_pro);
 $row_pro = mysql_fetch_array($rs_pro);
 $filenamename	=	$row_pro['exam_full'];
@@ -58,6 +60,7 @@ if($filenamename=='')
 
 }else{
 header("location:mydownloads.html");
+exit;
 }
 
 // log downloads?  true/false
@@ -124,7 +127,7 @@ if (!isset($filenamename) || empty($filenamename)) {
  header("location:notfound.html");
   die("Please specify file name for download.");
 }else{
-$qu ="INSERT INTO tbl_full_download(dnUID,dnTYPE,itemid,dndate,IP,IPcountry,statusdownload)VALUES('".$_SESSION['uid']."','0','".$_GET['y']."','".date("Y-m-d")."','".$ip."','','1')";
+$qu ="INSERT INTO tbl_full_download(dnUID,dnTYPE,itemid,dndate,IP,IPcountry,statusdownload)VALUES('".san_int($_SESSION['uid'])."','0','".san_int($_GET['y'])."','".date("Y-m-d")."','".db_esc($ip)."','','1')";
 mysql_query($qu);
 
 }
@@ -204,7 +207,7 @@ if (!isset($_GET['fc']) || empty($_GET['fc'])) {
 }
 else {
   // remove some bad chars
-  $asfname = str_replace(array('"',"'",'\\','/'), '', $_GET['fc']);
+  $asfname = str_replace(array('"',"'",'\\','/',"\r","\n"), '', $_GET['fc']);
   if ($asfname === '') $asfname = 'NoName';
 }
 

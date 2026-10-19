@@ -1,11 +1,22 @@
+<?php
+// admin session guard: the asset manager must only be reachable from the logged-in CMS
+if (session_id() === '') { session_start(); }
+if (!isset($_SESSION['strAdmin']) || !isset($_SESSION['adminId'])) { header('HTTP/1.1 403 Forbidden'); exit('Forbidden'); }
+?>
 <?
+include("settings.php");
 $sMsg = "";
 
 if(isset($_POST["inpNewFolderName"]))
 	{	
-	$sFolder = $_POST["inpCurrFolder"]."/".$_POST["inpNewFolderName"];
+	$sNewName = am_safe_name($_POST["inpNewFolderName"]);
+	$sFolder = $_POST["inpCurrFolder"]."/".$sNewName;
 
-	if(is_dir($sFolder)==1)
+	if($sNewName=="" || !am_folder_ok($_POST["inpCurrFolder"]))
+		{//outside the allowed asset folders / empty name
+		$sMsg = "<script>document.write(getTxt('Invalid input.'))</script>";
+		}
+	else if(is_dir($sFolder)==1)
 		{//folder already exist
 		$sMsg = "<script>document.write(getTxt('Folder already exists.'))</script>";
 		}

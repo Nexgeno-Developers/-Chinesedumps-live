@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 
 
@@ -74,7 +75,7 @@ $ccAdminData = get_session_data();
 
 	{
 
-		$instance_id = $_REQUEST['iid'];
+		$instance_id = san_int($_REQUEST['iid']);
 
 		$insert = "update tbl_package_instance set mboard_number='' where id = '$instance_id'";
 
@@ -88,7 +89,7 @@ $ccAdminData = get_session_data();
 
 	{
 
-		$order_id = $_REQUEST['id'];
+		$order_id = san_int($_REQUEST['id']);
 
 		$sql_order = "SELECT *, count(*) as cnt FROM tbl_package_instance where order_number='$order_id'";
 
@@ -128,9 +129,9 @@ $ccAdminData = get_session_data();
 
 	{
 
-		$instance_id = $_REQUEST['iid'];
+		$instance_id = san_int($_REQUEST['iid']);
 
-		$expiry = $_REQUEST['expiry'];
+		$expiry = db_esc($_REQUEST['expiry']);
 
 		$insert = "update tbl_package_instance set instance_expiry='$expiry' where id = '$instance_id'";
 
@@ -138,6 +139,6 @@ $ccAdminData = get_session_data();
 
 	}
 
-	header('Location: manage_keys.php?id='.$_REQUEST['id']);
+	header('Location: manage_keys.php?id='.(isset($_REQUEST['id']) ? san_int($_REQUEST['id']) : 0));
 
 ?>

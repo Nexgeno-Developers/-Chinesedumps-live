@@ -5,6 +5,7 @@
 
 header('Content-Type: application/json; charset=utf-8');
 require_once __DIR__ . '/includes/config/load_secrets.php';
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 
 // ---------- CONFIG - EDIT ----------
 $CLIENT_ID = secret('ZOHO_CLIENT_ID', '');
@@ -27,11 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // read and sanitize inputs
-$name = isset($_POST['name']) ? trim($_POST['name']) : '';
-$email = isset($_POST['email']) ? trim($_POST['email']) : '';
-$tel = isset($_POST['tel']) ? trim($_POST['tel']) : '';
-$courses = isset($_POST['courses']) ? trim($_POST['courses']) : '';
-$message = isset($_POST['message']) ? trim($_POST['message']) : '';
+$name = isset($_POST['name']) ? trim(san_post('name')) : '';
+$email = isset($_POST['email']) ? trim(san_post('email')) : '';
+$tel = isset($_POST['tel']) ? trim(san_post('tel')) : '';
+$courses = isset($_POST['courses']) ? trim(san_post('courses')) : '';
+$message = isset($_POST['message']) ? trim(san_post('message')) : '';
 
 // server-side validation
 $errors = array();

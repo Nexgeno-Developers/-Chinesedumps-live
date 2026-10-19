@@ -12,6 +12,7 @@ session_start();
 	
 
 include_once 'functions.php';
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 $ccAdminData = get_session_data();
 
 
@@ -39,7 +40,7 @@ $ccAdminData = get_session_data();
 		
 		if(empty($strError))
 		{
-		$insert	=	mysql_query("INSERT INTO tbl_maillist (mail_email)VALUES('".$spram[1]."')");
+		$insert	=	mysql_query("INSERT INTO tbl_maillist (mail_email)VALUES('".db_esc($spram[1])."')");
 		$strError	.= "Newsletter Subscriber Email has been added successfully";
 		}
 		}

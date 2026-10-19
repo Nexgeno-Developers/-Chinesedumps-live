@@ -19,6 +19,7 @@ session_start();
 
 
 include_once 'functions.php';
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 $ccAdminData = get_session_data();
 
@@ -362,7 +363,7 @@ function normalizeFeatureRowsFromStorage($rawValue)
 
 		
 
-		$getven	=	mysql_num_rows(mysql_query("SELECT * from tbl_exam where exam_name='".$_POST['vname']."'"));
+		$getven	=	mysql_num_rows(mysql_query("SELECT * from tbl_exam where exam_name='".db_esc($_POST['vname'])."'"));
 
 		if($getven!='0'){
 
@@ -370,7 +371,7 @@ function normalizeFeatureRowsFromStorage($rawValue)
 
 		}
 
-		$strQury="Select ven_name from tbl_vendors where ven_id ='".$spram[12]."'";
+		$strQury="Select ven_name from tbl_vendors where ven_id ='".san_int($spram[12])."'";
 
 		$rsResult = $objDBcon->Dml_Query_Parser($strQury);
 
@@ -498,7 +499,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td align="right">* Exam Code:</td>
 
-          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($_POST['vname'])){ echo  $_POST['vname'];} ?>" /></td>
+          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($_POST['vname'])){ echo san_html($_POST['vname']);} ?>" /></td>
 
         </tr>
 
@@ -506,7 +507,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td align="right">Exam Name:</td>
 
-          <td colspan="2"><input  name="vnamefull" id="vnamefull" type="text"  value="<?php if(isset($_POST['vnamefull'])){ echo  $_POST['vnamefull'];} ?>" /></td>
+          <td colspan="2"><input  name="vnamefull" id="vnamefull" type="text"  value="<?php if(isset($_POST['vnamefull'])){ echo san_html($_POST['vnamefull']);} ?>" /></td>
 
         </tr>
         <tr>
@@ -522,7 +523,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td align="right">Alias Name:</td>
 
-          <td colspan="2"><input name="alias_name" id="alias_name" type="text" value="<?php if(isset($_POST['alias_name'])){ echo $_POST['alias_name'];} ?>" /></td>
+          <td colspan="2"><input name="alias_name" id="alias_name" type="text" value="<?php if(isset($_POST['alias_name'])){ echo san_html($_POST['alias_name']);} ?>" /></td>
 
         </tr>
         <tr id="row_faqs">
@@ -566,7 +567,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td align="right">Exam Q &amp; As:</td>
 
-          <td colspan="2"><input  name="qa" id="qa" type="text"  value="<?php if(isset($_POST['qa'])){ echo  $_POST['qa'];} ?>" /> Question and Answers</td>
+          <td colspan="2"><input  name="qa" id="qa" type="text"  value="<?php if(isset($_POST['qa'])){ echo san_html($_POST['qa']);} ?>" /> Question and Answers</td>
 
         </tr>
 
@@ -575,29 +576,29 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
               <td align="right">* Date: </td>
 
               <td colspan="2" style="position: relative;">
-                <input name="startdate" type="text" readonly="readonly" id="startdate" value="<?php if(isset($_POST['startdate'])){ echo  $_POST['startdate'];} ?>" style="padding-right: 40px; width: 100%; padding: 8px 40px 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" />
+                <input name="startdate" type="text" readonly="readonly" id="startdate" value="<?php if(isset($_POST['startdate'])){ echo san_html($_POST['startdate']);} ?>" style="padding-right: 40px; width: 100%; padding: 8px 40px 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" />
                 <img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; width: 18px; height: 18px; opacity: 0.6; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'" />
               </td>
 
             </tr>
 			<tr>
               <td align="right"> Lab Name:</td>
-              <td colspan="2"><input name="labName" type="text" id="labName" value="<?php if(isset($_POST['labName'])){ echo  $_POST['labName'];} ?>" /></td>
+              <td colspan="2"><input name="labName" type="text" id="labName" value="<?php if(isset($_POST['labName'])){ echo san_html($_POST['labName']);} ?>" /></td>
             </tr>
 
             <tr>
               <td align="right"><i class="fa-solid fa-dollar-sign" style="color: #000; margin-right: 2px;"></i> PDF Price:</td>
-              <td colspan="2"><input name="pr3" type="text" id="pr3" value="<?php if(isset($_POST['pr3'])){ echo  $_POST['pr3'];} ?>" /></td>
+              <td colspan="2"><input name="pr3" type="text" id="pr3" value="<?php if(isset($_POST['pr3'])){ echo san_html($_POST['pr3']);} ?>" /></td>
             </tr>
 
             <tr>
               <td align="right"><i class="fa-solid fa-dollar-sign" style="color: #000; margin-right: 2px;"></i> Engine Price:</td>
-              <td colspan="2"><input name="sp_pri" type="text" id="pr3" value="<?php if(isset($_POST['sp_pri'])){ echo  $_POST['sp_pri'];} ?>" /></td>
+              <td colspan="2"><input name="sp_pri" type="text" id="pr3" value="<?php if(isset($_POST['sp_pri'])){ echo san_html($_POST['sp_pri']);} ?>" /></td>
             </tr>
 
 			<tr>
               <td align="right"><i class="fa-solid fa-dollar-sign" style="color: #000; margin-right: 2px;"></i> Both Price:</td>
-              <td colspan="2"><input name="both_pri" type="text" id="both_pri" value="<?php if(isset($_POST['both_pri'])){ echo  $_POST['both_pri'];} ?>" /></td>
+              <td colspan="2"><input name="both_pri" type="text" id="both_pri" value="<?php if(isset($_POST['both_pri'])){ echo san_html($_POST['both_pri']);} ?>" /></td>
             </tr>
             
             <tr>

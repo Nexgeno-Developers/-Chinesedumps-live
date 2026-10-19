@@ -1,4 +1,5 @@
 <?PHP 
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 ob_start();
 
@@ -68,7 +69,7 @@ $ccAdminData = get_session_data();
 
 		
 
-		$totalReport = mysql_query("select * from report_card where r_exam='".$spram[0]."'");
+		$totalReport = mysql_query("select * from report_card where r_exam='".db_esc($spram[0])."'");
 
 		$totalRep = mysql_num_rows($totalReport);
 
@@ -80,11 +81,20 @@ $ccAdminData = get_session_data();
 
 		$spram[1]	=	$_FILES['exam_demo'];
 
+		// folder / file-name part built from the exam name: no path separators or dot-dot
+		$examPathName	=	str_replace(array('..','/',"\\","\0"), '_', $spram[0]);
+		$reportExts	=	array('jpg','jpeg','png','gif','webp','pdf','doc','docx');
+		$reportUploadOk	=	true;
+		if($_FILES['exam_demo']['name']!='' && !cms2_upload_ext_ok($_FILES['exam_demo']['name'], $reportExts)){
+			$reportUploadOk	=	false;
+			$strError	.=	"<b>Error! Demo type is not valid.</b>";
+		}
+
 		
 
 			$getextension	=	substr($spram[1]['name'],-3);
 
-			$newnamedemo	=	$totalRep."_".str_replace(" ","-",$spram[0]).'.'.$getextension;
+			$newnamedemo	=	$totalRep."_".str_replace(" ","-",$examPathName).'.'.$getextension;
 
 		
 
@@ -96,7 +106,9 @@ $ccAdminData = get_session_data();
 
 		
 
-		mysql_query("insert into report_card (r_exam, r_image, r_status, r_date) values ('".$spram[0]."','".$spram[2]."','".$spram[3]."','".$spram[4]."')");
+		if($reportUploadOk){
+		mysql_query("insert into report_card (r_exam, r_image, r_status, r_date) values ('".db_esc($spram[0])."','".db_esc($spram[2])."','".san_int($spram[3])."','".db_esc($spram[4])."')");
+		}
 
 
 
@@ -120,11 +132,11 @@ $ccAdminData = get_session_data();
 
 					
 
-					if (!file_exists("../images/reports/".$spram[0])){mkdir("../images/reports/".$spram[0]);}
+					if (!file_exists("../images/reports/".$examPathName)){mkdir("../images/reports/".$examPathName);}
 
 					
 
-					copy($spram[1]['tmp_name'],"../images/reports/".$spram[0]."/".$newnamedemo);
+					copy($spram[1]['tmp_name'],"../images/reports/".$examPathName."/".$newnamedemo);
 
 					
 

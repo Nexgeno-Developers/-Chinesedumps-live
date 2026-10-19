@@ -26,7 +26,7 @@ function fileUpload_thumb($filename,$largimg,$smallimg,$width,$height)
 
 	//check if you have selected a file.
 	if(!is_uploaded_file($file_tmp)){
-	  echo "Error: Please select a file size upto 1 mb!. <br>--<a href=\"$_SERVER[PHP_SELF]\">back</a>";
+	  echo "Error: Please select a file size upto 1 mb!. <br>--<a href=\"".htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES)."\">back</a>";
 	  exit(); //exit the script and don't process the rest of it!
 	}
    //check the file's extension
@@ -34,7 +34,7 @@ function fileUpload_thumb($filename,$largimg,$smallimg,$width,$height)
    $ext = strtolower($ext);
    //uh-oh! the file extension is not allowed!
    if (($extlimit == "yes") && (!in_array($ext,$limitedext))) {
-	  echo "Wrong file extension.  <br>--<a href=\"$_SERVER[PHP_SELF]\">back</a>";
+	  echo "Wrong file extension.  <br>--<a href=\"".htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES)."\">back</a>";
 	  exit();
    }
    //so, whats the file's extension?

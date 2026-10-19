@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 error_reporting(0);
 session_start();
 //------------------------------------------------------------------------------------------------
@@ -15,13 +16,13 @@ $objCart	=	new classCart($objDBcon);
 
 $ordId	=	$_GET['pid'];
 $sessId	=	$_GET['sesss'];
-mysql_query("DELETE from temp_order where ID='".$ordId."'");
+mysql_query("DELETE from temp_order where ID='".san_int($ordId)."'");
 
 		if($sessId!='' && $sessId!='0'){
-			$query	=	"select * from temp_order where UserID='".$sessId."' order by ID ASC";
+			$query	=	"select * from temp_order where UserID='".san_int($sessId)."' order by ID ASC";
 			
 		}else{
-			$query	=	"select * from temp_order where CartID='".session_id()."' and UserID='0' order by ID ASC";
+			$query	=	"select * from temp_order where CartID='".db_esc(session_id())."' and UserID='0' order by ID ASC";
 		}
 $rs		=	mysql_query($query);
 $num	=	mysql_num_rows($rs);

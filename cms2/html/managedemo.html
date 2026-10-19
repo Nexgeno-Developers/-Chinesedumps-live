@@ -69,7 +69,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
     
     <tr>
     <td colspan="4"  align="center">Search :
-      <input type="text" name="textSearch" value="<? if($_POST['textSearch']){ echo $_POST['textSearch']; }?>" style="width:160px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" name="textSearch" value="<? if($_POST['textSearch']){ echo san_html($_POST['textSearch']); }?>" style="width:160px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	  <select name="criteria">
 	  <option value="user_email" <? if($_POST['criteria'] && $_POST['criteria']=='user_email'){ echo "selected='selected'"; }?>>Email Address</option></select>
       &nbsp;&nbsp;&nbsp;<input type="submit" name="Search" value="Search" />

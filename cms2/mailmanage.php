@@ -1,4 +1,5 @@
 <?PHP
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 //----------------------------------------------------------------------------------------------------		
 	ini_set("display_errors","0");
@@ -45,8 +46,8 @@ include ("../includes/common/classPaging.php");
 				
 			if(isset($_GET['pgIndex']) && !empty($_GET['pgIndex']) && is_numeric($_GET['pgIndex']) && is_numeric($_GET['currentPage']))
 			{
-				$PageNo			 = $_GET['currentPage'];	# Shows # of Page			
-				$PageIndex		 = $_GET['pgIndex'];		# Shows # of Page Index				
+				$PageNo			 = san_int($_GET['currentPage']);	# Shows # of Page			
+				$PageIndex		 = san_int($_GET['pgIndex']);		# Shows # of Page Index				
 			}	
 					$LIMIT .= " LIMIT " . (($PageNo-1) * $rowsPerPage). " , " . $rowsPerPage;
 //----------------------------------------------------------------------------------------------------		

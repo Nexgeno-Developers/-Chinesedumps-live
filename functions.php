@@ -27,7 +27,7 @@ require_once __DIR__ . '/includes/marketing/utm_seo.php';
 
    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-   $headers .= "From: Admin<".$from."> ". "\r\n" ;
+   $headers .= "From: Admin<".str_replace(array("\r","\n","%0a","%0d"),'',$from)."> ". "\r\n" ;
 
    $subject	=	"Thank You for Register.";
 
@@ -89,7 +89,7 @@ function passwordResetEmail($user, $resetUrl, $from)
     $message = '<p>Hello '.$name.',</p><p>We received a request to reset your ChineseDumps account password.</p><p><a href="'.$safeUrl.'">Reset your password</a></p><p>This link expires in 30 minutes and can be used once. If you did not request this, you can safely ignore this email.</p>';
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-    $headers .= "From: Admin<".$from.">\r\n";
+    $headers .= "From: Admin<".str_replace(array("\r","\n","%0a","%0d"),'',$from).">\r\n";
     return sendEmail($to, 'Reset your ChineseDumps password', $message, $headers);
 }
 	function forgotemail($spram,$from){
@@ -112,7 +112,7 @@ function passwordResetEmail($user, $resetUrl, $from)
 
    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-   $headers .= "From: Admin<".$from."> ". "\r\n" ;
+   $headers .= "From: Admin<".str_replace(array("\r","\n","%0a","%0d"),'',$from)."> ". "\r\n" ;
 
    $subject  = "Your password for ChineseDumps  Account. Thanks!";
 
@@ -142,7 +142,7 @@ function passwordResetEmail($user, $resetUrl, $from)
 
    $headers .=  'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-   $headers .=  "From: Admin<".$from."> ". "\r\n" ;
+   $headers .=  "From: Admin<".str_replace(array("\r","\n","%0a","%0d"),'',$from)."> ". "\r\n" ;
 
    $subject	 =	"You have successfully updated your profile.";
 
@@ -172,7 +172,7 @@ function passwordResetEmail($user, $resetUrl, $from)
 
    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-   $headers .= "From: Admin<".$from."> ". "\r\n" ;
+   $headers .= "From: Admin<".str_replace(array("\r","\n","%0a","%0d"),'',$from)."> ". "\r\n" ;
 
    $subject	=	"Notification to extend your product.";
 
@@ -200,7 +200,7 @@ function passwordResetEmail($user, $resetUrl, $from)
 
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-	$headers .= "From: Admin<".$from."> ". "\r\n" ;
+	$headers .= "From: Admin<".str_replace(array("\r","\n","%0a","%0d"),'',$from)."> ". "\r\n" ;
 
 	$subject	=	"Notification to extend your product.";
 
@@ -387,7 +387,7 @@ function passwordResetEmail($user, $resetUrl, $from)
                 }
                 // Skip headers we already set above.
                 $prefix = strtolower(strtok($line, ':'));
-                if (in_array($prefix, ['from', 'to', 'subject', 'mime-version', 'content-type', 'content-transfer-encoding'])) {
+                if (in_array($prefix, ['from', 'to', 'subject', 'mime-version', 'content-type', 'content-transfer-encoding', 'bcc', 'cc'])) {
                     continue;
                 }
                 $clean[] = $line;

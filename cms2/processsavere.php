@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 session_start();
 
 include_once ("../includes/config/classDbConnection.php");
@@ -10,8 +11,8 @@ $objDBcon    = new classDbConnection; 			// VALIDATION CLASS OBJECT
 //-----------------------------Base Path-----------------------------------------------
 error_reporting(0);
 $fieldStatus="";
-$getID    		=  $_GET['id'];
-$txtorder		=  $_GET['ord'];
+$getID    		=  isset($_GET['id']) ? san_int($_GET['id']) : 0;
+$txtorder		=  isset($_GET['ord']) ? $_GET['ord'] : '';
 
 $status="";
  
@@ -21,10 +22,10 @@ $status="";
  		$rs1=mysql_query($q);
 		$row1=mysql_fetch_array($rs1);
 		
-		$qy_cart		=	"UPDATE order_detail set ExpireDate='".$row1['enddate']."' where ID='".$row1['id_detailorder']."'";
+		$qy_cart		=	"UPDATE order_detail set ExpireDate='".db_esc($row1['enddate'])."' where ID='".san_int($row1['id_detailorder'])."'";
   		$r_cart 		=	mysql_query($qy_cart);
 	 
-		 $qury		= 	"UPDATE tbl_reorder set  order_id='".$txtorder."',status ='1' where id_re='".$_GET['id']."'";
+		 $qury		= 	"UPDATE tbl_reorder set  order_id='".db_esc($txtorder)."',status ='1' where id_re='".$getID."'";
 	 	$rs_qury	=	mysql_query($qury);
 	 
 	 echo "Successfully Procssed.";

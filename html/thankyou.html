@@ -9,7 +9,7 @@
 
 		<?php 
 		header('Refresh: 3; url:$filedir');
-		$filedir = base_path('devil/demo/'.$_GET['vname'].'/'.$_GET['ecode'].'.zip');
+		$filedir = base_path('devil/demo/'.str_replace(array('..','/','\\',"\0","\r","\n"),'',$_GET['vname']).'/'.str_replace(array('..','/','\\',"\0","\r","\n"),'',$_GET['ecode']).'.zip');
 
 		if(file_exists($filedir))
 		{

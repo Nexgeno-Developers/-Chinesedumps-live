@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 
 ob_start();
 
@@ -59,15 +60,15 @@ $q = mysql_query("select * from tbl_exam where QA !='0'");
 for($i=0;$i<mysql_num_rows($q);$i++){
 $examData = mysql_fetch_array($q);
 
-	$r = mysql_query("select * from tbl_package_engine where package_id='".$examData["exam_id"]."'");
+	$r = mysql_query("select * from tbl_package_engine where package_id='".san_int($examData["exam_id"])."'");
 	if(mysql_num_rows($r) != "0"){
 		
 	}
 	else{
-	$vData = mysql_fetch_array(mysql_query("select * from tbl_vendors where ven_id='".$examData["ven_id"]."'"));
+	$vData = mysql_fetch_array(mysql_query("select * from tbl_vendors where ven_id='".san_int($examData["ven_id"])."'"));
 	$pth = $vData["ven_name"]."/".$examData["exam_name"]."Sim.zip";
 	echo "insert into tbl_package_engine (package_id, version, type, path, os, price) values ('".$examData["exam_id"]."','6.0','Simulator','".$pth."','Win','74.99')"."<br>";
-	mysql_query("insert into tbl_package_engine (package_id, version, type, path, os, price) values ('".$examData["exam_id"]."','6.0','Simulator','".$pth."','Win','74.99')"."");
+	mysql_query("insert into tbl_package_engine (package_id, version, type, path, os, price) values ('".san_int($examData["exam_id"])."','6.0','Simulator','".db_esc($pth)."','Win','74.99')"."");
 	}
 }
 
@@ -78,13 +79,13 @@ $a = mysql_query("select * from tbl_demo_download_email");
 for($b=0;$b<mysql_num_rows($a);$b++){
 $fetchDemo = mysql_fetch_array($a);
 
-$fetchUser = mysql_query("select u.*, o.*, e.* from tbl_user u, order_detail o, tbl_exam e where (o.UserID=u.user_id and o.ProductID=e.exam_id) and (u.user_email='".$fetchDemo["demo_download_email"]."' and e.exam_name='".$fetchDemo["exam_code"]."')");
+$fetchUser = mysql_query("select u.*, o.*, e.* from tbl_user u, order_detail o, tbl_exam e where (o.UserID=u.user_id and o.ProductID=e.exam_id) and (u.user_email='".db_esc($fetchDemo["demo_download_email"])."' and e.exam_name='".db_esc($fetchDemo["exam_code"])."')");
 
 if(mysql_num_rows($fetchUser) != "0"){
 $fetchDemos = mysql_fetch_array($fetchUser);
 echo $fetchDemos["user_email"]." - ".$fetchDemos["exam_name"]."<br>";
 
-mysql_query("delete from tbl_demo_download_email where demo_download_email='".$fetchDemos["user_email"]."' and exam_code='".$fetchDemos["exam_name"]."'");
+mysql_query("delete from tbl_demo_download_email where demo_download_email='".db_esc($fetchDemos["user_email"])."' and exam_code='".db_esc($fetchDemos["exam_name"])."'");
 
 }
 }

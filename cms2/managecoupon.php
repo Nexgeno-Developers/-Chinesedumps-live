@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 
@@ -43,8 +44,8 @@ $ccAdminData = get_session_data();
 		
 		if(isset($_GET['pgIndex']) && !empty($_GET['pgIndex']) && is_numeric($_GET['pgIndex']) && is_numeric($_GET['currentPage']))
 				{
-					$PageNo			 = $_GET['currentPage'];	# Shows # of Page			
-					$PageIndex		 = $_GET['pgIndex'];		# Shows # of Page Index				
+					$PageNo			 = san_int($_GET['currentPage']);	# Shows # of Page			
+					$PageIndex		 = san_int($_GET['pgIndex']);		# Shows # of Page Index				
 				}	
 
 					$LIMIT .= " LIMIT " . (($PageNo-1) * $rowsPerPage). " , " . $rowsPerPage;
@@ -86,7 +87,7 @@ $showTr		.=		'<td align="center" class=item nowrap=nowrap>'.$edit.''.$del.' </td
 }
     if(isset($_GET['action']) && $_GET['action']	== "up" )
 	{
-		$strSql='DELETE FROM coupon WHERE id="'.$_GET['nid'].'"';
+		$strSql='DELETE FROM coupon WHERE id="'.san_int($_GET['nid']).'"';
 		mysql_query($strSql);
 	}
 
@@ -97,7 +98,7 @@ $showTr		.=		'<td align="center" class=item nowrap=nowrap>'.$edit.''.$del.' </td
 				{ 
 					if(isset($_POST['chkbox'.$i]))
 					{
-						$strSql='DELETE FROM coupon WHERE id="'.$_POST['chkbox'.$i].'"';
+						$strSql='DELETE FROM coupon WHERE id="'.san_int($_POST['chkbox'.$i]).'"';
 						mysql_query($strSql);
 					}
 				}
@@ -105,31 +106,33 @@ $showTr		.=		'<td align="center" class=item nowrap=nowrap>'.$edit.''.$del.' </td
 	
 	if(isset($_POST['Search']))
 	{
+		$searchCriteria = san_ident(isset($_POST['criteria']) ? $_POST['criteria'] : '', array('Order_Id','user_email','user_fname','user_lname'));
+		if($searchCriteria === ''){ $searchCriteria = 'user_email'; }
 		if($_POST['textSearch']!=''){
 			if($_POST['txt_StartDate']=='' && $_POST['txt_StartDate2']==''){
-				$cri	=	$_POST['criteria']." LIKE '%".$_POST['textSearch']."%' ";
+				$cri	=	$searchCriteria." LIKE '%".db_esc($_POST['textSearch'])."%' ";
 			}else{
-				$cri	=	$_POST['criteria']." LIKE '%".$_POST['textSearch']."%' and ";
+				$cri	=	$searchCriteria." LIKE '%".db_esc($_POST['textSearch'])."%' and ";
 				}
 			}else{
 			$cri	=	'';
 			}
 		if($_POST['txt_StartDate']!=''){
 		if($_POST['txt_StartDate2']!=''){
-		$stDate	=	" creatDate>='".$_POST['txt_StartDate']."' and ";
+		$stDate	=	" creatDate>='".db_esc($_POST['txt_StartDate'])."' and ";
 		}else{
-		$stDate	=	"creatDate>='".$_POST['txt_StartDate']."'";
+		$stDate	=	"creatDate>='".db_esc($_POST['txt_StartDate'])."'";
 		}}else{
 		$stDate	=	'';
 		}
 		
 		if($_POST['txt_StartDate2']!=''){
-		$enDate	=	"creatDate<='".$_POST['txt_StartDate2']."'";
+		$enDate	=	"creatDate<='".db_esc($_POST['txt_StartDate2'])."'";
 		}else{
 		$enDate	=	'';
 		}
 		if(isset($_POST['criteria']) && $_POST['criteria']=='Order_Id'){
-		$que	=	"SELECT * FROM tbl_user INNER JOIN order_master ON (order_master.Cust_ID=tbl_user.user_id) WHERE order_master.Order_Id LIKE '%".$_POST['textSearch']."%'";
+		$que	=	"SELECT * FROM tbl_user INNER JOIN order_master ON (order_master.Cust_ID=tbl_user.user_id) WHERE order_master.Order_Id LIKE '%".db_esc($_POST['textSearch'])."%'";
 		$result1	=	mysql_query($que);
 		$pgObj->SetNavigationalLinksNew($result1);
 		$result= mysql_query($que);

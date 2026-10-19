@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 include("includes/config/classDbConnection.php");
@@ -29,12 +30,12 @@ $pkgId=$parts[1];
 //print_r($parts);
 
 	if($_GET["ddtype"] == "SP"){
-		$qryprt1 = "tpi.engine_id=e.exam_id and e.exam_id = '".$pkgId."'";
+		$qryprt1 = "tpi.engine_id=e.exam_id and e.exam_id = '".san_int($pkgId)."'";
 	}else{
-		$qryprt1 = "tpi.engine_id = '".$pkgId."'";
+		$qryprt1 = "tpi.engine_id = '".san_int($pkgId)."'";
 	}
 
-$queryForFilename = "SELECT e.*, o.*, tpi.* FROM tbl_exam e, order_detail o, tbl_package_instance tpi WHERE ((o.ProductID=e.exam_id || o.ProductID='0') and o.UserID='".$_SESSION['uid']."') and (o.ID='".$parts[2]."' and ".$qryprt1.")";
+$queryForFilename = "SELECT e.*, o.*, tpi.* FROM tbl_exam e, order_detail o, tbl_package_instance tpi WHERE ((o.ProductID=e.exam_id || o.ProductID='0') and o.UserID='".db_esc($_SESSION['uid'])."') and (o.ID='".san_int($parts[2])."' and ".$qryprt1.")";
 $qryy = mysql_query($queryForFilename);
 
 
@@ -53,7 +54,7 @@ $sdata = 'devil/full/';
 
 $exammID = $rowForFilename[0];
 
-	$pathengine = mysql_fetch_array(mysql_query("select * from tbl_package_engine where id='".$pkgId."'"));
+	$pathengine = mysql_fetch_array(mysql_query("select * from tbl_package_engine where id='".san_int($pkgId)."'"));
 
 	$getfilename = $sdata.'/'.$pathengine["path"];
 

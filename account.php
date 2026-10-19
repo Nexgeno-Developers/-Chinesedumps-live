@@ -4,6 +4,7 @@ session_start();
 if(isset($_SESSION['uid'])){
 }else{
 header("location:login.html");
+exit;
 }
 include("includes/config/classDbConnection.php");
 

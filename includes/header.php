@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/config/load_secrets.php';
+require_once dirname(__FILE__) . '/common/sanitize.php';
 include_once __DIR__ . '/config/classDbConnection.php';
 if (function_exists('start_root_url_rewrite')) {
 	start_root_url_rewrite();
@@ -88,13 +89,13 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 
 	$spram[2] = date('Y-m-d H:i:s');
 
-	mysql_query("insert into tbl_course_subscription (email, course, created_at) values ('" . $spram[0] . "','" . $spram[1] . "','" . $spram[2] . "')");
+	mysql_query("insert into tbl_course_subscription (email, course, created_at) values ('" . db_esc($spram[0]) . "','" . db_esc($spram[1]) . "','" . $spram[2] . "')");
 
 
 
 	/*for subscriber */
 
-	$to = $spram[0];
+	$to = str_replace(array("\r", "\n", "%0a", "%0d"), '', is_array($spram[0]) ? '' : $spram[0]);
 
 	$subject = "www.chinesedumps.com";
 
@@ -133,7 +134,7 @@ if (isset($_POST['su_course']) && $_POST['su_course']  == "Submit") {
 	<?php $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 	?>
-	<link rel="canonical" href="<?php echo $actual_link; ?>" />
+	<link rel="canonical" href="<?php echo san_html($actual_link); ?>" />
 	<title>
 		<?= $getPage[0] ?>
 	</title>
@@ -974,7 +975,7 @@ a:focus {
 							<form action="all_exams.html" method="post" onsubmit="return checkSearch()">
 								<div class="merge_input">
 									<i class="fa fa-search" aria-hidden="true"></i>
-									<input type="text" name="search" class="form-control" placeholder="Search exams, Certification..." id="main_search" value="<?php echo isset($_POST["search"]) ? $_POST["search"] : null; ?>" required>
+									<input type="text" name="search" class="form-control" placeholder="Search exams, Certification..." id="main_search" value="<?php echo isset($_POST["search"]) ? san_html($_POST["search"]) : null; ?>" required>
 								</div>
 								<div class="search-submit-box">
 									<input type="submit" class="search-submit" value=""> <i class="fa fa-arrow-right" aria-hidden="true"></i>

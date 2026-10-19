@@ -1,4 +1,5 @@
 <?PHP
+require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 
 
@@ -112,7 +113,7 @@ function delete_hair($pro_id)
 
 
 
-				$strQury 	= 	"DELETE FROM  tbl_length WHERE length_id  = '".$pro_id."'";
+				$strQury 	= 	"DELETE FROM  tbl_length WHERE length_id  = '".db_esc($pro_id)."'";
 
 
 
@@ -132,7 +133,7 @@ function delete_manufecture($pro_id)
 
 
 
-				$strQury 	= 	"DELETE FROM  tbl_manufec WHERE man_id = '".$pro_id."'";
+				$strQury 	= 	"DELETE FROM  tbl_manufec WHERE man_id = '".db_esc($pro_id)."'";
 
 
 
@@ -152,7 +153,7 @@ function delete_manufecture($pro_id)
 
 
 
-				$q1		=	"select * FROM tbl_pro WHERE pro_id ='".$pro_id."'";
+				$q1		=	"select * FROM tbl_pro WHERE pro_id ='".db_esc($pro_id)."'";
 
 
 
@@ -176,7 +177,7 @@ function delete_manufecture($pro_id)
 
 
 
-				$strQury44 	= 	"DELETE FROM  tbl_catsproduct WHERE ProId = '".$pro_id."'";
+				$strQury44 	= 	"DELETE FROM  tbl_catsproduct WHERE ProId = '".db_esc($pro_id)."'";
 
 
 
@@ -188,7 +189,7 @@ function delete_manufecture($pro_id)
 
 
 
-				$strQury2 	= 	"DELETE FROM  tbl_differprice WHERE pro_id = '".$pro_id."'";
+				$strQury2 	= 	"DELETE FROM  tbl_differprice WHERE pro_id = '".db_esc($pro_id)."'";
 
 
 
@@ -200,7 +201,7 @@ function delete_manufecture($pro_id)
 
 
 
-				$strQurylink 	= 	"DELETE FROM  tbl_links WHERE module='product' and controlId = '".$pro_id."'";
+				$strQurylink 	= 	"DELETE FROM  tbl_links WHERE module='product' and controlId = '".db_esc($pro_id)."'";
 
 
 
@@ -212,7 +213,7 @@ function delete_manufecture($pro_id)
 
 
 
-				$strQury 	= 	"DELETE FROM  tbl_pro WHERE pro_id = '".$pro_id."'";
+				$strQury 	= 	"DELETE FROM  tbl_pro WHERE pro_id = '".db_esc($pro_id)."'";
 
 
 
@@ -232,7 +233,7 @@ function delete_manufecture($pro_id)
 
 
 
-				$strQury44 	= 	"DELETE FROM   tbl_tmporder WHERE processord = '".$pro_id."'";
+				$strQury44 	= 	"DELETE FROM   tbl_tmporder WHERE processord = '".db_esc($pro_id)."'";
 
 
 
@@ -244,7 +245,7 @@ function delete_manufecture($pro_id)
 
 
 
-				$strQury2 	= 	"DELETE FROM  tbl_order WHERE ord_id = '".$pro_id."'";
+				$strQury2 	= 	"DELETE FROM  tbl_order WHERE ord_id = '".db_esc($pro_id)."'";
 
 
 
@@ -272,7 +273,7 @@ function delete_review($pro_id)
 
 
 
-				$strQury 	= 	"DELETE FROM   tbl_reviews WHERE rev_id = '".$pro_id."'";
+				$strQury 	= 	"DELETE FROM   tbl_reviews WHERE rev_id = '".db_esc($pro_id)."'";
 
 
 
@@ -296,7 +297,7 @@ function delete_brand($pro_id)
 
 
 
-				$q1		=	"select * FROM tbl_brands WHERE cat_id ='".$pro_id."'";
+				$q1		=	"select * FROM tbl_brands WHERE cat_id ='".db_esc($pro_id)."'";
 
 
 
@@ -320,7 +321,7 @@ function delete_brand($pro_id)
 
 
 
-				$strQurylink 	= 	"DELETE FROM  tbl_links WHERE module='category' and controlId = '".$pro_id."'";
+				$strQurylink 	= 	"DELETE FROM  tbl_links WHERE module='category' and controlId = '".db_esc($pro_id)."'";
 
 
 
@@ -332,7 +333,7 @@ function delete_brand($pro_id)
 
 
 
-				$strQury 	= 	"DELETE FROM  tbl_brands WHERE cat_id = '".$pro_id."'";
+				$strQury 	= 	"DELETE FROM  tbl_brands WHERE cat_id = '".db_esc($pro_id)."'";
 
 
 
@@ -348,7 +349,7 @@ function getBrands($pro_id){
 
 
 
-				$strQury 	= 	"SELECT * FROM  tbl_brands WHERE cat_id = '".$pro_id."'";
+				$strQury 	= 	"SELECT * FROM  tbl_brands WHERE cat_id = '".db_esc($pro_id)."'";
 
 
 
@@ -368,7 +369,7 @@ function getProductsbyId($pro_id){
 
 
 
-				$strQury 	= 	"SELECT * FROM  tbl_pro WHERE pro_id = '".$pro_id."'";
+				$strQury 	= 	"SELECT * FROM  tbl_pro WHERE pro_id = '".db_esc($pro_id)."'";
 
 
 
@@ -552,11 +553,11 @@ function getProductsbyId($pro_id){
 
 
 
-				$queryinsert	=	mysql_query("INSERT INTO tbl_catsproduct(catId,ProId)VALUES('".$catids[$i]."','".$lastId."')");
+				$queryinsert	=	mysql_query("INSERT INTO tbl_catsproduct(catId,ProId)VALUES('".db_esc($catids[$i])."','".db_esc($lastId)."')");
 
 
 
-				$rowrow	=	mysql_fetch_array(mysql_query("SELECT * FROM tbl_brands where cat_id='".$catids[$i]."'"));
+				$rowrow	=	mysql_fetch_array(mysql_query("SELECT * FROM tbl_brands where cat_id='".db_esc($catids[$i])."'"));
 
 
 
@@ -564,7 +565,7 @@ function getProductsbyId($pro_id){
 
 
 
-				mysql_query("INSERT INTO tbl_links(url,module,controlId) VALUES('".$newurl."','product','".$lastId."')");
+				mysql_query("INSERT INTO tbl_links(url,module,controlId) VALUES('".db_esc($newurl)."','product','".db_esc($lastId)."')");
 
 
 
@@ -608,7 +609,7 @@ function getProductsbyId($pro_id){
 
 
 
-				$queryinsert	=	mysql_query("INSERT INTO tbl_catsproduct(catId,ProId)VALUES('".$catids[$i]."','".$lastId."')");
+				$queryinsert	=	mysql_query("INSERT INTO tbl_catsproduct(catId,ProId)VALUES('".db_esc($catids[$i])."','".db_esc($lastId)."')");
 
 
 
@@ -656,7 +657,7 @@ function getProductsbyId($pro_id){
 
 
 
-				$queryinsert	=	mysql_query("INSERT INTO tbl_relproduct(catId,ProId)VALUES('".$catids[$i]."','".$lastId."')");
+				$queryinsert	=	mysql_query("INSERT INTO tbl_relproduct(catId,ProId)VALUES('".db_esc($catids[$i])."','".db_esc($lastId)."')");
 
 
 

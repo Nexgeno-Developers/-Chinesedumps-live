@@ -1,11 +1,12 @@
 <?PHP
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 session_start();
 include_once ("../includes/config/classDbConnection.php");
 include ("../includes/common/inc/sessionheader.php");
 //-------------------------------------------------------------------------------------
 	$objCon		 = 	new classDbConnection();
 	
-	$cateID=$_GET['q'];
+	$cateID=isset($_GET['q']) ? san_int($_GET['q']) : 0;
 	$sel = @$_GET['sel'];
 	$selArr = "";
 	if(!empty($sel))

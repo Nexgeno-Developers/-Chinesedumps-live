@@ -62,7 +62,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
        
        <tr align="right">
           <td align="right">* Newsletter Subscriber Email:</td>
-          <td colspan="2" align="left"><input  name="maintitle"  id="maintitle" type="text" style="width:250px;" value="<? if(isset($_POST['maintitle'])){ echo $_POST['maintitle']; }?>" /></td>
+          <td colspan="2" align="left"><input  name="maintitle"  id="maintitle" type="text" style="width:250px;" value="<? if(isset($_POST['maintitle'])){ echo san_html($_POST['maintitle']); }?>" /></td>
         </tr>
                 
         <tr align="right">

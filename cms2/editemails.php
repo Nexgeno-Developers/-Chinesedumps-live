@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 session_start();
 error_reporting(0);
 //root path
@@ -23,13 +24,13 @@ if (isset($_POST['Submit']) && isset($_POST['Submit'])=="Update..")
 	$spram[1]	=	stripslashes($_POST['FCKeditor']);
 	//$spram[3]	=	$_POST['FCKeditor'];
 
-	$qu1="update mailstable set  mailcontent ='".str_replace("'","\'",$spram[1])."' where mailid='".$_POST['selecttitle']."'";
+	$qu1="update mailstable set  mailcontent ='".db_esc($spram[1])."' where mailid='".db_esc($_POST['selecttitle'])."'";
 	mysql_query($qu1);
 	$str	=	"Data have been updated successfully";
 
 }
 	if(isset($_POST['selecttitle'])){
-	$q="select * from mailstable where mailid='".$_POST['selecttitle']."'";
+	$q="select * from mailstable where mailid='".db_esc($_POST['selecttitle'])."'";
 	}else{
 	$q="select * from mailstable where mailid='1'";
 	}

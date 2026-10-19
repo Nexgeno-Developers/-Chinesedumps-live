@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/common/sanitize.php';
 include_once __DIR__ . '/config/classDbConnection.php';
 if (function_exists('start_root_url_rewrite')) {
 	start_root_url_rewrite();
@@ -33,10 +34,10 @@ if (function_exists('start_root_url_rewrite')) {
 		 $spram[0]	=	$_POST["email"];		
 		 $spram[1] = $_POST["course_name"];		
 		 $spram[2] = date('Y-m-d H:i:s');				
-		 mysql_query("insert into tbl_course_subscription (email, course, created_at) values ('".$spram[0]."','".$spram[1]."','".$spram[2]."')");	
+		 mysql_query("insert into tbl_course_subscription (email, course, created_at) values ('".db_esc($spram[0])."','".db_esc($spram[1])."','".$spram[2]."')");	
 		 
 		/*for subscriber */
-		$to = $spram[0];
+		$to = str_replace(array("\r", "\n", "%0a", "%0d"), '', is_array($spram[0]) ? '' : $spram[0]);
 		$subject = "www.chinesedumps.com" ;
 	  $txt = "Subscription Successful ,  course Name ( ".$spram[1]." )" ;
 		$headers = "From: www.chinesedumps.com" . "\r\n" ;
@@ -58,7 +59,7 @@ if (function_exists('start_root_url_rewrite')) {
 			<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 			<?php $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 ?>
-			<link rel="canonical" href="<?php echo $actual_link;?>" />
+			<link rel="canonical" href="<?php echo san_html($actual_link);?>" />
 
 					<title>
 						<?=$getPage[0]?>

@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 /**
  * paypal_ipn.php
  * PHP 5.6 compatible PayPal IPN listener with email notification on success or failure.
@@ -363,11 +364,11 @@ if (stripos($verified_response, 'VERIFIED') !== false) {
                      ProductID, Description, ExpireDate, strdate,
                      submonth, status, PTypeID)
                   VALUES
-                    ('{$UserId}', '{$lastordid}', '{$row_cart['CartID']}',
-                     '{$row_cart['VendorID']}', '{$row_cart['TrackID']}',
-                     '{$row_cart['Pid']}', '" . mysql_real_escape_string($row_cart['Product']) . "',
-                     '{$Expiredate}', '{$dayedate}', '{$row_cart['subscrip']}',
-                     1, '{$row_cart['PType']}')
+                    ('{$UserId}', '{$lastordid}', '" . db_esc($row_cart['CartID']) . "',
+                     '" . db_esc($row_cart['VendorID']) . "', '" . db_esc($row_cart['TrackID']) . "',
+                     '" . san_int($row_cart['Pid']) . "', '" . mysql_real_escape_string($row_cart['Product']) . "',
+                     '{$Expiredate}', '{$dayedate}', '" . san_int($row_cart['subscrip']) . "',
+                     1, '" . db_esc($row_cart['PType']) . "')
                 ";
                 if (! mysql_query($query_order)) {
                     error_log("IPN insert order_detail failed: " . mysql_error());

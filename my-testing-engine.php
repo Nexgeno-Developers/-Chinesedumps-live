@@ -1,9 +1,11 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 if(isset($_SESSION['uid'])){
 }else{
 header("location:login.html");
+exit;
 }
 include("includes/config/classDbConnection.php");
 
@@ -56,7 +58,7 @@ function find_file ($dirname, $fname, &$file_path) {
 
 		$no_assigned=1;
 		$str1 = "";
-		$res1 = mysql_query("select E.* from tbl_exam_user T, tbl_exam E where T.exam_id = E.exam_id and T.status='1' and (T.PType='sp' or T.PType='both') and T.user_id = '".$_SESSION['uid']."'");
+		$res1 = mysql_query("select E.* from tbl_exam_user T, tbl_exam E where T.exam_id = E.exam_id and T.status='1' and (T.PType='sp' or T.PType='both') and T.user_id = '".san_int($_SESSION['uid'])."'");
 		$showTR	='';
 		while($getuser1	=	mysql_fetch_array($res1))
 		{

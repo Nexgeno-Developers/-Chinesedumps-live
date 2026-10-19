@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 ob_start();
 session_start();
@@ -44,8 +45,8 @@ $ccAdminData = get_session_data();
 		
 		if(isset($_GET['pgIndex']) && !empty($_GET['pgIndex']) && is_numeric($_GET['pgIndex']) && is_numeric($_GET['currentPage']))
 				{
-					$PageNo			 = $_GET['currentPage'];	# Shows # of Page			
-					$PageIndex		 = $_GET['pgIndex'];		# Shows # of Page Index				
+					$PageNo			 = san_int($_GET['currentPage']);	# Shows # of Page			
+					$PageIndex		 = san_int($_GET['pgIndex']);		# Shows # of Page Index				
 				}	
 
 					$LIMIT .= " LIMIT " . (($PageNo-1) * $rowsPerPage). " , " . $rowsPerPage;
@@ -69,9 +70,9 @@ $ccAdminData = get_session_data();
 	
 	if(isset($_POST['Search']))
 	{
-		$result1	=	mysql_query("SELECT * FROM tbl_demo_download INNER JOIN tbl_user ON (tbl_demo_download.dnUID=tbl_user.user_id) WHERE (tbl_user.user_email LIKE '%".$_POST['textSearch']."%' ) order by tbl_demo_download.dndate DESC".$limist);
+		$result1	=	mysql_query("SELECT * FROM tbl_demo_download INNER JOIN tbl_user ON (tbl_demo_download.dnUID=tbl_user.user_id) WHERE (tbl_user.user_email LIKE '%".db_esc($_POST['textSearch'])."%' ) order by tbl_demo_download.dndate DESC".$limist);
 		$pgObj->SetNavigationalLinksNew($result1);
-		$result		= 	mysql_query("SELECT * FROM tbl_demo_download INNER JOIN tbl_user ON (tbl_demo_download.dnUID=tbl_user.user_id) WHERE (tbl_user.user_email LIKE '%".$_POST['textSearch']."%' ) order by tbl_demo_download.dndate DESC".$LIMIT);
+		$result		= 	mysql_query("SELECT * FROM tbl_demo_download INNER JOIN tbl_user ON (tbl_demo_download.dnUID=tbl_user.user_id) WHERE (tbl_user.user_email LIKE '%".db_esc($_POST['textSearch'])."%' ) order by tbl_demo_download.dndate DESC".$LIMIT);
 	
 	}else{
 //............................................

@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 session_start();
 error_reporting(0);
 //root path
@@ -43,7 +44,7 @@ if (isset($_POST['Submit']) && isset($_POST['Submit'])=="Update..")
 		if(empty($strError))
 			{
 			
-	$qu1	=	"UPDATE content_pages set page_title='".$spram[1]."',content_title='".$spram[2]."',page_contents='".$spram[3]."' where page_id='".$_GET['ser_id']."'";
+	$qu1	=	"UPDATE content_pages set page_title='".db_esc($spram[1])."',content_title='".db_esc($spram[2])."',page_contents='".db_esc($spram[3])."' where page_id='".(isset($_GET['ser_id']) ? san_int($_GET['ser_id']) : 0)."'";
 	mysql_query($qu1);
 	
 	
@@ -51,7 +52,7 @@ if (isset($_POST['Submit']) && isset($_POST['Submit'])=="Update..")
 			}
 }else{
 
-	$quer	=	$objDBcon->Sql_Query_Exec('*','content_pages',"page_id='".$_GET['ser_id']."'");
+	$quer	=	$objDBcon->Sql_Query_Exec('*','content_pages',"page_id='".(isset($_GET['ser_id']) ? san_int($_GET['ser_id']) : 0)."'");
 	$exec	=	mysql_fetch_array($quer);
 	$spram[1]	=	$exec['page_title'];
 	$spram[2]	=	$exec['content_title'];

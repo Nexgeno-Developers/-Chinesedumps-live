@@ -1,4 +1,5 @@
 <?PHP 
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 
@@ -25,11 +26,11 @@ $ccAdminData = get_session_data();
 		$date	=	$_POST['startdate'];
 		if(isset($_POST['all_exams']))
 		{
-			mysql_query("update tbl_exam set exam_upddate = '$date'");
+			mysql_query("update tbl_exam set exam_upddate = '".db_esc($date)."'");
 		}
 		else
 		{
-			mysql_query("update tbl_exam set exam_upddate = '$date' where ven_id = '$vendor'");
+			mysql_query("update tbl_exam set exam_upddate = '".db_esc($date)."' where ven_id = '".san_int($vendor)."'");
 		}
 		$strError = "Exams have been updated successfully";
 	}

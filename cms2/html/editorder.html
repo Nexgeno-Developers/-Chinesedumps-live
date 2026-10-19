@@ -194,7 +194,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
                          <td align="left" valign="middle" style="font-size:12px; color:#000;"><strong>Product Price</strong></td>
                        </tr>
                        <? while($row	=	mysql_fetch_array($getpro)){
-                       	$productname	=	mysql_fetch_array($objDBcon->Sql_Query_Exec("*","tbl_pro","pro_id ='".$row['tmp_proid']."'"));
+                       	$productname	=	mysql_fetch_array($objDBcon->Sql_Query_Exec("*","tbl_pro","pro_id ='".db_esc($row['tmp_proid'])."'"));
 						$propricesingle	=	$row['tmp_price']*$row['tmp_quant'];
                         if($row['spe_price']!=''){
                         $shipyes	=	'yes';

@@ -1,4 +1,5 @@
 <?PHP
+require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 
 
@@ -178,7 +179,7 @@
 
 	{
 
-		$strQury	= "select * from order_master where Cust_ID='".$userId."' ";	
+		$strQury	= "select * from order_master where Cust_ID='".db_esc($userId)."' ";	
 
 		$rs_order			= mysql_query($strQury);
 
@@ -194,7 +195,7 @@ function getAllOrder($userId)
 
 		{
 
- 		$strQury	= "select * from order_master where Cust_ID='".$userId."' and Status='1'";	
+ 		$strQury	= "select * from order_master where Cust_ID='".db_esc($userId)."' and Status='1'";	
 
 		$rs_order	= mysql_query($strQury);
 
@@ -253,7 +254,7 @@ function showOrders($result)
 
 					$descount	=	$row_order['Gross_Amount']-$row_order['Net_Amount'];
 
-			$getorderdet	=	mysql_query("SELECT * from order_detail where masterid='".$row_order['ID']."' and UserID='".$_SESSION['uid']."'");
+			$getorderdet	=	mysql_query("SELECT * from order_detail where masterid='".$row_order['ID']."' and UserID='".db_esc($_SESSION['uid'])."'");
 
 	$roword	=	mysql_fetch_array($getorderdet);		
 
@@ -358,7 +359,7 @@ function showOrders($result)
 
 			
 
-			$sql_detail = " select * from order_detail  where UserID = '".$userId."' and ExpireDate = '".$ExpireDate."' ";
+			$sql_detail = " select * from order_detail  where UserID = '".db_esc($userId)."' and ExpireDate = '".db_esc($ExpireDate)."' ";
 
 			//$sql = "select * from order_master where Cust_ID='".$userId."' and SiteID ='".$siteId."'";
 
@@ -504,7 +505,7 @@ function showOrders($result)
 
 	{
 
-	 $sql			=	"select * from tbl_vendors where ven_status='1' and ven_id='".$venName."'";
+	 $sql			=	"select * from tbl_vendors where ven_status='1' and ven_id='".db_esc($venName)."'";
 
 	  $rs			=	 mysql_query($sql);
 
@@ -520,7 +521,7 @@ function showOrders($result)
 
 	{
 
-		 $strSql 	=	"SELECT  * from tbl_cert where ven_id='".$vid."' and cert_status='1'";
+		 $strSql 	=	"SELECT  * from tbl_cert where ven_id='".db_esc($vid)."' and cert_status='1'";
 
 		 $result	=	mysql_query($strSql);
 
@@ -562,7 +563,7 @@ function showOrders($result)
 
 					$track_name	=	$rows['cert_name'];
 
-					$Track2	="<b>" .$vendorName."&nbsp;".$rows['cert_name']."</b>";
+					$Track2	="<b>" .san_html($vendorName)."&nbsp;".$rows['cert_name']."</b>";
 
 					$tnic  =  str_replace('+', '-plus',strtolower($rows['cert_name']));
 
@@ -578,7 +579,7 @@ function showOrders($result)
 
 					$url	= $basepath."".$rows['cert_url']."-cert.htm";
 
-					$Title	=  $vendorName.' - '.$rows['cert_name'];
+					$Title	=  san_html($vendorName).' - '.$rows['cert_name'];
 
 					
 
@@ -928,7 +929,7 @@ function getAllItems($proid)
 
 	{
 
-      $strstr	=	"SELECT * FROM tbl_exam WHERE cert_id='$TID'";
+      $strstr	=	"SELECT * FROM tbl_exam WHERE cert_id='".db_esc($TID)."'";
 
 	 $result	=	mysql_query( $strstr);
 
@@ -1082,7 +1083,7 @@ function showAllexams($spam,$trNIck,$base_path)
 
 	function getExamVendor($TID){
 
-		$newq = "select * from tbl_exam where exam_url='".$TID."'";
+		$newq = "select * from tbl_exam where exam_url='".db_esc($TID)."'";
 
 		$newquery = mysql_query($newq);
 
@@ -1098,7 +1099,7 @@ function showAllexams($spam,$trNIck,$base_path)
 
 	function getVendorname($TID){
 
-		$newq = "select * from tbl_exam where exam_name='".$TID."'";
+		$newq = "select * from tbl_exam where exam_name='".db_esc($TID)."'";
 
 		$newquery = mysql_query($newq);
 
@@ -1128,7 +1129,7 @@ function showAllexams($spam,$trNIck,$base_path)
 
 function get_vendorName($vendor_id){
 
-	$strSql 	=	"SELECT * FROM tbl_vendors WHERE ven_id='".$vendor_id."'";
+	$strSql 	=	"SELECT * FROM tbl_vendors WHERE ven_id='".db_esc($vendor_id)."'";
 
     $result		=	mysql_query($strSql);
 
@@ -1158,7 +1159,7 @@ $jj=0;
 
  	{ 
 
-      $strSql 	=	"SELECT cert_name FROM tbl_cert WHERE cert_id='$v'";
+      $strSql 	=	"SELECT cert_name FROM tbl_cert WHERE cert_id='".db_esc($v)."'";
 
 	  $result		=	mysql_query($strSql);
 

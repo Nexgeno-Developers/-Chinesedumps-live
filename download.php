@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 
 ob_start();
 
@@ -11,6 +12,7 @@ if(isset($_SESSION['uid'])){
 }else{
 
 header("location:account.html");
+exit;
 
 }
 
@@ -49,7 +51,7 @@ $ip= $_SERVER['REMOTE_ADDR'];
 
 //$orderdate	=	mysql_fetch_array(mysql_query("SELECT * from order_detail where ID='".$parts["1"]."'"));
 
-$orderqry	=	mysql_query("SELECT o.*, e.* from order_detail o, tbl_exam e where (o.ID='".$parts["1"]."' and (o.ProductID='".$parts["2"]."' || o.ProductID='0'))");
+$orderqry	=	mysql_query("SELECT o.*, e.* from order_detail o, tbl_exam e where (o.ID='".san_int($parts["1"])."' and (o.ProductID='".db_esc($parts["2"])."' || o.ProductID='0'))");
 
 
 
@@ -60,6 +62,7 @@ $orderdate	= mysql_fetch_array($orderqry);
 if(mysql_num_rows($orderqry) == "0"){
 
 		header("location:mydownloads.html");
+exit;
 
 	}
 
@@ -81,7 +84,7 @@ if($orderdate['UserID']!=$_SESSION['uid']){
 
 if(($currentdate<=$expdate) || $expdate==''){
 
-$sql_pro = "select * from tbl_exam  where exam_id='".$parts["2"]."' ";
+$sql_pro = "select * from tbl_exam  where exam_id='".db_esc($parts["2"])."' ";
 
 $rs_pro  = mysql_query($sql_pro);
 
@@ -107,6 +110,7 @@ $exmId = $row_pro['exam_name'];
 }else{
 
 	header("location:mydownloads.html");
+exit;
 
 	}
 
@@ -126,7 +130,7 @@ echo download_demo($exmId);
 
 
 
-$qu ="INSERT INTO tbl_full_download(dnUID,dnTYPE,itemid,dndate,IP,IPcountry,statusdownload)VALUES('".$_SESSION['uid']."','0','".$parts["2"]."','".date("Y-m-d")."','".$ip."','','1')";
+$qu ="INSERT INTO tbl_full_download(dnUID,dnTYPE,itemid,dndate,IP,IPcountry,statusdownload)VALUES('".san_int($_SESSION['uid'])."','0','".san_int($parts["2"])."','".date("Y-m-d")."','".db_esc($ip)."','','1')";
 
 mysql_query($qu);
 
@@ -290,7 +294,7 @@ if (!isset($filenamename) || empty($filenamename)) {
 
 }else{
 
-$qu ="INSERT INTO tbl_full_download(dnUID,dnTYPE,itemid,dndate,IP,IPcountry,statusdownload)VALUES('".$_SESSION['uid']."','0','".$parts["2"]."','".date("Y-m-d")."','".$ip."','','1')";
+$qu ="INSERT INTO tbl_full_download(dnUID,dnTYPE,itemid,dndate,IP,IPcountry,statusdownload)VALUES('".san_int($_SESSION['uid'])."','0','".san_int($parts["2"])."','".date("Y-m-d")."','".db_esc($ip)."','','1')";
 
 mysql_query($qu);
 
@@ -371,6 +375,7 @@ if (!is_file($file_path)) {
 echo $file_path;
 
 	header("location:notfound.html");
+	exit;
 
 	//die("File does not exist. Make sure you specified correct file name."); 
 
@@ -458,7 +463,7 @@ else {
 
   // remove some bad chars
 
-  $asfname = str_replace(array('"',"'",'\\','/'), '', $_GET['fc']);
+  $asfname = str_replace(array('"',"'",'\\','/',"\r","\n"), '', $_GET['fc']);
 
   if ($asfname === '') $asfname = 'NoName';
 

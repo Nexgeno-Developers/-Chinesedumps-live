@@ -1,4 +1,5 @@
 <?PHP
+require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start(); // Start session only if not already started
 }
@@ -191,7 +192,7 @@ function showd_cart_left($arr,$base_path,$sesid)
 
 	 	
 
-		$q_pcode		=	"select * from tbl_exam where exam_id='".$cart_pids."'";
+		$q_pcode		=	"select * from tbl_exam where exam_id='".db_esc($cart_pids)."'";
 
 		$rs_pcode		=	mysql_query($q_pcode);
 
@@ -257,7 +258,7 @@ function showd_cart_left($arr,$base_path,$sesid)
 
 	 	
 
-		$q_pcode		=	"select * from tbl_cert where cert_id='".$cart_tids."'";
+		$q_pcode		=	"select * from tbl_cert where cert_id='".db_esc($cart_tids)."'";
 
 		$rs_pcode		=	mysql_query($q_pcode);
 
@@ -321,7 +322,7 @@ function showd_cart_left($arr,$base_path,$sesid)
 
 	 	
 
-		$q_pcode		=	"select * from tbl_vendors where ven_id='".$cart_vids."'";
+		$q_pcode		=	"select * from tbl_vendors where ven_id='".db_esc($cart_vids)."'";
 
 		$rs_pcode		=	mysql_query($q_pcode);
 
@@ -509,7 +510,7 @@ function find_file_now($dirname, $fname, &$file_path) {
 
 			if($sessss!='' && $sessss!='0'){
 
-			$query_cart	=	"select * from temp_order where UserID='".$sessss."' order by ID ASC";
+			$query_cart	=	"select * from temp_order where UserID='".db_esc($sessss)."' order by ID ASC";
 
 			}else{
 
@@ -607,7 +608,7 @@ function find_file_now($dirname, $fname, &$file_path) {
 
                     
 
-                    $q_pcode		=	"select * from tbl_exam where exam_id='".$cart_pids."'";
+                    $q_pcode		=	"select * from tbl_exam where exam_id='".db_esc($cart_pids)."'";
 
                     $rs_pcode		=	mysql_query($q_pcode);
 
@@ -689,7 +690,7 @@ function find_file_now($dirname, $fname, &$file_path) {
 
                     if($cart_tids!='' && $cart_tids!='0'){
 
-						$q_pcode		=	"select * from tbl_cert where cert_id='".$cart_tids."'";
+						$q_pcode		=	"select * from tbl_cert where cert_id='".db_esc($cart_tids)."'";
 
 						$rs_pcode		=	mysql_query($q_pcode);
 
@@ -745,7 +746,7 @@ function find_file_now($dirname, $fname, &$file_path) {
 
 				
 
-				$q_pcode		=	"select * from tbl_vendors where ven_id='".$cart_vids."'";
+				$q_pcode		=	"select * from tbl_vendors where ven_id='".db_esc($cart_vids)."'";
 
 				$rs_pcode		=	mysql_query($q_pcode);
 
@@ -958,7 +959,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 				$cart_showed	=	'';
 
-				$query			=	"select * from temp_order where CartID='".$arr."' order by ID ASC";
+				$query			=	"select * from temp_order where CartID='".db_esc($arr)."' order by ID ASC";
 
 				$rs				=	mysql_query($query);
 
@@ -984,7 +985,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 			if(isset($_SESSION['uid'])){
 
-			$query_cart		=	"select * from temp_order where UserID='".$_SESSION['uid']."' order by ID ASC";
+			$query_cart		=	"select * from temp_order where UserID='".db_esc($_SESSION['uid'])."' order by ID ASC";
 
 			}else{
 
@@ -1034,7 +1035,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
                     
 
-                    $q_pcode		=	"select * from tbl_exam where exam_id='".$cart_pids."'";
+                    $q_pcode		=	"select * from tbl_exam where exam_id='".db_esc($cart_pids)."'";
 
                     $rs_pcode		=	mysql_query($q_pcode);
 
@@ -1100,7 +1101,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
                     if($cart_tids!='' && $cart_tids!='0'){
 
-						$q_pcode		=	"select * from tbl_cert where cert_id='".$cart_tids."'";
+						$q_pcode		=	"select * from tbl_cert where cert_id='".db_esc($cart_tids)."'";
 
 						$rs_pcode		=	mysql_query($q_pcode);
 
@@ -1146,7 +1147,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 				
 
-				$q_pcode		=	"select * from tbl_vendors where ven_id='".$cart_vids."'";
+				$q_pcode		=	"select * from tbl_vendors where ven_id='".db_esc($cart_vids)."'";
 
 				$rs_pcode		=	mysql_query($q_pcode);
 
@@ -1309,7 +1310,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 			if(isset($_SESSION['uid'])){
 
-			$query_cart		=	"select * from temp_order where UserID='".$_SESSION['uid']."' order by ID ASC";
+			$query_cart		=	"select * from temp_order where UserID='".db_esc($_SESSION['uid'])."' order by ID ASC";
 
 			}else{
 
@@ -1365,7 +1366,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
                     
 
-                    $q_pcode		=	"select * from tbl_exam where exam_id='".$cart_pids."'";
+                    $q_pcode		=	"select * from tbl_exam where exam_id='".db_esc($cart_pids)."'";
 
                     $rs_pcode		=	mysql_query($q_pcode);
 
@@ -1435,7 +1436,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
                     if($cart_tids!='' && $cart_tids!='0'){
 
-						$q_pcode		=	"select * from tbl_cert where cert_id='".$cart_tids."'";
+						$q_pcode		=	"select * from tbl_cert where cert_id='".db_esc($cart_tids)."'";
 
 						$rs_pcode		=	mysql_query($q_pcode);
 
@@ -1485,7 +1486,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 				
 
-				$q_pcode		=	"select * from tbl_vendors where ven_id='".$cart_vids."'";
+				$q_pcode		=	"select * from tbl_vendors where ven_id='".db_esc($cart_vids)."'";
 
 				$rs_pcode		=	mysql_query($q_pcode);
 
@@ -1569,7 +1570,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 	
 
-$abc = mysql_query("select DISTINCT PType from temp_order where UserID='".$_SESSION['uid']."' order by ID ASC");
+$abc = mysql_query("select DISTINCT PType from temp_order where UserID='".db_esc($_SESSION['uid'])."' order by ID ASC");
 
 $typequan = mysql_num_rows($abc);
 
@@ -1637,7 +1638,7 @@ $typb[$j] = $typequanabc->PType;
 
 function checkquan($tttp){
 
-$bc = mysql_query("select * from temp_order where UserID='".$_SESSION['uid']."' and PType='$tttp' order by ID ASC");
+$bc = mysql_query("select * from temp_order where UserID='".db_esc($_SESSION['uid'])."' and PType='".db_esc($tttp)."' order by ID ASC");
 
 $bb = mysql_fetch_object($bc);
 
@@ -1809,7 +1810,7 @@ return mysql_num_rows($bc)+$qqqbb-1;
 
 	{
 
-		$sql = " select * from order_detail  where UserID = '".$userId."' and 	status='1' and (PTypeID='p' or PTypeID='' or PTypeID='both' or PTypeID='p1' or PTypeID='p3' or PTypeID='p6' or PTypeID='p12') ORDER BY  ExpireDate DESC ";
+		$sql = " select * from order_detail  where UserID = '".db_esc($userId)."' and 	status='1' and (PTypeID='p' or PTypeID='' or PTypeID='both' or PTypeID='p1' or PTypeID='p3' or PTypeID='p6' or PTypeID='p12') ORDER BY  ExpireDate DESC ";
 
 		$rs  = mysql_query($sql);
 
@@ -1861,7 +1862,7 @@ return mysql_num_rows($bc)+$qqqbb-1;
 
 		  if($rows['VendorID']!='' && $rows['VendorID']!='0'){
 
-		   $sql_pro = "select * from tbl_exam  where ven_id='".$rows['VendorID']."' ";
+		   $sql_pro = "select * from tbl_exam  where ven_id='".db_esc($rows['VendorID'])."' ";
 
 		   $exequery	=	mysql_query($sql_pro);
 
@@ -1871,7 +1872,7 @@ return mysql_num_rows($bc)+$qqqbb-1;
 
 		  if($rows['TrackID']!='' && $rows['TrackID']!='0'){
 
-		   $sql_pro = "select * from tbl_exam  where cert_id='".$rows['TrackID']."' ";
+		   $sql_pro = "select * from tbl_exam  where cert_id='".db_esc($rows['TrackID'])."' ";
 
 		   $exequery	=	mysql_query($sql_pro);
 
@@ -1881,7 +1882,7 @@ return mysql_num_rows($bc)+$qqqbb-1;
 
 		  if($rows['ProductID']!='' && $rows['ProductID']!='0'){
 
-		   $sql_pro = "select * from tbl_exam  where exam_id='".$rows['ProductID']."' ";
+		   $sql_pro = "select * from tbl_exam  where exam_id='".db_esc($rows['ProductID'])."' ";
 
 		   $exequery	=	mysql_query($sql_pro);
 
@@ -1935,7 +1936,7 @@ return mysql_num_rows($bc)+$qqqbb-1;
 
 						if(isset($_GET["view"]) and $_GET["view"] == "vednor"){
 
-						$res1 = mysql_query("select * from tbl_exam where exam_status='1' and ven_id='".$_GET["idt"]."' and QA !='0'  order by exam_name ASC");
+						$res1 = mysql_query("select * from tbl_exam where exam_status='1' and ven_id='".db_esc($_GET["idt"])."' and QA !='0'  order by exam_name ASC");
 
 						$aa = "select * from tbl_vendors where ven_status='1' order by ven_name ASC";
 
@@ -2157,7 +2158,7 @@ return mysql_num_rows($bc)+$qqqbb-1;
 
 		  	 
 
-		  $sql_pro_sin = "select * from tbl_exam  where exam_id='".$allexam['exam_id']."'";
+		  $sql_pro_sin = "select * from tbl_exam  where exam_id='".db_esc($allexam['exam_id'])."'";
 
 		  $rs_pro_sin  = mysql_query($sql_pro_sin);
 
@@ -2405,7 +2406,7 @@ function fillComboSubCategoryexams($intValue = 0,$certid)
 
 			$txtSelected = "";	//Set the option to Selected
 
-			$rrr	=	"SELECT  * FROM tbl_exam WHERE exam_id= '".$certid."'";
+			$rrr	=	"SELECT  * FROM tbl_exam WHERE exam_id= '".db_esc($certid)."'";
 
 			$qry = mysql_query($rrr);
 

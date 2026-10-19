@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/config/load_secrets.php';
 require_once __DIR__ . '/../includes/common/auth.php';
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -24,7 +25,7 @@ $client->addScope("email");
 $client->addScope("profile");
 
 if (isset($_GET['code'])) {
-    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+    $token = $client->fetchAccessTokenWithAuthCode(san_get('code'));
 
     if (isset($token['access_token'])) {
         $_SESSION['access_token'] = $token;
@@ -92,8 +93,8 @@ if (isset($_GET['code'])) {
         // 4) update any temp_order
         mysql_query(
           "UPDATE temp_order 
-             SET UserID = '{$user_id}' 
-           WHERE CartID = '" . session_id() . "'",
+             SET UserID = '" . (int)$user_id . "' 
+           WHERE CartID = '" . db_esc(session_id()) . "'",
            $conn
         );
         
@@ -102,9 +103,28 @@ if (isset($_GET['code'])) {
         if (!empty($_COOKIE['redirect_after_login'])) {
             $safeRedirect = urldecode($_COOKIE['redirect_after_login']);
         
-            // Optional: check it's from same domain
+            // Optional: check it's from same domain (exact host match, no open redirect)
             $parsed = parse_url($safeRedirect);
-            if (!isset($parsed['host']) || strpos($parsed['host'], 'chinesedumps.com') !== false) {
+            $siteHost = '';
+            if (defined('BASE_URL')) { $siteHost = (string)parse_url(BASE_URL, PHP_URL_HOST); }
+            if ($siteHost === '' && !empty($base_path)) { $siteHost = (string)parse_url($base_path, PHP_URL_HOST); }
+            if ($siteHost === '' && !empty($_SERVER['HTTP_HOST'])) { $siteHost = preg_replace('/:\d+$/', '', $_SERVER['HTTP_HOST']); }
+            $siteHost = strtolower($siteHost);
+            $redirHost = (is_array($parsed) && isset($parsed['host'])) ? strtolower($parsed['host']) : '';
+            $redirHostOk = ($redirHost !== '') && (
+                ($siteHost !== '' && $redirHost === $siteHost)
+                || $redirHost === 'chinesedumps.com'
+                || substr($redirHost, -strlen('.chinesedumps.com')) === '.chinesedumps.com'
+            );
+            $redirClean = is_array($parsed)
+                && strpos($safeRedirect, '\\') === false
+                && !preg_match('#[\x00-\x1F\x7F]#', $safeRedirect)
+                && !isset($parsed['user']) && !isset($parsed['pass'])
+                && (!isset($parsed['scheme']) || in_array(strtolower($parsed['scheme']), array('http', 'https')));
+            if ($redirClean && (
+                ($redirHost === '' && !isset($parsed['scheme']) && !preg_match('#^/{2}#', $safeRedirect))
+                || $redirHostOk
+            )) {
                 // Expire the cookie
                 setcookie('redirect_after_login', '', time() - 3600, '/');
                 header("Location: $safeRedirect");

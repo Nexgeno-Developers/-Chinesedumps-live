@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 /*
 		//Class which provides the functionality of the classPaging on the records coming from the Db.
 		// It is for mysql
@@ -114,8 +115,8 @@ class classPaging
 				//Set the Current Page which has been hit
 				if(!empty($_GET['pgIndex']) && isset($_GET['pgIndex']) && !empty($_GET['currentPage']) && isset($_GET['currentPage']))
 				{
-					$this->_Page_Index = $_GET['pgIndex'];
-					$this->_CURRENT_Page_Index = $_GET['currentPage'] ; 
+					$this->_Page_Index = san_int($_GET['pgIndex']);
+					$this->_CURRENT_Page_Index = san_int($_GET['currentPage']) ; 
 				}	
 
 				//Check that if the Coming page is the last link of the Navigatoin
@@ -132,10 +133,10 @@ class classPaging
 						if($this->_CURRENT_Page_Index <= $this->_PageCount)	
 						{
 							if($_GET['currentPage'] == $this->_CURRENT_Page_Index)
-								$Navigable_Links .= "<li><b>". $_GET['currentPage'] ."</b></li>&nbsp;";
+								$Navigable_Links .= "<li><b>". san_html($_GET['currentPage']) ."</b></li>&nbsp;";
 	
 							 if($_GET['currentPage'] <> $this->_CURRENT_Page_Index)	
-								$Navigable_Links .= "<li><a href=\"".$this->_PageName ."?pgIndex=". $inc ."&cat_id=".$this->catId."&currentPage=". $this->_CURRENT_Page_Index . $this->_Qry_PARAMS ."\" ". $this->_LinksClass ." >". $this->_CURRENT_Page_Index ."</a></li>";
+								$Navigable_Links .= "<li><a href=\"".$this->_PageName ."?pgIndex=". $inc ."&cat_id=".san_html($this->catId)."&currentPage=". $this->_CURRENT_Page_Index . $this->_Qry_PARAMS ."\" ". $this->_LinksClass ." >". $this->_CURRENT_Page_Index ."</a></li>";
 
 							$this->_CURRENT_Page_Index ++;
 						}				
@@ -168,7 +169,7 @@ class classPaging
 			
 			//Set the Current Page which has been hit
 			if(!empty($_GET['currentPage']) && isset($_GET['currentPage']))
-				$currentPage = $_GET['currentPage'];
+				$currentPage = san_int($_GET['currentPage']);
 			else
 				$currentPage = 1;
 			if($this->_Page_Index > 1)
@@ -180,7 +181,7 @@ class classPaging
 			//Show Back Link
 			
 			if($currentPage > 1)
-				$Navigable_Links = "<li><a href=\"". $this->_PageName ."?pgIndex=". $pgIndex ."&cat_id=".$this->catId."&currentPage=". ($currentPage - 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">&laquo;&nbsp;Previous</a></li>";
+				$Navigable_Links = "<li><a href=\"". $this->_PageName ."?pgIndex=". $pgIndex ."&cat_id=".san_html($this->catId)."&currentPage=". ($currentPage - 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">&laquo;&nbsp;Previous</a></li>";
 
 			//Return the links
 			return $Navigable_Links;
@@ -204,7 +205,7 @@ class classPaging
 			
 			//Set the Current Page which has been hit
 			if(!empty($_GET['currentPage']) && isset($_GET['currentPage']))
-				$currentPage = $_GET['currentPage'];
+				$currentPage = san_int($_GET['currentPage']);
 			else
 				$currentPage = 1;
 
@@ -213,7 +214,7 @@ class classPaging
 			//Make it sure that Current Page is Greater Than 1
 			//Show Forward Link
 			if($currentPage < $this->_PageCount)
-				$Navigable_Links = "<li><a href=\"". $this->_PageName ."?pgIndex=". $pgIndex ."&cat_id=".$this->catId."&currentPage=". ($currentPage + 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">Next&nbsp;&raquo;</a></li>";
+				$Navigable_Links = "<li><a href=\"". $this->_PageName ."?pgIndex=". $pgIndex ."&cat_id=".san_html($this->catId)."&currentPage=". ($currentPage + 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">Next&nbsp;&raquo;</a></li>";
 
 			//Return the links
 			return $Navigable_Links;

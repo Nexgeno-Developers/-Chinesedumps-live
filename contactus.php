@@ -2,6 +2,7 @@
 <?php
 ob_start();
 session_start();
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 include("includes/config/classDbConnection.php");
 
 include("includes/common/classes/classmain.php");
@@ -33,7 +34,7 @@ $emailValidator = new classEmailvalidate();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contactus_form'])) {
 
     function sanitizeInput($data) {
-        return htmlspecialchars(strip_tags(trim($data)));
+        return htmlspecialchars(strip_tags(trim(san_text($data))));
     }
 
     $errors = [];
@@ -43,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contactus_form'])) {
     $tel      = sanitizeInput($_POST['tel']);
     $message  = sanitizeInput($_POST['message']);
     $cCode    = isset($_POST['concode']) ? sanitizeInput($_POST['concode']) : '';
-    $type     = isset($_POST['type']) ? sanitizeInput($_POST['type']) : 'contact';
+    $type     = isset($_POST['type']) ? str_replace(array("\r", "\n", "%0a", "%0d"), '', sanitizeInput($_POST['type'])) : 'contact';
 
     // --- Validation ---
     if (empty($name) || preg_match('/[^a-zA-Z0-9\s]/', $name)) {
@@ -96,13 +97,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contactus_form'])) {
         $txt .= "<strong>Tel:</strong> +" . $cCode . "-" . $tel . "<br><br>";
         $txt .= "<strong>Message:</strong> " . $message . "<br><br>";
 
-        $headers  = "From: " . $email . "\r\n";
+        $headers  = "From: " . str_replace(array("\r", "\n", "%0a", "%0d"), '', $email) . "\r\n";
         $headers .= "Content-Type: text/html; charset=UTF-8";
 
         $mail_send = sendEmail($to, $subject, $txt, $headers);
 
         if ($mail_send) {
-            // header("Location: <?php echo BASE_URL; ?>thankyou-page.php");
+            // header("Location: " . BASE_URL . "thankyou-page.php");
             header('Content-Type: application/json');
             echo json_encode([
               'success' => true,

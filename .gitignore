@@ -35,3 +35,6 @@ vendor
 **/sitemap.xml
 
 **/config.php
+
+# internal change report - never publish
+SECURITY_CHANGES.md

@@ -57,14 +57,14 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
         <tr>
           <td height="25" align="right" valign="middle" class="p"><b>From Email Address:</b></td>
           <td align="left" valign="middle" class="form"><span class="tablerowgreen">
-            <input name="link2" type="text" class="bodytext_form_field" id="link2" style=" width:250px;" value="<?=$spram[2]?>"/>
+            <input name="link2" type="text" class="bodytext_form_field" id="link2" style=" width:250px;" value="<?=san_html($spram[2])?>"/>
           </span></td>
         </tr>
 		        
         <tr>
           <td height="25" align="right" valign="middle" class="p"><b>Contact Us Email Address:</b></td>
           <td align="left" valign="middle" class="form"><span class="tablerowgreen">
-            <input name="link1" type="text" class="bodytext_form_field" id="link1" style=" width:250px;" value="<?=$spram[1]?>"/>
+            <input name="link1" type="text" class="bodytext_form_field" id="link1" style=" width:250px;" value="<?=san_html($spram[1])?>"/>
           </span></td>
         </tr>
 		        

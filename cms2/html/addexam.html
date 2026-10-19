@@ -59,39 +59,39 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
         <tr>
           <td align="right">* Exam Code:</td>
-          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($_POST['vname'])){ echo  $_POST['vname'];} ?>" /></td>
+          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($_POST['vname'])){ echo san_html($_POST['vname']);} ?>" /></td>
         </tr>
         <tr>
           <td align="right">Exam Name:</td>
-          <td colspan="2"><input  name="vnamefull" id="vnamefull" type="text"  value="<?php if(isset($_POST['vnamefull'])){ echo  $_POST['vnamefull'];} ?>" /></td>
+          <td colspan="2"><input  name="vnamefull" id="vnamefull" type="text"  value="<?php if(isset($_POST['vnamefull'])){ echo san_html($_POST['vnamefull']);} ?>" /></td>
         </tr>
          <tr>
           <td align="right">Exam Q &amp; As:</td>
-          <td colspan="2"><input  name="qa" id="qa" type="text"  value="<?php if(isset($_POST['qa'])){ echo  $_POST['qa'];} ?>" /> Question and Answers</td>
+          <td colspan="2"><input  name="qa" id="qa" type="text"  value="<?php if(isset($_POST['qa'])){ echo san_html($_POST['qa']);} ?>" /> Question and Answers</td>
         </tr>
         <tr>
               <td align="right">* Date: </td>
-              <td colspan="2"><input name="startdate" type="text" readonly="readonly"  id="startdate" value="<?php if(isset($_POST['startdate'])){ echo  $_POST['startdate'];} ?>" />&nbsp;<img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" /></td>
+              <td colspan="2"><input name="startdate" type="text" readonly="readonly"  id="startdate" value="<?php if(isset($_POST['startdate'])){ echo san_html($_POST['startdate']);} ?>" />&nbsp;<img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" /></td>
             </tr>
             <tr>
               <td align="right"> Price 3 Months:</td>
-              <td colspan="2"><input name="pr3" type="text" id="pr3" value="<?php if(isset($_POST['pr3'])){ echo  $_POST['pr3'];} ?>" />&nbsp;$</td>
+              <td colspan="2"><input name="pr3" type="text" id="pr3" value="<?php if(isset($_POST['pr3'])){ echo san_html($_POST['pr3']);} ?>" />&nbsp;$</td>
             </tr>
             <tr>
               <td align="right"> Price 6 Months: </td>
-              <td colspan="2"><input name="pr6" type="text"   id="pr6" value="<?php if(isset($_POST['pr6'])){ echo  $_POST['pr6'];} ?>" />&nbsp;$</td>
+              <td colspan="2"><input name="pr6" type="text"   id="pr6" value="<?php if(isset($_POST['pr6'])){ echo san_html($_POST['pr6']);} ?>" />&nbsp;$</td>
             </tr>
             <tr>
               <td align="right"> Price 12 Months(1 Year):</td>
-              <td colspan="2"><input name="pr12" type="text" id="pr12" value="<?php if(isset($_POST['pr12'])){ echo  $_POST['pr12'];} ?>" />&nbsp;$</td>
+              <td colspan="2"><input name="pr12" type="text" id="pr12" value="<?php if(isset($_POST['pr12'])){ echo san_html($_POST['pr12']);} ?>" />&nbsp;$</td>
             </tr>
             <tr>
               <td align="right"> Unlimited Package:</td>
-              <td colspan="2"><input name="pr0" type="text" id="pr0" value="<?php if(isset($_POST['pr0'])){ echo  $_POST['pr0'];} ?>" />&nbsp;$</td>
+              <td colspan="2"><input name="pr0" type="text" id="pr0" value="<?php if(isset($_POST['pr0'])){ echo san_html($_POST['pr0']);} ?>" />&nbsp;$</td>
             </tr>
             <tr>
               <td align="right"> SWREG Id:</td>
-              <td colspan="2"><input name="swreg" type="text" id="swreg" value="<?php if(isset($_POST['swreg'])){ echo  $_POST['swreg'];} ?>" /></td>
+              <td colspan="2"><input name="swreg" type="text" id="swreg" value="<?php if(isset($_POST['swreg'])){ echo san_html($_POST['swreg']);} ?>" /></td>
             </tr>
              <tr>
               <td align="right"> Exam Demo:</td>

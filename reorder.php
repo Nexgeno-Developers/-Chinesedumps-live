@@ -1,9 +1,11 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 if(isset($_SESSION['uid'])){
 }else{
 header("location:login.html");
+exit;
 }
 include("includes/config/classDbConnection.php");
 
@@ -30,10 +32,10 @@ $getPage[5]	=	'Re-order';
 		$show_cart	=	'';
 	$firstlink	=	" ".$getPage[1];
 		
-	$roword	=	mysql_fetch_array(mysql_query("SELECT * FROM order_detail where ID='".$_GET['id']."' and UserID='".$_SESSION['uid']."'"));
+	$roword	=	mysql_fetch_array(mysql_query("SELECT * FROM order_detail where ID='".san_int($_GET['id'])."' and UserID='".db_esc($_SESSION['uid'])."'"));
 	
 	if($roword['VendorID']!=''){
-	$getreitems	=	mysql_fetch_array(mysql_query("SELECT * from tbl_vendors where ven_id='".$roword['VendorID']."'"));
+	$getreitems	=	mysql_fetch_array(mysql_query("SELECT * from tbl_vendors where ven_id='".db_esc($roword['VendorID'])."'"));
 	$exmname	=	$getreitems['ven_name'];
 	$numberidid	=	$getreitems['ven_id'];
 		if($roword['submonth']=='3'){ $priceprice	=	$getreitems['ven_pri3']; }
@@ -41,7 +43,7 @@ $getPage[5]	=	'Re-order';
 		if($roword['submonth']=='12'){ $priceprice	=	$getreitems['ven_pri12']; }
 	}
 	if($roword['TrackID']!=''){
-	$getreitems	=	mysql_fetch_array(mysql_query("SELECT * from tbl_cert where cert_id='".$roword['TrackID']."'"));
+	$getreitems	=	mysql_fetch_array(mysql_query("SELECT * from tbl_cert where cert_id='".db_esc($roword['TrackID'])."'"));
 	$exmname	=	$getreitems['cert_name'];
 	$numberidid	=	$getreitems['cert_id'];
 		if($roword['submonth']=='3'){ $priceprice	=	$getreitems['cert_pri3']; }
@@ -49,7 +51,7 @@ $getPage[5]	=	'Re-order';
 		if($roword['submonth']=='12'){ $priceprice	=	$getreitems['cert_pri12']; }
 	}
 	if($roword['ProductID']!='' && $roword['ProductID']!='0'){
-	$getreitems	=	mysql_fetch_array(mysql_query("SELECT * from tbl_exam where exam_id='".$roword['ProductID']."'"));
+	$getreitems	=	mysql_fetch_array(mysql_query("SELECT * from tbl_exam where exam_id='".db_esc($roword['ProductID'])."'"));
 	$exmname	=	$getreitems['exam_name'];
 	$numberidid	=	$getreitems['exam_id'];
 		if($roword['submonth']=='3'){ $priceprice	=	$getreitems['exam_pri3']; }
@@ -87,11 +89,11 @@ $i='1';
 <input type="hidden" name="amount_<?=$i?>" value="<?=$priceprice?>">
 
 <? 
-$qry_master =	"insert into tbl_reorder (id_detailorder,price,startdate,enddate,status)values('".$_GET['id']."','".$priceprice."','".date("Y-m-d")."','".$Expiredate."','0')";
+$qry_master =	"insert into tbl_reorder (id_detailorder,price,startdate,enddate,status)values('".san_int($_GET['id'])."','".db_esc($priceprice)."','".date("Y-m-d")."','".$Expiredate."','0')";
 mysql_query($qry_master);
 $_SESSION['reorderlastid']	=	mysql_insert_id();														
 ?>
-<input type="hidden" name="custom" value="<?=$_GET['id']?>">
+<input type="hidden" name="custom" value="<?=san_html($_GET['id'])?>">
 <input type="hidden" name="return" value="<?php echo $websiteURL;?>thanks_reorder.php">
 <input type="hidden" name="cancel" value="<?php echo $websiteURL;?>account.html">
 

@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 function cms2_valid_admin_roles()
 {
@@ -780,5 +781,28 @@ function get_session_data()
 	}
 
 	return $row;
+}
+if (!function_exists('cms2_safe_filename')) {
+	// strip any path and special characters from a client supplied file name
+	function cms2_safe_filename($name)
+	{
+		$name = str_replace("\0", '', (string)$name);
+		$name = str_replace('\\', '/', $name);
+		$name = basename($name);
+		$name = preg_replace('/[^A-Za-z0-9._-]/', '_', $name);
+		$name = str_replace('..', '_', $name);
+		return $name;
+	}
+}
+
+if (!function_exists('cms2_upload_ext_ok')) {
+	// true when the extension of the ORIGINAL client file name is in the whitelist array
+	function cms2_upload_ext_ok($name, $allowed)
+	{
+		$name = str_replace("\0", '', (string)$name);
+		$name = str_replace('\\', '/', $name);
+		$ext = strtolower(pathinfo(basename($name), PATHINFO_EXTENSION));
+		return ($ext !== '' && in_array($ext, $allowed, true));
+	}
 }
 ?>

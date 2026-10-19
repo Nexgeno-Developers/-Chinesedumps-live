@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/common/sanitize.php';
 include_once __DIR__ . '/config/classDbConnection.php';
 if (function_exists('start_root_url_rewrite')) {
 	start_root_url_rewrite();
@@ -64,13 +65,13 @@ if (function_exists('start_root_url_rewrite')) {
 
 		 $spram[2] = date('Y-m-d H:i:s');				
 
-		 mysql_query("insert into tbl_course_subscription (email, course, created_at) values ('".$spram[0]."','".$spram[1]."','".$spram[2]."')");	
+		 mysql_query("insert into tbl_course_subscription (email, course, created_at) values ('".db_esc($spram[0])."','".db_esc($spram[1])."','".$spram[2]."')");	
 
 		 
 
 		/*for subscriber */
 
-		$to = $spram[0];
+		$to = str_replace(array("\r", "\n", "%0a", "%0d"), '', is_array($spram[0]) ? '' : $spram[0]);
 
 		$subject = "www.chinesedumps.com" ;
 
@@ -114,7 +115,7 @@ if (function_exists('start_root_url_rewrite')) {
 
 ?>
 
-			<link rel="canonical" href="<?php echo $actual_link;?>" />
+			<link rel="canonical" href="<?php echo san_html($actual_link);?>" />
 
 
 

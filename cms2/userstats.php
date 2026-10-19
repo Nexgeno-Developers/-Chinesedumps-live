@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 ob_start();
 
@@ -90,9 +91,9 @@ $ccAdminData = get_session_data();
 
 				{
 
-					$PageNo			 = $_GET['currentPage'];	# Shows # of Page			
+					$PageNo			 = san_int($_GET['currentPage']);	# Shows # of Page			
 
-					$PageIndex		 = $_GET['pgIndex'];		# Shows # of Page Index				
+					$PageIndex		 = san_int($_GET['pgIndex']);		# Shows # of Page Index				
 
 				}	
 
@@ -144,7 +145,7 @@ $ccAdminData = get_session_data();
 
 	if(isset($_GET['mainsend']) && $_GET['mainsend']=='send'){
 
-		   $getuser	=	mysql_fetch_array(mysql_query("select * from tbl_user where user_id='".$_GET['user']."'"));
+		   $getuser	=	mysql_fetch_array(mysql_query("select * from tbl_user where user_id='".san_int($_GET['user'])."'"));
 
 		   $spram[1]	= $getuser['user_fname'];
 
@@ -168,15 +169,18 @@ $ccAdminData = get_session_data();
 
 	{
 
+		$searchCriteria = san_ident(isset($_POST['criteria']) ? $_POST['criteria'] : '', array('Order_Id','user_email','user_fname','user_lname','user_phone','user_user'));
+		if($searchCriteria === ''){ $searchCriteria = 'user_email'; }
+
 		if($_POST['textSearch']!=''){
 
 			if($_POST['txt_StartDate']=='' && $_POST['txt_StartDate2']==''){
 
-				$cri	=	$_POST['criteria']." LIKE '%".$_POST['textSearch']."%' ";
+				$cri	=	$searchCriteria." LIKE '%".db_esc($_POST['textSearch'])."%' ";
 
 			}else{
 
-				$cri	=	$_POST['criteria']." LIKE '%".$_POST['textSearch']."%' and ";
+				$cri	=	$searchCriteria." LIKE '%".db_esc($_POST['textSearch'])."%' and ";
 
 				}
 
@@ -190,11 +194,11 @@ $ccAdminData = get_session_data();
 
 		if($_POST['txt_StartDate2']!=''){
 
-		$stDate	=	" creatDate>='".$_POST['txt_StartDate']."' and ";
+		$stDate	=	" creatDate>='".db_esc($_POST['txt_StartDate'])."' and ";
 
 		}else{
 
-		$stDate	=	"creatDate>='".$_POST['txt_StartDate']."'";
+		$stDate	=	"creatDate>='".db_esc($_POST['txt_StartDate'])."'";
 
 		}}else{
 
@@ -208,7 +212,7 @@ $ccAdminData = get_session_data();
 
 		{
 
-			$enDate	=	"creatDate<='".$_POST['txt_StartDate2']."'";
+			$enDate	=	"creatDate<='".db_esc($_POST['txt_StartDate2'])."'";
 
 		}
 
@@ -224,7 +228,7 @@ $ccAdminData = get_session_data();
 
 		{
 
-			$que	=	"SELECT * FROM tbl_user INNER JOIN order_master ON (order_master.Cust_ID=tbl_user.user_id) WHERE order_master.Order_Id LIKE '%".$_POST['textSearch']."%'";
+			$que	=	"SELECT * FROM tbl_user INNER JOIN order_master ON (order_master.Cust_ID=tbl_user.user_id) WHERE order_master.Order_Id LIKE '%".db_esc($_POST['textSearch'])."%'";
 
 			$result1	=	mysql_query($que);
 

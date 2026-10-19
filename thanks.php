@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 require_once __DIR__ . '/includes/config/load_secrets.php';
 ob_start();
 session_start();
@@ -71,7 +72,7 @@ if (isset($_GET['uid'])) {
     if ($decrypted_user_id) {
         // echo "Welcome back, user ID: " . htmlspecialchars($decrypted_user_id);
         // Optional: restore session
-        $_SESSION['uid'] = $decrypted_user_id;
+        if (san_int($decrypted_user_id) > 0) { $_SESSION['uid'] = san_int($decrypted_user_id); }
     }
 }		
 
@@ -401,16 +402,16 @@ h4.connect_heading {
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <h5>Buyer Information</h5>
-                                <p><strong>Name:</strong> <?= $buyerName ?></p>
-                                <p><strong>Email:</strong> <?= $email ?></p>
-                                <p><strong>Address:</strong> <?= $address ?></p>
+                                <p><strong>Name:</strong> <?= san_html($buyerName) ?></p>
+                                <p><strong>Email:</strong> <?= san_html($email) ?></p>
+                                <p><strong>Address:</strong> <?= san_html($address) ?></p>
                             </div>
                             <div class="col-md-6">
                                 <h5>Payment Summary</h5>
-                                <p><strong>Transaction ID:</strong> <?= $paymentId ?></p>
-                                <p><strong>Amount Paid:</strong> $<?= $paymentAmount ?> <?= $data['mc_currency'] ?></p>
-                                <p><strong>Status:</strong> <?= $paymentStatus ?></p>
-                                <p><strong>Date:</strong> <?= $paymentDate ?></p>
+                                <p><strong>Transaction ID:</strong> <?= san_html($paymentId) ?></p>
+                                <p><strong>Amount Paid:</strong> $<?= san_html($paymentAmount) ?> <?= san_html($data['mc_currency']) ?></p>
+                                <p><strong>Status:</strong> <?= san_html($paymentStatus) ?></p>
+                                <p><strong>Date:</strong> <?= san_html($paymentDate) ?></p>
                             </div>
                         </div>
                 
@@ -436,9 +437,9 @@ h4.connect_heading {
                                         $itemPrice = $data["mc_gross_$i"];
                                         echo "<tr>
                                                 <td>$i</td>
-                                                <td>$itemName</td>
-                                                <td>$itemQty</td>
-                                                <td>$$itemPrice</td>
+                                                <td>".san_html($itemName)."</td>
+                                                <td>".san_html($itemQty)."</td>
+                                                <td>$".san_html($itemPrice)."</td>
                                               </tr>";
                                     }
                                     ?>

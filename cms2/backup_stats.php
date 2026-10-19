@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 
@@ -126,12 +127,12 @@ $yesterday_date = date('Y-m-d', strtotime($today_date . ' - 1 day'));
 	{
 		if($_POST['txt_StartDate']!='')
 		{
-			$stDate	= " creatDate  BETWEEN '".$_POST['txt_StartDate']."' and '";
-			$m_stDate	= " EU.assign_date  BETWEEN '".$_POST['txt_StartDate']."' and '";
+			$stDate	= " creatDate  BETWEEN '".db_esc($_POST['txt_StartDate'])."' and '";
+			$m_stDate	= " EU.assign_date  BETWEEN '".db_esc($_POST['txt_StartDate'])."' and '";
 			if($_POST['txt_StartDate2']!='')
 			{
-				$stDate	.= $_POST['txt_StartDate2']."'";
-				$m_stDate	.= $_POST['txt_StartDate2']."'";
+				$stDate	.= db_esc($_POST['txt_StartDate2'])."'";
+				$m_stDate	.= db_esc($_POST['txt_StartDate2'])."'";
 			}
 			else
 			{

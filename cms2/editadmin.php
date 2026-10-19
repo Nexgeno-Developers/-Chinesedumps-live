@@ -1,4 +1,5 @@
 <?PHP 
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 ob_start();
 session_start();
@@ -22,7 +23,7 @@ $ccAdminData = get_session_data();
 if (isset($_POST['submit']) && $_POST['submit']	==	"submit")
 
 	{
-		$spram[0]		 =	$_GET['nid'];
+		$spram[0]		 =	isset($_GET['nid']) ? san_int($_GET['nid']) : 0;
 		$spram[1]		 =  $_POST['user_fname'];
 		$spram[2]		 =  $_POST['user_lname'];
 		$spram[3]		 =  $_POST['user_email'];
@@ -56,7 +57,7 @@ if (isset($_POST['submit']) && $_POST['submit']	==	"submit")
 	   }
 
 	   }
-			$spram[0]	    =	$_GET['nid'];
+			$spram[0]	    =	isset($_GET['nid']) ? san_int($_GET['nid']) : 0;
 			$spram[1]		 =  "";
 			$spram[2]		 =  "";
 			$spram[3]		 =  "";

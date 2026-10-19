@@ -1,4 +1,5 @@
 <?PHP 
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 
@@ -13,17 +14,18 @@ session_start();
 	$objDBcon    = new classDbConnection; 			// VALIDATION CLASS OBJECT
 	$objValid 	 = new Validate_fields;
 	$objEvent	=	new classEvents($objDBcon);	// VALIDATION CLASS classCategory
+	$bulkAction	=	isset($_POST['action']) ? preg_replace('/[^A-Za-z0-9_]/', '', $_POST['action']) : '';
 
 if(isset($_POST['action']) && $_POST['action'] == 'all_date')
 {
 	$date = $_POST['new_date'];
 	if(!empty($date))
 	{
-		$sel = "update tbl_exam set exam_upddate = '$date'";
+		$sel = "update tbl_exam set exam_upddate = '".db_esc($date)."'";
 		mysql_query($sel);
 	}
 	$_SESSION['displaytext']="Date is updated successfully for all exams.<br />";
-	header("Location:bulk_update.php?action=".$_POST['action']."");
+	header("Location:bulk_update.php?action=".$bulkAction."");
 	exit();
 }
 if(isset($_POST['action']) && $_POST['action'] == 'cert_date')
@@ -33,12 +35,12 @@ if(isset($_POST['action']) && $_POST['action'] == 'cert_date')
 		$date = $_POST['new_date'];
 		foreach($_POST['cmb_subcategory'] as $val)
 		{
-			$sel = "update tbl_exam set exam_upddate = '$date' where cert_id like '%,".$val.",%'";
+			$sel = "update tbl_exam set exam_upddate = '".db_esc($date)."' where cert_id like '%,".san_int($val).",%'";
 			mysql_query($sel);
 		}
 	}
 	$_SESSION['displaytext']="Date is updated successfully for exams in selected Certificates.<br />";
-	header("Location:bulk_update.php?action=".$_POST['action']."");
+	header("Location:bulk_update.php?action=".$bulkAction."");
 	exit();
 }
 if(isset($_POST['action']) && $_POST['action'] == 'bundle_date')
@@ -47,11 +49,11 @@ if(isset($_POST['action']) && $_POST['action'] == 'bundle_date')
 	{
 		$date = $_POST['new_date'];
 		$bundleID = $_POST['cmb_cate'];
-		$sel = "update tbl_exam set exam_upddate = '$date' where ven_id = '$bundleID'";
+		$sel = "update tbl_exam set exam_upddate = '".db_esc($date)."' where ven_id = '".san_int($bundleID)."'";
 		mysql_query($sel);
 	}
 	$_SESSION['displaytext']="Date is updated successfully for exams in selected Vendor.<br />";
-	header("Location:bulk_update.php?action=".$_POST['action']."");
+	header("Location:bulk_update.php?action=".$bulkAction."");
 	exit();
 }
 
@@ -61,11 +63,11 @@ if(isset($_POST['action']) && $_POST['action'] == 'all_price')
 	$price = $_POST['new_price'];
 	if(!empty($price))
 	{
-		$sel = "update tbl_exam set exam_pri0 = '$price'";
+		$sel = "update tbl_exam set exam_pri0 = '".db_esc($price)."'";
 		mysql_query($sel);
 	}
 	$_SESSION['displaytext']="Price is updated successfully for all exams.<br />";
-	header("Location:bulk_update.php?action=".$_POST['action']."");
+	header("Location:bulk_update.php?action=".$bulkAction."");
 	exit();
 }
 if(isset($_POST['action']) && $_POST['action'] == 'cert_price')
@@ -75,12 +77,12 @@ if(isset($_POST['action']) && $_POST['action'] == 'cert_price')
 		$price = $_POST['new_price'];
 		foreach($_POST['cmb_subcategory'] as $val)
 		{
-			$sel = "update tbl_exam set exam_pri0 = '$price' where cert_id like '%,".$val.",%'";
+			$sel = "update tbl_exam set exam_pri0 = '".db_esc($price)."' where cert_id like '%,".san_int($val).",%'";
 			mysql_query($sel);
 		}
 	}
 	$_SESSION['displaytext']="Price is updated successfully for exams in selected certificates.<br />";
-	header("Location:bulk_update.php?action=".$_POST['action']."");
+	header("Location:bulk_update.php?action=".$bulkAction."");
 	exit();
 }
 
@@ -90,14 +92,14 @@ if(isset($_POST['action']) && $_POST['action'] == 'bundle_price')
 	{
 		$price = $_POST['new_price'];
 		$bundleID = $_POST['cmb_cate'];
-		$sel = "update tbl_exam set exam_pri0 = '$price' where ven_id = '$bundleID'";
+		$sel = "update tbl_exam set exam_pri0 = '".db_esc($price)."' where ven_id = '".san_int($bundleID)."'";
 		mysql_query($sel);
 	}
 	$_SESSION['displaytext']="Price is updated successfully for exams in selected bundle.<br />";
-	header("Location:bulk_update.php?action=".$_POST['action']."");
+	header("Location:bulk_update.php?action=".$bulkAction."");
 	exit();
 }
 
-	header("Location:bulk_update.php?action=".$_POST['action']."");
+	header("Location:bulk_update.php?action=".$bulkAction."");
 	exit();
 ?>

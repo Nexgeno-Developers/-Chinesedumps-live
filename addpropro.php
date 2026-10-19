@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 session_start();
 include("includes/config/classDbConnection.php");
 include("includes/common/classes/classProductMain.php");
@@ -25,9 +26,9 @@ $i		= 0;
 
 		$date=date("Y-m-d");
 		if(isset($_SESSION['uid'])){
-		$check_rows			=	mysql_query("select * from temp_order where UserID='".$_SESSION['uid']."' and VendorID='".$proid."' and Jumbo='1'");
+		$check_rows			=	mysql_query("select * from temp_order where UserID='".san_int($_SESSION['uid'])."' and VendorID='".db_esc($proid)."' and Jumbo='1'");
 		}else{
-		$check_rows			=	mysql_query("select * from temp_order where CartID='".$guest."' and UserID='0' and VendorID='".$proid."' and Jumbo='1'");
+		$check_rows			=	mysql_query("select * from temp_order where CartID='".db_esc($guest)."' and UserID='0' and VendorID='".db_esc($proid)."' and Jumbo='1'");
 		}
 		$exe_check			=	mysql_num_rows($check_rows);
 		$getCheck			=	mysql_fetch_array($check_rows);
@@ -35,27 +36,27 @@ $i		= 0;
 		
 		$extraquant	=	$getCheck['Quantity']+1;
 		if(isset($_SESSION['uid'])){
-		$query_add	=	mysql_query("UPDATE temp_order set Price='".$totalprice."',subscrip='".$subscr."' where UserID='".$_SESSION['uid']."' and VendorID='".$proid."' and Jumbo='1'");
+		$query_add	=	mysql_query("UPDATE temp_order set Price='".db_esc($totalprice)."',subscrip='".san_int($subscr)."' where UserID='".san_int($_SESSION['uid'])."' and VendorID='".db_esc($proid)."' and Jumbo='1'");
 		}else{
-		$query_add	=	mysql_query("UPDATE temp_order set Price='".$totalprice."',subscrip='".$subscr."' where CartID='".$guest."' and UserID='0' and VendorID='".$proid."' and Jumbo='1'");
+		$query_add	=	mysql_query("UPDATE temp_order set Price='".db_esc($totalprice)."',subscrip='".san_int($subscr)."' where CartID='".db_esc($guest)."' and UserID='0' and VendorID='".db_esc($proid)."' and Jumbo='1'");
 		}
 		}else{
 		
-		$getbundlesitem	=	$objPro->getAllItems($proid);
+		$getbundlesitem	=	$objPro->getAllItems(db_esc($proid));
 		
 		if(isset($_SESSION['uid'])){
 		$userid	=	$_SESSION['uid'];
 		}else{
 		$userid	=	'0';
 		}
-		$query_add			=	"insert into temp_order	(CartID,UserID,VendorID,TrackID,Pid,Jumbo,Quantity,Price,Product,Date,subscrip)values('".$_SESSION['guestId']."','".$userid."','".$_GET['id']."','','','1','1','".$totalprice."','".$getbundlesitem."','".$date."','".$subscr."')";
+		$query_add			=	"insert into temp_order	(CartID,UserID,VendorID,TrackID,Pid,Jumbo,Quantity,Price,Product,Date,subscrip)values('".db_esc($_SESSION['guestId'])."','".san_int($userid)."','".db_esc($_GET['id'])."','','','1','1','".db_esc($totalprice)."','".db_esc($getbundlesitem)."','".$date."','".san_int($subscr)."')";
 								mysql_query($query_add);
 					}			
 		
 									if(isset($_SESSION['uid'])){
-									$query	=	"select * from temp_order where UserID='".$_SESSION['uid']."' order by ID ASC";
+									$query	=	"select * from temp_order where UserID='".san_int($_SESSION['uid'])."' order by ID ASC";
 									}else{
-									$query	=	"select * from temp_order where CartID='".session_id()."' and UserID='0' order by ID ASC";
+									$query	=	"select * from temp_order where CartID='".db_esc(session_id())."' and UserID='0' order by ID ASC";
 									}
 		$rs_left_cart		=	mysql_query($query);
 		$num	=	mysql_num_rows($rs_left_cart);

@@ -16,13 +16,14 @@ $getPage	=	$objMain->getContent(1);
 		$guest = session_id();
 		$_SESSION['guestId'] = $guest;
 
-		$rr	=	 $_SERVER['QUERY_STRING'];
+		require_once dirname(__FILE__) . '/includes/common/sanitize.php';
+		$rr	=	 'name=' . san_get('name');
 		
 		$string		=	"/";
 		$venURL		= str_replace('name=','',$rr);
 		$venURL = $venURL;
 		
-	    $vendor        =  $objPro->getVendorsID($venURL);
+	    $vendor        =  $objPro->getVendorsID(db_esc($venURL));
 	
 		$vid		= $vendor['ven_id'];
 		

@@ -8,7 +8,8 @@ $objDBcon   = 	new classDbConnection; // VALIDATION CLASS OBJECT
 //-----------------------------Base Path-----------------------------------------------
 error_reporting(0);
 $fieldStatus="";
-$getID    		=  $_GET['id'];
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
+$getID    		=  isset($_GET['id']) ? san_int($_GET['id']) : 0;
 
 $status="";
  

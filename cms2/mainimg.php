@@ -1,4 +1,5 @@
 <?PHP 
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ini_set("display_errors","0");
 ob_start();
 session_start();
@@ -36,10 +37,10 @@ $ccAdminData = get_session_data();
 		
 		if(empty($strError))
 		{
-			$upd	=	"UPDATE tbl_updates set in_contnt='".$spram[1]."' where id_con='1'";
+			$upd	=	"UPDATE tbl_updates set in_contnt='".db_esc($spram[1])."' where id_con='1'";
 			$objDBcon->Dml_Query_Parser($upd);
-			mysql_query("UPDATE tbl_updates set in_contnt='".$spram[2]."' where id_con='2'");
-			mysql_query("UPDATE tbl_updates set in_contnt='".$spram[3]."' where id_con='3'");
+			mysql_query("UPDATE tbl_updates set in_contnt='".db_esc($spram[2])."' where id_con='2'");
+			mysql_query("UPDATE tbl_updates set in_contnt='".db_esc($spram[3])."' where id_con='3'");
 		
 		}
 		//////////////////////////////////

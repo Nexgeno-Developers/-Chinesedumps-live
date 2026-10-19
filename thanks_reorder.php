@@ -1,9 +1,11 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 if(isset($_SESSION['uid'])){
 }else{
 header("location:login.html");
+exit;
 }
 include("includes/config/classDbConnection.php");
 
@@ -31,14 +33,14 @@ $getPage	=	$objMain->getContent(16);
 		if($tt=='1' && isset($_SESSION['reorderlastid']))
 			{
 			
-		$q="select * from  tbl_reorder where id_re='".$lastorderid."'";
+		$q="select * from  tbl_reorder where id_re='".san_int($lastorderid)."'";
  		$rs1=mysql_query($q);
 		$row1=mysql_fetch_array($rs1);
 		
-		$qy_cart		=	"UPDATE order_detail set ExpireDate='".$row1['enddate']."' where ID='".$row1['id_detailorder']."'";
+		$qy_cart		=	"UPDATE order_detail set ExpireDate='".db_esc($row1['enddate'])."' where ID='".san_int($row1['id_detailorder'])."'";
   		$r_cart 		=	mysql_query($qy_cart);
 			
-		$qy_tblor		=	"UPDATE tbl_reorder set order_id ='".$tt."',status ='1'  where id_re='".$lastorderid."'";
+		$qy_tblor		=	"UPDATE tbl_reorder set order_id ='".$tt."',status ='1'  where id_re='".san_int($lastorderid)."'";
 		mysql_query($qy_tblor);		
 		}
 	

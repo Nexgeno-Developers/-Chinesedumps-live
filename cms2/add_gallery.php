@@ -10,6 +10,7 @@ session_start();
 	include("../includes/common/classes/classEvents.php");
 
 include_once 'functions.php';
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 $ccAdminData = get_session_data();
 $image_path = base_path('images/chinesedumps-logo.png');
 //--------------------Creat objects---------------------------
@@ -150,12 +151,13 @@ function watermark_image($oldimage_name, $new_image_name) {
 		$totalRep = $totalRep["group_id"][$i] ;
 		$spram[3] = $_POST['group_id'];	
 			
+			if (!cms2_upload_ext_ok($_FILES['exam_demo']['name'][$i], array('jpg','jpeg','png','gif','webp'))) { continue; }
 			$getextension	=	substr($_FILES['exam_demo']['name'][$i],-4);
-			$newnamedemo	=	rand()."_mainBanner".$_FILES['exam_demo']['name'][$i];
+			$newnamedemo	=	rand()."_mainBanner".cms2_safe_filename($_FILES['exam_demo']['name'][$i]);
 			
 		//$spram[2]	=	$newnamedemo; 
 		
-		mysql_query("insert into sliders_new (s_image, group_id) values ('".$newnamedemo."','".$spram[3]."')");
+		mysql_query("insert into sliders_new (s_image, group_id) values ('".db_esc($newnamedemo)."','".db_esc($spram[3])."')");
 
 	watermark_image($_FILES['exam_demo']['tmp_name'][$i],"../images/slider/".$newnamedemo);
 			

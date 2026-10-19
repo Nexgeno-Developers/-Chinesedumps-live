@@ -1,4 +1,7 @@
 <?php
+// admin session guard: the asset manager must only be reachable from the logged-in CMS
+if (session_id() === '') { session_start(); }
+if (!isset($_SESSION['strAdmin']) || !isset($_SESSION['adminId'])) { header('HTTP/1.1 403 Forbidden'); exit('Forbidden'); }
 
 include("settings.php");
 
@@ -50,7 +53,7 @@ $MaxFileSize = 3000000;
 
 //$AllowedTypes = "gif|jpg";
 
-$AllowedTypes = "*";
+$AllowedTypes = "jpg|jpeg|png|gif|bmp|swf|flv|pdf|doc|docx|xls|xlsx|zip|txt";
 
 
 
@@ -60,21 +63,12 @@ function isTypeAllowed($sFileName)
 
   global $AllowedTypes;
 
-  if($AllowedTypes=="*") return true;
+  // server side whitelist (exact match of the last extension) + executable extensions refused anywhere in the name
+  if(!am_ext_allowed($sFileName)) return false;
 
+  if(!in_array(getExt($sFileName), explode("|",$AllowedTypes), true)) return false;
 
-
-  echo ereg($AllowedTypes,getExt($sFileName));
-
-
-
-  if( ereg($AllowedTypes,getExt($sFileName)) )
-
-    return true;
-
-  else
-
-    return false;
+  return true;
 
   }
 
@@ -84,9 +78,11 @@ if(isset($_FILES["File1"]))
 
   {
 
-  if(isset($_POST["inpCurrFolder2"]))$currFolder=$_POST['inpCurrFolder2'];
+  if(isset($_POST["inpCurrFolder2"]) && am_folder_ok($_POST['inpCurrFolder2']))$currFolder=$_POST['inpCurrFolder2'];
 
   if(isset($_REQUEST["inpFilter"]))$ffilter=$_REQUEST["inpFilter"];
+
+  $sSafeUploadName=am_safe_name($_FILES['File1']['name']);
 
 
 
@@ -98,7 +94,7 @@ if(isset($_FILES["File1"]))
 
     }
 
-  else if(!isTypeAllowed($_FILES['File1']['name']))
+  else if($sSafeUploadName=="" || !isTypeAllowed($sSafeUploadName) || !isTypeAllowed($_FILES['File1']['name']))
 
     {
 
@@ -106,15 +102,15 @@ if(isset($_FILES["File1"]))
 
     }
 
-  else if (move_uploaded_file($_FILES['File1']['tmp_name'], $currFolder."/".basename($_FILES['File1']['name'])))
+  else if (move_uploaded_file($_FILES['File1']['tmp_name'], $currFolder."/".$sSafeUploadName))
 
     {
 
     $sMsg = "";
 
-    $sUploadedFile=$_FILES['File1']['name'];
+    $sUploadedFile=$sSafeUploadName;
 
-    @chmod($currFolder."/".basename($_FILES['File1']['name']), 0644);
+    @chmod($currFolder."/".$sSafeUploadName, 0644);
 
     }
 
@@ -132,7 +128,7 @@ else
 
   {
 
-  if(isset($_POST["inpCurrFolder"]))$currFolder=$_POST['inpCurrFolder'];
+  if(isset($_POST["inpCurrFolder"]) && am_folder_ok($_POST['inpCurrFolder']))$currFolder=$_POST['inpCurrFolder'];
 
   if(isset($_REQUEST["ffilter"]))$ffilter=$_REQUEST["ffilter"];
 
@@ -146,9 +142,9 @@ if(isset($_POST["inpFileToDelete"]))
 
   $filename=pathinfo($_POST["inpFileToDelete"]);
 
-  $filename=$filename['basename'];
+  $filename=basename(str_replace("\\","/",str_replace("\0","",$filename['basename'])));
 
-  if($filename!="")
+  if($filename!="" && $filename!="." && $filename!=".." && is_file($currFolder . "/" . $filename))
 
     unlink($currFolder . "/" . $filename);
 
@@ -268,11 +264,11 @@ Function recursive($sPath,$sPath_base,$sName)
 
     if($currFolder==$sPath)
 
-      echo "<option value='$sPath' selected>$sName</option>";
+      echo "<option value='".htmlspecialchars($sPath,ENT_QUOTES)."' selected>".htmlspecialchars($sName)."</option>";
 
     else
 
-      echo "<option value='$sPath'>$sName</option>";
+      echo "<option value='".htmlspecialchars($sPath,ENT_QUOTES)."'>".htmlspecialchars($sName)."</option>";
 
     }
 
@@ -318,11 +314,11 @@ Function recursive($sPath,$sPath_base,$sName)
 
         if($currFolder==$sCurrent)
 
-          echo "<option value='$sCurrent' selected>$sDisplayed</option>";
+          echo "<option value='".htmlspecialchars($sCurrent,ENT_QUOTES)."' selected>".htmlspecialchars($sDisplayed)."</option>";
 
         else
 
-          echo "<option value='$sCurrent'>$sDisplayed</option>";
+          echo "<option value='".htmlspecialchars($sCurrent,ENT_QUOTES)."'>".htmlspecialchars($sDisplayed)."</option>";
 
 
 
@@ -624,9 +620,9 @@ $imagepath="http://www.conceptbeans.com/projects/testcerts/adminimages/";
 
           echo "<td><img src='images/".$sIcon."'></td>";
 
-          echo "<td valign=top width=100% ><u id=\"idFile".$nIndex."\" style='cursor:pointer;' onclick=\"selectFile(".$nIndex.")\">".$sItem."</u>&nbsp;&nbsp;<img style='cursor:pointer;' onclick=\"downloadFile(".$nIndex.")\" src='download.gif'></td>";
+          echo "<td valign=top width=100% ><u id=\"idFile".$nIndex."\" style='cursor:pointer;' onclick=\"selectFile(".$nIndex.")\">".htmlspecialchars($sItem)."</u>&nbsp;&nbsp;<img style='cursor:pointer;' onclick=\"downloadFile(".$nIndex.")\" src='download.gif'></td>";
 
-          echo "<input type=hidden name=inpFile".$nIndex." id=inpFile".$nIndex." value=\"".$imagepath.$sCurrent_virtual."\">";
+          echo "<input type=hidden name=inpFile".$nIndex." id=inpFile".$nIndex." value=\"".htmlspecialchars($imagepath.$sCurrent_virtual,ENT_QUOTES)."\">";
 
           echo "<td valign=top align=right nowrap>".round(filesize($sCurrent)/1024,1)." kb&nbsp;</td>";
 
@@ -700,7 +696,7 @@ if(isset($_REQUEST["lang"]))
 
   {
 
-  $sLang=$_REQUEST["lang"];
+  $sLang=preg_replace('/[^A-Za-z0-9_-]/','',(string)$_REQUEST["lang"]);
 
   if($sLang=="")$sLang="english";
 
@@ -1296,7 +1292,7 @@ function doUnload()
 
         <!--ffilter-->
 
-        <input type="hidden" name="inpFilter" ID="inpFilter" value="<?php  echo $ffilter ?>">
+        <input type="hidden" name="inpFilter" ID="inpFilter" value="<?php  echo htmlspecialchars($ffilter, ENT_QUOTES) ?>">
 
         <span name="txtLang" id="txtLang">Upload File</span>: <input type="file" id="File1" name="File1" class="inpTxt">&nbsp;
 

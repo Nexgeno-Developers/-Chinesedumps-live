@@ -1,4 +1,5 @@
 <?PHP 
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 
@@ -57,7 +58,13 @@ $image_path = base_path('images/stamp_logo.png');
 		$totalRep = $totalRep["s_id"] + 1;
 
 		$spram[1]	=	$_FILES['exam_demo'];
-			$getextension	=	substr($spram[1]['name'],-3);
+			$bannerExts	=	array('jpg','jpeg','png','gif','webp');
+			$bannerUploadOk	=	true;
+			if($_FILES['exam_demo']['name']!='' && !cms2_upload_ext_ok($_FILES['exam_demo']['name'], $bannerExts)){
+				$bannerUploadOk	=	false;
+				$strError	.=	"<b>Error! Banner type is not valid.</b>";
+			}
+			$getextension	=	cms2_upload_ext_ok($_FILES['exam_demo']['name'], $bannerExts) ? strtolower(pathinfo($_FILES['exam_demo']['name'], PATHINFO_EXTENSION)) : substr($spram[1]['name'],-3);
 			$newnamedemo	=	$totalRep."_mainBanner.".$getextension;
 			
 		$spram[2]	=	$newnamedemo;
@@ -68,7 +75,9 @@ $image_path = base_path('images/stamp_logo.png');
 		$spram[6] = 1;
 		$spram[7] = $_POST["type"];
 		
-		mysql_query("insert into sliders (s_image, s_alt, s_link, s_updated, status,type) values ('".$spram[2]."','".$spram[3]."','".$spram[4]."','".$spram[5]."','".$spram[6]."','".$spram[7]."')");
+		if($bannerUploadOk){
+		mysql_query("insert into sliders (s_image, s_alt, s_link, s_updated, status,type) values ('".db_esc($spram[2])."','".db_esc($spram[3])."','".db_esc($spram[4])."','".db_esc($spram[5])."','".san_int($spram[6])."','".db_esc($spram[7])."')");
+		}
 
 
 		if(empty($strError)){

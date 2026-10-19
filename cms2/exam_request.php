@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 ob_start();
 session_start();
@@ -44,8 +45,8 @@ $ccAdminData = get_session_data();
 		
 		if(isset($_GET['pgIndex']) && !empty($_GET['pgIndex']) && is_numeric($_GET['pgIndex']) && is_numeric($_GET['currentPage']))
 				{
-					$PageNo			 = $_GET['currentPage'];	# Shows # of Page			
-					$PageIndex		 = $_GET['pgIndex'];		# Shows # of Page Index				
+					$PageNo			 = san_int($_GET['currentPage']);	# Shows # of Page			
+					$PageIndex		 = san_int($_GET['pgIndex']);		# Shows # of Page Index				
 				}	
 
 					$LIMIT .= " LIMIT " . (($PageNo-1) * $rowsPerPage). " , " . $rowsPerPage;
@@ -85,7 +86,9 @@ FROM
 	$yesterday_datee = date('Y-m-d', strtotime($today_datee . ' - 1 day'));
 	if(isset($_POST['Search']))
 	{
-		$where = " where ".$_POST['criteria']." like '%".$_POST['textSearch']."%'";
+		$searchCriteria = san_ident(isset($_POST['criteria']) ? $_POST['criteria'] : '', array('examr_email','examr_code'));
+		if($searchCriteria === ''){ $searchCriteria = 'examr_email'; }
+		$where = " where ".$searchCriteria." like '%".db_esc($_POST['textSearch'])."%'";
 	}
 	if(isset($_GET['getSearch']))
 	{	
@@ -110,9 +113,9 @@ FROM
 		$where = " WHERE examr_date BETWEEN DATE_SUB( CURDATE() ,INTERVAL 1 YEAR) AND CURDATE()";
 		}
 	}
-	if(isset($_GET['ord']))
+	if(isset($_GET['ord']) && in_array($_GET['ord'], array('examr_email','examr_code','examr_date'), true))
 	{
-		$orderby = "ORDER BY ".$_GET['ord'] ." ". $_GET['ty'];
+		$orderby = "ORDER BY ".$_GET['ord'] ." ". ((isset($_GET['ty']) && strtoupper($_GET['ty']) == 'DESC') ? 'DESC' : 'ASC');
 	}
 	
 //............................................

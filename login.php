@@ -2,6 +2,7 @@
 ob_start();
 session_start();
 require_once __DIR__ . '/includes/common/auth.php';
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 include('includes/config/classDbConnection.php');
 include('includes/common/classes/classmain.php');
 include('includes/common/classes/classProductMain.php');
@@ -60,7 +61,10 @@ if (isset($_POST['Signin'])) {
             $_SESSION['Uname'] = $user['user_fname'];
             $_SESSION['uphone'] = $user['user_phone'];
 
-            if (!empty($_COOKIE['redirect_after_login']) && strpos($_COOKIE['redirect_after_login'], '://') === false) {
+            if (!empty($_COOKIE['redirect_after_login']) && is_string($_COOKIE['redirect_after_login'])
+                && strpos($_COOKIE['redirect_after_login'], '://') === false
+                && !preg_match('#^[/\\\\]{2}#', $_COOKIE['redirect_after_login'])
+                && !preg_match('#[\x00-\x1F\x7F]#', $_COOKIE['redirect_after_login'])) {
                 $redirect = $_COOKIE['redirect_after_login'];
                 setcookie('redirect_after_login', '', time() - 3600, '/');
                 header('Location: '.$redirect);

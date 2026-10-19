@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ob_start();
 
 session_start();
@@ -141,7 +142,9 @@ $query = "select * from order_master";
 
 	{
 
-		$where = " where ".$_POST['criteria']." like '%".$_POST['textSearch']."%'";
+		$searchCriteria = san_ident(isset($_POST['criteria']) ? $_POST['criteria'] : '', array('ID','Order_Id','OrderDesc','Cust_ID','OrderDate','Status','Net_Amount'));
+		if($searchCriteria === ''){ $searchCriteria = 'Order_Id'; }
+		$where = " where ".$searchCriteria." like '%".db_esc($_POST['textSearch'])."%'";
 
 	}
 
@@ -191,11 +194,11 @@ $query = "select * from order_master";
 
 	}
 
-	if(isset($_GET['ord']))
+	if(isset($_GET['ord']) && in_array($_GET['ord'], array('ID','Order_Id','OrderDesc','Cust_ID','OrderDate','Status','Net_Amount'), true))
 
 	{
 
-		$orderby = "ORDER BY ".$_GET['ord'] ." ". $_GET['ty'];
+		$orderby = "ORDER BY ".$_GET['ord'] ." ". ((isset($_GET['ty']) && strtoupper($_GET['ty']) == 'DESC') ? 'DESC' : 'ASC');
 
 	}
 
@@ -358,17 +361,17 @@ $query = "select * from order_master";
 
 		{
 
-			$stDate	= " creatDate  BETWEEN '".$_POST['txt_StartDate']."' and '";
+			$stDate	= " creatDate  BETWEEN '".db_esc($_POST['txt_StartDate'])."' and '";
 
-			$m_stDate	= " EU.assign_date  BETWEEN '".$_POST['txt_StartDate']."' and '";
+			$m_stDate	= " EU.assign_date  BETWEEN '".db_esc($_POST['txt_StartDate'])."' and '";
 
 			if($_POST['txt_StartDate2']!='')
 
 			{
 
-				$stDate	.= $_POST['txt_StartDate2']."'";
+				$stDate	.= db_esc($_POST['txt_StartDate2'])."'";
 
-				$m_stDate	.= $_POST['txt_StartDate2']."'";
+				$m_stDate	.= db_esc($_POST['txt_StartDate2'])."'";
 
 			}
 
@@ -544,12 +547,12 @@ return false;
 		</div>
 		<div style="display: flex; align-items: center; gap: 8px;">
 			<span style="color: #64748b; font-weight: 500;">From:</span>
-			<input name="txt_StartDate" type="text" class="clsTxtBox" id="txt_StartDate" readonly="readonly" value="<?=$_POST['txt_StartDate']?>" style="width: 120px; padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 14px;" />
+			<input name="txt_StartDate" type="text" class="clsTxtBox" id="txt_StartDate" readonly="readonly" value="<?=san_html($_POST['txt_StartDate'])?>" style="width: 120px; padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 14px;" />
 			<img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" style="cursor: pointer;" onclick="displayCalendarSe(document.frm1.txt_StartDate,'yyyy-mm-dd',this)" />
 		</div>
 		<div style="display: flex; align-items: center; gap: 8px;">
 			<span style="color: #64748b; font-weight: 500;">To:</span>
-			<input name="txt_StartDate2" type="text" class="clsTxtBox" id="txt_StartDate2" readonly="readonly" value="<?=$_POST['txt_StartDate2']?>" style="width: 120px; padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 14px;" />
+			<input name="txt_StartDate2" type="text" class="clsTxtBox" id="txt_StartDate2" readonly="readonly" value="<?=san_html($_POST['txt_StartDate2'])?>" style="width: 120px; padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 14px;" />
 			<img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" style="cursor: pointer;" onclick="displayCalendarSe(document.frm1.txt_StartDate2,'yyyy-mm-dd',this)" />
 		</div>
 		<button type="submit" name="Search" value="Show" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; font-size: 14px; font-weight: 600; color: #ffffff; background: linear-gradient(135deg, #3c85ba 0%, #2d6a9a 100%); border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(60, 133, 186, 0.2);">

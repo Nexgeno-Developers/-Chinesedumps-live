@@ -9,6 +9,7 @@ session_start();
 	include("../includes/common/classes/classEvents.php");
 
 include_once 'functions.php';
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 $ccAdminData = get_session_data();
 
 
@@ -19,7 +20,7 @@ $ccAdminData = get_session_data();
 	$objEvent	=	new classEvents($objDBcon);	// VALIDATION CLASS classCategory
 
 	$strError	=	"";
-	$spram[0]		 =  $_GET['ven_id'];
+	$spram[0]		 =  isset($_GET['ven_id']) ? san_int($_GET['ven_id']) : 0;
 	$farr			=	array("'");
 	$aarr			=	array("\'");
 	if(isset($_POST['Submit']) && $_POST['Submit']  == "Update")
@@ -53,7 +54,7 @@ $ccAdminData = get_session_data();
 
 		$strError = $objValid->create_msg();
 		if($_POST['vnamehidden']!= $_POST['vname']){
-		$getven	=	mysql_num_rows(mysql_query("SELECT * from tbl_vendors where ven_name='".$_POST['vname']."'"));
+		$getven	=	mysql_num_rows(mysql_query("SELECT * from tbl_vendors where ven_name='".db_esc($_POST['vname'])."'"));
 		if($getven!='0'){
 		$strError	.=	"<b>Error! Vendor Name already Exist.</b></br>";
 		}
@@ -92,7 +93,7 @@ $ccAdminData = get_session_data();
                     $mime = isset($map[$extGuess]) ? $map[$extGuess] : 'application/octet-stream';
                 }
 
-                if (in_array($mime, $allowedImg, true)) {
+                if (in_array($mime, $allowedImg, true) && cms2_upload_ext_ok($dName, array('jpg','jpeg','png','gif','webp'))) {
                     $uploadDirImg = dirname(__FILE__) . '/../uploads/vendors/';
                     if (!is_dir($uploadDirImg)) {
                         @mkdir($uploadDirImg, 0775, true);
@@ -182,7 +183,7 @@ $ccAdminData = get_session_data();
                             $extGuess = strtolower(pathinfo($fname, PATHINFO_EXTENSION));
                             $mime = isset($extToMime[$extGuess]) ? $extToMime[$extGuess] : 'application/octet-stream';
                         }
-                        if (!in_array($mime, $allowedMimes, true)) {
+                        if (!in_array($mime, $allowedMimes, true) || !cms2_upload_ext_ok($fname, array('jpg','jpeg','png','gif','webp','pdf'))) {
                             $strError .= "<div>File type not allowed on attachment #".($i+1)." (".htmlspecialchars($mime).")</div>";
                             continue;
                         }
@@ -202,7 +203,7 @@ $ccAdminData = get_session_data();
                         $publicRel = '/uploads/vendors/' . $newName;
                         $attachments[] = array(
                             'mode'      => 'file',
-                            'file_name' => $fname,
+                            'file_name' => cms2_safe_filename($fname),
                             'stored_as' => $newName,
                             'path'      => $publicRel,
                             'mime'      => $mime,
@@ -236,11 +237,12 @@ $ccAdminData = get_session_data();
 		
 		    $strError	.= "Vendor has been updated successfully";
 		    header("location:vendormanage.php");
+			exit;
 		}
 		}elseif(isset($_GET['ven_id']) && is_numeric($_GET['ven_id']))
 		{
 	
-			$spram[0]	=	$_GET['ven_id'];
+			$spram[0]	=	san_int($_GET['ven_id']);
 			$resultSet		=	$objEvent->get_vendor_by_id($spram);
 			
 			while($row		=	mysql_fetch_array($resultSet))
@@ -304,13 +306,13 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
         <tr>
           <td align="right">* Vendor Name:</td>
-          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($spram[1])){ echo  $spram[1];} ?>" /></td>
+          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($spram[1])){ echo  san_html($spram[1]);} ?>" /></td>
         </tr>
        
           
             <tr>
               <td align="right"> Vendor URL:</td>
-              <td colspan="2"><input name="vurl" type="text" id="vurl" value="<?php if(isset($spram[2])){ echo  $spram[2];} ?>" />&nbsp;</td>
+              <td colspan="2"><input name="vurl" type="text" id="vurl" value="<?php if(isset($spram[2])){ echo  san_html($spram[2]);} ?>" />&nbsp;</td>
             </tr>
            
            	<tr>
@@ -443,23 +445,23 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
          <tr>
           <td align="right"> Vendor SEO Title:</td>
-          <td colspan="2"><input  name="vtitle" type="text" value="<?php if(isset($spram[8])){ echo  $spram[8];} ?>" /></td>
+          <td colspan="2"><input  name="vtitle" type="text" value="<?php if(isset($spram[8])){ echo  san_html($spram[8]);} ?>" /></td>
         </tr>
         
          <tr>
           <td align="right"> Vendor SEO Keywords:</td>
-          <td colspan="2"><input  name="vkey" type="text" value="<?php if(isset($spram[9])){ echo  $spram[9];} ?>" /></td>
+          <td colspan="2"><input  name="vkey" type="text" value="<?php if(isset($spram[9])){ echo  san_html($spram[9]);} ?>" /></td>
         </tr>
 		 <tr>
           <td align="right"> Vendor SEO Description:</td>
-          <td colspan="2"><textarea name="edesc" cols="22" rows="6"><?php if(isset($spram[10])){ echo  $spram[10];} ?></textarea></td>
+          <td colspan="2"><textarea name="edesc" cols="22" rows="6"><?php if(isset($spram[10])){ echo  san_html($spram[10]);} ?></textarea></td>
         </tr>	
 		<tr>
           <td align="right"> Vendor Status:</td>
           <td><select name="vendor_status" id="vendor_status">
                 <option value="1"<? if(isset($spram[11]) && $spram[11]=="1"){ echo "selected='selected'";}?>>Active</option>
                 <option value="0"<? if(isset($spram[11]) && $spram[11]=="0"){ echo "selected='selected'";}?>>In Active</option>
-                </select><input type="hidden" name="vnamehidden" id="vnamehidden" value="<?=$spram[1]?>" /></td>
+                </select><input type="hidden" name="vnamehidden" id="vnamehidden" value="<?=san_html($spram[1])?>" /></td>
         </tr>
         <tr>
         <td align="right" valign="top">YouTube Links:</td>

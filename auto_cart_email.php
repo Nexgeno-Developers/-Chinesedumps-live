@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 error_reporting(E_ALL);
@@ -60,7 +61,7 @@ function getdbPrice($pCode,$duration)
 
 	{
 
-	$strSql 	=	"SELECT * FROM product_prices WHERE pri_type='".$pCode."' and pri_duration='".$duration."'";
+	$strSql 	=	"SELECT * FROM product_prices WHERE pri_type='".db_esc($pCode)."' and pri_duration='".db_esc($duration)."'";
 
     $result		=	mysql_query($strSql);
 
@@ -93,7 +94,7 @@ function getUserDetails($userID, $mysqli) {
 
 function getProductPrice($pCodeid,$ptype,$duration){
 
-	$strSql 	=	"SELECT * FROM tbl_exam WHERE exam_id='".$pCodeid."'";
+	$strSql 	=	"SELECT * FROM tbl_exam WHERE exam_id='".san_int($pCodeid)."'";
     $result		=	mysql_query($strSql);
 	$re 		=	mysql_fetch_array($result);
 	if($re["ven_id"] == "16" || $re["ven_id"] == "107"){

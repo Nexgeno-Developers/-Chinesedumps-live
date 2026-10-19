@@ -1,5 +1,6 @@
 <?php $this_page = "stable-unstable" ?>
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 include("includes/config/classDbConnection.php");
@@ -17,7 +18,7 @@ $objCart	=	new classCart($objDBcon);
 
 if(isset($_GET['id']) && isset($_GET['course_name']))
 	{ 
-		       $sql = "UPDATE tbl_course_subscription SET status_sbc = 1 WHERE email = '".$_GET['id']."' AND course='".$_GET['course_name']."'"; 
+		       $sql = "UPDATE tbl_course_subscription SET status_sbc = 1 WHERE email = '".db_esc($_GET['id'])."' AND course='".db_esc($_GET['course_name'])."'"; 
             $retval = mysql_query($sql);  
  
 	} 

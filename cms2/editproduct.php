@@ -1,4 +1,5 @@
 <?PHP 
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ini_set("display_errors","0");
 ob_start();
 session_start();
@@ -79,28 +80,28 @@ $ccAdminData = get_session_data();
 		
 			$seotitle	=	str_replace(" ","-",$_POST['title']);
 		$insert	=	mysql_query("Update tbl_pro set 
-		pro_name='".$spram[1]."',
-		pro_manu='".$spram[4]."',
-		pro_code='".$spram[2]."',
-		pro_defprice='".$spram[5]."',
-		pro_img='".$spram[6]."',
-		pro_stock='".$spram[7]."',
-		pro_mater='".$spram[8]."',
-		pro_info='".$spram[9]."',
-		pro_spprice='".$spram[10]."',
-		pro_start='".$spram[11]."',
-		pro_end='".$spram[12]."',
-		pro_status='".$spram[13]."',
-		pro_desc='".$spram[14]."',
-		name_seo='".$seotitle."',
-		pro_quantity='".$spram[15]."',
-		pro_fet='".$spram[16]."' where pro_id='".$_GET['bottom_id']."'");
+		pro_name='".db_esc($spram[1])."',
+		pro_manu='".db_esc($spram[4])."',
+		pro_code='".db_esc($spram[2])."',
+		pro_defprice='".db_esc($spram[5])."',
+		pro_img='".db_esc($spram[6])."',
+		pro_stock='".db_esc($spram[7])."',
+		pro_mater='".db_esc($spram[8])."',
+		pro_info='".db_esc($spram[9])."',
+		pro_spprice='".db_esc($spram[10])."',
+		pro_start='".db_esc($spram[11])."',
+		pro_end='".db_esc($spram[12])."',
+		pro_status='".db_esc($spram[13])."',
+		pro_desc='".db_esc($spram[14])."',
+		name_seo='".db_esc($seotitle)."',
+		pro_quantity='".db_esc($spram[15])."',
+		pro_fet='".db_esc($spram[16])."' where pro_id='".(isset($_GET['bottom_id']) ? san_int($_GET['bottom_id']) : 0)."'");
 		
-		$lastId	=	$_GET['bottom_id'];
-		mysql_query("DELETE FROM tbl_catsproduct where ProId='".$_GET['bottom_id']."'");
+		$lastId	=	isset($_GET['bottom_id']) ? san_int($_GET['bottom_id']) : 0;
+		mysql_query("DELETE FROM tbl_catsproduct where ProId='".(isset($_GET['bottom_id']) ? san_int($_GET['bottom_id']) : 0)."'");
 		$manufacturer	=	$objProduct->addCategoriesproupdate($spram[3],$lastId);
-		$lastId	=	$_GET['bottom_id'];
-		mysql_query("DELETE FROM tbl_relproduct where ProId='".$_GET['bottom_id']."'");
+		$lastId	=	isset($_GET['bottom_id']) ? san_int($_GET['bottom_id']) : 0;
+		mysql_query("DELETE FROM tbl_relproduct where ProId='".(isset($_GET['bottom_id']) ? san_int($_GET['bottom_id']) : 0)."'");
 		$objProduct->addrelpro($spram[23],$lastId);
 		
 		//header("location:addcolourlength.php?pId=".$lastId."");

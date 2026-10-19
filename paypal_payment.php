@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 require_once __DIR__ . '/includes/config/load_secrets.php';
 ob_start();
 session_start();
@@ -20,6 +21,7 @@ $objPricess = new classPrices();
 
 if(!isset($_SESSION['uid']) || $_SESSION['uid']==''){
 header("location:login.html");
+exit;
 }
 $getPage	=	$objMain->getContent(11);
 //mysql_query("DELETE from temp_master where Cust_ID='".$_SESSION['uid']."'");
@@ -32,11 +34,12 @@ $getPage	=	$objMain->getContent(11);
 	$firstlink	=	" ".$getPage[1];
 	
 	
-$query_cart		=	"select * from temp_order where UserID='".$_SESSION['uid']."' order by ID ASC";
+$query_cart		=	"select * from temp_order where UserID='".san_int($_SESSION['uid'])."' order by ID ASC";
 $rs_cart		=	mysql_query($query_cart);
 $num			=	mysql_num_rows($rs_cart);
 if($num=='0'){
 header("location:cart.html");
+exit;
 }
 
 $gros	=	'';
@@ -75,7 +78,7 @@ if(isset($_POST['apply_coupon']))
 	if($coupon!="")
 	{
 		$_SESSION['coupon'] = "";
-		$query = mysql_query("select coupon_value, coupon_type, coupon_code from coupon where coupon_code = '$coupon' and (curdate() between start_date and end_date) and status='1' and number_of_uses > already_used");
+		$query = mysql_query("select coupon_value, coupon_type, coupon_code from coupon where coupon_code = '".db_esc($coupon)."' and (curdate() between start_date and end_date) and status='1' and number_of_uses > already_used");
 		if(mysql_num_rows($query)>0)
 		{
 			$discount = mysql_fetch_array($query);
@@ -94,7 +97,7 @@ if(isset($_POST['apply_coupon']))
 }
 if(isset($_POST['Final']))
 {  
-	$qyery="select * from temp_order where UserID='".$_SESSION['uid']."'";
+	$qyery="select * from temp_order where UserID='".san_int($_SESSION['uid'])."'";
 	$rs=mysql_query($qyery);
 
 ?>
@@ -121,7 +124,7 @@ $cart		=	$row['CartID'];
 
 $append = " (Secure PDC)";
 if($row['Pid']!='0'){
-$getproexam		=	mysql_fetch_array(mysql_query("SELECT * from tbl_exam where exam_id='".$row['Pid']."'"));
+$getproexam		=	mysql_fetch_array(mysql_query("SELECT * from tbl_exam where exam_id='".san_int($row['Pid'])."'"));
 $numberidid	=	$row['Pid'];
 $descrip = $getproexam['exam_fullname'] . ' ' . $getproexam['exam_name'];
 
@@ -143,7 +146,7 @@ $duration = $row['subscrip'];
 					$descrip .= $append;
 }
 if($row['TrackID']!='0' && $row['TrackID']!=''){
-$getproexam		=	mysql_fetch_array(mysql_query("SELECT * from tbl_cert where cert_id='".$row['TrackID']."'"));
+$getproexam		=	mysql_fetch_array(mysql_query("SELECT * from tbl_cert where cert_id='".db_esc($row['TrackID'])."'"));
 $numberidid	=	$getproexam['cert_id'];
 $descrip	=	$getproexam['cert_name'];
 					if($row['subscrip']=='3'){	$price	=	 $getproexam['cert_pri3'];	}
@@ -215,7 +218,7 @@ $i++;
 		$disc_value	 = 0;
 	}
 	
-$qry_master =	"insert into temp_master (Cust_ID,OrderDate,ExpiryDate,Status,Net_Amount,Cart_ID,OrderDesc,IP,Affiliate_Id,Referer_URL,Sales_Person_Id,SiteID)values(".$user_Id.",'".$date."','".$Expiredate."','1','".$discounted_price."','".$cart_Id."','".$product."','','','','','0')";
+$qry_master =	"insert into temp_master (Cust_ID,OrderDate,ExpiryDate,Status,Net_Amount,Cart_ID,OrderDesc,IP,Affiliate_Id,Referer_URL,Sales_Person_Id,SiteID)values(".san_int($user_Id).",'".$date."','".$Expiredate."','1','".db_esc($discounted_price)."','".db_esc($cart_Id)."','".db_esc($product)."','','','','','0')";
 
 
 mysql_query($qry_master);
@@ -224,7 +227,7 @@ mysql_query($qry_master);
 $user_qry = mysql_query("
     SELECT user_email, user_fname, user_lname, user_phone 
     FROM tbl_user 
-    WHERE user_id = '".$_SESSION['uid']."'
+    WHERE user_id = '".san_int($_SESSION['uid'])."'
 ");
 $user = mysql_fetch_assoc($user_qry);
 
@@ -292,11 +295,11 @@ global $fromEmail;
   sendEmail($fromEmail, $subject, $MsgHTML2, $headers);
 //   sendEmail("webdeveloper@nexgeno.in", $subject, $MsgHTML2, $headers);
 //   @mail($fromEmail, $subject, $MsgHTML2, $headers);
-$masterqyery = mysql_fetch_array(mysql_query("select * from temp_master where Cust_ID='".$_SESSION['uid']."'"));
+$masterqyery = mysql_fetch_array(mysql_query("select * from temp_master where Cust_ID='".san_int($_SESSION['uid'])."'"));
 	if($discounted_price != $ttprice && $discounted_price > 0)
 	{
-		mysql_query("insert into coupon_order set coupon_code = '".$_SESSION['coupon']['coupon_code']."', order_id='".$masterqyery['ID']."', order_type='0', computed_value='$disc_value'");
-		mysql_query("update coupon set already_used = (already_used+1) where coupon_code = '".$_SESSION['coupon']['coupon_code']."'");
+		mysql_query("insert into coupon_order set coupon_code = '".db_esc($_SESSION['coupon']['coupon_code'])."', order_id='".san_int($masterqyery['ID'])."', order_type='0', computed_value='".db_esc($disc_value)."'");
+		mysql_query("update coupon set already_used = (already_used+1) where coupon_code = '".db_esc($_SESSION['coupon']['coupon_code'])."'");
 	}
 
 	$SentNo=$_SESSION['uid']."-".$cart_Id;

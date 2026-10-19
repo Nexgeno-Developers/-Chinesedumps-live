@@ -9,6 +9,7 @@ include ("../includes/common/inc/sessionheader.php");
 include("../includes/common/classes/classEvents.php");
 
 include_once 'functions.php';
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 $ccAdminData = get_session_data();
 
 
@@ -114,7 +115,7 @@ if(isset($_POST['Submit']) && $_POST['Submit']  == "Submit"){
     
     $strError = $objValid->create_msg();
     
-    $getven	=	mysql_num_rows(mysql_query("SELECT * from tbl_cert where cert_name='".$_POST['vname']."'"));
+    $getven	=	mysql_num_rows(mysql_query("SELECT * from tbl_cert where cert_name='".db_esc($_POST['vname'])."'"));
     if($getven!='0'){
         $strError	.=	"<b>Error! Certification Name already Exist.</b></br>";
     }
@@ -164,12 +165,12 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
         <tr>
           <td align="right">* Certification Name:</td>
-          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($_POST['vname'])){ echo  $_POST['vname'];} ?>" /></td>
+          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($_POST['vname'])){ echo san_html($_POST['vname']);} ?>" /></td>
         </tr>
        <tr>
               <td align="right">* Date: </td>
               <td colspan="2" style="position: relative;">
-                <input name="startdate" type="text" readonly="readonly" id="startdate" value="<?php if(isset($_POST['startdate'])){ echo  $_POST['startdate'];} ?>" style="padding-right: 40px; width: 100%; padding: 8px 40px 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" />
+                <input name="startdate" type="text" readonly="readonly" id="startdate" value="<?php if(isset($_POST['startdate'])){ echo san_html($_POST['startdate']);} ?>" style="padding-right: 40px; width: 100%; padding: 8px 40px 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" />
                 <img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; width: 18px; height: 18px; opacity: 0.6; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'" />
               </td>
             </tr>
@@ -291,16 +292,16 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
          <tr>
           <td align="right"> Certification SEO Title:</td>
-          <td colspan="2"><input  name="vtitle" type="text" value="<?php if(isset($_POST['vtitle'])){ echo  $_POST['vtitle'];} ?>" /></td>
+          <td colspan="2"><input  name="vtitle" type="text" value="<?php if(isset($_POST['vtitle'])){ echo san_html($_POST['vtitle']);} ?>" /></td>
         </tr>
         
          <tr>
           <td align="right"> Certification SEO Keywords:</td>
-          <td colspan="2"><input  name="vkey" type="text" value="<?php if(isset($_POST['vkey'])){ echo  $_POST['vkey'];} ?>" /></td>
+          <td colspan="2"><input  name="vkey" type="text" value="<?php if(isset($_POST['vkey'])){ echo san_html($_POST['vkey']);} ?>" /></td>
         </tr>
 		 <tr>
           <td align="right"> Certification SEO Description:</td>
-          <td colspan="2"><textarea name="edesc" cols="22" rows="6"><?php if(isset($_POST['edesc'])){ echo  $_POST['edesc'];} ?></textarea></td>
+          <td colspan="2"><textarea name="edesc" cols="22" rows="6"><?php if(isset($_POST['edesc'])){ echo san_html($_POST['edesc']);} ?></textarea></td>
         </tr>	
 		<tr>
           <td align="right"> Certification Status:</td>

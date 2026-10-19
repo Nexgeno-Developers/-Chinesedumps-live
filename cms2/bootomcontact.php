@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 session_start();
 error_reporting(0);
 //root path
@@ -23,7 +24,7 @@ if (isset($_POST['Submit']) && isset($_POST['Submit'])=="Update..")
 	$spram[3]	=	stripslashes($_POST['FCKeditor']);
 	//$spram[3]	=	$_POST['FCKeditor'];
 
-	$qu1="update website set  bottom_contact ='".str_replace("'","\'",$spram[3])."'";
+	$qu1="update website set  bottom_contact ='".db_esc($spram[3])."'";
 	mysql_query($qu1);
 	$str	=	"Data have been updated successfully";
 

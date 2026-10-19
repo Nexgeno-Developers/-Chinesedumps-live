@@ -1,4 +1,5 @@
 <?PHP 
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ini_set("display_errors","0");
 ob_start();
 session_start();
@@ -22,7 +23,7 @@ $ccAdminData = get_session_data();
 			$objMain	=  new classMain($objDBcon);	// VALIDATION CLASS classCategory
 
 	$strError	=	"";
-	$bottomid	=	$_GET['bottom_id'];
+	$bottomid	=	isset($_GET['bottom_id']) ? san_int($_GET['bottom_id']) : 0;
 	if(isset($_POST['Submit']) && $_POST['Submit']  == "Update")
 
 	{
@@ -38,7 +39,7 @@ $ccAdminData = get_session_data();
 		if(empty($strError))
 		{
 			
-			$upd	=	mysql_query("UPDATE tbl_manufec set man_name='".$spram[1]."',man_status='".$spram[2]."' where man_id='".$_GET['bottom_id']."'");
+			$upd	=	mysql_query("UPDATE tbl_manufec set man_name='".db_esc($spram[1])."',man_status='".db_esc($spram[2])."' where man_id='".$bottomid."'");
 		$strError	.= "Manufacturer has been updated successfully.";
 		
 		}

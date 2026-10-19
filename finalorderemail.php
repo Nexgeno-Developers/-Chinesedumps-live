@@ -1,10 +1,11 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 include_once __DIR__ . '/functions.php';
 	$to			=	$row1['user_email'];	
 
-	$getmasterdet	=	mysql_fetch_array(mysql_query("SELECT * from order_master where ID='".$lastordid."'"));
+	$getmasterdet	=	mysql_fetch_array(mysql_query("SELECT * from order_master where ID='".san_int($lastordid)."'"));
 
-    $getusercartdetails	=	mysql_query("SELECT * from order_detail where UserID='".$UserId."' and masterid='".$lastordid."'");	
+    $getusercartdetails	=	mysql_query("SELECT * from order_detail where UserID='".db_esc($UserId)."' and masterid='".san_int($lastordid)."'");	
 
 	$MsgHTML2	=	'<p>Dear '.$row1['user_fname'].' '.$row1['user_lname'].',<br />
 
@@ -75,7 +76,7 @@ team will respond you 100% within 8 to 10 hrs time and send you the workbooks/du
 
 	$row_c['computed_value']=0;
 
-	$query_c	="select coupon_code, computed_value from coupon_order where order_id='".$getmasterdet['ID']."' and order_type='1'";
+	$query_c	="select coupon_code, computed_value from coupon_order where order_id='".san_int($getmasterdet['ID'])."' and order_type='1'";
 
 	$rs_c		=mysql_query($query_c);
 

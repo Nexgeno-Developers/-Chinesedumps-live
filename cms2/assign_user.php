@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 
@@ -25,7 +26,7 @@ session_start();
 		$pmethod = $_POST['dmethod'];
 		
 
-		$q = mysql_query("select * from tbl_user where user_email='".$_POST['sel_user']."'");
+		$q = mysql_query("select * from tbl_user where user_email='".db_esc($_POST['sel_user'])."'");
 		$qry = mysql_fetch_array($q);
 		$user = $qry["user_id"];
 		if(mysql_num_rows($q) != '0'){
@@ -33,7 +34,7 @@ session_start();
 			
 		
 		
-		$exam = $_POST['exam_id'];
+		$exam = san_int($_POST['exam_id']);
 		$ptype = $_POST['ptype'];
 		$duration = '0';
 
@@ -60,10 +61,10 @@ session_start();
 				$myexpiry = date('Y-m-d', strtotime('+12 days'));
 		}	
 			
-			$qry_temp = "insert into order_master(Cust_ID,Order_Id,OrderDate,Status,Net_Amount,Cart_ID,OrderDesc)values('".$user."','m_assigned','".$dayedate."','1','".$net_amount."','manual-assign','".$re['exam_name'].$append."')";
+			$qry_temp = "insert into order_master(Cust_ID,Order_Id,OrderDate,Status,Net_Amount,Cart_ID,OrderDesc)values('".$user."','m_assigned','".$dayedate."','1','".$net_amount."','manual-assign','".db_esc($re['exam_name'].$append)."')";
 			mysql_query($qry_temp);
 			$lastordid	=	mysql_insert_id();
-			$query_order="insert into order_detail(UserID,masterid,Cart_ID,PaymentType, VendorID,TrackID,ProductID,Description,ExpireDate,strdate,submonth,status, PTypeID)values('".$user."','".$lastordid."','manual-assign','".$pmethod."','','','".$exam."','".$exam."','".$myexpiry."','".$dayedate."','0','1','".$ptype."')";
+			$query_order="insert into order_detail(UserID,masterid,Cart_ID,PaymentType, VendorID,TrackID,ProductID,Description,ExpireDate,strdate,submonth,status, PTypeID)values('".$user."','".$lastordid."','manual-assign','".db_esc($pmethod)."','','','".$exam."','".$exam."','".$myexpiry."','".$dayedate."','0','1','".db_esc($ptype)."')";
  			mysql_query($query_order);
 			$order_id = mysql_insert_id();
 			
@@ -103,6 +104,7 @@ session_start();
 			
 			$msg = "Record has been updated";
 			header("Location: masterorder.php");
+			exit;
 			
 		}
 		
@@ -123,6 +125,7 @@ session_start();
 	{
 		//mysql_query("delete from tbl_exam_user where id = '".$_GET['id']."'");
 		header("Location: assign_user.php");
+		exit;
 	}
 
 
@@ -138,8 +141,8 @@ session_start();
 		</select>";
 		
 		$str .= "<br /><br />
-		<input type='hidden' value='$_GET[exm_id]' name='exam_id' />
-		<input type='hidden' value='$_GET[ptype]' name='ptype' />
+		<input type='hidden' value='".san_html($_GET['exm_id'])."' name='exam_id' />
+		<input type='hidden' value='".san_html(isset($_GET['ptype']) ? $_GET['ptype'] : '')."' name='ptype' />
 		<input type='hidden' value='Insert' name='action' />
 		<input type='submit' value=' Submit ' />";
 	}

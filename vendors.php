@@ -106,11 +106,12 @@ $getPage	=	$objMain->getContent(4);
 	$start = 0; // start of query
 	
 	//set parameters dynamically if page is not one	
-			if(isset($_POST["current_page"]) && $_POST["current_page"]>1)
+			require_once dirname(__FILE__) . '/includes/common/sanitize.php';
+			if(isset($_POST["current_page"]) && san_int($_POST["current_page"])>1)
 			{
-				$start = ($_POST["current_page"]-1) * $limit;
+				$start = (san_int($_POST["current_page"])-1) * $limit;
 				$end = $limit;
-				$currentpage=$_POST["current_page"];
+				$currentpage=san_int($_POST["current_page"]);
 			}
 			else
 			{

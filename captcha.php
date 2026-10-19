@@ -6,10 +6,17 @@ $secret  = secret('RECAPTCHA_SECRET_SHIELDSQUARE', ''); // Enter your secret key
 ?>
 <?php 
     if(isset($_POST['g-recaptcha-response'])) {
-        $response = getCurlData("https://www.google.com/recaptcha/api/siteverify?secret=".$secret."&response=".$_POST['g-recaptcha-response']);
+        $response = getCurlData("https://www.google.com/recaptcha/api/siteverify?secret=".$secret."&response=".urlencode(is_array($_POST['g-recaptcha-response']) ? '' : $_POST['g-recaptcha-response']));
     $response = json_decode($response, true);
     if($response["success"] === true) {
-        $redirPage = $_COOKIE["currentPagename"];
+        $redirPage = isset($_COOKIE["currentPagename"]) && !is_array($_COOKIE["currentPagename"]) ? str_replace(array("\r", "\n", "%0a", "%0d"), '', $_COOKIE["currentPagename"]) : '';
+        // only allow same-site redirects (no open redirect)
+        $redirParts = parse_url($redirPage);
+        if (strpos($redirPage, chr(92)) !== false || preg_match('#^/{2}#', $redirPage)
+            || (is_array($redirParts) && isset($redirParts['host']) && $redirParts['host'] !== preg_replace('/:[0-9]+$/', '', $_SERVER['HTTP_HOST'])
+                && substr($redirParts['host'], -strlen('.chinesedumps.com')) !== '.chinesedumps.com' && $redirParts['host'] !== 'chinesedumps.com')) {
+            $redirPage = '/';
+        }
         setcookie(md5("captchaResponse"),md5("1".$redirPage.$_SERVER[$shieldsquare_config_data_captcha->_ipaddress].$shieldsquare_config_data_captcha->_sid),time()+60*60,"/");
         header("Location:".$redirPage);
         exit();

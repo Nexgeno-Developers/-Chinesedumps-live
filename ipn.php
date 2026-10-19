@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 
 ob_start();
 
@@ -146,7 +147,7 @@ if (eregi ("VERIFIED", $ipn_response))
 
 #######################################################################
 
-	$txn_id=$_POST["txn_id"];
+	$txn_id=db_esc($_POST["txn_id"]);
 
 	$tt='1';
 
@@ -160,9 +161,9 @@ if (eregi ("VERIFIED", $ipn_response))
 
 		$parts=explode("-",$SentNo);
 
-		$UserId=$parts[0];
+		$UserId=db_esc($parts[0]);
 
-		$CartId=$parts[1];
+		$CartId=db_esc(isset($parts[1]) ? $parts[1] : '');
 
 		
 
@@ -186,7 +187,7 @@ if (eregi ("VERIFIED", $ipn_response))
 
 		{
 
-			$qry_temp = "insert into order_master(Cust_ID,Order_Id,OrderDate,Status,Net_Amount,Cart_ID,OrderDesc)values('".$UserId."','".$txn_id."','".$dayedate."','1','".$r_cart_master['Net_Amount']."','".$CartId."','".$r_cart_master['OrderDesc']."')";
+			$qry_temp = "insert into order_master(Cust_ID,Order_Id,OrderDate,Status,Net_Amount,Cart_ID,OrderDesc)values('".$UserId."','".$txn_id."','".$dayedate."','1','".db_esc($r_cart_master['Net_Amount'])."','".$CartId."','".db_esc($r_cart_master['OrderDesc'])."')";
 
 			mysql_query($qry_temp);
 
@@ -194,7 +195,7 @@ if (eregi ("VERIFIED", $ipn_response))
 
 			
 
-			@mysql_query("update coupon_order set order_id='$lastordid', order_type='1' where order_id = '".$r_cart_master['ID']."' and order_type='0'");
+			@mysql_query("update coupon_order set order_id='$lastordid', order_type='1' where order_id = '".san_int($r_cart_master['ID'])."' and order_type='0'");
 
 			
 
@@ -232,7 +233,7 @@ if (eregi ("VERIFIED", $ipn_response))
 
 				
 
-		$query_order="insert into order_detail(UserID,masterid,Cart_ID,VendorID,TrackID,ProductID,Description,ExpireDate,strdate,submonth,status, PTypeID)values('".$UserId."','".$lastordid."','".$row_cart['CartID']."','".$row_cart['VendorID']."','".$row_cart['TrackID']."','".$row_cart['Pid']."','".$row_cart['Product']."','".$Expiredate."','".$dayedate."','".$row_cart['subscrip']."','1','".$row_cart['PType']."')";
+		$query_order="insert into order_detail(UserID,masterid,Cart_ID,VendorID,TrackID,ProductID,Description,ExpireDate,strdate,submonth,status, PTypeID)values('".$UserId."','".$lastordid."','".db_esc($row_cart['CartID'])."','".db_esc($row_cart['VendorID'])."','".db_esc($row_cart['TrackID'])."','".san_int($row_cart['Pid'])."','".db_esc($row_cart['Product'])."','".$Expiredate."','".$dayedate."','".san_int($row_cart['subscrip'])."','1','".db_esc($row_cart['PType'])."')";
 
  				mysql_query($query_order);
 
@@ -252,7 +253,7 @@ if (eregi ("VERIFIED", $ipn_response))
 
 					$expiry = date('Y-m-d', strtotime("+12 days"));
 
-					$engine_arr = mysql_fetch_array(mysql_query("select id from tbl_package_engine where package_id = '{$row_cart['Pid']}' and type='Simulator' and os = 'Win';"));
+					$engine_arr = mysql_fetch_array(mysql_query("select id from tbl_package_engine where package_id = '".san_int($row_cart['Pid'])."' and type='Simulator' and os = 'Win';"));
 
 					$engine_id = $engine_arr['id'];
 
@@ -272,7 +273,7 @@ if (eregi ("VERIFIED", $ipn_response))
 
 				if($row_cart['VendorID']!=''){
 
-				$getnameid	=	mysql_fetch_array(mysql_query("SELECT * from tbl_vendors where ven_id='".$row_cart['VendorID']."'"));
+				$getnameid	=	mysql_fetch_array(mysql_query("SELECT * from tbl_vendors where ven_id='".db_esc($row_cart['VendorID'])."'"));
 
 				$itemname	=	$getnameid['ven_name'].'&nbsp;Vendor';
 
@@ -280,7 +281,7 @@ if (eregi ("VERIFIED", $ipn_response))
 
 				if($row_cart['TrackID']!=''){
 
-				$getnameid	=	mysql_fetch_array(mysql_query("SELECT * from tbl_cert where cert_id='".$row_cart['TrackID']."'"));
+				$getnameid	=	mysql_fetch_array(mysql_query("SELECT * from tbl_cert where cert_id='".db_esc($row_cart['TrackID'])."'"));
 
 				$itemname	=	$getnameid['cert_name'].'&nbsp;Certification';
 
@@ -288,7 +289,7 @@ if (eregi ("VERIFIED", $ipn_response))
 
 				if($row_cart['Pid']!='' && $row_cart['Pid']!='0'){
 
-				$getnameid	=	mysql_fetch_array(mysql_query("SELECT * from tbl_exam where exam_id='".$row_cart['Pid']."'"));
+				$getnameid	=	mysql_fetch_array(mysql_query("SELECT * from tbl_exam where exam_id='".san_int($row_cart['Pid'])."'"));
 
 				//$itemname	=	$getnameid['exam_name'].'&nbsp;Exam'; //commented by nexgeno dev
 				$itemname   = ($row_cart['PType']=='8' || $row_cart['PType']=='9') ? $getnameid['exam_name'] :	$getnameid['exam_fullname'].' '.$getnameid['exam_name'].'&nbsp;Exam'; //added by nexgeno dev
@@ -309,9 +310,9 @@ if (eregi ("VERIFIED", $ipn_response))
 
 			include("finalorderemail.php");
 
-			mysql_query("DELETE from temp_order where UserID='".$_SESSION['uid']."'");
+			mysql_query("DELETE from temp_order where UserID='".san_int($_SESSION['uid'])."'");
 
-			mysql_query("DELETE from temp_master where Cust_ID='".$_SESSION['uid']."'");
+			mysql_query("DELETE from temp_master where Cust_ID='".san_int($_SESSION['uid'])."'");
 
 			// Start of Affiliate Sale code //
 

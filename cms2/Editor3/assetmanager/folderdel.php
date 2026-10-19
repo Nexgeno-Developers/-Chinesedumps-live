@@ -1,4 +1,9 @@
-﻿<base target="_self">
+<?php
+// admin session guard: the asset manager must only be reachable from the logged-in CMS
+if (session_id() === '') { session_start(); }
+if (!isset($_SESSION['strAdmin']) || !isset($_SESSION['adminId'])) { header('HTTP/1.1 403 Forbidden'); exit('Forbidden'); }
+?>
+<base target="_self">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">

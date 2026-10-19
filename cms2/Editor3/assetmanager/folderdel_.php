@@ -1,14 +1,22 @@
-﻿<?
+<?php
+// admin session guard: the asset manager must only be reachable from the logged-in CMS
+if (session_id() === '') { session_start(); }
+if (!isset($_SESSION['strAdmin']) || !isset($_SESSION['adminId'])) { header('HTTP/1.1 403 Forbidden'); exit('Forbidden'); }
+?>
+<?
+include("settings.php");
 $sMsg = "";
 
-if(isset($_POST["inpCurrFolder"]))
+$sDestination = array("dirname" => "");
+
+if(isset($_POST["inpCurrFolder"]) && am_folder_ok($_POST["inpCurrFolder"], true))
 	{
 	$sDestination = pathinfo($_POST["inpCurrFolder"]);
 	
 	//DELETE ALL FILES IF FOLDER NOT EMPTY
     $dir = $_POST["inpCurrFolder"];
     $handle = opendir($dir); 
-    while($file = readdir($handle)) if($file != "." && $file != "..") unlink($dir . "/" . $file); 
+    while($file = readdir($handle)) if($file != "." && $file != ".." && is_file($dir . "/" . $file)) unlink($dir . "/" . $file); 
     closedir($handle); 
 	
 	if(rmdir($_POST["inpCurrFolder"])==0)
@@ -47,7 +55,7 @@ function refresh()
 <td valign=top style="padding-top:5px;padding-left:15px;padding-right:15px;padding-bottom:12px;height=100%">
 
 	<br>
-	<input type="hidden" ID="inpDest" NAME="inpDest" value="<? echo $sDestination['dirname']; ?>">
+	<input type="hidden" ID="inpDest" NAME="inpDest" value="<? echo htmlspecialchars($sDestination['dirname'], ENT_QUOTES); ?>">
 	<div><b><? echo $sMsg; ?>&nbsp;</b></div>
 
 </td>

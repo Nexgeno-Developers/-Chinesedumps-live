@@ -1,4 +1,5 @@
 <?PHP
+require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 /*
 
@@ -48,7 +49,7 @@ public function getProductPrice($pCodeid,$ptype,$duration)
 
 
 
-	$strSql 	=	"SELECT * FROM tbl_exam WHERE exam_id='".$pCodeid."'";
+	$strSql 	=	"SELECT * FROM tbl_exam WHERE exam_id='".san_int($pCodeid)."'";
 
     $result		=	mysql_query($strSql);
 
@@ -128,7 +129,7 @@ public function getProductSwreg($pCode,$ptype,$duration)
 
 	{
 
-	$strSql 	=	"SELECT * FROM tbl_exam WHERE exam_id='".$pCode."'";
+	$strSql 	=	"SELECT * FROM tbl_exam WHERE exam_id='".san_int($pCode)."'";
 
     $result		=	mysql_query($strSql);
 
@@ -192,7 +193,7 @@ private function getdbPrice($pCode,$duration)
 
 	{
 
-	$strSql 	=	"SELECT * FROM product_prices WHERE pri_type='".$pCode."' and pri_duration='".$duration."'";
+	$strSql 	=	"SELECT * FROM product_prices WHERE pri_type='".db_esc($pCode)."' and pri_duration='".san_int($duration)."'";
 
     $result		=	mysql_query($strSql);
 

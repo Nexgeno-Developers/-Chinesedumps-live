@@ -1,4 +1,5 @@
    <?PHP
+require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 
 
@@ -128,7 +129,7 @@
 
 		{
 
-		 $add_que = "INSERT INTO tbl_cert(	ven_id,cert_name,cert_url,cert_home,cert_hot,cert_status,cert_title,cert_keywords,cert_desc_seo,cert_date,cert_descr,allcerts,cert_upddate,demo_data)VALUES('".$spram[12]."','".$spram[0]."','".$spram[1]."','".$spram[4]."','".$spram[5]."','".$spram[10]."','".str_replace("'","\'",$spram[7])."','".str_replace("'","\'",$spram[8])."','".str_replace("'","\'",$spram[9])."','".$spram[29]."','".str_replace("'","\'",$spram[6])."','".$spram[13]."','0000-00-00','".$spram[30]."')";
+		 $add_que = "INSERT INTO tbl_cert(	ven_id,cert_name,cert_url,cert_home,cert_hot,cert_status,cert_title,cert_keywords,cert_desc_seo,cert_date,cert_descr,allcerts,cert_upddate,demo_data)VALUES('".db_esc($spram[12])."','".db_esc($spram[0])."','".db_esc($spram[1])."','".db_esc($spram[4])."','".db_esc($spram[5])."','".db_esc($spram[10])."','".db_esc($spram[7])."','".db_esc($spram[8])."','".db_esc($spram[9])."','".db_esc($spram[29])."','".db_esc($spram[6])."','".db_esc($spram[13])."','0000-00-00','".$spram[30]."')";
 
 		 $qryexe = mysql_query($add_que) or die(mysql_error()); 
 
@@ -138,7 +139,7 @@
 
 		{
 
-		 $add_que = "INSERT INTO tbl_course(name,status,created)VALUES('".$spram[0]."','".$spram[1]."','".$spram[2]."')";
+		 $add_que = "INSERT INTO tbl_course(name,status,created)VALUES('".db_esc($spram[0])."','".db_esc($spram[1])."','".db_esc($spram[2])."')";
 
 		 $qryexe = mysql_query($add_que) or die(mysql_error()); 
 
@@ -211,52 +212,52 @@
 
          )VALUES(
 
-         '".$spram[12]."',
+         '".db_esc($spram[12])."',
 
-		 '".$spram[13]."',
+		 '".db_esc($spram[13])."',
 
-		 '".$spram[0]."',
+		 '".db_esc($spram[0])."',
 
-		 '".$spram[14]."',
+		 '".db_esc($spram[14])."',
          '".$exam_type."',
 		 '".mysql_real_escape_string(isset($spram['alias_name']) ? $spram['alias_name'] : '')."',
 		 '".mysql_real_escape_string(isset($spram['faq_json']) ? $spram['faq_json'] : '')."',
 
-		 '".$spram[1]."',
+		 '".db_esc($spram[1])."',
 
-		 '".$spram[2]."',
+		 '".db_esc($spram[2])."',
 
-		 '".$spram[2]."',
-		 '".$spram[3]."',
-		 '".$spram[22]."',
+		 '".db_esc($spram[2])."',
+		 '".db_esc($spram[3])."',
+		 '".db_esc($spram[22])."',
 
-		 '".$spram[4]."',
+		 '".db_esc($spram[4])."',
 
-		 '".$spram[5]."',
+		 '".db_esc($spram[5])."',
 
-		 '".$spram[10]."',
+		 '".db_esc($spram[10])."',
 
-		 '".str_replace("'","\'",$spram[7])."',
-		 '".str_replace("'","\'",$spram[39])."',
-		 '".str_replace("'","\'",$spram[41])."',
+		 '".db_esc($spram[7])."',
+		 '".db_esc($spram[39])."',
+		 '".db_esc($spram[41])."',
 
-		 '".str_replace("'","\'",$spram[8])."',
+		 '".db_esc($spram[8])."',
 
-		 '".str_replace("'","\'",$spram[9])."',
+		 '".db_esc($spram[9])."',
 
-		 '".$spram[29]."',
+		 '".db_esc($spram[29])."',
 
-		 '".str_replace("'","\'",$spram[6])."',
+		 '".db_esc($spram[6])."',
 
-		 '".$spram[20]."',
+		 '".db_esc($spram[20])."',
 
 		 '0',
 
 		 '0000-00-00',
-		 '".$spram[30]."',
-		 '".$spram[31]."',
-         '".$spram[42]."',
-         '".$spram['youtube_links']."',
+		 '".db_esc($spram[30])."',
+		 '".db_esc($spram[31])."',
+         '".db_esc($spram[42])."',
+         '".db_esc($spram['youtube_links'])."',
          '".mysql_real_escape_string(isset($spram['free_dump_pdf']) ? $spram['free_dump_pdf'] : '')."',
          '".mysql_real_escape_string(isset($spram['demo_practice_file']) ? $spram['demo_practice_file'] : '')."',
          '".mysql_real_escape_string(isset($spram['free_dump_label']) ? $spram['free_dump_label'] : '')."',
@@ -270,17 +271,17 @@
 
 		function delete_Banner($pro_id)
 		{
-			mysql_query("DELETE from sliders where s_id='".$pro_id."'");
+			mysql_query("DELETE from sliders where s_id='".san_int($pro_id)."'");
 		}
 		
 				function delete_Banner_new($pro_id)
 		{
-			mysql_query("DELETE from sliders_new where s_id='".$pro_id."'");
+			mysql_query("DELETE from sliders_new where s_id='".san_int($pro_id)."'");
 		}
 		
 		function delete_course_manage($pro_id)
 		{
-			mysql_query("DELETE from tbl_course where id='".$pro_id."'");
+			mysql_query("DELETE from tbl_course where id='".san_int($pro_id)."'");
 		}
 
 		
@@ -289,7 +290,7 @@
 
 			{
 
-				$getev	=	mysql_query("SELECT * from tbl_cert where ven_id ='".$pro_id."'");
+				$getev	=	mysql_query("SELECT * from tbl_cert where ven_id ='".san_int($pro_id)."'");
 
 				while($getfetch	=	mysql_fetch_array($getev)){
 
@@ -297,9 +298,9 @@
 
 				}
 
-				mysql_query("DELETE from tbl_exam where ven_id='".$pro_id."'");
+				mysql_query("DELETE from tbl_exam where ven_id='".san_int($pro_id)."'");
 
-				mysql_query("DELETE from tbl_vendors where ven_id='".$pro_id."'");
+				mysql_query("DELETE from tbl_vendors where ven_id='".san_int($pro_id)."'");
 
 				
 
@@ -309,9 +310,9 @@
 
 			{
 
-				mysql_query("DELETE from tbl_exam where cert_id='".$pro_id."'");
+				mysql_query("DELETE from tbl_exam where cert_id='".san_int($pro_id)."'");
 
-				mysql_query("DELETE from tbl_cert where cert_id='".$pro_id."'");
+				mysql_query("DELETE from tbl_cert where cert_id='".san_int($pro_id)."'");
 
 				
 
@@ -325,7 +326,7 @@
 
 				//echo "SELECT * from tbl_exam where exam_id ='".$pro_id."'";exit();
 
-				$getev	=	mysql_query("SELECT * from tbl_exam where exam_id ='".$pro_id."'");
+				$getev	=	mysql_query("SELECT * from tbl_exam where exam_id ='".san_int($pro_id)."'");
 
 				$getfetch	=	mysql_fetch_array($getev);
 
@@ -341,7 +342,7 @@
 
 				}
 
-				mysql_query("DELETE from tbl_exam where exam_id ='".$pro_id."'");
+				mysql_query("DELETE from tbl_exam where exam_id ='".san_int($pro_id)."'");
 
 				
 
@@ -351,7 +352,7 @@
 
 			{
 
-			 	$strQury="Select * from tbl_vendors  where ven_id ='".$arr[0]."'";
+			 	$strQury="Select * from tbl_vendors  where ven_id ='".san_int($arr[0])."'";
 
 				$rsResult = $this->objDbConn->Dml_Query_Parser($strQury);
 
@@ -363,7 +364,7 @@
 
 			{
 
-			 	$strQury="Select * from tbl_cert  where cert_id='".$arr[0]."'";
+			 	$strQury="Select * from tbl_cert  where cert_id='".san_int($arr[0])."'";
 
 				$rsResult = $this->objDbConn->Dml_Query_Parser($strQury);
 
@@ -375,7 +376,7 @@
 
 			{
 
-			 	$strQury="Select * from tbl_exam  where exam_id='".$arr[0]."'";
+			 	$strQury="Select * from tbl_exam  where exam_id='".san_int($arr[0])."'";
 
 				$rsResult = $this->objDbConn->Dml_Query_Parser($strQury);
 
@@ -440,7 +441,7 @@
 
 		{
 
-			$add_que = "UPDATE tbl_cert set ven_id='".$spram[12]."',cert_name='".$spram[1]."',cert_url='".$spram[2]."',cert_home='".$spram[5]."',cert_hot='".$spram[6]."',cert_descr='".str_replace("'","\'",$spram[7])."',cert_title='".str_replace("'","\'",$spram[8])."',cert_keywords='".str_replace("'","\'",$spram[9])."',cert_desc_seo='".str_replace("'","\'",$spram[10])."',cert_status='".$spram[11]."',allcerts='".$spram[13]."',cert_date='".$spram[29]."',demo_data='".$spram[30]."' where cert_id ='".$spram[0]."'";
+			$add_que = "UPDATE tbl_cert set ven_id='".db_esc($spram[12])."',cert_name='".db_esc($spram[1])."',cert_url='".db_esc($spram[2])."',cert_home='".db_esc($spram[5])."',cert_hot='".db_esc($spram[6])."',cert_descr='".db_esc($spram[7])."',cert_title='".db_esc($spram[8])."',cert_keywords='".db_esc($spram[9])."',cert_desc_seo='".db_esc($spram[10])."',cert_status='".db_esc($spram[11])."',allcerts='".db_esc($spram[13])."',cert_date='".db_esc($spram[29])."',demo_data='".db_esc($spram[30])."' where cert_id ='".db_esc($spram[0])."'";
 	
 			$qryexe = mysql_query($add_que) or die(mysql_error()); 
 
@@ -449,7 +450,7 @@
 		function updateCourse($spram)
 
 		{
-			$add_que = "UPDATE tbl_course set name='".$spram[1]."',status='".$spram[2]."' where id ='".$spram[0]."'";
+			$add_que = "UPDATE tbl_course set name='".db_esc($spram[1])."',status='".db_esc($spram[2])."' where id ='".db_esc($spram[0])."'";
 	
 			$qryexe = mysql_query($add_que) or die(mysql_error()); 
 			return $qryexe;
@@ -464,9 +465,9 @@
 
                  $exam_type = mysql_real_escape_string(isset($spram['exam_type']) ? $spram['exam_type'] : '');
 
-				 $add_que = "UPDATE tbl_exam set ven_id='".$spram[12]."',cert_id='".$spram[13]."',exam_fullname='".$spram[14]."',exam_type='".$exam_type."',alias_name='".mysql_real_escape_string(isset($spram['alias_name']) ? $spram['alias_name'] : '')."',faq_json='".mysql_real_escape_string(isset($spram['faq_json']) ? $spram['faq_json'] : '')."',exam_name='".$spram[1]."',labName='".$spram[32]."',exam_url='".$spram[2]."',exam_pri3='".$spram[3]."',exam_pri0='".$spram[3]."',both_pri='".$spram[4]."',engn_pri3='".$spram[33]."',QA='".$spram[20]."',exam_home='".$spram[5]."',exam_hot='".$spram[6]."',exam_descr='".str_replace("'","\'",$spram[7])."',exam_descr2='".str_replace("'","\'",$spram[39])."',exam_related_descr='".str_replace("'","\'",$spram[41])."'
+				 $add_que = "UPDATE tbl_exam set ven_id='".db_esc($spram[12])."',cert_id='".db_esc($spram[13])."',exam_fullname='".db_esc($spram[14])."',exam_type='".$exam_type."',alias_name='".mysql_real_escape_string(isset($spram['alias_name']) ? $spram['alias_name'] : '')."',faq_json='".mysql_real_escape_string(isset($spram['faq_json']) ? $spram['faq_json'] : '')."',exam_name='".db_esc($spram[1])."',labName='".db_esc($spram[32])."',exam_url='".db_esc($spram[2])."',exam_pri3='".db_esc($spram[3])."',exam_pri0='".db_esc($spram[3])."',both_pri='".db_esc($spram[4])."',engn_pri3='".db_esc($spram[33])."',QA='".db_esc($spram[20])."',exam_home='".db_esc($spram[5])."',exam_hot='".db_esc($spram[6])."',exam_descr='".db_esc($spram[7])."',exam_descr2='".db_esc($spram[39])."',exam_related_descr='".db_esc($spram[41])."'
 
-				 ,exam_title='".str_replace("'","\'",$spram[8])."',exam_keywords='".str_replace("'","\'",$spram[9])."',exam_desc_seo='".str_replace("'","\'",$spram[10])."',exam_status='".$spram[11]."',exam_date='".$spram[29]."',telegram_url='".$spram[38]."',whatsapp_url='".$spram[30]."',skype_url='".$spram[31]."',video_code='".$spram[37]."',course_image='".$spram[36]."',youtube_links='".$spram['youtube_links']."',free_dump_pdf='".mysql_real_escape_string(isset($spram['free_dump_pdf']) ? $spram['free_dump_pdf'] : '')."',demo_practice_file='".mysql_real_escape_string(isset($spram['demo_practice_file']) ? $spram['demo_practice_file'] : '')."',free_dump_label='".mysql_real_escape_string(isset($spram['free_dump_label']) ? $spram['free_dump_label'] : '')."',demo_practice_label='".mysql_real_escape_string(isset($spram['demo_practice_label']) ? $spram['demo_practice_label'] : '')."' where exam_id ='".$spram[0]."'";
+				 ,exam_title='".db_esc($spram[8])."',exam_keywords='".db_esc($spram[9])."',exam_desc_seo='".db_esc($spram[10])."',exam_status='".db_esc($spram[11])."',exam_date='".db_esc($spram[29])."',telegram_url='".db_esc($spram[38])."',whatsapp_url='".db_esc($spram[30])."',skype_url='".db_esc($spram[31])."',video_code='".db_esc($spram[37])."',course_image='".db_esc($spram[36])."',youtube_links='".db_esc($spram['youtube_links'])."',free_dump_pdf='".mysql_real_escape_string(isset($spram['free_dump_pdf']) ? $spram['free_dump_pdf'] : '')."',demo_practice_file='".mysql_real_escape_string(isset($spram['demo_practice_file']) ? $spram['demo_practice_file'] : '')."',free_dump_label='".mysql_real_escape_string(isset($spram['free_dump_label']) ? $spram['free_dump_label'] : '')."',demo_practice_label='".mysql_real_escape_string(isset($spram['demo_practice_label']) ? $spram['demo_practice_label'] : '')."' where exam_id ='".db_esc($spram[0])."'";
 
 				 $qryexe = mysql_query($add_que) or die(mysql_error()); 
 				 /* var_dump($add_que);exit; */
@@ -477,7 +478,7 @@
 
 		function getAllphotos($eventId){
 
-		$get_all_Com	=	$this->objDbConn->Sql_Query_Exec('*','tbl_eventphoto','event_id='.$eventId.' order by `photo_id` DESC');
+		$get_all_Com	=	$this->objDbConn->Sql_Query_Exec('*','tbl_eventphoto','event_id='.san_int($eventId).' order by `photo_id` DESC');
 
 		return $get_all_Com;
 
@@ -489,7 +490,7 @@
 
 		$event[2]	=	upload_event_img_user($event[2]);
 
-		mysql_query("INSERT INTO tbl_eventphoto(event_id,photo_name,uid)VALUES('".$event[1]."','".$event[2]."','".$event[3]."')");
+		mysql_query("INSERT INTO tbl_eventphoto(event_id,photo_name,uid)VALUES('".db_esc($event[1])."','".db_esc($event[2])."','".db_esc($event[3])."')");
 
 		$resl	=	'Photo has been added successfully.';
 
@@ -503,19 +504,19 @@
 
 		function Addeventrsvp($event){
 
-		$get_rsvp	=	$this->objDbConn->Sql_Query_Exec('*','tbl_eventguest','gue_uid='.$event[3].' and gue_eid='.$event[1].'');
+		$get_rsvp	=	$this->objDbConn->Sql_Query_Exec('*','tbl_eventguest','gue_uid='.san_int($event[3]).' and gue_eid='.san_int($event[1]).'');
 
 		$total	=	mysql_num_rows($get_rsvp);
 
 		if($total=='0'){
 
-		mysql_query("INSERT INTO tbl_eventguest(gue_uid,gue_eid,gue_answer)VALUES('".$event[3]."','".$event[1]."','".$event[2]."')");
+		mysql_query("INSERT INTO tbl_eventguest(gue_uid,gue_eid,gue_answer)VALUES('".db_esc($event[3])."','".db_esc($event[1])."','".db_esc($event[2])."')");
 
 		$resl	=	'RSVP has been added successfully.';
 
 		}else{
 
-		mysql_query("UPDATE tbl_eventguest set gue_answer='".$event[2]."' where gue_uid='".$event[3]."' and gue_eid='".$event[1]."'");
+		mysql_query("UPDATE tbl_eventguest set gue_answer='".db_esc($event[2])."' where gue_uid='".db_esc($event[3])."' and gue_eid='".db_esc($event[1])."'");
 
 		$resl	=	'RSVP has been updated successfully.';
 
@@ -529,13 +530,13 @@
 
 		function Deleventphoto($photoId){
 
-		$get_all_Com	=	mysql_fetch_array($this->objDbConn->Sql_Query_Exec('*','tbl_eventphoto','photo_id='.$photoId.''));
+		$get_all_Com	=	mysql_fetch_array($this->objDbConn->Sql_Query_Exec('*','tbl_eventphoto','photo_id='.san_int($photoId).''));
 
 		unlink("../upload/".$get_all_Com['photo_name']);
 
 		unlink("../upload/thumbs/".$get_all_Com['photo_name']);
 
-		$del	=	"DELETE from tbl_eventphoto where photo_id='".$photoId."'";
+		$del	=	"DELETE from tbl_eventphoto where photo_id='".san_int($photoId)."'";
 
 		mysql_query($del);
 
@@ -649,7 +650,7 @@ function fillComboSubCategory($intValue = 0,$cateID)
 
 			$txtSelected = "";	//Set the option to Selected
 
-			$qry = mysql_query("select * from tbl_cert  where ven_id=".$cateID."  ORDER BY cert_name");
+			$qry = mysql_query("select * from tbl_cert  where ven_id=".san_int($cateID)."  ORDER BY cert_name");
 
 			if(!empty($intValue))
 

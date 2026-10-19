@@ -1,4 +1,5 @@
 <?PHP
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 ini_set("display_errors","0");
 
@@ -106,9 +107,9 @@ $ccAdminData = get_session_data();
 
 				{
 
-					$PageNo			 = $_GET['currentPage'];	# Shows # of Page			
+					$PageNo			 = san_int($_GET['currentPage']);	# Shows # of Page			
 
-					$PageIndex		 = $_GET['pgIndex'];		# Shows # of Page Index				
+					$PageIndex		 = san_int($_GET['pgIndex']);		# Shows # of Page Index				
 
 				}	
 
@@ -212,7 +213,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
   <!-- LOOP THROUGH USERS -->
 
 <?php $id = $_GET['group_id']; ?>
-<?php $sqlSlider = mysql_query("select * from sliders_new where group_id='".$id."'");
+<?php $sqlSlider = mysql_query("select * from sliders_new where group_id='".db_esc($id)."'");
 
 for($sr = 0; $sr < mysql_num_rows($sqlSlider); $sr++){
 

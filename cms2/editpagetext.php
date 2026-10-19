@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 session_start();
 error_reporting(0);
 //root path
@@ -31,13 +32,13 @@ if (isset($_POST['Submit']) && isset($_POST['Submit'])=="Update..")
 	$spram[3]	=	stripslashes($_POST['FCKeditor']);
 	//$spram[3]	=	$_POST['FCKeditor'];
 
-	$qu1="update content_pages set  page_title='".str_replace("'","\'",$spram[1])."',content_title='".str_replace("'","\'",$spram[2])."',page_contents ='".str_replace("'","\'",$spram[3])."',meta_keywords='".str_replace($farr,$aarr,$spram[4])."',meta_descx='".str_replace($farr,$aarr,$spram[5])."' where page_id='".$_GET['pid']."'";
+	$qu1="update content_pages set  page_title='".db_esc($spram[1])."',content_title='".db_esc($spram[2])."',page_contents ='".db_esc($spram[3])."',meta_keywords='".db_esc($spram[4])."',meta_descx='".db_esc($spram[5])."' where page_id='".(isset($_GET['pid']) ? san_int($_GET['pid']) : 0)."'";
 	mysql_query($qu1);
 	$str	=	"Data have been updated successfully";
 
 }
 
-	$q="select * from content_pages where page_id='".$_GET['pid']."'";
+	$q="select * from content_pages where page_id='".(isset($_GET['pid']) ? san_int($_GET['pid']) : 0)."'";
 	$rs=mysql_query($q);
 	$row=mysql_fetch_array($rs);
 	

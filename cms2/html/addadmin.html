@@ -62,20 +62,20 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
         <tr>
           <td align="right">*First Name:</td>
-          <td colspan="2"><input  name="fname" type="text" value="<?php if(isset($_POST['fname'])){ echo  $_POST['fname'];} ?>" /></td>
+          <td colspan="2"><input  name="fname" type="text" value="<?php if(isset($_POST['fname'])){ echo san_html($_POST['fname']);} ?>" /></td>
         </tr>
         <tr>
           <td align="right">*Last Name:</td>
-          <td colspan="2"><input name="lname" type="text" value="<?php if(isset($_POST['lname'])){ echo  $_POST['fname'];} ?>" /></td>
+          <td colspan="2"><input name="lname" type="text" value="<?php if(isset($_POST['lname'])){ echo san_html($_POST['fname']);} ?>" /></td>
         </tr>
 <tr>
           <td align="right">*Login:</td>
-          <td width="25%"><input name="login" id="login" type="text" value="<?php if(isset($_POST['login'])){ echo  $_POST['login'];} ?>"  /></td>
+          <td width="25%"><input name="login" id="login" type="text" value="<?php if(isset($_POST['login'])){ echo san_html($_POST['login']);} ?>"  /></td>
           <td width="46%"><div id="username_exists" style="font-size: 12px;font-weight: bold;color:#FF3300; float:left;"> </div></td>
         </tr>
         <tr>
           <td align="right">*E-Mail Address:</td>
-          <td width="25%"><input name="email" id="email" type="text" value="<?php if(isset($_POST['email'])){ echo  $_POST['email'];} ?>"  /></td>
+          <td width="25%"><input name="email" id="email" type="text" value="<?php if(isset($_POST['email'])){ echo san_html($_POST['email']);} ?>"  /></td>
           <td width="46%"><div id="username_exists" style="font-size: 12px;font-weight: bold;color:#FF3300; float:left;"> </div></td>
         </tr>
 		<tr>

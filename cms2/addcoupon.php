@@ -10,6 +10,7 @@ session_start();
 	include("../functions.php");
 
 include_once 'functions.php';
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 $ccAdminData = get_session_data();
 
 
@@ -31,7 +32,7 @@ $ccAdminData = get_session_data();
 		$status=$_POST['status'];
 		$comments=$_POST['comments'];
 		$sql=("INSERT INTO coupon(coupon_title,coupon_code,start_date,end_date,coupon_value,coupon_type,number_of_uses,status,comments) VALUES 
-		('".$title."','".$code."','".$start_date."','".$end_date."','".$coupon_value."','".$coupon_type."','".$no_of_user."','".$status."','".$comments."')") or die(mysql_error());
+		('".db_esc($title)."','".db_esc($code)."','".db_esc($start_date)."','".db_esc($end_date)."','".db_esc($coupon_value)."','".db_esc($coupon_type)."','".db_esc($no_of_user)."','".san_int($status)."','".db_esc($comments)."')") or die(mysql_error());
 		$query=mysql_query($sql);
 		$strError	.= "<span style='color: green; font-weight: 600;'>Coupon has been added successfully</span>";
 	}

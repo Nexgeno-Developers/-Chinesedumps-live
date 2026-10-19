@@ -1,5 +1,6 @@
 <?PHP
 require_once dirname(__DIR__) . '/auth.php';
+require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 	//--------------------------------------------------------------------------------
 
@@ -102,7 +103,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 			{
 
-			$sql	= "select * from tbl_user where user_id='".$spram."'";
+			$sql	= "select * from tbl_user where user_id='".db_esc($spram)."'";
 
 			$rs		= mysql_query($sql);
 
@@ -118,7 +119,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 		{
 
-		$sql	= "select * from tbl_user where user_email='".$spram[1]."'";
+		$sql	= "select * from tbl_user where user_email='".db_esc($spram[1])."'";
 
 		$rs		= mysql_query($sql);
 
@@ -136,7 +137,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 				{
 
-				 $qry = "select * from order_master order by OrderDate DESC".$limits;
+				 $qry = "select * from order_master order by OrderDate DESC".(preg_match('/^\s*LIMIT\s+-?\d+\s*(,\s*-?\d+)?\s*$/i', (string)$limits) ? $limits : '');
 
 				 $rs  =	mysql_query($qry);
 
@@ -184,7 +185,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 						//$sql_chk = "select * from order_detail where UserID ='".$rows['Cust_ID']."'";
 
-						$utype	= "select * from order_master where Cust_ID='".$rows['Cust_ID']."'";
+						$utype	= "select * from order_master where Cust_ID='".db_esc($rows['Cust_ID'])."'";
 
 						$rs_ut	= mysql_query($utype);
 
@@ -196,7 +197,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 															
 
-						$query	="select * from tbl_user where user_id='".$rows['Cust_ID']."'";
+						$query	="select * from tbl_user where user_id='".db_esc($rows['Cust_ID'])."'";
 
 						$rs		=mysql_query($query);
 
@@ -250,7 +251,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 			$row_c['coupon_code']="N/A";
 
-			$query_c	="select coupon_code, computed_value from coupon_order where order_id='".$rows['ID']."' and order_type='1'";
+			$query_c	="select coupon_code, computed_value from coupon_order where order_id='".db_esc($rows['ID'])."' and order_type='1'";
 
 			$rs_c		=mysql_query($query_c);
 
@@ -324,11 +325,11 @@ require_once dirname(__DIR__) . '/auth.php';
 
 			{
 
-				$q="delete from order_master where Cust_ID='".$uid."'and Cart_ID='".$cart."'";
+				$q="delete from order_master where Cust_ID='".db_esc($uid)."'and Cart_ID='".db_esc($cart)."'";
 
 					mysql_query($q);
 
-				$qq	="delete from  order_detail where UserID='".$uid."'and Cart_ID='".$cart."'";
+				$qq	="delete from  order_detail where UserID='".db_esc($uid)."'and Cart_ID='".db_esc($cart)."'";
 
 				mysql_query($qq);
 
@@ -340,7 +341,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 			{
 
-			$sql	= "select user_email,user_password from tbl_user where (user_email='".$spram[1]."' and user_password='".$spram[2]."') and user_status='Active' ";
+			$sql	= "select user_email,user_password from tbl_user where (user_email='".db_esc($spram[1])."' and user_password='".db_esc($spram[2])."') and user_status='Active' ";
 
 			$rs		= mysql_query($sql);
 
@@ -364,7 +365,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 		
 
-		$add_que = "UPDATE tbl_tmporder set bill_fname='".$spram[1]."',bill_lname='".$spram[2]."',bill_address='".$spram[3]."',bill_postcode='".$spram[4]."',bill_email='".$spram[5]."',bill_phone='".$spram[6]."',bill_country='".$spram[11]."',bill_city='".$spram[12]."',bill_state='".$spram[13]."' where tmp_sess='".session_id()."'";
+		$add_que = "UPDATE tbl_tmporder set bill_fname='".db_esc($spram[1])."',bill_lname='".db_esc($spram[2])."',bill_address='".db_esc($spram[3])."',bill_postcode='".db_esc($spram[4])."',bill_email='".db_esc($spram[5])."',bill_phone='".db_esc($spram[6])."',bill_country='".db_esc($spram[11])."',bill_city='".db_esc($spram[12])."',bill_state='".db_esc($spram[13])."' where tmp_sess='".session_id()."'";
 
 		 $qryexe = mysql_query($add_que);
 
@@ -378,7 +379,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 			{					
 
-				$qry = "select  * from tbl_user where user_email = '".$email."'"; 
+				$qry = "select  * from tbl_user where user_email = '".db_esc($email)."'"; 
 
 				$qryexe =  mysql_query($qry); 
 
@@ -404,7 +405,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 		
 
-		$add_que = "UPDATE tbl_tmporder set bill_fname='".$spram[1]."',bill_lname='".$spram[2]."',bill_address='".$spram[3]."',bill_postcode='".$spram[4]."',bill_email='".$spram[5]."',bill_phone='".$spram[6]."',bill_country='".$spram[11]."',bill_city='".$spram[12]."',bill_state='".$spram[13]."',ship_name='".$spram[1]."',ship_address='".$spram[3]."',ship_zipcode='".$spram[4]."',ship_country='".$spram[11]."',ship_city='".$spram[12]."',ship_state='".$spram[13]."' where tmp_sess='".session_id()."'";
+		$add_que = "UPDATE tbl_tmporder set bill_fname='".db_esc($spram[1])."',bill_lname='".db_esc($spram[2])."',bill_address='".db_esc($spram[3])."',bill_postcode='".db_esc($spram[4])."',bill_email='".db_esc($spram[5])."',bill_phone='".db_esc($spram[6])."',bill_country='".db_esc($spram[11])."',bill_city='".db_esc($spram[12])."',bill_state='".db_esc($spram[13])."',ship_name='".db_esc($spram[1])."',ship_address='".db_esc($spram[3])."',ship_zipcode='".db_esc($spram[4])."',ship_country='".db_esc($spram[11])."',ship_city='".db_esc($spram[12])."',ship_state='".db_esc($spram[13])."' where tmp_sess='".session_id()."'";
 
 		 $qryexe = mysql_query($add_que);
 
@@ -418,7 +419,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 		
 
-		$add_que = "UPDATE tbl_tmporder set ship_name='".$spram[1]."',ship_address='".$spram[3]."',ship_zipcode='".$spram[4]."',ship_country='".$spram[11]."',ship_city='".$spram[12]."',ship_state='".$spram[13]."' where tmp_sess='".session_id()."'";
+		$add_que = "UPDATE tbl_tmporder set ship_name='".db_esc($spram[1])."',ship_address='".db_esc($spram[3])."',ship_zipcode='".db_esc($spram[4])."',ship_country='".db_esc($spram[11])."',ship_city='".db_esc($spram[12])."',ship_state='".db_esc($spram[13])."' where tmp_sess='".session_id()."'";
 
 		 $qryexe = mysql_query($add_que);
 
@@ -452,7 +453,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 				
 
-			  $add_que = "INSERT INTO `tblpermissions` (`AdminID`,`ModuleID`,`Read`,`Write`,`Edit`,`Delete`) VALUES (".$adminId.",".$rows['ModuleID'].",1,1,1,1)"; 
+			  $add_que = "INSERT INTO `tblpermissions` (`AdminID`,`ModuleID`,`Read`,`Write`,`Edit`,`Delete`) VALUES (".san_int($adminId).",".san_int($rows['ModuleID']).",1,1,1,1)"; 
 
 			mysql_query($add_que);
 
@@ -464,7 +465,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 				{
 
-			   $qry = " select T.* from temp_master T order by T.ID DESC".$limits;
+			   $qry = " select T.* from temp_master T order by T.ID DESC".(preg_match('/^\s*LIMIT\s+-?\d+\s*(,\s*-?\d+)?\s*$/i', (string)$limits) ? $limits : '');
 
 			   $rs  =	mysql_query($qry);
 
@@ -478,7 +479,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 				{
 
-			   $qry = "select  * from  tbl_reorder order by id_re DESC ".$limits;
+			   $qry = "select  * from  tbl_reorder order by id_re DESC ".(preg_match('/^\s*LIMIT\s+-?\d+\s*(,\s*-?\d+)?\s*$/i', (string)$limits) ? $limits : '');
 
 			   $rs  =	mysql_query($qry);
 
@@ -516,7 +517,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 				
 
-				$qury	="select * from  tbl_user where user_id='".$rows['Cust_ID']."'";	
+				$qury	="select * from  tbl_user where user_id='".db_esc($rows['Cust_ID'])."'";	
 
 				$rs_qry	=mysql_query($qury);
 
@@ -524,7 +525,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 				
 
-				$qry_master	="select * from order_master where Cust_ID='".$rs_row['UserID']."' and Cart_ID='".$rows['Cart_ID']."'";	
+				$qry_master	="select * from order_master where Cust_ID='".db_esc($rs_row['UserID'])."' and Cart_ID='".db_esc($rows['Cart_ID'])."'";	
 
 				$rs_master	=mysql_query($qry_master);
 
@@ -538,7 +539,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 			$row_c['coupon_code']="N/A";
 
-			$query_c	="select coupon_code, computed_value from coupon_order where order_id='".$rows['ID']."' and order_type='0'";
+			$query_c	="select coupon_code, computed_value from coupon_order where order_id='".db_esc($rows['ID'])."' and order_type='0'";
 
 			$rs_c		=mysql_query($query_c);
 
@@ -628,7 +629,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 				
 
-				$qury	="select * from  order_detail where ID='".$rows['id_detailorder']."'";	
+				$qury	="select * from  order_detail where ID='".db_esc($rows['id_detailorder'])."'";	
 
 				$rs_qry	=mysql_query($qury);
 
@@ -638,7 +639,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 	if($roword['VendorID']!=''){
 
-	$getreitems	=	mysql_fetch_array(mysql_query("SELECT * from tbl_vendors where ven_id='".$roword['VendorID']."'"));
+	$getreitems	=	mysql_fetch_array(mysql_query("SELECT * from tbl_vendors where ven_id='".db_esc($roword['VendorID'])."'"));
 
 	$exmname	=	$getreitems['ven_name'];
 
@@ -654,7 +655,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 	if($roword['TrackID']!=''){
 
-	$getreitems	=	mysql_fetch_array(mysql_query("SELECT * from tbl_cert where cert_id='".$roword['TrackID']."'"));
+	$getreitems	=	mysql_fetch_array(mysql_query("SELECT * from tbl_cert where cert_id='".db_esc($roword['TrackID'])."'"));
 
 	$exmname	=	$getreitems['cert_name'];
 
@@ -670,7 +671,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 	if($roword['ProductID']!='' && $roword['ProductID']!='0'){
 
-	$getreitems	=	mysql_fetch_array(mysql_query("SELECT * from tbl_exam where exam_id='".$roword['ProductID']."'"));
+	$getreitems	=	mysql_fetch_array(mysql_query("SELECT * from tbl_exam where exam_id='".db_esc($roword['ProductID'])."'"));
 
 	$exmname	=	$getreitems['exam_name'];
 
@@ -684,7 +685,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 	}
 
-	$userget	=	mysql_fetch_array(mysql_query("SELECT * from tbl_user where user_id='".$roword['UserID']."'"));
+	$userget	=	mysql_fetch_array(mysql_query("SELECT * from tbl_user where user_id='".db_esc($roword['UserID'])."'"));
 
 	
 
@@ -752,7 +753,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 			{
 
-				$q="delete from temp_master where ID='".$pid."'";
+				$q="delete from temp_master where ID='".db_esc($pid)."'";
 
 				mysql_query($q);
 
@@ -768,13 +769,13 @@ require_once dirname(__DIR__) . '/auth.php';
 
 			{
 
-				$q="delete from order_master where ID='".$pid."'";
+				$q="delete from order_master where ID='".db_esc($pid)."'";
 
 				mysql_query($q);
 
 				
 
-				$q2="delete from order_detail where Cart_ID='".$pid."'";
+				$q2="delete from order_detail where Cart_ID='".db_esc($pid)."'";
 
 				mysql_query($q2);
 
@@ -788,7 +789,7 @@ require_once dirname(__DIR__) . '/auth.php';
 
 			{
 
-				$q="delete from temp_master where ID='".$pid."'";
+				$q="delete from temp_master where ID='".db_esc($pid)."'";
 
 				mysql_query($q);
 
@@ -802,7 +803,7 @@ function deleteUserdemo($spram)
 
    				 {
 
-				$strSql='DELETE FROM tbl_demo_download WHERE dnID="'.$spram.'"';
+				$strSql='DELETE FROM tbl_demo_download WHERE dnID="'.db_esc($spram).'"';
 
 				mysql_query($strSql);
 
@@ -812,7 +813,7 @@ function deleteUserdemofull($spram)
 
    				 {
 
-				$strSql='DELETE FROM tbl_full_download WHERE dnID="'.$spram.'"';
+				$strSql='DELETE FROM tbl_full_download WHERE dnID="'.db_esc($spram).'"';
 
 				mysql_query($strSql);
 
@@ -822,7 +823,7 @@ function deleteExamRequestcode($spram)
 
    				 {
 
-				$strSql='DELETE FROM exam_request WHERE examr_id="'.$spram.'"';
+				$strSql='DELETE FROM exam_request WHERE examr_id="'.db_esc($spram).'"';
 
 				mysql_query($strSql);
 
@@ -832,7 +833,7 @@ function deleteDemoDownload($spram)
 
    				 {
 
-				$strSql='DELETE FROM  tbl_demo_download_email WHERE tbl_demo_id="'.$spram.'"';
+				$strSql='DELETE FROM  tbl_demo_download_email WHERE tbl_demo_id="'.db_esc($spram).'"';
 
 				mysql_query($strSql);
 
@@ -862,7 +863,7 @@ function deleteUser($spram)
 
 				//...................................................................
 
-				$strSql='DELETE FROM tbl_user WHERE user_id="'.$spram.'"';
+				$strSql='DELETE FROM tbl_user WHERE user_id="'.db_esc($spram).'"';
 
 				mysql_query($strSql);
 
@@ -880,7 +881,7 @@ function getuserName($spram)
 
 
 
-				$qry = "select * from tbl_user where user_id = '".$spram."'"; 
+				$qry = "select * from tbl_user where user_id = '".db_esc($spram)."'"; 
 
 
 
@@ -906,7 +907,7 @@ function getAdminEdit($spram)
 
 
 
-				$qry = "select * from tbl_admin where adm_id = '".$spram[0]."'"; 
+				$qry = "select * from tbl_admin where adm_id = '".db_esc($spram[0])."'"; 
 
 
 
@@ -957,11 +958,11 @@ function getUserhtml($spram, $stats='', $extraQuery='')
 
 											$intColor = " class='user-row-alt'";											
 
-							$edit	=	'<a class="action-link" href="edituser.php?nid='.$rows['user_id'].$extraQuery.'">Edit</a>';
+							$edit	=	'<a class="action-link" href="edituser.php?nid='.$rows['user_id'].san_html($extraQuery).'">Edit</a>';
 
-							$sendemail	=	'<a class="action-link" href="manageuser.php?mainsend=send&user='.$rows['user_id'].$extraQuery.'">Send Email</a>';
+							$sendemail	=	'<a class="action-link" href="manageuser.php?mainsend=send&user='.$rows['user_id'].san_html($extraQuery).'">Send Email</a>';
 
-							$del	=	'<a class="action-link action-link-danger" href="manageuser.php?action=up&nid='.$rows['user_id'].$extraQuery.'" onclick= "return delete_pro();">Delete</a>';
+							$del	=	'<a class="action-link action-link-danger" href="manageuser.php?action=up&nid='.$rows['user_id'].san_html($extraQuery).'" onclick= "return delete_pro();">Delete</a>';
 							$fullName = trim($rows['user_fname'].' '.$rows['user_lname']);
 							if($fullName == '')
 							{
@@ -1092,9 +1093,9 @@ $showTr		.=		'  </tr>';
 
 					$del	=	'<a href="managedemo.php?action=up&nid='.$rows['dnID'].'" onclick= "return delete_pro();">Delete</a>';
 
-					$useremail	=	mysql_fetch_array(mysql_query("SELECT * from tbl_user where user_id='".$rows['dnUID']."'"));
+					$useremail	=	mysql_fetch_array(mysql_query("SELECT * from tbl_user where user_id='".db_esc($rows['dnUID'])."'"));
 
-					$userexam	=	mysql_fetch_array(mysql_query("SELECT * from tbl_exam where exam_id='".$rows['itemid']."'"));
+					$userexam	=	mysql_fetch_array(mysql_query("SELECT * from tbl_exam where exam_id='".db_esc($rows['itemid'])."'"));
 
 					$showTr		.='<tr '.$intColor.'>
 
@@ -1330,7 +1331,7 @@ function getSaleinfo($spram)
 
 					
 
-					$dd = mysql_query("select  user_email from tbl_user where user_id='".$rows['Cust_ID']."'");
+					$dd = mysql_query("select  user_email from tbl_user where user_id='".db_esc($rows['Cust_ID'])."'");
 
 					$fetch_email = mysql_fetch_object($dd);
 
@@ -1368,7 +1369,7 @@ function checkUserDuplication($email)
 
 			{					
 
-				 $qry = "select  * from tbl_user where user_email= '".$email."'"; 
+				 $qry = "select  * from tbl_user where user_email= '".db_esc($email)."'"; 
 
 				$qryexe =  mysql_query($qry); 
 
@@ -1411,7 +1412,7 @@ function checkUserDuplication($email)
 
 													
 
-													where  user_id	     = '".$user_id."'";
+													where  user_id	     = '".db_esc($user_id)."'";
 
 				
 
@@ -1429,7 +1430,7 @@ function checkUserDuplication($email)
 
 		
 
-		$strQury="update tbl_user set user_password = '".md5($new_password)."' where user_email = '".$email."'";
+		$strQury="update tbl_user set user_password = '".md5($new_password)."' where user_email = '".db_esc($email)."'";
 
 		$exequery	=	mysql_query($strQury);
 
@@ -1455,7 +1456,7 @@ function boolValidateuser1($strUser,$strPassword)
 
 		{
 
-		$rsname	=	"SELECT * from tbl_user where user_email='".$strUser."' and user_password='".md5($strPassword)."' and user_status='Active'";
+		$rsname	=	"SELECT * from tbl_user where user_email='".db_esc($strUser)."' and user_password='".md5($strPassword)."' and user_status='Active'";
 
 		$exe		=	mysql_query($rsname);
 
@@ -1469,7 +1470,7 @@ function getId($strUsername)
 
 		{
 
-		$strSql="SELECT *  FROM tbl_user WHERE user_email='".$strUsername."'";
+		$strSql="SELECT *  FROM tbl_user WHERE user_email='".db_esc($strUsername)."'";
 
 		
 
@@ -1522,6 +1523,7 @@ function getId($strUsername)
 			$totallength	=	$order;
 
 			$values	=	substr($totallength,0,-1);
+			$values	=	implode(',', array_map('san_int', explode(',', $values)));
 
 			
 
@@ -1553,7 +1555,7 @@ function boolValidateuser($strUser,$strPassword)
 
 		{
 
-		$rsname	=	"SELECT * from tbl_user where user_email='".$strUser."' and user_password='".md5($strPassword)."' and user_status='Active'";
+		$rsname	=	"SELECT * from tbl_user where user_email='".db_esc($strUser)."' and user_password='".md5($strPassword)."' and user_status='Active'";
 
 		$exe	=	mysql_query($rsname);
 
@@ -1621,25 +1623,25 @@ function addOrderpayment($fullname,$interval,$productPrice,$totalprice,$spramshi
 
 
 
-												'".$_SESSION['userId']."',
+												'".db_esc($_SESSION['userId'])."',
 
-												'".$fullname."',
+												'".db_esc($fullname)."',
 
-												'".$interval."',
+												'".db_esc($interval)."',
 
-												'".$productPrice."',
+												'".db_esc($productPrice)."',
 
-												'".$todayDate."',
+												'".db_esc($todayDate)."',
 
-												'".$time."',
+												'".db_esc($time)."',
 
-												'".$totalprice."',
+												'".db_esc($totalprice)."',
 
 												'Received',
 
-												'".$rafill."',
+												'".db_esc($rafill)."',
 
-												'".$offers."'
+												'".db_esc($offers)."'
 
 
 
@@ -1689,15 +1691,15 @@ function addOrderpayment($fullname,$interval,$productPrice,$totalprice,$spramshi
 
 
 
-												'".$_SESSION['userId']."',
+												'".db_esc($_SESSION['userId'])."',
 
-												'".$lastOrederId."',
+												'".db_esc($lastOrederId)."',
 
-												'".$interval."',
+												'".db_esc($interval)."',
 
-												'".$todayDate."',
+												'".db_esc($todayDate)."',
 
-												'".$next."'
+												'".db_esc($next)."'
 
 												)";
 
@@ -1733,27 +1735,27 @@ function addOrderpayment($fullname,$interval,$productPrice,$totalprice,$spramshi
 
 															)VALUES(
 
-															'".$spramship[7]."',
+															'".db_esc($spramship[7])."',
 
-															'".$spramship[8]."',
+															'".db_esc($spramship[8])."',
 
-															'".$lastOrederId."',
+															'".db_esc($lastOrederId)."',
 
-															'".$_SESSION['userId']."',
+															'".db_esc($_SESSION['userId'])."',
 
-															'".$spramship[1]."',
+															'".db_esc($spramship[1])."',
 
-															'".$spramship[6]."',
+															'".db_esc($spramship[6])."',
 
-															'".$spramship[2]."',
+															'".db_esc($spramship[2])."',
 
-															'".$spramship[3]."',
+															'".db_esc($spramship[3])."',
 
-															'".$spramship[4]."',
+															'".db_esc($spramship[4])."',
 
-															'".$spramship[5]."',
+															'".db_esc($spramship[5])."',
 
-															'".$todayDate."'
+															'".db_esc($todayDate)."'
 
 															)";
 
@@ -2391,7 +2393,7 @@ function selectState($val='')
 
 			
 
-			$to = SHIPPING_EMAIL.','.$spram[10];
+			$to = SHIPPING_EMAIL.','.str_replace(array("\r","\n","%0a","%0d"),'',$spram[10]);
 
 			
 
@@ -2401,7 +2403,7 @@ function selectState($val='')
 
 			$headers = "From: ThermoGene<noreply@noreply.com>\r\n";
 
-			$headers .= "Reply-To: ". strip_tags($spram['10']) . "\r\n";
+			$headers .= "Reply-To: ". str_replace(array("\r","\n","%0a","%0d"),'',strip_tags($spram['10'])) . "\r\n";
 
 			$headers .= "MIME-Version: 1.0\r\n";
 
@@ -2425,7 +2427,7 @@ function selectState($val='')
 
 			{
 
-			$strQury	= "select * from tbl_user where user_id ='".$spram."'";	
+			$strQury	= "select * from tbl_user where user_id ='".db_esc($spram)."'";	
 
 				$rs         =  mysql_query($strQury);
 
@@ -2447,7 +2449,7 @@ function addMasteDetail($arrnews)
 
 		
 
-		$q="select * from  tbl_user where UserID='".$UserId."'";
+		$q="select * from  tbl_user where UserID='".db_esc($UserId)."'";
 
  		$rs1=mysql_query($q);
 
@@ -2457,13 +2459,13 @@ function addMasteDetail($arrnews)
 
 		
 
-		$qy_cart_master	=	"select * from temp_master where Cart_ID='".$CartId."'";
+		$qy_cart_master	=	"select * from temp_master where Cart_ID='".db_esc($CartId)."'";
 
   	    $r_cart_master	=	mysql_fetch_array(mysql_query($qy_cart_master));
 
  	
 
-	$qry_temp = "insert into order_master(Cust_ID,Order_Id,OrderDate,Status,Net_Amount,Cart_ID,OrderDesc,ExpiryDate)values('".$UserId."','".$arrnews[2]."','".$dayedate."','1','".$r_cart_master['Net_Amount']."','".$CartId."','".$r_cart_master['OrderDesc']."','".$Expiredate."')";
+	$qry_temp = "insert into order_master(Cust_ID,Order_Id,OrderDate,Status,Net_Amount,Cart_ID,OrderDesc,ExpiryDate)values('".db_esc($UserId)."','".db_esc($arrnews[2])."','".db_esc($dayedate)."','1','".db_esc($r_cart_master['Net_Amount'])."','".db_esc($CartId)."','".db_esc($r_cart_master['OrderDesc'])."','".db_esc($Expiredate)."')";
 
 		mysql_query($qry_temp);
 
@@ -2471,7 +2473,7 @@ function addMasteDetail($arrnews)
 
 		
 
-		$qy_cart		=	"select * from temp_order where UserID='".$UserId."'";
+		$qy_cart		=	"select * from temp_order where UserID='".db_esc($UserId)."'";
 
   		$r_cart 		=	mysql_query($qy_cart);
 
@@ -2505,7 +2507,7 @@ function addMasteDetail($arrnews)
 
 				
 
-		$query_order="insert into order_detail(UserID,Cart_ID,VendorID,TrackID,ProductID,Description,ExpireDate,strdate,submonth,masterid,status, PTypeID)values('".$UserId."','".$row_cart['CartID']."','".$row_cart['VendorID']."','".$row_cart['TrackID']."','".$row_cart['Pid']."','".$row_cart['Product']."','".$Expiredate."','".$dayedate."','".$row_cart['subscrip']."','".$lastid."','1','".$row_cart['PType']."')";
+		$query_order="insert into order_detail(UserID,Cart_ID,VendorID,TrackID,ProductID,Description,ExpireDate,strdate,submonth,masterid,status, PTypeID)values('".db_esc($UserId)."','".db_esc($row_cart['CartID'])."','".db_esc($row_cart['VendorID'])."','".db_esc($row_cart['TrackID'])."','".db_esc($row_cart['Pid'])."','".db_esc($row_cart['Product'])."','".db_esc($Expiredate)."','".db_esc($dayedate)."','".db_esc($row_cart['subscrip'])."','".db_esc($lastid)."','1','".db_esc($row_cart['PType'])."')";
 
  				mysql_query($query_order);
 
@@ -2525,7 +2527,7 @@ function addMasteDetail($arrnews)
 
 					$expiry = date('Y-m-d', strtotime("+12 days"));
 
-					$engine_arr = mysql_fetch_array(mysql_query("select id from tbl_package_engine where package_id = '{$row_cart['Pid']}' and type='Simulator' and os = 'Win';"));
+					$engine_arr = mysql_fetch_array(mysql_query("select id from tbl_package_engine where package_id = '".db_esc($row_cart['Pid'])."' and type='Simulator' and os = 'Win';"));
 
 					$engine_id = $engine_arr['id'];
 
@@ -2545,9 +2547,9 @@ function addMasteDetail($arrnews)
 
 						
 
-			mysql_query("DELETE from temp_order where UserID='".$UserId."'");
+			mysql_query("DELETE from temp_order where UserID='".db_esc($UserId)."'");
 
-			mysql_query("DELETE from temp_master where Cust_ID='".$UserId."'");
+			mysql_query("DELETE from temp_master where Cust_ID='".db_esc($UserId)."'");
 
 	
 
@@ -2569,7 +2571,7 @@ function add_demo_email($usrdm)
 
 			{				
 
-					header('Location: ' . BASE_URL . $_POST['vname'].'-demo-'.$_POST['ecode'].'.html');
+					header('Location: ' . BASE_URL . str_replace(array("\r","\n"),'',$_POST['vname']).'-demo-'.str_replace(array("\r","\n"),'',$_POST['ecode']).'.html');
 
 			}
 
@@ -2585,7 +2587,7 @@ function add_demo_email($usrdm)
 
 					{
 
-						header('Location: ' . BASE_URL . $_POST['vname'].'-demo-'.$_POST['ecode'].'.html');
+						header('Location: ' . BASE_URL . str_replace(array("\r","\n"),'',$_POST['vname']).'-demo-'.str_replace(array("\r","\n"),'',$_POST['ecode']).'.html');
 
 					}
 
@@ -2632,7 +2634,7 @@ function examRequest_email($exmreq)
 					utm_seo_track_exam_request($existId, $exmreq[2]);
 				}
 
-				header('Location: ' . BASE_URL . $exmreq[1].'-examRequest.html');
+				header('Location: ' . BASE_URL . str_replace(array("\r","\n"),'',$exmreq[1]).'-examRequest.html');
 
 			}
 
@@ -2652,7 +2654,7 @@ function examRequest_email($exmreq)
 							utm_seo_track_exam_request(mysql_insert_id(), $exmreq[2]);
 						}
 
-						header('Location: ' . BASE_URL . $exmreq[1].'-examRequest.html');
+						header('Location: ' . BASE_URL . str_replace(array("\r","\n"),'',$exmreq[1]).'-examRequest.html');
 
 						
 

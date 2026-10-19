@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 require_once __DIR__ . '/includes/config/load_secrets.php';
 ob_start();
 session_start();
@@ -58,13 +59,13 @@ $getPage[5]	=	"Cart";
 
 	if(isset($_SESSION['uid'])){
 
-			$query	=	"select * from temp_order where UserID='".$_SESSION['uid']."' order by ID ASC";
+			$query	=	"select * from temp_order where UserID='".san_int($_SESSION['uid'])."' order by ID ASC";
 
 			$rt	=	$_SESSION['uid'];
 
 		}else{
 
-			$query	=	"select * from temp_order where CartID='".session_id()."' and UserID='0' order by ID ASC";
+			$query	=	"select * from temp_order where CartID='".db_esc(session_id())."' and UserID='0' order by ID ASC";
 
 			$rt	=	'0';
 
@@ -130,7 +131,7 @@ $getPage[5]	=	"Cart";
 
 			 }
 
-			 $query	=	"update temp_order set Quantity='".abs($rr)."'  where ID='".$cat_id[$i]."'";
+			 $query	=	"update temp_order set Quantity='".abs($rr)."'  where ID='".san_int($cat_id[$i])."'";
 
 			 mysql_query($query);
 
@@ -142,7 +143,7 @@ $getPage[5]	=	"Cart";
 
 		
 
-	header('location:cart.html');	
+	header('location:cart.html'); exit;	
 
 	}
 
@@ -170,7 +171,7 @@ $getPage[5]	=	"Cart";
 
 			
 
-			header("location:checkout.html");
+			header("location:checkout.html"); exit;
 
 			}
 
@@ -251,7 +252,7 @@ if (isset($_GET['cancel_failed']) && $_GET['cancel_failed'] == '1' && isset($_GE
             }
             
             function getdbPrice($pCode,$duration){
-                $strSql 	=	"SELECT * FROM product_prices WHERE pri_type='".$pCode."' and pri_duration='".$duration."'";
+                $strSql 	=	"SELECT * FROM product_prices WHERE pri_type='".db_esc($pCode)."' and pri_duration='".db_esc($duration)."'";
                 $result		=	mysql_query($strSql);
                 $re 		=	mysql_fetch_array($result);
                 return $re;
@@ -259,7 +260,7 @@ if (isset($_GET['cancel_failed']) && $_GET['cancel_failed'] == '1' && isset($_GE
             
             function getProductPrice($pCodeid,$ptype,$duration){
             
-            	$strSql 	=	"SELECT * FROM tbl_exam WHERE exam_id='".$pCodeid."'";
+            	$strSql 	=	"SELECT * FROM tbl_exam WHERE exam_id='".san_int($pCodeid)."'";
                 $result		=	mysql_query($strSql);
             	$re 		=	mysql_fetch_array($result);
             	if($re["ven_id"] == "16" || $re["ven_id"] == "107"){

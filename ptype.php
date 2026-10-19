@@ -2,6 +2,7 @@
     require_once __DIR__ . '/includes/config/load_secrets.php';
     ob_start();
     session_start();
+    require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 
     function getYoutubeId($url)
     {
@@ -226,7 +227,7 @@
         return $buildStatusPill('Stable', true);
     }
 
-    $get_course = mysql_fetch_assoc(mysql_query("SELECT * FROM tbl_course WHERE name='" . $examName . "'"));
+    $get_course = mysql_fetch_assoc(mysql_query("SELECT * FROM tbl_course WHERE name='" . db_esc($examName) . "'"));
     if (! empty($get_course) && isset($get_course['status']) && (int) $get_course['status'] !== 1) {
         return $buildStatusPill('Unstable', false);
     }
@@ -269,9 +270,9 @@ function normalizeExamType($examType)
 
     $_SESSION['guestId'] = $guest;
 
-    $examURL = $_GET['pcode'];
+    $examURL = san_get('pcode');
 
-    $exam = $objPro->getProductId($examURL);
+    $exam = $objPro->getProductId(db_esc($examURL));
 $examType = normalizeExamType(isset($exam['exam_type']) ? $exam['exam_type'] : 'written');
 $isLabLayout = ($examType === 'lab');
 
@@ -281,7 +282,7 @@ $isLabLayout = ($examType === 'lab');
     $result = mysql_query(
     "SELECT youtube_links
      FROM tbl_exam
-    WHERE exam_id = '" . $examID . "'"
+    WHERE exam_id = '" . db_esc($examID) . "'"
     );
     $row = mysql_fetch_assoc($result);
 
@@ -295,6 +296,7 @@ $isLabLayout = ($examType === 'lab');
 
     if ($examName == '') {
     header('location:index.html');
+    exit;
     }
 
     $examCode             = $exam['exam_name']; // Exam Code
@@ -552,9 +554,9 @@ $isLabLayout = ($examType === 'lab');
     $new_date = date('M j, Y', strtotime($latestdate));
 
     if ($isLabLayout) {
-    $getrelexam = "SELECT * from tbl_exam where ven_id='" . $exam['ven_id'] . "' and exam_id!='" . $examID . "' and exam_status='1' and LOWER(TRIM(exam_type))='lab'";
+    $getrelexam = "SELECT * from tbl_exam where ven_id='" . $exam['ven_id'] . "' and exam_id!='" . db_esc($examID) . "' and exam_status='1' and LOWER(TRIM(exam_type))='lab'";
     } else {
-    $getrelexam = "SELECT * from tbl_exam where cert_id='" . $exam['cert_id'] . "' and exam_name!='" . $examCode . "' and exam_status='1'";
+    $getrelexam = "SELECT * from tbl_exam where cert_id='" . $exam['cert_id'] . "' and exam_name!='" . db_esc($examCode) . "' and exam_status='1'";
     }
 
     $exerel = mysql_query($getrelexam);
@@ -570,13 +572,13 @@ $isLabLayout = ($examType === 'lab');
     // ------------------------Demo Download--------------------------//
 
     if (isset($_POST['email'])) {
-    $usrdm[1] = $_POST['ecode'];
+    $usrdm[1] = db_esc(san_post('ecode'));
 
-    $usrdm[2] = $_POST['email'];
+    $usrdm[2] = db_esc(san_post('email'));
 
     $usrdm[3] = $demoAvailable;
 
-    $usrdm[4] = $_POST['epcd'];
+    $usrdm[4] = db_esc(san_post('epcd'));
 
     $objUser->add_demo_email($usrdm);
     }
@@ -619,9 +621,9 @@ $isLabLayout = ($examType === 'lab');
     }
 
     if (empty($errors) && count($errors) == 0) {
-        $exmreq[1] = $_POST['request_ecode'];
+        $exmreq[1] = db_esc(san_post('request_ecode'));
 
-        $exmreq[2] = $_POST['request_email'];
+        $exmreq[2] = db_esc(san_post('request_email'));
 
         $objUser->examRequest_email($exmreq);
     } else {
@@ -631,15 +633,15 @@ $isLabLayout = ($examType === 'lab');
 
     // /////////////////////////////////Check Engine Entry///////////////////////////////////
 
-    $r = mysql_query("select * from tbl_package_engine where package_id='" . $examID . "'");
+    $r = mysql_query("select * from tbl_package_engine where package_id='" . db_esc($examID) . "'");
     if (mysql_num_rows($r) == 0) {
         $pth = $venName . '/' . $pCode . 'Sim.zip';
-        mysql_query("insert into tbl_package_engine (package_id, version, type, path, os, price) values ('" . $examID . "','6.0','Simulator','" . $pth . "','Win','74.99')" . '');
+        mysql_query("insert into tbl_package_engine (package_id, version, type, path, os, price) values ('" . db_esc($examID) . "','6.0','Simulator','" . db_esc($pth) . "','Win','74.99')" . '');
     }
 
     $examURL = $exam['exam_url'];
 
-    $examports = mysql_query("select * from report_card where r_exam='" . $examURL . "'");
+    $examports = mysql_query("select * from report_card where r_exam='" . db_esc($examURL) . "'");
     $examportimg = (mysql_num_rows($examports) != 0) ? 1 : 0;
 
 ?>

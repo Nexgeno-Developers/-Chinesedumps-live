@@ -19,6 +19,7 @@ session_start();
 
 
 include_once 'functions.php';
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 $ccAdminData = get_session_data();
 
@@ -175,7 +176,7 @@ function normalizeFeatureRowsFromStorage($rawValue)
 
 	$strError	=	"";
 
-	$spram[0]		 =  $_GET['exm_id'];
+	$spram[0]		 =  isset($_GET['exm_id']) ? san_int($_GET['exm_id']) : 0;
     $originalExamDescr = isset($_POST['original_exam_descr']) ? (string)$_POST['original_exam_descr'] : '';
 
 	$farr			=	array("'");
@@ -294,7 +295,7 @@ function normalizeFeatureRowsFromStorage($rawValue)
             $spram['demo_practice_file'] = isset($_POST['old_demo_practice_file']) ? $_POST['old_demo_practice_file'] : '';
             if (!empty($_POST['remove_free_dump_pdf'])) {
                 // delete physical file if it exists
-                $oldPath = "../uploads/free_dumps/" . $spram['free_dump_pdf'];
+                $oldPath = "../uploads/free_dumps/" . basename($spram['free_dump_pdf']);
                 if ($spram['free_dump_pdf'] && file_exists($oldPath)) {
                     @unlink($oldPath);
                 }
@@ -302,7 +303,7 @@ function normalizeFeatureRowsFromStorage($rawValue)
             }
             if (!empty($_POST['remove_demo_practice_file'])) {
                 // delete physical file if it exists
-                $oldPath = "../uploads/demo_practice/" . $spram['demo_practice_file'];
+                $oldPath = "../uploads/demo_practice/" . basename($spram['demo_practice_file']);
                 if ($spram['demo_practice_file'] && file_exists($oldPath)) {
                     @unlink($oldPath);
                 }
@@ -396,15 +397,16 @@ function normalizeFeatureRowsFromStorage($rawValue)
     	    if($_FILES['course_image']['name']!=''){
     
     			$demotype	=	$_FILES['course_image']['type'];
-    			if($demotype=='image/jpeg' || $demotype=='image/png' || $demotype=='image/JPG'){
+    			$courseImgSafeName	=	cms2_safe_filename($_FILES['course_image']['name']);
+    			if(($demotype=='image/jpeg' || $demotype=='image/png' || $demotype=='image/JPG') && cms2_upload_ext_ok($_FILES['course_image']['name'], array('jpg','jpeg','png'))){
     
     				if (!file_exists("../images/slider/".$spram[0])){mkdir("../images/slider/".$spram[0]);} 
-    				move_uploaded_file($_FILES["course_image"]["tmp_name"], "../images/slider/".$spram[0]."/".basename($_FILES["course_image"]["name"]));
+    				move_uploaded_file($_FILES["course_image"]["tmp_name"], "../images/slider/".$spram[0]."/".$courseImgSafeName);
     
     			}else{
     				$strError	.=	"<b>Error! Banner type is not valid.</b>";
     			}
-    			$spram[36] = $_FILES["course_image"]["name"]; 
+    			$spram[36] = cms2_safe_filename($_FILES["course_image"]["name"]); 
     		}else{
     			$spram[36] = $spram[35];
     		}
@@ -425,7 +427,7 @@ function normalizeFeatureRowsFromStorage($rawValue)
 
 		if($_POST['vnamehidden']!= $_POST['vname']){
 
-		$getven	=	mysql_num_rows(mysql_query("SELECT * from tbl_exam where exam_name='".$_POST['vname']."'"));
+		$getven	=	mysql_num_rows(mysql_query("SELECT * from tbl_exam where exam_name='".db_esc($_POST['vname'])."'"));
 
 		if($getven!='0'){
 
@@ -437,7 +439,7 @@ function normalizeFeatureRowsFromStorage($rawValue)
 
 		
 
-		$strQury="Select ven_name from tbl_vendors where ven_id ='".$spram[12]."'";
+		$strQury="Select ven_name from tbl_vendors where ven_id ='".san_int($spram[12])."'";
 
 		$rsResult = $objDBcon->Dml_Query_Parser($strQury);
 
@@ -455,7 +457,7 @@ function normalizeFeatureRowsFromStorage($rawValue)
 
 		$strError	.= "Exam has been updated successfully";
         // header("location:exammanage.php");
-        header("Location: " . $_SERVER['REQUEST_URI']);
+        header("Location: /" . ltrim(str_replace(array("\r","\n"), '', $_SERVER['REQUEST_URI']), '/'));
         exit;
 
 
@@ -467,7 +469,7 @@ function normalizeFeatureRowsFromStorage($rawValue)
 
 	
 
-			$spram[0]	=	$_GET['exm_id'];
+			$spram[0]	=	san_int($_GET['exm_id']);
 
 			$resultSet		=	$objEvent->get_exam_by_id($spram);
 
@@ -660,7 +662,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td align="right">* Exam Code:</td>
 
-          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($spram[1])){ echo  $spram[1];} ?>" /></td>
+          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($spram[1])){ echo san_html($spram[1]);} ?>" /></td>
 
         </tr>
 
@@ -668,13 +670,13 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td align="right">* Exam URL:</td>
 
-          <td colspan="2"><input  name="exam_url" id="exam_url" type="text" onblur="setenable();"  value="<?php if(isset($spram[2])){ echo  $spram[2];} ?>" /></td>
+          <td colspan="2"><input  name="exam_url" id="exam_url" type="text" onblur="setenable();"  value="<?php if(isset($spram[2])){ echo san_html($spram[2]);} ?>" /></td>
 
         </tr>
 
         <tr>
           <td align="right"> Exam Name:</td>
-          <td colspan="2"><input  name="vnamefull" id="vnamefull" type="text"  value="<?php if(isset($spram[14])){ echo  $spram[14];} ?>" /></td>
+          <td colspan="2"><input  name="vnamefull" id="vnamefull" type="text"  value="<?php if(isset($spram[14])){ echo san_html($spram[14]);} ?>" /></td>
         </tr>
         <tr>
           <td align="right">* Exam Type:</td>
@@ -687,7 +689,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
         <tr id="row_alias_name">
           <td align="right"> Alias Name:</td>
-          <td colspan="2"><input name="alias_name" id="alias_name" type="text" value="<?php if(isset($spram['alias_name'])){ echo $spram['alias_name'];} ?>" /></td>
+          <td colspan="2"><input name="alias_name" id="alias_name" type="text" value="<?php if(isset($spram['alias_name'])){ echo san_html($spram['alias_name']);} ?>" /></td>
         </tr>
         <tr id="row_faqs">
           <td align="right" valign="top"> FAQs:</td>
@@ -744,19 +746,19 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
 		<tr>
           <td align="right"> Lab Name:</td>
-          <td colspan="2"><input  name="labName" id="labName" type="text"  value="<?php if(isset($spram[33])){ echo  $spram[33];} ?>" /></td>
+          <td colspan="2"><input  name="labName" id="labName" type="text"  value="<?php if(isset($spram[33])){ echo san_html($spram[33]);} ?>" /></td>
         </tr>
 					<tr>
               <td align="right"> Course Image:</td>
               <td colspan="2"><input name="course_image" type="file" id="course_image" value="" />
-							<input type="hidden" name="oldBanner" value="<?php if(isset($spram[36])){ echo  $spram[36];} ?>">
+							<input type="hidden" name="oldBanner" value="<?php if(isset($spram[36])){ echo san_html($spram[36]);} ?>">
 							</td>
             </tr>
          <tr>
 
           <td align="right"> Exam Q &amp; As:</td>
 
-          <td colspan="2"><input  name="qa" id="qa" type="text"  value="<?php if(isset($spram[20])){ echo  $spram[20];} ?>" /> Question and Answers</td>
+          <td colspan="2"><input  name="qa" id="qa" type="text"  value="<?php if(isset($spram[20])){ echo san_html($spram[20]);} ?>" /> Question and Answers</td>
 
         </tr>
 
@@ -765,7 +767,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
               <td align="right">* Date: </td>
 
               <td colspan="2" style="position: relative;">
-                <input name="startdate" type="text" readonly="readonly" id="startdate" value="<?php if(isset($spram[29])){ echo  $spram[29];} ?>" style="padding-right: 40px; width: 100%; padding: 8px 40px 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" />
+                <input name="startdate" type="text" readonly="readonly" id="startdate" value="<?php if(isset($spram[29])){ echo san_html($spram[29]);} ?>" style="padding-right: 40px; width: 100%; padding: 8px 40px 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" />
                 <img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; width: 18px; height: 18px; opacity: 0.6; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'" />
               </td>
 
@@ -773,17 +775,17 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
             <tr>
               <td align="right"><i class="fa-solid fa-dollar-sign" style="color: #000; margin-right: 2px;"></i> Secure PDC Price:</td>
-              <td colspan="2"><input name="pr3" type="text" id="pr3" value="<?php if(isset($spram[3])){ echo  $spram[3];} ?>" /></td>
+              <td colspan="2"><input name="pr3" type="text" id="pr3" value="<?php if(isset($spram[3])){ echo san_html($spram[3]);} ?>" /></td>
             </tr>
 
             <tr>
               <td align="right"><i class="fa-solid fa-dollar-sign" style="color: #000; margin-right: 2px;"></i> Engine Price:</td>
-              <td colspan="2"><input name="engn_pri3" type="text" id="engn_pri3" value="<?php if(isset($spram[32])){ echo  $spram[32];} ?>" /></td>
+              <td colspan="2"><input name="engn_pri3" type="text" id="engn_pri3" value="<?php if(isset($spram[32])){ echo san_html($spram[32]);} ?>" /></td>
             </tr>
 
 			<tr>
               <td align="right"><i class="fa-solid fa-dollar-sign" style="color: #000; margin-right: 2px;"></i> Both Price:</td>
-              <td colspan="2"><input name="both_pri" type="text" id="both_pri" value="<?php if(isset($spram[4])){ echo  $spram[4];} ?>" /></td>
+              <td colspan="2"><input name="both_pri" type="text" id="both_pri" value="<?php if(isset($spram[4])){ echo san_html($spram[4]);} ?>" /></td>
             </tr>
             
             <tr>
@@ -792,14 +794,14 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
                 <input type="text" name="free_dump_label" placeholder="Label to display on site" style="width:320px" value="<?php echo isset($spram['free_dump_label']) ? htmlspecialchars($spram['free_dump_label'], ENT_QUOTES) : ''; ?>" /><br />
                 <?php if(!empty($spram['free_dump_pdf'])) { ?>
                   <div style="margin-bottom:6px;">
-                    Current: <a href="../uploads/free_dumps/<?php echo $spram['free_dump_pdf']; ?>" target="_blank">
-                      <?php echo $spram['free_dump_pdf']; ?>
+                    Current: <a href="../uploads/free_dumps/<?php echo san_html($spram['free_dump_pdf']); ?>" target="_blank">
+                      <?php echo san_html($spram['free_dump_pdf']); ?>
                     </a>
                   </div>
                   <label><input type="checkbox" name="remove_free_dump_pdf" value="1"> Remove current PDF</label><br>
                 <?php } ?>
                 <input type="file" name="free_dump_pdf" accept="application/pdf" />
-                <input type="hidden" name="old_free_dump_pdf" value="<?php echo $spram['free_dump_pdf']; ?>">
+                <input type="hidden" name="old_free_dump_pdf" value="<?php echo san_html($spram['free_dump_pdf']); ?>">
               </td>
             </tr>
             <tr id="row_demo_practice">
@@ -808,14 +810,14 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
                 <input type="text" name="demo_practice_label" placeholder="Label to display on site" style="width:320px" value="<?php echo isset($spram['demo_practice_label']) ? htmlspecialchars($spram['demo_practice_label'], ENT_QUOTES) : ''; ?>" /><br />
                 <?php if(!empty($spram['demo_practice_file'])) { ?>
                   <div style="margin-bottom:6px;">
-                    Current: <a href="../uploads/demo_practice/<?php echo $spram['demo_practice_file']; ?>" target="_blank">
-                      <?php echo $spram['demo_practice_file']; ?>
+                    Current: <a href="../uploads/demo_practice/<?php echo san_html($spram['demo_practice_file']); ?>" target="_blank">
+                      <?php echo san_html($spram['demo_practice_file']); ?>
                     </a>
                   </div>
                   <label><input type="checkbox" name="remove_demo_practice_file" value="1"> Remove current PDF</label><br>
                 <?php } ?>
                 <input type="file" name="demo_practice_file" accept="application/pdf" />
-                <input type="hidden" name="old_demo_practice_file" value="<?php echo isset($spram['demo_practice_file']) ? $spram['demo_practice_file'] : ''; ?>">
+                <input type="hidden" name="old_demo_practice_file" value="<?php echo isset($spram['demo_practice_file']) ? san_html($spram['demo_practice_file']) : ''; ?>">
               </td>
             </tr>
             
@@ -838,7 +840,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 		<tr style="display:none;">
 			<td align="right"> Multiple Demo Images:</td>
 			<td colspan="2"><input type="file" name="exam_demo_images[]" multiple accept="image/*"/></td>
-			<input type="hidden" name="oldExamDemoImages" value="<?php if(isset($spram[42])){ echo  $spram[42];} ?>">
+			<input type="hidden" name="oldExamDemoImages" value="<?php if(isset($spram[42])){ echo san_html($spram[42]);} ?>">
 		</tr>
 		
         <tr>
@@ -1165,7 +1167,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td align="right"> Exam SEO Title:</td>
 
-          <td colspan="2"><input  name="vtitle" type="text" value="<?php if(isset($spram[8])){ echo $spram[8];} ?>" /></td>
+          <td colspan="2"><input  name="vtitle" type="text" value="<?php if(isset($spram[8])){ echo san_html($spram[8]);} ?>" /></td>
 
         </tr>
 
@@ -1175,7 +1177,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td align="right"> Exam SEO Keywords:</td>
 
-          <td colspan="2"><input  name="vkey" type="text" value="<?php if(isset($spram[9])){ echo $spram[9];} ?>" /></td>
+          <td colspan="2"><input  name="vkey" type="text" value="<?php if(isset($spram[9])){ echo san_html($spram[9]);} ?>" /></td>
 
         </tr>
 
@@ -1183,28 +1185,28 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td align="right"> Exam SEO Description:</td>
 
-          <td colspan="2"><textarea name="edesc" cols="22" rows="6"><?php if(isset($spram[10])){echo $spram[10];} ?></textarea></td>
+          <td colspan="2"><textarea name="edesc" cols="22" rows="6"><?php if(isset($spram[10])){echo san_html($spram[10]);} ?></textarea></td>
 
         </tr>	
         <tr>
 
 <td align="right">Telegram URL:</td>
 
-<td colspan="2"><input  name="telegram_url" type="text" value="<?php  echo $spram[38]; ?>" /></td>
+<td colspan="2"><input  name="telegram_url" type="text" value="<?php  echo san_html($spram[38]); ?>" /></td>
 
 </tr>
 								         <tr>
 
           <td align="right"> Whatsapp URL:</td>
 
-          <td colspan="2"><input  name="whatsapp_url" type="text" value="<?php  echo $spram[30]; ?>" /></td>
+          <td colspan="2"><input  name="whatsapp_url" type="text" value="<?php  echo san_html($spram[30]); ?>" /></td>
 
         </tr>
 				         <tr>
 
           <td align="right"> Skype URL:</td>
 
-          <td colspan="2"><input  name="skype_url" type="text" value="<?php echo $spram[31];?>"  /></td>
+          <td colspan="2"><input  name="skype_url" type="text" value="<?php echo san_html($spram[31]);?>"  /></td>
 
         </tr>
 		</tr>
@@ -1212,7 +1214,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td align="right"> Video code:</td>
 
-          <td colspan="2"><input  name="video_code" type="text" value="<?php echo $spram[37];?>"  /></td>
+          <td colspan="2"><input  name="video_code" type="text" value="<?php echo san_html($spram[37]);?>"  /></td>
 
         </tr>
 
@@ -1226,7 +1228,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
                 <option value="0"<? if(isset($spram[11]) && $spram[11]=="0"){ echo "selected='selected'";}?>>In Active</option>
 
-                </select><input type="hidden" name="vnamehidden" id="vnamehidden" value="<?=$spram[1]?>" />
+                </select><input type="hidden" name="vnamehidden" id="vnamehidden" value="<?=san_html($spram[1])?>" />
 
                 <input type="hidden" name="demohidden" id="demohidden" value="<?=$spram[15]?>" />
 

@@ -1,4 +1,5 @@
 <?PHP 
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ini_set("display_errors","0");
 ob_start();
 session_start();
@@ -27,13 +28,13 @@ $ccAdminData = get_session_data();
 		$spram[3]		 =  "";
 	
 	
-	$strQury	=	"update tbl_reviews set rev_new='0' where rev_id = '".$_GET['bottom_id']."'";
+	$strQury	=	"update tbl_reviews set rev_new='0' where rev_id = '".(isset($_GET['bottom_id']) ? san_int($_GET['bottom_id']) : 0)."'";
 					
 				$rsResult = mysql_query($strQury);
 	if(isset($_POST['Submit']) && $_POST['Submit']  == "Submit")
 
 	{
-		$spram[0]		 =  $_GET['bottom_id'];
+		$spram[0]		 =  (isset($_GET['bottom_id']) ? san_int($_GET['bottom_id']) : 0);
 		$spram[1]		 =  $_POST['hiddenproname'];
 		$spram[2]		 =  $_POST['status'];
 		$spram[3]		 =  date("Y-m-d");
@@ -59,7 +60,7 @@ $ccAdminData = get_session_data();
 		$strError	.= "Review has been added successfully";
 		}
 		}else{
-		$get	=	mysql_fetch_array(mysql_query("Select * from tbl_reviews where rev_id='".$_GET['bottom_id']."'"));
+		$get	=	mysql_fetch_array(mysql_query("Select * from tbl_reviews where rev_id='".(isset($_GET['bottom_id']) ? san_int($_GET['bottom_id']) : 0)."'"));
 		$spram[1]	=	$get['rev_proid'];
 		$spram[2]	=	$get['rev_status'];
 		//$spram[3]	=	$get['album_id'];

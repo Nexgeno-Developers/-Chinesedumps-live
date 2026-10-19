@@ -107,7 +107,7 @@
                     <div class="col-md-8 workbook_listing_box">
                         <div class="exam-pkg-list group">
                             <?php
-                            $strSql11 = "SELECT id FROM tbl_package_engine WHERE package_id='" . $examID . "'";
+                            $strSql11 = "SELECT id FROM tbl_package_engine WHERE package_id='" . san_int($examID) . "'";
 
                             $examsult11 = mysql_query($strSql11) or die(mysql_error());
 
@@ -712,7 +712,7 @@
 
         <?php
         // Load passing results banners (group-specific first, then fallback). Hide section if none found.
-        $banners = mysql_query('select * from sliders_new where group_id=' . $examID);
+        $banners = mysql_query('select * from sliders_new where group_id=' . san_int($examID));
         $bannerCount = mysql_num_rows($banners);
         if ($bannerCount == 0) {
             $banners = mysql_query("select * from sliders where type='lab' AND status = 1");
@@ -1192,7 +1192,7 @@ while ($row = mysql_fetch_array($exerel)) {
 
 if (count($relatedProducts) <= 3) {
     $relatedProducts = [];
-    $additionalQuery = mysql_query("SELECT * FROM tbl_exam WHERE ven_id='" . $exam['ven_id'] . "' AND exam_id!='" . $examID . "' AND exam_status='1' AND LOWER(TRIM(exam_type))='lab'");
+    $additionalQuery = mysql_query("SELECT * FROM tbl_exam WHERE ven_id='" . san_int($exam['ven_id']) . "' AND exam_id!='" . san_int($examID) . "' AND exam_status='1' AND LOWER(TRIM(exam_type))='lab'");
     while ($row = mysql_fetch_array($additionalQuery)) {
         $relatedProducts[] = $row;
     }
@@ -1269,8 +1269,8 @@ if (!empty($relatedProducts)) {
                                                                             FROM tbl_exam e
                                                                             INNER JOIN tbl_vendors v ON v.ven_id = e.ven_id
                                                                             WHERE e.exam_status = 1
-                                                                              AND e.exam_id != '" . $examID . "'
-                                                                              AND e.ven_id != '" . $exam['ven_id'] . "'
+                                                                              AND e.exam_id != '" . san_int($examID) . "'
+                                                                              AND e.ven_id != '" . san_int($exam['ven_id']) . "'
                                                                               AND LOWER(TRIM(e.exam_type)) = 'lab'
                                                                             ORDER BY e.exam_name ASC
                                                                         ";

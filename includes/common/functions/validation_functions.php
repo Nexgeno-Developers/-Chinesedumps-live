@@ -217,8 +217,8 @@
 		function GenerateMailHeader ($FromName, $FromEmail, $ReplyToName, $ReplyToEmail)
 		{
 			$Header	= ""
-					. "From:" . $FromName ."<" .$FromEmail .">\n"
-					. "Reply-To:" .$ReplyToName ."<" . $ReplyToEmail .">\n"
+					. "From:" . str_replace(array("\r","\n","%0a","%0d"),'',$FromName) ."<" .str_replace(array("\r","\n","%0a","%0d"),'',$FromEmail) .">\n"
+					. "Reply-To:" .str_replace(array("\r","\n","%0a","%0d"),'',$ReplyToName) ."<" . str_replace(array("\r","\n","%0a","%0d"),'',$ReplyToEmail) .">\n"
 					. "Content-Type: multipart/alternative;\n"
 					. "\tboundary=\"=_NextPart_000_002C_01BFABBF.4A7D6BA0\"\n"
 					. "\nThis is a multi-part message in MIME format.";
@@ -249,8 +249,8 @@
 		$content = chunk_split(base64_encode($content)); 
 		$uid = md5(uniqid(time())); 
 		$name = basename($file); 
-		$header = "From: ".$txtFromName." <".$txtMailFrom.">\r\n"; 
-		$header .= "Reply-To: ".$replyto."\r\n"; 
+		$header = "From: ".str_replace(array("\r","\n","%0a","%0d"),'',$txtFromName)." <".str_replace(array("\r","\n","%0a","%0d"),'',$txtMailFrom).">\r\n"; 
+		$header .= "Reply-To: ".str_replace(array("\r","\n","%0a","%0d"),'',$replyto)."\r\n"; 
 		$header .= "MIME-Version: 1.0\r\n"; 
 		$header .= "Content-Type: multipart/mixed; boundary=\"".$uid."\"\r\n\r\n"; 
 		$header .= "This is a multi-part message in MIME format.\r\n"; 
@@ -259,12 +259,12 @@
 		$header .= "Content-Transfer-Encoding: 7bit\r\n\r\n"; 
 		$header .= $txtMessage."\r\n\r\n"; 
 		$header .= "--".$uid."\r\n"; 
-		$header .= "Content-Type: application/octet-stream; name=\"".$txtFiletoAttach."\"\r\n"; // use diff. tyoes here 
+		$header .= "Content-Type: application/octet-stream; name=\"".str_replace(array("\r","\n","%0a","%0d"),'',$txtFiletoAttach)."\"\r\n"; // use diff. tyoes here 
 		$header .= "Content-Transfer-Encoding: base64\r\n"; 
-		$header .= "Content-Disposition: attachment; filename=\"".$txtFiletoAttach."\"\r\n\r\n"; 
+		$header .= "Content-Disposition: attachment; filename=\"".str_replace(array("\r","\n","%0a","%0d"),'',$txtFiletoAttach)."\"\r\n\r\n"; 
 		$header .= $content."\r\n\r\n"; 
 		$header .= "--".$uid."--"; 
-		if (mail($txtMailTo, $txtSubject, "", $header)) { 
+		if (mail(str_replace(array("\r","\n","%0a","%0d"),'',$txtMailTo), str_replace(array("\r","\n","%0a","%0d"),'',$txtSubject), "", $header)) { 
 			return true; // or use booleans here 
 		} else { 
 			return false; 

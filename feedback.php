@@ -1,6 +1,7 @@
 <?php
 ob_start();
 session_start();
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 include("includes/config/classDbConnection.php");
 
 include("includes/common/classes/classmain.php");
@@ -97,19 +98,19 @@ $getPage	=	$objMain->getContent(1);
                       <tr>
                         <td height="35" align="right" valign="middle" class="text">Name:&nbsp;&nbsp;</td>
                         <td height="35" align="left" valign="middle" class="wheading"><span class="reg_bd_ul_p2">
-                          <input class="required email text-input" type="text" name="fName" id="fName" value="<? if(isset($_POST['fName'])){ echo $_POST['fName']; } ?>" />
+                          <input class="required email text-input" type="text" name="fName" id="fName" value="<? if(isset($_POST['fName'])){ echo san_html($_POST['fName']); } ?>" />
                         </span> </td>
                       </tr>
                       <!-- <tr>
                         <td height="35" align="left" valign="middle" class="text"><span class="ornold">Last Name:</span></td>
                         <td height="35" align="left" valign="middle" class="wheading"><span class="reg_bd_ul_p2">
-                          <input class="required email text-input" type="text" name="lastname" id="lastname" value="<? if(isset($_POST['lastname'])){ echo $_POST['lastname']; } ?>" />
+                          <input class="required email text-input" type="text" name="lastname" id="lastname" value="<? if(isset($_POST['lastname'])){ echo san_html($_POST['lastname']); } ?>" />
                         </span> </td>
                       </tr> -->
                       <tr>
                         <td width="37%" height="35" align="right" valign="middle" class="text">Your e-mail address:&nbsp;&nbsp;</td>
                         <td width="63%" height="35" align="left" valign="middle" class="wheading"><span class="reg_bd_ul_p2">
-                          <input class="required email text-input" name="emails" type="text" id="emails" value="<? if(isset($_POST['emails'])){ echo $_POST['emails']; } ?>" />
+                          <input class="required email text-input" name="emails" type="text" id="emails" value="<? if(isset($_POST['emails'])){ echo san_html($_POST['emails']); } ?>" />
                         </span> </td>
                       </tr>
                       <tr class="text">

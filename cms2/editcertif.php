@@ -9,6 +9,7 @@ include ("../includes/common/inc/sessionheader.php");
 include("../includes/common/classes/classEvents.php");
 
 include_once 'functions.php';
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 $ccAdminData = get_session_data();
 
 
@@ -19,7 +20,7 @@ $objValid 	 = new Validate_fields;
 $objEvent	=	new classEvents($objDBcon);	// VALIDATION CLASS classCategory
 
 $strError	=	"";
-$spram[0]		 =  $_GET['cer_id'];
+$spram[0]		 =  isset($_GET['cer_id']) ? san_int($_GET['cer_id']) : 0;
 $farr			=	array("'");
 $aarr			=	array("\'");
 if(isset($_POST['Submit']) && $_POST['Submit']  == "Update"){
@@ -107,7 +108,7 @@ if (!$objValid->validation())
 
     $strError = $objValid->create_msg();
     if($_POST['vnamehidden']!= $_POST['vname']){
-        $getven	=	mysql_num_rows(mysql_query("SELECT * from tbl_cert where cert_name='".$_POST['vname']."'"));
+        $getven	=	mysql_num_rows(mysql_query("SELECT * from tbl_cert where cert_name='".db_esc($_POST['vname'])."'"));
         if($getven!='0'){
             $strError	.=	"<b>Error! Certification Name already Exist.</b></br>";
         }
@@ -122,7 +123,7 @@ if (!$objValid->validation())
     }
 }elseif(isset($_GET['cer_id']) && is_numeric($_GET['cer_id'])){
     
-    $spram[0]	=	$_GET['cer_id'];
+    $spram[0]	=	san_int($_GET['cer_id']);
     $resultSet		=	$objEvent->get_certif_by_id($spram);
     
     while($row		=	mysql_fetch_array($resultSet))
@@ -187,16 +188,16 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
         <tr>
           <td align="right">* Certification Name:</td>
-          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($spram[1])){ echo  $spram[1];} ?>" /></td>
+          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($spram[1])){ echo  san_html($spram[1]);} ?>" /></td>
         </tr>
        <tr>
             <tr>
               <td align="right"> Certification URL:</td>
-              <td colspan="2"><input name="cert_url" type="text" id="cert_url" value="<?php if(isset($spram[2])){ echo  $spram[2];} ?>" /></td>
+              <td colspan="2"><input name="cert_url" type="text" id="cert_url" value="<?php if(isset($spram[2])){ echo  san_html($spram[2]);} ?>" /></td>
             </tr>
             
               <td align="right">* Date: </td>
-              <td colspan="2"><input name="startdate" type="text" readonly="readonly"  id="startdate" value="<?php if(isset($spram[29])){ echo  $spram[29];} ?>" />&nbsp;<img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" /></td>
+              <td colspan="2"><input name="startdate" type="text" readonly="readonly"  id="startdate" value="<?php if(isset($spram[29])){ echo  san_html($spram[29]);} ?>" />&nbsp;<img src="images/calendar-icon.gif" alt="Start Time" onclick="displayCalendarSe(document.Form.startdate,'yyyy-mm-dd',this)" /></td>
             </tr>
            	<tr>
           <td align="right"> Is Home:</td>
@@ -315,23 +316,23 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
          <tr>
           <td align="right"> Certification SEO Title:</td>
-          <td colspan="2"><input  name="vtitle" type="text" value="<?php if(isset($spram[8])){ echo  $spram[8];} ?>" /></td>
+          <td colspan="2"><input  name="vtitle" type="text" value="<?php if(isset($spram[8])){ echo  san_html($spram[8]);} ?>" /></td>
         </tr>
         
          <tr>
           <td align="right"> Certification SEO Keywords:</td>
-          <td colspan="2"><input  name="vkey" type="text" value="<?php if(isset($spram[9])){ echo  $spram[9];} ?>" /></td>
+          <td colspan="2"><input  name="vkey" type="text" value="<?php if(isset($spram[9])){ echo  san_html($spram[9]);} ?>" /></td>
         </tr>
 		 <tr>
           <td align="right"> Certification SEO Description:</td>
-          <td colspan="2"><textarea name="edesc" cols="22" rows="6"><?php if(isset($spram[10])){ echo  $spram[10];} ?></textarea></td>
+          <td colspan="2"><textarea name="edesc" cols="22" rows="6"><?php if(isset($spram[10])){ echo  san_html($spram[10]);} ?></textarea></td>
         </tr>	
 		<tr>
           <td align="right"> Certification Status:</td>
           <td><select name="vendor_status" id="vendor_status">
                 <option value="1"<? if(isset($spram[11]) && $spram[11]=="1"){ echo "selected='selected'";}?>>Active</option>
                 <option value="0"<? if(isset($spram[11]) && $spram[11]=="0"){ echo "selected='selected'";}?>>In Active</option>
-                </select><input type="hidden" name="vnamehidden" id="vnamehidden" value="<?=$spram[1]?>" /></td>
+                </select><input type="hidden" name="vnamehidden" id="vnamehidden" value="<?=san_html($spram[1])?>" /></td>
         </tr>
         <tr>
             <td align="right">Demo PDF Name, File:</td>

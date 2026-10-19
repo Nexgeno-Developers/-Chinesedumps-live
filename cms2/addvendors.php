@@ -9,6 +9,7 @@ session_start();
 	include("../includes/common/classes/classEvents.php");
 
 include_once 'functions.php';
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 $ccAdminData = get_session_data();
 
 
@@ -74,7 +75,7 @@ $ccAdminData = get_session_data();
 
 		$strError = $objValid->create_msg();
 		
-		$getven	=	mysql_num_rows(mysql_query("SELECT * from tbl_vendors where ven_name='".$_POST['vname']."'"));
+		$getven	=	mysql_num_rows(mysql_query("SELECT * from tbl_vendors where ven_name='".db_esc($_POST['vname'])."'"));
 		if($getven!='0'){
 		$strError	.=	"<b>Error! Vendor Name already Exist.</b></br>";
 		}
@@ -112,7 +113,7 @@ $ccAdminData = get_session_data();
                     $mime = isset($map[$extGuess]) ? $map[$extGuess] : 'application/octet-stream';
                 }
 
-                if (in_array($mime, $allowedImg, true)) {
+                if (in_array($mime, $allowedImg, true) && cms2_upload_ext_ok($dName, array('jpg','jpeg','png','gif','webp'))) {
                     $uploadDirImg = dirname(__FILE__) . '/../uploads/vendors/';
                     if (!is_dir($uploadDirImg)) {
                         @mkdir($uploadDirImg, 0775, true);
@@ -192,7 +193,7 @@ $ccAdminData = get_session_data();
                         $mime = isset($extToMime[$ext]) ? $extToMime[$ext] : 'application/octet-stream';
                     }
             
-                    if (!in_array($mime, $allowedMimes, true)) {
+                    if (!in_array($mime, $allowedMimes, true) || !cms2_upload_ext_ok($fname, array('jpg','jpeg','png','gif','webp','pdf'))) {
                         $strError .= "<div>File type not allowed on #".($i+1)." (".htmlspecialchars($mime).")</div>";
                         continue;
                     }
@@ -214,7 +215,7 @@ $ccAdminData = get_session_data();
             
                     $attachments[] = array(
                         'mode'      => 'file',
-                        'file_name' => $fname,
+                        'file_name' => cms2_safe_filename($fname),
                         'stored_as' => $newName,
                         'path'      => $publicRel,
                         'mime'      => $mime,
@@ -268,7 +269,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
         <tr>
           <td align="right">* Vendor Name:</td>
-          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($_POST['vname'])){ echo  $_POST['vname'];} ?>" /></td>
+          <td colspan="2"><input  name="vname" id="vname" type="text" onblur="setenable();"  value="<?php if(isset($_POST['vname'])){ echo san_html($_POST['vname']);} ?>" /></td>
         </tr>
            	<tr>
           <td align="right"> Is Home:</td>
@@ -399,16 +400,16 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
          <tr>
           <td align="right"> Vendor SEO Title:</td>
-          <td colspan="2"><input  name="vtitle" type="text" value="<?php if(isset($_POST['vtitle'])){ echo  $_POST['vtitle'];} ?>" /></td>
+          <td colspan="2"><input  name="vtitle" type="text" value="<?php if(isset($_POST['vtitle'])){ echo san_html($_POST['vtitle']);} ?>" /></td>
         </tr>
         
          <tr>
           <td align="right"> Vendor SEO Keywords:</td>
-          <td colspan="2"><input  name="vkey" type="text" value="<?php if(isset($_POST['vkey'])){ echo  $_POST['vkey'];} ?>" /></td>
+          <td colspan="2"><input  name="vkey" type="text" value="<?php if(isset($_POST['vkey'])){ echo san_html($_POST['vkey']);} ?>" /></td>
         </tr>
 		 <tr>
           <td align="right"> Vendor SEO Description:</td>
-          <td colspan="2"><textarea name="edesc" cols="22" rows="6"><?php if(isset($_POST['edesc'])){ echo  $_POST['edesc'];} ?></textarea></td>
+          <td colspan="2"><textarea name="edesc" cols="22" rows="6"><?php if(isset($_POST['edesc'])){ echo san_html($_POST['edesc']);} ?></textarea></td>
         </tr>	
 		<tr>
           <td align="right"> Vendor Status:</td>

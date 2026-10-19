@@ -5,5 +5,6 @@
 else
 {
 	header ("location:".$LinkPath."login.php");
+	exit;
 }
 ?>

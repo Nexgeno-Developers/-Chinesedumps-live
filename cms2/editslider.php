@@ -1,4 +1,5 @@
 <?PHP 
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 
@@ -29,7 +30,7 @@ $ccAdminData = get_session_data();
 	$farr			=	array("'");
 	$aarr			=	array("\'");
 
-	$sInfo = mysql_query("select * from sliders where s_id ='".$_GET['ven_id']."'");
+	$sInfo = mysql_query("select * from sliders where s_id ='".(isset($_GET['ven_id']) ? san_int($_GET['ven_id']) : 0)."'");
 	$fetchSlider = mysql_fetch_array($sInfo);
 
 	if(isset($_POST['Submit']) && $_POST['Submit']  == "Submit")
@@ -51,12 +52,12 @@ $ccAdminData = get_session_data();
 		$spram[8]	=	$_FILES['exam_demo'];
 		$spram[9]	=	$_POST['type'];
 
-		$newnamedemo = $spram[7];
+		$newnamedemo = cms2_safe_filename($spram[7]);
 
 		if($_FILES['exam_demo']['name']!=''){
 
 			$demotype	=	$_FILES['exam_demo']['type'];
-			if($demotype=='image/jpeg' || $demotype=='application/msword' || $demotype=='application/pdf'){
+			if(($demotype=='image/jpeg' || $demotype=='application/msword' || $demotype=='application/pdf') && cms2_upload_ext_ok($_FILES['exam_demo']['name'], array('jpg','jpeg','png','gif','webp')) && cms2_upload_ext_ok($newnamedemo, array('jpg','jpeg','png','gif','webp','peg','ebp'))){
 
 				if (!file_exists("../images/slider/".$spram[0])){mkdir("../images/reports/".$spram[0]);}
 				copy($spram[8]['tmp_name'],"../images/slider/".$spram[0]."/".$newnamedemo);
@@ -69,7 +70,7 @@ $ccAdminData = get_session_data();
 			$spram[2] = $spram[7];
 		}
 		
-		mysql_query("update sliders set type='".$spram[9]."', s_image='".$spram[2]."', s_alt='".$spram[3]."', s_link='".$spram[4]."' where s_id='".$_POST["sid"]."'");
+		mysql_query("update sliders set type='".db_esc($spram[9])."', s_image='".db_esc($spram[2])."', s_alt='".db_esc($spram[3])."', s_link='".db_esc($spram[4])."' where s_id='".san_int($_POST["sid"])."'");
 
 		
 

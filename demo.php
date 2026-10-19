@@ -27,7 +27,8 @@ $copyright	=	$exec['copyright'];
 $firstlink	=	" ".$getPage[1];
 
 $cert_id = isset($_GET['cert_id']) ? intval($_GET['cert_id']) : 0;
-$demoName = isset($_GET['name']) ? htmlspecialchars($_GET['name']) : '';
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
+$demoName = isset($_GET['name']) ? san_html(san_get('name')) : '';
 
 $demoFileHtml = '';
 

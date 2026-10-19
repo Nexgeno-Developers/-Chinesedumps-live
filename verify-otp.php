@@ -8,7 +8,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Get user input and session data
-$code           = isset($_POST['code']) ? trim($_POST['code']) : '';
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
+$code           = isset($_POST['code']) ? trim(san_post('code')) : '';
 $mobile         = isset($_SESSION['otp_mobile']) ? $_SESSION['otp_mobile'] : '';
 $verificationId = isset($_SESSION['verificationId']) ? $_SESSION['verificationId'] : '';
 $mode           = isset($_SESSION['otp_mode']) ? $_SESSION['otp_mode'] : 'sms';

@@ -26,7 +26,7 @@
 											<div class="col-md-8 workbook_listing_box">
 											<div class="exam-pkg-list group">
 												<?php
-                                                    $strSql11 = "SELECT id FROM tbl_package_engine WHERE package_id='" . $examID . "'";
+                                                    $strSql11 = "SELECT id FROM tbl_package_engine WHERE package_id='" . san_int($examID) . "'";
 
                                                         $examsult11 = mysql_query($strSql11) or die(mysql_error());
 
@@ -227,7 +227,7 @@
     									 <div class="main_heading text-center paddbtm10"><?php echo $exam['exam_fullname']; ?> (<?php echo $exam['QA'] ?>) Passing <span>Results</span></div>
         								<ul class="courses_pass_img" id="scroller">
                                                 <?php
-                                                    $banners = mysql_query('select * from sliders_new where group_id=' . $examID);
+                                                    $banners = mysql_query('select * from sliders_new where group_id=' . san_int($examID));
                                                         if (mysql_num_rows($banners) == 0) {
                                                             $banners = mysql_query("select * from sliders where type='lab' AND status = 1");
                                                         }

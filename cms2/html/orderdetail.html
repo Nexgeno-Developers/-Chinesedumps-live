@@ -81,7 +81,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
     </select></td>
 
     <td width="108"  align="right">Provide Value &nbsp; </td>
-    <td width="144"  align="left"><input name="fieldValue" size="30" type="text" value="<?=$_POST['fieldValue']?>" /></td>
+    <td width="144"  align="left"><input name="fieldValue" size="30" type="text" value="<?=san_html($_POST['fieldValue'])?>" /></td>
 
     <td width="136" align="left"  ><input type="submit" name="Go" value="Go" /></td>
 
@@ -99,7 +99,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
   <!-- LOOP THROUGH USERS -->
 <?php
-		$ordID = $_GET['ord'];
+		$ordID = isset($_GET['ord']) ? san_int($_GET['ord']) : 0;
 		$qy_cart		=	"select * from order_detail where masterid='".$ordID."'";
 		$r_cart 		=	mysql_query($qy_cart);			
 		$tttttt	=	'1';
@@ -117,7 +117,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 				$BGcolor = "#FFFF99";
 				$keys_link = '<br>[<a  href="manage_keys.php?id='.$rows["ID"].'">Manage Keys</a>]';
 			}
-			$strSql 	=	"SELECT concat(exam_name,' - ',exam_fullname) as full_name FROM tbl_exam WHERE exam_id='".$rows['ProductID']."'";
+			$strSql 	=	"SELECT concat(exam_name,' - ',exam_fullname) as full_name FROM tbl_exam WHERE exam_id='".db_esc($rows['ProductID'])."'";
 			$result		=	mysql_query($strSql) or die(mysql_error());
 			$re 		=	mysql_fetch_array($result);
 		echo '	<tr bgcolor='.$BGcolor.'>

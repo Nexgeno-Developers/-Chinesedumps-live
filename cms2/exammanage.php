@@ -1,4 +1,5 @@
 <?PHP
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ini_set("display_errors","0");
 //----------------------------------------------------------------------------------------------------		
 	session_start();
@@ -47,8 +48,8 @@ $ccAdminData = get_session_data();
 				$pgObj 		=  new classPaging ("exammanage.php",$rowsPerPage,$linkPerPage,"","","");
 		if(isset($_GET['pgIndex']) && !empty($_GET['pgIndex']) && is_numeric($_GET['pgIndex']) && is_numeric($_GET['currentPage']))
 				{
-					$PageNo			 = $_GET['currentPage'];	# Shows # of Page			
-					$PageIndex		 = $_GET['pgIndex'];		# Shows # of Page Index				
+					$PageNo			 = san_int($_GET['currentPage']);	# Shows # of Page			
+					$PageIndex		 = san_int($_GET['pgIndex']);		# Shows # of Page Index				
 				}	
 					$LIMIT .= " LIMIT " . (($PageNo-1) * $rowsPerPage). " , " . $rowsPerPage;
 //----------------------------------------------------------------------------------------------------		
@@ -143,11 +144,11 @@ $ccAdminData = get_session_data();
 		if($_GET['ord']=='vendor'){
 			$ordertype	=	"tbl_vendors";
 			$ordersort	=	"ven_name";
-			$ordersortord	=	$_GET['ty'];
+			$ordersortord	=	(isset($_GET['ty']) && strtoupper($_GET['ty']) == 'DESC') ? 'DESC' : 'ASC';
 			}else{
 			$ordertype	=	"tbl_exam";
 			$ordersort	=	"exam_name";
-			$ordersortord	=	$_GET['tyexam'];
+			$ordersortord	=	(isset($_GET['tyexam']) && strtoupper($_GET['tyexam']) == 'DESC') ? 'DESC' : 'ASC';
 			}
 	}else{
 			$ordertype	=	"tbl_exam";

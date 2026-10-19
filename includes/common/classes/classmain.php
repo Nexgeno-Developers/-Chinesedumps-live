@@ -1,4 +1,5 @@
 <?PHP
+require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 error_reporting(E_ALL ^ E_DEPRECATED);
 /*
@@ -28,7 +29,7 @@ error_reporting(E_ALL ^ E_DEPRECATED);
 		}//
 
 		function getContent($pageId){
-			$select_con	=	"SELECT * from content_pages where page_id=".$pageId."";
+			$select_con	=	"SELECT * from content_pages where page_id=".san_int($pageId)."";
 			$exeselect	=	mysql_query($select_con);
 			$get_fetch	=	mysql_fetch_array($exeselect);
 			$content[0]	=	$get_fetch['page_title'];
@@ -55,7 +56,7 @@ error_reporting(E_ALL ^ E_DEPRECATED);
 		////////////////////////////////////Delete single ID/////////////////////////////////////////
 		function delete_singleID($pro_id,$tblName,$fieldName)
 			{
-				$strQury 	= 	"DELETE FROM  ".$tblName." WHERE ".$fieldName." = '".$pro_id."'";
+				$strQury 	= 	"DELETE FROM  ".$tblName." WHERE ".$fieldName." = '".db_esc($pro_id)."'";
 				$sqlResult	=	$this->objDbConn->Dml_Query_Parser($strQury);
 				
 			}

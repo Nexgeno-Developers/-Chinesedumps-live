@@ -1,4 +1,5 @@
 <?PHP
+require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 /*
 
@@ -122,7 +123,7 @@
 
 			
 
-			$sqlQuery = "UPDATE tbladmin SET admin_password='".md5($spram[1])."' where admin_id='".$_SESSION['adminId']."'";
+			$sqlQuery = "UPDATE tbladmin SET admin_password='".md5($spram[1])."' where admin_id='".san_int($_SESSION['adminId'])."'";
 
 			 							
 
@@ -144,7 +145,7 @@
 
 			
 
-			$sqlQuery = "UPDATE website SET contactus_email='".$spram[1]."', from_email='".$spram[2]."'";
+			$sqlQuery = "UPDATE website SET contactus_email='".db_esc($spram[1])."', from_email='".db_esc($spram[2])."'";
 
 			 							
 
@@ -170,7 +171,7 @@
 
 			
 
-			$sqlQuery = "UPDATE website SET title='".$spram[1]."'";
+			$sqlQuery = "UPDATE website SET title='".db_esc($spram[1])."'";
 
 								
 
@@ -194,7 +195,7 @@
 
 			
 
-			$sqlQuery = "UPDATE website SET copyright='".$spram[1]."'";
+			$sqlQuery = "UPDATE website SET copyright='".db_esc($spram[1])."'";
 
 								
 
@@ -216,7 +217,7 @@
 
 			
 
-			$sqlQuery = "UPDATE website SET phone='".$spram[1]."',timming='".$spram[2]."'";
+			$sqlQuery = "UPDATE website SET phone='".db_esc($spram[1])."',timming='".db_esc($spram[2])."'";
 
 								
 
@@ -236,7 +237,7 @@
 
 			
 
-			$sqlQuery = "UPDATE website SET top_banner='".$spram[1]."'";
+			$sqlQuery = "UPDATE website SET top_banner='".db_esc($spram[1])."'";
 
 								
 
@@ -330,7 +331,7 @@
 
 		$ncount	=	0;
 
-		$rsName = 	$this->objDbConn->Sql_Query_Exec("count(*) as cnt","tbladmin","admin_name='".$strUser."' and admin_password='".md5($strPassword)."' and admin_status='Active'");
+		$rsName = 	$this->objDbConn->Sql_Query_Exec("count(*) as cnt","tbladmin","admin_name='".db_esc($strUser)."' and admin_password='".md5($strPassword)."' and admin_status='Active'");
 
 		while ($row1	=	mysql_fetch_object($rsName))
 
@@ -372,7 +373,7 @@
 
 		
 
-		$strSql="SELECT *  FROM tbladmin WHERE admin_name='".$strUsername."'";
+		$strSql="SELECT *  FROM tbladmin WHERE admin_name='".db_esc($strUsername)."'";
 
 		$rs=$this->objDbConn->Dml_Query_Parser($strSql);	
 
@@ -392,7 +393,7 @@
 
 			{					
 
-				$qry = "select  * from tbladmin where admin_name  = '".$login."'"; 
+				$qry = "select  * from tbladmin where admin_name  = '".db_esc($login)."'"; 
 
 				$qryexe =  mysql_query($qry); 
 
@@ -438,19 +439,19 @@
 
 											(
 
-											'".$spram[1]."',
+											'".db_esc($spram[1])."',
 
-											'".$spram[2]."',
+											'".db_esc($spram[2])."',
 
-											'".$spram[3]."',
+											'".db_esc($spram[3])."',
 
 											'".md5($spram[4])."',
 
-											'".$spram[5]."',
+											'".db_esc($spram[5])."',
 
-											'".$spram[6]."',
+											'".db_esc($spram[6])."',
 
-											'".$spram[7]."'
+											'".db_esc($spram[7])."'
 
 											)";
 
@@ -494,7 +495,7 @@
 
 			{ 
 
-			  $add_que = "INSERT INTO `tblpermissions` (`AdminID`,`ModuleID`,`Read`,`Write`,`Edit`,`Delete`) VALUES (".$adminId.",".$rows['ModuleID'].",1,1,1,1)"; 
+			  $add_que = "INSERT INTO `tblpermissions` (`AdminID`,`ModuleID`,`Read`,`Write`,`Edit`,`Delete`) VALUES (".san_int($adminId).",".san_int($rows['ModuleID']).",1,1,1,1)"; 
 
 			mysql_query($add_que);
 
@@ -600,7 +601,7 @@
 
 		{					
 
-				$qry = "select * from tbladmin where admin_id = '".$spram[0]."'"; 
+				$qry = "select * from tbladmin where admin_id = '".san_int($spram[0])."'"; 
 
 				$qryexe =  mysql_query($qry); 
 
@@ -618,21 +619,21 @@
 
 
 
-													admin_fname			 = '".$spram[1]."',
+													admin_fname			 = '".db_esc($spram[1])."',
 
-													admin_lname  	 	 = '".$spram[2]."',
+													admin_lname  	 	 = '".db_esc($spram[2])."',
 
-													admin_email 		 = '".$spram[3]."',
+													admin_email 		 = '".db_esc($spram[3])."',
 
-													admin_password 		 = '".$spram[5]."',	
+													admin_password 		 = '".db_esc($spram[5])."',	
 
-													admin_status 	     = '".$spram[4]."',
+													admin_status 	     = '".db_esc($spram[4])."',
 
-													admin_role 	     	 = '".$spram[6]."'
+													admin_role 	     	 = '".db_esc($spram[6])."'
 
 
 
-													where  admin_id  	 = '".$spram[0]."'";
+													where  admin_id  	 = '".san_int($spram[0])."'";
 
 
 
@@ -648,11 +649,11 @@
 
 			 {
 
-					$delpermissions	=	mysql_query("DELETE FROM tblpermissions WHERE AdminID='".$spram."'");
+					$delpermissions	=	mysql_query("DELETE FROM tblpermissions WHERE AdminID='".san_int($spram)."'");
 
 					
 
-					$strSql	=	'DELETE FROM tbladmin WHERE admin_id="'.$spram.'"';
+					$strSql	=	'DELETE FROM tbladmin WHERE admin_id="'.san_int($spram).'"';
 
 					mysql_query($strSql);
 
@@ -666,7 +667,7 @@
 
 		{
 
-			$sqlQuery1 = "UPDATE website SET title='".$spram['title']."', website_url ='".$spram['website_url']."', admin_title ='".$spram['admin_title']."', course_update ='".$spram['course_update']."', copyright='".$spram['copyright']."', contactus_email='".$spram['contactus_email']."', paypalid='".$spram['paypalid']."', from_email='".$spram['from_email']."'";
+			$sqlQuery1 = "UPDATE website SET title='".db_esc($spram['title'])."', website_url ='".db_esc($spram['website_url'])."', admin_title ='".db_esc($spram['admin_title'])."', course_update ='".db_esc($spram['course_update'])."', copyright='".db_esc($spram['copyright'])."', contactus_email='".db_esc($spram['contactus_email'])."', paypalid='".db_esc($spram['paypalid'])."', from_email='".db_esc($spram['from_email'])."'";
 
 			$this->objDbConn->Dml_Query_Parser($sqlQuery1);							
 

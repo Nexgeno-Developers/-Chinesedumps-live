@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 session_start();
 include("includes/config/classDbConnection.php");
 include("includes/common/classes/classProductMain.php");
@@ -35,11 +36,11 @@ $i		= 0;
 
 		if(isset($_SESSION['uid'])){
 
-		$check_rows			=	mysql_query("select * from temp_order where UserID='".$_SESSION['uid']."' and Pid='".$proid."' and PType='$ptype'");
+		$check_rows			=	mysql_query("select * from temp_order where UserID='".san_int($_SESSION['uid'])."' and Pid='".san_int($proid)."' and PType='".db_esc($ptype)."'");
 
 		}else{
 
-		$check_rows			=	mysql_query("select * from temp_order where CartID='".$guest."' and UserID='0' and Pid='".$proid."' and PType='$ptype'");
+		$check_rows			=	mysql_query("select * from temp_order where CartID='".db_esc($guest)."' and UserID='0' and Pid='".san_int($proid)."' and PType='".db_esc($ptype)."'");
 
 		}
 
@@ -55,11 +56,11 @@ $i		= 0;
 
 		if(isset($_SESSION['uid'])){
 
-		$query_add	=	mysql_query("UPDATE temp_order set Price='".$totalprice."',subscrip='".$subscr."' where UserID='".$_SESSION['uid']."' and Pid ='".$proid."' and PType='$ptype'");
+		$query_add	=	mysql_query("UPDATE temp_order set Price='".db_esc($totalprice)."',subscrip='".san_int($subscr)."' where UserID='".san_int($_SESSION['uid'])."' and Pid ='".san_int($proid)."' and PType='".db_esc($ptype)."'");
 
 		}else{
 
-		$query_add	=	mysql_query("UPDATE temp_order set Price='".$totalprice."',subscrip='".$subscr."' where CartID='".$guest."' and UserID='0' and Pid ='".$proid."' and PType='$ptype'");
+		$query_add	=	mysql_query("UPDATE temp_order set Price='".db_esc($totalprice)."',subscrip='".san_int($subscr)."' where CartID='".db_esc($guest)."' and UserID='0' and Pid ='".san_int($proid)."' and PType='".db_esc($ptype)."'");
 
 		}
 
@@ -77,7 +78,7 @@ $i		= 0;
 
 		}
 
-		$query_add			=	"insert into temp_order	(CartID,UserID,VendorID,TrackID,Pid,Quantity,Price,Product,Date,subscrip,PType)values('".$_SESSION['guestId']."','".$userid."','','','".$_GET['id']."','1','".$totalprice."','".$proid."','".$date."','".$subscr."','".$ptype."')";
+		$query_add			=	"insert into temp_order	(CartID,UserID,VendorID,TrackID,Pid,Quantity,Price,Product,Date,subscrip,PType)values('".db_esc($_SESSION['guestId'])."','".san_int($userid)."','','','".san_int($_GET['id'])."','1','".db_esc($totalprice)."','".db_esc($proid)."','".$date."','".san_int($subscr)."','".db_esc($ptype)."')";
 
 								mysql_query($query_add);
 
@@ -87,11 +88,11 @@ $i		= 0;
 
 									if(isset($_SESSION['uid'])){
 
-									$query	=	"select * from temp_order where UserID='".$_SESSION['uid']."' order by ID ASC";
+									$query	=	"select * from temp_order where UserID='".san_int($_SESSION['uid'])."' order by ID ASC";
 
 									}else{
 
-									$query	=	"select * from temp_order where CartID='".session_id()."' and UserID='0' order by ID ASC";
+									$query	=	"select * from temp_order where CartID='".db_esc(session_id())."' and UserID='0' order by ID ASC";
 
 									}
 

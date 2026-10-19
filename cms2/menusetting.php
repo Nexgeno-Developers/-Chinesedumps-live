@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 session_start();
 error_reporting(0);
 //root path
@@ -20,7 +21,7 @@ if (isset($_POST['Submit']) && isset($_POST['Submit'])=="Update..")
 {
 	$spram[1]	=	$_POST['page_title'];
 
-	$qu1="update website set  menucolum='".$spram[1]."'";
+	$qu1="update website set  menucolum='".db_esc($spram[1])."'";
 	mysql_query($qu1);
 	$str	=	"Data have been updated successfully";
 

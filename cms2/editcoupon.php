@@ -1,4 +1,5 @@
 <?PHP 
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
 
@@ -18,10 +19,10 @@ $ccAdminData = get_session_data();
 	$objDBcon    = new classDbConnection; 			// VALIDATION CLASS OBJECT
 
 	$strError	=	"";
-	$id = @$_GET['nid'];
+	$id = san_int(@$_GET['nid']);
 	if(isset($_POST['Submit']) && $_POST['Submit']  == "Submit")
 	{
-		$id=$_POST['id'];
+		$id=san_int($_POST['id']);
 		$title=$_POST['c_title'];
 		$code=$_POST['c_code'];
 		$start_date=$_POST['Start_Date'];
@@ -31,7 +32,7 @@ $ccAdminData = get_session_data();
 		$no_of_user=$_POST['Number_of_Uses'];
 		$status=$_POST['status'];
 		$comments=$_POST['comments'];
-		$sql=mysql_query("UPDATE coupon SET coupon_title='".$title."',coupon_code='".$code."',start_date='".$start_date."',end_date='".$end_date."', coupon_value='".$coupon_value."',coupon_type='".$coupon_type."',number_of_uses='".$no_of_user."',status='".$status."',comments='".$comments."' WHERE id='".$id."'") or die(mysql_error());
+		$sql=mysql_query("UPDATE coupon SET coupon_title='".db_esc($title)."',coupon_code='".db_esc($code)."',start_date='".db_esc($start_date)."',end_date='".db_esc($end_date)."', coupon_value='".db_esc($coupon_value)."',coupon_type='".db_esc($coupon_type)."',number_of_uses='".db_esc($no_of_user)."',status='".san_int($status)."',comments='".db_esc($comments)."' WHERE id='".$id."'") or die(mysql_error());
 		$strError	.= "Coupon has been updated successfully";
 	}
 //------------------------------------------------------------------------------------//

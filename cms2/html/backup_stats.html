@@ -70,9 +70,9 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
     
     <tr>
     <td colspan="4"  align="center">Stats :
-	    &nbsp; FROM &nbsp; <input name="txt_StartDate" type="text" class="clsTxtBox"  id="txt_StartDate" readonly="readonly" value="<?=$_POST['txt_StartDate']?>"  style="width:100px; height:16px" />
+	    &nbsp; FROM &nbsp; <input name="txt_StartDate" type="text" class="clsTxtBox"  id="txt_StartDate" readonly="readonly" value="<?=san_html($_POST['txt_StartDate'])?>"  style="width:100px; height:16px" />
            <img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" 
-				  style="cursor:hand" onclick="displayCalendarSe(document.frm1.txt_StartDate,'yyyy-mm-dd',this)" /> &nbsp; TO &nbsp; <input name="txt_StartDate2" type="text" class="clsTxtBox"  id="txt_StartDate2" readonly="readonly" value="<?=$_POST['txt_StartDate2']?>"  style="width:100px; height:16px" />
+				  style="cursor:hand" onclick="displayCalendarSe(document.frm1.txt_StartDate,'yyyy-mm-dd',this)" /> &nbsp; TO &nbsp; <input name="txt_StartDate2" type="text" class="clsTxtBox"  id="txt_StartDate2" readonly="readonly" value="<?=san_html($_POST['txt_StartDate2'])?>"  style="width:100px; height:16px" />
                   <img src="images/calendar-icon.gif" alt="select" width="22" height="18" align="absmiddle" class="calImg" 
 				  style="cursor:hand" onclick="displayCalendarSe(document.frm1.txt_StartDate2,'yyyy-mm-dd',this)" />&nbsp;&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp;<input type="submit" name="Search" value="Show" />	  </td>

@@ -1,4 +1,4 @@
-<? include("functions.php"); include ('includes/common/classes/classEmailvalidate.php');  
+<? require_once dirname(__FILE__) . '/includes/common/sanitize.php'; include("functions.php"); include ('includes/common/classes/classEmailvalidate.php');  
 
 $emailValidator = new classEmailvalidate();
 ?>
@@ -11,7 +11,7 @@ $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : 
 if (isset($_POST['home_form'])) {
     
     function sanitizeInput($data) {
-        return htmlspecialchars(strip_tags(trim($data)));
+        return htmlspecialchars(strip_tags(trim(san_text($data))));
     }
 
     $errors = [];
@@ -106,7 +106,7 @@ if (isset($_POST['home_form'])) {
         
         // $to = "webdeveloper@nexgeno.in";
         $to = "sales@chinesedumps.com";
-        $subject = 'Chinese Dumps ' . $type . ' page enquiry';
+        $subject = 'Chinese Dumps ' . (isset($type) ? str_replace(array("\r", "\n", "%0a", "%0d"), '', $type) : '') . ' page enquiry';
         $txt = "<strong>Name:</strong> " . $name . "<br><br>";
         $txt .= "<strong>Email:</strong> " . $email . "<br><br>";
         $txt .= "<strong>Tel:</strong> +" . $cCode .'-'. $tel . "<br><br>";
@@ -120,7 +120,7 @@ if (isset($_POST['home_form'])) {
         if (function_exists('utm_seo_save')) {
             utm_seo_save('enquiry', '', $email);
         }
-        $headers = "From: " . $email . "\r\n";
+        $headers = "From: " . str_replace(array("\r", "\n", "%0a", "%0d"), '', $email) . "\r\n";
         $headers .= "Content-Type: text/html; charset=UTF-8";
 
         // $mail_send = false; //to test mail

@@ -8,8 +8,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Get inputs
-$mobile = isset($_POST['mobile']) ? preg_replace('/\D/', '', $_POST['mobile']) : '';
-$mode   = isset($_POST['mode']) ? strtolower(trim($_POST['mode'])) : 'sms'; // default to SMS
+require_once dirname(__FILE__) . '/includes/common/sanitize.php';
+$mobile = isset($_POST['mobile']) ? preg_replace('/\D/', '', san_post('mobile')) : '';
+$mode   = isset($_POST['mode']) ? strtolower(trim(san_post('mode'))) : 'sms'; // default to SMS
 
 if (!$mobile || !in_array($mode, ['sms', 'whatsapp'])) {
     echo json_encode(['success' => false, 'error' => 'Invalid input']);

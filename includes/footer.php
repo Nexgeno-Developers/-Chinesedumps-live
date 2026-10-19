@@ -1381,7 +1381,7 @@ $(document).ready(function(){
 */
 </script>
 
-<?php $base_url = defined('BASE_URL') ? rtrim(BASE_URL, '/') : ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST']); ?>
+<?php require_once dirname(__FILE__) . '/common/sanitize.php'; $base_url = defined('BASE_URL') ? rtrim(BASE_URL, '/') : ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST']); ?>
 <!-- Toastr CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
@@ -1469,13 +1469,13 @@ $(document).ready(function(){
                   if (zres.redirect) {
                     window.location.href = zres.redirect;
                   } else {
-                    window.location.href = "<?php echo $base_url; ?>/thankyou-page.php";
+                    window.location.href = "<?php echo san_html($base_url); ?>/thankyou-page.php";
                   }
                 } else {
                   // Zoho failed — still redirect or show error depending on your choice
                   toastr.warning('Form saved but Zoho subscription failed. We will retry.');
                   // optional: redirect anyway
-                  window.location.href = "<?php echo $base_url; ?>/thankyou-page.php";
+                  window.location.href = "<?php echo san_html($base_url); ?>/thankyou-page.php";
                 }
                 
                 unlockSubmit(submitBtn);
@@ -1483,7 +1483,7 @@ $(document).ready(function(){
               .catch(function(err) {
                 console.error('sendToZoho failed', err);
                 toastr.warning('Form saved but could not reach Zoho. We will retry later.');
-                window.location.href = "<?php echo $base_url; ?>/thankyou-page.php";
+                window.location.href = "<?php echo san_html($base_url); ?>/thankyou-page.php";
               });
           } else if (response.errors && response.errors.length) {
             response.errors.forEach(function (err) {
@@ -1513,7 +1513,7 @@ $(document).ready(function(){
     //     // console.log("✅ AJAX success:", response);
     //       if (response.success) {
     //         toastr.success('✔ Form submitted successfully!');
-    //         window.location.href = "<?php echo $base_url; ?>/thankyou-page.php";
+    //         window.location.href = "<?php echo san_html($base_url); ?>/thankyou-page.php";
     //       } else if (response.errors && response.errors.length) {
     //         response.errors.forEach(function (err) {
     //           toastr.error(err);

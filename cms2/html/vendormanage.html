@@ -118,7 +118,7 @@ TABLE.list TR:last-child TD.item {
 	<div style="display: flex; align-items: end; gap: 12px; width: 100%;">
 		<div style="width: 20%;">
 			<label style="display:block; margin-bottom:6px; font-weight:600; color:#1e293b;">Search</label>
-			<input type="text" name="textSearch" style="padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; width: 100%; box-sizing: border-box;" value="<? if(isset($_POST['textSearch'])){ echo $_POST['textSearch'];}  ?>" />
+			<input type="text" name="textSearch" style="padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; width: 100%; box-sizing: border-box;" value="<? if(isset($_POST['textSearch'])){ echo san_html($_POST['textSearch']);}  ?>" />
 		</div>
 		<div style="width: 20%;">
 			<label style="display:block; margin-bottom:6px; font-weight:600; color:#1e293b;">Hot</label>

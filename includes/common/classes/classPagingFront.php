@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 /*
 		//Class which provides the functionality of the classPaging on the records coming from the Db.
 		// It is for mysql
@@ -119,8 +120,8 @@ class classPaging
 				//Set the Current Page which has been hit
 				if(!empty($_GET['pgIndex']) && isset($_GET['pgIndex']) && !empty($_GET['currentPage']) && isset($_GET['currentPage']))
 				{
-					$this->_Page_Index = $_GET['pgIndex'];
-					$this->_CURRENT_Page_Index = $_GET['currentPage'] ; 
+					$this->_Page_Index = san_int($_GET['pgIndex']);
+					$this->_CURRENT_Page_Index = san_int($_GET['currentPage']) ; 
 				}	
 
 				//Check that if the Coming page is the last link of the Navigatoin
@@ -137,10 +138,10 @@ class classPaging
 						if($this->_CURRENT_Page_Index <= $this->_PageCount)	
 						{
 							if($_GET['currentPage'] == $this->_CURRENT_Page_Index)
-								$Navigable_Links .= "<b style=\" color:#8A9E5F; font-size:12px;text-decoration:underline;\">". $_GET['currentPage'] ."</b>&nbsp;";
+								$Navigable_Links .= "<b style=\" color:#8A9E5F; font-size:12px;text-decoration:underline;\">". san_html($_GET['currentPage']) ."</b>&nbsp;";
 	
 							 if($_GET['currentPage'] <> $this->_CURRENT_Page_Index)	
-								$Navigable_Links .= "| <a href=\"".$this->_PageName ."?pgIndex=". $inc ."&userId=".$this->userId."&txtOthers=".$this->txtOthers."&sel_other=".$this->sel_other."&btn_other=".$this->btn_other."&seltype=".$this->seltype."&flag=".$this->flag."&btn_cat=".$this->btn_cat."&currentPage=". $this->_CURRENT_Page_Index . $this->_Qry_PARAMS ."\" ". $this->_LinksClass ." >". $this->_CURRENT_Page_Index ."</a> |&nbsp;";
+								$Navigable_Links .= "| <a href=\"".$this->_PageName ."?pgIndex=". $inc ."&userId=".san_html($this->userId)."&txtOthers=".san_html($this->txtOthers)."&sel_other=".san_html($this->sel_other)."&btn_other=".san_html($this->btn_other)."&seltype=".san_html($this->seltype)."&flag=".san_html($this->flag)."&btn_cat=".san_html($this->btn_cat)."&currentPage=". $this->_CURRENT_Page_Index . $this->_Qry_PARAMS ."\" ". $this->_LinksClass ." >". $this->_CURRENT_Page_Index ."</a> |&nbsp;";
 
 							$this->_CURRENT_Page_Index ++;
 						}				
@@ -173,7 +174,7 @@ class classPaging
 			
 			//Set the Current Page which has been hit
 			if(!empty($_GET['currentPage']) && isset($_GET['currentPage']))
-				$currentPage = $_GET['currentPage'];
+				$currentPage = san_int($_GET['currentPage']);
 			else
 				$currentPage = 1;
 			if($this->_Page_Index > 1)
@@ -186,7 +187,7 @@ class classPaging
 			//Show Back Link
 			
 			if($currentPage > 1)
-				$Navigable_Links = "<a href=\"". $this->_PageName ."?pgIndex=". $pgIndex  ."&userId=".$this->userId."&txtOthers=".$this->txtOthers."&sel_other=".$this->sel_other."&btn_other=".$this->btn_other."&seltype=".$this->seltype."&flag=".$this->flag."&btn_cat=".$this->btn_cat."&currentPage=". ($currentPage - 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">&laquo;&nbsp;Previous</a>&nbsp;";
+				$Navigable_Links = "<a href=\"". $this->_PageName ."?pgIndex=". $pgIndex  ."&userId=".san_html($this->userId)."&txtOthers=".san_html($this->txtOthers)."&sel_other=".san_html($this->sel_other)."&btn_other=".san_html($this->btn_other)."&seltype=".san_html($this->seltype)."&flag=".san_html($this->flag)."&btn_cat=".san_html($this->btn_cat)."&currentPage=". ($currentPage - 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">&laquo;&nbsp;Previous</a>&nbsp;";
 
 			//Return the links
 			return $Navigable_Links;
@@ -210,7 +211,7 @@ class classPaging
 			
 			//Set the Current Page which has been hit
 			if(!empty($_GET['currentPage']) && isset($_GET['currentPage']))
-				$currentPage = $_GET['currentPage'];
+				$currentPage = san_int($_GET['currentPage']);
 			else
 				$currentPage = 1;
 
@@ -219,7 +220,7 @@ class classPaging
 			//Make it sure that Current Page is Greater Than 1
 			//Show Forward Link
 			if($currentPage < $this->_PageCount)
-				$Navigable_Links = "<a href=\"". $this->_PageName ."?pgIndex=". $pgIndex ."&userId=".$this->userId."&txtOthers=".$this->txtOthers."&sel_other=".$this->sel_other."&btn_other=".$this->btn_other."&seltype=".$this->seltype."&flag=".$this->flag."&btn_cat=".$this->btn_cat."&currentPage=". ($currentPage + 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">Next&nbsp;&raquo;</a>";
+				$Navigable_Links = "<a href=\"". $this->_PageName ."?pgIndex=". $pgIndex ."&userId=".san_html($this->userId)."&txtOthers=".san_html($this->txtOthers)."&sel_other=".san_html($this->sel_other)."&btn_other=".san_html($this->btn_other)."&seltype=".san_html($this->seltype)."&flag=".san_html($this->flag)."&btn_cat=".san_html($this->btn_cat)."&currentPage=". ($currentPage + 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">Next&nbsp;&raquo;</a>";
 
 			//Return the links
 			return $Navigable_Links;

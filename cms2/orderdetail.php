@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 ob_start();
 session_start();
@@ -39,8 +40,8 @@ $ccAdminData = get_session_data();
 		
 		if(isset($_GET['pgIndex']) && !empty($_GET['pgIndex']) && is_numeric($_GET['pgIndex']) && is_numeric($_GET['currentPage']))
 				{
-					$PageNo			 = $_GET['currentPage'];	# Shows # of Page			
-					$PageIndex		 = $_GET['pgIndex'];		# Shows # of Page Index				
+					$PageNo			 = san_int($_GET['currentPage']);	# Shows # of Page			
+					$PageIndex		 = san_int($_GET['pgIndex']);		# Shows # of Page Index				
 				}	
 
 					$LIMIT .= " LIMIT " . (($PageNo-1) * $rowsPerPage). " , " . $rowsPerPage;
@@ -66,9 +67,9 @@ $ccAdminData = get_session_data();
 	if(isset($_POST['Search']) && $_POST['textSearch']!='')
 	{
 		if($_POST['criteria']=='user_email')
-			$cri = " where tbl_user.".$_POST['criteria']." like '%".$_POST['textSearch']."%'";
+			$cri = " where tbl_user.".$_POST['criteria']." like '%".db_esc($_POST['textSearch'])."%'";
 		if($_POST['criteria']=='Order_Id')
-			$cri = " where order_master.".$_POST['criteria']." = '".$_POST['textSearch']."'";
+			$cri = " where order_master.".$_POST['criteria']." = '".db_esc($_POST['textSearch'])."'";
 	}
 
 //------------------------html---------------------------------------
