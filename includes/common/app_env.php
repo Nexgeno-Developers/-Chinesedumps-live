@@ -69,6 +69,36 @@ if (!function_exists('app_apply_error_settings')) {
             ini_set('display_startup_errors', '0');
         }
         ini_set('log_errors', app_bool(secret('APP_LOG_ERRORS', true), true) ? '1' : '0');
+        app_register_fatal_handler();
+    }
+}
+
+if (!function_exists('app_register_fatal_handler')) {
+    /* Makes sure a fatal error (the blank HTTP 500 page) is always logged, and shown on screen when APP_DEBUG is on. */
+    function app_register_fatal_handler()
+    {
+        static $done = false;
+        if ($done) {
+            return;
+        }
+        $done = true;
+        register_shutdown_function('app_fatal_shutdown');
+    }
+}
+
+if (!function_exists('app_fatal_shutdown')) {
+    function app_fatal_shutdown()
+    {
+        $e = error_get_last();
+        if (!$e || !in_array($e['type'], array(E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR), true)) {
+            return;
+        }
+        $msg = 'Fatal error: ' . $e['message'] . ' in ' . $e['file'] . ' on line ' . $e['line'];
+        error_log($msg);
+        if (app_debug()) {
+            echo '<pre style="background:#fee;color:#900;padding:10px;border:1px solid #900;white-space:pre-wrap">'
+                . htmlspecialchars($msg) . '</pre>';
+        }
     }
 }
 

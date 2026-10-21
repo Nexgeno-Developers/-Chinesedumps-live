@@ -1,5 +1,7 @@
 <?php
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
+require_once dirname(__FILE__) . '/includes/common/app_env.php';
+app_apply_error_settings();
 require_once __DIR__ . '/includes/config/load_secrets.php';
 ob_start();
 session_start();
@@ -272,42 +274,42 @@ if (isset($_GET['cancel_failed']) && $_GET['cancel_failed'] == '1' && isset($_GE
             		if($re["both_pri"] != "" && $re["both_pri"] != "0.00"){
             			$setPrice = $re["both_pri"];
             		}else{
-            			$setPrice = $this->getdbPrice($ptype,$duration);
+            			$setPrice = getdbPrice($ptype,$duration);
             			$setPrice = $setPrice["pri_value"]+$price_plus;
             		}
             	}elseif($ptype == "sp"){
             		if($re["engn_pri3"] != "" && $re["engn_pri3"] != "0.00"){
             			$setPrice = $re["engn_pri3"];
             		}else{
-            			$setPrice = $this->getdbPrice($ptype,$duration);
+            			$setPrice = getdbPrice($ptype,$duration);
             			$setPrice = $setPrice["pri_value"]+$price_plus;
             		}
             	}elseif($ptype == "9"){
             		if($re["both_pri"] != "" && $re["both_pri"] != "0.00"){
             			$setPrice = $re["both_pri"];
             		}else{
-            			$setPrice = $this->getdbPrice($ptype,$duration);
+            			$setPrice = getdbPrice($ptype,$duration);
             			$setPrice = $setPrice["pri_value"]+$price_plus;
             		}
             	}elseif($ptype == "8"){
             		if($re["engn_pri3"] != "" && $re["engn_pri3"] != "0.00"){
             			$setPrice = $re["engn_pri3"];
             		}else{
-            			$setPrice = $this->getdbPrice($ptype,$duration);
+            			$setPrice = getdbPrice($ptype,$duration);
             			$setPrice = $setPrice["pri_value"]+$price_plus;
             		}
             	}elseif($ptype == "7"){
             		if($re["exam_pri3"] != "" && $re["exam_pri3"] != "0.00"){
             			$setPrice = $re["exam_pri3"];
             		}else{
-            			$setPrice = $this->getdbPrice($ptype,$duration);
+            			$setPrice = getdbPrice($ptype,$duration);
             			$setPrice = $setPrice["pri_value"]+$price_plus;
             		}
             	}else{
             		if($re["exam_pri3"] != "" && $re["exam_pri3"] != "0.00"){
             			$setPrice = $re["exam_pri3"];
             		}else{
-            			$setPrice = $this->getdbPrice($ptype,$duration);
+            			$setPrice = getdbPrice($ptype,$duration);
             			$setPrice = $setPrice["pri_value"]+$price_plus;
             		}
             	}
