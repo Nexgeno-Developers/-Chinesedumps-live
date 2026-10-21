@@ -2,7 +2,7 @@
 require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
 
 //----------------------------------------------------------------------------------------------------		
-	ini_set("display_errors","0");
+	require_once dirname(__FILE__) . '/../includes/common/app_env.php'; app_apply_error_settings();
 	session_start();
 	error_reporting(0);
 	ob_start();

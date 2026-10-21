@@ -60,4 +60,13 @@ return [
     'DB_USER' => 'root',
     'DB_PASS' => '',
     'DB_NAME' => 'chinesed_db',
+
+    // Environment / debug (safe defaults = production)
+    'APP_ENV' => 'production',        // 'production' or 'development'
+    'APP_DEBUG' => false,             // true = show PHP + SQL errors on screen
+    'APP_LOG_ERRORS' => true,         // write errors to the server error log
+    'SMTP_DEBUG' => false,            // true = log the SMTP conversation (contains the login in base64)
+
+    // PayPal
+    'PAYPAL_MODE' => 'live',          // 'live' or 'sandbox'
 ];

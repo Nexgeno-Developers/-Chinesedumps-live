@@ -4,8 +4,7 @@ session_start();
 header('Content-Type: application/json');
 
 // For development (disable in production)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+require_once dirname(__FILE__) . '/includes/common/app_env.php'; app_apply_error_settings();
 
 // Get user input and session data
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';

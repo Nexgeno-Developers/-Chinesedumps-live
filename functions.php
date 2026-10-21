@@ -2,6 +2,7 @@
 // --------------------------------------------------
 // Autoload (Composer) + secrets (secret(), secret_js())
 require_once __DIR__ . '/includes/config/load_secrets.php';
+require_once __DIR__ . '/includes/common/app_env.php';
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/includes/marketing/utm_seo.php';
 // ini_set('display_errors', 1);
@@ -218,12 +219,13 @@ function passwordResetEmail($user, $resetUrl, $from)
         private $fromName;
         private $timeout;
         private $heloDomain;
-        private $debug = true;
+        private $debug = false; /* controlled by SMTP_DEBUG in secrets.local.php */
 
         public function __construct(array $config)
         {
             // global $fromEmail;
 
+            $this->debug = app_smtp_debug();
             $this->host = isset($config['host']) ? $config['host'] : 'smtp.gmail.com';
             $this->port = isset($config['port']) ? $config['port'] : 587;
             $this->encryption = isset($config['encryption']) ? strtolower($config['encryption']) : 'tls';

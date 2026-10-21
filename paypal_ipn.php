@@ -1,5 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
+require_once dirname(__FILE__) . '/includes/common/app_env.php';
 /**
  * paypal_ipn.php
  * PHP 5.6 compatible PayPal IPN listener with email notification on success or failure.
@@ -18,7 +19,7 @@ $objCart	=	new classCart($objDBcon);
 global $fromEmail;
 
 // === Configuration ===
-define('PAYPAL_MODE', 'live'); // 'live' or 'sandbox'
+define('PAYPAL_MODE', paypal_mode()); // 'live' or 'sandbox' - set PAYPAL_MODE in includes/config/secrets.local.php
 // Your notification email address
 // define('IPN_NOTIFY_EMAIL', 'umair.makent@gmail.com');
 // Log file path
@@ -44,11 +45,7 @@ foreach ($post_data as $key => $value) {
 }
 
 // Choose PayPal URL based on mode
-if (PAYPAL_MODE === 'live') {
-    $paypal_url = 'https://ipnpb.paypal.com/cgi-bin/webscr';
-} else {
-    $paypal_url = 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr';
-}
+$paypal_url = paypal_ipn_verify_url();
 
 // Post back to PayPal for verification using cURL
 $ch = curl_init($paypal_url);

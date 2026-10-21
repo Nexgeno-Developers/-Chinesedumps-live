@@ -10,8 +10,7 @@ header("Content-Type: application/json");
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+require_once dirname(__FILE__) . '/includes/common/app_env.php'; app_apply_error_settings();
 
 include("includes/config/classDbConnection.php");
 include("functions.php");

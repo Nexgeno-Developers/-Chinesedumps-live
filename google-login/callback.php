@@ -2,9 +2,7 @@
 require_once __DIR__ . '/../includes/config/load_secrets.php';
 require_once __DIR__ . '/../includes/common/auth.php';
 require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require_once dirname(dirname(__FILE__)) . '/includes/common/app_env.php'; app_apply_error_settings();
 
 require_once '../vendor/google/vendor/autoload.php';
 session_start();

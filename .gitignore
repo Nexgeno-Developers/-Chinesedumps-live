@@ -38,3 +38,4 @@ vendor
 
 # internal change report - never publish
 SECURITY_CHANGES.md
+PROJECT_HANDOFF.md

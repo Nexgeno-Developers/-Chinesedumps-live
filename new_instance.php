@@ -10,8 +10,7 @@ include("includes/common/classes/classcart.php");
 
 include("includes/shoppingcart.php");
 include("functions.php");
-error_reporting(E_ALL);
-ini_set("display_errors",1);
+require_once dirname(__FILE__) . '/includes/common/app_env.php'; app_apply_error_settings();
 $objDBcon   =   new classDbConnection; 
 $objMain	=	new classMain($objDBcon);
 $objPro		=	new classProduct($objDBcon);

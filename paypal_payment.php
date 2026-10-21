@@ -1,6 +1,7 @@
 <?php
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 require_once __DIR__ . '/includes/config/load_secrets.php';
+require_once dirname(__FILE__) . '/includes/common/app_env.php';
 ob_start();
 session_start();
 //header("location:swreg.html");
@@ -103,7 +104,7 @@ if(isset($_POST['Final']))
 ?>
 <html> 
 <body>
-<form name="order" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<form name="order" action="<?=paypal_form_url();?>" method="post">
 <!--<form name="order" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">-->
 <input type="hidden" name="cmd" value="_cart">
 <input type="hidden" name="upload" value="1">
