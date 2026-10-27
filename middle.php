@@ -128,12 +128,12 @@
             <!--<li class="flash_hover orig-item1 ccie_labs_section_4"><a href="images/JNCIE-ENT - Frederik Van Dijk_page-0001.jpg"><img src="images/JNCIE-ENT - Frederik Van Dijk_page-0001.jpg" alt=""></a></li>-->
             <!--<li class="flash_hover orig-item1 ccie_labs_section_5"><a href="images/WhatsApp Image 2026-01-17 at 1.37.10 PM (1).jpeg"><img src="WhatsApp Image 2026-01-17 at 1.37.10 PM (1).jpeg" alt=""></a></li>-->
             <!--<li class="flash_hover orig-item1 ccie_labs_section_6"><a href="images/JNCIE-SP - Owen Park_page-0001.jpg"><img src="images/JNCIE-SP - Owen Park_page-0001.jpg" alt=""></a></li>-->
-            <li class="flash_hover orig-item1 ccie_labs_section_7"><a href="images/ccie image 1.jpg" data-fancybox="ccie-gallery"><img src="images/CCIEEI/ccie/1.jpeg" alt=""></a></li>
-            <li class="flash_hover orig-item1 ccie_labs_section_8"><a href="images/ccie image 2.jpg" data-fancybox="ccie-gallery"><img src="images/CCIEEI/ccie/3.jpeg" alt=""></a></li>
-            <li class="flash_hover orig-item1 ccie_labs_section_9"><a href="images/ccie image 3.jpg" data-fancybox="ccie-gallery"><img src="images/CCIEEI/ccie/5.jpeg" alt=""></a></li>
-            <li class="flash_hover orig-item1 ccie_labs_section_10"><a href="images/ccie image 4.jpg" data-fancybox="ccie-gallery"><img src="images/CCIEEI/ccie/7.jpeg" alt=""></a></li>
-            <li class="flash_hover orig-item1 ccie_labs_section_11"><a href="images/ccie image 5.jpg" data-fancybox="ccie-gallery"><img src="images/CCIEEI/ccie/9.jpeg" alt=""></a></li>
-            <li class="flash_hover orig-item1 ccie_labs_section_12"><a href="images/ccie image 6.jpg" data-fancybox="ccie-gallery"><img src="images/CCIEEI/ccie/11.jpeg" alt=""></a></li>
+            <li class="flash_hover orig-item1 ccie_labs_section_7"><a href="images/CCIEEI/ccie/1.jpeg" data-fancybox="ccie-gallery"><img src="images/CCIEEI/ccie/1.jpeg" alt=""></a></li>
+            <li class="flash_hover orig-item1 ccie_labs_section_8"><a href="images/CCIEEI/ccie/3.jpeg" data-fancybox="ccie-gallery"><img src="images/CCIEEI/ccie/3.jpeg" alt=""></a></li>
+            <li class="flash_hover orig-item1 ccie_labs_section_9"><a href="images/CCIEEI/ccie/5.jpeg" data-fancybox="ccie-gallery"><img src="images/CCIEEI/ccie/5.jpeg" alt=""></a></li>
+            <li class="flash_hover orig-item1 ccie_labs_section_10"><a href="images/CCIEEI/ccie/7.jpeg" data-fancybox="ccie-gallery"><img src="images/CCIEEI/ccie/7.jpeg" alt=""></a></li>
+            <li class="flash_hover orig-item1 ccie_labs_section_11"><a href="images/CCIEEI/ccie/9.jpeg" data-fancybox="ccie-gallery"><img src="images/CCIEEI/ccie/9.jpeg" alt=""></a></li>
+            <li class="flash_hover orig-item1 ccie_labs_section_12"><a href="images/CCIEEI/ccie/11.jpeg" data-fancybox="ccie-gallery"><img src="images/CCIEEI/ccie/11.jpeg" alt=""></a></li>
             <li class="flash_hover orig-item1 ccie_labs_section_13"><a href="images/JNCIE-SP-Owen-Park_page-0001.jpeg" data-fancybox="ccie-gallery"><img src="images/JNCIE-SP-Owen-Park_page-0001.jpeg" alt=""></a></li>
             <li class="flash_hover orig-item1 ccie_labs_section_14"><a href="images/JNCIE-ENT-Frederik-Van-Dijk_page-0001.jpeg" data-fancybox="ccie-gallery"><img src="images/JNCIE-ENT-Frederik-Van-Dijk_page-0001.jpeg" alt=""></a></li>
             <li class="flash_hover orig-item1 ccie_labs_section_15"><a href="images/JNCIE-DC-Noah-Klein_page-0001.jpeg" data-fancybox="ccie-gallery"><img src="images/JNCIE-DC-Noah-Klein_page-0001.jpeg" alt=""></a></li>
