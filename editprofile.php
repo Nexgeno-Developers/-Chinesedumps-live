@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 ob_start();
 session_start();
 if (!isset($_SESSION['uid'])) { header('Location: login.html'); exit; }
@@ -36,12 +37,14 @@ if (isset($_POST['emails'], $_POST['fName'])) {
         } else {
             $name = mysql_real_escape_string($_POST['fName']);
             $lastName = mysql_real_escape_string(isset($_POST['lastname']) ? $_POST['lastname'] : '');
+            $syslogBefore = syslog_snapshot('tbl_user', 'user_id', $userId);
             $sql = "UPDATE tbl_user SET user_fname='".$name."', user_lname='".$lastName."'";
             if ($newPassword !== '') {
                 $sql .= ", user_password='".mysql_real_escape_string(auth_password_hash($newPassword))."'";
             }
             $sql .= " WHERE user_id='".$userId."'";
             mysql_query($sql);
+            syslog_log_updated('Account', 'PROFILE_UPDATED', 'their own profile', $userId, syslog_user_label($userId), $syslogBefore, syslog_snapshot('tbl_user', 'user_id', $userId), 'tbl_user');
             $msg = 'Profile has been updated successfully.';
         }
     }

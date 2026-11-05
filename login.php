@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 ob_start();
 session_start();
 require_once __DIR__ . '/includes/common/auth.php';
@@ -46,6 +47,7 @@ if (isset($_POST['Signin'])) {
         if (!$user || !auth_password_verify($password, $user['user_password'])) {
             /* Deliberately generic: does not reveal whether the account exists. */
             $msg2 = 'The email address or password is incorrect.';
+            syslog_write('Authentication', 'USER_LOGIN_FAILED', 'Failed customer login for the email '.$email.' (wrong password, unknown email or inactive account).', array('status' => 'failed', 'entity_type' => 'customer', 'entity_label' => $email));
         } else {
             /* Transparently migrate accounts which still have a legacy plaintext password. */
             if (auth_password_needs_upgrade($user['user_password'])) {
@@ -60,6 +62,7 @@ if (isset($_POST['Signin'])) {
             $_SESSION['uid'] = $user['user_id'];
             $_SESSION['Uname'] = $user['user_fname'];
             $_SESSION['uphone'] = $user['user_phone'];
+            syslog_write('Authentication', 'USER_LOGIN', syslog_who().' logged in to the website.', array('entity_type' => 'customer', 'entity_id' => (int)$user['user_id'], 'entity_label' => $user['user_email']));
 
             if (!empty($_COOKIE['redirect_after_login']) && is_string($_COOKIE['redirect_after_login'])
                 && strpos($_COOKIE['redirect_after_login'], '://') === false
@@ -88,6 +91,7 @@ if (isset($_POST['emails'], $_POST['fName'], $_POST['passwords'])) {
         $msg = 'Your session has expired. Please refresh the page and try again.';
     } elseif (!isset($_SESSION['email_otp_verified_email']) || strcasecmp($_SESSION['email_otp_verified_email'], $email) !== 0) {
         $msg = 'Please verify your email address before registering.';
+        syslog_write('Authentication', 'USER_REGISTER_FAILED', 'A visitor tried to register with the email '.$email.' but had not verified the email address with the one-time code.', array('status' => 'failed', 'entity_type' => 'customer', 'entity_label' => $email));
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $msg = 'Enter a valid email address.';
     } elseif ($password !== $confirm) {
@@ -99,11 +103,13 @@ if (isset($_POST['emails'], $_POST['fName'], $_POST['passwords'])) {
         $securimage = new Securimage();
         if (!$securimage->check(isset($_POST['captcha_code']) ? $_POST['captcha_code'] : '')) {
             $msg = 'Please enter the security code shown in the image.';
+            syslog_write('Authentication', 'USER_REGISTER_FAILED', 'A visitor tried to register with the email '.$email.' but typed the wrong security (captcha) code.', array('status' => 'failed', 'entity_type' => 'customer', 'entity_label' => $email));
         } else {
             $emailSql = mysql_real_escape_string($email);
             $existing = mysql_query("SELECT user_id FROM tbl_user WHERE user_email='".$emailSql."' LIMIT 1");
             if ($existing && mysql_num_rows($existing) > 0) {
                 $msg = 'An account already exists for that email address.';
+                syslog_write('Authentication', 'USER_REGISTER_FAILED', 'A visitor tried to register with the email '.$email.' but an account with this email already exists.', array('status' => 'failed', 'entity_type' => 'customer', 'entity_label' => $email));
             } else {
                 $sparm = array();
                 $sparm[1] = $_POST['fName'];

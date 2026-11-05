@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
@@ -314,6 +315,7 @@ while ($row = $result->fetch_assoc()) {
                 // var_dump($userEmail);
                 // @mail($userEmail, "Reminder – Abandoned Cart", $customerMsg, $headers);
                 sendEmail($userEmail, "Reminder - Abandoned Cart", $customerMsg, $headers);
+                syslog_write('Notifications', 'ABANDONED_CART_REMINDER_SENT', 'The system emailed '.$userEmail.' a reminder about the items left in the shopping cart (reminder number '.($notifyAttempt + 1).').', array('entity_type' => 'customer', 'entity_id' => (int)$userID, 'entity_label' => $userEmail, 'actor' => array('type' => 'system', 'name' => 'Abandoned cart job')));
             }
             // exit();
         } else {

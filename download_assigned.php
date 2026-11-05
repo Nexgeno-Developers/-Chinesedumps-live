@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 
 ###############################################################
@@ -129,6 +130,7 @@ if (!isset($filenamename) || empty($filenamename)) {
 }else{
 $qu ="INSERT INTO tbl_full_download(dnUID,dnTYPE,itemid,dndate,IP,IPcountry,statusdownload)VALUES('".san_int($_SESSION['uid'])."','0','".san_int($_GET['y'])."','".date("Y-m-d")."','".db_esc($ip)."','','1')";
 mysql_query($qu);
+syslog_write('Downloads', 'FULL_DOWNLOAD', syslog_who().' downloaded the assigned study material of exam '.syslog_exam_label(san_int($_GET['y'])).'.', array('entity_type' => 'exam', 'entity_id' => san_int($_GET['y']), 'entity_label' => syslog_exam_label(san_int($_GET['y']))));
 
 }
 

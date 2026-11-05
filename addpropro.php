@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 session_start();
 include("includes/config/classDbConnection.php");
@@ -58,6 +59,7 @@ $i		= 0;
 									}else{
 									$query	=	"select * from temp_order where CartID='".db_esc(session_id())."' and UserID='0' order by ID ASC";
 									}
+		syslog_write('Cart', 'CART_ITEM_ADDED', syslog_who().' '.($exe_check >= 1 ? 'updated the price / duration of the all-exams bundle of vendor ' : 'added the all-exams bundle of vendor ').syslog_pick(syslog_snapshot('tbl_vendors', 'ven_id', san_int($proid)), 'ven_name', 'ID '.san_int($proid)).' ('.($subscr ? $subscr.' months' : 'default duration').', price $'.$totalprice.') '.($exe_check >= 1 ? 'in' : 'to').' the shopping cart.', array('entity_type' => 'vendor bundle', 'entity_id' => (int)$proid, 'entity_label' => syslog_pick(syslog_snapshot('tbl_vendors', 'ven_id', san_int($proid)), 'ven_name', 'vendor ID '.san_int($proid)), 'details' => array('months' => $subscr, 'price' => $totalprice, 'already_in_cart' => ($exe_check >= 1))));
 		$rs_left_cart		=	mysql_query($query);
 		$num	=	mysql_num_rows($rs_left_cart);
 		

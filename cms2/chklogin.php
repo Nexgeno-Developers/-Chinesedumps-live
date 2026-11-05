@@ -16,6 +16,7 @@ include $LinkPath."includes/config/classDbConnection.php";
 include $LinkPath."includes/common/classes/classAdmin.php";
 include $LinkPath."includes/common/classes/classSessionHeader.php";
 include "functions.php";
+require_once $LinkPath."includes/common/system_log.php";
 
 //-------------------------------------------------------------------------------//
 	$strUser			=	"";
@@ -47,6 +48,10 @@ include "functions.php";
 							$objSession->createSession("adminId",$adm_id);
 						 	$objSession->createSession("strAdmin",$strUser);
 							$objSession->createSession("adminRole",$adminRole);
+							syslog_write('Authentication', 'ADMIN_LOGIN', 'Admin user "'.$strUser.'" logged in to the admin panel.', array(
+								'entity_type' => 'admin user', 'entity_id' => $adm_id, 'entity_label' => $strUser,
+								'actor' => array('type' => 'admin', 'id' => (int)$adm_id, 'name' => $strUser, 'role' => $adminRole)
+							));
 							?>
                             <script>document.location="sum.php";</script>
                             <?php
@@ -55,6 +60,9 @@ include "functions.php";
 					else
 						{
 							$_SESSION['error']	=	"*Username or Password is incorrect";
+							syslog_write('Authentication', 'ADMIN_LOGIN_FAILED', 'Failed admin login: user name "'.$strUser.'" or password was incorrect (or the account is inactive).', array(
+								'status' => 'failed', 'entity_type' => 'admin user', 'entity_label' => $strUser
+							));
 							?>
                             <script>document.location="index.php";</script>
                             <?php
@@ -64,6 +72,7 @@ include "functions.php";
 			else
 			{
 				$_SESSION['error']	=	"*Invalid user name only Characters and numeric characters allowed";
+				syslog_write('Authentication', 'ADMIN_LOGIN_FAILED', 'Failed admin login: the user name contained characters that are not allowed.', array('status' => 'failed'));
 							?>
                             <script>document.location="index.php";</script>
                             <?php

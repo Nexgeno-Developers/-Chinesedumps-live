@@ -1,5 +1,6 @@
    <?PHP
 require_once dirname(dirname(__FILE__)) . '/sanitize.php';
+require_once dirname(dirname(__FILE__)) . '/system_log.php';
 
 
 
@@ -122,6 +123,8 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
             ";
         
             $qryexe = mysql_query($add_que) or die(mysql_error());
+            $syslogId = mysql_insert_id();
+            syslog_log_created('Vendors', 'VENDOR_CREATED', 'vendor', $syslogId, $spram[0]);
         }
 
 
@@ -131,7 +134,9 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 		 $add_que = "INSERT INTO tbl_cert(	ven_id,cert_name,cert_url,cert_home,cert_hot,cert_status,cert_title,cert_keywords,cert_desc_seo,cert_date,cert_descr,allcerts,cert_upddate,demo_data)VALUES('".db_esc($spram[12])."','".db_esc($spram[0])."','".db_esc($spram[1])."','".db_esc($spram[4])."','".db_esc($spram[5])."','".db_esc($spram[10])."','".db_esc($spram[7])."','".db_esc($spram[8])."','".db_esc($spram[9])."','".db_esc($spram[29])."','".db_esc($spram[6])."','".db_esc($spram[13])."','0000-00-00','".$spram[30]."')";
 
-		 $qryexe = mysql_query($add_que) or die(mysql_error()); 
+		 $qryexe = mysql_query($add_que) or die(mysql_error());
+			$syslogId = mysql_insert_id();
+			syslog_log_created('Certifications', 'CERTIFICATION_CREATED', 'certification', $syslogId, $spram[0]); 
 
 		}
 
@@ -141,7 +146,9 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 		 $add_que = "INSERT INTO tbl_course(name,status,created)VALUES('".db_esc($spram[0])."','".db_esc($spram[1])."','".db_esc($spram[2])."')";
 
-		 $qryexe = mysql_query($add_que) or die(mysql_error()); 
+		 $qryexe = mysql_query($add_que) or die(mysql_error());
+			$syslogId = mysql_insert_id();
+			syslog_log_created('Courses', 'COURSE_CREATED', 'course', $syslogId, $spram[0], 'Status: '.($spram[1] == '1' ? 'Stable' : 'Unstable').'.'); 
 
 		}
 
@@ -265,23 +272,37 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
          
          )";
 
-		 $qryexe = mysql_query($add_que) or die(mysql_error()); 
+		 $qryexe = mysql_query($add_que) or die(mysql_error());
+			$syslogId = mysql_insert_id();
+			syslog_log_created('Exams', 'EXAM_CREATED', 'exam', $syslogId, $spram[0]); 
 
 		}
 
 		function delete_Banner($pro_id)
 		{
-			mysql_query("DELETE from sliders where s_id='".san_int($pro_id)."'");
+			$syslogRow = syslog_snapshot('sliders', 's_id', san_int($pro_id));
+				mysql_query("DELETE from sliders where s_id='".san_int($pro_id)."'");
+				if ($syslogRow) {
+					syslog_log_deleted('Banners', 'BANNER_DELETED', 'banner', san_int($pro_id), syslog_pick($syslogRow, 's_alt', syslog_pick($syslogRow, 's_image')), 'Banner type: '.syslog_pick($syslogRow, 'type', '-').'.');
+				}
 		}
 		
 				function delete_Banner_new($pro_id)
 		{
-			mysql_query("DELETE from sliders_new where s_id='".san_int($pro_id)."'");
+			$syslogRow = syslog_snapshot('sliders_new', 's_id', san_int($pro_id));
+				mysql_query("DELETE from sliders_new where s_id='".san_int($pro_id)."'");
+				if ($syslogRow) {
+					syslog_log_deleted('Exam Results', 'EXAM_RESULT_IMAGE_DELETED', 'exam result image', san_int($pro_id), syslog_pick($syslogRow, 's_image'));
+				}
 		}
 		
 		function delete_course_manage($pro_id)
 		{
-			mysql_query("DELETE from tbl_course where id='".san_int($pro_id)."'");
+			$syslogRow = syslog_snapshot('tbl_course', 'id', san_int($pro_id));
+				mysql_query("DELETE from tbl_course where id='".san_int($pro_id)."'");
+				if ($syslogRow) {
+					syslog_log_deleted('Courses', 'COURSE_DELETED', 'course', san_int($pro_id), syslog_pick($syslogRow, 'name'));
+				}
 		}
 
 		
@@ -290,7 +311,11 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			{
 
-				$getev	=	mysql_query("SELECT * from tbl_cert where ven_id ='".san_int($pro_id)."'");
+				$syslogRow = syslog_snapshot('tbl_vendors', 'ven_id', san_int($pro_id));
+					$syslogCerts = syslog_count('tbl_cert', 'ven_id', san_int($pro_id));
+					$syslogExams = syslog_count('tbl_exam', 'ven_id', san_int($pro_id));
+
+					$getev	=	mysql_query("SELECT * from tbl_cert where ven_id ='".san_int($pro_id)."'");
 
 				while($getfetch	=	mysql_fetch_array($getev)){
 
@@ -301,6 +326,9 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 				mysql_query("DELETE from tbl_exam where ven_id='".san_int($pro_id)."'");
 
 				mysql_query("DELETE from tbl_vendors where ven_id='".san_int($pro_id)."'");
+					if ($syslogRow) {
+						syslog_log_deleted('Vendors', 'VENDOR_DELETED', 'vendor', san_int($pro_id), syslog_pick($syslogRow, 'ven_name'), 'Its '.$syslogCerts.' certification(s) and '.$syslogExams.' exam(s) were deleted with it.');
+					}
 
 				
 
@@ -310,9 +338,14 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			{
 
-				mysql_query("DELETE from tbl_exam where cert_id='".san_int($pro_id)."'");
+				$syslogRow = syslog_snapshot('tbl_cert', 'cert_id', san_int($pro_id));
+					$syslogExams = syslog_count('tbl_exam', 'cert_id', san_int($pro_id));
+					mysql_query("DELETE from tbl_exam where cert_id='".san_int($pro_id)."'");
 
 				mysql_query("DELETE from tbl_cert where cert_id='".san_int($pro_id)."'");
+					if ($syslogRow) {
+						syslog_log_deleted('Certifications', 'CERTIFICATION_DELETED', 'certification', san_int($pro_id), syslog_pick($syslogRow, 'cert_name'), 'Its '.$syslogExams.' exam(s) were deleted with it.');
+					}
 
 				
 
@@ -343,6 +376,9 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 				}
 
 				mysql_query("DELETE from tbl_exam where exam_id ='".san_int($pro_id)."'");
+					if ($getfetch) {
+						syslog_log_deleted('Exams', 'EXAM_DELETED', 'exam', san_int($pro_id), syslog_pick($getfetch, 'exam_name'));
+					}
 
 				
 
@@ -388,6 +424,7 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
         function updateVendor($spram)
         {
             // Escape all user inputs to prevent SQL issues
+            $syslogBefore = syslog_snapshot('tbl_vendors', 'ven_id', $spram[0]);
             $ven_name     = mysql_real_escape_string($spram[1]);
             $ven_url      = mysql_real_escape_string($spram[2]);
             $ven_home     = mysql_real_escape_string($spram[5]);
@@ -422,6 +459,8 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
             ";
         
             $qryexe = mysql_query($add_que) or die(mysql_error());
+            $syslogAfter = syslog_snapshot('tbl_vendors', 'ven_id', $spram[0]);
+            syslog_log_updated('Vendors', 'VENDOR_UPDATED', 'vendor', $spram[0], syslog_pick($syslogAfter, 'ven_name', $spram[1]), $syslogBefore, $syslogAfter, 'tbl_vendors', array('ven_upddate'));
         }
 
 /*
@@ -441,18 +480,24 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 		{
 
+			$syslogBefore = syslog_snapshot('tbl_cert', 'cert_id', $spram[0]);
 			$add_que = "UPDATE tbl_cert set ven_id='".db_esc($spram[12])."',cert_name='".db_esc($spram[1])."',cert_url='".db_esc($spram[2])."',cert_home='".db_esc($spram[5])."',cert_hot='".db_esc($spram[6])."',cert_descr='".db_esc($spram[7])."',cert_title='".db_esc($spram[8])."',cert_keywords='".db_esc($spram[9])."',cert_desc_seo='".db_esc($spram[10])."',cert_status='".db_esc($spram[11])."',allcerts='".db_esc($spram[13])."',cert_date='".db_esc($spram[29])."',demo_data='".db_esc($spram[30])."' where cert_id ='".db_esc($spram[0])."'";
 	
-			$qryexe = mysql_query($add_que) or die(mysql_error()); 
+			$qryexe = mysql_query($add_que) or die(mysql_error());
+			$syslogAfter = syslog_snapshot('tbl_cert', 'cert_id', $spram[0]);
+			syslog_log_updated('Certifications', 'CERTIFICATION_UPDATED', 'certification', $spram[0], syslog_pick($syslogAfter, 'cert_name', $spram[1]), $syslogBefore, $syslogAfter, 'tbl_cert', array('cert_upddate')); 
 
 		}
 
 		function updateCourse($spram)
 
 		{
+			$syslogBefore = syslog_snapshot('tbl_course', 'id', $spram[0]);
 			$add_que = "UPDATE tbl_course set name='".db_esc($spram[1])."',status='".db_esc($spram[2])."' where id ='".db_esc($spram[0])."'";
 	
-			$qryexe = mysql_query($add_que) or die(mysql_error()); 
+			$qryexe = mysql_query($add_que) or die(mysql_error());
+			$syslogAfter = syslog_snapshot('tbl_course', 'id', $spram[0]);
+			syslog_log_updated('Courses', 'COURSE_UPDATED', 'course', $spram[0], syslog_pick($syslogAfter, 'name', $spram[1]), $syslogBefore, $syslogAfter, 'tbl_course', array('created')); 
 			return $qryexe;
 
 		}
@@ -463,13 +508,16 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 				{
 
+                 $syslogBefore = syslog_snapshot('tbl_exam', 'exam_id', $spram[0]);
                  $exam_type = mysql_real_escape_string(isset($spram['exam_type']) ? $spram['exam_type'] : '');
 
 				 $add_que = "UPDATE tbl_exam set ven_id='".db_esc($spram[12])."',cert_id='".db_esc($spram[13])."',exam_fullname='".db_esc($spram[14])."',exam_type='".$exam_type."',alias_name='".mysql_real_escape_string(isset($spram['alias_name']) ? $spram['alias_name'] : '')."',faq_json='".mysql_real_escape_string(isset($spram['faq_json']) ? $spram['faq_json'] : '')."',exam_name='".db_esc($spram[1])."',labName='".db_esc($spram[32])."',exam_url='".db_esc($spram[2])."',exam_pri3='".db_esc($spram[3])."',exam_pri0='".db_esc($spram[3])."',both_pri='".db_esc($spram[4])."',engn_pri3='".db_esc($spram[33])."',QA='".db_esc($spram[20])."',exam_home='".db_esc($spram[5])."',exam_hot='".db_esc($spram[6])."',exam_descr='".db_esc($spram[7])."',exam_descr2='".db_esc($spram[39])."',exam_related_descr='".db_esc($spram[41])."'
 
 				 ,exam_title='".db_esc($spram[8])."',exam_keywords='".db_esc($spram[9])."',exam_desc_seo='".db_esc($spram[10])."',exam_status='".db_esc($spram[11])."',exam_date='".db_esc($spram[29])."',telegram_url='".db_esc($spram[38])."',whatsapp_url='".db_esc($spram[30])."',skype_url='".db_esc($spram[31])."',video_code='".db_esc($spram[37])."',course_image='".db_esc($spram[36])."',youtube_links='".db_esc($spram['youtube_links'])."',free_dump_pdf='".mysql_real_escape_string(isset($spram['free_dump_pdf']) ? $spram['free_dump_pdf'] : '')."',demo_practice_file='".mysql_real_escape_string(isset($spram['demo_practice_file']) ? $spram['demo_practice_file'] : '')."',free_dump_label='".mysql_real_escape_string(isset($spram['free_dump_label']) ? $spram['free_dump_label'] : '')."',demo_practice_label='".mysql_real_escape_string(isset($spram['demo_practice_label']) ? $spram['demo_practice_label'] : '')."' where exam_id ='".db_esc($spram[0])."'";
 
-				 $qryexe = mysql_query($add_que) or die(mysql_error()); 
+				 $qryexe = mysql_query($add_que) or die(mysql_error());
+					 $syslogAfter = syslog_snapshot('tbl_exam', 'exam_id', $spram[0]);
+					 syslog_log_updated('Exams', 'EXAM_UPDATED', 'exam', $spram[0], syslog_pick($syslogAfter, 'exam_name', $spram[1]), $syslogBefore, $syslogAfter, 'tbl_exam', array('exam_upddate', 'dateUpdateStatus')); 
 				 /* var_dump($add_que);exit; */
 
 				}

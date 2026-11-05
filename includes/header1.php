@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/common/system_log.php';
 require_once dirname(__FILE__) . '/common/sanitize.php';
 include_once __DIR__ . '/config/classDbConnection.php';
 if (function_exists('start_root_url_rewrite')) {
@@ -34,7 +35,8 @@ if (function_exists('start_root_url_rewrite')) {
 		 $spram[0]	=	$_POST["email"];		
 		 $spram[1] = $_POST["course_name"];		
 		 $spram[2] = date('Y-m-d H:i:s');				
-		 mysql_query("insert into tbl_course_subscription (email, course, created_at) values ('".db_esc($spram[0])."','".db_esc($spram[1])."','".$spram[2]."')");	
+		 mysql_query("insert into tbl_course_subscription (email, course, created_at) values ('".db_esc($spram[0])."','".db_esc($spram[1])."','".$spram[2]."')");
+syslog_write('Subscriptions', 'COURSE_ALERT_SUBSCRIBED', syslog_who().' subscribed the email '.$spram[0].' to stable / unstable status alerts for the course "'.$spram[1].'".', array('entity_type' => 'course', 'entity_label' => $spram[1]));	
 		 
 		/*for subscriber */
 		$to = str_replace(array("\r", "\n", "%0a", "%0d"), '', is_array($spram[0]) ? '' : $spram[0]);

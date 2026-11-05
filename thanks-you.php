@@ -1,4 +1,5 @@
-<? require_once dirname(__FILE__) . '/includes/common/sanitize.php'; include("functions.php"); include ('includes/common/classes/classEmailvalidate.php');  
+<?
+require_once dirname(__FILE__) . '/includes/common/system_log.php'; require_once dirname(__FILE__) . '/includes/common/sanitize.php'; include("functions.php"); include ('includes/common/classes/classEmailvalidate.php');  
 
 $emailValidator = new classEmailvalidate();
 ?>
@@ -125,6 +126,8 @@ if (isset($_POST['home_form'])) {
 
         // $mail_send = false; //to test mail
         $mail_send = sendEmail($to, $subject, $txt, $headers);
+        syslog_connect();
+        syslog_write('Enquiries', 'ENQUIRY_FORM_SUBMITTED', ($mail_send ? '' : '(email to sales failed) ').syslog_who().' sent the "'.(isset($type) ? $type : '').'" page enquiry form (name: '.$name.', email: '.$email.', phone: +'.$cCode.'-'.$tel.(!empty($courses) ? ', course: '.$courses : '').').', array('status' => $mail_send ? 'success' : 'failed', 'entity_type' => 'enquiry', 'entity_label' => $email, 'details' => array('message' => $message, 'course' => !empty($courses) ? $courses : '')));
         
         // AJAX? detect by header
         $xhr = '';

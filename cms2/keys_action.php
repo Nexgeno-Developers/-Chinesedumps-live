@@ -77,9 +77,13 @@ $ccAdminData = get_session_data();
 
 		$instance_id = san_int($_REQUEST['iid']);
 
+		$syslogRow = syslog_snapshot('tbl_package_instance', 'id', $instance_id);
 		$insert = "update tbl_package_instance set mboard_number='' where id = '$instance_id'";
 
 		$query=mysql_query($insert);
+		if ($syslogRow) {
+			syslog_write('Licence Keys', 'LICENCE_KEY_RESET', syslog_who().' reset the computer binding of licence key '.substr($syslogRow['serial_number'], 0, 6).'... of order #'.$syslogRow['order_number'].', so it can be activated on another computer.', array('entity_type' => 'licence key', 'entity_id' => $instance_id, 'entity_label' => 'Order #'.$syslogRow['order_number']));
+		}
 
 	}
 
@@ -118,6 +122,7 @@ $ccAdminData = get_session_data();
 			$insert="insert into tbl_package_instance (id, engine_id, order_number, serial_number, mboard_number, instance_expiry) Values('', '{$engine_id}', '{$order_id}', '$serial_number', '', '$expiry');";
 
 			$query=mysql_query($insert);
+			syslog_write('Licence Keys', 'LICENCE_KEY_GENERATED', syslog_who().' generated one more licence key for order #'.$order_id.'.', array('entity_type' => 'licence key', 'entity_label' => 'Order #'.$order_id));
 
 		}
 
@@ -133,9 +138,13 @@ $ccAdminData = get_session_data();
 
 		$expiry = db_esc($_REQUEST['expiry']);
 
+		$syslogRow = syslog_snapshot('tbl_package_instance', 'id', $instance_id);
 		$insert = "update tbl_package_instance set instance_expiry='$expiry' where id = '$instance_id'";
 
 		$query=mysql_query($insert);
+		if ($syslogRow) {
+			syslog_write('Licence Keys', 'LICENCE_KEY_EXPIRY_CHANGED', syslog_who().' changed the expiry date of licence key '.substr($syslogRow['serial_number'], 0, 6).'... of order #'.$syslogRow['order_number'].' from '.$syslogRow['instance_expiry'].' to '.$expiry.'.', array('entity_type' => 'licence key', 'entity_id' => $instance_id, 'entity_label' => 'Order #'.$syslogRow['order_number'], 'details' => array('old_expiry' => $syslogRow['instance_expiry'], 'new_expiry' => $expiry)));
+		}
 
 	}
 

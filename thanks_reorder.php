@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
@@ -41,7 +42,8 @@ $getPage	=	$objMain->getContent(16);
   		$r_cart 		=	mysql_query($qy_cart);
 			
 		$qy_tblor		=	"UPDATE tbl_reorder set order_id ='".$tt."',status ='1'  where id_re='".san_int($lastorderid)."'";
-		mysql_query($qy_tblor);		
+		mysql_query($qy_tblor);
+		syslog_write('Orders', 'REORDER_COMPLETED', syslog_who().' completed a renewal (re-order); the access of order detail ID '.$row1['id_detailorder'].' now ends on '.$row1['enddate'].'.', array('entity_type' => 'order', 'entity_id' => $row1['id_detailorder']));		
 		}
 	
 	

@@ -116,6 +116,9 @@ $ccAdminData = get_session_data();
 	}
 
 
+	if (isset($ordered_package) && $ordered_package) {
+		syslog_write('Licence Keys', 'LICENCE_KEY_GENERATED', syslog_who().' generated '.$counter.' more licence key(s) for order #'.$order_id.'.', array('entity_type' => 'licence key', 'entity_label' => 'Order #'.$order_id));
+	}
 	header('Location: manage_keys.php?id='.(isset($_REQUEST['id']) ? san_int($_REQUEST['id']) : 0));
 
 ?>

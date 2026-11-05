@@ -25,4 +25,10 @@ $cms2AjaxRequest = (
 );
 
 cms2_require_page_access($cms2CurrentFile, $cms2AjaxRequest);
+
+/* Activity log safety net: records admin changes that have no detailed log call of their own. */
+include_once dirname(__FILE__).'/../system_log.php';
+if (function_exists('syslog_admin_fallback_register')) {
+	syslog_admin_fallback_register();
+}
 ?>

@@ -70,7 +70,10 @@ $ccAdminData = get_session_data();
 			$spram[2] = $spram[7];
 		}
 		
+		$syslogBefore = syslog_snapshot('sliders', 's_id', san_int($_POST["sid"]));
 		mysql_query("update sliders set type='".db_esc($spram[9])."', s_image='".db_esc($spram[2])."', s_alt='".db_esc($spram[3])."', s_link='".db_esc($spram[4])."' where s_id='".san_int($_POST["sid"])."'");
+		$syslogAfter = syslog_snapshot('sliders', 's_id', san_int($_POST["sid"]));
+		syslog_log_updated('Banners', 'BANNER_UPDATED', 'banner', san_int($_POST["sid"]), syslog_pick($syslogAfter, 's_alt', syslog_pick($syslogAfter, 's_image')), $syslogBefore, $syslogAfter, 'sliders', array('s_updated'));
 
 		
 

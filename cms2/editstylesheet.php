@@ -26,6 +26,7 @@ $ccAdminData = get_session_data();
 	fwrite($fp, $contents);
 	fclose($fp);
 	$str	=	'Stylesheet has been updated.';
+	syslog_write('Content', 'STYLESHEET_UPDATED', syslog_who().' edited and saved the website style sheet (style_sheet.css, now '.strlen($contents).' characters).', array('entity_type' => 'file', 'entity_label' => 'style_sheet.css'));
 	}
 	
 	include ("html/editstylesheet.html");

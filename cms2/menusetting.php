@@ -21,8 +21,10 @@ if (isset($_POST['Submit']) && isset($_POST['Submit'])=="Update..")
 {
 	$spram[1]	=	$_POST['page_title'];
 
+	$syslogBefore = syslog_snapshot_one('website');
 	$qu1="update website set  menucolum='".db_esc($spram[1])."'";
 	mysql_query($qu1);
+	syslog_log_setting('SETTINGS_UPDATED', 'Menu columns', $syslogBefore, syslog_snapshot_one('website'), 'website');
 	$str	=	"Data have been updated successfully";
 
 }

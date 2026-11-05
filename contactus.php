@@ -1,4 +1,5 @@
-<?php $this_page = "contact" ?>
+<?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php'; $this_page = "contact" ?>
 <?php
 ob_start();
 session_start();
@@ -101,6 +102,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contactus_form'])) {
         $headers .= "Content-Type: text/html; charset=UTF-8";
 
         $mail_send = sendEmail($to, $subject, $txt, $headers);
+        syslog_connect();
+        syslog_write('Enquiries', 'CONTACT_FORM_SUBMITTED', ($mail_send ? '' : '(email to sales failed) ').syslog_who().' sent the "'.$type.'" contact form (name: '.$name.', email: '.$email.', phone: +'.$cCode.'-'.$tel.').', array('status' => $mail_send ? 'success' : 'failed', 'entity_type' => 'enquiry', 'entity_label' => $email, 'details' => array('message' => $message, 'form' => $type)));
 
         if ($mail_send) {
             // header("Location: " . BASE_URL . "thankyou-page.php");

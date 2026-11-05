@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
@@ -42,6 +43,7 @@ $after7days	=	date('Y-m-d',strtotime('+7 days' ) );
 		
 		$spram[6]	=	$after7days;
 		expiremailbefore7days($spram,$from_email);
+		syslog_write('Notifications', 'EXPIRY_REMINDER_SENT', 'The system emailed '.$spram[5].' a reminder that '.strip_tags(str_replace('&nbsp;', ' ', $spram[4])).' expires on '.$after7days.' (7 days left).', array('entity_type' => 'order item', 'entity_id' => $rowsendmail['ID'], 'entity_label' => strip_tags(str_replace('&nbsp;', ' ', $spram[4])), 'actor' => array('type' => 'system', 'name' => 'Daily expiry reminder job')));
 	}
 	
 /////////////////////////////////////////////////////////////////Mail before 7 days expire/////////////////////////////////////////////////////////
@@ -68,6 +70,7 @@ $after7days	=	date('Y-m-d',strtotime('+7 days' ) );
 		
 		$spram1[6]	=	$todaydate;
 		expiremail($spram1,$from_email);
+		syslog_write('Notifications', 'EXPIRED_NOTICE_SENT', 'The system emailed '.$spram1[5].' that '.strip_tags(str_replace('&nbsp;', ' ', $spram1[4])).' expired today.', array('entity_type' => 'order item', 'entity_id' => $rowsendmailexp['ID'], 'entity_label' => strip_tags(str_replace('&nbsp;', ' ', $spram1[4])), 'actor' => array('type' => 'system', 'name' => 'Daily expiry reminder job')));
 	}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>

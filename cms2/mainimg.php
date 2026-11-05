@@ -41,6 +41,7 @@ $ccAdminData = get_session_data();
 			$objDBcon->Dml_Query_Parser($upd);
 			mysql_query("UPDATE tbl_updates set in_contnt='".db_esc($spram[2])."' where id_con='2'");
 			mysql_query("UPDATE tbl_updates set in_contnt='".db_esc($spram[3])."' where id_con='3'");
+			syslog_write('Settings', 'SETTINGS_UPDATED', syslog_who().' changed the front page images (image 1: '.$spram[1].', image 2: '.$spram[2].', image 3: '.$spram[3].').', array('entity_type' => 'setting', 'entity_label' => 'Front page images'));
 		
 		}
 		//////////////////////////////////

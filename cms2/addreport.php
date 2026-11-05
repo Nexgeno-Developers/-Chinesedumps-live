@@ -108,6 +108,7 @@ $ccAdminData = get_session_data();
 
 		if($reportUploadOk){
 		mysql_query("insert into report_card (r_exam, r_image, r_status, r_date) values ('".db_esc($spram[0])."','".db_esc($spram[2])."','".san_int($spram[3])."','".db_esc($spram[4])."')");
+		syslog_log_created('Exam Results', 'EXAM_REPORT_CREATED', 'exam report image', mysql_insert_id(), $spram[2], 'For exam ID '.$spram[0].'.');
 		}
 
 

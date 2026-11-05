@@ -77,6 +77,7 @@ $image_path = base_path('images/stamp_logo.png');
 		
 		if($bannerUploadOk){
 		mysql_query("insert into sliders (s_image, s_alt, s_link, s_updated, status,type) values ('".db_esc($spram[2])."','".db_esc($spram[3])."','".db_esc($spram[4])."','".db_esc($spram[5])."','".san_int($spram[6])."','".db_esc($spram[7])."')");
+		syslog_log_created('Banners', 'BANNER_CREATED', 'banner', mysql_insert_id(), $spram[3] !== '' ? $spram[3] : $spram[2], 'Banner type: '.$spram[7].'.');
 		}
 
 

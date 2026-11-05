@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once __DIR__ . '/includes/config/load_secrets.php';
 require_once __DIR__ . '/includes/common/auth.php';
 ob_start();
@@ -35,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $row = $result ? mysql_fetch_assoc($result) : false;
         if (!$row || !auth_timing_safe_equals($row['token_hash'], hash('sha256', $token))) {
             $message = 'This password-reset link is invalid or has expired. Please request a new one.';
+            syslog_write('Authentication', 'PASSWORD_RESET_FAILED', 'Someone tried to set a new password with a password-reset link that is invalid or has expired.', array('status' => 'failed'));
             $validLink = false;
         } else {
             $hash = mysql_real_escape_string(auth_password_hash($password));
@@ -45,6 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 session_regenerate_id(true);
                 $message = 'Your password has been reset. You can now sign in.';
                 $resetSuccessful = true;
+                syslog_write('Authentication', 'PASSWORD_RESET_DONE', syslog_user_label($userId).' set a new password using the password-reset link.', array(
+                    'entity_type' => 'customer', 'entity_id' => $userId, 'entity_label' => syslog_user_label($userId),
+                    'actor' => array('type' => 'user', 'id' => $userId, 'name' => syslog_user_label($userId))));
                 $validLink = false;
             } else {
                 $message = 'We could not reset your password. Please request a new reset link and try again.';

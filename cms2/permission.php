@@ -29,6 +29,7 @@ $moduleNameWhere = implode(",", $moduleNameSql);
 	if(isset($_POST['permission']) &&	$_POST['permission']	== "Update Now" )
 	{		
 	
+	$syslogBefore = syslog_permission_matrix((int)$_REQUEST['nid']);
 	$qry = "select MIN(ModuleID) AS ModuleID, `Name` from tblmodules where `Name` IN (".$moduleNameWhere.") GROUP BY `Name`";
 	
 	$res = mysql_query($qry);
@@ -52,6 +53,11 @@ $moduleNameWhere = implode(",", $moduleNameSql);
 		
 	}
 	cms2_ensure_legacy_modules_and_permissions();
+	$syslogChanges = syslog_diff($syslogBefore, syslog_permission_matrix((int)$_REQUEST['nid']));
+	$syslogTarget = syslog_snapshot('tbladmin', 'admin_id', (int)$_REQUEST['nid']);
+	syslog_write('Admin Users', 'ADMIN_PERMISSIONS_UPDATED', syslog_who().' changed the permissions of admin user "'.syslog_pick($syslogTarget, 'admin_name', 'ID '.(int)$_REQUEST['nid']).'".'.(count($syslogChanges) ? ' Changes: '.syslog_changes_text($syslogChanges).'.' : ' Saved without changing any permission.'), array(
+		'entity_type' => 'admin user', 'entity_id' => (int)$_REQUEST['nid'], 'entity_label' => syslog_pick($syslogTarget, 'admin_name'), 'details' => array('changes' => $syslogChanges)
+	));
 	$message	=	"Data has been saved...";
 }
 //............................................

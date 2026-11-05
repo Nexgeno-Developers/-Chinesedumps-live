@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Activity Log</title>
+<link href="new.css" rel="stylesheet" type="text/css" />
+<link href="style1.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+<style type="text/css">
+.sl-wrap { font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #1e293b; }
+.sl-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+.sl-head h2 { margin:0; }
+.sl-btn { display:inline-flex; align-items:center; gap:6px; padding:7px 16px; font-size:13px; font-weight:600; color:#fff; background:#333; border:0; border-radius:6px; text-decoration:none; cursor:pointer; }
+.sl-btn.light { background:#e2e8f0; color:#1e293b; }
+.sl-filters { background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; margin:12px 0; }
+.sl-filters .row { display:flex; flex-wrap:wrap; gap:10px; align-items:flex-end; margin-bottom:8px; }
+.sl-filters label { display:block; font-size:11px; font-weight:700; text-transform:uppercase; color:#64748b; margin-bottom:3px; }
+.sl-filters input[type=text], .sl-filters input[type=date], .sl-filters select { padding:6px 8px; border:1px solid #cbd5e1; border-radius:5px; font-size:13px; min-width:120px; background:#fff; }
+.sl-filters input.q { min-width:260px; }
+.sl-cards { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+.sl-card { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:8px 16px; min-width:110px; }
+.sl-card b { display:block; font-size:20px; }
+.sl-card span { font-size:11px; color:#64748b; text-transform:uppercase; }
+table.sl-table { width:100%; border-collapse:collapse; background:#fff; border:1px solid #e2e8f0; }
+table.sl-table th { background:#1e293b; color:#fff; text-align:left; padding:8px; font-size:12px; white-space:nowrap; }
+table.sl-table td { padding:8px; border-top:1px solid #e2e8f0; vertical-align:top; }
+table.sl-table tr.sl-row:hover td { background:#f8fafc; }
+.sl-badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:700; color:#fff; white-space:nowrap; }
+.sl-user { background:#2563eb; } .sl-admin { background:#7c3aed; } .sl-guest { background:#64748b; } .sl-system { background:#0d9488; }
+.sl-success { background:#16a34a; } .sl-failed { background:#dc2626; } .sl-info { background:#d97706; }
+.sl-act { background:#e2e8f0; color:#0f172a; }
+.sl-sub { color:#64748b; font-size:11px; }
+.sl-detail td { background:#f8fafc; }
+.sl-changes { border-collapse:collapse; margin:4px 0; }
+.sl-changes th, .sl-changes td { border:1px solid #cbd5e1; padding:4px 8px; background:#fff; color:#1e293b; text-align:left; font-size:12px; }
+.sl-changes th { background:#e2e8f0; }
+.sl-pre { white-space:pre-wrap; margin:0; }
+.sl-pager { margin:14px 0; display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
+.sl-pager a, .sl-pager span { padding:4px 10px; border:1px solid #cbd5e1; border-radius:4px; text-decoration:none; color:#1e293b; background:#fff; }
+.sl-pager span.cur { background:#1e293b; color:#fff; border-color:#1e293b; }
+.sl-warn { background:#fef3c7; border:1px solid #f59e0b; padding:12px; border-radius:6px; margin:12px 0; }
+.sl-ok { background:#dcfce7; border:1px solid #16a34a; padding:12px; border-radius:6px; margin:12px 0; }
+.sl-btn.danger { background:#b91c1c; }
+.sl-purge { background:#fff7f7; border:1px solid #fecaca; border-radius:8px; padding:12px; margin:0 0 12px 0; }
+.sl-purge h3 { margin:0 0 4px 0; color:#991b1b; font-size:14px; }
+.sl-purge .row { display:flex; flex-wrap:wrap; gap:24px; align-items:flex-end; }
+.sl-purge form { display:flex; flex-wrap:wrap; gap:8px; align-items:flex-end; }
+.sl-purge label { display:block; font-size:11px; font-weight:700; text-transform:uppercase; color:#64748b; width:100%; }
+.sl-purge select, .sl-purge input[type=date] { padding:6px 8px; border:1px solid #cbd5e1; border-radius:5px; font-size:13px; background:#fff; }
+</style>
+<script type="text/javascript">
+function slToggle(id) {
+	var el = document.getElementById('sl-d-' + id);
+	if (el) { el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'table-row' : 'none'; }
+}
+function slConfirmOlder(f) {
+	var d = f.elements['purge_days'].value;
+	return window.confirm('Permanently delete ALL activity log entries older than ' + d + ' days?\n\nThis cannot be undone (the deletion itself will be logged).');
+}
+function slConfirmRange(f) {
+	var a = f.elements['purge_from'].value, b = f.elements['purge_to'].value;
+	if (!a || !b) { return false; }
+	if (a > b) { window.alert('The From date must not be after the To date.'); return false; }
+	return window.confirm('Permanently delete ALL activity log entries from ' + a + ' to ' + b + ' (inclusive)?\n\nThis cannot be undone (the deletion itself will be logged).');
+}
+function slRange(from, to) {
+	document.getElementById('sl_date_from').value = from;
+	document.getElementById('sl_date_to').value = to;
+	document.getElementById('sl_form').submit();
+}
+</script>
+</head>
+<body>
+
+<div class="topbar">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+  <td valign="middle"><img src="images/admin_icon.png" alt="ChineseDumps Admin" style="height:38px;" /></td>
+  <td valign="middle" align="right">
+<?php if(isset($_SESSION['strAdmin'])): ?>
+	<div style="display: inline-block; vertical-align: middle;">
+		<span style="color: #ffffff; margin-right: 15px; font-weight: 500;">Welcome, <?php echo syslog_view_h($_SESSION['strAdmin']); ?></span>
+		<a href="logout.php" class="btn-logout"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Logout</a>
+	</div>
+<?php endif; ?>
+  </td>
+</tr>
+</table></div>
+
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" class="leftside"><?php include ("menu.php"); ?></td>
+
+<td valign="top" class="rightside">
+<div class="sl-wrap">
+
+<div class="sl-head">
+	<h2>Activity Log</h2>
+	<?php if ($tableReady) { ?>
+	<a class="sl-btn" href="<?php echo syslog_view_h($exportLink); ?>"><i class="fa-solid fa-file-csv"></i> Export CSV</a>
+	<?php } ?>
+</div>
+<p>Every action done on the website &mdash; by visitors, customers, admin users and automatic jobs &mdash; with who did it, what was done and when.</p>
+
+<?php if (!$tableReady) { ?>
+	<div class="sl-warn"><b>The log table does not exist yet.</b> Run the file <code>cms2/sql/system_log.sql</code> on this database, then reload this page.</div>
+<?php } else { ?>
+
+<form id="sl_form" method="get" action="systemlog.php" class="sl-filters">
+	<div class="row">
+		<div><label>From date</label><input type="date" id="sl_date_from" name="date_from" value="<?php echo syslog_view_h($filters['date_from']); ?>" /></div>
+		<div><label>To date</label><input type="date" id="sl_date_to" name="date_to" value="<?php echo syslog_view_h($filters['date_to']); ?>" /></div>
+		<div><label>Who</label>
+			<select name="actor_type">
+				<option value="">Everyone</option>
+				<?php foreach (array('user' => 'Customers', 'admin' => 'Admin users', 'guest' => 'Visitors (not logged in)', 'system' => 'Automatic jobs') as $v => $l) { ?>
+				<option value="<?php echo $v; ?>"<?php if ($filters['actor_type'] == $v) echo ' selected="selected"'; ?>><?php echo $l; ?></option>
+				<?php } ?>
+			</select></div>
+		<div><label>Area</label>
+			<select name="module">
+				<option value="">All areas</option>
+				<?php foreach ($moduleList as $m) { ?>
+				<option value="<?php echo syslog_view_h($m); ?>"<?php if ($filters['module'] === $m) echo ' selected="selected"'; ?>><?php echo syslog_view_h($m); ?></option>
+				<?php } ?>
+			</select></div>
+		<div><label>Action</label>
+			<select name="action">
+				<option value="">All actions</option>
+				<?php foreach ($actionList as $a) { ?>
+				<option value="<?php echo syslog_view_h($a); ?>"<?php if ($filters['action'] === $a) echo ' selected="selected"'; ?>><?php echo syslog_view_h(syslog_view_action_label($a)); ?></option>
+				<?php } ?>
+			</select></div>
+		<div><label>Result</label>
+			<select name="status">
+				<option value="">All</option>
+				<?php foreach (array('success' => 'Success', 'failed' => 'Failed', 'info' => 'Info') as $v => $l) { ?>
+				<option value="<?php echo $v; ?>"<?php if ($filters['status'] == $v) echo ' selected="selected"'; ?>><?php echo $l; ?></option>
+				<?php } ?>
+			</select></div>
+	</div>
+	<div class="row">
+		<div><label>Search (name, email, IP, item, text)</label><input type="text" class="q" name="q" value="<?php echo syslog_view_h($filters['q']); ?>" /></div>
+		<div><label>Rows per page</label>
+			<select name="per_page">
+				<?php foreach (array(25, 50, 100, 200) as $n) { ?>
+				<option value="<?php echo $n; ?>"<?php if ($filters['per_page'] == $n) echo ' selected="selected"'; ?>><?php echo $n; ?></option>
+				<?php } ?>
+			</select></div>
+		<div>
+			<button type="submit" class="sl-btn"><i class="fa-solid fa-filter"></i> Filter</button>
+			<a class="sl-btn light" href="systemlog.php">Reset</a>
+		</div>
+		<div>
+			<a class="sl-btn light" href="#" onclick="slRange('<?php echo date('Y-m-d'); ?>','<?php echo date('Y-m-d'); ?>');return false;">Today</a>
+			<a class="sl-btn light" href="#" onclick="slRange('<?php echo date('Y-m-d', strtotime('-1 day')); ?>','<?php echo date('Y-m-d', strtotime('-1 day')); ?>');return false;">Yesterday</a>
+			<a class="sl-btn light" href="#" onclick="slRange('<?php echo date('Y-m-d', strtotime('-6 days')); ?>','<?php echo date('Y-m-d'); ?>');return false;">Last 7 days</a>
+			<a class="sl-btn light" href="#" onclick="slRange('<?php echo date('Y-m-d', strtotime('-29 days')); ?>','<?php echo date('Y-m-d'); ?>');return false;">Last 30 days</a>
+		</div>
+	</div>
+</form>
+
+<div class="sl-cards">
+	<div class="sl-card"><b><?php echo number_format($totalRecs); ?></b><span>Total entries</span></div>
+	<div class="sl-card"><b><?php echo number_format($statusCounts['success']); ?></b><span>Success</span></div>
+	<div class="sl-card"><b><?php echo number_format($statusCounts['failed']); ?></b><span>Failed</span></div>
+	<div class="sl-card"><b><?php echo number_format($statusCounts['info']); ?></b><span>Info</span></div>
+</div>
+
+<?php if ($purgeMessage !== '') { ?><div class="sl-ok"><?php echo syslog_view_h($purgeMessage); ?></div><?php } ?>
+<?php if ($purgeError !== '') { ?><div class="sl-warn"><?php echo syslog_view_h($purgeError); ?></div><?php } ?>
+
+<?php if ($canPurge) { ?>
+<div class="sl-purge">
+	<h3><i class="fa-solid fa-trash-can"></i> Delete old log entries</h3>
+	<p class="sl-sub">Permanently removes entries from the log. The deletion itself is recorded in the log (who, when, how many, which dates) and cannot be removed by this tool.</p>
+	<div class="row">
+		<form method="post" action="systemlog.php" onsubmit="return slConfirmOlder(this);">
+			<input type="hidden" name="csrf" value="<?php echo syslog_view_h($_SESSION['syslog_csrf']); ?>" />
+			<input type="hidden" name="purge_mode" value="older" />
+			<label>Delete entries older than</label>
+			<select name="purge_days">
+				<option value="7">7 days</option>
+				<option value="30">30 days</option>
+				<option value="90" selected="selected">90 days</option>
+			</select>
+			<button type="submit" class="sl-btn danger"><i class="fa-solid fa-trash"></i> Delete older entries</button>
+		</form>
+		<form method="post" action="systemlog.php" onsubmit="return slConfirmRange(this);">
+			<input type="hidden" name="csrf" value="<?php echo syslog_view_h($_SESSION['syslog_csrf']); ?>" />
+			<input type="hidden" name="purge_mode" value="range" />
+			<label>Or delete a date range</label>
+			<input type="date" name="purge_from" required="required" />
+			<input type="date" name="purge_to" required="required" />
+			<button type="submit" class="sl-btn danger"><i class="fa-solid fa-trash"></i> Delete date range</button>
+		</form>
+	</div>
+</div>
+<?php } ?>
+
+<table class="sl-table" cellpadding="0" cellspacing="0">
+<tr>
+	<th>#</th>
+	<th>Date &amp; time</th>
+	<th>Who</th>
+	<th>Area / Action</th>
+	<th>What happened</th>
+	<th>Result</th>
+	<th>IP address</th>
+	<th></th>
+</tr>
+<?php if (count($rows) == 0) { ?>
+<tr><td colspan="8" align="center">No log entries found for these filters.</td></tr>
+<?php } ?>
+<?php foreach ($rows as $r) {
+	$typeLabels = array('user' => 'Customer', 'admin' => 'Admin', 'guest' => 'Visitor', 'system' => 'System');
+	$who = $r['actor_name'] !== '' ? $r['actor_name'] : ($r['actor_id'] ? 'ID ' . $r['actor_id'] : '');
+?>
+<tr class="sl-row">
+	<td><?php echo (int)$r['log_id']; ?></td>
+	<td style="white-space:nowrap;"><?php echo syslog_view_h(date('d M Y', strtotime($r['created_at']))); ?><br /><span class="sl-sub"><?php echo syslog_view_h(date('h:i:s A', strtotime($r['created_at']))); ?></span></td>
+	<td>
+		<span class="sl-badge sl-<?php echo syslog_view_h($r['actor_type']); ?>"><?php echo syslog_view_h(isset($typeLabels[$r['actor_type']]) ? $typeLabels[$r['actor_type']] : $r['actor_type']); ?></span><br />
+		<?php if ($who !== '') { ?><b><?php echo syslog_view_h($who); ?></b><br /><?php } ?>
+		<?php if ($r['actor_email'] !== '') { ?><span class="sl-sub"><?php echo syslog_view_h($r['actor_email']); ?></span><?php } ?>
+		<?php if ($r['actor_role'] !== '') { ?><span class="sl-sub"><?php echo syslog_view_h($r['actor_role']); ?></span><?php } ?>
+	</td>
+	<td><?php echo syslog_view_h($r['module']); ?><br /><span class="sl-badge sl-act"><?php echo syslog_view_h(syslog_view_action_label($r['action'])); ?></span></td>
+	<td><?php echo syslog_view_h($r['description']); ?></td>
+	<td><span class="sl-badge sl-<?php echo syslog_view_h($r['status']); ?>"><?php echo syslog_view_h(ucfirst($r['status'])); ?></span></td>
+	<td style="white-space:nowrap;"><?php echo syslog_view_h($r['ip_address']); ?></td>
+	<td><a href="#" onclick="slToggle(<?php echo (int)$r['log_id']; ?>);return false;">Details</a></td>
+</tr>
+<tr class="sl-detail" id="sl-d-<?php echo (int)$r['log_id']; ?>" style="display:none;">
+	<td></td>
+	<td colspan="7">
+		<?php if ($r['entity_type'] !== '' || $r['entity_label'] !== '') { ?>
+		<p><b>Item:</b> <?php echo syslog_view_h($r['entity_type']); ?> <?php echo syslog_view_h($r['entity_label']); ?> <?php if ($r['entity_id'] !== '') { echo '(ID ' . syslog_view_h($r['entity_id']) . ')'; } ?></p>
+		<?php } ?>
+		<?php echo syslog_view_details_html($r['details']); ?>
+		<p class="sl-sub">Page: <?php echo syslog_view_h($r['request_method']); ?> <?php echo syslog_view_h($r['request_url']); ?><br />Browser: <?php echo syslog_view_h($r['user_agent']); ?></p>
+	</td>
+</tr>
+<?php } ?>
+</table>
+
+<div class="sl-pager">
+	<?php
+	$base = $pageLink . '&page=';
+	if ($pageNo > 1) { echo '<a href="' . syslog_view_h($base . ($pageNo - 1)) . '">&laquo; Previous</a>'; }
+	$start = max(1, $pageNo - 4);
+	$end = min($totalPages, $pageNo + 4);
+	for ($p = $start; $p <= $end; $p++) {
+		if ($p == $pageNo) { echo '<span class="cur">' . $p . '</span>'; }
+		else { echo '<a href="' . syslog_view_h($base . $p) . '">' . $p . '</a>'; }
+	}
+	if ($pageNo < $totalPages) { echo '<a href="' . syslog_view_h($base . ($pageNo + 1)) . '">Next &raquo;</a>'; }
+	?>
+	<span style="border:0;background:none;">Page <?php echo $pageNo; ?> of <?php echo $totalPages; ?></span>
+</div>
+
+<?php } ?>
+
+</div>
+</td>
+</tr>
+</table>
+<?php include("footer.php"); ?>
+</body>
+</html>

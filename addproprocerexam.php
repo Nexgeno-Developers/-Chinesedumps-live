@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 session_start();
 include("includes/config/classDbConnection.php");
@@ -96,6 +97,7 @@ $i		= 0;
 
 									}
 
+		syslog_write('Cart', 'CART_ITEM_ADDED', syslog_who().' '.($exe_check >= 1 ? 'updated the price / duration of exam ' : 'added exam ').syslog_exam_label($proid).' ('.syslog_ptype_label($ptype).', '.($subscr ? $subscr.' months' : 'default duration').', price $'.$totalprice.') '.($exe_check >= 1 ? 'in' : 'to').' the shopping cart.', array('entity_type' => 'exam', 'entity_id' => (int)$proid, 'entity_label' => syslog_exam_label($proid), 'details' => array('type' => $ptype, 'months' => $subscr, 'price' => $totalprice, 'already_in_cart' => ($exe_check >= 1))));
 		$rs_left_cart		=	mysql_query($query);
 
 		$num	=	mysql_num_rows($rs_left_cart);

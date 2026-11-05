@@ -158,6 +158,7 @@ function watermark_image($oldimage_name, $new_image_name) {
 		//$spram[2]	=	$newnamedemo; 
 		
 		mysql_query("insert into sliders_new (s_image, group_id) values ('".db_esc($newnamedemo)."','".db_esc($spram[3])."')");
+		syslog_log_created('Exam Results', 'EXAM_RESULT_IMAGE_CREATED', 'exam result image', mysql_insert_id(), $newnamedemo);
 
 	watermark_image($_FILES['exam_demo']['tmp_name'][$i],"../images/slider/".$newnamedemo);
 			

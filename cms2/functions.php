@@ -60,7 +60,8 @@ function cms2_feature_modules()
 		'Courses Module',
 		'Global Content Module',
 		'Users Module',
-		'Admin Users Module'
+		'Admin Users Module',
+		'System Log Module'
 	);
 }
 
@@ -111,7 +112,9 @@ function cms2_module_alias_map()
 		'Staff' => 'Admin Users Module',
 		'staff' => 'Admin Users Module',
 		'Admin User Management' => 'Admin Users Module',
-		'Add Admin User' => 'Admin Users Module'
+		'Add Admin User' => 'Admin Users Module',
+		'System Log' => 'System Log Module',
+		'Activity Log' => 'System Log Module'
 	);
 }
 
@@ -188,6 +191,9 @@ function cms2_admin_panel_sections()
 		array('Admin Users', array(
 			cms2_admin_menu_item('Admin User Management', 'manageadmin.php', 'Admin Users Module', 'read', 'images/News-Edit.gif'),
 			cms2_admin_menu_item('Add Admin User', 'addadmin.php', 'Admin Users Module', 'write', 'images/News-Add.gif')
+		)),
+		array('System Log', array(
+			cms2_admin_menu_item('Activity Log', 'systemlog.php', 'System Log Module', 'read', 'images/News-Edit.gif')
 		))
 	);
 }
@@ -671,7 +677,8 @@ function cms2_page_permissions()
 		'changemodule.php' => array('Configuration', 'edit'),
 		'processsave.php' => array('Orders Module', 'edit'),
 		'processsavere.php' => array('Orders Module', 'edit'),
-		'getsubcategory.php' => array('Vendors Module', 'read')
+		'getsubcategory.php' => array('Vendors Module', 'read'),
+		'systemlog.php' => array('System Log Module', 'read')
 	);
 }
 
@@ -747,9 +754,9 @@ function get_session_data()
 	}
 
 	$objDBcon = new classDbConnection();
-	if (!isset($_SESSION['rbacPermissionsSynced']) || $_SESSION['rbacPermissionsSynced'] != 'feature-modules-v2') {
+	if (!isset($_SESSION['rbacPermissionsSynced']) || $_SESSION['rbacPermissionsSynced'] != 'feature-modules-v3') {
 		cms2_ensure_legacy_modules_and_permissions();
-		$_SESSION['rbacPermissionsSynced'] = 'feature-modules-v2';
+		$_SESSION['rbacPermissionsSynced'] = 'feature-modules-v3';
 	}
 	$adminId = (int)$_SESSION['adminId'];
 	$query = "SELECT * FROM tbladmin WHERE admin_id='".$adminId."' AND admin_status='Active'";

@@ -34,6 +34,8 @@ $ccAdminData = get_session_data();
 		$sql=("INSERT INTO coupon(coupon_title,coupon_code,start_date,end_date,coupon_value,coupon_type,number_of_uses,status,comments) VALUES 
 		('".db_esc($title)."','".db_esc($code)."','".db_esc($start_date)."','".db_esc($end_date)."','".db_esc($coupon_value)."','".db_esc($coupon_type)."','".db_esc($no_of_user)."','".san_int($status)."','".db_esc($comments)."')") or die(mysql_error());
 		$query=mysql_query($sql);
+		$syslogId = mysql_insert_id();
+		syslog_log_created('Coupons', 'COUPON_CREATED', 'coupon', $syslogId, $code, 'Value: '.$coupon_value.' (type: '.$coupon_type.'), valid '.$start_date.' to '.$end_date.', '.$no_of_user.' use(s) allowed.');
 		$strError	.= "<span style='color: green; font-weight: 600;'>Coupon has been added successfully</span>";
 	}
 //------------------------------------------------------------------------------------//

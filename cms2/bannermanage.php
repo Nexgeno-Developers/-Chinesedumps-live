@@ -128,6 +128,7 @@ if (isset($_POST['btn_save_order']) && $_POST['btn_save_order'] === "Save Order"
     mysql_query("COMMIT") or die("Could not commit transaction: " . mysql_error());
 
     // 7) Redirect to avoid resubmission and show success feedback
+    syslog_write('Banners', 'BANNER_ORDER_CHANGED', syslog_who().' changed the display order of the banners.', array('entity_type' => 'banner'));
     header("Location: bannermanage.php?status=order_saved");
     exit;
 }

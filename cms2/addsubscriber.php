@@ -41,6 +41,8 @@ $ccAdminData = get_session_data();
 		if(empty($strError))
 		{
 		$insert	=	mysql_query("INSERT INTO tbl_maillist (mail_email)VALUES('".db_esc($spram[1])."')");
+		$syslogId = mysql_insert_id();
+		syslog_log_created('Mailing List', 'SUBSCRIBER_ADDED', 'mailing list subscriber', $syslogId, $spram[1]);
 		$strError	.= "Newsletter Subscriber Email has been added successfully";
 		}
 		}

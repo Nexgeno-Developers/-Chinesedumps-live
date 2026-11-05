@@ -102,7 +102,11 @@ session_start();
 			
 			
 			
-			$msg = "Record has been updated";
+			syslog_write('Orders', 'EXAM_ASSIGNED_TO_CUSTOMER', syslog_who().' manually assigned exam '.syslog_pick($re, 'exam_name', 'ID '.$exam).$append.' to '.syslog_user_label($user).' (no payment taken, access for 12 days).', array(
+					'entity_type' => 'order', 'entity_id' => $lastordid, 'entity_label' => 'manual order '.$lastordid,
+					'details' => array('exam_id' => $exam, 'product_type' => $ptype, 'customer_id' => (int)$user, 'order_detail_id' => $order_id)
+				));
+				$msg = "Record has been updated";
 			header("Location: masterorder.php");
 			exit;
 			

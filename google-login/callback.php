@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . '/includes/common/system_log.php';
 require_once __DIR__ . '/../includes/config/load_secrets.php';
 require_once __DIR__ . '/../includes/common/auth.php';
 require_once dirname(dirname(__FILE__)) . '/includes/common/sanitize.php';
@@ -86,6 +87,9 @@ if (isset($_GET['code'])) {
         $_SESSION['email']    = $email;
         $_SESSION['Uname']    = $user_fname;
         $_SESSION['uphone']   = $user_phone;
+        syslog_write('Authentication', isset($insert_sql) ? 'USER_REGISTERED' : 'USER_LOGIN', isset($insert_sql)
+            ? 'New customer '.$user_fname.' ('.$email.') registered using Google sign-in.'
+            : syslog_who().' logged in using Google sign-in.', array('entity_type' => 'customer', 'entity_id' => (int)$user_id, 'entity_label' => $email));
             //   var_dump($_SESSION);
             //   exit;
         // 4) update any temp_order

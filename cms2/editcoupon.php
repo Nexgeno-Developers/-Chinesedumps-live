@@ -32,7 +32,10 @@ $ccAdminData = get_session_data();
 		$no_of_user=$_POST['Number_of_Uses'];
 		$status=$_POST['status'];
 		$comments=$_POST['comments'];
+		$syslogBefore = syslog_snapshot('coupon', 'id', $id);
 		$sql=mysql_query("UPDATE coupon SET coupon_title='".db_esc($title)."',coupon_code='".db_esc($code)."',start_date='".db_esc($start_date)."',end_date='".db_esc($end_date)."', coupon_value='".db_esc($coupon_value)."',coupon_type='".db_esc($coupon_type)."',number_of_uses='".db_esc($no_of_user)."',status='".san_int($status)."',comments='".db_esc($comments)."' WHERE id='".$id."'") or die(mysql_error());
+		$syslogAfter = syslog_snapshot('coupon', 'id', $id);
+		syslog_log_updated('Coupons', 'COUPON_UPDATED', 'coupon', $id, syslog_pick($syslogAfter, 'coupon_code', $code), $syslogBefore, $syslogAfter, 'coupon', array('already_used'));
 		$strError	.= "Coupon has been updated successfully";
 	}
 //------------------------------------------------------------------------------------//

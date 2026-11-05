@@ -32,5 +32,6 @@ $status="";
 	$status= "<a href='javascript:showHintmodule(".$getID.")'>Enable</a>";
 	}
 	
+	syslog_write('Settings', 'MENU_MODULE_SWITCHED', syslog_who().' '.($row_cate['status'] == 1 ? 'disabled' : 'enabled').' website menu module ID '.$getID.'.', array('entity_type' => 'menu module', 'entity_id' => $getID));
 	echo $status;
 ?>

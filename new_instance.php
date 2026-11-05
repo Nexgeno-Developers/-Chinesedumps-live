@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
@@ -46,6 +47,7 @@ exit;
 			
 			$insert="insert into tbl_package_instance (id, engine_id, order_number, serial_number, mboard_number, instance_expiry) Values('', '".san_int($engine_id)."', '".db_esc($order_id)."', '$serial_number', '', '".db_esc($expiry)."');";
 			$query=mysql_query($insert);
+			syslog_write('Licence Keys', 'LICENCE_KEY_GENERATED', syslog_who().' generated an extra licence key for the testing engine of order #'.$order_id.'.', array('entity_type' => 'licence key', 'entity_label' => 'Order #'.$order_id));
 			header("Location: my-testing-engine.php");
 			exit();
 		}

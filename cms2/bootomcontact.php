@@ -24,8 +24,10 @@ if (isset($_POST['Submit']) && isset($_POST['Submit'])=="Update..")
 	$spram[3]	=	stripslashes($_POST['FCKeditor']);
 	//$spram[3]	=	$_POST['FCKeditor'];
 
+	$syslogBefore = syslog_snapshot_one('website');
 	$qu1="update website set  bottom_contact ='".db_esc($spram[3])."'";
 	mysql_query($qu1);
+	syslog_log_setting('SETTINGS_UPDATED', 'Footer contact block', $syslogBefore, syslog_snapshot_one('website'), 'website');
 	$str	=	"Data have been updated successfully";
 
 }

@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 ob_start();
 session_start();
@@ -190,6 +191,7 @@ header("Content-Length: " . $fsize);
 ob_clean();
 flush();
 
+syslog_write('Downloads', 'ENGINE_DOWNLOAD', syslog_who().' downloaded the testing engine file "'.$asfname.'".', array('entity_type' => 'file', 'entity_label' => $asfname, 'details' => array('exam_or_package_id' => isset($pid) ? $pid : '')));
 readfile($file_path);
 	
 	

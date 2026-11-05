@@ -171,7 +171,9 @@ function cms2_menu_icon_class($label, $url = '')
 		'User Management' => 'fa-solid fa-users-gear',
 
 		'Admin User Management' => 'fa-solid fa-user-shield',
-		'Add Admin User' => 'fa-solid fa-user-plus'
+		'Add Admin User' => 'fa-solid fa-user-plus',
+
+		'Activity Log' => 'fa-solid fa-clock-rotate-left'
 	);
 
 	if (isset($map[$label])) {

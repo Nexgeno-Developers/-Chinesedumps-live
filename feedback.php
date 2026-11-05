@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 ob_start();
 session_start();
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
@@ -63,6 +64,8 @@ $getPage	=	$objMain->getContent(1);
 			$_POST['emails']="";
 //			mail($to, "Feedback from testbells.com", $contactMessage, $headers );
 			$msg = "<font color='#FF0000' size='2'>Thank you for your feedback.<font>";
+			syslog_connect();
+			syslog_write('Enquiries', 'FEEDBACK_SUBMITTED', syslog_who().' sent feedback (name: '.$sparm[1].', email: '.$sparm[5].').', array('entity_type' => 'feedback', 'entity_label' => $sparm[5], 'details' => array('comments' => $sparm[9])));
 		}
 	}
 

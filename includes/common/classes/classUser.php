@@ -1,6 +1,7 @@
 <?PHP
 require_once dirname(__DIR__) . '/auth.php';
 require_once dirname(dirname(__FILE__)) . '/sanitize.php';
+require_once dirname(dirname(__FILE__)) . '/system_log.php';
 
 	//--------------------------------------------------------------------------------
 
@@ -93,7 +94,18 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 		 $qryexe = mysql_query($add_que) or die(mysql_error()); 
 
-		return mysql_insert_id();
+		$syslogId = mysql_insert_id();
+		$syslogName = trim($spram[1].' '.$spram[2]);
+		$syslogActor = syslog_actor();
+		if ($syslogActor['type'] == 'admin') {
+			syslog_log_created('Customers', 'CUSTOMER_CREATED', 'customer account', $syslogId, $syslogName.' ('.$spram[5].')', 'Status: '.$user_status.'.');
+		} else {
+			syslog_write('Authentication', 'USER_REGISTERED', 'New customer '.$syslogName.' ('.$spram[5].') registered an account on the website.', array(
+				'entity_type' => 'customer', 'entity_id' => $syslogId, 'entity_label' => $syslogName.' ('.$spram[5].')',
+				'actor' => array('type' => 'user', 'id' => (int)$syslogId, 'name' => $syslogName, 'email' => $spram[5])
+			));
+		}
+		return $syslogId;
 
 		}
 
@@ -325,6 +337,7 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			{
 
+				$syslogRow = syslog_snapshot('order_master', 'Cart_ID', $cart);
 				$q="delete from order_master where Cust_ID='".db_esc($uid)."'and Cart_ID='".db_esc($cart)."'";
 
 					mysql_query($q);
@@ -332,6 +345,9 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 				$qq	="delete from  order_detail where UserID='".db_esc($uid)."'and Cart_ID='".db_esc($cart)."'";
 
 				mysql_query($qq);
+				if ($syslogRow) {
+					syslog_log_deleted('Orders', 'ORDER_DELETED', 'order', $syslogRow['ID'], 'Order '.$syslogRow['Order_Id'].' of '.syslog_user_label($uid), 'Amount: $'.$syslogRow['Net_Amount'].'.');
+				}
 
 			}	
 
@@ -753,9 +769,13 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			{
 
+				$syslogRow = syslog_snapshot('temp_master', 'ID', $pid);
 				$q="delete from temp_master where ID='".db_esc($pid)."'";
 
 				mysql_query($q);
+				if ($syslogRow) {
+					syslog_log_deleted('Orders', 'PENDING_CART_DELETED', 'pending cart', $pid, 'Cart #'.$pid.' of '.syslog_user_label($syslogRow['Cust_ID']), 'Amount: $'.$syslogRow['Net_Amount'].'.');
+				}
 
 				
 
@@ -769,6 +789,7 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			{
 
+				$syslogRow = syslog_snapshot('order_master', 'ID', $pid);
 				$q="delete from order_master where ID='".db_esc($pid)."'";
 
 				mysql_query($q);
@@ -778,6 +799,9 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 				$q2="delete from order_detail where Cart_ID='".db_esc($pid)."'";
 
 				mysql_query($q2);
+				if ($syslogRow) {
+					syslog_log_deleted('Orders', 'ORDER_DELETED', 'order', $pid, 'Order '.$syslogRow['Order_Id'].' of '.syslog_user_label($syslogRow['Cust_ID']), 'Amount: $'.$syslogRow['Net_Amount'].'. Its items were deleted too.');
+				}
 
 				
 
@@ -789,9 +813,13 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			{
 
+				$syslogRow = syslog_snapshot('temp_master', 'ID', $pid);
 				$q="delete from temp_master where ID='".db_esc($pid)."'";
 
 				mysql_query($q);
+				if ($syslogRow) {
+					syslog_log_deleted('Orders', 'REORDER_CART_DELETED', 're-order cart', $pid, 'Cart #'.$pid.' of '.syslog_user_label($syslogRow['Cust_ID']), 'Amount: $'.$syslogRow['Net_Amount'].'.');
+				}
 
 			}
 
@@ -803,9 +831,13 @@ function deleteUserdemo($spram)
 
    				 {
 
+				$syslogRow = syslog_snapshot('tbl_demo_download', 'dnID', $spram);
 				$strSql='DELETE FROM tbl_demo_download WHERE dnID="'.db_esc($spram).'"';
 
 				mysql_query($strSql);
+				if ($syslogRow) {
+					syslog_log_deleted('Downloads', 'DEMO_DOWNLOAD_LOG_DELETED', 'demo download record', $spram, syslog_exam_label($syslogRow['itemid']).' by '.syslog_user_label($syslogRow['dnUID']));
+				}
 
 				}	
 
@@ -813,9 +845,13 @@ function deleteUserdemofull($spram)
 
    				 {
 
+				$syslogRow = syslog_snapshot('tbl_full_download', 'dnID', $spram);
 				$strSql='DELETE FROM tbl_full_download WHERE dnID="'.db_esc($spram).'"';
 
 				mysql_query($strSql);
+				if ($syslogRow) {
+					syslog_log_deleted('Downloads', 'FULL_DOWNLOAD_LOG_DELETED', 'full download record', $spram, syslog_exam_label($syslogRow['itemid']).' by '.syslog_user_label($syslogRow['dnUID']));
+				}
 
 				}	  
 
@@ -823,9 +859,13 @@ function deleteExamRequestcode($spram)
 
    				 {
 
+				$syslogRow = syslog_snapshot('exam_request', 'examr_id', $spram);
 				$strSql='DELETE FROM exam_request WHERE examr_id="'.db_esc($spram).'"';
 
 				mysql_query($strSql);
+				if ($syslogRow) {
+					syslog_log_deleted('Enquiries', 'EXAM_REQUEST_DELETED', 'exam request', $spram, $syslogRow['examr_code'].' requested by '.$syslogRow['examr_email']);
+				}
 
 				}	  
 
@@ -833,9 +873,13 @@ function deleteDemoDownload($spram)
 
    				 {
 
+				$syslogRow = syslog_snapshot('tbl_demo_download_email', 'tbl_demo_id', $spram);
 				$strSql='DELETE FROM  tbl_demo_download_email WHERE tbl_demo_id="'.db_esc($spram).'"';
 
 				mysql_query($strSql);
+				if ($syslogRow) {
+					syslog_log_deleted('Enquiries', 'DEMO_EMAIL_DELETED', 'demo request email', $spram, $syslogRow['demo_download_email'].' for '.$syslogRow['exam_code']);
+				}
 
 				}				
 
@@ -863,9 +907,13 @@ function deleteUser($spram)
 
 				//...................................................................
 
+				$syslogRow = syslog_snapshot('tbl_user', 'user_id', $spram);
 				$strSql='DELETE FROM tbl_user WHERE user_id="'.db_esc($spram).'"';
 
 				mysql_query($strSql);
+				if ($syslogRow) {
+					syslog_log_deleted('Customers', 'CUSTOMER_DELETED', 'customer account', $spram, trim($syslogRow['user_fname'].' '.$syslogRow['user_lname']).' ('.$syslogRow['user_email'].')');
+				}
 
 				}	  
 
@@ -1390,6 +1438,7 @@ function checkUserDuplication($email)
  function UpdateUserAdmin($spram)
 
 	  {
+		$syslogBefore = syslog_snapshot('tbl_user', 'user_id', $spram[0]);
 		$user_id		= mysql_real_escape_string($spram[0]);
 		$user_fname		= mysql_real_escape_string($spram[1]);
 		$user_lname		= mysql_real_escape_string($spram[2]);
@@ -1417,6 +1466,8 @@ function checkUserDuplication($email)
 				
 
 		mysql_query($strQury);
+		$syslogAfter = syslog_snapshot('tbl_user', 'user_id', $spram[0]);
+		syslog_log_updated('Customers', 'CUSTOMER_UPDATED', 'customer account', $spram[0], trim(syslog_pick($syslogAfter, 'user_fname').' '.syslog_pick($syslogAfter, 'user_lname')).' ('.syslog_pick($syslogAfter, 'user_email').')', $syslogBefore, $syslogAfter, 'tbl_user', array('user_profile_photo'));
 
 	  }	
 
@@ -2550,6 +2601,9 @@ function addMasteDetail($arrnews)
 			mysql_query("DELETE from temp_order where UserID='".db_esc($UserId)."'");
 
 			mysql_query("DELETE from temp_master where Cust_ID='".db_esc($UserId)."'");
+			syslog_write('Orders', 'ORDER_COMPLETED_MANUALLY', syslog_who().' manually completed the pending cart of '.syslog_user_label($UserId).' and turned it into an order (transaction / order id: '.$arrnews[2].').', array(
+				'entity_type' => 'order', 'entity_label' => 'Order '.$arrnews[2], 'details' => array('customer_id' => (int)$UserId, 'cart_id' => $CartId, 'order_id' => $arrnews[2])
+			));
 
 	
 
@@ -2571,6 +2625,7 @@ function add_demo_email($usrdm)
 
 			{				
 
+					syslog_write('Enquiries', 'DEMO_REQUESTED', syslog_who().' opened the free demo of exam '.str_replace("-demo","",$usrdm[0]).' again using the email '.$usrdm[2].'.', array('entity_type' => 'exam', 'entity_id' => $usrdm[4], 'entity_label' => str_replace("-demo","",$usrdm[0]), 'status' => 'info'));
 					header('Location: ' . BASE_URL . str_replace(array("\r","\n"),'',$_POST['vname']).'-demo-'.str_replace(array("\r","\n"),'',$_POST['ecode']).'.html');
 
 			}
@@ -2587,6 +2642,7 @@ function add_demo_email($usrdm)
 
 					{
 
+						syslog_write('Enquiries', 'DEMO_REQUESTED', syslog_who().' requested the free demo of exam '.str_replace("-demo","",$usrdm[0]).' using the email '.$usrdm[2].'.', array('entity_type' => 'exam', 'entity_id' => $usrdm[4], 'entity_label' => str_replace("-demo","",$usrdm[0])));
 						header('Location: ' . BASE_URL . str_replace(array("\r","\n"),'',$_POST['vname']).'-demo-'.str_replace(array("\r","\n"),'',$_POST['ecode']).'.html');
 
 					}
@@ -2634,6 +2690,7 @@ function examRequest_email($exmreq)
 					utm_seo_track_exam_request($existId, $exmreq[2]);
 				}
 
+				syslog_write('Enquiries', 'EXAM_REQUESTED', syslog_who().' asked again for exam "'.$exmreq[1].'" using the email '.$exmreq[2].' (this request already existed).', array('entity_type' => 'exam request', 'entity_id' => $existId, 'entity_label' => $exmreq[1], 'status' => 'info'));
 				header('Location: ' . BASE_URL . str_replace(array("\r","\n"),'',$exmreq[1]).'-examRequest.html');
 
 			}
@@ -2650,10 +2707,12 @@ function examRequest_email($exmreq)
 
 					{
 
+						$syslogRequestId = mysql_insert_id();
 						if (function_exists('utm_seo_track_exam_request')) {
 							utm_seo_track_exam_request(mysql_insert_id(), $exmreq[2]);
 						}
 
+						syslog_write('Enquiries', 'EXAM_REQUESTED', syslog_who().' requested a new exam "'.$exmreq[1].'" using the email '.$exmreq[2].'.', array('entity_type' => 'exam request', 'entity_id' => $syslogRequestId, 'entity_label' => $exmreq[1]));
 						header('Location: ' . BASE_URL . str_replace(array("\r","\n"),'',$exmreq[1]).'-examRequest.html');
 
 						

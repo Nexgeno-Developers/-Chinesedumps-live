@@ -27,6 +27,7 @@ $status="";
 	 
 		 $qury		= 	"UPDATE tbl_reorder set  order_id='".db_esc($txtorder)."',status ='1' where id_re='".$getID."'";
 	 	$rs_qury	=	mysql_query($qury);
+		syslog_write('Orders', 'REORDER_PROCESSED', syslog_who().' processed a re-order (renewal) of order detail ID '.$row1['id_detailorder'].' with process code "'.$txtorder.'"; the access now ends on '.$row1['enddate'].'.', array('entity_type' => 'order', 'entity_id' => $row1['id_detailorder']));
 	 
 	 echo "Successfully Procssed.";
 	 }else{

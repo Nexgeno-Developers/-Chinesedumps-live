@@ -33,6 +33,7 @@ $ccAdminData = get_session_data();
 			mysql_query("update tbl_exam set exam_upddate = '".db_esc($date)."' where ven_id = '".san_int($vendor)."'");
 		}
 		$strError = "Exams have been updated successfully";
+		syslog_write('Exams', 'BULK_EXAM_UPDATE', syslog_who().' set the "updated" date of '.(isset($_POST['all_exams']) ? 'all exams' : 'all exams of vendor ID '.san_int($vendor)).' to '.$date.'.', array('entity_type' => 'exam', 'details' => array('new_date' => $date, 'vendor_id' => san_int($vendor), 'all_exams' => isset($_POST['all_exams']))));
 	}
 	$category = $objEvent->fillComboCategory();
 //------------------------------------------------------------------------------------//

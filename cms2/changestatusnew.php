@@ -95,6 +95,7 @@ $status="";
 	
 	
 	
+	syslog_log_status_toggle($tblName, $tblField, $getID, $fieldStatus, $row_cate[$fieldStatus]);
 	echo $status;
 	//echo $getID." ".$tblName." ".$tblField." ".$fieldStatus;
 	

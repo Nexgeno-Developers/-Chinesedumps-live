@@ -40,7 +40,10 @@ $ccAdminData = get_session_data();
 		
 		if(empty($strError))
 		{
+		$syslogBefore = syslog_snapshot('tbl_maillist', 'mail_id', isset($_GET['ser_id']) ? san_int($_GET['ser_id']) : 0);
 		$insert	=	mysql_query("Update tbl_maillist set mail_email='".db_esc($spram[1])."' where mail_id='".(isset($_GET['ser_id']) ? san_int($_GET['ser_id']) : 0)."'");
+		$syslogAfter = syslog_snapshot('tbl_maillist', 'mail_id', isset($_GET['ser_id']) ? san_int($_GET['ser_id']) : 0);
+		syslog_log_updated('Mailing List', 'SUBSCRIBER_UPDATED', 'mailing list subscriber', isset($_GET['ser_id']) ? san_int($_GET['ser_id']) : 0, $spram[1], $syslogBefore, $syslogAfter);
 		$strError	.= "Newsletter Subscriber has been updated successfully";
 		}
 		}else{

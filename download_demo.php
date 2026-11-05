@@ -1,4 +1,5 @@
-<?php 
+<?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php'; 
 session_start();
 header("Access-Control-Allow-Origin: *");
 // header("Access-Control-Allow-Origin: https://chinesedumps.com");
@@ -167,6 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['file'])) {
     
     if ($inserted) {
         $response['success'] = true;
+        syslog_write('Downloads', 'DEMO_DOWNLOAD', syslog_who().' downloaded the demo file "'.$file.'"'.($displayName !== '' ? ' ('.$displayName.')' : '').' of certification ID '.$cert_id.'.', array('entity_type' => 'certification', 'entity_id' => $cert_id, 'entity_label' => $file));
         $response['downloadUrl'] = "uploads/demo_pdfs/" . urlencode($file);
     } else {
         $response['message'] = 'MySQLi Error: ' . mysqli_error($mysqli);

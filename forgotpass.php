@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once __DIR__ . '/includes/config/load_secrets.php';
 require_once __DIR__ . '/includes/common/auth.php';
 ob_start();
@@ -34,6 +35,11 @@ if (isset($_POST['Send'])) {
         $emailSql = mysql_real_escape_string($email);
         $rs = mysql_query("SELECT user_id,user_fname,user_lname,user_email FROM tbl_user WHERE user_email='".$emailSql."' AND user_status='Active' LIMIT 1");
         $user = $rs ? mysql_fetch_assoc($rs) : false;
+        syslog_write('Authentication', 'PASSWORD_RESET_REQUESTED', $user
+            ? 'A password-reset link was requested for the account of '.$user['user_fname'].' '.$user['user_lname'].' ('.$email.').'
+            : 'A password-reset link was requested for '.$email.' but no active account uses this email.',
+            array('status' => $user ? 'success' : 'info', 'entity_type' => 'customer', 'entity_label' => $email,
+                  'actor' => $user ? array('type' => 'user', 'id' => (int)$user['user_id'], 'name' => trim($user['user_fname'].' '.$user['user_lname']), 'email' => $email) : array()));
 
         if ($user) {
             /* Created once, then stores only a SHA-256 digest of each random token. */

@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 require_once __DIR__ . '/includes/config/load_secrets.php';
 require_once dirname(__FILE__) . '/includes/common/app_env.php';
@@ -85,15 +86,18 @@ if(isset($_POST['apply_coupon']))
 			$discount = mysql_fetch_array($query);
 			$_SESSION['coupon'] = $discount;
 			$errstr = "Coupon code applied successfully.";
+			syslog_write('Checkout', 'COUPON_APPLIED', syslog_who().' applied the coupon code "'.$discount['coupon_code'].'" ('.$discount['coupon_value'].' '.$discount['coupon_type'].' discount).', array('entity_type' => 'coupon', 'entity_label' => $discount['coupon_code'], 'details' => array('value' => $discount['coupon_value'], 'type' => $discount['coupon_type'])));
 		}
 		else
 		{
 			$errstr = "Invalid coupon code.";
+			syslog_write('Checkout', 'COUPON_REJECTED', syslog_who().' entered the coupon code "'.$coupon.'", but it is invalid, expired, switched off or fully used.', array('status' => 'failed', 'entity_type' => 'coupon', 'entity_label' => $coupon));
 		}
 	}
 	else
 	{
 		$errstr = "Invalid coupon code.";
+		syslog_write('Checkout', 'COUPON_REJECTED', syslog_who().' entered an empty coupon code.', array('status' => 'failed', 'entity_type' => 'coupon'));
 	}
 }
 if(isset($_POST['Final']))
@@ -303,6 +307,7 @@ $masterqyery = mysql_fetch_array(mysql_query("select * from temp_master where Cu
 		mysql_query("update coupon set already_used = (already_used+1) where coupon_code = '".db_esc($_SESSION['coupon']['coupon_code'])."'");
 	}
 
+	syslog_write('Checkout', 'CHECKOUT_STARTED', syslog_who().' was sent to PayPal to pay $'.$discounted_price.(($discounted_price != $ttprice) ? ' (cart total $'.$ttprice.' minus the coupon discount)' : '').'.', array('entity_type' => 'order', 'entity_label' => 'Cart '.$cart_Id, 'details' => array('cart_total' => $ttprice, 'to_pay' => $discounted_price, 'coupon' => isset($_SESSION['coupon']['coupon_code']) ? $_SESSION['coupon']['coupon_code'] : '')));
 	$SentNo=$_SESSION['uid']."-".$cart_Id;
 	$SentNo=base64_encode($SentNo);
 	

@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 require_once dirname(__FILE__) . '/includes/common/app_env.php';
 /**
@@ -83,6 +84,7 @@ if ($curl_errno || ! $verified_response) {
 //     $message = "cURL error ({$curl_errno}): {$curl_error}\nRaw POST: {$raw_post}";
 //     mail($to, $subject, $message, $headers);
     log_ipn('CURL_ERROR', $raw_post, $curl_error);
+    syslog_write('Payment', 'PAYPAL_IPN_ERROR', 'A PayPal payment notification could not be checked with PayPal (connection error: '.$curl_error.').', array('status' => 'failed', 'actor' => array('type' => 'system', 'name' => 'PayPal notification')));
     exit;
 }
 
@@ -326,9 +328,14 @@ if (stripos($verified_response, 'VERIFIED') !== false) {
             ";
             if (! mysql_query($qry_temp)) {
                 error_log("IPN insert order_master failed: " . mysql_error());
+                syslog_write('Orders', 'ORDER_CREATE_FAILED', syslog_user_label((int)$UserId).' paid $'.$paid.' (PayPal transaction '.$txn_id.') but the order could not be saved in the database. Please check this payment manually.', array('status' => 'failed', 'entity_type' => 'payment', 'entity_label' => $txn_id, 'actor' => array('type' => 'user', 'id' => (int)$UserId, 'name' => $Username)));
                 exit;
             }
             $lastordid = mysql_insert_id();
+            syslog_write('Orders', 'ORDER_CREATED', syslog_user_label((int)$UserId).' paid $'.$paid.' by PayPal (transaction '.$txn_id.'). Order ID '.$lastordid.' was created and the cart was moved into the order.', array(
+                'entity_type' => 'order', 'entity_id' => $lastordid, 'entity_label' => 'Order '.$txn_id,
+                'actor' => array('type' => 'user', 'id' => (int)$UserId, 'name' => $Username, 'email' => $email),
+                'details' => array('paypal_transaction' => $txn_id, 'amount_paid' => $paid, 'amount_due' => $r_cart_master['Net_Amount'], 'currency' => isset($post_data['mc_currency']) ? $post_data['mc_currency'] : '', 'paypal_email' => $email)));
         
             // 2) update any coupons
             $update_coupon = "
@@ -395,6 +402,7 @@ if (stripos($verified_response, 'VERIFIED') !== false) {
         else {
             // under-payment: log or alert
             error_log("IPN underpayment: UserID={$UserId}, paid={$paid}, due={$r_cart_master['Net_Amount']}");
+            syslog_write('Orders', 'PAYMENT_UNDERPAID', syslog_user_label((int)$UserId).' paid only $'.$paid.' but $'.$r_cart_master['Net_Amount'].' was due (PayPal transaction '.$txn_id.'). No order was created.', array('status' => 'failed', 'entity_type' => 'payment', 'entity_label' => $txn_id, 'actor' => array('type' => 'user', 'id' => (int)$UserId, 'name' => $Username)));
             exit;
         }
 
@@ -406,6 +414,7 @@ if (stripos($verified_response, 'VERIFIED') !== false) {
         
         
         log_ipn('FAIL - VERIFIED_NOT_COMPLETED', $raw_post, $verified_response);
+        syslog_write('Payment', 'PAYMENT_NOT_COMPLETED', 'PayPal reported payment '.$txn_id.' of '.$paymentAmount.' with status "'.$payment_status.'" (not completed). No order was created.', array('status' => 'failed', 'entity_type' => 'payment', 'entity_label' => $txn_id, 'actor' => array('type' => 'system', 'name' => 'PayPal notification')));
     }
 } else {
     // Invalid response
@@ -414,6 +423,7 @@ if (stripos($verified_response, 'VERIFIED') !== false) {
     sendEmail($to, $subject, $message, $headers);
     // mail($to, $subject, $message, $headers);
     log_ipn('INVALID', $raw_post, $verified_response);
+    syslog_write('Payment', 'PAYPAL_IPN_INVALID', 'PayPal did not confirm a payment notification (answer: '.$verified_response.'). No order was created.', array('status' => 'failed', 'actor' => array('type' => 'system', 'name' => 'PayPal notification')));
     exit;
 }
 

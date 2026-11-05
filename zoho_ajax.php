@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 // zoho_ajax.php
 // PHP 5.6 compatible endpoint to accept AJAX form POST and subscribe to Zoho Campaigns.
 // Place at: /home2/chinesedumps/public_html/zoho_ajax.php
@@ -148,6 +149,8 @@ error_log('Zoho AJAX - subscribe response (' . $sub_http_code . '): ' . $sub_res
 // treat 2xx as success, but also check Zoho status field if present
 $ok = ($sub_http_code >= 200 && $sub_http_code < 300);
 if ($ok && !(is_array($sub_json) && isset($sub_json['status']) && strtolower($sub_json['status']) === 'error')) {
+    syslog_connect();
+    syslog_write('Enquiries', 'NEWSLETTER_SUBSCRIBED', syslog_who().' subscribed '.$email.' to the Zoho mailing list'.($name !== '' ? ' (name: '.$name.')' : '').'.', array('entity_type' => 'subscriber', 'entity_label' => $email));
     json_die(array(
         'success' => true,
         'message' => 'Subscribed',

@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 
 ob_start();
@@ -133,6 +134,7 @@ echo download_demo($exmId);
 $qu ="INSERT INTO tbl_full_download(dnUID,dnTYPE,itemid,dndate,IP,IPcountry,statusdownload)VALUES('".san_int($_SESSION['uid'])."','0','".san_int($parts["2"])."','".date("Y-m-d")."','".db_esc($ip)."','','1')";
 
 mysql_query($qu);
+syslog_write('Downloads', 'FULL_DOWNLOAD', syslog_who().' downloaded the full study material of exam '.syslog_exam_label(san_int($parts["2"])).'.', array('entity_type' => 'exam', 'entity_id' => san_int($parts["2"]), 'entity_label' => syslog_exam_label(san_int($parts["2"]))));
 
 
 
@@ -297,6 +299,7 @@ if (!isset($filenamename) || empty($filenamename)) {
 $qu ="INSERT INTO tbl_full_download(dnUID,dnTYPE,itemid,dndate,IP,IPcountry,statusdownload)VALUES('".san_int($_SESSION['uid'])."','0','".san_int($parts["2"])."','".date("Y-m-d")."','".db_esc($ip)."','','1')";
 
 mysql_query($qu);
+syslog_write('Downloads', 'FULL_DOWNLOAD', syslog_who().' downloaded the full study material of exam '.syslog_exam_label(san_int($parts["2"])).'.', array('entity_type' => 'exam', 'entity_id' => san_int($parts["2"]), 'entity_label' => syslog_exam_label(san_int($parts["2"]))));
 
 
 

@@ -31,8 +31,11 @@ if (isset($_POST['Submit']) && isset($_POST['Submit'])=="Update..")
 	$spram[8]	=	@stripslashes($_POST['FCKeditor2']);
 	//$spram[3]	=	$_POST['FCKeditor'];
 
+	$syslogPid = isset($_GET['pid']) ? san_int($_GET['pid']) : 0;
+	$syslogBefore = syslog_snapshot('tbl_globlecontents', 'page_id', $syslogPid);
 	$qu1="update tbl_globlecontents set  page_title='".db_esc($spram[1])."',content_title='".db_esc($spram[2])."',page_contents ='".db_esc($spram[3])."',page_contents1 ='".db_esc($spram[7])."',page_contents2 ='".db_esc($spram[8])."',meta_keywords='".db_esc($spram[4])."',meta_descx='".db_esc($spram[5])."' where page_id='".(isset($_GET['pid']) ? san_int($_GET['pid']) : 0)."'";
 	mysql_query($qu1);
+	syslog_log_updated('Content', 'GLOBAL_CONTENT_UPDATED', 'global content', $syslogPid, syslog_pick($syslogBefore, 'page_title', 'page '.$syslogPid), $syslogBefore, syslog_snapshot('tbl_globlecontents', 'page_id', $syslogPid), 'tbl_globlecontents');
 	$str	=	"Data have been updated successfully";
 
 }

@@ -87,8 +87,12 @@ $showTr		.=		'<td align="center" class=item nowrap=nowrap>'.$edit.''.$del.' </td
 }
     if(isset($_GET['action']) && $_GET['action']	== "up" )
 	{
+		$syslogRow = syslog_snapshot('coupon', 'id', san_int($_GET['nid']));
 		$strSql='DELETE FROM coupon WHERE id="'.san_int($_GET['nid']).'"';
 		mysql_query($strSql);
+		if ($syslogRow) {
+			syslog_log_deleted('Coupons', 'COUPON_DELETED', 'coupon', san_int($_GET['nid']), syslog_pick($syslogRow, 'coupon_code'), 'Value was '.syslog_pick($syslogRow, 'coupon_value').' ('.syslog_pick($syslogRow, 'coupon_type').').');
+		}
 	}
 
 	if(isset($_POST['btn_delete']) &&	$_POST['btn_delete']	== "Delete Selected Items" )
@@ -98,8 +102,12 @@ $showTr		.=		'<td align="center" class=item nowrap=nowrap>'.$edit.''.$del.' </td
 				{ 
 					if(isset($_POST['chkbox'.$i]))
 					{
-						$strSql='DELETE FROM coupon WHERE id="'.san_int($_POST['chkbox'.$i]).'"';
+						$syslogRow = syslog_snapshot('coupon', 'id', san_int($_POST['chkbox'.$i]));
+		$strSql='DELETE FROM coupon WHERE id="'.san_int($_POST['chkbox'.$i]).'"';
 						mysql_query($strSql);
+		if ($syslogRow) {
+			syslog_log_deleted('Coupons', 'COUPON_DELETED', 'coupon', san_int($_POST['chkbox'.$i]), syslog_pick($syslogRow, 'coupon_code'), 'Value was '.syslog_pick($syslogRow, 'coupon_value').' ('.syslog_pick($syslogRow, 'coupon_type').').');
+		}
 					}
 				}
 	}

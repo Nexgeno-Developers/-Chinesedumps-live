@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 session_start();
 include("includes/config/classDbConnection.php");
@@ -59,6 +60,7 @@ $i		= 0;
 									}else{
 									$query	=	"select * from temp_order where CartID='".db_esc(session_id())."' and UserID='0' order by ID ASC";
 									}
+		syslog_write('Cart', 'CART_ITEM_ADDED', syslog_who().' '.($exe_check >= 1 ? 'tried to add the Unlimited Access package again (it is already in the cart)' : 'added the Unlimited Access package for '.$duration.' month(s) (price $'.$totalprice.') to the shopping cart').'.', array('entity_type' => 'unlimited package', 'entity_id' => 0, 'entity_label' => 'Unlimited access package', 'details' => array('months' => $duration, 'price' => $totalprice, 'already_in_cart' => ($exe_check >= 1))));
 		$rs_left_cart		=	mysql_query($query);
 		$num	=	mysql_num_rows($rs_left_cart);
 		

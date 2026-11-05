@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
+require_once __DIR__ . '/includes/config/load_secrets.php'; // DB settings for the activity log
 session_start();
 header('Content-Type: application/json');
 
@@ -37,6 +39,8 @@ if (!isset($_SESSION['email_otp_code'], $_SESSION['email_otp_email'], $_SESSION[
 
 if (time() > (int) $_SESSION['email_otp_expires']) {
     logOtpError('verify-email-otp: otp expired for ' . $email);
+    syslog_connect();
+    syslog_write('Authentication', 'EMAIL_OTP_FAILED', 'The verification code for '.$email.' had expired.', array('status' => 'failed', 'entity_type' => 'email', 'entity_label' => $email));
     unset($_SESSION['email_otp_code'], $_SESSION['email_otp_email'], $_SESSION['email_otp_expires']);
     echo json_encode(array('success' => false, 'error' => 'OTP expired. Please request a new code.'));
     exit;
@@ -50,6 +54,8 @@ if ($email !== $_SESSION['email_otp_email']) {
 
 if ($code !== (string) $_SESSION['email_otp_code']) {
     logOtpError('verify-email-otp: invalid code for ' . $email);
+    syslog_connect();
+    syslog_write('Authentication', 'EMAIL_OTP_FAILED', 'A wrong verification code was typed for '.$email.'.', array('status' => 'failed', 'entity_type' => 'email', 'entity_label' => $email));
     echo json_encode(array('success' => false, 'error' => 'Invalid OTP.'));
     exit;
 }
@@ -58,4 +64,6 @@ if ($code !== (string) $_SESSION['email_otp_code']) {
 $_SESSION['email_otp_verified_email'] = $email;
 unset($_SESSION['email_otp_code'], $_SESSION['email_otp_email'], $_SESSION['email_otp_expires']);
 
+syslog_connect();
+syslog_write('Authentication', 'EMAIL_OTP_VERIFIED', 'The email address '.$email.' was verified with the one-time code.', array('entity_type' => 'email', 'entity_label' => $email));
 echo json_encode(array('success' => true));

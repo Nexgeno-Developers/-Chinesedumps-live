@@ -66,6 +66,7 @@ return [
     'APP_DEBUG' => false,             // true = show PHP + SQL errors on screen
     'APP_LOG_ERRORS' => true,         // write errors to the server error log
     'SMTP_DEBUG' => false,            // true = log the SMTP conversation (contains the login in base64)
+    'SYSTEM_LOG_ENABLED' => true,     // false = stop writing to the system_log table (admin Activity Log)
 
     // PayPal
     'PAYPAL_MODE' => 'live',          // 'live' or 'sandbox'

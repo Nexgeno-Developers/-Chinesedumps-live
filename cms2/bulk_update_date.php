@@ -25,6 +25,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'all_date')
 		mysql_query($sel);
 	}
 	$_SESSION['displaytext']="Date is updated successfully for all exams.<br />";
+	syslog_write('Exams', 'BULK_EXAM_UPDATE', syslog_who().' ran a bulk exam update: Date is updated successfully for all exams.', array('entity_type' => 'exam', 'details' => array('scope' => $_POST['action'], 'new_date' => isset($date) ? $date : '', 'new_price' => isset($price) ? $price : '')));
 	header("Location:bulk_update.php?action=".$bulkAction."");
 	exit();
 }
@@ -40,6 +41,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'cert_date')
 		}
 	}
 	$_SESSION['displaytext']="Date is updated successfully for exams in selected Certificates.<br />";
+	syslog_write('Exams', 'BULK_EXAM_UPDATE', syslog_who().' ran a bulk exam update: Date is updated successfully for exams in selected Certificates.', array('entity_type' => 'exam', 'details' => array('scope' => $_POST['action'], 'new_date' => isset($date) ? $date : '', 'new_price' => isset($price) ? $price : '')));
 	header("Location:bulk_update.php?action=".$bulkAction."");
 	exit();
 }
@@ -53,6 +55,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'bundle_date')
 		mysql_query($sel);
 	}
 	$_SESSION['displaytext']="Date is updated successfully for exams in selected Vendor.<br />";
+	syslog_write('Exams', 'BULK_EXAM_UPDATE', syslog_who().' ran a bulk exam update: Date is updated successfully for exams in selected Vendor.', array('entity_type' => 'exam', 'details' => array('scope' => $_POST['action'], 'new_date' => isset($date) ? $date : '', 'new_price' => isset($price) ? $price : '')));
 	header("Location:bulk_update.php?action=".$bulkAction."");
 	exit();
 }
@@ -67,6 +70,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'all_price')
 		mysql_query($sel);
 	}
 	$_SESSION['displaytext']="Price is updated successfully for all exams.<br />";
+	syslog_write('Exams', 'BULK_EXAM_UPDATE', syslog_who().' ran a bulk exam update: Price is updated successfully for all exams.', array('entity_type' => 'exam', 'details' => array('scope' => $_POST['action'], 'new_date' => isset($date) ? $date : '', 'new_price' => isset($price) ? $price : '')));
 	header("Location:bulk_update.php?action=".$bulkAction."");
 	exit();
 }
@@ -82,6 +86,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'cert_price')
 		}
 	}
 	$_SESSION['displaytext']="Price is updated successfully for exams in selected certificates.<br />";
+	syslog_write('Exams', 'BULK_EXAM_UPDATE', syslog_who().' ran a bulk exam update: Price is updated successfully for exams in selected certificates.', array('entity_type' => 'exam', 'details' => array('scope' => $_POST['action'], 'new_date' => isset($date) ? $date : '', 'new_price' => isset($price) ? $price : '')));
 	header("Location:bulk_update.php?action=".$bulkAction."");
 	exit();
 }
@@ -96,6 +101,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'bundle_price')
 		mysql_query($sel);
 	}
 	$_SESSION['displaytext']="Price is updated successfully for exams in selected bundle.<br />";
+	syslog_write('Exams', 'BULK_EXAM_UPDATE', syslog_who().' ran a bulk exam update: Price is updated successfully for exams in selected bundle.', array('entity_type' => 'exam', 'details' => array('scope' => $_POST['action'], 'new_date' => isset($date) ? $date : '', 'new_price' => isset($price) ? $price : '')));
 	header("Location:bulk_update.php?action=".$bulkAction."");
 	exit();
 }

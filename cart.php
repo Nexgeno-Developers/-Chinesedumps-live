@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 require_once dirname(__FILE__) . '/includes/common/app_env.php';
 app_apply_error_settings();
@@ -145,6 +146,7 @@ $getPage[5]	=	"Cart";
 
 		
 
+	syslog_write('Cart', 'CART_UPDATED', syslog_who().' updated the quantities in the shopping cart.', array('entity_type' => 'cart', 'details' => array('quantities' => isset($qunt) ? $qunt : array())));
 	header('location:cart.html'); exit;	
 
 	}
@@ -162,6 +164,7 @@ $getPage[5]	=	"Cart";
 			{
 
 			$_SESSION['check']='cart.html';
+			syslog_write('Checkout', 'CHECKOUT_LOGIN_REQUIRED', syslog_who().' pressed Checkout but is not logged in, so was sent to the login page.', array('status' => 'info', 'entity_type' => 'cart'));
 
 			header("location:myaccount.html");
 
@@ -173,6 +176,7 @@ $getPage[5]	=	"Cart";
 
 			
 
+			syslog_write('Checkout', 'CHECKOUT_CLICKED', syslog_who().' pressed Checkout in the shopping cart.', array('entity_type' => 'cart'));
 			header("location:checkout.html"); exit;
 
 			}
@@ -204,6 +208,7 @@ if (isset($_GET['cancel_failed']) && $_GET['cancel_failed'] == '1' && isset($_GE
     $decrypted_user_id = decrypt_data($_GET['uid']);
     if ($decrypted_user_id) {
         // echo "Welcome back, user ID: " . htmlspecialchars($decrypted_user_id);
+        syslog_write('Payment', 'PAYPAL_CANCELLED', syslog_user_label((int)$decrypted_user_id).' cancelled the PayPal payment and came back to the cart.', array('status' => 'info', 'entity_type' => 'cart', 'actor' => array('type' => 'user', 'id' => (int)$decrypted_user_id, 'name' => syslog_user_label((int)$decrypted_user_id))));
         // Optional: restore session
         // $_SESSION['uid'] = $decrypted_user_id;
         

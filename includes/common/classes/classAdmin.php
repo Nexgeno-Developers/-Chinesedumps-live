@@ -1,5 +1,6 @@
 <?PHP
 require_once dirname(dirname(__FILE__)) . '/sanitize.php';
+require_once dirname(dirname(__FILE__)) . '/system_log.php';
 
 /*
 
@@ -131,6 +132,7 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			 $this->objDbConn->Dml_Query_Parser($sqlQuery);								
 
+			syslog_write('Admin Users', 'ADMIN_PASSWORD_CHANGED', syslog_who().' changed their own password.', array('entity_type' => 'admin user', 'entity_id' => isset($_SESSION['adminId']) ? (int)$_SESSION['adminId'] : 0));
 			//Close the connection with the DB.
 
 			 $this->objDbConn->CloseConnection();
@@ -151,7 +153,9 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			//Update the User password 
 
-			 $this->objDbConn->Dml_Query_Parser($sqlQuery);								
+			 $syslogBefore = syslog_snapshot_one('website');
+			 $this->objDbConn->Dml_Query_Parser($sqlQuery);
+			 syslog_log_setting('SETTINGS_UPDATED', 'Contact and from email addresses', $syslogBefore, syslog_snapshot_one('website'), 'website');								
 
 			//Close the connection with the DB.
 
@@ -177,7 +181,9 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			//Update the User password 
 
-			 $this->objDbConn->Dml_Query_Parser($sqlQuery);								
+			 $syslogBefore = syslog_snapshot_one('website');
+			 $this->objDbConn->Dml_Query_Parser($sqlQuery);
+			 syslog_log_setting('SETTINGS_UPDATED', 'Website title', $syslogBefore, syslog_snapshot_one('website'), 'website');								
 
 			//Close the connection with the DB.
 
@@ -201,7 +207,9 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			//Update the User password 
 
-			 $this->objDbConn->Dml_Query_Parser($sqlQuery);								
+			 $syslogBefore = syslog_snapshot_one('website');
+			 $this->objDbConn->Dml_Query_Parser($sqlQuery);
+			 syslog_log_setting('SETTINGS_UPDATED', 'Website copyright', $syslogBefore, syslog_snapshot_one('website'), 'website');								
 
 			//Close the connection with the DB.
 
@@ -223,7 +231,9 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			//Update the User password 
 
-			 $this->objDbConn->Dml_Query_Parser($sqlQuery);								
+			 $syslogBefore = syslog_snapshot_one('website');
+			 $this->objDbConn->Dml_Query_Parser($sqlQuery);
+			 syslog_log_setting('SETTINGS_UPDATED', 'Phone and timing', $syslogBefore, syslog_snapshot_one('website'), 'website');								
 
 			//Close the connection with the DB.
 
@@ -243,7 +253,9 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			//Update the User password 
 
-			 $this->objDbConn->Dml_Query_Parser($sqlQuery);								
+			 $syslogBefore = syslog_snapshot_one('website');
+			 $this->objDbConn->Dml_Query_Parser($sqlQuery);
+			 syslog_log_setting('SETTINGS_UPDATED', 'Top banner', $syslogBefore, syslog_snapshot_one('website'), 'website');								
 
 			//Close the connection with the DB.
 
@@ -460,6 +472,7 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 			mysql_query($add_que);
 
 			$userid = mysql_insert_id();
+			syslog_log_created('Admin Users', 'ADMIN_USER_CREATED', 'admin user', $userid, $spram[6], 'Role: '.$spram[7].', status: '.$spram[5].'.');
 
 			return $userid;
 
@@ -615,6 +628,7 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 	  {
 
+			$syslogBefore = syslog_snapshot('tbladmin', 'admin_id', san_int($spram[0]));
 			$strQury	=	"update tbladmin set 
 
 
@@ -638,6 +652,8 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 
 			mysql_query($strQury);
+			$syslogAfter = syslog_snapshot('tbladmin', 'admin_id', san_int($spram[0]));
+			syslog_log_updated('Admin Users', 'ADMIN_USER_UPDATED', 'admin user', san_int($spram[0]), syslog_pick($syslogAfter, 'admin_name'), $syslogBefore, $syslogAfter, 'tbladmin');
 
 
 
@@ -649,6 +665,7 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			 {
 
+					$syslogRow = syslog_snapshot('tbladmin', 'admin_id', san_int($spram));
 					$delpermissions	=	mysql_query("DELETE FROM tblpermissions WHERE AdminID='".san_int($spram)."'");
 
 					
@@ -656,6 +673,9 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 					$strSql	=	'DELETE FROM tbladmin WHERE admin_id="'.san_int($spram).'"';
 
 					mysql_query($strSql);
+					if ($syslogRow) {
+						syslog_log_deleted('Admin Users', 'ADMIN_USER_DELETED', 'admin user', san_int($spram), syslog_pick($syslogRow, 'admin_name'), 'Role was: '.syslog_pick($syslogRow, 'admin_role', '-').'.');
+					}
 
        		 }
 
@@ -669,7 +689,9 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 			$sqlQuery1 = "UPDATE website SET title='".db_esc($spram['title'])."', website_url ='".db_esc($spram['website_url'])."', admin_title ='".db_esc($spram['admin_title'])."', course_update ='".db_esc($spram['course_update'])."', copyright='".db_esc($spram['copyright'])."', contactus_email='".db_esc($spram['contactus_email'])."', paypalid='".db_esc($spram['paypalid'])."', from_email='".db_esc($spram['from_email'])."'";
 
-			$this->objDbConn->Dml_Query_Parser($sqlQuery1);							
+			$syslogBefore = syslog_snapshot_one('website');
+			$this->objDbConn->Dml_Query_Parser($sqlQuery1);
+			syslog_log_setting('SETTINGS_UPDATED', 'Website configuration', $syslogBefore, syslog_snapshot_one('website'), 'website');							
 
 			//Close the connection with the DB.
 

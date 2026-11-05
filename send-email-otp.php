@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once __DIR__ . '/includes/config/load_secrets.php';
 session_start();
 header('Content-Type: application/json');
@@ -74,9 +75,13 @@ $sent = sendEmail($email, $subject, $message, $headers);
 
 if (!$sent) {
     logOtpError('send-email-otp: mail() failed for ' . $email);
+    syslog_connect();
+    syslog_write('Authentication', 'EMAIL_OTP_FAILED', 'The verification code could not be emailed to '.$email.'.', array('status' => 'failed', 'entity_type' => 'email', 'entity_label' => $email));
     http_response_code(500);
     echo json_encode(array('success' => false, 'error' => 'Unable to send the verification email right now.'));
     exit;
 }
 
+syslog_connect();
+syslog_write('Authentication', 'EMAIL_OTP_SENT', 'A verification code was emailed to '.$email.' (used to verify the email address before registering).', array('entity_type' => 'email', 'entity_label' => $email));
 echo json_encode(array('success' => true));

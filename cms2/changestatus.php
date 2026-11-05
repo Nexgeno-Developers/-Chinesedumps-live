@@ -45,6 +45,7 @@ $status="";
 	$status= "<a href='javascript:showHint(".$row_cate[$tblField].", \"$tblName\",\"$tblField\",\"$fieldStatus\")'>Enable</a>";
 	}
 	
+	syslog_log_status_toggle($tblName, $tblField, $getID, $fieldStatus, $row_cate[$fieldStatus]);
 	echo $status;
 	//echo $getID." ".$tblName." ".$tblField." ".$fieldStatus;
 	

@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
     require_once __DIR__ . '/includes/config/load_secrets.php';
     ob_start();
     session_start();
@@ -339,6 +340,7 @@ $isLabLayout = ($examType === 'lab');
         $userEmail  = isset($userData['user_email']) ? $userData['user_email'] : '';
         $userPhone  = isset($userData['user_phone']) ? $userData['user_phone'] : '';
         $userName   = trim($userFirst . ' ' . $userLast);
+        syslog_write('Downloads', 'FREE_DUMP_DOWNLOAD', syslog_who().' downloaded the free dump PDF "'.$freeDumpPdf.'" of exam '.$examCode.'.', array('entity_type' => 'exam', 'entity_label' => $examCode));
         $userIp     = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
         $timestamp  = date('Y-m-d H:i:s');
         $baseUrl    = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
@@ -413,6 +415,7 @@ $isLabLayout = ($examType === 'lab');
         $userEmail  = isset($userData['user_email']) ? $userData['user_email'] : '';
         $userPhone  = isset($userData['user_phone']) ? $userData['user_phone'] : '';
         $userName   = trim($userFirst . ' ' . $userLast);
+        syslog_write('Downloads', 'DEMO_PRACTICE_DOWNLOAD', syslog_who().' downloaded the demo practice PDF "'.$demoPracticePdf.'" of exam '.$examCode.'.', array('entity_type' => 'exam', 'entity_label' => $examCode));
         $userIp     = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
         $timestamp  = date('Y-m-d H:i:s');
         $baseUrl    = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];

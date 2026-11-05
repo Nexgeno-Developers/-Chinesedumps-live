@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/system_log.php';
 require_once dirname(__FILE__) . '/includes/common/sanitize.php';
 
 ob_start();
@@ -42,6 +43,7 @@ $qry = mysql_query($q);
 			$ss = mysql_query("update tbl_exam set exam_upddate='$todaydate', dateUpdateStatus='1' where dateUpdateStatus='0' limit 500");
 
 			if($ss){echo "query run";} else {echo "query not run";}
+			syslog_write('Scheduled Jobs', 'EXAM_DATES_REFRESHED', 'The daily job refreshed the "last updated" date of up to 500 exams to '.$todaydate.' ('.($ss ? 'done' : 'failed').').', array('status' => $ss ? 'success' : 'failed', 'entity_type' => 'exam', 'actor' => array('type' => 'system', 'name' => 'Daily exam date job')));
 
 		}
 
