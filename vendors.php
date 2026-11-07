@@ -173,7 +173,7 @@ function GoToPage(page)
 ?>
 
 <?php $this_page = "vendors" ?>
-<? include("includes/header.php");?>
+<?php  include("includes/header.php");?>
 <script language="javascript" type="text/javascript">
 function showHideDiv(divID)
     {
@@ -215,4 +215,4 @@ function showHideDiv(divID)
 	</div>
 
 
-              <? include("includes/footer.php");?>
+              <?php  include("includes/footer.php");?>

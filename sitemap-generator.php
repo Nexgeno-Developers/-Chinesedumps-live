@@ -155,7 +155,7 @@
 				if (!$ignore) {
 					foreach ($extension as $ext) {
 						if (strpos ($next_url, $ext) > 0) {
-							$pr = number_format ( round ( $priority / count ( explode( "/", trim ( str_ireplace ( array ("http://", "https://"), "", $next_url ), "/" ) ) ) + 0.5, 3 ), 1 );
+							$pr = number_format ( round ( $priority / app_count ( explode( "/", trim ( str_ireplace ( array ("http://", "https://"), "", $next_url ), "/" ) ) ) + 0.5, 3 ), 1 );
 							
 							
 							if(!in_array( htmlentities ($next_url),$existing_array ))

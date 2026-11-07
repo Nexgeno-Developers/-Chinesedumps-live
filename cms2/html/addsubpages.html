@@ -73,8 +73,8 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
                 <td height="29" align="right" valign="middle" >Sub Page Status:&nbsp;</td>
                 <td align="left" valign="middle" >
 				<select name="status" id="status">
-                <option value="Active"<? if($spram[4]=="Active"){ echo "selected='selected'";}?>>Active</option>
-                <option value="In Active"<? if($spram[4]=="In Active"){ echo "selected='selected'";}?>>In Active</option>
+                <option value="Active"<?php  if($spram[4]=="Active"){ echo "selected='selected'";}?>>Active</option>
+                <option value="In Active"<?php  if($spram[4]=="In Active"){ echo "selected='selected'";}?>>In Active</option>
                 </select></td>
               </tr>
               <tr>
@@ -209,7 +209,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 </td>
 </tr>
 </table>
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 
 </body>

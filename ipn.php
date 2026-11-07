@@ -227,7 +227,7 @@ if (eregi ("VERIFIED", $ipn_response))
 
 				
 
-			$add_cart = $row_cart['Quantity'] * $price_one;
+			$add_cart = (float)$row_cart['Quantity'] * (float)$price_one;
 
 				
 

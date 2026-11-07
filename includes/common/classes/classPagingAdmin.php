@@ -38,7 +38,7 @@ class classPaging
 	var $_LinksClass;			# Var to store the Class of the Link
 		
 	// Constructor Function Which sets some Starting parameters for navigation
-	function classPaging($PageName,$_Limit , $linksPerPage,$qryParam="",$txtLinkClass="",$seltype=NULL,$btn_cat=NULL,$flag=NULL,$btn_other=NULL,$sel_other=NULL,$txtOthers=NULL,$userId=NULL)
+	function __construct($PageName,$_Limit , $linksPerPage,$qryParam="",$txtLinkClass="",$seltype=NULL,$btn_cat=NULL,$flag=NULL,$btn_other=NULL,$sel_other=NULL,$txtOthers=NULL,$userId=NULL)
 	{
 		
 		$this->_CURRENT_Page_Index	= 1 ; 				# Set the current page Idex to zero.
@@ -187,7 +187,7 @@ class classPaging
 			//Show Back Link
 			
 			if($currentPage > 1)
-				$Navigable_Links = "<a href=\"". $this->_PageName ."?pgIndex=". $pgIndex  ."&userId=".san_html($this->userId)."&txtOthers=".san_html($this->txtOthers)."&sel_other=".san_html($this->sel_other)."&btn_other=".san_html($this->btn_other)."&seltype=".san_html($this->seltype)."&flag=".san_html($this->flag)."&btn_cat=".san_html($this->btn_cat)."&currentPage=". ($currentPage - 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">&laquo;&nbsp;Previous</a>&nbsp;";
+				$Navigable_Links = "<a href=\"". $this->_PageName ."?pgIndex=". $pgIndex  ."&userId=".san_html($this->userId)."&txtOthers=".san_html($this->txtOthers)."&sel_other=".san_html($this->sel_other)."&btn_other=".san_html($this->btn_other)."&seltype=".san_html($this->seltype)."&flag=".san_html($this->flag)."&btn_cat=".san_html($this->btn_cat)."&currentPage=". ((int)$currentPage - 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">&laquo;&nbsp;Previous</a>&nbsp;";
 
 			//Return the links
 			return $Navigable_Links;
@@ -220,7 +220,7 @@ class classPaging
 			//Make it sure that Current Page is Greater Than 1
 			//Show Forward Link
 			if($currentPage < $this->_PageCount)
-				$Navigable_Links = "<a href=\"". $this->_PageName ."?pgIndex=". $pgIndex ."&userId=".san_html($this->userId)."&txtOthers=".san_html($this->txtOthers)."&sel_other=".san_html($this->sel_other)."&btn_other=".san_html($this->btn_other)."&seltype=".san_html($this->seltype)."&flag=".san_html($this->flag)."&btn_cat=".san_html($this->btn_cat)."&currentPage=". ($currentPage + 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">Next&nbsp;&raquo;</a>";
+				$Navigable_Links = "<a href=\"". $this->_PageName ."?pgIndex=". $pgIndex ."&userId=".san_html($this->userId)."&txtOthers=".san_html($this->txtOthers)."&sel_other=".san_html($this->sel_other)."&btn_other=".san_html($this->btn_other)."&seltype=".san_html($this->seltype)."&flag=".san_html($this->flag)."&btn_cat=".san_html($this->btn_cat)."&currentPage=". ((int)$currentPage + 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">Next&nbsp;&raquo;</a>";
 
 			//Return the links
 			return $Navigable_Links;

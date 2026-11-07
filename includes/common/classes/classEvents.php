@@ -78,7 +78,7 @@ require_once dirname(dirname(__FILE__)) . '/system_log.php';
 
 
 
-		function classEvents($objDBcon)
+		function __construct($objDBcon)
 
 		{
 

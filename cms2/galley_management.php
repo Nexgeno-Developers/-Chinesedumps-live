@@ -172,7 +172,7 @@ $ccAdminData = get_session_data();
 
 ?>
 
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
 <style>
@@ -323,7 +323,7 @@ $slider = mysql_fetch_object($sqlSlider);
 
  <tr>
     <td class="item" style="padding-left:" 0px;="" align="center">
-        <? //= $slider->group_id?> <? //= $slider->cert_name ?> <?  //= $slider->cert_name ?>
+        <?php  //= $slider->group_id?> <?php  //= $slider->cert_name ?> <?php   //= $slider->cert_name ?>
         <?= $slider->exam_name ?> 
     </td>
 	<td class="item" style="padding-left:" 0px;="" align="center"><a taget="_blank" href="../images/slider/<?=$slider->s_image?>"><img src="../images/slider/<?=$slider->s_image?>" width="250"></a></td>
@@ -361,7 +361,7 @@ $slider = mysql_fetch_object($sqlSlider);
 
 </table>
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 

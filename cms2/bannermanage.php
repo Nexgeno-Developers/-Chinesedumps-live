@@ -260,7 +260,7 @@ $totalRows = intval($countRow['cnt']);
 
 ?>
 
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
 
@@ -453,7 +453,7 @@ $totalRows = intval($countRow['cnt']);
 
 </table>
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 

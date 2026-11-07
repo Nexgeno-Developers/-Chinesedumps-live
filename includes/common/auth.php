@@ -1,4 +1,6 @@
 <?php
+/* PHP 7+/8: provides mysql_* on top of mysqli when the old extension is missing (no-op on PHP 5.x) */
+require_once dirname(__FILE__) . '/compat_mysql.php';
 /* Shared authentication helpers. Kept compatible with PHP 5.4 installations. */
 
 if (!function_exists('auth_timing_safe_equals')) {

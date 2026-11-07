@@ -60,7 +60,7 @@ function getCouponhtml($spram)
 	$counter	=	'1';
 	while($rows=mysql_fetch_array($spram))
 	{	
-		if (($counter % 2)!=0 )
+		if (((int)$counter % 2)!=0 )
 			$intColor = "";
 		else
 			$intColor = "bgcolor='#f3eeee'";

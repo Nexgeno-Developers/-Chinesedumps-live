@@ -63,11 +63,11 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
      
 		<tr align="right">
           <td align="right">*Product Name:</td>
-          <td colspan="2" align="left"><input  name="title"  id="title" style="width:200px;" type="text" value="<? if(isset($spram[1])){ echo $spram[1]; } ?>" /></td>
+          <td colspan="2" align="left"><input  name="title"  id="title" style="width:200px;" type="text" value="<?php  if(isset($spram[1])){ echo $spram[1]; } ?>" /></td>
         </tr>
 		<tr align="right">
           <td align="right">*Product Code:</td>
-          <td colspan="2" align="left"><input  name="pcode"  id="pcode" style="width:200px;" type="text" value="<? if(isset($spram[2])){ echo $spram[2]; } ?>" /></td>
+          <td colspan="2" align="left"><input  name="pcode"  id="pcode" style="width:200px;" type="text" value="<?php  if(isset($spram[2])){ echo $spram[2]; } ?>" /></td>
         </tr>
 		<tr align="right">
           <td align="right">*Product Category:</td>
@@ -79,7 +79,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
 		<tr align="right">
           <td align="right">*Product Default Price:</td>
-          <td colspan="2" align="left">&pound;&nbsp;<input  name="dprice" style="width:40px;"  id="dprice" type="text" value="<? if(isset($spram[5])){ echo $spram[5];}?>" /></td>
+          <td colspan="2" align="left">&pound;&nbsp;<input  name="dprice" style="width:40px;"  id="dprice" type="text" value="<?php  if(isset($spram[5])){ echo $spram[5];}?>" /></td>
         </tr>-->
         <tr>
           <td align="right">*Product Image:</td>
@@ -87,15 +87,15 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
 		<tr align="right">
           <td align="right">*Product Stock Status:</td>
-          <td colspan="2" align="left"><input  name="sstock" checked="checked"  id="sstock" type="checkbox"<? if(isset($spram[7]) && $spram[7]=='yes'){ echo "checked='checked'";}?> value="yes" /></td>
+          <td colspan="2" align="left"><input  name="sstock" checked="checked"  id="sstock" type="checkbox"<?php  if(isset($spram[7]) && $spram[7]=='yes'){ echo "checked='checked'";}?> value="yes" /></td>
         </tr>
 		<tr align="right">
           <td align="right">*Product Total Quantity:</td>
-          <td colspan="2" align="left"><input  name="pq"  id="pq" type="text" style="width:40px;"  value="<? if(isset($spram[15])){ echo $spram[15];}?>" /></td>
+          <td colspan="2" align="left"><input  name="pq"  id="pq" type="text" style="width:40px;"  value="<?php  if(isset($spram[15])){ echo $spram[15];}?>" /></td>
         </tr>
 		<tr align="right">
           <td align="right">*Product Material:</td>
-          <td colspan="2" align="left"><textarea  name="pro_mate" style="width:200px;"  id="pro_mate" type="text"><? if(isset($spram[8])){ echo $spram[8];}?></textarea></td>
+          <td colspan="2" align="left"><textarea  name="pro_mate" style="width:200px;"  id="pro_mate" type="text"><?php  if(isset($spram[8])){ echo $spram[8];}?></textarea></td>
         </tr>
          <tr align="right">
           <td align="right"> Add Related Products:</td>
@@ -103,31 +103,31 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
        <tr align="right">
           <td align="right">*Summary Description:</td>
-          <td colspan="2" align="left"><textarea  name="pro_info" style="width:200px;"  id="pro_info" type="text"><? if(isset($spram[9])){ echo $spram[9];}?></textarea></td>
+          <td colspan="2" align="left"><textarea  name="pro_info" style="width:200px;"  id="pro_info" type="text"><?php  if(isset($spram[9])){ echo $spram[9];}?></textarea></td>
         </tr>
 		
 		<tr align="right">
           <td align="right"> Product Special Price:</td>
-          <td colspan="2" align="left">&pound;&nbsp;<input  name="sprice" style="width:40px;"  id="sprice" type="text" value="<? if(isset($spram[10])){ echo $spram[10];}?>" /></td>
+          <td colspan="2" align="left">&pound;&nbsp;<input  name="sprice" style="width:40px;"  id="sprice" type="text" value="<?php  if(isset($spram[10])){ echo $spram[10];}?>" /></td>
         </tr>
 		<tr align="right">
           <td align="right"> Special Price Start date:</td>
-          <td colspan="2" align="left"><input name="txt_StartDate" type="text" class="clsTxtBox"  id="txt_StartDate" readonly="readonly" value="<? if($spram[11]!=''){ echo $spram[11] ;} ?>"  style="width:156px; height:16px" />&nbsp;&nbsp;<img src="images/calendar_date.jpg" alt="select" width="22" height="18" align="absmiddle" class="calImg" style="cursor:hand" onclick="displayCalendarSe(document.Form.txt_StartDate,'dd-mm-yyyy',this)" /> </td>
+          <td colspan="2" align="left"><input name="txt_StartDate" type="text" class="clsTxtBox"  id="txt_StartDate" readonly="readonly" value="<?php  if($spram[11]!=''){ echo $spram[11] ;} ?>"  style="width:156px; height:16px" />&nbsp;&nbsp;<img src="images/calendar_date.jpg" alt="select" width="22" height="18" align="absmiddle" class="calImg" style="cursor:hand" onclick="displayCalendarSe(document.Form.txt_StartDate,'dd-mm-yyyy',this)" /> </td>
         </tr>
 		<tr align="right">
           <td align="right"> Special Price Expiry date:</td>
-          <td colspan="2" align="left"><input name="txt_EndDate" type="text" class="clsTxtBox"  id="txt_EndDate" readonly="readonly" value="<? if($spram[12]!=''){ echo $spram[12]; } ?>"  style="width:156px; height:16px" />&nbsp;&nbsp;<img src="images/calendar_date.jpg" alt="select" width="22" height="18" align="absmiddle" class="calImg" style="cursor:hand" onclick="displayCalendarSe(document.Form.txt_EndDate,'dd-mm-yyyy',this)" /> </td>
+          <td colspan="2" align="left"><input name="txt_EndDate" type="text" class="clsTxtBox"  id="txt_EndDate" readonly="readonly" value="<?php  if($spram[12]!=''){ echo $spram[12]; } ?>"  style="width:156px; height:16px" />&nbsp;&nbsp;<img src="images/calendar_date.jpg" alt="select" width="22" height="18" align="absmiddle" class="calImg" style="cursor:hand" onclick="displayCalendarSe(document.Form.txt_EndDate,'dd-mm-yyyy',this)" /> </td>
         </tr>
         <tr align="right">
           <td align="right">Product Status:</td>
           <td colspan="2" align="left"><select name="status" id="status">
-                <option value="Active"<? if(isset($spram[13]) && $spram[13]=="Active"){ echo "selected='selected'";}?>>Active</option>
-                <option value="In Active"<? if(isset($spram[13]) && $spram[13]=="In Active"){ echo "selected='selected'";}?>>In Active</option>
+                <option value="Active"<?php  if(isset($spram[13]) && $spram[13]=="Active"){ echo "selected='selected'";}?>>Active</option>
+                <option value="In Active"<?php  if(isset($spram[13]) && $spram[13]=="In Active"){ echo "selected='selected'";}?>>In Active</option>
                 </select></td>
         </tr>
 		<tr align="right">
           <td align="right" nowrap="nowrap">want to add this Product as Featured Prodcut:</td>
-          <td colspan="2" align="left"><input  name="feature"  id="feature" type="checkbox"<? if(isset($spram[16]) && $spram[16]=='1'){ echo "checked='checked'";}?> value="1" /></td>
+          <td colspan="2" align="left"><input  name="feature"  id="feature" type="checkbox"<?php  if(isset($spram[16]) && $spram[16]=='1'){ echo "checked='checked'";}?> value="1" /></td>
         </tr>
 		<tr>
                  <td align="right" valign="top"><strong>Product Description:</strong></td>
@@ -255,6 +255,6 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 </td>
 </tr>
 </table>
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 </body>
 </html>

@@ -37,7 +37,7 @@ class classPaging
 	var $_LinksClass;			# Var to store the Class of the Link
 		
 	// Constructor Function Which sets some Starting parameters for navigation
-	function classPaging($PageName,$_Limit , $linksPerPage,$qryParam="",$txtLinkClass="")
+	function __construct($PageName,$_Limit , $linksPerPage,$qryParam="",$txtLinkClass="")
 	{
 		$this->_CURRENT_Page_Index	= 1 ; 				# Set the current page Idex to zero.
 		$this->_PageName 			= $PageName;  	 	# Set page Name from on which you want classPaging.
@@ -276,7 +276,7 @@ class classPaging
 			//Make it sure that Current Page is Greater Than 1
 			//Show Back Link
 			if($currentPage > 1)
-				$Navigable_Links = "<a href=\"". $this->_PageName ."?pgIndex=". $pgIndex  ."&currentPage=". ($currentPage - 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">&laquo;&nbsp;Previous</a>&nbsp;";
+				$Navigable_Links = "<a href=\"". $this->_PageName ."?pgIndex=". $pgIndex  ."&currentPage=". ((int)$currentPage - 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">&laquo;&nbsp;Previous</a>&nbsp;";
 
 			//Return the links
 			return $Navigable_Links;
@@ -309,7 +309,7 @@ class classPaging
 			//Make it sure that Current Page is Greater Than 1
 			//Show Forward Link
 			if($currentPage < $this->_PageCount)
-				$Navigable_Links = "<a href=\"". $this->_PageName ."?pgIndex=". $pgIndex  ."&currentPage=". ($currentPage + 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">Next&nbsp;&raquo;</a>";
+				$Navigable_Links = "<a href=\"". $this->_PageName ."?pgIndex=". $pgIndex  ."&currentPage=". ((int)$currentPage + 1) . $this->_Qry_PARAMS ."\" ". $this->_LinksClass .">Next&nbsp;&raquo;</a>";
 
 			//Return the links
 			return $Navigable_Links;

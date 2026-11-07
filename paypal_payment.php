@@ -116,7 +116,7 @@ if(isset($_POST['Final']))
 <!--<input type="hidden" name="business" value="sb-xt24x40169786@business.example.com"> -->
 <input type="hidden" name="custom" value=" ">
 <input type="hidden" name="rm" value="2">
-<?
+<?php 
 $trtrid		=	'';
 $product	=	'';
 $ttprice	=	'';
@@ -178,15 +178,15 @@ $price	=	$row['Price'];
 				$product 	.= 	$descrip."<br/>";
 				$product2 	= 	$descrip;
 				
-				$add_cart = $row['Quantity'] * $price;
+				$add_cart = (float)$row['Quantity'] * (float)$price;
 				$newpaypal	=	$add_cart;
 ?>
 <input type="hidden" name="item_name_<?=$i?>" value="<?=$product2?>">
 <input type="hidden" name="item_number_<?=$i?>" value="<?=$numberidid?>">
 <input type="hidden" name="quantity_<?=$i?>" value="<?=$row['Quantity']?>">
 <input type="hidden" name="amount_<?=$i?>" value="<?=$price?>">
-<?
-$ttprice	=	$newpaypal+$ttprice;
+<?php 
+$ttprice	=	(float)$newpaypal+(float)$ttprice;
 $Products_Arr .= '<tr>
     <td width="136" nowrap="nowrap" valign="bottom" >'.$i.'</td>
     <td width="136" nowrap="nowrap" valign="bottom" >'.$descrip.'</td>
@@ -198,14 +198,14 @@ $i++;
 }
 	$discounted_price=$ttprice;
 	$discount_desc = '';
-	if(@$_SESSION['coupon']['coupon_value']!=0)
+	if(is_array(@$_SESSION['coupon']) && (float)@$_SESSION['coupon']['coupon_value']!=0) // PHP 8: reading a string offset of '' is an error
 	{
 		$disc_type = $_SESSION['coupon']['coupon_type'];
 		$disc_value = $_SESSION['coupon']['coupon_value'];
 		if($disc_type=='2'){
-			$disc_value = $ttprice * ($_SESSION['coupon']['coupon_value']/100);
+			$disc_value = (float)$ttprice * ((float)$_SESSION['coupon']['coupon_value']/100);
 		}
-		$discounted_price = $ttprice - $disc_value;
+		$discounted_price = (float)$ttprice - (float)$disc_value;
 		if($discounted_price != $ttprice && $discounted_price > 0)
 		{
 			$discount_desc = '<tr>
@@ -341,7 +341,7 @@ You are redirecting to Paypal for Secure Payment.....
 </script>
 </body>
 </html>
-<?
+<?php 
 }
 $show_cart = $objCart->Checkout($cart_Id,$base_path,$discount);
 

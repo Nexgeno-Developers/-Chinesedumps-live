@@ -183,7 +183,7 @@ $ccAdminData = get_session_data();
 
 ?>
 
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 
 <script language="Javascript" src="js/category.js"></script>
 
@@ -357,7 +357,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
 </table>
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 

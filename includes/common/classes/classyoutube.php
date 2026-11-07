@@ -80,7 +80,7 @@
       $entry->registerXPathNamespace('feed', 'http://www.w3.org/2005/Atom');
       $nodeset = $entry->xpath("feed:link[@rel='http://gdata.youtube.com/schemas/
       2007#video.responses']"); 
-      if (count($nodeset) > 0) {
+      if (app_count($nodeset) > 0) {
         $obj->responsesURL = $nodeset[0]['href'];      
       }
          
@@ -88,7 +88,7 @@
       $entry->registerXPathNamespace('feed', 'http://www.w3.org/2005/Atom');
       $nodeset = $entry->xpath("feed:link[@rel='http://gdata.youtube.com/schemas/
       2007#video.related']"); 
-      if (count($nodeset) > 0) {
+      if (app_count($nodeset) > 0) {
         $obj->relatedURL = $nodeset[0]['href'];      
       }
     

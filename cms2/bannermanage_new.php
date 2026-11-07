@@ -158,7 +158,7 @@ $ccAdminData = get_session_data();
 
 ?>
 
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
 
@@ -284,7 +284,7 @@ $slider = mysql_fetch_object($sqlSlider);
 
 </table>
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 

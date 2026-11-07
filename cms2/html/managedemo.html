@@ -69,9 +69,9 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
     
     <tr>
     <td colspan="4"  align="center">Search :
-      <input type="text" name="textSearch" value="<? if($_POST['textSearch']){ echo san_html($_POST['textSearch']); }?>" style="width:160px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" name="textSearch" value="<?php  if($_POST['textSearch']){ echo san_html($_POST['textSearch']); }?>" style="width:160px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	  <select name="criteria">
-	  <option value="user_email" <? if($_POST['criteria'] && $_POST['criteria']=='user_email'){ echo "selected='selected'"; }?>>Email Address</option></select>
+	  <option value="user_email" <?php  if($_POST['criteria'] && $_POST['criteria']=='user_email'){ echo "selected='selected'"; }?>>Email Address</option></select>
       &nbsp;&nbsp;&nbsp;<input type="submit" name="Search" value="Search" />
 	  </td><td align="right"></td>
 	  </tr>
@@ -133,7 +133,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 
 </table>
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 </body>
 
 </html>

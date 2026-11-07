@@ -52,7 +52,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 		
 
-		function classCart($objDbConn)
+		function __construct($objDbConn)
 
 		{
 
@@ -108,7 +108,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     $row['PType'],
                     $row['subscrip']
                 );
-                $valueTotal += $unitPrice * $row['Quantity'];
+                $valueTotal += (float)$unitPrice * (float)$row['Quantity'];
             }
     
             // Format values
@@ -226,7 +226,7 @@ function showd_cart_left($arr,$base_path,$sesid)
 
 		
 
-		$add_cart = $row_cart['Quantity'] * $price;
+		$add_cart = (float)$row_cart['Quantity'] * (float)$price;
 
 			
 
@@ -290,7 +290,7 @@ function showd_cart_left($arr,$base_path,$sesid)
 
 		
 
-		$add_cart = $row_cart['Quantity'] * $price;
+		$add_cart = (float)$row_cart['Quantity'] * (float)$price;
 
 			
 
@@ -354,7 +354,7 @@ function showd_cart_left($arr,$base_path,$sesid)
 
 		
 
-		$add_cart = $row_cart['Quantity'] * $price;
+		$add_cart = (float)$row_cart['Quantity'] * (float)$price;
 
 			
 
@@ -410,7 +410,7 @@ function showd_cart_left($arr,$base_path,$sesid)
 
 					   </tr>';
 
-						$Gross_cart	=	$row_cart['Quantity']*$rowPro['timming'];
+						$Gross_cart	=	(float)$row_cart['Quantity']*(float)$rowPro['timming'];
 
 		
 
@@ -418,7 +418,7 @@ function showd_cart_left($arr,$base_path,$sesid)
 
 				
 
-				$totalrice	=	$Gross_cart+$totalrice;
+				$totalrice	=	(float)$Gross_cart+(float)$totalrice;
 
 			}
 
@@ -658,7 +658,7 @@ function find_file_now($dirname, $fname, &$file_path) {
 
 
 
-                    $add_cart = $row_cart['Quantity'] * $price;
+                    $add_cart = (float)$row_cart['Quantity'] * (float)$price;
 
                    $Gross_cart	=	$add_cart;
 
@@ -716,7 +716,7 @@ function find_file_now($dirname, $fname, &$file_path) {
 
 		
 
-			$add_cart = $row_cart['Quantity'] * $price;
+			$add_cart = (float)$row_cart['Quantity'] * (float)$price;
 
 			
 
@@ -772,7 +772,7 @@ function find_file_now($dirname, $fname, &$file_path) {
 
 				
 
-				$add_cart = $row_cart['Quantity'] * $price;
+				$add_cart = (float)$row_cart['Quantity'] * (float)$price;
 
 				
 
@@ -828,7 +828,7 @@ function find_file_now($dirname, $fname, &$file_path) {
 
 						
 
-				$Gross_cart	=	$row_cart['Quantity']*$row_cart['Price'];
+				$Gross_cart	=	(float)$row_cart['Quantity']*(float)$row_cart['Price'];
 
 					$show_cart	.= '
 
@@ -858,7 +858,7 @@ function find_file_now($dirname, $fname, &$file_path) {
 
 				
 
-				 $totalrice	=	$Gross_cart+$totalrice;
+				 $totalrice	=	(float)$Gross_cart+(float)$totalrice;
 				 
 				 $_SESSION["totalricecc"] = $totalrice; //added to display in header cartby nexgeno
 
@@ -1085,7 +1085,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 					$ord_str .= ",".$cart_pcod.$append;
 
-                    $add_cart = $row_cart['Quantity'] * $price;
+                    $add_cart = (float)$row_cart['Quantity'] * (float)$price;
 
                         
 
@@ -1129,7 +1129,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 		$ord_str .= ",".$cart_pcod;
 
-			$add_cart = $row_cart['Quantity'] * $price;
+			$add_cart = (float)$row_cart['Quantity'] * (float)$price;
 
 			
 
@@ -1179,9 +1179,9 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 				$ord_str .= ",".$cart_pcod;
 
-				$cart_qty3 = $cart_qty3+$row_cart['Quantity'];
+				$cart_qty3 = (float)$cart_qty3+(float)$row_cart['Quantity'];
 
-				$add_cart = $row_cart['Quantity'] * $price;
+				$add_cart = (float)$row_cart['Quantity'] * (float)$price;
 
 				
 
@@ -1205,11 +1205,11 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 				
 
-				$add_cart = $row_cart['Quantity'] * $row_cart['Price'];
+				$add_cart = (float)$row_cart['Quantity'] * (float)$row_cart['Price'];
 
 				$ord_str .= ",Unlimited";
 
-				$cart_qty4 = $cart_qty4+$row_cart['Quantity'];
+				$cart_qty4 = (float)$cart_qty4+(float)$row_cart['Quantity'];
 
 				
 
@@ -1223,7 +1223,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 				
 
-				 $totalrice	=	$Gross_cart+$totalrice;
+				 $totalrice	=	(float)$Gross_cart+(float)$totalrice;
 
 
 
@@ -1249,11 +1249,11 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 				{
 
-					$disc_value = $totalrice * ($discount['coupon_value']/100);
+					$disc_value = (float)$totalrice * ((float)$discount['coupon_value']/100);
 
 				}
 
-				$discounted_price = $totalrice - $disc_value;
+				$discounted_price = (float)$totalrice - (float)$disc_value;
 
 				if($discounted_price != $totalrice && $discounted_price > 0)
 
@@ -1416,13 +1416,13 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 					else if($row_cart['PType']=='sp'){ $append = " (Testing Engine only)"; $cart_qtys += $row_cart['Quantity'];	}
 
-					else{ $cart_qty1 = $cart_qty1+$row_cart['Quantity']; }
+					else{ $cart_qty1 = (float)$cart_qty1+(float)$row_cart['Quantity']; }
 
                     
 
 					$ord_str .= ",".$cart_pcod.$append;
 
-                    $add_cart = $row_cart['Quantity'] * $price;
+                    $add_cart = (float)$row_cart['Quantity'] * (float)$price;
 
                    $Gross_cart	=	$add_cart;
 
@@ -1448,7 +1448,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 					$ord_str .= ",".$cart_pcod;
 
-                    $cart_qty2 = $cart_qty2+$row_cart['Quantity'];
+                    $cart_qty2 = (float)$cart_qty2+(float)$row_cart['Quantity'];
 
 			//$show_cart	.=	'<tr> <td align="center" class="allvendor" style="border-left:solid #d1d1d1 1px; border-right:solid #d1d1d1 1px">&nbsp;&nbsp;<input type="text" name="txt[]" id="txt[]" size="2" maxlength="2" class="qty1" value="'.$row_cart['Quantity'].'" style=" width:20px;"/></td>   <td align="center" valign="top" ><a href="'.$url.'-certification-training.html" title="'.$rowPro['cert_name'].'" class="allvendor" >'.$cart_pcod.'</a></td>';
 
@@ -1468,7 +1468,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 		
 
-			$add_cart = $row_cart['Quantity'] * $price;
+			$add_cart = (float)$row_cart['Quantity'] * (float)$price;
 
 			
 
@@ -1498,7 +1498,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 				$ord_str .= ",".$cart_pcod;
 
-				$cart_qty3 = $cart_qty3+$row_cart['Quantity'];
+				$cart_qty3 = (float)$cart_qty3+(float)$row_cart['Quantity'];
 
 				
 
@@ -1522,7 +1522,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 				
 
-				$add_cart = $row_cart['Quantity'] * $price;
+				$add_cart = (float)$row_cart['Quantity'] * (float)$price;
 
 				
 
@@ -1546,11 +1546,11 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 				
 
-				$add_cart = $row_cart['Quantity'] * $row_cart['Price'];
+				$add_cart = (float)$row_cart['Quantity'] * (float)$row_cart['Price'];
 
 				$ord_str .= ",Unlimited";
 
-				$cart_qty4 = $cart_qty4+$row_cart['Quantity'];
+				$cart_qty4 = (float)$cart_qty4+(float)$row_cart['Quantity'];
 
 				
 
@@ -1562,7 +1562,7 @@ $show_cart	.= '<div>The total Price inclusive of applicable taxes is being displ
 
 				
 
-				 $totalrice	=	$Gross_cart+$totalrice;
+				 $totalrice	=	(float)$Gross_cart+(float)$totalrice;
 
 
 
@@ -1756,7 +1756,7 @@ return mysql_num_rows($bc)+$qqqbb-1;
 
 		$quantity = $quantity;
 
-		$num_quantity = $num_quantity + $cart_qty1;
+		$num_quantity = (float)$num_quantity + (float)$cart_qty1;
 
 
 
@@ -1766,7 +1766,7 @@ return mysql_num_rows($bc)+$qqqbb-1;
 
 			$prods = $proCode;	
 
-			$quanty += $quantity;
+			$quanty = (int)$quanty + (int)$quantity;
 
 		}
 
@@ -1782,7 +1782,7 @@ return mysql_num_rows($bc)+$qqqbb-1;
 
 			$pric.=":".$pri;
 
-			$num_quantity = $num_quantity + $cart_qty2;
+			$num_quantity = (float)$num_quantity + (float)$cart_qty2;
 
 		}
 

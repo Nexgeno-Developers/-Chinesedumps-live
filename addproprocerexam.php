@@ -53,7 +53,7 @@ $i		= 0;
 
 		
 
-		$extraquant	=	$getCheck['Quantity']+1;
+		$extraquant	=	(int)$getCheck['Quantity']+1;
 
 		if(isset($_SESSION['uid'])){
 

@@ -205,7 +205,7 @@ function cms2_render_menu_section($title, $items, $first)
 			$visible[] = $item;
 		}
 	}
-	if (count($visible) == 0) {
+	if (app_count($visible) == 0) {
 		return;
 	}
 	$class = $first ? 'menu' : 'menu2';
@@ -221,7 +221,7 @@ function cms2_render_menu_section($title, $items, $first)
 }
 
 $cms2MenuSections = cms2_admin_panel_sections();
-for ($cms2MenuIndex = 0; $cms2MenuIndex < count($cms2MenuSections); $cms2MenuIndex++) {
+for ($cms2MenuIndex = 0; $cms2MenuIndex < app_count($cms2MenuSections); $cms2MenuIndex++) {
 	cms2_render_menu_section($cms2MenuSections[$cms2MenuIndex][0], $cms2MenuSections[$cms2MenuIndex][1], $cms2MenuIndex == 0);
 }
 ?>

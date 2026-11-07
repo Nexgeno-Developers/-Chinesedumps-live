@@ -186,5 +186,5 @@ $getPage[0] = "Chinesedumps Chckout Page";
 
 	</div>
 
-              <? include("includes/footer.php");?>
+              <?php  include("includes/footer.php");?>
 

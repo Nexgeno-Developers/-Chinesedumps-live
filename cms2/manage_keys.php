@@ -361,7 +361,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 </table>
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 

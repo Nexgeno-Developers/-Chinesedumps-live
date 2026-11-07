@@ -1,4 +1,4 @@
-<? include("includes/header.php");?>
+<?php  include("includes/header.php");?>
 
 <?php $this_page = "demo" ?>
 <?php
@@ -72,4 +72,4 @@ if ($cert_id > 0) {
 include("html/demo.html");
 ?>
 
-<? include("includes/footer.php");?>
+<?php  include("includes/footer.php");?>

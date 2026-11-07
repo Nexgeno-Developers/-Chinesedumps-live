@@ -66,7 +66,7 @@ team will respond you 100% within 8 to 10 hrs time and send you the workbooks/du
 
     <td width="80" valign="bottom" align="right">'.$itemloopquan[$itemloop].'</td>
 
-    <td width="80" valign="bottom" align="right">$'.$priceloop[$itemloop]*$itemloopquan[$itemloop].'</td>
+    <td width="80" valign="bottom" align="right">$'.(float)$priceloop[$itemloop]*(float)$itemloopquan[$itemloop].'</td>
 
   </tr>';
 

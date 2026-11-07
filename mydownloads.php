@@ -147,7 +147,7 @@ function find_file ($dirname, $fname, &$file_path) {
 
 ?>
 
-<? include("includes/header.php");?>
+<?php  include("includes/header.php");?>
 
 <script language="JavaScript" type="text/javascript" src="js/searchcategory2.js"></script>
 
@@ -305,4 +305,4 @@ ul.list-box02.order_tables {
 
   
 
-              <? include("includes/footer.php");?>
+              <?php  include("includes/footer.php");?>

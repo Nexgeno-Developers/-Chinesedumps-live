@@ -1,4 +1,4 @@
-<? include("includes/header.php");?>
+<?php  include("includes/header.php");?>
 <style>
 /* --------- Layout & Typography --------- */
 .section-title{
@@ -1570,5 +1570,5 @@
   <div class="mb-20"></div>
 </div>
 
-<? include("includes/footer.php");?>
+<?php  include("includes/footer.php");?>
 

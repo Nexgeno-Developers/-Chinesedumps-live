@@ -108,46 +108,46 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 	<tr>
     <td width='80' class='header' align="center">
 	<input name="chkbox_select_all" type="checkbox" id="chkbox_select_all"  onclick="checkAllOneOne(this);" value=""  /></td>
-    <? if(isset($_GET['ty']))
+    <?php  if(isset($_GET['ty']))
      { 
      	if($_GET['ty']=='DESC'){
      ?>
     
-      <? }else{ ?>
+      <?php  }else{ ?>
     
-    <? }}else{?>
+    <?php  }}else{?>
     
-    <? } ?>
-    <? if(isset($_GET['ty']))
+    <?php  } ?>
+    <?php  if(isset($_GET['ty']))
      { 
      	if($_GET['ty']=='DESC'){
      ?>
     <td width="127" class='header' align="center"><a href="view_demoDownload.php?ord=demo_download_email&ty=ASC" style=" color:#FFFFFF;">Email</a></td>
-      <? }else{ ?>
+      <?php  }else{ ?>
     <td width="127" class='header' align="center"><a href="view_demoDownload.php?ord=demo_download_email&ty=DESC" style=" color:#FFFFFF;">Email</a></td>
-    <? }}else{?>
+    <?php  }}else{?>
     <td width="127" class='header' align="center"><a href="view_demoDownload.php?ord=demo_download_email&ty=ASC" style=" color:#FFFFFF;">Email</a></td>
-    <? } ?>
-    <? if(isset($_GET['ty']))
+    <?php  } ?>
+    <?php  if(isset($_GET['ty']))
      { 
      	if($_GET['ty']=='DESC'){
      ?>
       <td class='header' width='133' align="center"><a href="view_demoDownload.php?ord=exam_code&ty=ASC" style=" color:#FFFFFF;">Exam Code</a> </td>
-      <? }else{ ?>
+      <?php  }else{ ?>
     <td class='header' width='133' align="center"><a href="view_demoDownload.php?ord=exam_code&ty=DESC" style=" color:#FFFFFF;">Exam Code</a> </td>
-    <? }}else{?>
+    <?php  }}else{?>
      <td class='header' width='133' align="center"><a href="view_demoDownload.php?ord=exam_code&ty=ASC" style=" color:#FFFFFF;">Exam Code</a></td>
-    <? } ?>
-<? if(isset($_GET['ty']))
+    <?php  } ?>
+<?php  if(isset($_GET['ty']))
      { 
      	if($_GET['ty']=='DESC'){
      ?>
       <td class='header' width='133' align="center"><a href="view_demoDownload.php?ord=demo_download_date&ty=ASC" style=" color:#FFFFFF;">Date</a> </td>
-      <? }else{ ?>
+      <?php  }else{ ?>
     <td class='header' width='133' align="center"><a href="view_demoDownload.php?ord=demo_download_date&ty=DESC" style=" color:#FFFFFF;">Date</a> </td>
-    <? }}else{?>
+    <?php  }}else{?>
      <td class='header' width='133' align="center"><a href="view_demoDownload.php?ord=demo_download_date&ty=ASC" style=" color:#FFFFFF;">Date</a></td>
-    <? } ?>
+    <?php  } ?>
     <td width="136" align="center"  class='header'>Option</td>
     </tr>
 
@@ -175,7 +175,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 </form></td>
 </table>
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 </body>
 
 </html>

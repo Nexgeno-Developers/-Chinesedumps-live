@@ -130,7 +130,7 @@ $ccAdminData = get_session_data();
 
 ?>
 
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
 <style>
@@ -283,7 +283,7 @@ $course = mysql_fetch_object($sqlcourse);
 
 </table>
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 

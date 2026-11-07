@@ -143,7 +143,7 @@ function watermark_image($oldimage_name, $new_image_name) {
 	if(isset($_POST['Submit']) && $_POST['Submit']  == "Submit")
 	{
 		
-		 for($i=0; $i < count($_FILES['exam_demo']['tmp_name']);$i++)
+		 for($i=0; $i < app_count($_FILES['exam_demo']['tmp_name']);$i++)
     {
 			
 		$totalReport = mysql_query("select * from sliders_new ORDER BY group_id DESC");
@@ -173,7 +173,7 @@ function watermark_image($oldimage_name, $new_image_name) {
 
 ?>
 
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 
 <script language="Javascript" src="js/category.js"></script>
 
@@ -273,7 +273,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 				<td align="right"> Multiple:</td>
 				<td colspan="2"><input type="file" name="exam_demo[]" multiple/></td>
 			</tr>
-<?php/* 		<tr>
+<?php /* 		<tr>
               <td align="right"> Video Link:</td>
               <td colspan="2"><input name="video_link" type="text" id="video_link" value="" /></td>
             </tr> */  ?>
@@ -312,7 +312,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
 </table>
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 

@@ -15,9 +15,7 @@ include_once 'functions.php';
 $ccAdminData = get_session_data();
 
 	$filename = "../style_sheet.css";
-	$handle = fopen($filename, "r");
-	$contents = fread($handle, filesize($filename));
-	fclose($handle);
+	$contents = is_file($filename) ? file_get_contents($filename) : '';
 	
 	$str	='';
 	if(isset($_POST['csssubmit']) && $_POST['csssubmit']!=''){

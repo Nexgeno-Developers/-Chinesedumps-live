@@ -33,7 +33,7 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 
 
-		function classProduct($objDbConn)
+		function __construct($objDbConn)
 
 		{
 
@@ -242,7 +242,7 @@ function showOrders($result)
 
 					$expo	=	explode('<br/>',$row_order['OrderDesc']);
 
-					$totalexpo	=	count($expo);
+					$totalexpo	=	app_count($expo);
 
 					$newexpo	=	$totalexpo-1;
 
@@ -252,7 +252,7 @@ function showOrders($result)
 
 										
 
-					$descount	=	$row_order['Gross_Amount']-$row_order['Net_Amount'];
+					$descount	=	(float)$row_order['Gross_Amount']-(float)$row_order['Net_Amount'];
 
 			$getorderdet	=	mysql_query("SELECT * from order_detail where masterid='".$row_order['ID']."' and UserID='".db_esc($_SESSION['uid'])."'");
 

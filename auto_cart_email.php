@@ -107,42 +107,42 @@ function getProductPrice($pCodeid,$ptype,$duration){
 			$setPrice = $re["both_pri"];
 		}else{
 			$setPrice = getdbPrice($ptype,$duration);
-			$setPrice = $setPrice["pri_value"]+$price_plus;
+			$setPrice = (float)$setPrice["pri_value"]+(float)$price_plus;
 		}
 	}elseif($ptype == "sp"){
 		if($re["engn_pri3"] != "" && $re["engn_pri3"] != "0.00"){
 			$setPrice = $re["engn_pri3"];
 		}else{
 			$setPrice = getdbPrice($ptype,$duration);
-			$setPrice = $setPrice["pri_value"]+$price_plus;
+			$setPrice = (float)$setPrice["pri_value"]+(float)$price_plus;
 		}
 	}elseif($ptype == "9"){
 		if($re["both_pri"] != "" && $re["both_pri"] != "0.00"){
 			$setPrice = $re["both_pri"];
 		}else{
 			$setPrice = getdbPrice($ptype,$duration);
-			$setPrice = $setPrice["pri_value"]+$price_plus;
+			$setPrice = (float)$setPrice["pri_value"]+(float)$price_plus;
 		}
 	}elseif($ptype == "8"){
 		if($re["engn_pri3"] != "" && $re["engn_pri3"] != "0.00"){
 			$setPrice = $re["engn_pri3"];
 		}else{
 			$setPrice = getdbPrice($ptype,$duration);
-			$setPrice = $setPrice["pri_value"]+$price_plus;
+			$setPrice = (float)$setPrice["pri_value"]+(float)$price_plus;
 		}
 	}elseif($ptype == "7"){
 		if($re["exam_pri3"] != "" && $re["exam_pri3"] != "0.00"){
 			$setPrice = $re["exam_pri3"];
 		}else{
 			$setPrice = getdbPrice($ptype,$duration);
-			$setPrice = $setPrice["pri_value"]+$price_plus;
+			$setPrice = (float)$setPrice["pri_value"]+(float)$price_plus;
 		}
 	}else{
 		if($re["exam_pri3"] != "" && $re["exam_pri3"] != "0.00"){
 			$setPrice = $re["exam_pri3"];
 		}else{
 			$setPrice = getdbPrice($ptype,$duration);
-			$setPrice = $setPrice["pri_value"]+$price_plus;
+			$setPrice = (float)$setPrice["pri_value"]+(float)$price_plus;
 		}
 	}
     return $setPrice;
@@ -222,7 +222,7 @@ function showd_cart($result2) {
         }
 
         $qty      = intval($row['Quantity']);
-        $subTotal = $unitPrice * $qty;
+        $subTotal = (float)$unitPrice * (float)$qty;
         $totalPrice += $subTotal;
 
         // Row HTML

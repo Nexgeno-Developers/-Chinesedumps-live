@@ -67,7 +67,7 @@ require_once dirname(dirname(__FILE__)) . '/system_log.php';
 
 
 
-		function classUser($objDBcon)
+		function __construct($objDBcon)
 
 		{
 
@@ -181,11 +181,11 @@ require_once dirname(dirname(__FILE__)) . '/system_log.php';
 
 				    
 
-					$amount	= $amount+$rows['Net_Amount'];
+					$amount	= (float)$amount+(float)$rows['Net_Amount'];
 
 								
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 											$intColor = "#FFFFFF";
 
@@ -477,7 +477,7 @@ require_once dirname(dirname(__FILE__)) . '/system_log.php';
 
 		}
 
-  function getAllTepmorder($limits)
+  function getAllTepmorder($limits = '')
 
 				{
 
@@ -491,7 +491,7 @@ require_once dirname(dirname(__FILE__)) . '/system_log.php';
 
 				}
 
-	function getAllTepmorderreorder($limits)
+	function getAllTepmorderreorder($limits = '')
 
 				{
 
@@ -521,7 +521,7 @@ require_once dirname(dirname(__FILE__)) . '/system_log.php';
 
 								
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 											$intColor = "";
 
@@ -633,7 +633,7 @@ require_once dirname(dirname(__FILE__)) . '/system_log.php';
 
 								
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 											$intColor = "";
 
@@ -998,7 +998,7 @@ function getUserhtml($spram, $stats='', $extraQuery='')
 
 					{	
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 											$intColor = "";
 
@@ -1131,7 +1131,7 @@ $showTr		.=		'  </tr>';
 
 					{	
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 											$intColor = "";
 
@@ -1191,7 +1191,7 @@ $showTr		.=		'  </tr>';
 
 					{	
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 											$intColor = "";
 
@@ -1253,7 +1253,7 @@ function getUserexamRequest($spram)
 
 					{	
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 											$intColor = "";
 
@@ -1309,7 +1309,7 @@ function getdemoDownload($spram)
 
 					{	
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 											$intColor = "";
 
@@ -1369,7 +1369,7 @@ function getSaleinfo($spram)
 
 					{	
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 											$intColor = "";
 
@@ -2554,7 +2554,7 @@ function addMasteDetail($arrnews)
 
 				
 
-			$add_cart = $row_cart['Quantity'] * $price_one;
+			$add_cart = (float)$row_cart['Quantity'] * (float)$price_one;
 
 				
 

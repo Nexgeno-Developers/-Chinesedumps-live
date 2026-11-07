@@ -1,4 +1,4 @@
-<? include("includes/header.php");?>
+<?php  include("includes/header.php");?>
 
 <style>
     .groupbox {
@@ -133,4 +133,4 @@
             </div>
         </div>
 	</div>
-<? include("includes/footer.php");?>
+<?php  include("includes/footer.php");?>

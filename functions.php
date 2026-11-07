@@ -215,7 +215,7 @@ function passwordResetEmail($user, $resetUrl, $from)
         private $encryption;
         private $username;
         private $password;
-        // private $fromEmail;
+        public $fromEmail; // declared (was an undeclared dynamic property: deprecated in PHP 8.2)
         private $fromName;
         private $timeout;
         private $heloDomain;

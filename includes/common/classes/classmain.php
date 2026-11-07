@@ -23,7 +23,7 @@ error_reporting(E_ALL ^ E_DEPRECATED);
 
 		/*Constructor initialize all the variables*/
 		
-		function classMain($objDbConn)
+		function __construct($objDbConn)
 		{
 			$this->objDbConn	= 	$objDbConn; # Populate the Connection property with the Connection Class Object.
 		}//
@@ -87,7 +87,7 @@ error_reporting(E_ALL ^ E_DEPRECATED);
   // Is $str a UTF8 string?
   $utf8 = (preg_match("/^([\x09\x0A\x0D\x20-\x7E]|[\xC2-\xDF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}|\xED[\x80-\x9F][\x80-\xBF]|\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F][\x80-\xBF]{2})*$/", $str)) ? "u" : "";
  
-  while (list(, $value) = each($content)) {
+  foreach ($content as $value) {
     switch ($value) {
  
       // If a < is encountered, set the "in-tag" flag
@@ -105,7 +105,7 @@ error_reporting(E_ALL ^ E_DEPRECATED);
           $lvalue = strtolower($value);
  
           // If the first character is not a / then this is an opening tag
-          if ($lvalue{0} != "/") {
+          if ($lvalue[0] != "/") {
  
             // Collect the tag name   
             preg_match("/^(\w*?)(\s|$)/", $lvalue, $t);
@@ -119,7 +119,7 @@ error_reporting(E_ALL ^ E_DEPRECATED);
             // If this is a closing tag for a protected element, unset the flag
             if (in_array(substr($lvalue, 1), $nobreak)) {
               reset($innbk);
-              while (list($key, $tag) = each($innbk)) {
+              foreach ($innbk as $key => $tag) {
                 if (substr($lvalue, 1) == $tag) {
                   unset($innbk[$key]);
                   break;
@@ -133,7 +133,7 @@ error_reporting(E_ALL ^ E_DEPRECATED);
         } else if ($value) {
  
           // If unprotected...
-          if (!count($innbk)) {
+          if (!app_count($innbk)) {
  
             // Use the ACK (006) ASCII symbol to replace all HTML entities temporarily
             $value = str_replace("\x06", "", $value);
@@ -149,7 +149,7 @@ error_reporting(E_ALL ^ E_DEPRECATED);
  
                 if (strlen($match[2])) {
                   // Determine the last "safe line-break" character within this match
-                  for ($x = 0, $ledge = 0; $x < strlen($lbrks); $x++) $ledge = max($ledge, strrpos($match[2], $lbrks{$x}));
+                  for ($x = 0, $ledge = 0; $x < strlen($lbrks); $x++) $ledge = max($ledge, strrpos($match[2], $lbrks[$x]));
                   if (!$ledge) $ledge = strlen($match[2]) - 1;
  
                   // Insert the modified string

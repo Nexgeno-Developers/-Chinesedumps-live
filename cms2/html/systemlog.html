@@ -209,7 +209,7 @@ function slRange(from, to) {
 	<th>IP address</th>
 	<th></th>
 </tr>
-<?php if (count($rows) == 0) { ?>
+<?php if (app_count($rows) == 0) { ?>
 <tr><td colspan="8" align="center">No log entries found for these filters.</td></tr>
 <?php } ?>
 <?php foreach ($rows as $r) {

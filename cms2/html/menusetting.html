@@ -1,4 +1,4 @@
-<? include("header.php");?>
+<?php  include("header.php");?>
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <td width="190" class="leftside"><?php include ("menu.php"); ?></td>
@@ -24,7 +24,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
              
               <tr>
                 <td height="33" align="right" valign="middle" >Menu Postion:&nbsp;</td>
-                <td align="left" valign="middle" ><select name="page_title" id="page_title"><option value="Left" <? if($spram[1]=='Left'){ echo "selected='selected'"; } ?> >Left</option><option value="Right" <? if($spram[1]=='Right'){ echo "selected='selected'"; } ?> >Right</option></select></td>
+                <td align="left" valign="middle" ><select name="page_title" id="page_title"><option value="Left" <?php  if($spram[1]=='Left'){ echo "selected='selected'"; } ?> >Left</option><option value="Right" <?php  if($spram[1]=='Right'){ echo "selected='selected'"; } ?> >Right</option></select></td>
               </tr>
                             
               <tr>
@@ -60,7 +60,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 </tr>
 </table>
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 </html>

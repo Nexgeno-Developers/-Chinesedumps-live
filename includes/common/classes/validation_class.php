@@ -57,7 +57,7 @@ class Validate_fields {
 	var $check_4html = false;
 	var $language;
 	
-	function Validate_fields() {
+	function __construct() {
 		$this->language = "en";
 		$this->create_msg();
 	}

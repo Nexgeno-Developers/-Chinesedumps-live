@@ -1,4 +1,4 @@
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
 <style>
 TABLE.list TR TD.item {
@@ -118,30 +118,30 @@ TABLE.list TR:last-child TD.item {
 	<div style="display: flex; align-items: end; gap: 12px; width: 100%;">
 		<div style="width: 20%;">
 			<label style="display:block; margin-bottom:6px; font-weight:600; color:#1e293b;">Search</label>
-			<input type="text" name="textSearch" style="padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; width: 100%; box-sizing: border-box;" value="<? if(isset($_POST['textSearch'])){ echo san_html($_POST['textSearch']);}  ?>" />
+			<input type="text" name="textSearch" style="padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; width: 100%; box-sizing: border-box;" value="<?php  if(isset($_POST['textSearch'])){ echo san_html($_POST['textSearch']);}  ?>" />
 		</div>
 		<div style="width: 20%;">
 			<label style="display:block; margin-bottom:6px; font-weight:600; color:#1e293b;">Hot</label>
 			<select name="hothot" style="padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; background: #ffffff; width:100%; box-sizing: border-box;">
 				<option value="">Select</option>
-				<option value="1" <? if(isset($_POST['hothot']) && $_POST['hothot']=='1'){ echo "selected='selected'"; }?>>Yes</option>
-				<option value="0" <? if(isset($_POST['hothot']) && $_POST['hothot']=='0'){ echo "selected='selected'"; }?>>No</option>
+				<option value="1" <?php  if(isset($_POST['hothot']) && $_POST['hothot']=='1'){ echo "selected='selected'"; }?>>Yes</option>
+				<option value="0" <?php  if(isset($_POST['hothot']) && $_POST['hothot']=='0'){ echo "selected='selected'"; }?>>No</option>
 			</select>
 		</div>
 		<div style="width: 20%;">
 			<label style="display:block; margin-bottom:6px; font-weight:600; color:#1e293b;">Home</label>
 			<select name="homehome" style="padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; background: #ffffff; width:100%; box-sizing: border-box;">
 				<option value="">Select</option>
-				<option value="1" <? if(isset($_POST['homehome']) && $_POST['homehome']=='1'){ echo "selected='selected'"; }?>>Yes</option>
-				<option value="0" <? if(isset($_POST['homehome']) && $_POST['homehome']=='0'){ echo "selected='selected'"; }?>>No</option>
+				<option value="1" <?php  if(isset($_POST['homehome']) && $_POST['homehome']=='1'){ echo "selected='selected'"; }?>>Yes</option>
+				<option value="0" <?php  if(isset($_POST['homehome']) && $_POST['homehome']=='0'){ echo "selected='selected'"; }?>>No</option>
 			</select>
 		</div>
 		<div style="width: 20%;">
 			<label style="display:block; margin-bottom:6px; font-weight:600; color:#1e293b;">Status</label>
 			<select name="criteriacriteria" style="padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; background: #ffffff; width:100%; box-sizing: border-box;">
 				<option value="">Select</option>
-				<option value="1" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='1'){ echo "selected='selected'"; }?>>Enable</option>
-				<option value="0" <? if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='0'){ echo "selected='selected'"; }?>>Disable</option>
+				<option value="1" <?php  if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='1'){ echo "selected='selected'"; }?>>Enable</option>
+				<option value="0" <?php  if(isset($_POST['criteriacriteria']) && $_POST['criteriacriteria']=='0'){ echo "selected='selected'"; }?>>Disable</option>
 			</select>
 		</div>
 		<div style="width: 20%;">
@@ -196,6 +196,6 @@ TABLE.list TR:last-child TD.item {
 </td>
 
 </table>
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 </body>
 </html>

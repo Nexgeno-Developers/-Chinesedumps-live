@@ -153,7 +153,7 @@ $ccAdminData = get_session_data();
             $uploadDir = dirname(__FILE__) . '/../uploads/vendors/';
             if (!is_dir($uploadDir)) { @mkdir($uploadDir, 0775, true); }
             
-            $total = count($types);
+            $total = app_count($types);
             for ($i = 0; $i < $total; $i++) {
                 $type = trim((string)$types[$i]);
             
@@ -239,7 +239,7 @@ $ccAdminData = get_session_data();
 		
 ?>
 
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <td width="190" class="leftside"><?php include ("menu.php"); ?></td>
@@ -273,16 +273,16 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         </tr>
            	<tr>
           <td align="right"> Is Home:</td>
-          <td colspan="2"><input type="checkbox" value="1" <? if(isset($_POST['home']) && $_POST['home']=="1"){ echo "checked='checked'";}?> name="home"  id="home" /></td>
+          <td colspan="2"><input type="checkbox" value="1" <?php  if(isset($_POST['home']) && $_POST['home']=="1"){ echo "checked='checked'";}?> name="home"  id="home" /></td>
         </tr>
         <tr>
           <td align="right"> Is Hot:</td>
-          <td colspan="2"><input type="checkbox" value="1" <? if(isset($_POST['hot']) && $_POST['hot']=="1"){ echo "checked='checked'";}?>  name="hot"  id="hot" /></td>
+          <td colspan="2"><input type="checkbox" value="1" <?php  if(isset($_POST['hot']) && $_POST['hot']=="1"){ echo "checked='checked'";}?>  name="hot"  id="hot" /></td>
         </tr>
         
        <!-- <tr>
           <td align="right"> All Vendor:</td>
-          <td colspan="2"><input type="checkbox" value="1" <? if(isset($_POST['allvendor']) && $_POST['allvendor']=="1"){ echo "checked='checked'";}?>  name="allvendor"  id="allvendor" /></td>
+          <td colspan="2"><input type="checkbox" value="1" <?php  if(isset($_POST['allvendor']) && $_POST['allvendor']=="1"){ echo "checked='checked'";}?>  name="allvendor"  id="allvendor" /></td>
         </tr>-->
         
        <tr>
@@ -414,8 +414,8 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 		<tr>
           <td align="right"> Vendor Status:</td>
           <td><select name="vendor_status" id="vendor_status">
-                <option value="1"<? if(isset($_POST['vendor_status']) && $_POST['vendor_status']=="1"){ echo "selected='selected'";}?>>Active</option>
-                <option value="0"<? if(isset($_POST['vendor_status']) && $_POST['vendor_status']=="0"){ echo "selected='selected'";}?>>In Active</option>
+                <option value="1"<?php  if(isset($_POST['vendor_status']) && $_POST['vendor_status']=="1"){ echo "selected='selected'";}?>>Active</option>
+                <option value="0"<?php  if(isset($_POST['vendor_status']) && $_POST['vendor_status']=="0"){ echo "selected='selected'";}?>>In Active</option>
                 </select></td>
         </tr>
         <tr>
@@ -584,6 +584,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 </body>
 </html>

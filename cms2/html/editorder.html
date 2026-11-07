@@ -54,7 +54,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
       <td class='setting1'><table width="100%" border="0" align="left" cellpadding="4" cellspacing="4">
         <tr>
           <td width="29%" align="left">&nbsp;</td>
-          <td colspan="2" style="color: #FF0000;"><? if(isset($strError)){ echo $strError; } ?></td>
+          <td colspan="2" style="color: #FF0000;"><?php  if(isset($strError)){ echo $strError; } ?></td>
         </tr>
        <tr>
           <td colspan="3">
@@ -70,9 +70,9 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
                    
 					<tr>
 						<td width="77%" valign="top" style="font-size:12px; color:#000;">Order Status:	&nbsp;&nbsp;<select name="ordstatus" id="ordstatus" >
-                        <option value="paid" <? if($spram[1]=='paid'){ echo "selected='selected'"; } ?>>Paid</option>
-                        <option value="completed" <? if($spram[1]=='completed'){ echo "selected='selected'"; } ?>>Completed</option>
-                        <option value="cancle" <? if($spram[1]=='cancle'){ echo "selected='selected'"; } ?>>Cancled</option></select><br/>
+                        <option value="paid" <?php  if($spram[1]=='paid'){ echo "selected='selected'"; } ?>>Paid</option>
+                        <option value="completed" <?php  if($spram[1]=='completed'){ echo "selected='selected'"; } ?>>Completed</option>
+                        <option value="cancle" <?php  if($spram[1]=='cancle'){ echo "selected='selected'"; } ?>>Cancled</option></select><br/>
 <br/><br/>
 <span style="color:#000;"><input type="submit" name="submit" id="submit" value="Submit" /></span></td>
 					    </tr>
@@ -193,13 +193,13 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
                          <td width="31%" align="left" valign="middle" style="font-size:12px; color:#000;"><strong>Quantity</strong></td>
                          <td align="left" valign="middle" style="font-size:12px; color:#000;"><strong>Product Price</strong></td>
                        </tr>
-                       <? while($row	=	mysql_fetch_array($getpro)){
+                       <?php  while($row	=	mysql_fetch_array($getpro)){
                        	$productname	=	mysql_fetch_array($objDBcon->Sql_Query_Exec("*","tbl_pro","pro_id ='".db_esc($row['tmp_proid'])."'"));
-						$propricesingle	=	$row['tmp_price']*$row['tmp_quant'];
+						$propricesingle	=	(float)$row['tmp_price']*(float)$row['tmp_quant'];
                         if($row['spe_price']!=''){
                         $shipyes	=	'yes';
                         }
-						$totalpricetotal	=	$propricesingle+$totalpricetotal;
+						$totalpricetotal	=	(float)$propricesingle+(float)$totalpricetotal;
 						
                         
                        
@@ -209,7 +209,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
                          <td align="left" valign="middle" style="font-size:12px; color:#000;"><?=$row['tmp_quant']?></td>
                          <td align="left" valign="middle" style="font-size:12px; color:#000;">&pound; <?=number_format($row['tmp_price'],2)?></td>
                        </tr>
-                       <? } ?>
+                       <?php  } ?>
                        
                        <tr>
                          <td colspan="3">
@@ -219,11 +219,11 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
                        <tr>
                          <td height="30"  valign="bottom"></td><td><strong>Sub Total:</strong></td><td width="20%" align="left" valign="middle" style="font-size:12px; color:#000;">&pound; <?=number_format($totalpricetotal,2)?></td>
                        </tr>
-                       <? if($shipyes !=''){?>
+                       <?php  if($shipyes !=''){?>
                        <tr>
                          <td height="30"  valign="bottom"></td><td><strong>Shipping &amp; handling: (s)</strong></td><td width="20%" align="left" valign="middle" style="font-size:12px; color:#000;">&pound; 3.99</td>
                        </tr>
-                       <? $totalprice	=	$totalpricetotal+3.99; }else{ $totalprice	=	$totalpricetotal; } ?>
+                       <?php  $totalprice	=	$totalpricetotal+3.99; }else{ $totalprice	=	$totalpricetotal; } ?>
                         <tr>
                          <td height="30"  valign="bottom"></td><td><strong>Total Price:</strong></td><td width="20%" align="left" valign="middle" style="font-size:12px; color:#000;">&pound; <?=number_format($totalprice,2)?></td>
                        </tr>           
@@ -265,6 +265,6 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 </td>
 </tr>
 </table>
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 </body>
 </html>

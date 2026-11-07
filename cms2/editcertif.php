@@ -54,7 +54,7 @@ $demoPdfData = array();
 $oldFilePaths = isset($_POST['existing_file_path']) ? $_POST['existing_file_path'] : array();
 $downloadNames = isset($_POST['demo_download_name']) ? $_POST['demo_download_name'] : array();
 
-for ($i = 0; $i < count($downloadNames); $i++) {
+for ($i = 0; $i < app_count($downloadNames); $i++) {
     $name = trim($downloadNames[$i]);
     $existingFile = isset($oldFilePaths[$i]) ? $oldFilePaths[$i] : '';
 
@@ -65,7 +65,7 @@ for ($i = 0; $i < count($downloadNames); $i++) {
 
 // 2. Process new uploads
 if (isset($_FILES['demo_file']['name']) && is_array($_FILES['demo_file']['name'])) {
-    for ($i = 0; $i < count($_FILES['demo_file']['name']); $i++) {
+    for ($i = 0; $i < app_count($_FILES['demo_file']['name']); $i++) {
         $tmpFile      = $_FILES['demo_file']['tmp_name'][$i];
         $originalFile = $_FILES['demo_file']['name'][$i];
         $newName      = isset($_POST['demo_download_name'][$i]) ? trim($_POST['demo_download_name'][$i]) : '';
@@ -154,7 +154,7 @@ $category = $objEvent->fillComboCategory($spram[12]);
 
 ?>
 
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <td width="190" class="leftside"><?php include ("menu.php"); ?></td>
@@ -201,11 +201,11 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
             </tr>
            	<tr>
           <td align="right"> Is Home:</td>
-          <td colspan="2"><input type="checkbox" value="1" <? if(isset($spram[5]) && $spram[5]=="1"){ echo "checked='checked'";}?> name="home"  id="home" /></td>
+          <td colspan="2"><input type="checkbox" value="1" <?php  if(isset($spram[5]) && $spram[5]=="1"){ echo "checked='checked'";}?> name="home"  id="home" /></td>
         </tr>
         <tr>
           <td align="right"> Is Hot:</td>
-          <td colspan="2"><input type="checkbox" value="1" <? if(isset($spram[6]) && $spram[6]=="1"){ echo "checked='checked'";}?>  name="hot"  id="hot" /></td>
+          <td colspan="2"><input type="checkbox" value="1" <?php  if(isset($spram[6]) && $spram[6]=="1"){ echo "checked='checked'";}?>  name="hot"  id="hot" /></td>
         </tr>
        
        
@@ -330,8 +330,8 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 		<tr>
           <td align="right"> Certification Status:</td>
           <td><select name="vendor_status" id="vendor_status">
-                <option value="1"<? if(isset($spram[11]) && $spram[11]=="1"){ echo "selected='selected'";}?>>Active</option>
-                <option value="0"<? if(isset($spram[11]) && $spram[11]=="0"){ echo "selected='selected'";}?>>In Active</option>
+                <option value="1"<?php  if(isset($spram[11]) && $spram[11]=="1"){ echo "selected='selected'";}?>>Active</option>
+                <option value="0"<?php  if(isset($spram[11]) && $spram[11]=="0"){ echo "selected='selected'";}?>>In Active</option>
                 </select><input type="hidden" name="vnamehidden" id="vnamehidden" value="<?=san_html($spram[1])?>" /></td>
         </tr>
         <tr>
@@ -395,6 +395,6 @@ function addMore() {
     wrapper.appendChild(newGroup);
 }
 </script>
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 </body>
 </html>

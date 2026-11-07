@@ -35,7 +35,7 @@ $i		= 0;
 		$getCheck			=	mysql_fetch_array($check_rows);
 		if($exe_check>='1'){
 		
-		$extraquant	=	$getCheck['Quantity']+1;
+		$extraquant	=	(int)$getCheck['Quantity']+1;
 		if(isset($_SESSION['uid'])){
 		$query_add	=	mysql_query("UPDATE temp_order set Price='".db_esc($totalprice)."',subscrip='".san_int($subscr)."' where UserID='".san_int($_SESSION['uid'])."' and TrackID='".db_esc($proid)."' and Jumbo2='1'");
 		}else{

@@ -1,4 +1,4 @@
-  <? include("includes/header.php");?>
+  <?php  include("includes/header.php");?>
 <style type="text/css">
 .col-md-12.ent-demo {
     display: flex;
@@ -67,4 +67,4 @@
 </div>
 </div>
         
-<? include("includes/footer.php");?>
+<?php  include("includes/footer.php");?>

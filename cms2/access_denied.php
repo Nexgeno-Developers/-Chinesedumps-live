@@ -29,6 +29,6 @@ include ("../includes/common/inc/sessionheader.php");
 </td>
 </tr>
 </table>
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 </body>
 </html>

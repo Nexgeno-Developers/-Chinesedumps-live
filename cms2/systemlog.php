@@ -61,7 +61,7 @@ function syslog_view_details_html($json)
 		$html .= '</table>';
 		unset($data['changes']);
 	}
-	if (count($data) > 0) {
+	if (app_count($data) > 0) {
 		$html .= '<table class="sl-changes">';
 		foreach ($data as $k => $v) {
 			if (is_array($v)) {
@@ -229,7 +229,7 @@ if ($filters['q'] !== '') {
 	$like = "'%" . db_esc(str_replace(array('\\', '%', '_'), array('\\\\', '\\%', '\\_'), $filters['q'])) . "%'";
 	$where[] = "(description LIKE $like OR actor_name LIKE $like OR actor_email LIKE $like OR entity_label LIKE $like OR entity_id LIKE $like OR ip_address LIKE $like OR request_url LIKE $like)";
 }
-$whereSql = count($where) > 0 ? ' WHERE ' . implode(' AND ', $where) : '';
+$whereSql = app_count($where) > 0 ? ' WHERE ' . implode(' AND ', $where) : '';
 
 //----------------------------------------------------------------------------------------------------
 // CSV export (same filters, max 50 000 rows)

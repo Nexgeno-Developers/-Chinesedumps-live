@@ -636,9 +636,9 @@ class easyphpthumbnail {
 	 *
 	 */	
 	public function __destruct() {
-		if(is_resource($this->im)) imagedestroy($this->im);
-		if(is_resource($this->thumb)) imagedestroy($this->thumb);
-		if(is_resource($this->newimage)) imagedestroy($this->newimage);
+		if(is_resource($this->im) || is_object($this->im)) imagedestroy($this->im);
+		if(is_resource($this->thumb) || is_object($this->thumb)) imagedestroy($this->thumb);
+		if(is_resource($this->newimage) || is_object($this->newimage)) imagedestroy($this->newimage);
 	}
 
 	/**

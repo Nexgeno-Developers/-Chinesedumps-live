@@ -114,7 +114,7 @@ $getPage[5]	=	"Cart";
 
 		$i=0;
 
-	while($i<count($qunt))
+	while($i<app_count($qunt))
 
 		{
 
@@ -280,42 +280,42 @@ if (isset($_GET['cancel_failed']) && $_GET['cancel_failed'] == '1' && isset($_GE
             			$setPrice = $re["both_pri"];
             		}else{
             			$setPrice = getdbPrice($ptype,$duration);
-            			$setPrice = $setPrice["pri_value"]+$price_plus;
+            			$setPrice = (float)$setPrice["pri_value"]+(float)$price_plus;
             		}
             	}elseif($ptype == "sp"){
             		if($re["engn_pri3"] != "" && $re["engn_pri3"] != "0.00"){
             			$setPrice = $re["engn_pri3"];
             		}else{
             			$setPrice = getdbPrice($ptype,$duration);
-            			$setPrice = $setPrice["pri_value"]+$price_plus;
+            			$setPrice = (float)$setPrice["pri_value"]+(float)$price_plus;
             		}
             	}elseif($ptype == "9"){
             		if($re["both_pri"] != "" && $re["both_pri"] != "0.00"){
             			$setPrice = $re["both_pri"];
             		}else{
             			$setPrice = getdbPrice($ptype,$duration);
-            			$setPrice = $setPrice["pri_value"]+$price_plus;
+            			$setPrice = (float)$setPrice["pri_value"]+(float)$price_plus;
             		}
             	}elseif($ptype == "8"){
             		if($re["engn_pri3"] != "" && $re["engn_pri3"] != "0.00"){
             			$setPrice = $re["engn_pri3"];
             		}else{
             			$setPrice = getdbPrice($ptype,$duration);
-            			$setPrice = $setPrice["pri_value"]+$price_plus;
+            			$setPrice = (float)$setPrice["pri_value"]+(float)$price_plus;
             		}
             	}elseif($ptype == "7"){
             		if($re["exam_pri3"] != "" && $re["exam_pri3"] != "0.00"){
             			$setPrice = $re["exam_pri3"];
             		}else{
             			$setPrice = getdbPrice($ptype,$duration);
-            			$setPrice = $setPrice["pri_value"]+$price_plus;
+            			$setPrice = (float)$setPrice["pri_value"]+(float)$price_plus;
             		}
             	}else{
             		if($re["exam_pri3"] != "" && $re["exam_pri3"] != "0.00"){
             			$setPrice = $re["exam_pri3"];
             		}else{
             			$setPrice = getdbPrice($ptype,$duration);
-            			$setPrice = $setPrice["pri_value"]+$price_plus;
+            			$setPrice = (float)$setPrice["pri_value"]+(float)$price_plus;
             		}
             	}
                 return $setPrice;
@@ -395,7 +395,7 @@ if (isset($_GET['cancel_failed']) && $_GET['cancel_failed'] == '1' && isset($_GE
                     }
             
                     $qty      = intval($row['Quantity']);
-                    $subTotal = $unitPrice * $qty;
+                    $subTotal = (float)$unitPrice * (float)$qty;
                     $totalPrice += $subTotal;
             
                     // Row HTML
@@ -496,7 +496,7 @@ if (!isset($_SESSION['uid'])) {
     exit();
 }
 ?>
-<? include("includes/header.php");?>
+<?php  include("includes/header.php");?>
 
 <style>
 
@@ -689,4 +689,4 @@ ChineseDumps.com does not store any of your financial information.</p>
 
 	</div>
 
-              <? include("includes/footer.php");?>
+              <?php  include("includes/footer.php");?>

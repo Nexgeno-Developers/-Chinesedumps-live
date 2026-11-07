@@ -50,9 +50,9 @@ if(isset($_POST["mode"]) && $_POST["mode"]=="basket"):
 endif;
 //delete item
 if(isset($_GET['mode'])){
-if(isset($_GET[mode]) && $_GET[mode]=="del"):
-	if (array_key_exists($_GET[id], $_SESSION['basket'])):
-   		unset($_SESSION['basket'][$_GET[id]]);
+if(isset($_GET['mode']) && $_GET['mode']=="del"):
+	if (array_key_exists($_GET['id'], $_SESSION['basket'])):
+   		unset($_SESSION['basket'][$_GET['id']]);
 	endif;
 endif;
 }
@@ -94,7 +94,7 @@ $itemprice=0;
 	endif;	
 
 	if (isset($_SESSION['shpmethod']) && $_SESSION['shpmethod']!=0):
-		$stot=$stot+$shipmentvalue[$_SESSION[shpmethod]];
-		$ship=$shipmentvalue[$_SESSION[shpmethod]];
+		$stot=$stot+$shipmentvalue[$_SESSION['shpmethod']];
+		$ship=$shipmentvalue[$_SESSION['shpmethod']];
 	endif;
 ?>

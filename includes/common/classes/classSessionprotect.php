@@ -8,7 +8,7 @@
 		 <script language="javascript" type="text/javascript">
 		 window.open('webprotect.php','title','height=250,width=500,scrollbars=1,resizable=yes');
 		</script>
-		<?
+		<?php 
 		
 	}
 ?>

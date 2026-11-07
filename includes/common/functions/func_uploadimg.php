@@ -1,4 +1,4 @@
-<?
+<?php 
 function fileUpload_thumb($filename,$largimg,$smallimg,$width,$height)
 {
 //$_FILES[filename][]
@@ -39,7 +39,7 @@ function fileUpload_thumb($filename,$largimg,$smallimg,$width,$height)
    }
    //so, whats the file's extension?
    $getExt = explode ('.', $file_name);
-   $file_ext = $getExt[count($getExt)-1];
+   $file_ext = $getExt[app_count($getExt)-1];
 
    //create a random file name
    $rand_name = md5(time());

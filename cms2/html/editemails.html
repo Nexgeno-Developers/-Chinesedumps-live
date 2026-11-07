@@ -63,11 +63,11 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
                 <td height="33" align="right" valign="middle" >Email Title:&nbsp;</td>
                 <td align="left" valign="middle" >
                 <select name="selecttitle" id="selecttitle"  onchange="return chngstatus();">
-                <option value="1" <? if(isset($_POST['selecttitle']) && $_POST['selecttitle']=='1'){ echo "selected='selected'"; } ?>>Forget Password Email</option>
-                <option value="2" <? if(isset($_POST['selecttitle']) && $_POST['selecttitle']=='2'){ echo "selected='selected'"; } ?>>Sign Up Email</option>
-                <option value="3" <? if(isset($_POST['selecttitle']) && $_POST['selecttitle']=='3'){ echo "selected='selected'"; } ?>>Edit Profile Email</option>
-                <option value="4" <? if(isset($_POST['selecttitle']) && $_POST['selecttitle']=='4'){ echo "selected='selected'"; } ?>>Order Expired Before 7 Days</option>
-                <option value="5" <? if(isset($_POST['selecttitle']) && $_POST['selecttitle']=='5'){ echo "selected='selected'"; } ?>>Order Expire Email</option>
+                <option value="1" <?php  if(isset($_POST['selecttitle']) && $_POST['selecttitle']=='1'){ echo "selected='selected'"; } ?>>Forget Password Email</option>
+                <option value="2" <?php  if(isset($_POST['selecttitle']) && $_POST['selecttitle']=='2'){ echo "selected='selected'"; } ?>>Sign Up Email</option>
+                <option value="3" <?php  if(isset($_POST['selecttitle']) && $_POST['selecttitle']=='3'){ echo "selected='selected'"; } ?>>Edit Profile Email</option>
+                <option value="4" <?php  if(isset($_POST['selecttitle']) && $_POST['selecttitle']=='4'){ echo "selected='selected'"; } ?>>Order Expired Before 7 Days</option>
+                <option value="5" <?php  if(isset($_POST['selecttitle']) && $_POST['selecttitle']=='5'){ echo "selected='selected'"; } ?>>Order Expire Email</option>
                 </select></td>
               </tr>
               </form>
@@ -76,11 +76,11 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
                 <td align="left" valign="middle" ></td>
               </tr>
               <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
-              <? if(isset($_POST['selecttitle'])){?>
+              <?php  if(isset($_POST['selecttitle'])){?>
               <input type="hidden" name="selecttitle" id="selecttitle" value="<?=san_html($_POST['selecttitle'])?>" />
-              <? }else{ ?>
+              <?php  }else{ ?>
               <input type="hidden" name="selecttitle" id="selecttitle" value="1" />
-              <? } ?>
+              <?php  } ?>
               <tr>
                 <td height="29" colspan="2" align="center" valign="middle"><textarea id="FCKeditor" name="FCKeditor" rows=4 cols=30><?=stripslashes($spram[1])?></textarea>
                     <script>
@@ -209,7 +209,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 </tr>
 </table>
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 </html>

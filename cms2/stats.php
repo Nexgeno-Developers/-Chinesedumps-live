@@ -562,7 +562,7 @@ return false;
 	</div>
 	<?php if (isset($str22) && $str22): ?>
 	<div style="margin-top: 16px; padding: 12px 16px; background: #fef2f2; border-radius: 8px; border-left: 4px solid #dc2626;">
-		<p style="margin: 0; color: #dc2626; font-weight: 600; font-size: 14px;"><? echo $str22; ?></p>
+		<p style="margin: 0; color: #dc2626; font-weight: 600; font-size: 14px;"><?php  echo $str22; ?></p>
 	</div>
 	<?php endif; ?>
 </div>
@@ -780,7 +780,7 @@ return false;
 
 
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 

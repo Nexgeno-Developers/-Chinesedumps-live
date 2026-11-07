@@ -44,7 +44,7 @@ require_once dirname(dirname(__FILE__)) . '/system_log.php';
 
 		
 
-		function classAdmin($objDbConn)
+		function __construct($objDbConn)
 
 		{
 
@@ -536,7 +536,7 @@ require_once dirname(dirname(__FILE__)) . '/system_log.php';
 
 				{	
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 											$intColor = "";
 

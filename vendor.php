@@ -61,7 +61,7 @@ $getPage	=	$objMain->getContent(1);
 		{
 		$getPage[1]	=	str_replace("[VendorName]",$veName,$getglobart['content_title']);
 		}
-		if($getPage[5]=='')
+		if($getPage[5]=='' || $getPage[5]===0) // PHP 8: int 0 no longer equals ''
 		{
 		$getPage[5]	=	str_replace("[VendorName]",$veName,$getglobart['meta_descx']);
 		}
@@ -96,7 +96,7 @@ $getPage	=	$objMain->getContent(1);
 		
 ?>
 
-<? include("includes/header.php");?>
+<?php  include("includes/header.php");?>
 <script language="JavaScript" type="text/javascript" src="js/addcart.js"></script>
 <script language="JavaScript" type="text/javascript" src="js/addcart3.js"></script>
 <style type="text/css">
@@ -153,7 +153,7 @@ $getPage	=	$objMain->getContent(1);
 								$titleright		=	$used['exam_name'];                    			
 							?>
                       <li style="width:10%;"><a href="<?=$urlright?>" title="<?=$titleright?>"><span>&nbsp;</span><?php echo $used['exam_name']; ?></a></li>
-                              <? 
+                              <?php  
 							$iex++;
 							} ?>
                                   
@@ -200,4 +200,4 @@ $getPage	=	$objMain->getContent(1);
 	</div>
     <!-- -->
 
- <? include("includes/footer.php");?>
+ <?php  include("includes/footer.php");?>

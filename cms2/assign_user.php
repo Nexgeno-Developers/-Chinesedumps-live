@@ -151,7 +151,7 @@ session_start();
 		<input type='submit' value=' Submit ' />";
 	}
 ?>
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 
 <script language="JavaScript" src="js/categorystatusnew.js"></script>
 
@@ -170,13 +170,13 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 <br />
 <table>
 		<tr>
-		<td valign="top" class="rightside"><div align="center"><? echo $str;?></div></td>
+		<td valign="top" class="rightside"><div align="center"><?php  echo $str;?></div></td>
 		</tr>
 </table>
 
 <table>
 		<tr>
-		<td valign="top" class="rightside"><div align="center"><? echo $msg;?></div></td>
+		<td valign="top" class="rightside"><div align="center"><?php  echo $msg;?></div></td>
 		</tr>
 </table>
 <table cellpadding='0' cellspacing='0' class='list' width='90%'>
@@ -206,7 +206,7 @@ Welcome to your <?=$websitename?> Website control panel. Here you can manage and
 
 </table>
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 

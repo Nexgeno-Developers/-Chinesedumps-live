@@ -175,7 +175,7 @@ require_once dirname(__FILE__) . '/includes/common/system_log.php';
     }
 
     $words = preg_split('/\s+/', $text);
-    if (! is_array($words) || count($words) <= $count) {
+    if (! is_array($words) || app_count($words) <= $count) {
         return $text;
     }
 
@@ -619,11 +619,11 @@ $isLabLayout = ($examType === 'lab');
         $errors[] = "Somthing Went Wrong";
     }
 
-    if (! empty($errors) && count($errors) > 0) {
+    if (! empty($errors) && app_count($errors) > 0) {
         $_SESSION['errors'] = $errors;
     }
 
-    if (empty($errors) && count($errors) == 0) {
+    if (empty($errors) && app_count($errors) == 0) {
         $exmreq[1] = db_esc(san_post('request_ecode'));
 
         $exmreq[2] = db_esc(san_post('request_email'));
@@ -648,7 +648,7 @@ $isLabLayout = ($examType === 'lab');
     $examportimg = (mysql_num_rows($examports) != 0) ? 1 : 0;
 
 ?>
-	<? include ('includes/header.php'); ?>
+	<?php  include ('includes/header.php'); ?>
 	<script language="JavaScript" type="text/javascript" src="js/addcart3.js"></script>
 	<style>
 		.line_height_36 {
@@ -1154,7 +1154,7 @@ $isLabLayout = ($examType === 'lab');
 								</a> >
 								<?php
 
-                                        $len = count($cert_result);
+                                        $len = app_count($cert_result);
 
                                         $i = 0;
 
@@ -1190,7 +1190,7 @@ $isLabLayout = ($examType === 'lab');
 						<?php include __DIR__ . ($isLabLayout ? '/lab.php' : '/written.php'); ?>
 					</div>
 						<!------------------------------ -->
-						<? include ('includes/footer.php'); ?>
+						<?php  include ('includes/footer.php'); ?>
                         <script>
                             function demoVerify3() {
                                 var regExp = /^[A-Za-z_0-9.\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;

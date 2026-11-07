@@ -143,7 +143,7 @@
                                         $aliasName = isset($exam['alias_name']) ? trim((string) $exam['alias_name']) : '';
                                         $labDisplayName = ($aliasName !== '') ? $aliasName : $fullCourseName;
                                         $nameWords = preg_split('/\s+/', $labDisplayName);
-                                        if (count($nameWords) > 2) {
+                                        if (app_count($nameWords) > 2) {
                                             array_splice($nameWords, -2);
                                             $courseBaseName = trim(implode(' ', $nameWords));
                                         } else {
@@ -1190,7 +1190,7 @@ while ($row = mysql_fetch_array($exerel)) {
     $relatedProducts[] = $row;
 }
 
-if (count($relatedProducts) <= 3) {
+if (app_count($relatedProducts) <= 3) {
     $relatedProducts = [];
     $additionalQuery = mysql_query("SELECT * FROM tbl_exam WHERE ven_id='" . san_int($exam['ven_id']) . "' AND exam_id!='" . san_int($examID) . "' AND exam_status='1' AND LOWER(TRIM(exam_type))='lab'");
     while ($row = mysql_fetch_array($additionalQuery)) {

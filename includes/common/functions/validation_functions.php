@@ -7,7 +7,7 @@
 	// Return "1" if valid and "0" if not valid
 	function CheckUsername($userName)
 	{
-		 if(!eregi("^[a-zA-Z0-9._-]+$", $userName)) 
+		 if(!preg_match('/^[a-zA-Z0-9._-]+$/iD', $userName)) 
 			  return false; 
 		 else
 	   		 return true;
@@ -192,7 +192,7 @@
 		
 		   //..................Basically Email Checking is done here. 
 		   $len=strlen($serStr); 
-		   if(!eregi("^[_a-zA-Z0-9-]+(\.[_a-z0-9-]+)*@[a-zA-Z0-9-]{3,20}(\.[a-z0-9-]+)*(\.[a-z]{3,20})*(\.[a-z]{2,3})$", $Email) || $serStr[0]=="-" || $serStr[0]=="_" || $serStr[$len-1]=="-" || $serStr[$len-1]=="_" || $serStr[0]>="0" && $serStr[0]<="9") 
+		   if(!preg_match('/^[_a-zA-Z0-9-]+(\.[_a-z0-9-]+)*@[a-zA-Z0-9-]{3,20}(\.[a-z0-9-]+)*(\.[a-z]{3,20})*(\.[a-z]{2,3})$/iD', $Email) || $serStr[0]=="-" || $serStr[0]=="_" || $serStr[$len-1]=="-" || $serStr[$len-1]=="_" || $serStr[0]>="0" && $serStr[0]<="9") 
 			  return 0; 
 		   else
 	   			return 1;

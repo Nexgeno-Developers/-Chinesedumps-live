@@ -631,7 +631,7 @@
         $relatedProducts[] = $row;
     }
 
-    if (count($relatedProducts) <= 3) {
+    if (app_count($relatedProducts) <= 3) {
         $relatedProducts = [];
         $additionalQuery = mysql_query("SELECT * FROM tbl_exam WHERE ven_id='31' AND exam_status='1'");
         while ($row = mysql_fetch_array($additionalQuery)) {

@@ -80,7 +80,7 @@ $getPage[5]	=	'Re-order';
 <input type="hidden" name="business" value="<?=$getpaypal['paypalid']?>">
 <input type="hidden" name="custom" value=" ">
 <input type="hidden" name="rm" value="2">
-<?
+<?php 
 $i='1';
 ?>
 <input type="hidden" name="item_name_<?=$i?>" value="<?=$exmname?>">
@@ -88,7 +88,7 @@ $i='1';
 <input type="hidden" name="quantity_<?=$i?>" value="1">
 <input type="hidden" name="amount_<?=$i?>" value="<?=$priceprice?>">
 
-<? 
+<?php  
 $qry_master =	"insert into tbl_reorder (id_detailorder,price,startdate,enddate,status)values('".san_int($_GET['id'])."','".db_esc($priceprice)."','".date("Y-m-d")."','".$Expiredate."','0')";
 mysql_query($qry_master);
 $_SESSION['reorderlastid']	=	mysql_insert_id();														
@@ -104,7 +104,7 @@ You are redirecting to Paypal for Secure Payment.....
 </script>
 </body>
 </html>
-<?
+<?php 
 }
 	
 include("html/paypal_payment.html");	

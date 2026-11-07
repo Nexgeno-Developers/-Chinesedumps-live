@@ -1,4 +1,4 @@
-<? include("includes/header.php");?>
+<?php  include("includes/header.php");?>
 <div class="banner_ares"><img src="images/chinese_agent_banner.jpg" style="width:100%;"></div>
 
 <style>
@@ -114,4 +114,4 @@ Start earning immediately — your network is your income.
 </div></div>
 </div>
 
-<? include("includes/footer.php");?>
+<?php  include("includes/footer.php");?>

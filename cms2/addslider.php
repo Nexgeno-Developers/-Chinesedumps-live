@@ -55,7 +55,7 @@ $image_path = base_path('images/stamp_logo.png');
 
 		$totalReport = mysql_query("select * from sliders ORDER BY s_id DESC");
 		$totalRep = mysql_fetch_array($totalReport);
-		$totalRep = $totalRep["s_id"] + 1;
+		$totalRep = (int)$totalRep["s_id"] + 1;
 
 		$spram[1]	=	$_FILES['exam_demo'];
 			$bannerExts	=	array('jpg','jpeg','png','gif','webp');
@@ -112,7 +112,7 @@ $image_path = base_path('images/stamp_logo.png');
 
 ?>
 
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 
 <script language="Javascript" src="js/category.js"></script>
 
@@ -234,7 +234,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
 </table>
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 

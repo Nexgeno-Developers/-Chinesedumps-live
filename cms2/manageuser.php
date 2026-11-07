@@ -421,7 +421,7 @@ else
 	}
 }
 
-$recordsOnPage = count($rowsData);
+$recordsOnPage = app_count($rowsData);
 $hasRecords = ($recordsOnPage > 0);
 
 if(!$hasRecords)

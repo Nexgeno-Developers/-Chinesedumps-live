@@ -24,7 +24,7 @@ $getPage	=	$objMain->getContent(33);
 		$firstlink	=	" ".$getPage[1];
 ?>
 
-<? include("includes/header.php");?>
+<?php  include("includes/header.php");?>
 
 <div class="content-box paddbottom60">
         <div class="exam-group-box">
@@ -33,4 +33,4 @@ $getPage	=	$objMain->getContent(33);
             </div>
         </div>
 	</div>
-<? include("includes/footer.php");?>
+<?php  include("includes/footer.php");?>

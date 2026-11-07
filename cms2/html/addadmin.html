@@ -95,7 +95,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
           <td align="right">Role :</td>
           <td><select name="admin_role">
 		  <?php foreach(cms2_valid_admin_roles() as $roleOption){ ?>
-		  <option <?php if(isset($_POST['admin_role']) && $_POST['admin_role'] == $roleOption){?>selected="selected" <? }?> value="<?=$roleOption?>"><?=cms2_role_label($roleOption)?></option>
+		  <option <?php if(isset($_POST['admin_role']) && $_POST['admin_role'] == $roleOption){?>selected="selected" <?php  }?> value="<?=$roleOption?>"><?=cms2_role_label($roleOption)?></option>
 		  <?php } ?>
 		  </select></td>
         </tr>
@@ -115,6 +115,6 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 </td>
 </tr>
 </table>
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 </body>
 </html>

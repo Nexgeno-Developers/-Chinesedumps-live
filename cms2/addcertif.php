@@ -79,7 +79,7 @@ if(isset($_POST['Submit']) && $_POST['Submit']  == "Submit"){
         $allowed = array('pdf', 'doc', 'docx', 'jpg', 'png');
         $downloadNames = isset($_POST['demo_download_name']) ? $_POST['demo_download_name'] : array();
     
-        for ($i = 0; $i < count($_FILES['demo_file']['name']); $i++) {
+        for ($i = 0; $i < app_count($_FILES['demo_file']['name']); $i++) {
             $tmpFile      = $_FILES['demo_file']['tmp_name'][$i];
             $originalFile = $_FILES['demo_file']['name'][$i];
             $newName      = isset($downloadNames[$i]) ? trim($downloadNames[$i]) : '';
@@ -131,7 +131,7 @@ if(isset($_POST['Submit']) && $_POST['Submit']  == "Submit"){
 $category = $objEvent->fillComboCategory($_POST['cmb_cate']);
 ?>
 
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <td width="190" class="leftside"><?php include ("menu.php"); ?></td>
@@ -177,11 +177,11 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
             
            	<tr>
           <td align="right"> Is Home:</td>
-          <td colspan="2"><input type="checkbox" value="1" <? if(isset($_POST['home']) && $_POST['home']=="1"){ echo "checked='checked'";}?> name="home"  id="home" /></td>
+          <td colspan="2"><input type="checkbox" value="1" <?php  if(isset($_POST['home']) && $_POST['home']=="1"){ echo "checked='checked'";}?> name="home"  id="home" /></td>
         </tr>
         <tr>
           <td align="right"> Is Hot:</td>
-          <td colspan="2"><input type="checkbox" value="1" <? if(isset($_POST['hot']) && $_POST['hot']=="1"){ echo "checked='checked'";}?>  name="hot"  id="hot" /></td>
+          <td colspan="2"><input type="checkbox" value="1" <?php  if(isset($_POST['hot']) && $_POST['hot']=="1"){ echo "checked='checked'";}?>  name="hot"  id="hot" /></td>
         </tr>
         
        
@@ -306,8 +306,8 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 		<tr>
           <td align="right"> Certification Status:</td>
           <td><select name="vendor_status" id="vendor_status">
-                <option value="1"<? if(isset($_POST['vendor_status']) && $_POST['vendor_status']=="1"){ echo "selected='selected'";}?>>Active</option>
-                <option value="0"<? if(isset($_POST['vendor_status']) && $_POST['vendor_status']=="0"){ echo "selected='selected'";}?>>In Active</option>
+                <option value="1"<?php  if(isset($_POST['vendor_status']) && $_POST['vendor_status']=="1"){ echo "selected='selected'";}?>>Active</option>
+                <option value="0"<?php  if(isset($_POST['vendor_status']) && $_POST['vendor_status']=="0"){ echo "selected='selected'";}?>>In Active</option>
                 </select></td>
         </tr>
         <tr>
@@ -351,6 +351,6 @@ function addMore() {
     wrapper.appendChild(newGroup);
 }
 </script>
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 </body>
 </html>

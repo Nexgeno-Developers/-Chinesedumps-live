@@ -1,4 +1,4 @@
-<?
+<?php 
 require_once dirname(__FILE__) . '/includes/common/system_log.php'; require_once dirname(__FILE__) . '/includes/common/sanitize.php'; include("functions.php"); include ('includes/common/classes/classEmailvalidate.php');  
 
 $emailValidator = new classEmailvalidate();
@@ -90,7 +90,7 @@ if (isset($_POST['home_form'])) {
         }
 
         // Display Errors or Process Form
-        if (!empty($errors) && count($errors) > 0) {
+        if (!empty($errors) && app_count($errors) > 0) {
             $_SESSION['errors'] = $errors;
         }
 
@@ -98,12 +98,12 @@ if (isset($_POST['home_form'])) {
         $_SESSION['errors'] = 'Somthing Went Wrong!';
     }
     
-    if (!empty($errors) && count($errors) > 0) {
+    if (!empty($errors) && app_count($errors) > 0) {
         header('Content-Type: application/json');
         echo json_encode(['success' => false, 'errors' => $errors]);
     }
     
-    if (empty($errors) && count($errors) == 0) {
+    if (empty($errors) && app_count($errors) == 0) {
         
         // $to = "webdeveloper@nexgeno.in";
         $to = "sales@chinesedumps.com";

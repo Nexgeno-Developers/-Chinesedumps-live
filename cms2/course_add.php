@@ -85,7 +85,7 @@ $ccAdminData = get_session_data();
 	}
 	
 ?>
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 <table cellpadding="0" cellspacing="0" width="100%">
 
 <tr>
@@ -195,7 +195,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
 </table>
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 

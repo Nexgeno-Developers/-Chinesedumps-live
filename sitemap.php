@@ -35,7 +35,7 @@ $getPage	=	$objMain->getContent(1);
 	///////////////////////////////////////sign up portion//////////////////////////////////
 
 ?>
-<? include("includes/header.php");
+<?php  include("includes/header.php");
 
 ?>
 <style>
@@ -94,4 +94,4 @@ $getPage	=	$objMain->getContent(1);
                      } 
                	?>
               </tr>
-              <? include("includes/footer.php");?>
+              <?php  include("includes/footer.php");?>

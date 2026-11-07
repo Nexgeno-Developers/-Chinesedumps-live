@@ -1,4 +1,4 @@
-<? include("includes/header.php");?>
+<?php  include("includes/header.php");?>
 
 <style>
 @media(max-width:767px)
@@ -51,4 +51,4 @@ At Chinese Dumps, your success begins with verified trust.</p>
     </div>
 </div>
 
-<? include("includes/footer.php");?>
+<?php  include("includes/footer.php");?>

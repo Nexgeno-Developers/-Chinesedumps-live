@@ -38,7 +38,7 @@ function buildVideoLinksFromPost()
     $hasStructured = !empty($services) || !empty($urls);
 
     if ($hasStructured) {
-        $max = max(count($services), count($urls));
+        $max = max(app_count($services), app_count($urls));
         for ($i = 0; $i < $max; $i++) {
             $url = isset($urls[$i]) ? trim((string)$urls[$i]) : '';
             if ($url === '') {
@@ -227,7 +227,7 @@ function normalizeFeatureRowsFromStorage($rawValue)
 		  $faqQuestions = isset($_POST['faq_question']) ? (array)$_POST['faq_question'] : array();
 		  $faqAnswers = isset($_POST['faq_answer']) ? (array)$_POST['faq_answer'] : array();
 		  $faqItems = array();
-		  $faqCount = max(count($faqQuestions), count($faqAnswers));
+		  $faqCount = max(app_count($faqQuestions), app_count($faqAnswers));
 		  for ($faqIdx = 0; $faqIdx < $faqCount; $faqIdx++) {
 		      $question = isset($faqQuestions[$faqIdx]) ? trim((string)$faqQuestions[$faqIdx]) : '';
 		      $answer = isset($faqAnswers[$faqIdx]) ? trim((string)$faqAnswers[$faqIdx]) : '';
@@ -305,7 +305,7 @@ function normalizeFeatureRowsFromStorage($rawValue)
                 }
             
                 // Loop through uploaded files
-                for ($i = 0; $i < count($_FILES['exam_demo_images']['tmp_name']); $i++) {
+                for ($i = 0; $i < app_count($_FILES['exam_demo_images']['tmp_name']); $i++) {
                     $originalName = $_FILES['exam_demo_images']['name'][$i];
                     $tmpName = $_FILES['exam_demo_images']['tmp_name'][$i];
             
@@ -417,7 +417,7 @@ function normalizeFeatureRowsFromStorage($rawValue)
 
 ?>
 
-<? include ("header.php"); ?>
+<?php  include ("header.php"); ?>
 
 <script language="Javascript" src="js/category.js"></script>
 
@@ -535,7 +535,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
               $postedFaqAnswers = isset($_POST['faq_answer']) ? (array)$_POST['faq_answer'] : array();
               $hasPostedFaqRows = !empty($postedFaqQuestions) || !empty($postedFaqAnswers);
               if ($hasPostedFaqRows) {
-                  $faqRowCount = max(count($postedFaqQuestions), count($postedFaqAnswers));
+                  $faqRowCount = max(app_count($postedFaqQuestions), app_count($postedFaqAnswers));
                   for ($faqRowIndex = 0; $faqRowIndex < $faqRowCount; $faqRowIndex++) {
                       $qVal = isset($postedFaqQuestions[$faqRowIndex]) ? $postedFaqQuestions[$faqRowIndex] : '';
                       $aVal = isset($postedFaqAnswers[$faqRowIndex]) ? $postedFaqAnswers[$faqRowIndex] : '';
@@ -621,7 +621,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td align="right"> Is Home:</td>
 
-          <td colspan="2"><input type="checkbox" value="1" <? if(isset($_POST['home']) && $_POST['home']=="1"){ echo "checked='checked'";}?> name="home"  id="home" /></td>
+          <td colspan="2"><input type="checkbox" value="1" <?php  if(isset($_POST['home']) && $_POST['home']=="1"){ echo "checked='checked'";}?> name="home"  id="home" /></td>
 
         </tr>
 
@@ -629,7 +629,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td align="right"> Is Hot:</td>
 
-          <td colspan="2"><input type="checkbox" value="1" <? if(isset($_POST['hot']) && $_POST['hot']=="1"){ echo "checked='checked'";}?>  name="hot"  id="hot" /></td>
+          <td colspan="2"><input type="checkbox" value="1" <?php  if(isset($_POST['hot']) && $_POST['hot']=="1"){ echo "checked='checked'";}?>  name="hot"  id="hot" /></td>
 
         </tr>
 
@@ -700,7 +700,7 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
                   <th class="feature-flag-cell">Action</th>
                 </tr>
               </thead>
-              <tbody id="features_table_body" data-next-index="<?php echo count($featureRowsForForm); ?>">
+              <tbody id="features_table_body" data-next-index="<?php echo app_count($featureRowsForForm); ?>">
                 <?php foreach ($featureRowsForForm as $featureIndex => $featureRow) { ?>
                 <tr>
                   <td><input type="text" class="feature-name-input" name="features[<?php echo $featureIndex; ?>][name]" value="<?php echo htmlspecialchars($featureRow['name'], ENT_QUOTES); ?>"></td>
@@ -762,9 +762,9 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 
           <td><select name="vendor_status" id="vendor_status">
 
-                <option value="1"<? if(isset($_POST['vendor_status']) && $_POST['vendor_status']=="1"){ echo "selected='selected'";}?>>Active</option>
+                <option value="1"<?php  if(isset($_POST['vendor_status']) && $_POST['vendor_status']=="1"){ echo "selected='selected'";}?>>Active</option>
 
-                <option value="0"<? if(isset($_POST['vendor_status']) && $_POST['vendor_status']=="0"){ echo "selected='selected'";}?>>In Active</option>
+                <option value="0"<?php  if(isset($_POST['vendor_status']) && $_POST['vendor_status']=="0"){ echo "selected='selected'";}?>>In Active</option>
 
                 </select></td>
 
@@ -933,7 +933,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });    
 </script>
 
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 
 </body>
 

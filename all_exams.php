@@ -159,7 +159,7 @@ label.text-left {
 }
 </style>
 
-<? include("includes/header.php");?>
+<?php  include("includes/header.php");?>
 
 <div class="content-box ">
 
@@ -263,7 +263,7 @@ label.text-left {
 
                 
 
-            <?/*<table width="20%" border="0" cellspacing="0" cellpadding="0">
+            <?php /*<table width="20%" border="0" cellspacing="0" cellpadding="0">
 
                    <tr>
 
@@ -353,7 +353,7 @@ label.text-left {
 
              </div>
 
-       <?
+       <?php 
 
 				  $cond="";
 
@@ -413,5 +413,5 @@ label.text-left {
 
 </form>
 
-              <? include("includes/footer.php");?>     
+              <?php  include("includes/footer.php");?>     
 

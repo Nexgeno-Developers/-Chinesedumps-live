@@ -1,4 +1,4 @@
-<? 
+<?php  
 include("includes/header.php");
 
 $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
@@ -61,4 +61,4 @@ $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : 
 		</div>
 	</div>
 </div>
-<? include("includes/footer.php");?>
+<?php  include("includes/footer.php");?>

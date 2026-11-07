@@ -44,7 +44,7 @@ $objCart	=	new classCart($objDBcon);
 			 $venID		=	$vendor['ven_id'];
 		
 			$result			=	$objPro->getProduct($certID);
-			$spam			=	"";
+			$spam			=	array();
 			$spam[1]		= 	$result;
 			$spam[2]		=	$venName;
 		    $spam[3]		=	$certName;
@@ -123,7 +123,7 @@ $objCart	=	new classCart($objDBcon);
 
 ?>
 
-<? include("includes/header.php");?>
+<?php  include("includes/header.php");?>
 <script language="JavaScript" type="text/javascript" src="js/addcart.js"></script>
 <script language="JavaScript" type="text/javascript" src="js/addcart3.js"></script>
 <style type="text/css">
@@ -187,7 +187,7 @@ $objCart	=	new classCart($objDBcon);
 								$titleright		=	$used['exam_name'];                    			
 							?>
                       <li style="width:10%;"><a href="<?=$urlright?>" title="<?=$titleright?>"><span>&nbsp;</span><?php echo $used['exam_name']; ?></a></li>
-                              <? 
+                              <?php  
 							$iex++;
 							} ?>
                                   
@@ -202,4 +202,4 @@ $objCart	=	new classCart($objDBcon);
     <!-- -->
     
    
-              <? include("includes/footer.php");?>
+              <?php  include("includes/footer.php");?>

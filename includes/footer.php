@@ -913,7 +913,7 @@ require_once __DIR__ . '/config/load_secrets.php';
 
         </div>
 
-<? } ?>
+<?php  } ?>
 
 
 

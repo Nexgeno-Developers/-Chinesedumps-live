@@ -1,6 +1,6 @@
 		<td width="25%" valign="top">
 				<div id="leftbar_body">
-                  <?
+                  <?php 
 				if(isset($_SESSION['uid']))
 				{
 					include("html/account.html");
@@ -26,7 +26,7 @@
 */                     			
 							?>
 				 			 <li><a href="<?=$urlright?>" title="<?=$titleright?>"><?php echo $used['ven_name']; ?></a></li>
-                              <? 
+                              <?php  
 							$iex++;
 							} ?>
 				</ul><br />

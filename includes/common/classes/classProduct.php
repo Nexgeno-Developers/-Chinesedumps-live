@@ -59,7 +59,7 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 
 
-		function classProduct($objDbConn)
+		function __construct($objDbConn)
 
 
 
@@ -425,7 +425,7 @@ function getProductsbyId($pro_id){
 
 
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 
 
@@ -537,7 +537,7 @@ function getProductsbyId($pro_id){
 
 
 
-				$total	=	count($catids);
+				$total	=	app_count($catids);
 
 
 
@@ -641,7 +641,7 @@ function getProductsbyId($pro_id){
 
 
 
-				$total	=	count($catids);
+				$total	=	app_count($catids);
 
 
 
@@ -721,7 +721,7 @@ function getProductsbyId($pro_id){
 
 
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 
 
@@ -865,7 +865,7 @@ function getProductsbyId($pro_id){
 
 
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 
 
@@ -1021,7 +1021,7 @@ function getProductsbyId($pro_id){
 
 
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 
 
@@ -1171,7 +1171,7 @@ function getProductsbyId($pro_id){
 
 			//..........................................................
 
-			if (($counter % 2)!=0 ){
+			if (((int)$counter % 2)!=0 ){
 
 				$intColor = "";
 
@@ -1377,7 +1377,7 @@ function show_certif($resutlSet)
 
 
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 
 
@@ -1597,7 +1597,7 @@ function show_allExams($resutlSet)
 
 
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 
 
@@ -1841,7 +1841,7 @@ function show_allExams($resutlSet)
 
 
 
-										if (($counter % 2)!=0 )
+										if (((int)$counter % 2)!=0 )
 
 
 

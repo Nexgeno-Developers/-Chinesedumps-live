@@ -80,7 +80,7 @@ if (isset($_GET['uid'])) {
 
 ?>
 
-<? include("includes/header.php");?>
+<?php  include("includes/header.php");?>
 
 <style type="text/css">
 
@@ -453,4 +453,4 @@ h4.connect_heading {
                         <br>
                     </div>
                 </div>
-                <? include("includes/footer.php");?>
+                <?php  include("includes/footer.php");?>

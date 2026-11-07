@@ -69,8 +69,8 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
         <tr align="right">
           <td align="right">Manufacturer Status:</td>
           <td colspan="2" align="left"><select name="status" id="status">
-                <option value="Active"<? if($spram[2]=="Active"){ echo "selected='selected'";}?>>Active</option>
-                <option value="In Active"<? if($spram[2]=="In Active"){ echo "selected='selected'";}?>>In Active</option>
+                <option value="Active"<?php  if($spram[2]=="Active"){ echo "selected='selected'";}?>>Active</option>
+                <option value="In Active"<?php  if($spram[2]=="In Active"){ echo "selected='selected'";}?>>In Active</option>
                 </select></td>
         </tr>
 		
@@ -90,6 +90,6 @@ Welcome to your<?=$websitename?> Website control panel. Here you can manage and 
 </td>
 </tr>
 </table>
-<? include("footer.php")?>
+<?php  include("footer.php")?>
 </body>
 </html>
