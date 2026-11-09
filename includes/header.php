@@ -2284,24 +2284,38 @@ a:focus {
 															<div class="tab-pane active tabcontent" id="aws_foundational" style="display:block !important;">
 																<div class="col-md-4 ht-ul"> <span>AWS Certified Cloud Practitioner</span>
 																	<ul class="nav-list list-inline">
-																		<li><a href="CLF-C01.htm">CLF-C01</a></li>
+																		<li><a href="CLF-C01_dumps.htm">CLF-C01</a></li>
+																		<li> <a href="AIF-C01_dumps.htm">AIF-C01</a> </li>
 																	</ul>
 																</div>
 															</div>
 															<div class="tab-pane tabcontent" id="aws_associate">
 																<div class="col-md-4 ht-ul"> <span>AWS Certified Solutions Architect </span>
 																	<ul class="nav-list list-inline">
-																		<li> <a href="SAA-C01.htm">SAA-C01</a> </li>
+																		<li> <a href="SAA-C01_dumps.htm">SAA-C01</a> </li>
 																	</ul>
 																</div>
 																<div class="col-md-4 ht-ul"> <span>AWS Certified SysOps Administrator </span>
 																	<ul class="nav-list list-inline">
-																		<li> <a href="SOA-C01.htm">SOA-C01</a> </li>
+																		<li> <a href="SOA-C01_dumps.htm">SOA-C01</a> </li>
+																		<li> <a href="soa-c02_dumps.htm">SOA-C02</a> </li>
+																		<li> <a href="SOA-C03_dumps.htm">SOA-C03</a> </li>
 																	</ul>
 																</div>
 																<div class="col-md-4 ht-ul"> <span>AWS Certified Developer</span>
 																	<ul class="nav-list list-inline">
 																		<li> <a href="DVA-C01.htm">DVA-C01</a> </li>
+																		<li> <a href="DVA-C02_dumps.htm">DVA-C02</a> </li>
+																	</ul>
+																</div>
+																<div class="col-md-4 ht-ul"> <span>AWS Certified Data Engineer</span>
+																	<ul class="nav-list list-inline">
+																		<li> <a href="DEA-C01_dumps.htm">DEA-C01</a> </li>
+																	</ul>
+																</div>
+																<div class="col-md-4 ht-ul"> <span>AWS Certified Machine Learning Engineer</span>
+																	<ul class="nav-list list-inline">
+																		<li> <a href="MLA-C01_dumps.htm">MLA-C01</a> </li>
 																	</ul>
 																</div>
 															</div>
@@ -2313,25 +2327,34 @@ a:focus {
 																</div>
 																<div class="col-md-4 ht-ul"> <span>AWS Certified DevOps Engineer </span>
 																	<ul class="nav-list list-inline">
-																		<li> <a href="DOP-C01.htm">DOP-C01</a> </li>
+																		<li> <a href="DOP-C01_dumps.htm">DOP-C01</a> </li>
+																		<li> <a href="DOP-C02_dumps.htm">DOP-C02</a> </li>
 																	</ul>
 																</div>
+																<div class="col-md-4 ht-ul"> <span>AWS Certified Generative AI Developer</span>
+																	<ul class="nav-list list-inline">
+																		<li> <a href="AXS-C01_dumps.htm">AXS-C01</a> </li>
+																	</ul>
+																</div>
+																
 															</div>
 															<div class="tab-pane tabcontent" id="aws_specialist">
 																<div class="col-md-4 ht-ul"> <span>AWS Certified Advanced Networking</span>
 																	<ul class="nav-list list-inline">
-																		<li> <a href="ANS-C00.htm">ANS-C00</a> </li>
+																		<li> <a href="ANS-C00_dumps.htm">ANS-C00</a> </li>
 																		<li> <a href="ans-c01.htm">ANS-C01</a> </li>
 																	</ul>
 																</div>
 																<div class="col-md-4 ht-ul"> <span>AWS Certified Big Data</span>
 																	<ul class="nav-list list-inline">
-																		<li> <a href="BDS-C00.htm">BDS-C00</a> </li>
+																		<li> <a href="BDS-C00_dumps.htm">BDS-C00</a> </li>
 																	</ul>
 																</div>
 																<div class="col-md-4 ht-ul"> <span>AWS Certified Security</span>
 																	<ul class="nav-list list-inline">
+																		<li> <a href="SCS-C01_dumps.htm">SCS-C01</a> </li>
 																		<li> <a href="SCS-C02.htm">SCS-C02</a> </li>
+																		<li> <a href="SCS-C03_dumps.htm">SCS-C03</a> </li>
 																	</ul>
 																</div>
 																<div class="col-md-4 ht-ul"> <span>AWS Certified Alexa Skill Builder</span>
@@ -2341,7 +2364,7 @@ a:focus {
 																</div>
 																<div class="col-md-4 ht-ul"> <span>AWS Certified Machine Learning</span>
 																	<ul class="nav-list list-inline">
-																		<li> <a href="MLS-C01.htm">MLS-C01</a> </li>
+																		<li> <a href="MLS-C01_dumps.htm">MLS-C01</a> </li>
 																	</ul>
 																</div>
 															</div>
@@ -3497,7 +3520,9 @@ a:focus {
 												<ul class="dropdown-menu menu_mrg">
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="#">AWS Certified Cloud Practitioner <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu menu_mrg">
-															<li> <a href="CLF-C01.htm">CLF-C01</a> </li>
+															<li> <a href="CLF-C01_dumps.htm">CLF-C01</a> </li>
+															<li> <a href="CLF-C02_dumps.htm">CLF-C02</a> </li>
+															<li> <a href="AIF-C01_dumps.htm">AIF-C01</a> </li>
 														</ul>
 													</li>
 												</ul>
@@ -3510,17 +3535,26 @@ a:focus {
 
 
 														<ul class="dropdown-menu menu_mrg">
-															<li> <a href="SAA-C01.htm">SAA-C01</a> </li>
+															<li> <a href="SAA-C01_dumps.htm">SAA-C01</a> </li>
+															<li> <a href="SAA-C02_dumps.htm">SAA-C02</a> </li>
+															<li> <a href="SAA-C03_dumps.htm">SAA-C03</a> </li>
 														</ul>
 													</li>
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="#">AWS Certified SysOps Administrator <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu">
 															<li> <a href="SOA-C01.htm">SOA-C01</a> </li>
+															<li> <a href="soa-c02_dumps.htm">SOA-C02</a> </li>
+															<li> <a href="SOA-C03_dumps.htm">SOA-C03</a> </li>
 														</ul>
 													</li>
-													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="#">AWS Certified Developer <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="#">AWS Certified Data Engineer<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu">
-															<li> <a href="DVA-C01.htm">DVA-C01</a> </li>
+															<li> <a href="DEA-C01_dumps.htm">DEA-C01</a> </li>
+														</ul>
+													</li>
+													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="#">AWS Certified Machine Learning Engineer<img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+														<ul class="dropdown-menu">
+															<li> <a href="MLA-C01_dumps.htm">MLA-C01</a> </li>
 														</ul>
 													</li>
 												</ul>
@@ -3530,11 +3564,17 @@ a:focus {
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">AWS Certified Solutions Architect <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu menu_mrg">
 															<li> <a href="SAP-C01.htm">SAP-C01</a> </li>
+															<li> <a href="SAP-C02_dumps.htm">SAP-C02</a> </li>
 														</ul>
 													</li>
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">AWS Certified DevOps Engineer <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu">
 															<li> <a href="DOP-C01.htm">DOP-C01</a> </li>
+														</ul>
+													</li>
+													<li> <a data-toggle="dropdown" class="dropdown-toggle" href=""> AWS Certified Generative AI Developer <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
+														<ul class="dropdown-menu">
+															<li> <a href="AIGP-C01_dumps.htm">AIGP-C01</a> </li>
 														</ul>
 													</li>
 												</ul>
@@ -3543,18 +3583,20 @@ a:focus {
 												<ul class="dropdown-menu">
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">AWS Certified Advanced Networking <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu menu_mrg">
-															<li> <a href="ANS-C00.htm">ANS-C00</a> </li>
-															<li> <a href="ans-c01.htm">ANS-C01</a> </li>
+															<li> <a href="ANS-C00_dumps.htm">ANS-C00</a> </li>
+															<li> <a href="ANS-C01_dumps.htm">ANS-C01</a> </li>
 														</ul>
 													</li>
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">AWS Certified Big Data <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu">
-															<li> <a href="BDS-C00.htm">BDS-C00</a> </li>
+															<li> <a href="BDS-C00_dumps.htm">BDS-C00</a> </li>
 														</ul>
 													</li>
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">AWS Certified Security <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu">
+															<li> <a href="SCS-C01_dumps.htm">SCS-C01</a> </li>
 															<li> <a href="SCS-C02.htm">SCS-C02</a> </li>
+															<li> <a href="SCS-C03_dumps.htm">SCS-C03</a> </li>
 														</ul>
 													</li>
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">AWS Certified Alexa Skill Builder <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
@@ -3564,7 +3606,7 @@ a:focus {
 													</li>
 													<li> <a data-toggle="dropdown" class="dropdown-toggle" href="">AWS Certified Machine Learning <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 														<ul class="dropdown-menu">
-															<li> <a href="MLS-C01.htm">MLS-C01</a> </li>
+															<li> <a href="MLS-C01_dumps.htm">MLS-C01</a> </li>
 														</ul>
 													</li>
 												</ul>
