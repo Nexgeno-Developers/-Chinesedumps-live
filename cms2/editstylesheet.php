@@ -21,8 +21,10 @@ $ccAdminData = get_session_data();
 	if(isset($_POST['csssubmit']) && $_POST['csssubmit']!=''){
 	$contents = $_POST['css'];
 	$fp = fopen($filename, 'w');
-	fwrite($fp, $contents);
-	fclose($fp);
+	if ($fp) { /* PHP 8: fwrite()/fclose() on false is a fatal TypeError */
+		fwrite($fp, $contents);
+		fclose($fp);
+	}
 	$str	=	'Stylesheet has been updated.';
 	syslog_write('Content', 'STYLESHEET_UPDATED', syslog_who().' edited and saved the website style sheet (style_sheet.css, now '.strlen($contents).' characters).', array('entity_type' => 'file', 'entity_label' => 'style_sheet.css'));
 	}

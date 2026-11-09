@@ -326,6 +326,7 @@ function find_file ($dirname, $fname, &$file_path) {
 
 
   $dir = opendir($dirname);
+  if (!$dir) { return; } /* PHP 8: readdir(false) is a fatal TypeError; PHP 5 just ended the loop */
 
 
 

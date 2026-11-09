@@ -257,13 +257,18 @@ echo htmlspecialchars(getip());
   <td width="33%" align='left' class="visit-metric"><span class="metric-label">Total Visits</span><span class="metric-value"><?php
 
 $filename = 'hitcount.txt';
-$handle = fopen($filename, 'r');
-$hits = trim(fgets($handle)) + 1;
-fclose($handle);
+$handle = @fopen($filename, 'r');
+$hits = 1;
+if ($handle) { /* PHP 8: fgets()/fclose() on false is a fatal TypeError */
+	$hits = (int)trim((string)fgets($handle)) + 1;
+	fclose($handle);
+}
 
-$handle = fopen($filename, 'w');
-fwrite($handle, $hits);
-fclose($handle);
+$handle = @fopen($filename, 'w');
+if ($handle) {
+	fwrite($handle, $hits);
+	fclose($handle);
+}
 
 // Uncomment the next line (remove //) to display the number of hits on your page.
 //echo $hits;
