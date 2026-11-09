@@ -2,10 +2,7 @@
 require_once dirname(__FILE__) . '/includes/common/system_log.php'; require_once dirname(__FILE__) . '/includes/common/sanitize.php'; include("functions.php"); include ('includes/common/classes/classEmailvalidate.php');  
 
 $emailValidator = new classEmailvalidate();
-?>
 
-
-<?php
 
 $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
 

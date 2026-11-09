@@ -1,4 +1,4 @@
-   <?PHP
+<?PHP
 require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 require_once dirname(dirname(__FILE__)) . '/system_log.php';
 
