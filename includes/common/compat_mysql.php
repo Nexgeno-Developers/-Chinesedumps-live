@@ -140,6 +140,12 @@ if (!function_exists('mysql_connect') && function_exists('mysqli_connect')) {
             trigger_error('mysql_connect(): ' . MysqlCompatState::$connectError, E_USER_WARNING);
             return false;
         }
+        /*
+         * This site was written for MySQL 5.x, whose default sql_mode is non-strict. Newer servers (MySQL 8 / MariaDB 10.x
+         * with strict mode) reject inserts that leave NOT NULL columns without a value (e.g. temp_order.Jumbo, so
+         * "add to cart" silently saved nothing) and break legacy GROUP BY queries. Use the old default for this connection.
+         */
+        @mysqli_query($link, "SET SESSION sql_mode='NO_ENGINE_SUBSTITUTION'");
         MysqlCompatState::$connectErrno = 0;
         MysqlCompatState::$connectError = '';
         MysqlCompatState::$links[$key] = $link;

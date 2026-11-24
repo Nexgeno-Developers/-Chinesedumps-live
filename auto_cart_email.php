@@ -19,6 +19,8 @@ $mysqli = new mysqli($objDBcon->dbHost, $objDBcon->dbUser, $objDBcon->dbPass, $o
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
+// Legacy (non-strict) SQL mode, same as the mysql_* layer - the temp_order columns need it on strict servers.
+$mysqli->query("SET SESSION sql_mode='NO_ENGINE_SUBSTITUTION'");
 
 // ---------------------------------------------------------------------
 // CONFIG: Maximum number of notification attempts allowed and cutoff time

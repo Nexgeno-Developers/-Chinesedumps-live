@@ -15,6 +15,8 @@ if ($mysqli->connect_error) {
     http_response_code(500);
     exit("DB connection failed");
 }
+// Legacy (non-strict) SQL mode, same as the mysql_* layer - the temp_order columns need it on strict servers.
+$mysqli->query("SET SESSION sql_mode='NO_ENGINE_SUBSTITUTION'");
 
 // grab the userID from session
 $userID = isset($_SESSION['uid']) ? intval($_SESSION['uid']) : 0;
