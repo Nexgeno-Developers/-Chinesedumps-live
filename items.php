@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/blocked_urls.php';
+if (blocked_url_request_is_blocked()) { blocked_url_send_404(); include dirname(__FILE__) . '/notfound.php'; exit; }
 session_start();
 
 include("includes/config/classDbConnection.php");
@@ -23,6 +25,7 @@ $objCart	=	new classCart($objDBcon);
 	$certUrl		= str_replace('name=','',$rr);
 	$cert =  $objPro->getTrackID(db_esc($certUrl)); // get track nick id
 	$certID	=	$cert['cert_id'];
+if (blocked_url_value_is_blocked('certs', isset($cert['cert_url']) ? $cert['cert_url'] : '')) { blocked_url_send_404(); include dirname(__FILE__) . '/notfound.php'; exit; }
 		
 	$_SESSION['vname'] = $certUrl;
 
@@ -114,7 +117,7 @@ $objCart	=	new classCart($objDBcon);
 			
 			$firstlink	=	" <a href='".$url."' class='producttitletext' title='".$venName."'><strong>".$venName." ></strong></a>";
 			$secondlink	=	" ".$certName."";	
-	    $getrelcert	=	"SELECT * from tbl_cert where ven_id='".$cert['ven_id']."' and cert_id !='".$cert['cert_id']."' and cert_status='1'";
+	    $getrelcert	=	"SELECT * from tbl_cert where ven_id='".$cert['ven_id']."' and cert_id !='".$cert['cert_id']."' and cert_status='1'".blocked_url_sql_exclude('cert_url', 'certs');
 		$certrel	=	mysql_query($getrelcert);
 		$my_certrel	=	mysql_num_rows($certrel);
 //---------------------------------------------------------------------------------//
@@ -177,7 +180,7 @@ $objCart	=	new classCart($objDBcon);
                     <li>
                        <ul class="group">
                                 <?php
-							$sql	=	"select * from tbl_exam where ven_id='$venID' and exam_status='1'";
+							$sql	=	"select * from tbl_exam where ven_id='$venID' and exam_status='1'".blocked_url_sql_exclude('exam_url', 'exams');
 							$result	=	mysql_query($sql)or die(mysql_error()."There is no vendor");
 							$iex	=	1;
 							while($used=mysql_fetch_array($result))

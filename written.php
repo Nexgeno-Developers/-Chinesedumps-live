@@ -633,7 +633,7 @@
 
     if (app_count($relatedProducts) <= 3) {
         $relatedProducts = [];
-        $additionalQuery = mysql_query("SELECT * FROM tbl_exam WHERE ven_id='31' AND exam_status='1'");
+        $additionalQuery = mysql_query("SELECT * FROM tbl_exam WHERE ven_id='31' AND exam_status='1'" . blocked_url_sql_exclude('exam_url', 'exams'));
         while ($row = mysql_fetch_array($additionalQuery)) {
             $relatedProducts[] = $row;
         }
@@ -723,7 +723,7 @@
                                                                                 v.default_image
                                                                             FROM tbl_exam e
                                                                             INNER JOIN tbl_vendors v ON v.ven_id = e.ven_id
-                                                                            WHERE e.exam_status = 1
+                                                                            WHERE e.exam_status = 1" . blocked_url_sql_exclude('e.exam_url', 'exams') . "
                                                                             ORDER BY RAND()
                                                                             LIMIT 12
                                                                         ";

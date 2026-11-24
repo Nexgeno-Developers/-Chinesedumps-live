@@ -2,6 +2,7 @@
 require_once dirname(__FILE__) . '/common/system_log.php';
 require_once __DIR__ . '/config/load_secrets.php';
 require_once dirname(__FILE__) . '/common/sanitize.php';
+require_once dirname(__FILE__) . '/common/blocked_urls.php';
 include_once __DIR__ . '/config/classDbConnection.php';
 if (function_exists('start_root_url_rewrite')) {
 	start_root_url_rewrite();
@@ -54,7 +55,7 @@ $page_outQuery = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"]
 
 
 
-$gethotvendor	=	mysql_query("SELECT * from tbl_vendors where ven_hot='1' and ven_status='1' order by ven_id ASC limit 0,5");
+$gethotvendor	=	mysql_query("SELECT * from tbl_vendors where ven_hot='1' and ven_status='1'" . blocked_url_sql_exclude('ven_url', 'vendors') . " order by ven_id ASC limit 0,5");
 
 
 
@@ -1684,6 +1685,7 @@ a:focus {
 										</li>
 
 
+<?php if (!blocked_url_vendor_is_blocked('comptia')) { ?>
 										<li class="dropdown"> <a class="padding_20" href="/CompTIA-certification-dumps.html">CompTIA <img src="images/new-image/caret_icons.svg" alt="caret" />
 
 											</a> <a data-toggle="dropdown" class="dropdown-toggle responsive_caret" href="#"> <img src="images/new-image/caret_icons.svg" alt="caret" />
@@ -1709,6 +1711,7 @@ a:focus {
 										<li> <a href="clo-002_dumps.htm">CompTIA Cloud Essentials+ CLO-002</a> </li>
 										</ul>
 										</li>
+<?php } ?>
 										</li>
 
 										<li class="dropdown">
@@ -3728,6 +3731,7 @@ a:focus {
 										</ul>
 									</li>
 
+<?php if (!blocked_url_vendor_is_blocked('comptia')) { ?>
 									<li> <a data-toggle="dropdown" class="dropdown-toggle" href="/exam-CompTIA.htm">CompTIA <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 									<ul class="dropdown-menu">
 										<li> <a href="fc0-u61_dumps.htm">CompTIA IT Fundamentals+ FC0-U61</a> </li>
@@ -3751,6 +3755,7 @@ a:focus {
 										<li> <a href="clo-002_dumps.htm">CompTIA Cloud Essentials+ CLO-002</a> </li>
 									</ul>
 									</li>
+<?php } ?>
 
 									<li> <a data-toggle="dropdown" class="dropdown-toggle" href="/ISC2-certification-dumps.html">ISC2 <img src="images/new-image/caret_icons.svg" alt="caret" /></a>
 										<ul class="dropdown-menu">

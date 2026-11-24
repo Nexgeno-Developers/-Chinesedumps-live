@@ -18,3 +18,49 @@ Disallow: /.*
 
 Disallow: /test
 Disallow: /test/
+
+
+# De-listed pages (keep in sync with includes/common/blocked_urls.php - these URLs return 404)
+Disallow: /comptia-certification-dumps.html
+Disallow: /linux-cert.htm
+Disallow: /xk0-006_dumps.htm
+Disallow: /ctt-cert.htm
+Disallow: /tk0-201_dumps.htm
+Disallow: /it-fundamentals-cert.htm
+Disallow: /fc0-u61_dumps.htm
+Disallow: /a-cert.htm
+Disallow: /220-1202_dumps.htm
+Disallow: /220-1101_dumps.htm
+Disallow: /220-1102_dumps.htm
+Disallow: /220-1201_dumps.htm
+Disallow: /comptia-cloud-essentials-cert.htm
+Disallow: /clo-002_dumps.htm
+Disallow: /comptia-cloud-cert.htm
+Disallow: /cv0-003_dumps.htm
+Disallow: /cv0-004_dumps.htm
+Disallow: /comptia-server-cert.htm
+Disallow: /sk0-005_dumps.htm
+Disallow: /project-cert.htm
+Disallow: /pk0-005_dumps.htm
+Disallow: /comptia-cysa-cert.htm
+Disallow: /cs0-003_dumps.htm
+Disallow: /comptia-security-cert.htm
+Disallow: /sy0-701_dumps.htm
+Disallow: /comptia-network-cert.htm
+Disallow: /n10-009_dumps.htm
+Disallow: /comptia-datasysp-cert.htm
+Disallow: /ds0-001_dumps.htm
+Disallow: /pentestp-cert.htm
+Disallow: /pt0-003_dumps.htm
+Disallow: /comptia-techp-cert.htm
+Disallow: /fc0-u71_dumps.htm
+Disallow: /comptia-securityx-cert.htm
+Disallow: /cas-005_dumps.htm
+Disallow: /comptia-datap-cert.htm
+Disallow: /da0-001_dumps.htm
+Disallow: /da0-002_dumps.htm
+Disallow: /sy0-501.htm
+Disallow: /pt0-001.htm
+Disallow: /CompTIA-certification-dumps.html
+Disallow: /exam-CompTIA.htm
+Disallow: /exam-comptia.htm

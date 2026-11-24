@@ -1,5 +1,6 @@
 <?PHP
 require_once dirname(dirname(__FILE__)) . '/sanitize.php';
+require_once dirname(dirname(__FILE__)) . '/blocked_urls.php';
 
 
 
@@ -47,7 +48,7 @@ require_once dirname(dirname(__FILE__)) . '/sanitize.php';
 
 		{
 
-			$strSql		=	"SELECT * FROM tbl_vendors where ven_status='1' order by ven_name ASC";
+			$strSql		=	"SELECT * FROM tbl_vendors where ven_status='1'" . blocked_url_sql_exclude('ven_url', 'vendors') . " order by ven_name ASC";
 
 			$result		=	mysql_query($strSql);
 
@@ -521,7 +522,7 @@ function showOrders($result)
 
 	{
 
-		 $strSql 	=	"SELECT  * from tbl_cert where ven_id='".db_esc($vid)."' and cert_status='1'";
+		 $strSql 	=	"SELECT  * from tbl_cert where ven_id='".db_esc($vid)."' and cert_status='1'".blocked_url_sql_exclude('cert_url', 'certs');
 
 		 $result	=	mysql_query($strSql);
 
@@ -929,7 +930,7 @@ function getAllItems($proid)
 
 	{
 
-      $strstr	=	"SELECT * FROM tbl_exam WHERE cert_id='".db_esc($TID)."'";
+      $strstr	=	"SELECT * FROM tbl_exam WHERE cert_id='".db_esc($TID)."'".blocked_url_sql_exclude('exam_url', 'exams');
 
 	 $result	=	mysql_query( $strstr);
 

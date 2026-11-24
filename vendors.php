@@ -158,7 +158,8 @@ function GoToPage(page)
 
 </style>
 <?php
-	$queryPop		=	"SELECT * FROM tbl_vendors where ven_status='1' order by ven_name ASC";
+	require_once dirname(__FILE__) . '/includes/common/blocked_urls.php';
+	$queryPop		=	"SELECT * FROM tbl_vendors where ven_status='1'" . blocked_url_sql_exclude('ven_url', 'vendors') . " order by ven_name ASC";
 	// query to get total number of records
 	$res7 = mysql_query($queryPop);
 	$total_pages=mysql_num_rows($res7);

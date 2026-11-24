@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/blocked_urls.php';
+if (blocked_url_request_is_blocked()) { blocked_url_send_404(); include dirname(__FILE__) . '/notfound.php'; exit; }
 session_start();
 
 include("includes/config/classDbConnection.php");
@@ -26,6 +28,7 @@ $getPage	=	$objMain->getContent(1);
 	    $vendor        =  $objPro->getVendorsID(db_esc($venURL));
 	
 		$vid		= $vendor['ven_id'];
+if (blocked_url_value_is_blocked('vendors', isset($vendor['ven_url']) ? $vendor['ven_url'] : '')) { blocked_url_send_404(); include dirname(__FILE__) . '/notfound.php'; exit; }
 		
 		$_SESSION['vname'] = $venURL;
 

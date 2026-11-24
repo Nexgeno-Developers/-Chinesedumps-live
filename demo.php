@@ -1,3 +1,9 @@
+<?php
+require_once dirname(__FILE__) . '/includes/common/blocked_urls.php';
+include_once("includes/config/classDbConnection.php");
+$objDBcon = new classDbConnection; /* opens the DB connection needed to look the certification up */
+if (blocked_url_cert_id_is_blocked(isset($_GET['cert_id']) ? $_GET['cert_id'] : 0)) { blocked_url_send_404(); include dirname(__FILE__) . '/notfound.php'; exit; }
+?>
 <?php  include("includes/header.php");?>
 
 <?php $this_page = "demo" ?>

@@ -1,13 +1,13 @@
 <?php
 ob_start();
-session_start();
-include("includes/config/classDbConnection.php");
+if (!function_exists('session_status') || session_status() !== PHP_SESSION_ACTIVE) { session_start(); } /* may already be started when blocked_urls.php sends us here */
+include_once("includes/config/classDbConnection.php");
 
-include("includes/common/classes/classmain.php");
-include("includes/common/classes/classProductMain.php");
-include("includes/common/classes/classcart.php");
+include_once("includes/common/classes/classmain.php");
+include_once("includes/common/classes/classProductMain.php");
+include_once("includes/common/classes/classcart.php");
 
-include("includes/shoppingcart.php");
+include_once("includes/shoppingcart.php");
 
 $objDBcon   =   new classDbConnection; 
 $objMain	=	new classMain($objDBcon);

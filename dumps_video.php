@@ -1,5 +1,6 @@
 <?php
 include("includes/config/classDbConnection.php");
+require_once dirname(__FILE__) . '/includes/common/blocked_urls.php';
 $configConn = new classDbConnection();
 
 $limit  = 3;
@@ -14,7 +15,7 @@ $q = $configConn->ExecQuery("
     FROM tbl_vendors
     WHERE youtube_links IS NOT NULL
       AND youtube_links != ''
-      AND youtube_links != '[]'
+      AND youtube_links != '[]'" . blocked_url_sql_exclude('ven_url', 'vendors') . "
     ORDER BY ven_name ASC
     LIMIT $limit OFFSET $offset
 ");

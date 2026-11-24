@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/blocked_urls.php';
+if (blocked_url_demo_is_blocked(isset($_GET['vname']) ? $_GET['vname'] : '', isset($_GET['ecode']) ? $_GET['ecode'] : '')) { blocked_url_send_404(); include dirname(__FILE__) . '/notfound.php'; exit; }
 ob_start();
 session_start();
 include("includes/config/classDbConnection.php");

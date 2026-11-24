@@ -5,7 +5,8 @@ include("includes/config/classDbConnection.php");
 $configConn = new classDbConnection();
 
 // Fetch all vendors (only need demo_json and name)
-$q = $configConn->ExecQuery("SELECT ven_id, ven_name, demo_json FROM tbl_vendors ORDER BY ven_name ASC");
+require_once dirname(__FILE__) . '/includes/common/blocked_urls.php';
+$q = $configConn->ExecQuery("SELECT ven_id, ven_name, demo_json FROM tbl_vendors WHERE 1=1" . blocked_url_sql_exclude('ven_url', 'vendors') . " ORDER BY ven_name ASC");
 
 // ---------- Helpers (PHP 5.6 safe) ----------
 function h($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }

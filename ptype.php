@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__FILE__) . '/includes/common/blocked_urls.php';
+if (blocked_url_request_is_blocked()) { blocked_url_send_404(); include dirname(__FILE__) . '/notfound.php'; exit; }
 require_once dirname(__FILE__) . '/includes/common/system_log.php';
     require_once __DIR__ . '/includes/config/load_secrets.php';
     ob_start();
@@ -274,6 +276,7 @@ function normalizeExamType($examType)
     $examURL = san_get('pcode');
 
     $exam = $objPro->getProductId(db_esc($examURL));
+if (blocked_url_value_is_blocked('exams', isset($exam['exam_url']) ? $exam['exam_url'] : '')) { blocked_url_send_404(); include dirname(__FILE__) . '/notfound.php'; exit; }
 $examType = normalizeExamType(isset($exam['exam_type']) ? $exam['exam_type'] : 'written');
 $isLabLayout = ($examType === 'lab');
 
@@ -557,16 +560,16 @@ $isLabLayout = ($examType === 'lab');
     $new_date = date('M j, Y', strtotime($latestdate));
 
     if ($isLabLayout) {
-    $getrelexam = "SELECT * from tbl_exam where ven_id='" . $exam['ven_id'] . "' and exam_id!='" . db_esc($examID) . "' and exam_status='1' and LOWER(TRIM(exam_type))='lab'";
+    $getrelexam = "SELECT * from tbl_exam where ven_id='" . $exam['ven_id'] . "' and exam_id!='" . db_esc($examID) . "' and exam_status='1' and LOWER(TRIM(exam_type))='lab'" . blocked_url_sql_exclude('exam_url', 'exams');
     } else {
-    $getrelexam = "SELECT * from tbl_exam where cert_id='" . $exam['cert_id'] . "' and exam_name!='" . db_esc($examCode) . "' and exam_status='1'";
+    $getrelexam = "SELECT * from tbl_exam where cert_id='" . $exam['cert_id'] . "' and exam_name!='" . db_esc($examCode) . "' and exam_status='1'" . blocked_url_sql_exclude('exam_url', 'exams');
     }
 
     $exerel = mysql_query($getrelexam);
 
     $my_exerel = mysql_num_rows($exerel);
 
-    $getrelcert = "SELECT * from tbl_cert where ven_id='" . $exam['ven_id'] . "' and cert_id !='" . $exam['cert_id'] . "' and cert_status='1'";
+    $getrelcert = "SELECT * from tbl_cert where ven_id='" . $exam['ven_id'] . "' and cert_id !='" . $exam['cert_id'] . "' and cert_status='1'" . blocked_url_sql_exclude('cert_url', 'certs');
 
     $certrel = mysql_query($getrelcert);
 

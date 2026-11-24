@@ -264,6 +264,7 @@
          
         
          
+<?php require_once dirname(__FILE__) . '/includes/common/blocked_urls.php'; if (!blocked_url_vendor_is_blocked('comptia')) { ?>
          <div class="venders_box">
              <a href="/CompTIA-certification-dumps.html">
              <div class="venders_img">
@@ -272,6 +273,7 @@
              <h5>CampTIA</h5>
              </a>
          </div>
+<?php } ?>
          
           <div class="venders_box">
              <a href="/ISC-certification-dumps.html">
@@ -657,7 +659,9 @@ With Chinese Dumps by your side, you can be sure of one thing - your success is 
             <div class="item"><a href="/Paloalto-Networks-certification-dumps.html"><img class="hvr-bounce-in" src="images/new-image/palo alto.png" alt="Oracle"></a></div>  
             <div class="item"><a href="/Oracle-certification-dumps.html"><img class="hvr-bounce-in" src="images/new-image/Oracle.png" alt="Oracle"></a></div>  
             <div class="item"><a href="/Docker-certification-dumps.html"><img class="hvr-bounce-in" src="images/new-image/DOCKER.png" alt="DOCKER"></a></div>  
-            <div class="item"><a href="/CompTIA-certification-dumps.html"><img class="hvr-bounce-in" src="images/new-image/Untitled design 1.png" alt="CompTIA"></a></div>  
+<?php if (!blocked_url_vendor_is_blocked('comptia')) { ?>
+            <div class="item"><a href="/CompTIA-certification-dumps.html"><img class="hvr-bounce-in" src="images/new-image/Untitled design 1.png" alt="CompTIA"></a></div>
+<?php } ?>  
             <div class="item"><a href="/Splunk-certification-dumps.html"><img class="hvr-bounce-in" src="images/new-image/SPLUNK.png" alt="SPLUNK"></a></div>  
             <div class="item"><a href="/IASSC-certification-dumps.html"><img class="hvr-bounce-in" src="images/new-image/ISACA.png" alt="ISACA"></a></div>  
             <div class="item"><a href="/Juniper-certification-dumps.html"><img class="hvr-bounce-in" src="images/new-image/aws (1) (1).png" alt="Juniper"></a></div> 

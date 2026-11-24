@@ -209,7 +209,7 @@ label.text-left {
                             $queryPop = "SELECT * FROM tbl_exam 
                                          WHERE exam_status = '1' 
                                          AND MATCH (exam_name, exam_url, exam_fullname) 
-                                         AGAINST ('" . db_esc($plusSearch) . "' IN BOOLEAN MODE)";                                
+                                         AGAINST ('" . db_esc($plusSearch) . "' IN BOOLEAN MODE)" . blocked_url_sql_exclude('exam_url', 'exams') . "";                                
 
                             //var_dump($queryPop);
                             $res7 = mysql_query($queryPop);

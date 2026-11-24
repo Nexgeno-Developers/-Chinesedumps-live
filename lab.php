@@ -1192,7 +1192,7 @@ while ($row = mysql_fetch_array($exerel)) {
 
 if (app_count($relatedProducts) <= 3) {
     $relatedProducts = [];
-    $additionalQuery = mysql_query("SELECT * FROM tbl_exam WHERE ven_id='" . san_int($exam['ven_id']) . "' AND exam_id!='" . san_int($examID) . "' AND exam_status='1' AND LOWER(TRIM(exam_type))='lab'");
+    $additionalQuery = mysql_query("SELECT * FROM tbl_exam WHERE ven_id='" . san_int($exam['ven_id']) . "' AND exam_id!='" . san_int($examID) . "' AND exam_status='1' AND LOWER(TRIM(exam_type))='lab'" . blocked_url_sql_exclude('exam_url', 'exams'));
     while ($row = mysql_fetch_array($additionalQuery)) {
         $relatedProducts[] = $row;
     }
@@ -1271,7 +1271,7 @@ if (!empty($relatedProducts)) {
                                                                             WHERE e.exam_status = 1
                                                                               AND e.exam_id != '" . san_int($examID) . "'
                                                                               AND e.ven_id != '" . san_int($exam['ven_id']) . "'
-                                                                              AND LOWER(TRIM(e.exam_type)) = 'lab'
+                                                                              AND LOWER(TRIM(e.exam_type)) = 'lab'" . blocked_url_sql_exclude('e.exam_url', 'exams') . "
                                                                             ORDER BY e.exam_name ASC
                                                                         ";
 

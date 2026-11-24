@@ -49,6 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['file'])) {
     $uid      = intval($_SESSION['uid']);
     $file     = basename($_POST['file']);
     $cert_id  = intval($_POST['cert_id']);
+    require_once dirname(__FILE__) . '/includes/common/blocked_urls.php';
+    if (blocked_url_cert_id_is_blocked($cert_id)) {
+        $response['message'] = 'File does not exist.';
+        echo json_encode($response);
+        exit;
+    }
     // Optional display name sent by client (the button text)
     $displayName = isset($_POST['displayName']) ? trim($_POST['displayName']) : '';
     
